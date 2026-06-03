@@ -1,0 +1,57 @@
+# ─── OS junk ─────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+._*
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ─── Editor / IDE files ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ─── Logs and temp ───────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+*.cache
+
+# ─── Local-only drafts and experiments ───────────────────────────────
+_draft*
+_scratch*
+_local*
+
+# ─── If I ever add a build step (currently none) ─────────────────────
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# ─── Secrets ─────────────────────────────────────────────────────────
+.env
+.env.local
+secrets.json
+
+# ─── Customer & business data exports — NEVER push these ────────────
+# If I ever export bookings, leads, subscribers, or messages from any
+# admin dashboard, the JSON ends up on my Downloads folder. These
+# rules make sure none of it accidentally gets pushed to a public repo.
+bookings-export*.json
+hydration-leads-export*.json
+schicgirl-amazon-backup*.json
+schicgirl-chat-leads*.json
+link-clicks-export*.json
+visits-export*.json
+*-backup-*.json
+# NOTE: amazon-data.json is NOT here on purpose — it's the published
+# product catalog that the public Amazon page loads at runtime.
+# Track it in git so the live site has products.

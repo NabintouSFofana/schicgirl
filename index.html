@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!-- Schicgirl ecosystem · Nabintou S. Fofana · github.com/NabintouSFofana -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Schicgirl™ · Tech Behind the Brand</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Nabintou S. Fofana">
+  <meta name="copyright" content="© 2024–2026 Nabintou S. Fofana. All rights reserved.">
+  <meta name="description" content="The technical backbone of Schicgirl™ — CoilCare AI on the Anthropic Claude API, 5 admin dashboards, Amazon affiliate page. Built solo, in production since 2024.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,30..100&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fff8f1;
+      --paper: #fdf6ed;
+      --ink: #3e261c;
+      --ink-soft: #6b4633;
+      --ink-mute: #9c7a66;
+      --gold: #b98232;
+      --rust: #B6411C;
+      --rose: #d9a39c;
+      --rule: rgba(62, 38, 28, 0.12);
+      --max: 1100px;
+      --gutter: clamp(1.25rem, 4vw, 3rem);
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Instrument Sans", -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      padding: clamp(2rem, 5vw, 4rem) var(--gutter);
+      min-height: 100vh;
+    }
+
+    .container { max-width: var(--max); margin: 0 auto; }
+
+    /* ─── Header ─────────────────────────────────────── */
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: clamp(2.5rem, 6vw, 4rem);
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.05em;
+    }
+    .brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+    .top-links {
+      display: inline-flex;
+      gap: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .top-links a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: 0.2s;
+    }
+    .top-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* ─── Hero ───────────────────────────────────────── */
+    .hero {
+      padding: clamp(2rem, 5vw, 3rem) 0 clamp(3rem, 6vw, 4.5rem);
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--rust); }
+    .hero-lede {
+      max-width: 60ch;
+      font-size: clamp(1.05rem, 0.5vw + 0.95rem, 1.2rem);
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .hero-lede strong { color: var(--ink); font-weight: 600; }
+
+    /* ─── Products grid ──────────────────────────────── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 1.5rem;
+    }
+    .section-label::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--ink-mute);
+    }
+
+    .products {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: clamp(3rem, 6vw, 4.5rem);
+    }
+    .product {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: clamp(1rem, 2vw, 2rem);
+      align-items: center;
+      padding: 1.5rem clamp(1.25rem, 2.5vw, 1.75rem);
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      transition: 0.2s ease;
+    }
+    .product:hover {
+      border-color: color-mix(in oklab, var(--gold) 35%, var(--rule));
+      transform: translateY(-2px);
+    }
+    .product-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-mute);
+      align-self: start;
+      padding-top: 0.35rem;
+    }
+    .product-info h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.35rem;
+    }
+    .product-info p {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+    .product-info .tag {
+      display: inline-block;
+      margin-top: 0.55rem;
+      padding: 0.15rem 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--rust);
+      background: rgba(182, 65, 28, 0.08);
+      border-radius: 999px;
+    }
+    .product-links {
+      display: inline-flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-self: end;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .pill-primary {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .pill-primary:hover { background: var(--rust); }
+    .pill-secondary {
+      background: transparent;
+      color: var(--ink-soft);
+      border: 1px solid var(--rule);
+    }
+    .pill-secondary:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    /* ─── Stack section ──────────────────────────────── */
+    .stack {
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
+      border-top: 1px solid var(--rule);
+    }
+    .stack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.5rem, 3vw, 3rem);
+    }
+    .stack-card h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.85rem;
+    }
+    .stack-card ul {
+      list-style: none;
+    }
+    .stack-card li {
+      padding: 0.4rem 0;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      border-bottom: 1px dashed var(--rule);
+    }
+    .stack-card li:last-child { border-bottom: none; }
+    .stack-card li code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+      background: rgba(185, 130, 50, 0.1);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      color: var(--gold);
+    }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      margin-top: clamp(3rem, 6vw, 4rem);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.04em;
+    }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 700px) {
+      .product { grid-template-columns: 1fr; gap: 1rem; }
+      .product-num { padding-top: 0; }
+      .product-links { justify-self: start; }
+      .stack-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="top">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Schicgirl™ · Tech</span>
+      </div>
+      <nav class="top-links">
+        <a href="https://link.schicgirl.me" target="_blank" rel="noopener">Live site ↗</a>
+        <a href="https://github.com/NabintouSFofana" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">Tech behind the brand · 2024 — present</p>
+      <h1>The system behind a <em>natural hair brand</em>, built solo.</h1>
+      <p class="hero-lede">
+        Schicgirl™ is a bilingual natural hair brand I founded in 2024. This repository holds the technical work that runs it — six small apps, five password-protected admin dashboards, one live AI assistant on the <strong>Anthropic Claude API</strong>. Everything below is built and maintained by me. The live brand lives at <a href="https://link.schicgirl.me" style="color:var(--rust); text-decoration:underline;">link.schicgirl.me</a>.
+      </p>
+    </section>
+
+    <!-- PRODUCTS -->
+    <p class="section-label">What's inside</p>
+    <div class="products">
+
+      <article class="product">
+        <span class="product-num">01</span>
+        <div class="product-info">
+          <h3>CoilCare™ AI</h3>
+          <p>A conversational hair assistant powered by the Anthropic Claude API. Custom prompt system, streaming responses, persistent chat history. Lives at coilcareai.com.</p>
+          <span class="tag">Anthropic Claude API · LLM</span>
+        </div>
+        <div class="product-links">
+          <a href="index_CoilCareAI.html" class="pill pill-primary">View live ↗</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <span class="product-num">02</span>
+        <div class="product-info">
+          <h3>Consultation booking</h3>
+          <p>Bilingual booking flow for one-on-one hair consultations, with a private admin dashboard for managing appointments, sorting, search, and CSV export.</p>
+          <span class="tag">Bilingual · Admin tooling</span>
+        </div>
+        <div class="product-links">
+          <a href="index_consultation.html" class="pill pill-primary">View live ↗</a>
+          <a href="index_consultation_admin.html" class="pill pill-secondary">Admin ↗</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <span class="product-num">03</span>
+        <div class="product-info">
+          <h3>HydraCheck</h3>
+          <p>Interactive hair hydration diagnostic. Guided questions, personalized recommendations, password-protected admin for reviewing submissions.</p>
+          <span class="tag">Interactive diagnostic</span>
+        </div>
+        <div class="product-links">
+          <a href="index_hydracheck.html" class="pill pill-primary">View live ↗</a>
+          <a href="index_hydracheck_admin.html" class="pill pill-secondary">Admin ↗</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <span class="product-num">04</span>
+        <div class="product-info">
+          <h3>SchicChat</h3>
+          <p>Bilingual (French/English) hair diagnostic chatbot. Same admin pattern as HydraCheck — manage submissions, export, search.</p>
+          <span class="tag">Bilingual · Chatbot UX</span>
+        </div>
+        <div class="product-links">
+          <a href="index_schicchat.html" class="pill pill-primary">View live ↗</a>
+          <a href="index_schicchat_admin.html" class="pill pill-secondary">Admin ↗</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <span class="product-num">05</span>
+        <div class="product-info">
+          <h3>Link-in-bio</h3>
+          <p>Custom link-in-bio page for the Schicgirl Instagram. The admin lets me update every link, image, and section without ever editing code — used daily.</p>
+          <span class="tag">CMS-style admin</span>
+        </div>
+        <div class="product-links">
+          <a href="index_link_in_bio.html" class="pill pill-primary">View live ↗</a>
+          <a href="index_link_in_bio_admin.html" class="pill pill-secondary">Admin ↗</a>
+        </div>
+      </article>
+
+      <article class="product">
+        <span class="product-num">06</span>
+        <div class="product-info">
+          <h3>Amazon affiliate minisite</h3>
+          <p>Bilingual curated product page driving affiliate revenue to the brand. Admin handles product catalog, affiliate tag automation, image upload, and JSON publish workflow.</p>
+          <span class="tag">Affiliate · Catalog admin</span>
+        </div>
+        <div class="product-links">
+          <a href="schicgirl_amazon_affiliate_minisite_bilingual.html" class="pill pill-primary">View live ↗</a>
+          <a href="index_amazon_admin.html" class="pill pill-secondary">Admin ↗</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- STACK -->
+    <section class="stack">
+      <p class="section-label">How it's built</p>
+      <div class="stack-grid">
+
+        <div class="stack-card">
+          <h4>Stack</h4>
+          <ul>
+            <li><code>HTML</code> · <code>CSS</code> · vanilla <code>JavaScript</code></li>
+            <li>Anthropic Claude API for CoilCare</li>
+            <li><code>localStorage</code> for per-browser state</li>
+            <li>SHA-256 password hashing via WebCrypto</li>
+            <li>No frameworks · no build step · no backend</li>
+            <li>Hosted via custom domain (not GitHub Pages)</li>
+          </ul>
+        </div>
+
+        <div class="stack-card">
+          <h4>What I built end-to-end</h4>
+          <ul>
+            <li>Brand: name, trademark, palette, voice</li>
+            <li>Bilingual copy (FR/EN) for every page</li>
+            <li>5 admin dashboards I use daily</li>
+            <li>LLM prompt design & integration</li>
+            <li>CSV export, JSON backup/restore</li>
+            <li>Customer support, in two languages</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2024–2026 Nabintou S. Fofana · All rights reserved</span>
+      <span>
+        <a href="https://nabintousfofana.github.io/portfolio" target="_blank" rel="noopener">Portfolio ↗</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/nabintousfofana" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </span>
+    </footer>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<!-- HydraCheck admin · Schicgirl · Nabintou S. Fofana · github.com/NabintouSFofana -->
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin HydraCheck | Schicgirl</title>
+<meta name="author" content="Nabintou S. Fofana">
+<meta name="copyright" content="© 2024–2026 Nabintou S. Fofana / Schicgirl™">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fff8f1;--warm:#f5e5d5;--rose:#d9a39c;--brown:#3e261c;--brown-md:#6b3e2e;
+  --gold:#b98232;--gold-lt:#d4a55e;--muted:#927060;--white:#fff;
+  --danger:#8a3a33;--danger-lt:#c25a4e;--success:#3a6b4c;--info:#3a5c7b;
+  --new:#3a5c7b;--contacted:#b98232;--paid:#3a6b4c;--done:#6b3e2e;--cancelled:#8a3a33;
+  --shadow:0 24px 80px rgba(62,38,28,.15);--shadow-s:0 8px 28px rgba(62,38,28,.08);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{min-height:100%}
+body{
+  min-height:100%;font-family:var(--sans);color:var(--brown);
+  background:radial-gradient(ellipse 70% 50% at 7% 0%,#f4c9c1 0%,transparent 55%),
+             radial-gradient(ellipse 60% 50% at 100% 100%,#efd3a1 0%,transparent 52%),
+             linear-gradient(160deg,#fff8f1 0%,#f7eadf 100%);
+}
+.shell{width:min(1280px,96vw);margin:0 auto;padding:24px 0 50px}
+
+/* brand */
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:20px;justify-content:space-between;flex-wrap:wrap}
+.brand-left{display:flex;align-items:center;gap:14px}
+.mark{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--rose),var(--gold));display:grid;place-items:center;color:white;font-family:var(--serif);font-size:29px;font-weight:700;box-shadow:0 10px 30px rgba(185,130,50,.28)}
+.brand small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.brand strong{display:block;font-family:var(--serif);font-size:30px;font-weight:500;line-height:1}
+
+/* layout */
+.card{background:rgba(255,255,255,.86);border:1px solid rgba(185,130,50,.18);border-radius:26px;box-shadow:var(--shadow);backdrop-filter:blur(18px);padding:24px}
+.card+.card{margin-top:18px}
+.hidden{display:none!important}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.05}
+h1{font-size:clamp(28px,4vw,42px);margin-bottom:6px}
+h2{font-size:24px;margin-bottom:8px}
+h3{font-size:18px;font-weight:500;color:var(--brown-md)}
+.sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:16px}
+
+/* form */
+label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--brown-md);margin-bottom:6px;margin-top:10px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;border:1.5px solid rgba(185,130,50,.25);background:white;border-radius:12px;min-height:42px;padding:10px 13px;font-family:var(--sans);font-size:14px;color:var(--brown);outline:none;transition:.15s}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(185,130,50,.1)}
+textarea{min-height:90px;resize:vertical;line-height:1.5}
+.row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.row-3{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+
+/* stats */
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0}
+.stat{background:white;border:1px solid rgba(185,130,50,.15);border-radius:18px;padding:16px;box-shadow:var(--shadow-s)}
+.stat b{display:block;font-family:var(--serif);font-size:30px;color:var(--brown);line-height:1;margin-bottom:4px}
+.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.stat.accent b{color:var(--gold)}
+.stat.success b{color:var(--success)}
+
+/* toolbar */
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.search{flex:1;min-width:200px}
+.filter-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:white;border:1.5px solid rgba(185,130,50,.22);border-radius:999px;font-size:12px;font-weight:700;color:var(--brown-md);cursor:pointer;transition:.15s;font-family:inherit}
+.filter-pill:hover{border-color:var(--gold);color:var(--brown)}
+.filter-pill.active{background:var(--brown);color:white;border-color:var(--brown)}
+.filter-pill .count{opacity:.7;font-weight:500}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:0 16px;border-radius:999px;border:none;font-family:var(--sans);font-size:13px;font-weight:800;cursor:pointer;transition:.18s;text-decoration:none;white-space:nowrap}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:var(--brown);color:white}
+.btn-primary:hover:not(:disabled){background:var(--brown-md);transform:translateY(-1px)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-lt));color:white}
+.btn-gold:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 20px rgba(185,130,50,.3)}
+.btn-outline{background:transparent;border:1.5px solid rgba(185,130,50,.32);color:var(--brown-md)}
+.btn-outline:hover:not(:disabled){border-color:var(--gold);color:var(--brown);background:rgba(255,255,255,.6)}
+.btn-danger{background:var(--danger);color:white}
+.btn-danger:hover:not(:disabled){background:var(--danger-lt)}
+.btn-ghost{background:transparent;color:var(--brown-md);padding:0 10px;min-height:36px;font-size:12px}
+.btn-ghost:hover{color:var(--brown);background:rgba(185,130,50,.08)}
+.btn-sm{min-height:32px;padding:0 11px;font-size:12px}
+.btn-icon{min-width:32px;width:32px;padding:0}
+
+/* table */
+.table-wrap{overflow:auto;background:white;border-radius:18px;border:1px solid rgba(185,130,50,.14);box-shadow:var(--shadow-s)}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:920px}
+th,td{text-align:left;padding:11px 13px;border-bottom:1px solid rgba(185,130,50,.1);vertical-align:top}
+th{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:10px;background:#fff8f1;white-space:nowrap;font-weight:800}
+th.sortable{cursor:pointer;user-select:none}
+th.sortable:hover{color:var(--brown)}
+th .sort-icon{display:inline-block;width:8px;color:var(--gold);font-size:9px;margin-left:3px;opacity:.5}
+th.sorted .sort-icon{opacity:1}
+tr:hover td{background:#fffbf5}
+td.actions{white-space:nowrap;text-align:right}
+td.actions .btn{margin-left:2px}
+td small{color:var(--muted);line-height:1.5;display:block;margin-top:2px}
+
+/* status badges */
+.status-badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:800;white-space:nowrap;border:1px solid transparent}
+.status-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.status-new{background:#e8eef5;color:var(--new);border-color:#bfd0e2}
+.status-contacted{background:#fdf2dd;color:var(--contacted);border-color:#e6c98a}
+.status-paid{background:#dfeae2;color:var(--paid);border-color:#a8c9b3}
+.status-done{background:#e8e2dc;color:var(--done);border-color:#c1ad9c}
+.status-cancelled{background:#f0d6d2;color:var(--cancelled);border-color:#d4998f}
+
+/* empty state */
+.empty{text-align:center;padding:48px 20px;color:var(--muted)}
+.empty .big{font-size:48px;margin-bottom:10px;opacity:.4}
+.empty p{font-size:14px;max-width:340px;margin:0 auto;line-height:1.6}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(62,38,28,.4);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:24px;z-index:50;overflow-y:auto}
+.modal.open{display:flex}
+.modal-card{width:min(760px,96vw);margin:auto 0;background:rgba(255,255,255,.97);border:1px solid rgba(185,130,50,.18);border-radius:24px;box-shadow:var(--shadow);padding:24px}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.modal-head h2{margin-bottom:2px}
+.modal-head .sub{margin:0;font-size:12px}
+.modal-body{margin-bottom:18px}
+.modal-foot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid rgba(185,130,50,.12);padding-top:16px}
+
+/* detail panel inside modal */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.detail{background:#fffaf4;border:1px solid rgba(185,130,50,.14);border-radius:12px;padding:10px 12px}
+.detail span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:3px}
+.detail b{font-size:13px;font-weight:600;word-break:break-word}
+
+/* toast */
+.toast-wrap{position:fixed;top:20px;right:20px;display:flex;flex-direction:column;gap:8px;z-index:100;max-width:90vw}
+.toast{background:white;border:1px solid rgba(185,130,50,.2);border-left:4px solid var(--gold);border-radius:12px;padding:12px 16px;box-shadow:0 12px 30px rgba(62,38,28,.18);font-size:13px;font-weight:600;animation:slideIn .2s ease-out;max-width:340px}
+.toast.ok{border-left-color:var(--success)}
+.toast.err{border-left-color:var(--danger)}
+.toast.info{border-left-color:var(--info)}
+@keyframes slideIn{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* simple chart (CSS bars) */
+.chart{display:flex;align-items:flex-end;gap:4px;height:120px;padding:10px;background:#fffbf5;border:1px solid rgba(185,130,50,.12);border-radius:14px;margin-top:10px}
+.chart-bar{flex:1;background:linear-gradient(180deg,var(--gold-lt),var(--gold));border-radius:6px 6px 0 0;min-height:2px;position:relative;transition:.2s}
+.chart-bar:hover{background:linear-gradient(180deg,var(--rose),var(--gold))}
+.chart-bar[title]{cursor:default}
+.chart-labels{display:flex;gap:4px;margin-top:6px;font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase}
+.chart-labels span{flex:1;text-align:center}
+
+/* footer */
+.sg-foot{text-align:center;padding:1.25rem 1rem;font-size:.72rem;color:var(--muted);opacity:.8;letter-spacing:.02em;margin-top:30px}
+.sg-foot a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* responsive */
+@media(max-width:900px){
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .row,.row-3{grid-template-columns:1fr}
+  .card{padding:18px}
+  .detail-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .shell{width:100%;padding:14px 10px 34px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .toolbar{flex-direction:column;align-items:stretch}
+  .toolbar .btn,.toolbar .search{width:100%}
+  .brand strong{font-size:22px}
+  th,td{padding:8px 9px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="brand">
+    <div class="brand-left">
+      <div class="mark">S</div>
+      <div><small>Schicgirl™ Admin</small><strong>HydraCheck</strong></div>
+    </div>
+    <button id="logoutBtn" class="btn btn-outline btn-sm hidden">Déconnexion</button>
+  </div>
+
+  <!-- LOGIN -->
+  <section id="login" class="card">
+    <p class="eyebrow">Accès privé</p>
+    <h1>Admin Diagnostics</h1>
+    <p class="sub">Connecte-toi pour voir les diagnostics et leads.</p>
+    <label for="password">Mot de passe</label>
+    <input id="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
+    <p id="loginError" style="color:var(--danger);font-size:13px;font-weight:600;margin-top:10px;display:none"></p>
+    <button id="loginBtn" class="btn btn-primary" style="margin-top:14px">Entrer →</button>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="hidden">
+
+    <!-- STATS -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <div>
+          <h2>Vue d'ensemble</h2>
+          <p class="sub" style="margin-bottom:0">Tes diagnostics en un coup d'œil.</p>
+        </div>
+        <button id="addBtn" class="btn btn-gold">+ Ajouter manuellement</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat"><b id="statTotal">0</b><span>Total</span></div>
+        <div class="stat accent"><b id="statNew">0</b><span>Nouvelles</span></div>
+        <div class="stat"><b id="statContacted">0</b><span>Contactées</span></div>
+        <div class="stat success"><b id="statPaid">0</b><span>Payées</span></div>
+        <div class="stat"><b id="stat30d">0</b><span>30 derniers jours</span></div>
+      </div>
+      <h3 style="margin-top:6px">Diagnostics · 30 derniers jours</h3>
+      <div id="chart" class="chart"></div>
+      <div id="chartLabels" class="chart-labels"></div>
+    </div>
+
+    <!-- BOOKINGS LIST -->
+    <div class="card">
+      <h2>Diagnostics</h2>
+      <div class="toolbar">
+        <input id="search" class="search" placeholder="Rechercher par nom, contact, problème, porosité…"/>
+        <select id="filterStatus" style="max-width:170px;min-height:40px">
+          <option value="">Tous statuts</option>
+          <option value="new">Nouvelles</option>
+          <option value="contacted">Contactées</option>
+          <option value="paid">Payées</option>
+          <option value="done">Terminées</option>
+          <option value="cancelled">Annulées</option>
+        </select>
+        <button id="refreshBtn" class="btn btn-outline">⟳ Rafraîchir</button>
+        <button id="exportBtn" class="btn btn-gold">↓ Export CSV</button>
+        <button id="settingsBtn" class="btn btn-outline">⚙️ Réglages</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="bookingsTable">
+          <thead>
+            <tr>
+              <th class="sortable" data-col="createdAt">Date<span class="sort-icon">▼</span></th>
+              <th class="sortable" data-col="name">Cliente<span class="sort-icon"></span></th>
+              <th>Contact</th>
+              <th>Profil</th>
+              <th>Porosité</th>
+              <th>Score</th>
+              <th class="sortable" data-col="status">Statut<span class="sort-icon"></span></th>
+              <th class="actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:14px;font-size:12px;color:var(--muted)" id="resultsCount"></p>
+    </div>
+
+    <!-- DANGER ZONE -->
+    <div class="card">
+      <h2 style="color:var(--danger)">Zone sensible</h2>
+      <p class="sub">Avant d'effacer, fais toujours une sauvegarde (export CSV ou JSON ci-dessous).</p>
+      <div class="toolbar" style="margin:0">
+        <button id="exportJsonBtn" class="btn btn-outline">↓ Sauvegarde JSON (toutes les données)</button>
+        <input type="file" id="importJsonFile" accept=".json" hidden/>
+        <button id="importJsonBtn" class="btn btn-outline">↑ Restaurer JSON</button>
+        <button id="clearBtn" class="btn btn-danger">Effacer tous les diagnostics</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- EDIT/ADD MODAL -->
+<div id="editModal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h2 id="editTitle">Modifier le diagnostic</h2>
+        <p class="sub" id="editId"></p>
+      </div>
+      <button class="btn btn-ghost" data-close-modal>✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div>
+          <label for="f_name">Nom</label>
+          <input id="f_name" type="text"/>
+        </div>
+        <div>
+          <label for="f_contact">Contact (email / WhatsApp)</label>
+          <input id="f_contact" type="text"/>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="f_country">Pays</label>
+          <input id="f_country" type="text"/>
+        </div>
+        <div>
+          <label for="f_profile">Profil capillaire</label>
+          <input id="f_profile" type="text" placeholder="ex. Sécheresse chronique"/>
+        </div>
+      </div>
+      <label for="f_mainProblem">Problème principal</label>
+      <input id="f_mainProblem" type="text"/>
+      <label for="f_problem">Détail / problème secondaire</label>
+      <input id="f_problem" type="text"/>
+      <div class="row-3">
+        <div>
+          <label for="f_porosity">Porosité</label>
+          <input id="f_porosity" type="text" placeholder="Faible / Normale / Forte"/>
+        </div>
+        <div>
+          <label for="f_score">Score</label>
+          <input id="f_score" type="text" placeholder="ex. 72/100"/>
+        </div>
+        <div>
+          <label for="f_need">Besoin principal</label>
+          <input id="f_need" type="text" placeholder="ex. Hydratation"/>
+        </div>
+      </div>
+      <label for="f_recommendation">Ma recommandation pour cette personne</label>
+      <textarea id="f_recommendation" placeholder="Ce que tu lui suggères : produits, étapes, rappels…"></textarea>
+      <label for="f_status">Statut</label>
+      <select id="f_status">
+        <option value="new">Nouvelle</option>
+        <option value="contacted">Contactée</option>
+        <option value="paid">Payée</option>
+        <option value="done">Terminée</option>
+        <option value="cancelled">Annulée</option>
+      </select>
+      <label for="f_notes">Mes notes (privées)</label>
+      <textarea id="f_notes" placeholder="Ce que je veux retenir pour cette cliente…"></textarea>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" data-close-modal>Annuler</button>
+      <button class="btn btn-primary" id="saveBookingBtn">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div id="detailModal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h2>Détail du diagnostic</h2>
+        <p class="sub" id="detailId"></p>
+      </div>
+      <button class="btn btn-ghost" data-close-modal>✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="detailBody" class="detail-grid"></div>
+      <h3 style="margin-top:16px;margin-bottom:6px">Mes notes</h3>
+      <p id="detailNotes" style="background:#fffaf4;border:1px solid rgba(185,130,50,.14);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.6;min-height:40px;color:var(--brown)"></p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" id="copyMsgBtn">📋 Copier message</button>
+      <button class="btn btn-outline" data-close-modal>Fermer</button>
+      <button class="btn btn-primary" id="detailEditBtn">Modifier</button>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h2>Réglages</h2>
+        <p class="sub">Préférences sauvegardées dans ce navigateur.</p>
+      </div>
+      <button class="btn btn-ghost" data-close-modal>✕</button>
+    </div>
+    <div class="modal-body">
+      <h3 style="font-size:14px;margin-bottom:6px;color:var(--brown);font-weight:700;text-transform:uppercase;letter-spacing:.08em">📧 Transfert email</h3>
+      <p style="font-size:13px;color:var(--brown-md);line-height:1.6;margin-bottom:10px">
+        Pour recevoir un email à chaque nouveau diagnostic :
+      </p>
+      <ol style="font-size:13px;color:var(--brown-md);line-height:1.7;margin-left:18px;margin-bottom:12px">
+        <li>Ouvre le fichier <code style="background:#fff;padding:1px 6px;border-radius:4px;border:1px solid rgba(185,130,50,.2)">index_hydracheck.html</code> dans ton éditeur.</li>
+        <li>Cherche la ligne <code style="background:#fff;padding:1px 6px;border-radius:4px;border:1px solid rgba(185,130,50,.2)">const FORWARD_EMAIL = "";</code></li>
+        <li>Remplace par ton email, ex. <code style="background:#fff;padding:1px 6px;border-radius:4px;border:1px solid rgba(185,130,50,.2)">"toi@gmail.com"</code></li>
+        <li>Re-publie le fichier. À la première réservation, Formsubmit t'enverra un email de confirmation à valider une fois.</li>
+      </ol>
+      <p style="font-size:12px;color:var(--muted);background:#fffaf4;border:1px solid rgba(185,130,50,.14);border-radius:10px;padding:10px;line-height:1.5">
+        💡 Pourquoi pas ici ? Tes réglages d'admin vivent uniquement sur ce
+        navigateur. La page publique, elle, doit connaître l'email avant que
+        quelqu'un réserve — il faut donc qu'il soit dans le fichier public.
+      </p>
+      
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" data-close-modal>Annuler</button>
+      <button class="btn btn-primary" id="saveSettingsBtn">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div id="confirmModal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-card" style="max-width:480px">
+    <div class="modal-head">
+      <h2 id="confirmTitle">Confirmer</h2>
+    </div>
+    <div class="modal-body">
+      <p id="confirmText" style="font-size:14px;line-height:1.6;color:var(--brown-md)"></p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" data-close-modal>Annuler</button>
+      <button class="btn btn-danger" id="confirmYes">Oui, supprimer</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<footer class="sg-foot">© 2024–2026 Schicgirl™ — by <a href="https://nabintousfofana.github.io/portfolio/" target="_blank" rel="noopener">Nabintou S. Fofana</a></footer>
+
+<script>
+// TODO: move auth to a backend before this holds anything sensitive
+
+// password hash — to rotate: `echo -n 'newpass' | sha256sum`
+const ADMIN_PASSWORD_HASH = "eacb20f402c4738505df836b6cc58c054db7fbc3abe79ce7fc7520a906e3fcbb";
+
+const STORAGE_KEY = "schicgirl_hydration_leads";
+const SETTINGS_KEY = "schicgirl_hydration_settings";
+const RATE_LIMIT_KEY = "schic_hydration_admin_attempts";
+const MAX_ATTEMPTS = 5;
+const LOCKOUT_MS = 5 * 60 * 1000;
+
+const $ = id => document.getElementById(id);
+
+let bookings = [];
+let editingId = null;
+let viewingId = null;
+let sort = { col: "createdAt", dir: -1 };
+let pendingConfirm = null;
+
+// ─── crypto / auth ───────────────────────────────────────────────────
+async function sha256(text) {
+  const buf = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest("SHA-256", buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+function getAttempts() {
+  try { return JSON.parse(sessionStorage.getItem(RATE_LIMIT_KEY) || '{"count":0,"until":0}'); }
+  catch (e) { return { count: 0, until: 0 }; }
+}
+function bumpAttempts() {
+  const a = getAttempts();
+  a.count++;
+  if (a.count >= MAX_ATTEMPTS) a.until = Date.now() + LOCKOUT_MS;
+  sessionStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(a));
+}
+function clearAttempts() { sessionStorage.removeItem(RATE_LIMIT_KEY); }
+
+$("loginBtn").onclick = async () => {
+  const a = getAttempts();
+  if (a.until && Date.now() < a.until) {
+    const wait = Math.ceil((a.until - Date.now()) / 1000);
+    $("loginError").textContent = `Trop de tentatives. Réessaie dans ${wait}s.`;
+    $("loginError").style.display = "block";
+    return;
+  }
+  const entered = $("password").value;
+  const hash = await sha256(entered);
+  if (hash !== ADMIN_PASSWORD_HASH) {
+    bumpAttempts();
+    $("loginError").textContent = "Mot de passe incorrect.";
+    $("loginError").style.display = "block";
+    $("password").value = "";
+    return;
+  }
+  clearAttempts();
+  sessionStorage.setItem("schic_hydration_admin_logged", "true");
+  showDashboard();
+};
+$("password").addEventListener("keydown", e => { if (e.key === "Enter") $("loginBtn").click(); });
+$("logoutBtn").onclick = () => {
+  sessionStorage.removeItem("schic_hydration_admin_logged");
+  location.reload();
+};
+
+function showDashboard() {
+  $("login").classList.add("hidden");
+  $("dashboard").classList.remove("hidden");
+  $("logoutBtn").classList.remove("hidden");
+  loadData();
+  renderAll();
+}
+if (sessionStorage.getItem("schic_hydration_admin_logged") === "true") showDashboard();
+
+// ─── data ────────────────────────────────────────────────────────────
+function loadData() {
+  try { bookings = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+  catch (e) { bookings = []; toast("Données corrompues. Restaure depuis ta sauvegarde.", "err"); }
+  // backwards compat: give every record an id + default status
+  let changed = false;
+  bookings.forEach(b => {
+    if (!b.id) { b.id = generateId(); changed = true; }
+    if (!b.status) { b.status = "new"; changed = true; }
+    if (typeof b.notes !== "string") { b.notes = ""; changed = true; }
+  });
+  if (changed) saveData();
+}
+function saveData() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings)); }
+  catch (e) { toast("Sauvegarde impossible (stockage plein ?).", "err"); }
+}
+function generateId() {
+  return "b_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+}
+function getSettings() {
+  try { return JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}"); }
+  catch (e) { return {}; }
+}
+function saveSettings(s) {
+  try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }
+  catch (e) {}
+}
+
+// ─── rendering ───────────────────────────────────────────────────────
+function renderAll() {
+  renderStats();
+  renderChart();
+  renderTable();
+}
+
+function renderStats() {
+  const total = bookings.length;
+  const isNew = b => (b.status || "new") === "new";
+  const isContacted = b => b.status === "contacted";
+  const isPaid = b => b.status === "paid";
+  const last30 = Date.now() - 30 * 24 * 3600 * 1000;
+  const inLast30 = b => {
+    const ts = Date.parse(b.createdAt || "");
+    return !isNaN(ts) && ts >= last30;
+  };
+  $("statTotal").textContent = total;
+  $("statNew").textContent = bookings.filter(isNew).length;
+  $("statContacted").textContent = bookings.filter(isContacted).length;
+  $("statPaid").textContent = bookings.filter(isPaid).length;
+  $("stat30d").textContent = bookings.filter(inLast30).length;
+}
+
+function renderChart() {
+  // 30-day daily count
+  const days = 30;
+  const buckets = Array(days).fill(0);
+  const labels = Array(days).fill("");
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  for (let i = 0; i < days; i++) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - (days - 1 - i));
+    labels[i] = d.getDate();
+  }
+  bookings.forEach(b => {
+    const ts = Date.parse(b.createdAt || "");
+    if (isNaN(ts)) return;
+    const diff = Math.floor((now - ts) / (24 * 3600 * 1000));
+    const idx = days - 1 - diff;
+    if (idx >= 0 && idx < days) buckets[idx]++;
+  });
+  const max = Math.max(1, ...buckets);
+  $("chart").innerHTML = buckets.map((n, i) => {
+    const h = Math.round((n / max) * 100);
+    return `<div class="chart-bar" style="height:${h}%" title="${n} réservation${n === 1 ? "" : "s"}"></div>`;
+  }).join("");
+  $("chartLabels").innerHTML = labels.map((l, i) =>
+    `<span>${i % 5 === 0 || i === days - 1 ? l : ""}</span>`
+  ).join("");
+}
+
+function renderTable() {
+  const q = $("search").value.trim().toLowerCase();
+  const statusFilter = $("filterStatus").value;
+
+  let list = bookings.slice();
+
+  if (q) {
+    list = list.filter(b =>
+      (b.name || "").toLowerCase().includes(q) ||
+      (b.contact || "").toLowerCase().includes(q) ||
+      (b.problem || "").toLowerCase().includes(q) ||
+      (b.country || "").toLowerCase().includes(q) ||
+      (b.notes || "").toLowerCase().includes(q)
+    );
+  }
+  if (statusFilter) {
+    list = list.filter(b => (b.status || "new") === statusFilter);
+  }
+
+  list.sort((a, b) => {
+    const va = a[sort.col] ?? "";
+    const vb = b[sort.col] ?? "";
+    if (va < vb) return -1 * sort.dir;
+    if (va > vb) return 1 * sort.dir;
+    return 0;
+  });
+
+  if (list.length === 0) {
+    $("rows").innerHTML = `<tr><td colspan="8"><div class="empty">
+      <div class="big">🌿</div>
+      <p>${q || statusFilter ? "Aucun diagnostic ne correspond à ces filtres." : "Aucun diagnostic pour le moment. Quand quelqu'un termine HydraCheck, son profil apparaîtra ici."}</p>
+    </div></td></tr>`;
+  } else {
+    $("rows").innerHTML = list.map(b => `
+      <tr>
+        <td><small>${formatDate(b.createdAt)}</small></td>
+        <td><strong>${esc(b.name || "—")}</strong><small>${esc(b.country || "")}</small></td>
+        <td>${esc(b.contact || "—")}</td>
+        <td>${esc(b.profile || "—")}<small>${esc(b.mainProblem || "")}</small></td>
+        <td>${esc(b.porosity || "—")}</td>
+        <td>${esc(b.score || "—")}</td>
+        <td>${renderStatus(b.status)}</td>
+        <td class="actions">
+          <button class="btn btn-outline btn-sm" data-view="${esc(b.id)}">Voir</button>
+          <button class="btn btn-outline btn-sm" data-edit="${esc(b.id)}">✎</button>
+          <button class="btn btn-danger btn-sm" data-delete="${esc(b.id)}">×</button>
+        </td>
+      </tr>
+    `).join("");
+  }
+
+  $("resultsCount").textContent =
+    `${list.length} résultat${list.length === 1 ? "" : "s"}` +
+    (list.length !== bookings.length ? ` (sur ${bookings.length} au total)` : "");
+
+  document.querySelectorAll("th.sortable").forEach(th => {
+    th.classList.toggle("sorted", th.dataset.col === sort.col);
+    const icon = th.querySelector(".sort-icon");
+    if (icon) icon.textContent = th.dataset.col === sort.col ? (sort.dir === 1 ? "▲" : "▼") : "";
+  });
+}
+
+function renderStatus(s) {
+  s = s || "new";
+  const labels = { new: "Nouvelle", contacted: "Contactée", paid: "Payée", done: "Terminée", cancelled: "Annulée" };
+  return `<span class="status-badge status-${s}">${labels[s] || s}</span>`;
+}
+
+// ─── interactions ────────────────────────────────────────────────────
+$("search").addEventListener("input", renderTable);
+$("filterStatus").addEventListener("change", renderTable);
+$("refreshBtn").onclick = () => { loadData(); renderAll(); toast("Données rechargées.", "ok"); };
+
+document.querySelectorAll("th.sortable").forEach(th => {
+  th.onclick = () => {
+    const col = th.dataset.col;
+    if (sort.col === col) sort.dir *= -1;
+    else { sort.col = col; sort.dir = -1; }
+    renderTable();
+  };
+});
+
+document.addEventListener("click", e => {
+  const target = e.target.closest("[data-view],[data-edit],[data-delete],[data-close-modal]");
+  if (!target) return;
+  if (target.dataset.view) openDetail(target.dataset.view);
+  else if (target.dataset.edit) openEdit(target.dataset.edit);
+  else if (target.dataset.delete) askDelete(target.dataset.delete);
+  else if (target.hasAttribute("data-close-modal")) closeModals();
+});
+
+// close modals with Escape
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeModals();
+});
+
+function closeModals() {
+  document.querySelectorAll(".modal").forEach(m => m.classList.remove("open"));
+  editingId = null;
+  viewingId = null;
+  pendingConfirm = null;
+}
+
+// ─── detail ──────────────────────────────────────────────────────────
+function openDetail(id) {
+  const b = bookings.find(x => x.id === id);
+  if (!b) return;
+  viewingId = id;
+  $("detailId").textContent = `${formatDate(b.createdAt)} · ID ${b.id}`;
+  const fields = [
+    ["Nom", b.name], ["Contact", b.contact], ["Pays", b.country],
+    ["Profil", b.profile], ["Problème principal", b.mainProblem],
+    ["Détail", b.problem], ["Porosité", b.porosity],
+    ["Score", b.score], ["Besoin", b.need],
+    ["Recommandation", b.recommendation], ["Statut", renderStatus(b.status)]
+  ];
+  $("detailBody").innerHTML = fields.map(([k, v]) => `
+    <div class="detail"><span>${esc(k)}</span><b>${k === "Statut" ? v : esc(v || "—")}</b></div>
+  `).join("");
+  $("detailNotes").textContent = b.notes || "(aucune note)";
+  $("detailEditBtn").onclick = () => { closeModals(); openEdit(id); };
+  $("copyMsgBtn").onclick = () => copyMessage(b);
+  $("detailModal").classList.add("open");
+}
+
+function copyMessage(b) {
+  const msg =
+    `Bonjour ${b.name || ""},
+
+Merci d'avoir fait ton diagnostic HydraCheck™.
+
+Voilà ce que ton profil m'indique :
+• Porosité : ${b.porosity || "—"}
+• Profil : ${b.profile || "—"}
+• Score : ${b.score || "—"}
+• Besoin principal : ${b.need || "—"}
+
+${b.recommendation || ""}
+
+Si tu veux qu'on creuse ensemble, je propose des consultations privées : https://link.schicgirl.me/
+
+À très vite,
+Nabintou — Schicgirl™`;
+  navigator.clipboard.writeText(msg).then(
+    () => toast("Message copié.", "ok"),
+    () => toast("Impossible de copier.", "err")
+  );
+}
+
+// ─── edit / add ──────────────────────────────────────────────────────
+$("addBtn").onclick = () => openEdit(null);
+
+function openEdit(id) {
+  editingId = id;
+  const b = id ? bookings.find(x => x.id === id) : null;
+  $("editTitle").textContent = id ? "Modifier le diagnostic" : "Ajouter un diagnostic manuellement";
+  $("editId").textContent = id ? `ID ${id}` : "Si tu veux enregistrer un diagnostic discuté en DM ou en personne.";
+  $("f_name").value = b?.name || "";
+  $("f_contact").value = b?.contact || "";
+  $("f_country").value = b?.country || "";
+  $("f_profile").value = b?.profile || "";
+  $("f_mainProblem").value = b?.mainProblem || "";
+  $("f_problem").value = b?.problem || "";
+  $("f_porosity").value = b?.porosity || "";
+  $("f_score").value = b?.score || "";
+  $("f_need").value = b?.need || "";
+  $("f_recommendation").value = b?.recommendation || "";
+  $("f_status").value = b?.status || "new";
+  $("f_notes").value = b?.notes || "";
+  $("editModal").classList.add("open");
+}
+
+$("saveBookingBtn").onclick = () => {
+  const data = {
+    name: $("f_name").value.trim(),
+    contact: $("f_contact").value.trim(),
+    country: $("f_country").value.trim(),
+    profile: $("f_profile").value.trim(),
+    mainProblem: $("f_mainProblem").value.trim(),
+    problem: $("f_problem").value.trim(),
+    porosity: $("f_porosity").value.trim(),
+    score: $("f_score").value.trim(),
+    need: $("f_need").value.trim(),
+    recommendation: $("f_recommendation").value.trim(),
+    status: $("f_status").value,
+    notes: $("f_notes").value.trim()
+  };
+  if (!data.name && !data.contact) {
+    toast("Au moins un nom ou un contact, merci.", "err");
+    return;
+  }
+  if (editingId) {
+    const idx = bookings.findIndex(b => b.id === editingId);
+    if (idx >= 0) {
+      bookings[idx] = { ...bookings[idx], ...data, updatedAt: new Date().toISOString() };
+      toast("Diagnostic modifié.", "ok");
+    }
+  } else {
+    bookings.unshift({
+      id: generateId(),
+      ...data,
+      createdAt: new Date().toISOString(),
+      source: "manual"
+    });
+    toast("Diagnostic ajouté.", "ok");
+  }
+  saveData();
+  renderAll();
+  closeModals();
+};
+
+// ─── delete ──────────────────────────────────────────────────────────
+function askDelete(id) {
+  const b = bookings.find(x => x.id === id);
+  if (!b) return;
+  $("confirmTitle").textContent = "Supprimer ce diagnostic ?";
+  $("confirmText").innerHTML = `<strong>${esc(b.name || "(sans nom)")}</strong> · ${esc(b.contact || "—")}<br><br>Cette action est définitive.`;
+  pendingConfirm = () => {
+    bookings = bookings.filter(x => x.id !== id);
+    saveData();
+    renderAll();
+    toast("Diagnostic supprimé.", "ok");
+    closeModals();
+  };
+  $("confirmYes").textContent = "Oui, supprimer";
+  $("confirmModal").classList.add("open");
+}
+
+$("confirmYes").onclick = () => { if (pendingConfirm) pendingConfirm(); };
+
+// ─── clear all ───────────────────────────────────────────────────────
+$("clearBtn").onclick = () => {
+  if (bookings.length === 0) { toast("Aucun diagnostic à effacer.", "info"); return; }
+  $("confirmTitle").textContent = `Effacer ${bookings.length} diagnostic${bookings.length === 1 ? "" : "s"} ?`;
+  $("confirmText").innerHTML = `Cette action est <strong>définitive</strong>. Pense à exporter une sauvegarde JSON avant.`;
+  pendingConfirm = () => {
+    bookings = [];
+    saveData();
+    renderAll();
+    toast("Tous les diagnostics ont été effacés.", "ok");
+    closeModals();
+  };
+  $("confirmYes").textContent = "Oui, tout effacer";
+  $("confirmModal").classList.add("open");
+};
+
+// ─── export csv ──────────────────────────────────────────────────────
+$("exportBtn").onclick = () => {
+  if (bookings.length === 0) { toast("Aucune donnée à exporter.", "info"); return; }
+  const cols = ["createdAt","name","contact","country","profile","mainProblem","problem","porosity","score","need","recommendation","status","notes","source","id"];
+  const header = cols.join(",");
+  const rows = bookings.map(b => cols.map(c => csvCell(b[c])).join(","));
+  const csv = [header, ...rows].join("\n");
+  downloadBlob(csv, `schicgirl-diagnostics-${todayStr()}.csv`, "text/csv;charset=utf-8");
+  toast("CSV exporté.", "ok");
+};
+
+// ─── export / import json ────────────────────────────────────────────
+$("exportJsonBtn").onclick = () => {
+  const data = { exportedAt: new Date().toISOString(), bookings };
+  downloadBlob(JSON.stringify(data, null, 2), `schicgirl-diagnostics-${todayStr()}.json`, "application/json");
+  toast("Sauvegarde JSON téléchargée.", "ok");
+};
+$("importJsonBtn").onclick = () => $("importJsonFile").click();
+$("importJsonFile").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const parsed = JSON.parse(reader.result);
+      const imported = Array.isArray(parsed) ? parsed : parsed.bookings;
+      if (!Array.isArray(imported)) throw new Error("Format non reconnu");
+      // merge by id (or add new)
+      const existingIds = new Set(bookings.map(b => b.id));
+      let added = 0, merged = 0;
+      imported.forEach(b => {
+        if (!b.id) b.id = generateId();
+        if (existingIds.has(b.id)) { merged++; }
+        else { bookings.push(b); added++; }
+      });
+      saveData();
+      renderAll();
+      toast(`${added} ajoutée${added === 1 ? "" : "s"}, ${merged} déjà présente${merged === 1 ? "" : "s"}.`, "ok");
+    } catch (err) {
+      toast("Fichier invalide.", "err");
+    }
+    e.target.value = "";
+  };
+  reader.readAsText(file);
+});
+
+// ─── settings ────────────────────────────────────────────────────────
+$("settingsBtn").onclick = () => $("settingsModal").classList.add("open");
+$("saveSettingsBtn").onclick = () => {
+  toast("Réglages enregistrés.", "ok");
+  closeModals();
+};
+
+// ─── helpers ─────────────────────────────────────────────────────────
+function esc(v) {
+  return String(v ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+}
+function csvCell(v) {
+  const s = String(v ?? "");
+  if (/[",\n\r]/.test(s)) return `"${s.replaceAll('"', '""')}"`;
+  return s;
+}
+function formatDate(d) {
+  if (!d) return "—";
+  try {
+    return new Date(d).toLocaleDateString("fr-FR", {
+      day: "2-digit", month: "short", year: "numeric",
+      hour: "2-digit", minute: "2-digit"
+    });
+  } catch (e) { return "—"; }
+}
+function todayStr() {
+  return new Date().toISOString().slice(0, 10);
+}
+function downloadBlob(content, filename, type) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+function toast(msg, type = "info") {
+  const t = document.createElement("div");
+  t.className = "toast " + type;
+  t.textContent = msg;
+  $("toasts").appendChild(t);
+  setTimeout(() => { t.style.opacity = "0"; t.style.transition = "opacity .2s"; }, 2500);
+  setTimeout(() => t.remove(), 2800);
+}
+</script>
+</body>
+</html>

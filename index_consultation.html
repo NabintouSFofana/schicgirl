@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<!-- Consultations · Schicgirl · Nabintou S. Fofana · github.com/NabintouSFofana -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Réserver une Consultation Capillaire | Schicgirl</title>
+  <meta name="author" content="Nabintou S. Fofana">
+  <meta name="description" content="Réserve ta consultation capillaire personnalisée Schicgirl pour cheveux crépus, secs, cassants ou en manque de routine.">
+  <meta name="copyright" content="© 2024–2026 Nabintou S. Fofana / Schicgirl™">
+  <meta name="creator" content="Schicgirl">
+  <meta property="og:title" content="Consultation Capillaire Personnalisée | Schicgirl">
+  <meta property="og:description" content="Choisis une date, une heure et reçois une routine adaptée à tes cheveux crépus.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root{
+      --cream:#fff8f1;
+      --warm:#f5e5d5;
+      --blush:#f0c8c0;
+      --rose:#d9a39c;
+      --brown:#3e261c;
+      --brown-md:#6b3e2e;
+      --gold:#b98232;
+      --gold-lt:#d4a55e;
+      --muted:#927060;
+      --white:#ffffff;
+      --danger:#8a3a33;
+      --success:#3a6b4c;
+      --shadow:0 24px 80px rgba(62,38,28,.16);
+      --shadow-s:0 8px 28px rgba(62,38,28,.08);
+      --radius:24px;
+      --serif:'Cormorant Garamond', Georgia, serif;
+      --sans:'DM Sans', system-ui, sans-serif;
+    }
+
+    html{ min-height:100%; scroll-behavior:smooth; }
+    body{
+      min-height:100%;
+      font-family:var(--sans);
+      color:var(--brown);
+      background:
+        radial-gradient(ellipse 65% 45% at 5% 0%, #f4c9c1 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, #efd3a1 0%, transparent 52%),
+        linear-gradient(160deg, #fff8f1 0%, #f7eadf 100%);
+    }
+
+    .app{
+      width:min(1180px, 94vw);
+      margin:0 auto;
+      padding:28px 0 42px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .mark{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background:linear-gradient(135deg, var(--rose), var(--gold));
+      display:grid;
+      place-items:center;
+      color:white;
+      font-family:var(--serif);
+      font-size:29px;
+      font-weight:700;
+      box-shadow:0 10px 30px rgba(185,130,50,.28);
+    }
+
+    .brand small{
+      display:block;
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--gold);
+      font-weight:700;
+    }
+
+    .brand strong{
+      display:block;
+      font-family:var(--serif);
+      font-size:28px;
+      font-weight:500;
+      line-height:1;
+    }
+
+    .admin-link{
+      border:1px solid rgba(185,130,50,.28);
+      background:rgba(255,255,255,.68);
+      color:var(--brown-md);
+      border-radius:999px;
+      padding:10px 16px;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+      backdrop-filter:blur(12px);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .hero-card, .booking-card, .admin-card, .modal-card{
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(185,130,50,.18);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+    }
+
+    .hero-card{
+      padding:34px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      width:230px;
+      height:230px;
+      border:1px solid rgba(185,130,50,.2);
+      border-radius:50%;
+      right:-80px;
+      top:-90px;
+    }
+
+    .eyebrow{
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    h1{
+      font-family:var(--serif);
+      font-size:clamp(36px, 5vw, 64px);
+      line-height:.95;
+      font-weight:500;
+      margin-bottom:16px;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.75;
+      max-width:680px;
+      margin-bottom:22px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:22px 0;
+    }
+
+    .pill{
+      border:1px solid rgba(185,130,50,.25);
+      background:#fffaf4;
+      color:var(--brown-md);
+      border-radius:999px;
+      padding:9px 13px;
+      font-size:12.5px;
+      font-weight:700;
+    }
+
+    .benefits{
+      display:grid;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .benefit{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      background:rgba(253,246,238,.72);
+      border:1px solid rgba(185,130,50,.14);
+      border-radius:18px;
+      padding:14px;
+    }
+
+    .benefit span{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--gold), var(--gold-lt));
+      display:grid;
+      place-items:center;
+      color:white;
+      flex:0 0 auto;
+    }
+
+    .benefit h3{
+      font-family:var(--serif);
+      font-size:20px;
+      font-weight:600;
+      margin-bottom:3px;
+    }
+
+    .benefit p{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+
+
+
+    .product-visual{
+      margin-top:24px;
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(185,130,50,.18);
+      background:#fffaf4;
+      box-shadow:var(--shadow-s);
+    }
+
+    .product-visual img{
+      width:100%;
+      display:block;
+    }
+
+    .booking-card{
+      padding:28px;
+    }
+
+    .section-title{
+      font-family:var(--serif);
+      font-size:31px;
+      line-height:1.05;
+      font-weight:600;
+      margin-bottom:8px;
+    }
+
+    .subtext{
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+      margin-bottom:18px;
+    }
+
+    .progress{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      margin:18px 0 24px;
+    }
+
+    .step{
+      height:6px;
+      border-radius:999px;
+      background:rgba(185,130,50,.13);
+      overflow:hidden;
+    }
+
+    .step.active{ background:linear-gradient(90deg,var(--rose),var(--gold)); }
+
+    .form-step{ display:none; animation:fade .26s ease both; }
+    .form-step.active{ display:block; }
+
+    @keyframes fade{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+
+    label{
+      display:block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      color:var(--brown-md);
+      margin-bottom:7px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:13px;
+    }
+
+    .field{ margin-bottom:15px; }
+
+    input, select, textarea{
+      width:100%;
+      border:1.5px solid rgba(185,130,50,.25);
+      background:white;
+      border-radius:14px;
+      min-height:46px;
+      padding:12px 14px;
+      font-family:var(--sans);
+      font-size:14px;
+      color:var(--brown);
+      outline:none;
+      transition:.18s;
+    }
+
+    textarea{ min-height:98px; resize:vertical; }
+    input:focus, select:focus, textarea:focus{
+      border-color:var(--gold);
+      box-shadow:0 0 0 4px rgba(185,130,50,.1);
+    }
+
+    .choice-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .choice{
+      border:1.5px solid rgba(185,130,50,.22);
+      background:#fffaf5;
+      border-radius:18px;
+      padding:14px;
+      cursor:pointer;
+      transition:.18s;
+      min-height:88px;
+    }
+
+    .choice:hover{ transform:translateY(-1px); border-color:var(--gold); }
+    .choice.selected{
+      border-color:var(--gold);
+      background:linear-gradient(145deg,#fff8ee,#fff1e6);
+      box-shadow:0 8px 24px rgba(185,130,50,.12);
+    }
+
+    .choice strong{
+      display:block;
+      font-size:14px;
+      margin-bottom:5px;
+    }
+
+    .choice small{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .time-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:9px;
+      margin-bottom:18px;
+    }
+
+    .time-btn{
+      height:42px;
+      border:1.5px solid rgba(185,130,50,.25);
+      background:white;
+      color:var(--brown-md);
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .time-btn.selected{
+      background:var(--brown);
+      color:white;
+      border-color:var(--brown);
+    }
+
+    .actions{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:20px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:46px;
+      padding:0 20px;
+      border-radius:999px;
+      border:none;
+      font-family:var(--sans);
+      font-size:14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s;
+      text-decoration:none;
+    }
+
+    .btn-primary{
+      background:var(--brown);
+      color:white;
+    }
+
+    .btn-primary:hover{ background:var(--brown-md); transform:translateY(-1px); }
+
+    .btn-gold{
+      background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+      color:white;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border:1.5px solid rgba(185,130,50,.32);
+      color:var(--brown-md);
+    }
+
+    .btn[disabled]{
+      opacity:.45;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .summary{
+      background:#fffaf4;
+      border:1px solid rgba(185,130,50,.18);
+      border-radius:22px;
+      padding:18px;
+      margin:12px 0;
+    }
+
+    .summary-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:9px 0;
+      border-bottom:1px solid rgba(185,130,50,.1);
+      font-size:13.5px;
+    }
+
+    .summary-row:last-child{ border-bottom:0; }
+    .summary-row span:first-child{ color:var(--muted); }
+    .summary-row span:last-child{ font-weight:800; text-align:right; }
+
+    .notice{
+      border-radius:18px;
+      padding:14px;
+      background:rgba(58,107,76,.08);
+      border:1px solid rgba(58,107,76,.15);
+      color:var(--success);
+      line-height:1.55;
+      font-size:13px;
+      margin:14px 0;
+    }
+
+    .warning{
+      border-radius:18px;
+      padding:14px;
+      background:rgba(138,58,51,.08);
+      border:1px solid rgba(138,58,51,.15);
+      color:var(--danger);
+      line-height:1.55;
+      font-size:13px;
+      margin:14px 0;
+    }
+
+    .calendar-link{
+      display:none;
+      margin-top:10px;
+    }
+
+    .success-box{
+      display:none;
+      margin-top:18px;
+      background:linear-gradient(145deg,#fffaf4,#fff4e8);
+      border:1px solid rgba(185,130,50,.24);
+      border-radius:24px;
+      padding:22px;
+      text-align:center;
+    }
+
+    .success-box h3{
+      font-family:var(--serif);
+      font-size:28px;
+      font-weight:600;
+      margin-bottom:8px;
+    }
+
+    .success-box p{
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+      margin-bottom:12px;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(62,38,28,.38);
+      backdrop-filter:blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:50;
+    }
+
+    .modal.open{ display:flex; }
+    .modal-card{
+      width:min(980px, 96vw);
+      max-height:90vh;
+      overflow:auto;
+      padding:26px;
+    }
+
+    .admin-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:18px;
+    }
+
+    .admin-table-wrap{
+      overflow:auto;
+      background:white;
+      border-radius:18px;
+      border:1px solid rgba(185,130,50,.14);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+      min-width:800px;
+    }
+
+    th, td{
+      text-align:left;
+      padding:12px 14px;
+      border-bottom:1px solid rgba(185,130,50,.1);
+      vertical-align:top;
+    }
+
+    th{
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:10px;
+      background:#fff8f1;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:28px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .hidden{ display:none !important; }
+
+    @media(max-width:920px){
+      .hero{ grid-template-columns:1fr; }
+      .hero-card{ padding:26px; }
+    }
+
+    @media(max-width:620px){
+      .app{ width:100%; padding:14px 10px 32px; }
+      .topbar{ align-items:flex-start; }
+      .brand strong{ font-size:23px; }
+      .admin-link{ padding:9px 12px; font-size:12px; }
+      .hero-card, .booking-card{ border-radius:24px; padding:20px; }
+      .grid-2, .choice-grid{ grid-template-columns:1fr; }
+      .time-grid{ grid-template-columns:repeat(2,1fr); }
+      .actions{ flex-direction:column-reverse; }
+      .btn{ width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="brand">
+        <div class="mark">S</div>
+        <div>
+          <small>Schicgirl™</small>
+          <strong>Consultation Capillaire</strong>
+        </div>
+      </div>
+      
+    </div>
+
+    <section class="hero">
+      <div class="hero-card">
+        <p class="eyebrow">Cheveux crépus • Hydratation • Routine personnalisée</p>
+        <h1>Réserve ta consultation capillaire personnalisée</h1>
+        <p class="lead">
+          Tu as les cheveux secs, cassants, difficiles à hydrater ou tu ne sais plus quelle routine suivre ?
+          Cette consultation t’aide à comprendre ton vrai besoin et à recevoir une stratégie adaptée à ta porosité,
+          ton épaisseur, ton cuir chevelu, ton mode de vie et ton objectif.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">Routine claire</span>
+          <span class="pill">Analyse porosité</span>
+          <span class="pill">Plan hydratation</span>
+          <span class="pill">Conseils cheveux 4A/4B/4C</span>
+        </div>
+
+        <div class="benefits">
+          <div class="benefit">
+            <span>💧</span>
+            <div>
+              <h3>Hydratation intelligente</h3>
+              <p>On vérifie si tes cheveux manquent d’eau, de scellage, de clarification ou d’une méthode plus adaptée.</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span>🌿</span>
+            <div>
+              <h3>Routine sur mesure</h3>
+              <p>Tu repars avec des étapes simples, réalistes et adaptées à ton budget, ton temps et ton climat.</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span>✨</span>
+            <div>
+              <h3>Approche douce & experte</h3>
+              <p>Pas de surcharge de produits. On revient à l’essentiel : eau, soin, scellage, protection, observation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-visual" aria-label="Image produit Consultation Capillaire Schicgirl">
+          
+        </div>
+      </div>
+
+      <div class="booking-card">
+        <p class="eyebrow">Réservation</p>
+        <h2 class="section-title">Choisis ta date et ton heure</h2>
+        <p class="subtext">
+          Remplis ce formulaire. Après validation, tu seras redirigée vers Selar pour payer et confirmer la consultation.
+        </p>
+
+        <div class="progress">
+          <div class="step active" id="bar1"></div>
+          <div class="step" id="bar2"></div>
+          <div class="step" id="bar3"></div>
+          <div class="step" id="bar4"></div>
+        </div>
+
+        <form id="bookingForm">
+          <div class="form-step active" data-step="1">
+            <div class="grid-2">
+              <div class="field">
+                <label>Prénom</label>
+                <input id="name" required placeholder="Ex : Aïssata">
+              </div>
+              <div class="field">
+                <label>Email ou WhatsApp</label>
+                <input id="contact" required placeholder="Ex : email ou numéro WhatsApp">
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label>Pays</label>
+                <input id="country" required placeholder="Ex : Côte d’Ivoire, USA, France">
+              </div>
+              <div class="field">
+                <label>Fuseau horaire</label>
+                <select id="timezone" required>
+                  <option value="">Choisir</option>
+                  <option>Heure de Côte d’Ivoire / GMT</option>
+                  <option>Heure de France / Europe</option>
+                  <option>Heure de Dallas / Texas</option>
+                  <option>Heure de New York</option>
+                  <option>Heure du Canada</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Quel est ton problème principal ?</label>
+              <select id="problem" required>
+                <option value="">Choisir</option>
+                <option>Sécheresse persistante</option>
+                <option>Casse fréquente</option>
+                <option>Cheveux qui ne poussent pas en longueur</option>
+                <option>Tempes dégarnies / chute</option>
+                <option>Cuir chevelu sensible ou irrité</option>
+                <option>Je veux construire une routine simple</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-step" data-step="2">
+            <label>Choisis ton type de consultation</label>
+            <div class="choice-grid" id="packageChoices">
+              <div class="choice" data-package="Consultation Express" data-price="15">
+                <strong>Consultation Express — 30 min</strong>
+                <small>Pour clarifier ton problème principal et recevoir les premières actions à faire.<br><strong style="display:block;margin-top:8px;color:#b98232;">15$</strong></small>
+              </div>
+              <div class="choice" data-package="Routine Personnalisée" data-price="35">
+                <strong>Routine Personnalisée — 60 min</strong>
+                <small>Analyse complète + routine détaillée selon ton profil, porosité, budget et objectif.<br><strong style="display:block;margin-top:8px;color:#b98232;">35$</strong></small>
+              </div>
+              <div class="choice" data-package="Suivi Premium" data-price="55">
+                <strong>Suivi Premium — 90 min</strong>
+                <small>Consultation complète + stratégie hydratation + suivi et ajustement.<br><strong style="display:block;margin-top:8px;color:#b98232;">55$</strong></small>
+              </div>
+              <div class="choice" data-package="Analyse écrite uniquement" data-price="25">
+                <strong>Analyse écrite uniquement</strong>
+                <small>Tu envoies tes réponses/photos et tu reçois une routine écrite personnalisée.<br><strong style="display:block;margin-top:8px;color:#b98232;">25$</strong></small>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Type de cheveux / texture</label>
+              <select id="texture" required>
+                <option value="">Choisir</option>
+                <option>4A</option>
+                <option>4B</option>
+                <option>4C</option>
+                <option>Mixte 4B/4C</option>
+                <option>Je ne sais pas</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-step" data-step="3">
+            <div class="grid-2">
+              <div class="field">
+                <label>Date souhaitée</label>
+                <input id="date" type="date" required>
+              </div>
+              <div class="field">
+                <label>Format</label>
+                <select id="format" required>
+                  <option value="">Choisir</option>
+                  <option>WhatsApp audio/appel</option>
+                                    <option>Analyse écrite par email</option>
+                </select>
+              </div>
+            </div>
+
+            <label>Heure souhaitée</label>
+            <div class="time-grid" id="timeGrid">
+              <button type="button" class="time-btn">09:00</button>
+              <button type="button" class="time-btn">10:30</button>
+              <button type="button" class="time-btn">12:00</button>
+              <button type="button" class="time-btn">14:00</button>
+              <button type="button" class="time-btn">16:30</button>
+              <button type="button" class="time-btn">19:00</button>
+            </div>
+
+            <div class="field">
+              <label>Message ou détails importants</label>
+              <textarea id="notes" placeholder="Ex : mes cheveux sèchent vite, j’ai des pellicules, je porte souvent des tresses, etc."></textarea>
+            </div>
+          </div>
+
+          <div class="form-step" data-step="4">
+            <h3 class="section-title">Résumé de ta réservation</h3>
+            <div class="summary" id="summary"></div>
+
+            <div class="notice">
+              Après avoir cliqué sur “Confirmer la réservation”, tu seras redirigée vers Selar pour finaliser le paiement et confirmer officiellement ta place.
+            </div>
+
+            <div class="warning">
+              Ce service est éducatif et ne remplace pas un avis médical ou dermatologique. En cas de chute importante, douleur,
+              plaques, lésions ou irritation persistante, consulte un professionnel de santé.
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn btn-outline" id="prevBtn" disabled>← Retour</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Continuer →</button>
+            <button type="submit" class="btn btn-gold hidden" id="submitBtn">Confirmer la réservation</button>
+          </div>
+        </form>
+
+        <div class="success-box" id="successBox">
+          <h3>Réservation enregistrée 💛</h3>
+          <p>Merci. Tu vas être redirigée vers Selar pour finaliser le paiement.</p>
+          <a id="payLink" class="btn btn-gold" href="https://selar.com/0577170571" target="_blank" rel="noopener">Finaliser le paiement sur Selar</a>
+          <a id="calendarLink" class="btn btn-outline calendar-link" href="#" target="_blank" rel="noopener">Ajouter à Google Calendar</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2026 Schicgirl™. Tous droits réservés. Consultation éducative pour cheveux naturels et crépus.
+      <br>Ce site ne remplace pas un diagnostic médical ou dermatologique.
+    </div>
+  </div>
+
+  <div class="modal" id="adminModal">
+    <div class="modal-card">
+      <div class="admin-head">
+        <div>
+          <p class="eyebrow">Schicgirl™ Admin</p>
+          <h2 class="section-title">Réservations reçues</h2>
+          <p class="subtext">Espace privé Schicgirl pour consulter les réservations reçues.</p>
+        </div>
+        <button class="btn btn-outline" id="closeAdmin">Fermer</button>
+      </div>
+
+      <div class="actions" style="justify-content:flex-start;margin-bottom:14px;">
+        <button class="btn btn-gold" id="exportBookings">Exporter CSV</button>
+        <button class="btn btn-outline" id="clearBookings">Effacer</button>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Cliente</th>
+              <th>Contact</th>
+              <th>Problème</th>
+              <th>Offre</th>
+              <th>Créneau</th>
+              <th>Format</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="bookingRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script>
+const SELAR_LINKS = {
+  "Consultation Express": "https://selar.com/consultation_express",
+  "Routine Personnalisée": "https://selar.com/routinepersonnalisee",
+  "Suivi Premium": "https://selar.com/suivipremium",
+  "Analyse écrite uniquement": "https://selar.com/analysecriteuniquement"
+};
+const STORAGE_KEY = "schicgirl_consultation_bookings";
+
+// ─── Email forwarding ─────────────────────────────────────────────
+// Set this to your email to get a notification every time someone books.
+// First booking will ask you to confirm the address (Formsubmit sends one
+// confirmation email). After that it's automatic.
+// Leave as "" to disable forwarding.
+const FORWARD_EMAIL = ""; // e.g. "ton-email@gmail.com"
+const FORWARD_ENDPOINT = FORWARD_EMAIL
+  ? `https://formsubmit.co/ajax/${encodeURIComponent(FORWARD_EMAIL)}`
+  : "";
+
+
+let currentStep = 1;
+let selectedPackage = "";
+let selectedPrice = "";
+let selectedTime = "";
+
+const $ = id => document.getElementById(id);
+const steps = [...document.querySelectorAll(".form-step")];
+
+const today = new Date();
+today.setDate(today.getDate() + 1);
+$("date").min = today.toISOString().split("T")[0];
+
+function showStep(n){
+  currentStep = n;
+  steps.forEach(s => s.classList.toggle("active", Number(s.dataset.step) === n));
+  for(let i=1;i<=4;i++) $("bar"+i).classList.toggle("active", i<=n);
+  $("prevBtn").disabled = n === 1;
+  $("nextBtn").classList.toggle("hidden", n === 4);
+  $("submitBtn").classList.toggle("hidden", n !== 4);
+  if(n === 4) renderSummary();
+}
+
+function validateStep(){
+  const active = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+  const fields = [...active.querySelectorAll("input, select, textarea")].filter(el => el.hasAttribute("required"));
+  for(const field of fields){
+    if(!field.value.trim()){
+      field.focus();
+      return false;
+    }
+  }
+  if(currentStep === 2 && !selectedPackage){
+    alert("Choisis un type de consultation.");
+    return false;
+  }
+  if(currentStep === 3 && !selectedTime){
+    alert("Choisis une heure.");
+    return false;
+  }
+  return true;
+}
+
+$("nextBtn").addEventListener("click", ()=>{
+  if(!validateStep()) return;
+  showStep(Math.min(4, currentStep + 1));
+});
+
+$("prevBtn").addEventListener("click", ()=>{
+  showStep(Math.max(1, currentStep - 1));
+});
+
+document.querySelectorAll(".choice").forEach(card=>{
+  card.addEventListener("click", ()=>{
+    document.querySelectorAll(".choice").forEach(c=>c.classList.remove("selected"));
+    card.classList.add("selected");
+    selectedPackage = card.dataset.package;
+    selectedPrice = card.dataset.price;
+  });
+});
+
+document.querySelectorAll(".time-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".time-btn").forEach(b=>b.classList.remove("selected"));
+    btn.classList.add("selected");
+    selectedTime = btn.textContent.trim();
+  });
+});
+
+function getBooking(){
+  return {
+    createdAt: new Date().toISOString(),
+    name: $("name").value.trim(),
+    contact: $("contact").value.trim(),
+    country: $("country").value.trim(),
+    timezone: $("timezone").value,
+    problem: $("problem").value,
+    package: selectedPackage,
+    price: selectedPrice,
+    texture: $("texture").value,
+    date: $("date").value,
+    time: selectedTime,
+    format: $("format").value,
+    notes: $("notes").value.trim(),
+    status: "En attente de paiement"
+  };
+}
+
+function renderSummary(){
+  const b = getBooking();
+  $("summary").innerHTML = `
+    <div class="summary-row"><span>Cliente</span><span>${escapeHtml(b.name)}</span></div>
+    <div class="summary-row"><span>Contact</span><span>${escapeHtml(b.contact)}</span></div>
+    <div class="summary-row"><span>Problème principal</span><span>${escapeHtml(b.problem)}</span></div>
+    <div class="summary-row"><span>Consultation</span><span>${escapeHtml(b.package)} — $${escapeHtml(b.price)}</span></div>
+    <div class="summary-row"><span>Texture</span><span>${escapeHtml(b.texture)}</span></div>
+    <div class="summary-row"><span>Date & heure</span><span>${escapeHtml(b.date)} à ${escapeHtml(b.time)}</span></div>
+    <div class="summary-row"><span>Fuseau horaire</span><span>${escapeHtml(b.timezone)}</span></div>
+    <div class="summary-row"><span>Format</span><span>${escapeHtml(b.format)}</span></div>
+  `;
+}
+
+$("bookingForm").addEventListener("submit", e=>{
+  e.preventDefault();
+
+  if(!validateStep()) return;
+
+  const booking = getBooking();
+  // Stamp + id so the admin can tie this to a record
+  booking.id = "b_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+  booking.createdAt = new Date().toISOString();
+  booking.status = "new";
+  booking.notes = "";
+  booking.source = "form";
+
+  // Sauvegarde réservation
+  const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  bookings.push(booking);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
+
+  // Send email notification if forwarding is enabled.
+  // Fire-and-forget; if it fails we still want the redirect to work.
+  if (FORWARD_ENDPOINT) {
+    fetch(FORWARD_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: `Nouvelle réservation Schicgirl — ${booking.name}`,
+        _template: "table",
+        Nom: booking.name,
+        Contact: booking.contact,
+        Pays: booking.country,
+        "Fuseau horaire": booking.timezone,
+        Problème: booking.problem,
+        Texture: booking.texture,
+        Date: booking.date,
+        Heure: booking.time,
+        Format: booking.format,
+        Formule: booking.package,
+        Prix: booking.price,
+        "Reçue le": new Date().toLocaleString("fr-FR")
+      })
+    }).catch(() => {}); // silent — don't block the user if email fails
+  }
+
+  // Désactive bouton
+  $("submitBtn").disabled = true;
+  $("submitBtn").textContent = "Redirection vers Selar...";
+
+  // Choisit automatiquement le bon lien
+  const paymentLink =
+    SELAR_LINKS[booking.package] || "https://selar.com";
+
+  // Redirection automatique
+  window.location.href = paymentLink;
+});
+
+function buildCalendarLink(b){
+  if(!b.date || !b.time) return;
+  const start = new Date(`${b.date}T${b.time}:00`);
+  const end = new Date(start.getTime() + 60 * 60 * 1000);
+  const fmt = d => d.toISOString().replace(/[-:]/g,"").split(".")[0] + "Z";
+  const text = encodeURIComponent(`Schicgirl Consultation — ${b.name}`);
+  const details = encodeURIComponent(`Consultation: ${b.package}\nContact: ${b.contact}\nProblem: ${b.problem}\nFormat: ${b.format}\nNotes: ${b.notes || ""}`);
+  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${fmt(start)}/${fmt(end)}&details=${details}`;
+  $("calendarLink").href = url;
+  $("calendarLink").style.display = "inline-flex";
+}
+
+function renderBookings(){
+  const rows = $("bookingRows");
+  const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]").reverse();
+  if(!bookings.length){
+    rows.innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:28px;">Aucune réservation pour le moment.</td></tr>`;
+    return;
+  }
+  rows.innerHTML = bookings.map(b => `
+    <tr>
+      <td>${escapeHtml(new Date(b.createdAt).toLocaleDateString("fr-FR"))}</td>
+      <td><strong>${escapeHtml(b.name)}</strong><br><small>${escapeHtml(b.country)}</small></td>
+      <td>${escapeHtml(b.contact)}</td>
+      <td>${escapeHtml(b.problem)}<br><small>Texture: ${escapeHtml(b.texture)}</small></td>
+      <td>${escapeHtml(b.package)}<br><strong>$${escapeHtml(b.price)}</strong></td>
+      <td>${escapeHtml(b.date)}<br>${escapeHtml(b.time)}<br><small>${escapeHtml(b.timezone)}</small></td>
+      <td>${escapeHtml(b.format)}</td>
+      <td>${escapeHtml(b.notes || "—")}</td>
+    </tr>
+  `).join("");
+}
+
+if($("openAdmin")){
+  $("openAdmin").addEventListener("click", ()=>{
+    $("adminModal").classList.add("open");
+    renderBookings();
+  });
+}
+
+$("closeAdmin").addEventListener("click", ()=>{
+  $("adminModal").classList.remove("open");
+});
+
+$("adminModal").addEventListener("click", e=>{
+  if(e.target === $("adminModal")) $("adminModal").classList.remove("open");
+});
+
+$("exportBookings").addEventListener("click", ()=>{
+  const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  if(!bookings.length){ alert("Aucune réservation à exporter."); return; }
+  const headers = Object.keys(bookings[0]);
+  const csv = [headers.join(","), ...bookings.map(b => headers.map(h => `"${String(b[h] || "").replaceAll('"','""')}"`).join(","))].join("\n");
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `schicgirl-reservations-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+$("clearBookings").addEventListener("click", ()=>{
+  if(confirm("Effacer toutes les réservations sauvegardées dans ce navigateur ?")){
+    localStorage.removeItem(STORAGE_KEY);
+    renderBookings();
+  }
+});
+
+function escapeHtml(value){
+  return String(value || "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+renderBookings();
+</script>
+
+<footer class="sg-foot">© 2024–2026 Schicgirl™ — by <a href="https://nabintousfofana.github.io/portfolio/" target="_blank" rel="noopener">Nabintou S. Fofana</a></footer>
+<style>.sg-foot{text-align:center;padding:1.25rem 1rem;font-size:.72rem;color:#000;opacity:.5;letter-spacing:.02em}.sg-foot a{color:inherit;text-decoration:underline;text-underline-offset:2px}</style>
+
+</body>
+</html>
