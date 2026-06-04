@@ -1,0 +1,255 @@
+{
+  "v": 1,
+  "brand": {
+    "logo": "assets/logo2.png",
+    "name_pre": "Schic",
+    "name_acc": "girl",
+    "name_suf": "™",
+    "tagline_fr": "Clarté, soin & confiance pour cheveux naturels.",
+    "tagline_en": "Clarity, care & confidence for natural hair.",
+    "watermark": "Schicgirl™ · link.schicgirl.me · © 2026"
+  },
+  "hero": {
+    "icons": [
+      "assets/woman_icon_0.png",
+      "assets/woman_icon_1.png",
+      "assets/woman_icon_2.png",
+      "assets/woman_icon_3.png"
+    ],
+    "stats": [
+      {
+        "id": "s1",
+        "on": true,
+        "text_fr": "10 000+ femmes aidées",
+        "text_en": "10,000+ women helped"
+      },
+      {
+        "id": "s2",
+        "on": true,
+        "text_fr": "🇬🇧 🇫🇷 Bilingue",
+        "text_en": "🇬🇧 🇫🇷 Bilingual"
+      }
+    ]
+  },
+  "gifts": {
+    "on": true,
+    "label_fr": "Tes Cadeaux Gratuits",
+    "label_en": "Your Free Gifts",
+    "items": [
+      {
+        "id": "mistakes",
+        "on": true,
+        "emoji": "🎁",
+        "label_fr": "Téléchargement Gratuit",
+        "label_en": "Free Download",
+        "title_fr": "15 Erreurs Capillaires à Corriger",
+        "title_en": "15 Hair Mistakes to Fix",
+        "sub_fr": "Télécharge ton ebook gratuit et améliore ta routine dès aujourd'hui.",
+        "sub_en": "Download your free ebook & start improving your routine today.",
+        "url_fr": "https://selar.com/1t7713181a",
+        "url_en": "https://selar.com/49y1751324"
+      },
+      {
+        "id": "guide",
+        "on": true,
+        "emoji": "📖",
+        "label_fr": "Gratuit · 26 pages",
+        "label_en": "Free · 26 pages",
+        "title_fr": "Le Guide Complet Cheveux Type 4",
+        "title_en": "The Complete Type 4 Hair Guide",
+        "sub_fr": "Comprends ta texture, construis ta routine, hydrate enfin tes cheveux crépus.",
+        "sub_en": "Understand your texture, build your routine, finally hydrate your coily hair.",
+        "url_fr": "https://selar.com/guidegratuit",
+        "url_en": "https://selar.com/free_guide"
+      }
+    ]
+  },
+  "shop": {
+    "on": true,
+    "label_fr": "Solutions Premium",
+    "label_en": "Premium Solutions",
+    "img": "assets/all-ebook.png",
+    "img_fallback": "📚",
+    "eyebrow_fr": "★ 8 Ebooks Experts",
+    "eyebrow_en": "★ 8 Expert Ebooks",
+    "title_fr": "Trouve ta solution capillaire",
+    "title_en": "Find your hair solution",
+    "desc_fr": "Hydratation, pousse, cuir chevelu, routines sur mesure — les guides qui transforment vraiment les cheveux Type 4.",
+    "desc_en": "Hydration, growth, scalp reset, custom routines — proven guides that actually transform Type 4 hair.",
+    "cta_fr": "Voir tous mes ebooks →",
+    "cta_en": "Shop my ebooks →",
+    "url": "https://selar.com/m/schicgirl",
+    "track": "selar-shop"
+  },
+  "tools": {
+    "on": true,
+    "label_fr": "Outils Gratuits",
+    "label_en": "Free Tools",
+    "items": [
+      {
+        "id": "schicchat",
+        "on": true,
+        "lang": "both",
+        "style": "feature",
+        "icon": "💬",
+        "label_fr": "Diagnostique Auto · Gratuit",
+        "label_en": "Diagnostic · Free",
+        "title_fr": "Schicgirl™ Diagnostique",
+        "title_en": "Schicgirl™ Diagnostic Chat",
+        "sub_fr": "Parle-moi de tes cheveux — réponses expertes instantanées.",
+        "sub_en": "Talk to me about your hair — instant expert answers.",
+        "url": "https://schicgirl-hair.github.io/schicchat/"
+      },
+      {
+        "id": "premium-fr",
+        "on": true,
+        "lang": "both",
+        "style": "card",
+        "icon": "💧",
+        "badge": "AUTO",
+        "title_fr": "Pourquoi tes cheveux restent secs ?",
+        "title_en": "Why does your hair stay dry?",
+        "sub_fr": "Je vais t'aider à comprendre pourquoi tes cheveux crépus restent secs.",
+        "sub_en": "I'll help you understand why your curly hair stays dry.",
+        "url": "https://schicgirl-hair.github.io/hydratation/"
+      },
+      {
+        "id": "consultation",
+        "on": true,
+        "lang": "fr",
+        "style": "card",
+        "icon": "📅",
+        "badge": "",
+        "title_fr": "Consultation Capillaire",
+        "title_en": "Hair Consultation",
+        "sub_fr": "Réserve ta consultation personnalisée avec Schicgirl.",
+        "sub_en": "Book your personalised consultation with Schicgirl.",
+        "url": "https://schicgirl-hair.github.io/Consultation/"
+      }
+    ]
+  },
+  "amazon": {
+    "on": true,
+    "label_fr": "Mes Sélections",
+    "label_en": "My Curated Picks",
+    "items": [
+      {
+        "id": "amazon-shop",
+        "on": true,
+        "img": "",
+        "emoji": "🛍️",
+        "eyebrow_fr": "Boutique Amazon",
+        "eyebrow_en": "Amazon Storefront",
+        "name_fr": "Tous mes coups de cœur",
+        "name_en": "All My Picks",
+        "desc_fr": "Toutes mes recommandations capillaires.",
+        "desc_en": "Browse every product I trust for natural hair.",
+        "url": "https://www.amazon.com/shop/schicgirl",
+        "cta_fr": "Voir →",
+        "cta_en": "Shop →"
+      },
+      {
+        "id": "auntjackies-baby",
+        "on": true,
+        "img": "assets/baby_curls_cream.png",
+        "emoji": "🧴",
+        "eyebrow_fr": "Enfants · Boucles",
+        "eyebrow_en": "Kids · Curl Care",
+        "name_fr": "Aunt Jackie's Baby Curls",
+        "name_en": "Aunt Jackie's Baby Curls",
+        "desc_fr": "Crème douce pour définir les boucles des enfants.",
+        "desc_en": "Gentle curl-defining cream for little ones.",
+        "url": "https://amzn.to/491lO7A",
+        "cta_fr": "Voir →",
+        "cta_en": "Get it →"
+      },
+      {
+        "id": "auntjackies-bundle",
+        "on": true,
+        "img": "assets/amazon.png",
+        "emoji": "📦",
+        "eyebrow_fr": "Boucles & Coils",
+        "eyebrow_en": "Curls & Coils",
+        "name_fr": "Aunt Jackie's Bundle",
+        "name_en": "Aunt Jackie's Bundle",
+        "desc_fr": "Le système complet soin boucles & coils.",
+        "desc_en": "The full curl & coil care system in one set.",
+        "url": "https://amzn.to/3OkUfzm",
+        "cta_fr": "Voir →",
+        "cta_en": "Get it →"
+      }
+    ]
+  },
+  "testimonials": {
+    "on": true,
+    "label_fr": "Résultats Réels",
+    "label_en": "Real Results",
+    "items": [
+      {
+        "id": "t1",
+        "on": true,
+        "stars": 5,
+        "author": "Sophie C.",
+        "text_fr": "Cette routine a transformé mes boucles ! Enfin des cheveux doux.",
+        "text_en": "This routine transformed my curls! Soft, hydrated hair at last."
+      },
+      {
+        "id": "t2",
+        "on": true,
+        "stars": 5,
+        "author": "Miriam L.",
+        "text_fr": "Des conseils personnalisés qui marchent vraiment. Mes cheveux n'ont jamais été aussi beaux.",
+        "text_en": "Personalised advice that actually works. My hair has never been better."
+      },
+      {
+        "id": "t3",
+        "on": true,
+        "stars": 5,
+        "author": "Anita P.",
+        "text_fr": "Outils révolutionnaires. Mes cheveux naturels s'épanouissent !",
+        "text_en": "Game-changing tools. My natural hair is thriving!"
+      },
+      {
+        "id": "t4",
+        "on": true,
+        "stars": 5,
+        "author": "Fatoumata D.",
+        "text_fr": "J'ai enfin compris ma porosité. Tout fait sens maintenant !",
+        "text_en": "Finally understood my porosity. Everything clicked!"
+      }
+    ]
+  },
+  "social": {
+    "on": true,
+    "label_fr": "Me Retrouver",
+    "label_en": "Connect",
+    "items": [
+      {
+        "id": "facebook",
+        "on": true,
+        "icon": "📘",
+        "label_fr": "Facebook",
+        "label_en": "Facebook",
+        "sub_fr": "Conseils & coulisses",
+        "sub_en": "Daily tips & real talk",
+        "url": "https://www.facebook.com/schicgirl"
+      },
+      {
+        "id": "email",
+        "on": true,
+        "icon": "✉️",
+        "label_fr": "M'Écrire",
+        "label_en": "Email Me",
+        "sub_fr": "Collabs & support",
+        "sub_en": "Collabs & support",
+        "url": "mailto:contacte.schicgirl@gmail.com"
+      }
+    ]
+  },
+  "footer": {
+    "logo_show": true,
+    "brand": "Schicgirl™",
+    "disc_fr": "En tant qu'associée Amazon, je gagne des revenus grâce aux achats éligibles.<br/>contacte.schicgirl@gmail.com",
+    "disc_en": "As an Amazon Associate I earn from qualifying purchases.<br/>contacte.schicgirl@gmail.com"
+  }
+}
