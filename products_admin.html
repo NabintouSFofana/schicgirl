@@ -194,10 +194,39 @@ textarea{min-height:70px;resize:vertical;line-height:1.5}
     <div id="publishBanner" class="publish-banner">
       <div class="publish-banner-text" id="publishText">
         <strong>Toutes les modifications sont sauvegardées.</strong><br>
-        Pour mettre à jour la page publique, télécharge <code style="background:white;padding:1px 6px;border-radius:4px;border:1px solid rgba(185,130,50,.2);font-size:12px">amazon-data.json</code> et remplace-le sur ton site.
+        Clique sur <strong>Publier sur le site</strong> pour mettre à jour ta page publique automatiquement.
       </div>
-      <button id="publishBtn" class="btn btn-gold">🚀 Télécharger amazon-data.json</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <button id="publishGithubBtn" class="btn btn-gold">🌐 Publier sur le site</button>
+        <button id="publishBtn" class="btn btn-outline" title="Télécharger le fichier manuellement (secours)">↓ Télécharger le JSON</button>
+      </div>
     </div>
+
+    <!-- GITHUB SETTINGS -->
+    <details id="ghSettings" class="card" style="margin-bottom:16px">
+      <summary style="cursor:pointer;font-weight:700;color:var(--brown);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px">
+        <span>⚙️ Réglages de publication (GitHub)</span>
+        <span id="ghStatus" style="font-size:12px;font-weight:600"></span>
+      </summary>
+      <p class="sub" style="margin-top:12px">
+        Renseigne ces infos <strong>une seule fois</strong>. Elles sont enregistrées uniquement dans ce navigateur — jamais dans le code ni en ligne.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+        <div><label for="gh_owner">Propriétaire (owner / username)</label><input id="gh_owner" type="text" placeholder="ex. schicgirl-hair" autocomplete="off"/></div>
+        <div><label for="gh_repo">Dépôt (repository)</label><input id="gh_repo" type="text" placeholder="ex. amazon" autocomplete="off"/></div>
+        <div><label for="gh_branch">Branche</label><input id="gh_branch" type="text" placeholder="main" autocomplete="off"/></div>
+        <div><label for="gh_path">Chemin du fichier</label><input id="gh_path" type="text" placeholder="amazon-data.json" autocomplete="off"/></div>
+      </div>
+      <label for="gh_token" style="margin-top:10px;display:block">Token d'accès GitHub (fine-grained, accès « Contents » en écriture)</label>
+      <input id="gh_token" type="password" placeholder="github_pat_…" autocomplete="off"/>
+      <p class="sub" style="margin-top:6px;font-size:12px;color:#9a5a2e">
+        ⚠️ Ce token donne le droit d'écrire dans ton dépôt. Ne le partage avec personne et n'utilise pas un ordinateur public. Crée-le avec une date d'expiration et limité à ce seul dépôt.
+      </p>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button id="ghSaveBtn" class="btn btn-primary">Enregistrer les réglages</button>
+        <button id="ghTestBtn" class="btn btn-outline">Tester la connexion</button>
+      </div>
+    </details>
 
     <!-- STATS -->
     <div class="card">
@@ -1043,10 +1072,10 @@ function setDirty(d) {
   dirty = d;
   if (d) {
     $("publishBanner").classList.add("dirty");
-    $("publishText").innerHTML = `<span class="dot-dirty"></span><strong>Modifications non publiées.</strong><br>Télécharge le fichier et remplace-le sur ton site pour mettre la page publique à jour.`;
+    $("publishText").innerHTML = `<span class="dot-dirty"></span><strong>Modifications non publiées.</strong><br>Clique sur <strong>Publier sur le site</strong> pour mettre la page publique à jour.`;
   } else {
     $("publishBanner").classList.remove("dirty");
-    $("publishText").innerHTML = `<strong>Toutes les modifications sont sauvegardées.</strong><br>Pour mettre à jour la page publique, télécharge <code style="background:white;padding:1px 6px;border-radius:4px;border:1px solid rgba(185,130,50,.2);font-size:12px">amazon-data.json</code> et remplace-le sur ton site.`;
+    $("publishText").innerHTML = `<strong>Toutes les modifications sont publiées.</strong><br>Ta page publique est à jour.`;
   }
 }
 
@@ -1426,9 +1455,137 @@ $("publishBtn").onclick = () => {
     diy: data.diy.map(d => ({ ...d, url: applyTag(d.url, tag) }))
   };
   downloadBlob(JSON.stringify(payload, null, 2), "amazon-data.json", "application/json");
-  setDirty(false);
-  toast("amazon-data.json téléchargé. Remplace ce fichier sur ton site pour mettre à jour la page publique.", "ok");
+  toast("amazon-data.json téléchargé. (Secours — préfère le bouton « Publier sur le site ».)", "ok");
 };
+
+// ─── GitHub publishing (one-click, no file handling) ─────────────────
+const GH_KEY = "schic_amazon_gh_cfg";
+function getGhCfg() {
+  let c = {};
+  try { c = JSON.parse(localStorage.getItem(GH_KEY) || "{}"); } catch (e) {}
+  return {
+    owner: c.owner || "", repo: c.repo || "",
+    branch: c.branch || "main", path: c.path || "amazon-data.json",
+    token: c.token || ""
+  };
+}
+function loadGhCfgIntoForm() {
+  const c = getGhCfg();
+  if (!$("gh_owner")) return;
+  $("gh_owner").value = c.owner; $("gh_repo").value = c.repo;
+  $("gh_branch").value = c.branch; $("gh_path").value = c.path;
+  $("gh_token").value = c.token;
+  updateGhStatus();
+}
+function updateGhStatus() {
+  const c = getGhCfg(), el = $("ghStatus");
+  if (!el) return;
+  if (c.owner && c.repo && c.token) {
+    el.textContent = "✅ Configuré";
+    el.style.color = "#3f7d3f";
+  } else {
+    el.textContent = "⚠️ À configurer";
+    el.style.color = "#b06a1e";
+  }
+}
+function buildPayload() {
+  const tag = data.affiliateTag || "";
+  return {
+    generatedAt: new Date().toISOString(),
+    affiliateTag: tag,
+    copy: data.copy,
+    products: data.products.map(p => ({ ...p, url: applyTag(p.url, tag) })),
+    diy: data.diy.map(d => ({ ...d, url: applyTag(d.url, tag) }))
+  };
+}
+// UTF-8 safe base64 (handles French accents, é, à, etc.)
+function utf8ToBase64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+async function ghErrMessage(res) {
+  try { const j = await res.json(); return j.message || ("HTTP " + res.status); }
+  catch (e) { return "HTTP " + res.status; }
+}
+function ghApiUrl(c) {
+  const path = c.path.split("/").map(encodeURIComponent).join("/");
+  return `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/${path}`;
+}
+function ghHeaders(c) {
+  return {
+    "Authorization": "Bearer " + c.token,
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28"
+  };
+}
+async function publishToGitHub() {
+  const c = getGhCfg();
+  if (!c.owner || !c.repo || !c.token) {
+    toast("Renseigne d'abord les réglages GitHub.", "error");
+    const s = $("ghSettings"); if (s) s.open = true;
+    return;
+  }
+  const btn = $("publishGithubBtn");
+  const original = btn.textContent;
+  btn.disabled = true; btn.textContent = "⏳ Publication…";
+  try {
+    const content = utf8ToBase64(JSON.stringify(buildPayload(), null, 2));
+    const url = ghApiUrl(c), headers = ghHeaders(c);
+    // 1. look up existing file SHA (needed to update; 404 means create new)
+    let sha;
+    const getRes = await fetch(`${url}?ref=${encodeURIComponent(c.branch)}`, { headers });
+    if (getRes.ok) { sha = (await getRes.json()).sha; }
+    else if (getRes.status !== 404) { throw new Error(await ghErrMessage(getRes)); }
+    // 2. write the file
+    const body = { message: "Update amazon-data.json via Schicgirl admin", content, branch: c.branch };
+    if (sha) body.sha = sha;
+    const putRes = await fetch(url, { method: "PUT", headers, body: JSON.stringify(body) });
+    if (!putRes.ok) { throw new Error(await ghErrMessage(putRes)); }
+    setDirty(false);
+    toast("✅ Publié ! La page publique se met à jour dans ~1 minute.", "ok");
+  } catch (e) {
+    toast("Échec : " + e.message, "error");
+  } finally {
+    btn.disabled = false; btn.textContent = original;
+  }
+}
+async function testGhConnection() {
+  const c = getGhCfg();
+  if (!c.owner || !c.repo || !c.token) { toast("Remplis owner, repo et token d'abord.", "error"); return; }
+  const btn = $("ghTestBtn"), original = btn.textContent;
+  btn.disabled = true; btn.textContent = "⏳ Test…";
+  try {
+    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}`, { headers: ghHeaders(c) });
+    if (!res.ok) throw new Error(await ghErrMessage(res));
+    const j = await res.json();
+    if (j.permissions && (j.permissions.push || j.permissions.admin)) {
+      toast("✅ Connexion OK — accès en écriture confirmé.", "ok");
+    } else {
+      toast("Connecté, mais le token n'a pas l'accès en écriture sur ce dépôt.", "error");
+    }
+  } catch (e) {
+    toast("Test échoué : " + e.message, "error");
+  } finally {
+    btn.disabled = false; btn.textContent = original;
+  }
+}
+$("publishGithubBtn").onclick = publishToGitHub;
+$("ghTestBtn").onclick = testGhConnection;
+$("ghSaveBtn").onclick = () => {
+  const cfg = {
+    owner: $("gh_owner").value.trim(),
+    repo: $("gh_repo").value.trim(),
+    branch: $("gh_branch").value.trim() || "main",
+    path: $("gh_path").value.trim() || "amazon-data.json",
+    token: $("gh_token").value.trim()
+  };
+  localStorage.setItem(GH_KEY, JSON.stringify(cfg));
+  updateGhStatus();
+  toast("Réglages GitHub enregistrés.", "ok");
+};
+loadGhCfgIntoForm();
 
 // ─── image picker ────────────────────────────────────────────────────
 // Refresh the small preview tile + the info line (size warning) for one
