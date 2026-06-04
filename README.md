@@ -3,180 +3,131 @@
 Source code for the Schicgirl natural hair brand. Six live products, one Amazon
 affiliate page, all hand-written HTML/CSS/JS.
 
-Live: https://link.schicgirl.me/
+Live: https://schicgirl.me/
+---
 
-## Files
+## What's in here
 
-- **`index_link_in_bio.html`** — public link-in-bio page
-- **`index_link_in_bio_admin.html`** — full content editor (Brand, Hero, Gifts,
-  Shop, Tools, Amazon, Reviews, Social, Footer, Clicks, Visits, Settings)
-- **`index_CoilCareAI.html`** — chat assistant. Uses the Anthropic Claude API.
-  Users bring their own API key; it stays in their browser.
-- **`index_hydracheck.html`** — hair hydration diagnostic
-- **`index_hydracheck_admin.html`** — leads dashboard (search, filter,
-  edit, delete, status tags, notes, stats, backup/restore)
-- **`index_schicchat.html`** — bilingual hair diagnostic chatbot
-- **`index_schicchat_admin.html`** — leads dashboard backed by Google Sheets
-  (charts, search, filter, CSV export, PDF print)
-- **`index_consultation.html`** — booking page
-- **`index_consultation_admin.html`** — bookings dashboard (search, filter,
-  edit, delete, status tags, notes, stats, backup/restore, manual add)
-- **`schicgirl_amazon_affiliate_minisite_bilingual.html`** — Amazon affiliate page
-- **`index_amazon_admin.html`** — Amazon page editor (manage products,
-  DIY ingredients, copy, and affiliate tag — outputs `amazon-data.json`)
-- **`logo.png`**
+The project is organised as **pairs**: a public-facing page your audience sees,
+and a private `*_admin.html` page where you manage its content or leads. Each
+admin is password-gated (SHA-256 hashed password + login rate limit).
+
+| Public page | Admin page | What it does |
+|---|---|---|
+| `index.html` | `admin.html` | Link-in-bio landing page (brand, gifts, tools, Amazon, reviews, social, footer) and its content editor |
+| `products.html` | `products_admin.html` | Bilingual Amazon affiliate mini-site (picks by porosity + DIY ingredient library) and its product editor |
+| `schicchat.html` | `schicchat_admin.html` | Bilingual hair-diagnostic chatbot and its leads dashboard |
+| `hydracheck.html` | `hydracheck_admin.html` | Hair-hydration diagnostic and its leads dashboard |
+| `consultation.html` | `consultation_admin.html` | Consultation booking page and its bookings dashboard |
+| `logo.png` | — | Brand logo |
+
+---
+
+## How the pages get their data
+
+Different pages use different storage, depending on what they need:
+
+- **`index.html` / `admin.html`** — the editor manages the site content and
+  publishes it as `site.json`; the public page renders from that data.
+- **`products.html` / `products_admin.html`** — the editor manages products,
+  DIY ingredients, copy, and the Amazon affiliate tag, then **publishes
+  directly to GitHub** as `amazon-data.json`. The public page fetches that file
+  on load. (See *Publishing the Amazon page* below.)
+- **`schicchat.html` / `schicchat_admin.html`** — diagnostics are logged to a
+  **Google Sheet** via a Google Apps Script web-app endpoint; the admin reads
+  back from the same sheet (charts, search, filter, CSV export, PDF print).
+- **`hydracheck` / `consultation`** — leads and bookings are stored in the
+  browser's `localStorage`, with JSON backup/restore so you can move data
+  between devices.
+
+> There is **no AI API** in this project. The chatbot is a guided,
+> rule-based diagnostic that logs answers to a spreadsheet — not a language model.
+
+---
+
+## Publishing the Amazon page (one-time setup)
+
+`products_admin.html` can write changes straight to your repository, so you edit
+in the forms and click **🌐 Publier sur le site** — no downloading or moving
+files.
+
+1. **Create a GitHub token.** On GitHub: *Settings → Developer settings →
+   Personal access tokens → Fine-grained tokens → Generate new token*.
+   - Repository access: **only** the repo that holds this site.
+   - Permissions: **Contents → Read and write** (that's the only one needed).
+   - Set an expiration date and copy the token (shown once; starts with
+     `github_pat_`).
+2. **Enter it once in the admin.** Open *⚙️ Réglages de publication (GitHub)*,
+   fill in owner, repo, branch (`main`), path (`amazon-data.json`), and paste
+   the token. Click **Enregistrer**, then **Tester la connexion**.
+3. **From then on**, just edit and click *Publier*. The live page updates within
+   about a minute.
+
+The token is stored only in that browser's local storage — never in the source
+and never committed. Don't set this up on a shared computer; if a token leaks,
+delete it on GitHub and generate a new one. A **↓ Télécharger le JSON** button
+remains as a manual fallback.
+
+---
+
+## Bilingual (FR / EN)
+
+Most public pages have a language toggle. Both translations live on the same
+element as `data-en` and `data-fr` attributes, so there's only ever one piece of
+markup to keep in sync and the switcher is a few lines of JS.
+
+---
+
+## Admin features
+
+`consultation_admin.html` and `hydracheck_admin.html` share the same toolkit:
+
+- Login with a SHA-256 hashed password + attempt-limited rate guard
+- Stat cards (total / new / contacted / paid / last 30 days)
+- 30-day daily activity chart (plain CSS bars, no charting library)
+- Search across name, contact, problem, country, and notes
+- Status filter (new / contacted / paid / done / cancelled) and sortable columns
+- Per-row view / edit / delete, plus an edit modal with a private-notes field
+- Manual-add (for bookings or diagnostics that came in via DM or WhatsApp)
+- Detail modal with a copy-message button that pre-fills a follow-up template
+- CSV export and JSON backup / restore
+- A "danger zone" with an export-first delete flow
+
+`schicchat_admin.html` adds Google-Sheets-backed reporting on top of the same UI.
+
+---
 
 ## Why no framework
 
-Every page is one HTML file. No build step, no `node_modules`, no version
-mismatches. I can edit a file, refresh the tab, and see what changed. When
-something breaks I open dev tools, not a stack trace from three layers down.
+Every page is one HTML file. No build step, no dependency tree, no version
+mismatches — edit a file, refresh the tab, see the change. When something
+breaks, it's dev tools, not a stack trace three layers deep.
 
-The tradeoff is repetition — some CSS is duplicated across files. I'll
-consolidate when it actually hurts.
+The tradeoff is repetition: some CSS and helpers are duplicated across files.
+That's a deliberate choice for a project of this size, to be consolidated only
+if it ever actually hurts.
 
-## Bilingual (FR/EN)
+---
 
-Most user-facing pages have a language toggle. The two translations live on
-the same elements as `data-en` and `data-fr` attributes — there's only ever
-one HTML to keep in sync, and the language switcher is ~10 lines of JS.
+## Running locally
 
-## Admin pages — what each one does
+Open any public page directly in a browser to preview it. Two caveats:
 
-**Consultation admin** and **HydraCheck admin** share the same feature set:
+- Pages that **fetch** a data file (e.g. `products.html` loading
+  `amazon-data.json`) need to be served over `http://`, not opened as a
+  `file://` path, or the browser will block the request. Any static server
+  works:
+  ```bash
+  python3 -m http.server 8000
+  # then visit http://localhost:8000/products.html
+  ```
+- The GitHub publish feature and the Google Sheets logging require their
+  respective setup (token / Apps Script URL) to function.
 
-- Login with a SHA-256 hashed password + 5-attempt rate limit
-- 5 stat cards (Total / Nouvelles / Contactées / Payées / 30 derniers jours)
-- 30-day daily chart (CSS bars, no library)
-- Search across name, contact, problem, country, notes
-- Status filter (new / contacted / paid / done / cancelled)
-- Sortable columns
-- Per-row Voir / Edit / Delete buttons
-- Edit modal with all fields + private notes textarea
-- Manual-add button (for bookings/diagnostics that came through DM/WhatsApp)
-- Detail modal with copy-message button (pre-fills a follow-up template)
-- CSV export
-- JSON backup + restore (so you can move data between devices)
-- "Zone sensible" with safer-delete flow (export first)
+Deployment is just static hosting — push the files to GitHub Pages (or any
+static host) and point your domain at it.
 
-**SchicChat admin** is read-from-Google-Sheets — it shows leads collected by
-the diagnostic chatbot, with charts, search, filter, CSV export, and PDF
-printing. It already had most of the consistent feature set before I
-touched it.
-
-**Link-in-bio admin** is a full content editor for the public link-in-bio
-page. It has 13 tabs (Analytics, Brand, Hero, Gifts, Shop, Tools, Amazon,
-Reviews, Social, Footer, Clicks, Visits, Settings). You can change every
-visible element on the public page without touching code.
-
-## Email notifications when someone books
-
-The consultation page can send you an email every time a new booking
-comes in. To enable it:
-
-1. Open `index_consultation.html`
-2. Find this line (near the top of the `<script>`):
-   ```js
-   const FORWARD_EMAIL = "";
-   ```
-3. Replace `""` with your email, e.g.:
-   ```js
-   const FORWARD_EMAIL = "you@example.com";
-   ```
-4. Save and re-deploy.
-
-The first booking will trigger one confirmation email from Formsubmit
-(it's a one-time thing — just click the link). After that, every new
-booking sends you an email automatically with all the details formatted
-as a nice table.
-
-If the email fails for any reason, the booking still saves to the admin
-dashboard and the user still gets redirected to payment. No blocking.
-
-## Amazon admin — how the publish flow works
-
-The Amazon affiliate page works a bit differently from the others. It has
-*lots* of editable content (products, DIY items, copy, affiliate tag),
-which would be a nightmare to edit in raw HTML. So:
-
-- **`index_amazon_admin.html`** is where you edit everything
-- When you click "🚀 Télécharger amazon-data.json", it downloads a single
-  file with all your changes
-- You **replace `amazon-data.json` on your site** with the new one
-- The public Amazon page fetches that JSON on load and uses your data
-
-If `amazon-data.json` doesn't exist yet (initial deploy), the public page
-falls back to the 17 products and 10 DIY items hardcoded inside it — so
-the site is never broken, just shows the default content.
-
-The admin manages:
-
-- **Products tab** — search, filter by porosity, edit/delete each product
-  (Modifier opens a modal with all bilingual EN/FR fields), add new.
-  Every product can have a **product image**, either by URL (Amazon,
-  Cloudinary, anywhere) or by uploading a file from your computer.
-- **DIY tab** — same pattern for the ingredient library, also with image
-  per ingredient.
-- **Textes tab** — edit hero title, hero subtitle, "Start Here" intro,
-  affiliate disclosure (all bilingual)
-- **Réglages tab** — set your Amazon Associates tag once; it gets applied
-  to every product URL automatically at publish time. Also has full
-  JSON backup/restore and reset-to-defaults.
-
-### Product images — two ways
-
-When editing a product, you have a choice:
-
-1. **Paste an image URL** (preferred). Right-click any Amazon product
-   image, copy address, paste. Lightweight, served from Amazon's CDN, no
-   bloat to your `amazon-data.json`. Note that Amazon may block hotlinking
-   from some domains; if the image doesn't show on your live site, host
-   it elsewhere (Cloudinary, ImgBB, your own server) and use that URL.
-
-2. **Upload a file** (when you have custom imagery). Click "📁 Ou
-   télécharger un fichier", pick a file from your computer. It gets
-   converted to a base64 data URI and embedded directly in
-   `amazon-data.json`. Easy, but each upload adds ~140% of the file size
-   to your data file. The admin warns you if any image is bigger than
-   200 KB.
-
-If an image fails to load on the public page (broken URL, hotlink block,
-network issue), the card automatically falls back to the original emoji
-icon. Your site never shows a broken image box.
-
-## A note on auth
-
-Admin pages use SHA-256 hashed passwords with a 5-attempt rate limit,
-stored in `sessionStorage`. This is a **deterrent**. Anyone who knows
-what dev tools are can still bypass it. Don't put real customer data
-behind this without a real backend.
-
-When I migrate, I'll start with the consultation admin (it has actual
-booking info) and use Cloudflare Pages Functions. Everything else can
-wait.
-
-## CoilCare AI key
-
-CoilCare AI talks to `api.anthropic.com` directly from the browser. The
-user pastes their own key into the UI, it's saved to their
-`localStorage`, and the request includes the
-`anthropic-dangerous-direct-browser-access` header.
-
-I don't have a server, so I don't have anyone's key. If you fork this,
-get a key at console.anthropic.com.
-
-## Data storage
-
-All admin data (bookings, diagnostics, link-in-bio content) lives in
-`localStorage` on the device where you log in. This means:
-
-- ✅ Free, no backend needed
-- ❌ If you use the admin from your phone and your laptop, the two won't sync
-- ❌ Clearing browser data wipes everything
-
-Use the **Sauvegarde JSON** button regularly to download a backup. You can
-restore from a backup with the **Restaurer JSON** button on the same device,
-or move data between devices by exporting on one and importing on the other.
+---
 
 ## License
 
