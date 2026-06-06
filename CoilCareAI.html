@@ -1665,7 +1665,30 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 </script>
 
 <footer class="sg-foot">© 2024–2026 Schicgirl™ — by <a href="https://nabintousfofana.github.io/portfolio/" target="_blank" rel="noopener">Nabintou S. Fofana</a></footer>
-<style>.sg-foot{text-align:center;padding:1.25rem 1rem;font-size:.72rem;color:#fff;opacity:.5;letter-spacing:.02em}.sg-foot a{color:inherit;text-decoration:underline;text-underline-offset:2px}</style>
+<style>
+/* Footer pinned to bottom of viewport.
+   pointer-events:none on the wrapper lets clicks pass through to UI below;
+   the inner link re-enables pointer-events so it remains clickable. */
+.sg-foot{
+  position:fixed;
+  bottom:0; left:0; right:0;
+  z-index:5;
+  text-align:center;
+  padding:.55rem 1rem calc(.55rem + env(safe-area-inset-bottom, 0px));
+  font-size:.7rem;
+  letter-spacing:.02em;
+  color:rgba(255,255,255,.55);
+  background:linear-gradient(to top, rgba(0,0,0,.18), transparent);
+  pointer-events:none;
+  text-shadow:0 1px 2px rgba(0,0,0,.25);
+}
+.sg-foot a{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:2px;
+  pointer-events:auto;
+}
+</style>
 
 </body>
 </html>
