@@ -3,16 +3,12 @@
 ═══════════════════════════════════════════════════════════════════
   SCHICGIRL — schicgirl.me
   © 2024–2026 Schicgirl. All rights reserved.
-
   This file, its design, its bilingual content, the Schicgirl name,
   visual identity, color palette, the curated product selections and
   testimonials are the exclusive property of Nabintou S. Fofana.
-
   Unauthorized reproduction, redistribution, or derivative work based
   on this source is strictly prohibited.
-
   Contact for licensing inquiries : contacte.schicgirl@gmail.com
-
   Built and maintained by Schicgirl
 ═══════════════════════════════════════════════════════════════════
 -->
@@ -20,8 +16,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Schicgirl — Natural Hair Tools</title>
 
+    <!-- Favicon : SVG inline, pas de fichier externe à servir.
+         Cercle doré avec un "S" italique — la marque Schicgirl en miniature. -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23C9934A'/><stop offset='1' stop-color='%23A06D28'/></linearGradient></defs><circle cx='32' cy='32' r='30' fill='url(%23g)'/><text x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='600' fill='%23FDF6EE' font-style='italic'>S</text></svg>" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23C9934A'/><stop offset='1' stop-color='%23A06D28'/></linearGradient></defs><circle cx='32' cy='32' r='30' fill='url(%23g)'/><text x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='600' fill='%23FDF6EE' font-style='italic'>S</text></svg>" />
+
+    <title>Schicgirl — Natural Hair Tools</title>
     <!-- Auteur & droits -->
     <meta name="author" content="Nabintou S. Fofana / Schicgirl" />
     <meta
@@ -33,25 +34,17 @@
       content="Schicgirl helps women with curly, coily and textured hair understand dryness, build simple routines, and choose trusted products."
     />
     <meta name="robots" content="index, follow, noarchive, nosnippet" />
-
     <!-- Open Graph -->
     <meta property="og:title" content="Schicgirl — Natural Hair Tools" />
     <meta property="og:image" content="assets/beautiful-woman.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://schicgirl.me" />
-    <!-- Favicon : SVG inline, pas de fichier externe à servir. -->
-    <link rel="icon" href="data:image/svg+xml,<svg ...>" />
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg ...>" />
-
-<title>Schicgirl — Natural Hair Tools</title>
     <meta name="theme-color" content="#c9934a" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <style>
       /* ────────────────────────────────────────────────────────────
    Palette & tokens
@@ -74,7 +67,6 @@
         --stroke: rgba(201, 147, 74, 0.22);
         --serif: "Cormorant Garamond", Georgia, serif;
         --sans: "Jost", system-ui, sans-serif;
-
         /* Ombres iOS-style empilées — donne de la profondeur
      sans alourdir visuellement. */
         --shadow-s:
@@ -86,10 +78,8 @@
         --shadow-warm:
           0 1px 2px rgba(62, 38, 28, 0.04), 0 6px 18px rgba(201, 147, 74, 0.1),
           0 18px 38px -10px rgba(201, 147, 74, 0.12);
-
         --r: 20px;
       }
-
       *,
       *::before,
       *::after {
@@ -100,7 +90,6 @@
       html {
         scroll-behavior: smooth;
       }
-
       body {
         font-family: var(--sans);
         color: var(--ink);
@@ -126,13 +115,11 @@
         padding: 0 0 60px;
         -webkit-tap-highlight-color: transparent;
       }
-
       /* Empêcher le glisser-déposer des images (la copie casual sur mobile/desktop) */
       img {
         -webkit-user-drag: none;
         pointer-events: auto;
       }
-
       /* ─── Sélecteur de langue ─── */
       .schicgirl-lang-bar {
         position: sticky;
@@ -170,20 +157,17 @@
         color: #fff;
         box-shadow: 0 2px 8px rgba(201, 147, 74, 0.4);
       }
-
       /* ─── Conteneur principal ─── */
       .schicgirl-wrap {
         max-width: 480px;
         margin: 0 auto;
         padding: 0 18px;
       }
-
       /* ─── Bloc Héros ─── */
       .schicgirl-hero {
         text-align: center;
         padding: 44px 0 36px;
       }
-
       .schicgirl-logo-ring {
         width: 110px;
         height: 110px;
@@ -235,7 +219,6 @@
         font-weight: 600;
         color: #fff;
       }
-
       .schicgirl-brand-name {
         font-family: var(--serif);
         font-size: clamp(40px, 12vw, 50px);
@@ -259,7 +242,6 @@
         max-width: 320px;
         margin: 0 auto;
       }
-
       .schicgirl-icon-row {
         display: flex;
         justify-content: center;
@@ -285,7 +267,6 @@
         height: 100%;
         object-fit: cover;
       }
-
       .schicgirl-stat-row {
         display: flex;
         justify-content: center;
@@ -312,7 +293,6 @@
         border-radius: 50%;
         background: var(--gold);
       }
-
       /* ─── Sections ─── */
       .schicgirl-section {
         margin-top: 28px;
@@ -339,7 +319,6 @@
           transparent
         );
       }
-
       /* ─── Cartes Cadeaux ─── */
       .schicgirl-gift {
         background: linear-gradient(
@@ -422,7 +401,6 @@
           color 0.2s;
         align-self: center;
       }
-
       /* ─── Bloc Boutique (Solutions Premium) ─── */
       .schicgirl-shop {
         display: flex;
@@ -555,7 +533,6 @@
       .schicgirl-shop:hover .schicgirl-shop-cta {
         filter: brightness(1.1);
       }
-
       /* ─── Carte Outil Vedette (gros bloc rose/doré) ─── */
       .schicgirl-feature {
         background: linear-gradient(
@@ -651,7 +628,6 @@
           box-shadow 0.2s;
         align-self: center;
       }
-
       /* ─── Carte Outil Standard (glass) ─── */
       .schicgirl-tool {
         display: flex;
@@ -773,7 +749,6 @@
         color: var(--gold);
         border: 1px solid rgba(201, 147, 74, 0.25);
       }
-
       /* ─── Bloc Sélections Amazon ─── */
       .schicgirl-picks {
         display: flex;
@@ -864,7 +839,6 @@
       .schicgirl-pick:hover .schicgirl-pick-cta {
         filter: brightness(1.08);
       }
-
       /* ─── Témoignages ─── */
       .schicgirl-testi-scroll {
         display: flex;
@@ -908,7 +882,6 @@
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
-
       /* ─── Réseaux sociaux ─── */
       .schicgirl-social-row {
         display: flex;
@@ -948,7 +921,6 @@
         font-size: 11px;
         color: var(--muted);
       }
-
       /* ─── Pied de page ─── */
       .schicgirl-footer {
         text-align: center;
@@ -977,7 +949,6 @@
         margin-top: 8px;
         opacity: 0.85;
       }
-
       /* ─── Bandeau filigrane ─── */
       .schicgirl-watermark {
         position: fixed;
@@ -1017,31 +988,24 @@
         </button>
       </div>
     </div>
-
     <!-- Contenu principal -->
     <div class="schicgirl-wrap" id="schicgirlWrap"></div>
-
     <!-- Filigrane bas de page -->
     <div class="schicgirl-watermark" id="schicgirlWatermark"></div>
-
     <script>
       /* ═══════════════════════════════════════════════════════════════
    SCHICGIRL — Link-in-bio
    © 2024–2026 Nabintou S. Fofana / Schicgirl. All rights reserved.
-
    Toutes les données du site (textes, témoignages, produits sélectionnés,
    identité visuelle) sont stockées dans localStorage.schicgirl_site.
    Les valeurs par défaut sont dans DEFAULT_SITE pour que le site
    fonctionne même avant la première édition admin.
-
    Reproduction interdite sans autorisation écrite.
    ═══════════════════════════════════════════════════════════════ */
-
       const SCHICGIRL_SITE_KEY = "schicgirl_site";
       const SCHICGIRL_ANALYTICS_KEY = "schicgirl_analytics";
       const SCHICGIRL_MAX_CLICKS = 1200;
       const SCHICGIRL_MAX_VISITS = 600;
-
       const DEFAULT_SITE = {
         v: 1,
         brand: {
@@ -1235,7 +1199,7 @@
               eyebrow_fr: "Boutique Amazon",
               eyebrow_en: "Amazon Storefront",
               name_fr: "Produits selon tes cheveux",
-              name_en: "Poducts based on your hair",
+              name_en: "Products based on your hair",
               desc_fr:
                 "Sélection complète Amazon — produits que je recommande vraiment.",
               desc_en:
@@ -1327,9 +1291,7 @@
             "As an Amazon Associate I earn from qualifying purchases.<br/>contacte.schicgirl@gmail.com",
         },
       };
-
       let SCHICGIRL_LANG = "fr";
-
       /* ─── Chargement & merge des données ─── */
       function schicgirlLoadSite() {
         let s = null;
@@ -1357,7 +1319,6 @@
         return over;
       }
       let SCHICGIRL_SITE = schicgirlLoadSite();
-
       /* ─── Migration des chemins d'images (pour anciennes versions) ─── */
       function schicgirlMigrateImagePaths() {
         let changed = false;
@@ -1393,7 +1354,6 @@
         }
       }
       schicgirlMigrateImagePaths();
-
       /* ─── Helpers ─── */
       function schicgirlEsc(s) {
         return String(s || "")
@@ -1414,7 +1374,6 @@
       function schicgirlTx(o, key) {
         return o[key + "_" + SCHICGIRL_LANG] || o[key + "_fr"] || o[key] || "";
       }
-
       /* ─── Rendu ─── */
       function schicgirlRender() {
         const w = document.getElementById("schicgirlWrap");
@@ -1435,7 +1394,6 @@
           wm.style.display = "none";
         }
       }
-
       function schicgirlRenderHero() {
         const b = SCHICGIRL_SITE.brand,
           h = SCHICGIRL_SITE.hero;
@@ -1466,7 +1424,6 @@
     ${stats ? `<div class="schicgirl-stat-row">${stats}</div>` : ""}
   </div>`;
       }
-
       function schicgirlRenderGifts() {
         const g = SCHICGIRL_SITE.gifts;
         if (!g || !g.on) return "";
@@ -1493,7 +1450,6 @@
         if (!items) return "";
         return `<div class="schicgirl-section"><div class="schicgirl-section-label">✦ ${schicgirlEsc(schicgirlTx(g, "label"))}</div>${items}</div>`;
       }
-
       function schicgirlRenderShop() {
         const s = SCHICGIRL_SITE.shop;
         if (!s || !s.on) return "";
@@ -1514,7 +1470,6 @@
     </a>
   </div>`;
       }
-
       function schicgirlRenderTools() {
         const t = SCHICGIRL_SITE.tools;
         if (!t || !t.on) return "";
@@ -1528,7 +1483,6 @@
               SCHICGIRL_LANG === "fr"
                 ? i.cta_fr || "Découvrir"
                 : i.cta_en || "Open";
-
             if (i.style === "feature") {
               const open = noLink
                 ? `<div class="schicgirl-feature is-soon" aria-disabled="true">`
@@ -1565,7 +1519,6 @@
         if (!items) return "";
         return `<div class="schicgirl-section"><div class="schicgirl-section-label">✦ ${schicgirlEsc(schicgirlTx(t, "label"))}</div>${items}</div>`;
       }
-
       function schicgirlRenderAmazon() {
         const a = SCHICGIRL_SITE.amazon;
         if (!a || !a.on) return "";
@@ -1597,7 +1550,6 @@
         if (!items) return "";
         return `<div class="schicgirl-section"><div class="schicgirl-section-label">✦ ${schicgirlEsc(schicgirlTx(a, "label"))}</div><div class="schicgirl-picks">${items}</div></div>`;
       }
-
       function schicgirlRenderTestimonials() {
         const t = SCHICGIRL_SITE.testimonials;
         if (!t || !t.on) return "";
@@ -1615,7 +1567,6 @@
         if (!items) return "";
         return `<div class="schicgirl-section"><div class="schicgirl-section-label">✦ ${schicgirlEsc(schicgirlTx(t, "label"))}</div><div class="schicgirl-testi-scroll">${items}</div></div>`;
       }
-
       function schicgirlRenderSocial() {
         const s = SCHICGIRL_SITE.social;
         if (!s || !s.on) return "";
@@ -1638,7 +1589,6 @@
         if (!items) return "";
         return `<div class="schicgirl-section"><div class="schicgirl-section-label">✦ ${schicgirlEsc(schicgirlTx(s, "label"))}</div><div class="schicgirl-social-row">${items}</div></div>`;
       }
-
       function schicgirlRenderFooter() {
         const f = SCHICGIRL_SITE.footer,
           b = SCHICGIRL_SITE.brand;
@@ -1657,7 +1607,6 @@
       </div>
     </div>`;
       }
-
       /* ─── Sélecteur de langue ─── */
       function schicgirlSetLang(lang) {
         SCHICGIRL_LANG = lang;
@@ -1673,7 +1622,6 @@
         } catch (e) {}
         schicgirlRender();
       }
-
       /* ─── Analytics légères ─── */
       function schicgirlGetData() {
         try {
@@ -1710,7 +1658,6 @@
           d.visits.length = SCHICGIRL_MAX_VISITS;
         schicgirlSaveData(d);
       }
-
       /* ═══════════════════════════════════════════════════════════════
    Protection light-touch
    ─────────────────────────────────────────────────────
@@ -1719,12 +1666,10 @@
    c'est le copyright dans le code source + le filigrane visible +
    le message console pour quiconque inspecte la page.
    ═══════════════════════════════════════════════════════════════ */
-
       // Empêcher le glisser-déposer des images (copie casual)
       document.addEventListener("dragstart", (e) => {
         if (e.target.tagName === "IMG") e.preventDefault();
       });
-
       // Synchronisation live : si l'admin édite dans un autre onglet,
       // on re-rend la page automatiquement.
       window.addEventListener("storage", (e) => {
@@ -1733,7 +1678,6 @@
           schicgirlRender();
         }
       });
-
       /* ─── Boot ─── */
       const schicgirlSavedLang = localStorage.getItem("sg_lang");
       if (schicgirlSavedLang === "fr" || schicgirlSavedLang === "en") {
@@ -1748,7 +1692,6 @@
       document.documentElement.lang = SCHICGIRL_LANG;
       schicgirlRender();
       schicgirlTrackVisit();
-
       // Message console pour quiconque ouvre les DevTools
       console.log(
         "%c⚠ Schicgirl — Protected Content",
