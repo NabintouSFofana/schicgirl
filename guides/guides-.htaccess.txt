@@ -1,9 +1,0 @@
-# Block anyone from listing the contents of your folders
-Options -Indexes
-
-# (optional) open PDFs in the browser instead of force-download
-<FilesMatch "\.pdf$">
-  <IfModule mod_headers.c>
-    Header set Content-Disposition inline
-  </IfModule>
-</FilesMatch>
