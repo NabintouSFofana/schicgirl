@@ -1,0 +1,257 @@
+<!doctype html>
+<!--
+═══════════════════════════════════════════════════════════════════
+  SCHICGIRL — Laisser un avis / Leave a review
+  © 2024–2026 Nabintou S. Fofana / Schicgirl. All rights reserved.
+
+  ─────────────────────────────────────────────────────────────────
+  CONFIGURATION SUPABASE (à faire une seule fois)
+  ─────────────────────────────────────────────────────────────────
+  1) Dans Supabase → SQL Editor, exécute :
+
+     create table if not exists reviews (
+       id uuid primary key default gen_random_uuid(),
+       created_at timestamptz default now(),
+       author text not null,
+       text text not null,
+       rating int not null default 5,
+       lang text default 'fr',
+       approved boolean not null default false
+     );
+     alter table reviews enable row level security;
+
+     -- Les visiteurs peuvent ENVOYER un avis (forcément non-approuvé) :
+     create policy "anon insert pending" on reviews
+       for insert to anon with check (approved = false);
+
+     -- Tout le monde peut LIRE uniquement les avis approuvés :
+     create policy "anon read approved" on reviews
+       for select to anon using (approved = true);
+
+  2) Remplace les 2 valeurs SUPABASE_URL / SUPABASE_KEY ci-dessous
+     (mêmes valeurs que dans index.html).
+
+  3) Modération : dans Supabase → Table Editor → reviews, passe
+     "approved" à true pour publier un avis sur le site.
+
+  Tant que ce n'est pas configuré, le formulaire bascule
+  automatiquement sur l'envoi par e-mail (mailto) — rien ne casse.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/logo2.png" />
+    <link rel="apple-touch-icon" href="/assets/logo2.png" />
+    <title>Schicgirl — Laisse ton avis</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #2d1a0e; --ink-soft: #5a3a22; --muted: rgba(45,26,14,.6);
+        --gold: #c9934a; --gold-deep: #a06d28; --gold-lt: #e8c07e; --gold-pale: #f5e8d0;
+        --rose: #e8b4a0; --glass: rgba(255,252,246,.85); --stroke: rgba(201,147,74,.22);
+        --serif: "Cormorant Garamond", Georgia, serif; --sans: "Jost", system-ui, sans-serif;
+        --shadow: 0 2px 4px rgba(62,38,28,.06), 0 8px 20px rgba(62,38,28,.1), 0 24px 48px -12px rgba(62,38,28,.14);
+        --shadow-warm: 0 1px 2px rgba(62,38,28,.04), 0 6px 18px rgba(201,147,74,.1), 0 18px 38px -10px rgba(201,147,74,.12);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: var(--sans); color: var(--ink); min-height: 100vh; padding: 0 18px 60px;
+        background:
+          radial-gradient(ellipse 80% 55% at 0% 0%, rgba(232,180,160,.45) 0%, transparent 55%),
+          radial-gradient(ellipse 60% 50% at 100% 100%, rgba(237,217,176,.55) 0%, transparent 50%),
+          linear-gradient(160deg, #fdf6ee 0%, #f8ece0 100%);
+        background-attachment: fixed; -webkit-tap-highlight-color: transparent;
+      }
+      .lang-bar { display: flex; justify-content: flex-end; padding: 14px 0 0; }
+      .lang-toggle { display: flex; background: rgba(201,147,74,.1); border-radius: 100px; padding: 3px; gap: 2px; }
+      .lang-btn { padding: 6px 16px; border: none; border-radius: 100px; font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; background: transparent; color: var(--muted); letter-spacing: .05em; transition: all .2s; }
+      .lang-btn.is-active { background: var(--gold); color: #fff; box-shadow: 0 2px 8px rgba(201,147,74,.4); }
+      .wrap { max-width: 480px; margin: 0 auto; }
+      .hero { text-align: center; padding: 22px 0 18px; }
+      .logo { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(201,147,74,.4); box-shadow: var(--shadow-warm); margin: 0 auto 14px; display: block; }
+      .logo-fb { width: 92px; height: 92px; border-radius: 50%; margin: 0 auto 14px; background: linear-gradient(135deg, var(--rose), var(--gold)); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 34px; font-weight: 600; font-style: italic; color: #fff; }
+      h1 { font-family: var(--serif); font-size: 30px; font-weight: 500; line-height: 1.15; margin-bottom: 8px; }
+      h1 .accent { color: var(--gold-deep); font-style: italic; }
+      .sub { font-size: 14px; color: var(--ink-soft); line-height: 1.55; max-width: 360px; margin: 0 auto; }
+      .card { background: var(--glass); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.9); border-radius: 22px; padding: 22px 20px; box-shadow: var(--shadow); margin-top: 18px; }
+      label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 8px; }
+      .field { margin-bottom: 18px; }
+      input[type=text], textarea {
+        width: 100%; font-family: var(--sans); font-size: 15px; color: var(--ink);
+        background: #fff; border: 1.5px solid var(--stroke); border-radius: 14px; padding: 13px 15px; transition: border-color .2s;
+      }
+      input[type=text]:focus, textarea:focus { outline: none; border-color: var(--gold); }
+      textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+      .stars { display: flex; gap: 6px; }
+      .star { font-size: 34px; cursor: pointer; color: rgba(201,147,74,.3); transition: transform .12s, color .12s; line-height: 1; user-select: none; }
+      .star:hover { transform: scale(1.12); }
+      .star.on { color: var(--gold); }
+      .btn {
+        width: 100%; font-family: var(--sans); font-size: 15px; font-weight: 700; letter-spacing: .03em;
+        color: #fff; background: linear-gradient(135deg, var(--gold), var(--gold-deep)); border: none; border-radius: 100px;
+        padding: 15px; cursor: pointer; box-shadow: 0 6px 18px rgba(201,147,74,.4); transition: filter .2s, transform .1s;
+      }
+      .btn:hover { filter: brightness(1.07); }
+      .btn:active { transform: scale(.99); }
+      .btn:disabled { opacity: .6; cursor: default; }
+      .note { font-size: 11.5px; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+      .msg { display: none; text-align: center; padding: 8px 0 0; }
+      .thanks { display: none; text-align: center; padding: 20px 4px; }
+      .thanks .big { font-family: var(--serif); font-size: 26px; color: var(--gold-deep); margin-bottom: 8px; }
+      .thanks p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+      .err { color: #b3402f; font-size: 13px; font-weight: 600; }
+      .back { display: inline-block; margin-top: 18px; font-size: 13px; font-weight: 600; color: var(--gold-deep); text-decoration: none; }
+      .back:hover { text-decoration: underline; }
+      .footer { text-align: center; margin-top: 26px; font-size: 11px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="lang-bar">
+        <div class="lang-toggle">
+          <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
+          <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
+        </div>
+      </div>
+
+      <div class="hero">
+        <img class="logo" src="/assets/logo2.png" alt="Schicgirl" onerror="this.outerHTML='<div class=&quot;logo-fb&quot;>S</div>'" />
+        <h1 data-fr='Ton avis compte <span class="accent">énormément</span>' data-en='Your review means <span class="accent">everything</span>'>Ton avis compte <span class="accent">énormément</span></h1>
+        <p class="sub" data-fr="Raconte-moi ton expérience avec Schicgirl — ça aide d'autres femmes à oser prendre soin de leurs cheveux crépus." data-en="Tell me about your experience with Schicgirl — it helps other women take the leap and care for their coily hair.">Raconte-moi ton expérience avec Schicgirl — ça aide d'autres femmes à oser prendre soin de leurs cheveux crépus.</p>
+      </div>
+
+      <div class="card" id="formCard">
+        <div class="field">
+          <label data-fr="Ta note" data-en="Your rating">Ta note</label>
+          <div class="stars" id="stars">
+            <span class="star" data-v="1">★</span>
+            <span class="star" data-v="2">★</span>
+            <span class="star" data-v="3">★</span>
+            <span class="star" data-v="4">★</span>
+            <span class="star" data-v="5">★</span>
+          </div>
+        </div>
+        <div class="field">
+          <label data-fr="Ton prénom (ou initiales)" data-en="Your first name (or initials)">Ton prénom (ou initiales)</label>
+          <input type="text" id="author" maxlength="40" data-ph-fr="Ex : Awa K." data-ph-en="E.g. Awa K." placeholder="Ex : Awa K." />
+        </div>
+        <div class="field">
+          <label data-fr="Ton avis" data-en="Your review">Ton avis</label>
+          <textarea id="text" maxlength="400" data-ph-fr="Qu'est-ce qui a changé pour tes cheveux ?" data-ph-en="What changed for your hair?" placeholder="Qu'est-ce qui a changé pour tes cheveux ?"></textarea>
+        </div>
+        <button class="btn" id="submit" data-fr="Envoyer mon avis" data-en="Send my review">Envoyer mon avis</button>
+        <div class="msg" id="msg"></div>
+        <p class="note" data-fr="Ton avis est relu avant publication. Merci pour ta confiance 💛" data-en="Your review is checked before it goes live. Thank you for your trust 💛">Ton avis est relu avant publication. Merci pour ta confiance 💛</p>
+      </div>
+
+      <div class="thanks" id="thanks">
+        <div class="big" data-fr="Merci infiniment 💛" data-en="Thank you so much 💛">Merci infiniment 💛</div>
+        <p data-fr="Ton avis a bien été envoyé. Il apparaîtra bientôt sur la page après validation." data-en="Your review has been sent. It will appear on the page soon after review.">Ton avis a bien été envoyé. Il apparaîtra bientôt sur la page après validation.</p>
+        <a class="back" href="https://schicgirl.me" data-fr="← Retour à Schicgirl" data-en="← Back to Schicgirl">← Retour à Schicgirl</a>
+      </div>
+
+      <div class="footer">© 2024–2026 Schicgirl</div>
+    </div>
+
+    <script>
+      /* ── Config Supabase (mêmes valeurs que index.html) ── */
+      const SUPABASE_URL = "https://ouwzbqmmtbxqtffghncg.supabase.co"; // <-- à remplacer
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8"; // <-- à remplacer (clé "anon public")
+      const REVIEWS_TABLE = "reviews";
+      const CONTACT_EMAIL = "contacte.schicgirl@gmail.com"; // fallback e-mail
+
+      let LANG = "fr";
+      let RATING = 5;
+
+      function supabaseReady() {
+        return SUPABASE_URL.indexOf("YOUR-") === -1 && SUPABASE_KEY.indexOf("YOUR-") === -1;
+      }
+      function T(fr, en) { return LANG === "fr" ? fr : en; }
+
+      function setLang(l) {
+        LANG = l;
+        document.getElementById("btnEn").classList.toggle("is-active", l === "en");
+        document.getElementById("btnFr").classList.toggle("is-active", l === "fr");
+        document.documentElement.lang = l;
+        document.querySelectorAll("[data-fr]").forEach((el) => {
+          el.innerHTML = l === "fr" ? el.getAttribute("data-fr") : el.getAttribute("data-en");
+        });
+        document.querySelectorAll("[data-ph-fr]").forEach((el) => {
+          el.placeholder = l === "fr" ? el.getAttribute("data-ph-fr") : el.getAttribute("data-ph-en");
+        });
+      }
+
+      // Étoiles
+      const starEls = Array.from(document.querySelectorAll(".star"));
+      function paint(n) { starEls.forEach((s) => s.classList.toggle("on", Number(s.dataset.v) <= n)); }
+      starEls.forEach((s) => {
+        s.addEventListener("click", () => { RATING = Number(s.dataset.v); paint(RATING); });
+        s.addEventListener("mouseenter", () => paint(Number(s.dataset.v)));
+      });
+      document.getElementById("stars").addEventListener("mouseleave", () => paint(RATING));
+      paint(RATING);
+
+      function showMsg(html, isErr) {
+        const m = document.getElementById("msg");
+        m.innerHTML = html;
+        m.className = "msg" + (isErr ? " err" : "");
+        m.style.display = "block";
+      }
+
+      async function submitReview() {
+        const author = document.getElementById("author").value.trim();
+        const text = document.getElementById("text").value.trim();
+        if (!author || !text) {
+          showMsg(T("Ajoute ton prénom et ton avis 🙂", "Please add your name and review 🙂"), true);
+          return;
+        }
+        const btn = document.getElementById("submit");
+        btn.disabled = true;
+        btn.textContent = T("Envoi…", "Sending…");
+
+        // Si Supabase n'est pas configuré → fallback e-mail
+        if (!supabaseReady()) {
+          const subject = encodeURIComponent("Nouvel avis client — Schicgirl");
+          const body = encodeURIComponent(
+            "Note : " + RATING + "/5\nPrénom : " + author + "\nLangue : " + LANG + "\n\nAvis :\n" + text
+          );
+          window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + subject + "&body=" + body;
+          done();
+          return;
+        }
+
+        try {
+          const r = await fetch(SUPABASE_URL + "/rest/v1/" + REVIEWS_TABLE, {
+            method: "POST",
+            headers: {
+              apikey: SUPABASE_KEY,
+              Authorization: "Bearer " + SUPABASE_KEY,
+              "Content-Type": "application/json",
+              Prefer: "return=minimal",
+            },
+            body: JSON.stringify({ author: author, text: text, rating: RATING, lang: LANG }),
+          });
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          done();
+        } catch (e) {
+          btn.disabled = false;
+          btn.textContent = T("Envoyer mon avis", "Send my review");
+          showMsg(T("Oups, échec de l'envoi. Réessaie ou écris-moi à " + CONTACT_EMAIL, "Oops, sending failed. Try again or email me at " + CONTACT_EMAIL), true);
+        }
+      }
+      function done() {
+        document.getElementById("formCard").style.display = "none";
+        document.getElementById("thanks").style.display = "block";
+      }
+      document.getElementById("submit").addEventListener("click", submitReview);
+
+      // Langue depuis l'URL (?lang=en) ou par défaut FR
+      const qp = new URLSearchParams(location.search).get("lang");
+      setLang(qp === "en" ? "en" : "fr");
+    </script>
+  </body>
+</html>
