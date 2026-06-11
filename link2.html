@@ -537,42 +537,43 @@
           cta_fr: "Voir tous mes ebooks →", cta_en: "See all my ebooks →",
           items: [
             {
-              id: "hydratee", on: true, img: "assets/ebook-hydratee.png", badge_fr: "Best-seller", badge_en: "Best-seller",
+              id: "hydratee", on: true, img_fr: "assets/hydratee.png", img_en: "assets/hydratee-en.png", badge_fr: "Best-seller", badge_en: "Best-seller",
               title_fr: "Hydratée", title_en: "Hydrated",
               desc_fr: "La science de l'hydratation pour cheveux crépus — 59 pages, la méthode complète.",
               desc_en: "The science of hydration for coily hair — 59 pages, the full method.",
               price_fr: "17€", price_en: "$18", price_cfa: "(≈ 11 000 FCFA)", url: "https://selar.com/m/schicgirl",
             },
             {
-              id: "pousse", on: true, img: "assets/ebook-pousse.png", badge_fr: "", badge_en: "",
+              id: "pousse", on: true, img_fr: "assets/pousse.png", img_en: "assets/pousse-en.png", badge_fr: "", badge_en: "",
               title_fr: "Pousse Maximale", title_en: "Maximum Growth",
               desc_fr: "Fais pousser tes cheveux crépus, sans casse ni frustration.",
               desc_en: "Grow your coily hair — without breakage or frustration.",
               price_fr: "14€", price_en: "$15", price_cfa: "(≈ 9 000 FCFA)", url: "https://selar.com/m/schicgirl",
             },
             {
-              id: "coiffures", on: true, img: "assets/ebook-coiffures.png", badge_fr: "", badge_en: "",
-              title_fr: "Coiffures Protectrices", title_en: "Protective Styles",
-              desc_fr: "Protège tes longueurs et gagne en pousse avec les bons styles.",
-              desc_en: "Protect your length and gain growth with the right styles.",
-              price_fr: "12€", price_en: "$13", price_cfa: "(≈ 8 000 FCFA)", url: "https://selar.com/m/schicgirl",
-            },
-            {
-              id: "pellicules", on: true, img: "assets/ebook-pellicules.png", badge_fr: "", badge_en: "",
+              id: "pellicules", on: true, img_fr: "assets/pellicules.png", img_en: "assets/pellicules-en.png", badge_fr: "", badge_en: "",
               title_fr: "Adieu Pellicules", title_en: "Goodbye Dandruff",
               desc_fr: "Comprends et élimine les pellicules sur cheveux crépus, durablement.",
               desc_en: "Understand and clear dandruff on coily hair, for good.",
               price_fr: "12€", price_en: "$13", price_cfa: "(≈ 8 000 FCFA)", url: "https://selar.com/m/schicgirl",
             },
             {
-              id: "cheveux-secs", on: true, img: "assets/ebook-cheveux-secs.png", badge_fr: "Petit prix", badge_en: "Budget",
+              id: "coiffures", on: true, img_fr: "assets/coiffures-fr.png", img_en: "assets/coiffures-en.png", badge_fr: "Petit prix", badge_en: "",
+              title_fr: "Coiffures Protectrices", title_en: "Protective Styles",
+              desc_fr: "Protège tes longueurs et gagne en pousse avec les bons styles.",
+              desc_en: "Protect your length and gain growth with the right styles.",
+              price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url: "https://selar.com/m/schicgirl",
+            },
+            
+            {
+              id: "cheveux-secs", on: true, img_fr: "assets/stop-cheveux-secs.png", img_en: "assets/stop-cheveux-secs-en.png", badge_fr: "Petit prix", badge_en: "Budget",
               title_fr: "Stop aux Cheveux Secs", title_en: "Stop Dry Hair",
               desc_fr: "Le guide express pour en finir avec la sécheresse. Parfait pour commencer.",
               desc_en: "The express guide to end dryness for good. Perfect to start.",
               price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url: "https://selar.com/m/schicgirl",
             },
             {
-              id: "transition", on: true, img: "assets/ebook-transition.png", badge_fr: "", badge_en: "",
+              id: "transition", on: true, img_fr: "assets/transition-fr.png", img_en: "assets/transition-en.png", badge_fr: "Petit prix", badge_en: "",
               title_fr: "Cheveux en Transition", title_en: "Transitioning Hair",
               desc_fr: "Passe du défrisé au naturel en douceur, étape par étape.",
               desc_en: "Go from relaxed to natural smoothly, step by step.",
@@ -708,15 +709,6 @@
       };
       let SCHICGIRL_LANG = "fr";
 
-      /* ═══════════════════════════════════════════════════════════
-         AVIS CLIENTS EN LIGNE (Supabase)
-         Pour que les avis laissés par les clientes apparaissent ici
-         (sur tous les navigateurs), remplace les 2 valeurs ci-dessous
-         par celles de ton projet Supabase. Voir review.html pour le
-         SQL de création de la table.
-         Tant que ce n'est pas configuré, seuls les avis manuels
-         (ci-dessus dans l'admin) s'affichent — rien ne casse.
-         ═══════════════════════════════════════════════════════════ */
       const SCHICGIRL_SUPABASE_URL = "https://ouwzbqmmtbxqtffghncg.supabase.co"; // <-- à remplacer
       const SCHICGIRL_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8"; // <-- à remplacer (clé "anon public")
       const SCHICGIRL_REVIEWS_TABLE = "reviews";
@@ -786,7 +778,11 @@
         }
         if (SCHICGIRL_SITE.shop) SCHICGIRL_SITE.shop.img = fix(SCHICGIRL_SITE.shop.img);
         if (SCHICGIRL_SITE.shop && Array.isArray(SCHICGIRL_SITE.shop.items)) {
-          SCHICGIRL_SITE.shop.items.forEach((it) => { it.img = fix(it.img); });
+          SCHICGIRL_SITE.shop.items.forEach((it) => {
+            it.img = fix(it.img);
+            it.img_fr = fix(it.img_fr);
+            it.img_en = fix(it.img_en);
+          });
         }
         if (SCHICGIRL_SITE.amazon && Array.isArray(SCHICGIRL_SITE.amazon.items)) {
           SCHICGIRL_SITE.amazon.items.forEach((it) => { it.img = fix(it.img); });
@@ -908,8 +904,9 @@
         if (!s || !s.on) return "";
         const eb = SCHICGIRL_LANG === "fr" ? "Passe au niveau · Premium" : "Go deeper · Premium";
         const ebooks = (s.items || []).filter((i) => i.on).map((i) => {
-          const cover = i.img
-            ? `<img src="${schicgirlEsc(i.img)}" alt="${schicgirlEsc(schicgirlTx(i, "title"))}" loading="lazy" onerror="var p=this.parentElement;p.innerHTML='📖'"/>`
+          const imgSrc = schicgirlTx(i, "img");
+          const cover = imgSrc
+            ? `<img src="${schicgirlEsc(imgSrc)}" alt="${schicgirlEsc(schicgirlTx(i, "title"))}" loading="lazy" onerror="var p=this.parentElement;p.innerHTML='📖'"/>`
             : "📖";
           const badge = schicgirlTx(i, "badge");
           const badgeHtml = badge ? `<span class="schicgirl-ebook-badge">${schicgirlEsc(badge)}</span>` : "";
