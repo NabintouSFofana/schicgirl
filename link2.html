@@ -247,6 +247,43 @@
         white-space: nowrap; align-self: flex-start; transition: filter 0.2s;
       }
       .schicgirl-shop:hover .schicgirl-shop-cta { filter: brightness(1.1); }
+      /* ─── Ebook showcase (bloc 04, défilement horizontal) ─── */
+      .schicgirl-ebook-intro { margin: -2px 2px 12px; }
+      .schicgirl-ebook-eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 5px; }
+      .schicgirl-ebook-lead { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+      .schicgirl-ebook-scroll {
+        display: flex; gap: 12px; overflow-x: auto; padding: 2px 4px 10px;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; -ms-overflow-style: none;
+      }
+      .schicgirl-ebook-scroll::-webkit-scrollbar { display: none; }
+      .schicgirl-ebook {
+        flex-shrink: 0; width: 190px; scroll-snap-align: start; display: flex; flex-direction: column;
+        background: linear-gradient(135deg, rgba(45,26,14,0.97), rgba(85,42,18,0.94));
+        border: 1px solid rgba(201,147,74,0.4); border-radius: 18px; overflow: hidden;
+        text-decoration: none; color: #fdf6ee; box-shadow: var(--shadow); transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+      }
+      .schicgirl-ebook:hover { transform: translateY(-3px); border-color: var(--gold); }
+      .schicgirl-ebook-cover {
+        position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden;
+        display: flex; align-items: center; justify-content: center; font-size: 42px; color: var(--gold);
+        background: linear-gradient(135deg, var(--gold-pale), rgba(201,147,74,0.3));
+      }
+      .schicgirl-ebook-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .schicgirl-ebook-badge {
+        position: absolute; top: 10px; left: 10px; font-size: 9px; font-weight: 700;
+        letter-spacing: 0.08em; text-transform: uppercase; color: #3a2412;
+        background: var(--gold-lt); padding: 4px 9px; border-radius: 100px;
+      }
+      .schicgirl-ebook-body { padding: 12px 13px 14px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+      .schicgirl-ebook-title { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--gold-lt); line-height: 1.2; }
+      .schicgirl-ebook-desc { font-size: 11.5px; color: rgba(253,240,215,0.72); line-height: 1.45; flex: 1; }
+      .schicgirl-ebook-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: 4px; }
+      .schicgirl-ebook-priceblock { display: flex; flex-direction: column; line-height: 1.05; min-width: 0; }
+      .schicgirl-ebook-price { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--gold-lt); }
+      .schicgirl-ebook-cfa { font-size: 9.5px; font-weight: 500; color: rgba(232,192,126,0.75); margin-top: 2px; white-space: nowrap; }
+      .schicgirl-ebook-cta { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; background: var(--gold); padding: 7px 11px; border-radius: 100px; white-space: nowrap; }
+      .schicgirl-ebook:hover .schicgirl-ebook-cta { filter: brightness(1.1); }
       /* ─── Feature tool card ─── */
       .schicgirl-feature {
         background: linear-gradient(135deg, rgba(232, 180, 160, 0.3), rgba(201, 147, 74, 0.15));
@@ -493,15 +530,55 @@
         shop: {
           on: true,
           label_fr: "Trouve TA solution", label_en: "Find YOUR solution",
-          img: "assets/all-ebook.png", img_fallback: "📚",
-          eyebrow_fr: "★ 8 ebooks experts · Type 4", eyebrow_en: "★ 8 expert ebooks · Type 4",
-          title_fr: "La routine qui marche enfin", title_en: "The routine that finally works",
-          desc_fr: "Hydratation, pousse, cuir chevelu, routines sur mesure — les guides qui transforment vraiment les cheveux crépus.",
-          desc_en: "Hydration, growth, scalp reset, custom routines — proven guides that actually transform coily hair.",
-          price_fr: "Dès 5€", price_en: "From $6",
-          price_note_fr: "accès immédiat · à vie", price_note_en: "instant access · lifetime",
-          cta_fr: "Voir tous mes ebooks →", cta_en: "Shop my ebooks →",
+          eyebrow_fr: "★ Ebooks experts · Type 4", eyebrow_en: "★ Expert ebooks · Type 4",
+          desc_fr: "Hydratation, pousse, cuir chevelu, routines sur mesure — chaque guide règle un vrai problème de cheveux crépus.",
+          desc_en: "Hydration, growth, scalp, custom routines — each guide solves one real coily-hair problem.",
           url: "https://selar.com/m/schicgirl", track: "selar-shop",
+          cta_fr: "Voir tous mes ebooks →", cta_en: "See all my ebooks →",
+          items: [
+            {
+              id: "hydratee", on: true, img: "assets/ebook-hydratee.png", badge_fr: "Best-seller", badge_en: "Best-seller",
+              title_fr: "Hydratée", title_en: "Hydrated",
+              desc_fr: "La science de l'hydratation pour cheveux crépus — 59 pages, la méthode complète.",
+              desc_en: "The science of hydration for coily hair — 59 pages, the full method.",
+              price_fr: "17€", price_en: "$18", price_cfa: "(≈ 11 000 FCFA)", url: "https://selar.com/m/schicgirl",
+            },
+            {
+              id: "pousse", on: true, img: "assets/ebook-pousse.png", badge_fr: "", badge_en: "",
+              title_fr: "Pousse Maximale", title_en: "Maximum Growth",
+              desc_fr: "Fais pousser tes cheveux crépus, sans casse ni frustration.",
+              desc_en: "Grow your coily hair — without breakage or frustration.",
+              price_fr: "14€", price_en: "$15", price_cfa: "(≈ 9 000 FCFA)", url: "https://selar.com/m/schicgirl",
+            },
+            {
+              id: "coiffures", on: true, img: "assets/ebook-coiffures.png", badge_fr: "", badge_en: "",
+              title_fr: "Coiffures Protectrices", title_en: "Protective Styles",
+              desc_fr: "Protège tes longueurs et gagne en pousse avec les bons styles.",
+              desc_en: "Protect your length and gain growth with the right styles.",
+              price_fr: "12€", price_en: "$13", price_cfa: "(≈ 8 000 FCFA)", url: "https://selar.com/m/schicgirl",
+            },
+            {
+              id: "pellicules", on: true, img: "assets/ebook-pellicules.png", badge_fr: "", badge_en: "",
+              title_fr: "Adieu Pellicules", title_en: "Goodbye Dandruff",
+              desc_fr: "Comprends et élimine les pellicules sur cheveux crépus, durablement.",
+              desc_en: "Understand and clear dandruff on coily hair, for good.",
+              price_fr: "12€", price_en: "$13", price_cfa: "(≈ 8 000 FCFA)", url: "https://selar.com/m/schicgirl",
+            },
+            {
+              id: "cheveux-secs", on: true, img: "assets/ebook-cheveux-secs.png", badge_fr: "Petit prix", badge_en: "Budget",
+              title_fr: "Stop aux Cheveux Secs", title_en: "Stop Dry Hair",
+              desc_fr: "Le guide express pour en finir avec la sécheresse. Parfait pour commencer.",
+              desc_en: "The express guide to end dryness for good. Perfect to start.",
+              price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url: "https://selar.com/m/schicgirl",
+            },
+            {
+              id: "transition", on: true, img: "assets/ebook-transition.png", badge_fr: "", badge_en: "",
+              title_fr: "Cheveux en Transition", title_en: "Transitioning Hair",
+              desc_fr: "Passe du défrisé au naturel en douceur, étape par étape.",
+              desc_en: "Go from relaxed to natural smoothly, step by step.",
+              price_fr: "7€", price_en: "$7", price_cfa: "(≈ 4 500 FCFA)", url: "https://selar.com/m/schicgirl",
+            },
+          ],
         },
         tools: {
           on: true,
@@ -642,7 +719,6 @@
          ═══════════════════════════════════════════════════════════ */
       const SCHICGIRL_SUPABASE_URL = "https://ouwzbqmmtbxqtffghncg.supabase.co"; // <-- à remplacer
       const SCHICGIRL_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8"; // <-- à remplacer (clé "anon public")
-
       const SCHICGIRL_REVIEWS_TABLE = "reviews";
       const SCHICGIRL_REVIEW_PAGE_URL = "https://schicgirl.me/review"; // page "laisser un avis"
       let SCHICGIRL_REMOTE_REVIEWS = [];
@@ -709,6 +785,9 @@
           SCHICGIRL_SITE.hero.icons = SCHICGIRL_SITE.hero.icons.map(fix);
         }
         if (SCHICGIRL_SITE.shop) SCHICGIRL_SITE.shop.img = fix(SCHICGIRL_SITE.shop.img);
+        if (SCHICGIRL_SITE.shop && Array.isArray(SCHICGIRL_SITE.shop.items)) {
+          SCHICGIRL_SITE.shop.items.forEach((it) => { it.img = fix(it.img); });
+        }
         if (SCHICGIRL_SITE.amazon && Array.isArray(SCHICGIRL_SITE.amazon.items)) {
           SCHICGIRL_SITE.amazon.items.forEach((it) => { it.img = fix(it.img); });
         }
@@ -827,28 +906,46 @@
       function schicgirlRenderShop() {
         const s = SCHICGIRL_SITE.shop;
         if (!s || !s.on) return "";
-        const fb = schicgirlEsc(s.img_fallback || "📚");
-        const imgHtml = s.img
-          ? `<img src="${schicgirlEsc(s.img)}" alt="" onerror="var p=this.parentElement;p.innerHTML='${fb}'"/>`
-          : fb;
         const eb = SCHICGIRL_LANG === "fr" ? "Passe au niveau · Premium" : "Go deeper · Premium";
-        const priceVal = schicgirlTx(s, "price");
-        const priceNote = schicgirlTx(s, "price_note");
-        const priceHtml = priceVal
-          ? `<div class="schicgirl-shop-price"><span class="amt">${schicgirlEsc(priceVal)}</span>${priceNote ? `<span class="note">${schicgirlEsc(priceNote)}</span>` : ""}</div>`
+        const ebooks = (s.items || []).filter((i) => i.on).map((i) => {
+          const cover = i.img
+            ? `<img src="${schicgirlEsc(i.img)}" alt="${schicgirlEsc(schicgirlTx(i, "title"))}" loading="lazy" onerror="var p=this.parentElement;p.innerHTML='📖'"/>`
+            : "📖";
+          const badge = schicgirlTx(i, "badge");
+          const badgeHtml = badge ? `<span class="schicgirl-ebook-badge">${schicgirlEsc(badge)}</span>` : "";
+          const price = schicgirlTx(i, "price");
+          const cfa = (SCHICGIRL_LANG === "fr" && i.price_cfa) ? i.price_cfa : "";
+          const ctaTxt = SCHICGIRL_LANG === "fr" ? "Obtenir" : "Get it";
+          return `<a href="${schicgirlEsc(schicgirlSafeUrl(i.url))}" class="schicgirl-ebook" target="_blank" rel="noopener noreferrer" onclick="schicgirlTrackClick('ebook-${schicgirlEsc(i.id)}')">
+      <div class="schicgirl-ebook-cover">${cover}${badgeHtml}</div>
+      <div class="schicgirl-ebook-body">
+        <div class="schicgirl-ebook-title">${schicgirlEsc(schicgirlTx(i, "title"))}</div>
+        <div class="schicgirl-ebook-desc">${schicgirlEsc(schicgirlTx(i, "desc"))}</div>
+        <div class="schicgirl-ebook-foot">
+          <div class="schicgirl-ebook-priceblock">
+            ${price ? `<span class="schicgirl-ebook-price">${schicgirlEsc(price)}</span>` : ""}
+            ${cfa ? `<span class="schicgirl-ebook-cfa">${schicgirlEsc(cfa)}</span>` : ""}
+          </div>
+          <span class="schicgirl-ebook-cta">${schicgirlEsc(ctaTxt)} →</span>
+        </div>
+      </div>
+    </a>`;
+        }).join("");
+        if (!ebooks) return "";
+        const eyebrow = schicgirlTx(s, "eyebrow");
+        const desc = schicgirlTx(s, "desc");
+        const hint = SCHICGIRL_LANG === "fr"
+          ? `<span class="schicgirl-gallery-hint"><span class="arrow">←</span> Glisse pour voir plus</span>`
+          : `<span class="schicgirl-gallery-hint"><span class="arrow">←</span> Swipe to see more</span>`;
+        const seeAll = s.url
+          ? `<div style="text-align:center;margin-top:12px"><a href="${schicgirlEsc(schicgirlSafeUrl(s.url))}" target="_blank" rel="noopener noreferrer" class="schicgirl-review-cta" onclick="schicgirlTrackClick('${schicgirlEsc(s.track || "selar-shop")}')">${schicgirlEsc(schicgirlTx(s, "cta"))}</a></div>`
           : "";
         return `<div class="schicgirl-section schicgirl-step">
     ${schicgirlStepLabel(eb, schicgirlTx(s, "label"))}
-    <a href="${schicgirlEsc(schicgirlSafeUrl(s.url))}" class="schicgirl-shop" target="_blank" rel="noopener noreferrer" onclick="schicgirlTrackClick('${schicgirlEsc(s.track || "selar-shop")}')">
-      <div class="schicgirl-shop-img">${imgHtml}</div>
-      <div class="schicgirl-shop-body">
-        <span class="schicgirl-shop-eyebrow">${schicgirlEsc(schicgirlTx(s, "eyebrow"))}</span>
-        <div class="schicgirl-shop-title">${schicgirlEsc(schicgirlTx(s, "title"))}</div>
-        <div class="schicgirl-shop-desc">${schicgirlEsc(schicgirlTx(s, "desc"))}</div>
-        ${priceHtml}
-        <span class="schicgirl-shop-cta">${schicgirlEsc(schicgirlTx(s, "cta"))}</span>
-      </div>
-    </a>
+    ${eyebrow || desc ? `<div class="schicgirl-ebook-intro">${eyebrow ? `<span class="schicgirl-ebook-eyebrow">${schicgirlEsc(eyebrow)}</span>` : ""}${desc ? `<p class="schicgirl-ebook-lead">${schicgirlEsc(desc)}</p>` : ""}</div>` : ""}
+    <div class="schicgirl-ebook-scroll">${ebooks}</div>
+    <div style="text-align:right;padding:2px 4px 0">${hint}</div>
+    ${seeAll}
   </div>`;
       }
       function schicgirlRenderTools() {
