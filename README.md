@@ -1,141 +1,118 @@
 # Schicgirl™
 
-Source code for the Schicgirl natural hair brand. Six live products, one Amazon
-affiliate page, all hand-written HTML/CSS/JS.
+A complete, bilingual (🇫🇷 / 🇬🇧) digital storefront and toolset for a Type 4 natural-hair brand — built as hand-written HTML/CSS/JavaScript, with no framework and no build step.
 
-Live: https://schicgirl.me/
----
+**Live:** https://schicgirl.me · **Link-in-bio:** https://link.schicgirl.me
 
-## What's in here
-
-The project is organised as **pairs**: a public-facing page your audience sees,
-and a private `*_admin.html` page where you manage its content or leads. Each
-admin is password-gated (SHA-256 hashed password + login rate limit).
-
-| Public page | Admin page | What it does |
-|---|---|---|
-| `index.html` | `admin.html` | Link-in-bio landing page (brand, gifts, tools, Amazon, reviews, social, footer) and its content editor |
-| `products.html` | `products_admin.html` | Bilingual Amazon affiliate mini-site (picks by porosity + DIY ingredient library) and its product editor |
-| `schicchat.html` | `schicchat_admin.html` | Bilingual hair-diagnostic chatbot and its leads dashboard |
-| `hydracheck.html` | `hydracheck_admin.html` | Hair-hydration diagnostic and its leads dashboard |
-| `consultation.html` | `consultation_admin.html` | Consultation booking page and its bookings dashboard |
-| `logo.png` | — | Brand logo |
+> Every page is a single, self-contained `.html` file. Open it, refresh the tab, see the change. The whole site deploys as static files, yet it still does real work: lead capture, booking, an AI hair assistant, diagnostics, and a bilingual product catalog.
 
 ---
 
-## How the pages get their data
+## What this is
 
-Different pages use different storage, depending on what they need:
+I run Schicgirl as a solo founder — product owner, developer, and content creator at once. This repo is the full front end of the brand: the link-in-bio hub, six on-site sales pages, a freebie funnel, two diagnostic tools, a booking system, an AI assistant, and an Amazon affiliate mini-site. Each tool has a matching admin dashboard so I can manage leads and content without touching code.
 
-- **`index.html` / `admin.html`** — the editor manages the site content and
-  publishes it as `site.json`; the public page renders from that data.
-- **`products.html` / `products_admin.html`** — the editor manages products,
-  DIY ingredients, copy, and the Amazon affiliate tag, then **publishes
-  directly to GitHub** as `amazon-data.json`. The public page fetches that file
-  on load. (See *Publishing the Amazon page* below.)
-- **`schicchat.html` / `schicchat_admin.html`** — diagnostics are logged to a
-  **Google Sheet** via a Google Apps Script web-app endpoint; the admin reads
-  back from the same sheet (charts, search, filter, CSV export, PDF print).
-- **`hydracheck` / `consultation`** — leads and bookings are stored in the
-  browser's `localStorage`, with JSON backup/restore so you can move data
-  between devices.
-
-> There is **no AI API** in this project. The chatbot is a guided,
-> rule-based diagnostic that logs answers to a spreadsheet — not a language model.
+It's intentionally low-tech: static files I can host anywhere, edit in minutes, and fully own.
 
 ---
 
-## Publishing the Amazon page (one-time setup)
+## The apps
 
-`products_admin.html` can write changes straight to your repository, so you edit
-in the forms and click **🌐 Publier sur le site** — no downloading or moving
-files.
+### Storefront & funnel
+| File | What it does |
+|---|---|
+| `index.html` | Public link-in-bio hub — a numbered conversion ladder (free guide → tools → proof → shop). |
+| `admin.html` | Visual editor for the link-in-bio: brand, hero, gifts, shop, tools, reviews, social, footer, plus click/visit analytics. |
+| `toolkit-landing.html` | Landing page for the free "Type 4 Kit" lead magnet (email/WhatsApp capture). |
+| `toolkit-landing_admin.html` | Subscriber dashboard for the freebie list. |
+| `hydratee.html`, `pousse.html`, `pellicules.html`, `coiffures.html`, `stop-cheveux-secs.html`, `transition.html` | Six branded ebook sales pages, each with an interior preview and FR/EN toggle. |
+| `pack-complet.html` | Sales page for the full 6-guide bundle. |
 
-1. **Create a GitHub token.** On GitHub: *Settings → Developer settings →
-   Personal access tokens → Fine-grained tokens → Generate new token*.
-   - Repository access: **only** the repo that holds this site.
-   - Permissions: **Contents → Read and write** (that's the only one needed).
-   - Set an expiration date and copy the token (shown once; starts with
-     `github_pat_`).
-2. **Enter it once in the admin.** Open *⚙️ Réglages de publication (GitHub)*,
-   fill in owner, repo, branch (`main`), path (`amazon-data.json`), and paste
-   the token. Click **Enregistrer**, then **Tester la connexion**.
-3. **From then on**, just edit and click *Publier*. The live page updates within
-   about a minute.
+### Tools
+| File | What it does |
+|---|---|
+| `CoilCareAI.html` | **CoilCare AI™** — a Type 4 hair assistant powered by the Anthropic Claude API. Users bring their own API key; it stays in their browser. |
+| `hydracheck.html` | **HydraCheck** — a hair hydration/porosity diagnostic. |
+| `hydracheck_admin.html` | Leads dashboard for HydraCheck (search, filter, edit, status tags, notes, stats, backup/restore). |
+| `schicchat.html` | **SchicChat** — a bilingual hair-diagnostic chatbot. |
+| `schicchat_admin.html` | Leads dashboard backed by Google Sheets (charts, search, filter, CSV export, print). |
+| `products.html` | **Amazon affiliate mini-site** — trusted picks sorted by porosity, a 60-second porosity quiz, and a DIY ingredient library. Bilingual. |
+| `products_admin.html` | Editor for the Amazon page (products, DIY items, copy, affiliate tag). |
 
-The token is stored only in that browser's local storage — never in the source
-and never committed. Don't set this up on a shared computer; if a token leaks,
-delete it on GitHub and generate a new one. A **↓ Télécharger le JSON** button
-remains as a manual fallback.
+### Booking, reviews & email
+| File | What it does |
+|---|---|
+| `consultation.html` | Hair-consultation booking page. |
+| `consultation_admin.html` | Bookings dashboard (search, filter, edit, status tags, notes, stats, manual add). |
+| `review.html` | "Leave a review" page; approved reviews surface on the link-in-bio. |
+| `day7-review-email.html` | Day-7 review-request email template. |
+
+### Backend & content
+| File | What it does |
+|---|---|
+| `schicgirl-signups-backend.gs` | Google Apps Script that turns a free Google Sheet into the email database for signups. The landing pages write to it; the admin pages read it back. |
+| `Schicgirl_3Day_Freebie_Launch_Kit_v2.md` | The 3-day freebie launch funnel (EN + FR), built to sell the flagship *Hydrated / Hydratée* ebook. |
+| `assets/` | Logos, favicons, ebook covers, gallery SVGs, and product imagery. |
 
 ---
 
-## Bilingual (FR / EN)
+## Stack
 
-Most public pages have a language toggle. Both translations live on the same
-element as `data-en` and `data-fr` attributes, so there's only ever one piece of
-markup to keep in sync and the switcher is a few lines of JS.
-
----
-
-## Admin features
-
-`consultation_admin.html` and `hydracheck_admin.html` share the same toolkit:
-
-- Login with a SHA-256 hashed password + attempt-limited rate guard
-- Stat cards (total / new / contacted / paid / last 30 days)
-- 30-day daily activity chart (plain CSS bars, no charting library)
-- Search across name, contact, problem, country, and notes
-- Status filter (new / contacted / paid / done / cancelled) and sortable columns
-- Per-row view / edit / delete, plus an edit modal with a private-notes field
-- Manual-add (for bookings or diagnostics that came in via DM or WhatsApp)
-- Detail modal with a copy-message button that pre-fills a follow-up template
-- CSV export and JSON backup / restore
-- A "danger zone" with an export-first delete flow
-
-`schicchat_admin.html` adds Google-Sheets-backed reporting on top of the same UI.
+- **HTML, CSS, vanilla JavaScript** — no framework, no bundler, no `node_modules`.
+- **Supabase** — stores and serves customer reviews (`index.html`, `review.html`).
+- **Google Apps Script + Google Sheets** — free serverless backend for signups and chat leads (`schicchat.html`, `toolkit-landing_admin.html`).
+- **Anthropic Claude API** — powers the CoilCare AI assistant (key stays client-side).
+- **localStorage** — drives the admin dashboards and analytics, with JSON backup/restore.
 
 ---
 
 ## Why no framework
 
-Every page is one HTML file. No build step, no dependency tree, no version
-mismatches — edit a file, refresh the tab, see the change. When something
-breaks, it's dev tools, not a stack trace three layers deep.
+Every page is one HTML file. No build step, no dependency tree, no version mismatches. I edit a file, refresh the tab, and see what changed; when something breaks I open dev tools, not a stack trace three layers down. It also means the whole site is portable — it runs on any static host (GitHub Pages, Netlify, a plain bucket).
 
-The tradeoff is repetition: some CSS and helpers are duplicated across files.
-That's a deliberate choice for a project of this size, to be consolidated only
-if it ever actually hurts.
+The tradeoff is repetition: some CSS and markup is duplicated across files. I consolidate when it actually starts to hurt, not before.
+
+---
+
+## Bilingual (FR / EN)
+
+The brand serves the French-speaking West African diaspora first, English second. Most user-facing pages ship a language toggle, with both translations stored inline (`data-fr` / `data-en` attributes or a `setLang()` switch) so there's no extra request and no flash of the wrong language.
+
+---
+
+## Architecture notes
+
+- **Static front end, real backends.** The pages are static, but lead capture, reviews, and chat persistence run through Supabase and Google Apps Script — no server to maintain.
+- **Every tool has an admin twin.** Public page collects; admin dashboard manages. Dashboards run on `localStorage` with JSON export/import so data is portable and owned.
+- **Customer data never ships.** `.gitignore` blocks every exported leads/bookings/subscribers JSON from being committed. `amazon-data.json` is the one data file tracked on purpose — it's the public product catalog the affiliate page loads at runtime.
+- **Secrets stay out of the repo.** API keys and Supabase/Apps Script credentials are configured per deployment, never hard-committed.
 
 ---
 
 ## Running locally
 
-Open any public page directly in a browser to preview it. Two caveats:
+No build step. Clone and serve the folder with any static server:
 
-- Pages that **fetch** a data file (e.g. `products.html` loading
-  `amazon-data.json`) need to be served over `http://`, not opened as a
-  `file://` path, or the browser will block the request. Any static server
-  works:
-  ```bash
-  python3 -m http.server 8000
-  # then visit http://localhost:8000/products.html
-  ```
-- The GitHub publish feature and the Google Sheets logging require their
-  respective setup (token / Apps Script URL) to function.
+```bash
+git clone https://github.com/NabintouSFofana/schicgirl.git
+cd schicgirl
+python3 -m http.server 8000
+# open http://localhost:8000/index.html
+```
 
-Deployment is just static hosting — push the files to GitHub Pages (or any
-static host) and point your domain at it.
+Pages that load assets or data files (covers, `amazon-data.json`) expect to be served over HTTP, so use a local server rather than opening the file directly — relative paths won't resolve from `file://`.
 
 ---
 
 ## License
 
-MIT for the code. Everything brand-related (the Schicgirl name, logo, color
-palette as used here, written copy) is mine — see `LICENSE`.
+Code is MIT. Brand, content, copy, and visual identity are **All Rights Reserved** — see [`LICENSE`](./LICENSE).
 
-You can borrow the code. Don't borrow the brand.
+© 2024–2026 Nabintou S. Fofana / Schicgirl™
 
 ---
 
-[Nabintou S. Fofana](https://nabintousfofana.github.io/portfolio/) · 2024–present
+## About
+
+Built and maintained by **Nabintou S. Fofana** — software-engineering student and founder of Schicgirl Naturals.
+[Portfolio](https://nabintousfofana.github.io/portfolio/) · contacte.schicgirl@gmail.com
