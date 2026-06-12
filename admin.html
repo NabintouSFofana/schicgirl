@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="author" content="Nabintou S. Fofana">
-<meta name="copyright" content="© 2024–2026 Nabintou S. Fofana / Schicgirl™">
+<meta name="copyright" content="© 2024–2026 Nabintou S. Fofana / Schicgirl">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Schicgirl Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -247,7 +247,7 @@ tbody tr:last-child td { border: none; }
     <div class="brand">
       <div class="brand-mark" id="brandMark">S</div>
       <div class="brand-text">
-        <p>Schicgirl™</p>
+        <p>Schicgirl</p>
         <h1>Espace Admin</h1>
       </div>
     </div>
@@ -284,6 +284,7 @@ tbody tr:last-child td { border: none; }
         <button class="tab-btn" data-tab="shop">🛒 Boutique</button>
         <button class="tab-btn" data-tab="tools">🛠️ Outils</button>
         <button class="tab-btn" data-tab="amazon">🛍️ Amazon</button>
+        <button class="tab-btn" data-tab="gallery">🖼️ Galerie</button>
         <button class="tab-btn" data-tab="reviews">⭐ Avis</button>
         <button class="tab-btn" data-tab="social">🌐 Social</button>
         <button class="tab-btn" data-tab="footer">📄 Pied</button>
@@ -325,6 +326,7 @@ tbody tr:last-child td { border: none; }
     <div class="tab-panel" id="tab-shop"></div>
     <div class="tab-panel" id="tab-tools"></div>
     <div class="tab-panel" id="tab-amazon"></div>
+    <div class="tab-panel" id="tab-gallery"></div>
     <div class="tab-panel" id="tab-reviews"></div>
     <div class="tab-panel" id="tab-social"></div>
     <div class="tab-panel" id="tab-footer"></div>
@@ -407,12 +409,14 @@ const DEFAULT_SITE = {
   v: 1,
   brand: {
     logo: 'assets/logo2.png',
-    name_pre: 'Schic', name_acc: 'girl', name_suf: '™',
-    tagline_fr: 'Clarté, soin & confiance pour cheveux naturels.',
-    tagline_en: 'Clarity, care & confidence for natural hair.',
-    watermark: 'Schicgirl™ · link.schicgirl.me · © 2026'
+    name_pre: 'Schic', name_acc: 'girl', name_suf: '',
+    tagline_fr: 'Tes cheveux crépus ne sont pas le problème — la méthode, si. On la corrige ensemble.',
+    tagline_en: "Your coily hair isn't the problem — your method is. Let's fix it together.",
+    watermark: 'Schicgirl · link.schicgirl.me · © 2026'
   },
   hero: {
+    proof_fr: 'Spécialiste cheveux crépus Type 4',
+    proof_en: 'Type 4 coily-hair specialist',
     icons: [
       'assets/woman_icon_0.png',
       'assets/woman_icon_1.png',
@@ -421,7 +425,7 @@ const DEFAULT_SITE = {
     ],
     stats: [
       { id:'s1', on:true, text_fr:'10 000+ femmes aidées', text_en:'10,000+ women helped' },
-      { id:'s2', on:true, text_fr:'🇬🇧 🇫🇷 Bilingue', text_en:'🇬🇧 🇫🇷 Bilingual' }
+      { id:'s2', on:true, text_fr:'🇫🇷 🇬🇧 100% bilingue', text_en:'🇫🇷 🇬🇧 Fully bilingual' }
     ]
   },
   gifts: {
@@ -429,51 +433,75 @@ const DEFAULT_SITE = {
     label_fr: 'Tes Cadeaux Gratuits',
     label_en: 'Your Free Gifts',
     items: [
-      { id:'mistakes', on:true, emoji:'🎁',
-        label_fr:'Téléchargement Gratuit', label_en:'Free Download',
-        title_fr:'15 Erreurs Capillaires à Corriger', title_en:'15 Hair Mistakes to Fix',
-        sub_fr:"Télécharge ton ebook gratuit et améliore ta routine dès aujourd'hui.",
-        sub_en:'Download your free ebook & start improving your routine today.',
-        url_fr:'https://selar.com/1t7713181a', url_en:'https://selar.com/49y1751324' },
       { id:'guide', on:true, emoji:'📖',
-        label_fr:'Gratuit · 26 pages', label_en:'Free · 26 pages',
+        label_fr:'Gratuit · Le Kit Type 4', label_en:'Free · The Type 4 Kit',
         title_fr:'Le Guide Complet Cheveux Type 4', title_en:'The Complete Type 4 Hair Guide',
         sub_fr:'Comprends ta texture, construis ta routine, hydrate enfin tes cheveux crépus.',
         sub_en:'Understand your texture, build your routine, finally hydrate your coily hair.',
-        url_fr:'https://selar.com/guidegratuit', url_en:'https://selar.com/free_guide' }
+        url_fr:'https://schicgirl.me/toolkit-landing', url_en:'https://schicgirl.me/toolkit-landing' }
     ]
   },
   shop: {
     on: true,
-    label_fr: 'Solutions Premium', label_en: 'Premium Solutions',
-    img: 'assets/all-ebook.png', img_fallback: '📚',
-    eyebrow_fr: '★ 8 Ebooks Experts', eyebrow_en: '★ 8 Expert Ebooks',
-    title_fr: 'Trouve ta solution capillaire', title_en: 'Find your hair solution',
-    desc_fr: 'Hydratation, pousse, cuir chevelu, routines sur mesure — les guides qui transforment vraiment les cheveux Type 4.',
-    desc_en: 'Hydration, growth, scalp reset, custom routines — proven guides that actually transform Type 4 hair.',
-    cta_fr: 'Voir tous mes ebooks →', cta_en: 'Shop my ebooks →',
-    url: 'https://selar.com/m/schicgirl', track: 'selar-shop'
+    label_fr: 'Trouve TA solution', label_en: 'Find YOUR solution',
+    eyebrow_fr: '★ Ebooks experts · Type 4', eyebrow_en: '★ Expert ebooks · Type 4',
+    desc_fr: 'Hydratation, pousse, cuir chevelu, routines sur mesure — chaque guide règle un vrai problème de cheveux crépus.',
+    desc_en: 'Hydration, growth, scalp, custom routines — each guide solves one real coily-hair problem.',
+    url: 'https://selar.com/m/schicgirl', track: 'selar-shop',
+    cta_fr: 'Voir tous mes ebooks →', cta_en: 'See all my ebooks →',
+    items: [
+      { id:'hydratee', on:true, img:'assets/ebook-hydratee.png', badge_fr:'Best-seller', badge_en:'Best-seller',
+        title_fr:'Hydratée', title_en:'Hydrated',
+        desc_fr:"La science de l'hydratation pour cheveux crépus — 59 pages, la méthode complète.",
+        desc_en:'The science of hydration for coily hair — 59 pages, the full method.',
+        price_fr:'17€', price_en:'$18', price_cfa:'(≈ 11 000 FCFA)', url:'https://selar.com/m/schicgirl' },
+      { id:'pousse', on:true, img:'assets/ebook-pousse.png', badge_fr:'', badge_en:'',
+        title_fr:'Pousse Maximale', title_en:'Maximum Growth',
+        desc_fr:'Fais pousser tes cheveux crépus, sans casse ni frustration.',
+        desc_en:'Grow your coily hair — without breakage or frustration.',
+        price_fr:'14€', price_en:'$15', price_cfa:'(≈ 9 000 FCFA)', url:'https://selar.com/m/schicgirl' },
+      { id:'coiffures', on:true, img:'assets/ebook-coiffures.png', badge_fr:'', badge_en:'',
+        title_fr:'Coiffures Protectrices', title_en:'Protective Styles',
+        desc_fr:'Protège tes longueurs et gagne en pousse avec les bons styles.',
+        desc_en:'Protect your length and gain growth with the right styles.',
+        price_fr:'12€', price_en:'$13', price_cfa:'(≈ 8 000 FCFA)', url:'https://selar.com/m/schicgirl' },
+      { id:'pellicules', on:true, img:'assets/ebook-pellicules.png', badge_fr:'', badge_en:'',
+        title_fr:'Adieu Pellicules', title_en:'Goodbye Dandruff',
+        desc_fr:'Comprends et élimine les pellicules sur cheveux crépus, durablement.',
+        desc_en:'Understand and clear dandruff on coily hair, for good.',
+        price_fr:'12€', price_en:'$13', price_cfa:'(≈ 8 000 FCFA)', url:'https://selar.com/m/schicgirl' },
+      { id:'cheveux-secs', on:true, img:'assets/ebook-cheveux-secs.png', badge_fr:'Petit prix', badge_en:'Budget',
+        title_fr:'Stop aux Cheveux Secs', title_en:'Stop Dry Hair',
+        desc_fr:'Le guide express pour en finir avec la sécheresse. Parfait pour commencer.',
+        desc_en:'The express guide to end dryness for good. Perfect to start.',
+        price_fr:'5€', price_en:'$6', price_cfa:'(≈ 3 500 FCFA)', url:'https://selar.com/m/schicgirl' },
+      { id:'transition', on:true, img:'assets/ebook-transition.png', badge_fr:'', badge_en:'',
+        title_fr:'Cheveux en Transition', title_en:'Transitioning Hair',
+        desc_fr:'Passe du défrisé au naturel en douceur, étape par étape.',
+        desc_en:'Go from relaxed to natural smoothly, step by step.',
+        price_fr:'7€', price_en:'$7', price_cfa:'(≈ 4 500 FCFA)', url:'https://selar.com/m/schicgirl' }
+    ]
   },
   tools: {
     on: true,
-    label_fr: 'Outils Gratuits', label_en: 'Free Tools',
+    label_fr: 'Outils Premium', label_en: 'Premium Tools',
     items: [
       { id:'schicchat', on:true, lang:'both', style:'feature', icon:'💬',
-        label_fr:'Diagnostique Auto · Gratuit', label_en:'Diagnostic · Free',
-        title_fr:'Schicgirl™ Diagnostique', title_en:'Schicgirl™ Diagnostic Chat',
+        label_fr:'Diagnostique Auto · Premium', label_en:'Diagnostic · Premium',
+        title_fr:'Schicgirl Diagnostique', title_en:'Schicgirl Diagnostic Chat',
         sub_fr:'Parle-moi de tes cheveux — réponses expertes instantanées.',
         sub_en:'Talk to me about your hair — instant expert answers.',
-        url:'https://schicgirl-hair.github.io/schicchat/' },
-      { id:'premium-fr', on:true, lang:'both', style:'card', icon:'💧', badge:'AUTO',
-        title_fr:'Pourquoi tes cheveux restent secs ?', title_en:'Why does your hair stay dry?',
+        url:'https://selar.com/schicchat' },
+      { id:'premium-fr', on:true, lang:'both', style:'card', icon:'💧',
+        title_fr:'Pourquoi tes cheveux restent secs?', title_en:'Why does your hair stay dry?',
         sub_fr:"Je vais t'aider à comprendre pourquoi tes cheveux crépus restent secs.",
         sub_en:"I'll help you understand why your curly hair stays dry.",
-        url:'https://schicgirl-hair.github.io/hydratation/' },
-      { id:'consultation', on:true, lang:'fr', style:'card', icon:'📅', badge:'',
+        url:'https://selar.com/hydracheck' },
+      { id:'consultation', on:true, lang:'both', style:'card', icon:'📅', badge:'',
         title_fr:'Consultation Capillaire', title_en:'Hair Consultation',
         sub_fr:'Réserve ta consultation personnalisée avec Schicgirl.',
         sub_en:'Book your personalised consultation with Schicgirl.',
-        url:'https://schicgirl-hair.github.io/Consultation/' }
+        url:'https://schicgirl.me/consultation' }
     ]
   },
   amazon: {
@@ -504,6 +532,8 @@ const DEFAULT_SITE = {
   testimonials: {
     on: true,
     label_fr: 'Résultats Réels', label_en: 'Real Results',
+    rating: '5,0',
+    reviews: '',
     items: [
       { id:'t1', on:true, stars:5, author:'Sophie C.',
         text_fr:'Cette routine a transformé mes boucles ! Enfin des cheveux doux.',
@@ -516,7 +546,26 @@ const DEFAULT_SITE = {
         text_en:'Game-changing tools. My natural hair is thriving!' },
       { id:'t4', on:true, stars:5, author:'Fatoumata D.',
         text_fr:"J'ai enfin compris ma porosité. Tout fait sens maintenant !",
-        text_en:'Finally understood my porosity. Everything clicked!' }
+        text_en:'Finally understood my porosity. Everything clicked!' },
+      { id:'t5', on:true, stars:5, author:'Awa K.',
+        text_fr:'Première fois que ma routine tient toute la semaine. Merci Schicgirl !',
+        text_en:'First time my routine holds all week. Thank you Schicgirl!' },
+      { id:'t6', on:true, stars:5, author:'Khadija B.',
+        text_fr:"Mes longueurs ne cassent plus. J'ai retrouvé confiance en mes cheveux.",
+        text_en:"My ends stopped breaking. I've got my confidence back." },
+      { id:'t7', on:true, stars:5, author:'Aïcha N.',
+        text_fr:"Des explications claires, et en français ! Enfin quelqu'un qui comprend nos cheveux.",
+        text_en:'Clear explanations, and in French! Finally someone who understands our hair.' }
+    ]
+  },
+  gallery: {
+    on: true,
+    label_fr: 'Comprends tes cheveux', label_en: 'Understand your hair',
+    items: [
+      { id:'g1', on:true, img:'assets/gallery-types.svg', cap_fr:'', cap_en:'' },
+      { id:'g2', on:true, img:'assets/gallery-porosity.svg', cap_fr:'', cap_en:'' },
+      { id:'g3', on:true, img:'assets/gallery-routine.svg', cap_fr:'', cap_en:'' },
+      { id:'g4', on:true, img:'assets/gallery-invite.svg', cap_fr:'', cap_en:'' }
     ]
   },
   social: {
@@ -533,7 +582,7 @@ const DEFAULT_SITE = {
   },
   footer: {
     logo_show: true,
-    brand: 'Schicgirl™',
+    brand: 'Schicgirl',
     disc_fr: "En tant qu'associée Amazon, je gagne des revenus grâce aux achats éligibles.<br/>contacte.schicgirl@gmail.com",
     disc_en: 'As an Amazon Associate I earn from qualifying purchases.<br/>contacte.schicgirl@gmail.com'
   }
@@ -628,7 +677,7 @@ function clickLabel(val) {
     map['gift-'+i.id+'-fr'] = '🎁 '+i.title_fr;
     map['gift-'+i.id+'-en'] = '🎁 '+i.title_en;
   });
-  map[SITE.shop.track||'selar-shop'] = '🛒 '+(SITE.shop.title_fr || 'Boutique');
+  map[SITE.shop.track||'selar-shop'] = '🛒 '+(SITE.shop.label_fr || 'Boutique');
   (SITE.tools.items||[]).forEach(i => { map[i.id] = (i.icon||'🔗')+' '+(i.title_fr||i.title_en); });
   (SITE.amazon.items||[]).forEach(i => { map[i.id] = (i.emoji||'📦')+' '+(i.name_fr||i.name_en); });
   (SITE.social.items||[]).forEach(i => { map[i.id] = (i.icon||'🔗')+' '+(i.label_fr||i.label_en); });
@@ -745,6 +794,7 @@ function renderAll() {
   renderShopTab();
   renderToolsTab();
   renderAmazonTab();
+  renderGalleryTab();
   renderReviewsTab();
   renderSocialTab();
   renderFooterTab();
@@ -955,6 +1005,7 @@ const TAB_READ = {
   gifts:        'readGifts',
   tools:        'readTools',
   amazon:       'readAmazon',
+  gallery:      'readGallery',
   testimonials: 'readReviews',
   social:       'readSocial'
 };
@@ -969,6 +1020,7 @@ const RERENDER = {
   brand: ()=>{ renderBrandTab(); updateBrandMark(); },
   hero: renderHeroTab, gifts: renderGiftsTab, shop: renderShopTab,
   tools: renderToolsTab, amazon: renderAmazonTab,
+  gallery: renderGalleryTab,
   testimonials: renderReviewsTab, social: renderSocialTab,
   footer: renderFooterTab
 };
@@ -1074,7 +1126,7 @@ function renderBrandTab() {
     <div class="card">
       <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Signature en bas de page</h2>
       <p class="card-sub">Petite bande fixée tout en bas de l&apos;écran. Laisse vide pour la cacher.</p>
-      <input id="f_brand_watermark" type="text" value="${esc(b.watermark||'')}" placeholder="Schicgirl™ · link.schicgirl.me · © 2026"/>
+      <input id="f_brand_watermark" type="text" value="${esc(b.watermark||'')}" placeholder="Schicgirl · link.schicgirl.me · © 2026"/>
     </div>
   `;
 }
@@ -1121,14 +1173,23 @@ function renderHeroTab() {
 
   $('tab-hero').innerHTML = `
     <div class="sect-head">
-      <div><h2>Hero (haut de page)</h2><p class="sub">Les 4 petits ronds avec icônes + les pastilles statistiques sous le slogan.</p></div>
+      <div><h2>Hero (haut de page)</h2><p class="sub">Le badge d&apos;autorité, le slogan et les pastilles statistiques. Le bandeau ★ d&apos;avis se génère tout seul depuis tes témoignages.</p></div>
       <button class="btn btn-gold" onclick="saveHero()">💾 Enregistrer</button>
     </div>
     ${previewLink()}
 
     <div class="card">
+      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Badge d&apos;autorité</h2>
+      <p class="card-sub">Petit badge doré juste au-dessus du nom (ex: «Spécialiste cheveux crépus Type 4»). Laisse vide pour le cacher.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Badge <span class="lang-tag">FR</span></label><input type="text" id="f_hero_proof_fr" value="${esc(h.proof_fr||'')}" placeholder="Spécialiste cheveux crépus Type 4"/></div>
+        <div class="form-group"><label>Badge <span class="lang-tag">EN</span></label><input type="text" id="f_hero_proof_en" value="${esc(h.proof_en||'')}" placeholder="Type 4 coily-hair specialist"/></div>
+      </div>
+    </div>
+
+    <div class="card">
       <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Icônes de la rangée</h2>
-      <p class="card-sub">4 petits cercles sous le slogan. Saisis une URL d&apos;image pour chaque (laisser vide pour cacher).</p>
+      <p class="card-sub">Note : la nouvelle mise en page du site n&apos;affiche plus cette rangée de 4 ronds. Tu peux laisser ces champs tels quels — ils sont conservés mais masqués.</p>
       <div class="form-row">${iconRows}</div>
     </div>
 
@@ -1141,6 +1202,8 @@ function renderHeroTab() {
   `;
 }
 function readHero() {
+  if ($('f_hero_proof_fr')) SITE.hero.proof_fr = $('f_hero_proof_fr').value;
+  if ($('f_hero_proof_en')) SITE.hero.proof_en = $('f_hero_proof_en').value;
   for (let i = 0; i < 4; i++) {
     if ($('f_hero_icon_'+i)) SITE.hero.icons[i] = $('f_hero_icon_'+i).value;
   }
@@ -1254,61 +1317,79 @@ function saveGifts() { readGifts(); if (saveSite()) toast('Cadeaux enregistrés.
    4 ── SHOP TAB (single card)
    ════════════════════════════════════════════ */
 function renderShopTab() {
-  const s = SITE.shop;
+  const s = SITE.shop || (SITE.shop = { on:true, items:[] });
+  if (!Array.isArray(s.items)) s.items = [];
+  const ebooks = (s.items||[]).map((it, idx) => `
+    <div class="item-card ${it.on?'':'off'}" data-item="shop-${idx}">
+      <div class="item-head">
+        <div class="item-head-ico">${isImg(it.img) ? `<img src="${esc(previewSrc(it.img))}" alt=""/>` : '📖'}</div>
+        <div class="item-title">${esc(it.title_fr || it.title_en || '(sans titre)')}</div>
+        ${itemActionsHtml('shop', idx, it.on)}
+      </div>
+      <div class="form-group">
+        <label>Couverture de l&apos;ebook</label>
+        ${renderImageWidget(it.img, '📖', { prev:`iw_ebk_${idx}_prev`, url:`iw_ebk_${idx}_url`, hidden:`ebk_img_${idx}` }, 'Format portrait conseillé (≈ 3:4).')}
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Titre <span class="lang-tag">FR</span></label><input type="text" id="ebk_title_fr_${idx}" value="${esc(it.title_fr||'')}" placeholder="Hydratée"/></div>
+        <div class="form-group"><label>Titre <span class="lang-tag">EN</span></label><input type="text" id="ebk_title_en_${idx}" value="${esc(it.title_en||'')}" placeholder="Hydrated"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Description <span class="lang-tag">FR</span></label><textarea id="ebk_desc_fr_${idx}" rows="2">${esc(it.desc_fr||'')}</textarea></div>
+        <div class="form-group"><label>Description <span class="lang-tag">EN</span></label><textarea id="ebk_desc_en_${idx}" rows="2">${esc(it.desc_en||'')}</textarea></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Prix <span class="lang-tag">FR</span></label><input type="text" id="ebk_price_fr_${idx}" value="${esc(it.price_fr||'')}" placeholder="12€"/></div>
+        <div class="form-group"><label>Prix <span class="lang-tag">EN</span></label><input type="text" id="ebk_price_en_${idx}" value="${esc(it.price_en||'')}" placeholder="$13"/></div>
+      </div>
+      <div class="form-group"><label>Prix FCFA <span class="lang-tag">FR</span> <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(affiché sous le prix € en français)</span></label><input type="text" id="ebk_cfa_${idx}" value="${esc(it.price_cfa||'')}" placeholder="(≈ 8 000 FCFA)"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Badge <span class="lang-tag">FR</span></label><input type="text" id="ebk_badge_fr_${idx}" value="${esc(it.badge_fr||'')}" placeholder="Best-seller (optionnel)"/></div>
+        <div class="form-group"><label>Badge <span class="lang-tag">EN</span></label><input type="text" id="ebk_badge_en_${idx}" value="${esc(it.badge_en||'')}" placeholder="Best-seller (optional)"/></div>
+      </div>
+      <div class="form-group"><label>Lien d&apos;achat (URL Selar)</label><input type="url" id="ebk_url_${idx}" value="${esc(it.url||'')}" placeholder="https://selar.com/..."/></div>
+    </div>
+  `).join('');
+
   $('tab-shop').innerHTML = `
     <div class="sect-head">
-      <div><h2>Carte boutique (Solutions Premium)</h2><p class="sub">La grande carte sombre dorée vers ta boutique Selar d&apos;ebooks.</p></div>
-      <div class="section-toolbar">
-        <span class="lbl" style="margin:0">Section</span>
-        <label class="switch"><input type="checkbox" ${s.on?'checked':''} onchange="SITE.shop.on=this.checked;saveSite();toast('Section ' + (this.checked?'activée':'masquée') + '.','ok')"/><span class="slider"></span></label>
-        <button class="btn btn-gold" onclick="saveShop()">💾 Enregistrer</button>
-      </div>
+      <div><h2>Boutique — Ebooks (Premium)</h2><p class="sub">Vitrine défilante : chaque ebook a sa carte. Bloc 04 de la page.</p></div>
+      ${sectionToolbar('shop', s.on, 'saveShop')}
     </div>
     ${previewLink()}
 
     <div class="card">
       <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Titre de section</h2>
       <div class="form-row">
-        <div class="form-group"><label>Français <span class="lang-tag">FR</span></label><input type="text" id="f_shop_label_fr" value="${esc(s.label_fr||'')}"/></div>
-        <div class="form-group"><label>English <span class="lang-tag">EN</span></label><input type="text" id="f_shop_label_en" value="${esc(s.label_en||'')}"/></div>
+        <div class="form-group"><label>Titre <span class="lang-tag">FR</span></label><input type="text" id="f_shop_label_fr" value="${esc(s.label_fr||'')}" placeholder="Trouve TA solution"/></div>
+        <div class="form-group"><label>Titre <span class="lang-tag">EN</span></label><input type="text" id="f_shop_label_en" value="${esc(s.label_en||'')}" placeholder="Find YOUR solution"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Petit chapeau <span class="lang-tag">FR</span></label><input type="text" id="f_shop_eyebrow_fr" value="${esc(s.eyebrow_fr||'')}" placeholder="★ Ebooks experts · Type 4"/></div>
+        <div class="form-group"><label>Petit chapeau <span class="lang-tag">EN</span></label><input type="text" id="f_shop_eyebrow_en" value="${esc(s.eyebrow_en||'')}" placeholder="★ Expert ebooks · Type 4"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Phrase d&apos;intro <span class="lang-tag">FR</span></label><textarea id="f_shop_desc_fr" rows="2">${esc(s.desc_fr||'')}</textarea></div>
+        <div class="form-group"><label>Phrase d&apos;intro <span class="lang-tag">EN</span></label><textarea id="f_shop_desc_en" rows="2">${esc(s.desc_en||'')}</textarea></div>
       </div>
     </div>
 
     <div class="card">
-      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Image de la carte</h2>
-      <p class="card-sub">Carrée ≈ 200px, affichée en miniature dans la carte sombre.</p>
-      ${renderImageWidget(s.img, s.img_fallback||'📚', { prev:'iw_shop_prev', url:'iw_shop_url', hidden:'f_shop_img' },
-        'Si aucune image, on affiche le fallback ci-dessous.')}
-      <div class="form-group" style="margin-top:12px">
-        <label>Emoji fallback (si pas d&apos;image)</label>
-        <input class="emoji-input" type="text" id="f_shop_fallback" value="${esc(s.img_fallback||'📚')}"/>
-      </div>
+      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Tes ebooks (${(s.items||[]).length})</h2>
+      <p class="card-sub">Réordonne avec ↑ ↓. Le 1er ebook s&apos;affiche en premier. Mets une couverture, un prix et le lien Selar de chaque ebook.</p>
+      ${ebooks || '<p style="font-size:13px;color:var(--muted);padding:20px 0">Aucun ebook. Ajoute-en un ci-dessous.</p>'}
+      <button class="btn btn-gold" onclick="itemAdd('shop',{id:'e'+uid(),img:'',title_fr:'Nouvel ebook',title_en:'New ebook',desc_fr:'',desc_en:'',price_fr:'',price_en:'',badge_fr:'',badge_en:'',url:''})">+ Ajouter un ebook</button>
     </div>
 
     <div class="card">
-      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Contenu de la carte</h2>
+      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Bouton « Voir tous mes ebooks »</h2>
+      <p class="card-sub">Affiché sous la vitrine, vers ta boutique Selar complète. Laisse l&apos;URL vide pour masquer ce bouton.</p>
       <div class="form-row">
-        <div class="form-group"><label>Petit chapeau <span class="lang-tag">FR</span></label><input type="text" id="f_shop_eyebrow_fr" value="${esc(s.eyebrow_fr||'')}" placeholder="★ 8 Ebooks Experts"/></div>
-        <div class="form-group"><label>Petit chapeau <span class="lang-tag">EN</span></label><input type="text" id="f_shop_eyebrow_en" value="${esc(s.eyebrow_en||'')}" placeholder="★ 8 Expert Ebooks"/></div>
+        <div class="form-group"><label>Texte du bouton <span class="lang-tag">FR</span></label><input type="text" id="f_shop_cta_fr" value="${esc(s.cta_fr||'')}" placeholder="Voir tous mes ebooks →"/></div>
+        <div class="form-group"><label>Texte du bouton <span class="lang-tag">EN</span></label><input type="text" id="f_shop_cta_en" value="${esc(s.cta_en||'')}" placeholder="See all my ebooks →"/></div>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label>Titre principal <span class="lang-tag">FR</span></label><input type="text" id="f_shop_title_fr" value="${esc(s.title_fr||'')}"/></div>
-        <div class="form-group"><label>Titre principal <span class="lang-tag">EN</span></label><input type="text" id="f_shop_title_en" value="${esc(s.title_en||'')}"/></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Description <span class="lang-tag">FR</span></label><textarea id="f_shop_desc_fr" rows="3">${esc(s.desc_fr||'')}</textarea></div>
-        <div class="form-group"><label>Description <span class="lang-tag">EN</span></label><textarea id="f_shop_desc_en" rows="3">${esc(s.desc_en||'')}</textarea></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Bouton CTA <span class="lang-tag">FR</span></label><input type="text" id="f_shop_cta_fr" value="${esc(s.cta_fr||'')}" placeholder="Voir tous mes ebooks →"/></div>
-        <div class="form-group"><label>Bouton CTA <span class="lang-tag">EN</span></label><input type="text" id="f_shop_cta_en" value="${esc(s.cta_en||'')}" placeholder="Shop my ebooks →"/></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Destination du clic</h2>
       <div class="form-group"><label>URL de la boutique</label><input type="url" id="f_shop_url" value="${esc(s.url||'')}" placeholder="https://selar.com/m/schicgirl"/></div>
-      <div class="form-group"><label>Identifiant analytics</label><input type="text" id="f_shop_track" value="${esc(s.track||'selar-shop')}" placeholder="selar-shop"/><p style="font-size:11px;color:var(--muted);margin-top:6px">Identifiant utilisé dans le suivi des clics. Évite les espaces.</p></div>
+      <div class="form-group"><label>Identifiant analytics</label><input type="text" id="f_shop_track" value="${esc(s.track||'selar-shop')}" placeholder="selar-shop"/></div>
     </div>
   `;
 }
@@ -1316,18 +1397,28 @@ function saveShop() {
   const s = SITE.shop;
   s.label_fr   = $('f_shop_label_fr').value;
   s.label_en   = $('f_shop_label_en').value;
-  s.img        = $('f_shop_img').value;
-  s.img_fallback = $('f_shop_fallback').value || '📚';
   s.eyebrow_fr = $('f_shop_eyebrow_fr').value;
   s.eyebrow_en = $('f_shop_eyebrow_en').value;
-  s.title_fr   = $('f_shop_title_fr').value;
-  s.title_en   = $('f_shop_title_en').value;
   s.desc_fr    = $('f_shop_desc_fr').value;
   s.desc_en    = $('f_shop_desc_en').value;
   s.cta_fr     = $('f_shop_cta_fr').value;
   s.cta_en     = $('f_shop_cta_en').value;
   s.url        = $('f_shop_url').value;
   s.track      = $('f_shop_track').value || 'selar-shop';
+  (s.items||[]).forEach((it, idx) => {
+    if (!$(`ebk_title_fr_${idx}`)) return;
+    it.img      = $(`ebk_img_${idx}`).value;
+    it.title_fr = $(`ebk_title_fr_${idx}`).value;
+    it.title_en = $(`ebk_title_en_${idx}`).value;
+    it.desc_fr  = $(`ebk_desc_fr_${idx}`).value;
+    it.desc_en  = $(`ebk_desc_en_${idx}`).value;
+    it.price_fr = $(`ebk_price_fr_${idx}`).value;
+    it.price_en = $(`ebk_price_en_${idx}`).value;
+    if ($(`ebk_cfa_${idx}`)) it.price_cfa = $(`ebk_cfa_${idx}`).value;
+    it.badge_fr = $(`ebk_badge_fr_${idx}`).value;
+    it.badge_en = $(`ebk_badge_en_${idx}`).value;
+    it.url      = $(`ebk_url_${idx}`).value;
+  });
   if (saveSite()) toast('Boutique enregistrée.', 'ok');
 }
 
@@ -1507,6 +1598,65 @@ function readAmazon() {
 function saveAmazon() { readAmazon(); if (saveSite()) toast('Sélections Amazon enregistrées.', 'ok'); }
 
 /* ════════════════════════════════════════════
+   6b ── GALLERY TAB (galerie horizontale)
+   ════════════════════════════════════════════ */
+function renderGalleryTab() {
+  const g = SITE.gallery || (SITE.gallery = { on:true, label_fr:'Transformations', label_en:'Transformations', items:[] });
+  const items = (g.items||[]).map((it, idx) => `
+    <div class="item-card ${it.on?'':'off'}" data-item="gallery-${idx}">
+      <div class="item-head">
+        <div class="item-head-ico">${isImg(it.img) ? `<img src="${esc(previewSrc(it.img))}" alt=""/>` : '🖼️'}</div>
+        <div class="item-title">${esc(it.cap_fr || it.cap_en || '(sans légende)')}</div>
+        ${itemActionsHtml('gallery', idx, it.on)}
+      </div>
+      <div class="form-group">
+        <label>Photo</label>
+        ${renderImageWidget(it.img, '🖼️', { prev:`iw_gal_${idx}_prev`, url:`iw_gal_${idx}_url`, hidden:`gal_img_${idx}` }, 'Format portrait conseillé (≈ 4:5). Téléverse ou colle une URL / nom de fichier.')}
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Légende <span class="lang-tag">FR</span></label><input type="text" id="gal_cap_fr_${idx}" value="${esc(it.cap_fr||'')}" placeholder="Avant / après · 8 semaines"/></div>
+        <div class="form-group"><label>Légende <span class="lang-tag">EN</span></label><input type="text" id="gal_cap_en_${idx}" value="${esc(it.cap_en||'')}" placeholder="Before / after · 8 weeks"/></div>
+      </div>
+    </div>
+  `).join('');
+
+  $('tab-gallery').innerHTML = `
+    <div class="sect-head">
+      <div><h2>Galerie de transformations</h2><p class="sub">Bande de photos qui défile horizontalement, placée entre les avis et la boutique. La légende s&apos;affiche en bas de chaque photo.</p></div>
+      ${sectionToolbar('gallery', g.on, 'saveGallery')}
+    </div>
+    ${previewLink()}
+
+    <div class="card">
+      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Titre de section</h2>
+      <div class="form-row">
+        <div class="form-group"><label>Français <span class="lang-tag">FR</span></label><input type="text" id="f_gallery_label_fr" value="${esc(g.label_fr||'')}"/></div>
+        <div class="form-group"><label>English <span class="lang-tag">EN</span></label><input type="text" id="f_gallery_label_en" value="${esc(g.label_en||'')}"/></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Photos (${(g.items||[]).length})</h2>
+      <p class="card-sub">Réordonne avec ↑ ↓. La 1re photo est celle qu&apos;on voit en premier. Utilise des photos réelles de clientes (avec leur accord) pour un maximum d&apos;impact.</p>
+      ${items || '<p style="font-size:13px;color:var(--muted);padding:20px 0">Aucune photo. Ajoute-en une ci-dessous.</p>'}
+      <button class="btn btn-gold" onclick="itemAdd('gallery',{id:'g'+uid(),img:'',cap_fr:'Nouvelle photo',cap_en:'New photo'})">+ Ajouter une photo</button>
+    </div>
+  `;
+}
+function readGallery() {
+  if (!SITE.gallery) return;
+  if ($('f_gallery_label_fr')) SITE.gallery.label_fr = $('f_gallery_label_fr').value;
+  if ($('f_gallery_label_en')) SITE.gallery.label_en = $('f_gallery_label_en').value;
+  (SITE.gallery.items||[]).forEach((it, idx) => {
+    if (!$(`gal_img_${idx}`)) return;
+    it.img    = $(`gal_img_${idx}`).value;
+    it.cap_fr = $(`gal_cap_fr_${idx}`).value;
+    it.cap_en = $(`gal_cap_en_${idx}`).value;
+  });
+}
+function saveGallery() { readGallery(); if (saveSite()) toast('Galerie enregistrée.', 'ok'); }
+
+/* ════════════════════════════════════════════
    7 ── REVIEWS / TESTIMONIALS TAB
    ════════════════════════════════════════════ */
 function renderReviewsTab() {
@@ -1537,6 +1687,15 @@ function renderReviewsTab() {
     ${previewLink()}
 
     <div class="card">
+      <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Note &amp; nombre d'avis (en haut de page)</h2>
+      <p class="card-sub">Le bandeau ★ sous ton nom. Mets ici le VRAI nombre d'avis que tu reçois (ex: «218» ou «200+») — il ne se met pas à jour tout seul. Laisse le nombre vide pour afficher automatiquement le nombre de témoignages ci-dessous.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Note affichée</label><input type="text" id="f_reviews_rating" value="${esc(t.rating||'5,0')}" placeholder="5,0"/></div>
+        <div class="form-group"><label>Nombre d'avis</label><input type="text" id="f_reviews_count" value="${esc(t.reviews||'')}" placeholder="ex: 218 ou 200+"/></div>
+      </div>
+    </div>
+
+    <div class="card">
       <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Titre de section</h2>
       <div class="form-row">
         <div class="form-group"><label>Français <span class="lang-tag">FR</span></label><input type="text" id="f_reviews_label_fr" value="${esc(t.label_fr||'')}"/></div>
@@ -1552,6 +1711,8 @@ function renderReviewsTab() {
   `;
 }
 function readReviews() {
+  if ($('f_reviews_rating')) SITE.testimonials.rating = $('f_reviews_rating').value;
+  if ($('f_reviews_count')) SITE.testimonials.reviews = $('f_reviews_count').value;
   if ($('f_reviews_label_fr')) SITE.testimonials.label_fr = $('f_reviews_label_fr').value;
   if ($('f_reviews_label_en')) SITE.testimonials.label_en = $('f_reviews_label_en').value;
   (SITE.testimonials.items||[]).forEach((it, idx) => {
@@ -1655,7 +1816,7 @@ function renderFooterTab() {
 
     <div class="card">
       <h2 style="font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:4px">Nom de marque (footer)</h2>
-      <input type="text" id="f_footer_brand" value="${esc(f.brand||'Schicgirl™')}"/>
+      <input type="text" id="f_footer_brand" value="${esc(f.brand||'Schicgirl')}"/>
     </div>
 
     <div class="card">
@@ -1908,7 +2069,7 @@ async function init() {
 init();
 </script>
 
-<footer class="sg-foot">© 2024–2026 Schicgirl™ — by <a href="https://nabintousfofana.github.io/portfolio/" target="_blank" rel="noopener">Nabintou S. Fofana</a></footer>
+<footer class="sg-foot">© 2024–2026 Schicgirl — by <a href="https://nabintousfofana.github.io/portfolio/" target="_blank" rel="noopener">Nabintou S. Fofana</a></footer>
 <style>.sg-foot{text-align:center;padding:1.25rem 1rem;font-size:.72rem;color:#000;opacity:.5;letter-spacing:.02em}.sg-foot a{color:inherit;text-decoration:underline;text-underline-offset:2px}</style>
 
 </body>

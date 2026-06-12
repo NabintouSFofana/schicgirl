@@ -8,162 +8,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Schicgirl™ Natural Hair Amazon Finds | Produits cheveux naturels</title>
 <meta name="description" content="Bilingual Schicgirl Amazon affiliate mini-site with trusted natural hair product picks by porosity and DIY ingredient library."/>
+<link rel="icon" href="assets/logo2.png"/>
+<link rel="apple-touch-icon" href="assets/logo2.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --espresso:#23120a;
-  --cocoa:#3a1f12;
-  --gold:#c8923c;
-  --gold-soft:#e4b768;
-  --gold-pale:#f3e3c5;
-  --cream:#fbf4ea;
-  --paper:#fffaf2;
-  --line:#ecd6b4;
-  --ink:#241407;
-  --muted:#7c5c40;
-  --rose:#d79a86;
-  --shadow-s:0 2px 8px rgba(60,33,15,.06),0 10px 26px -10px rgba(60,33,15,.12);
-  --shadow:0 4px 14px rgba(60,33,15,.08),0 26px 56px -18px rgba(60,33,15,.22);
-  --serif:'Fraunces',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
+  --bg:#fdf8f2;
+  --ink:#2d1a0e;
+  --ink-soft:#5a3a22;
+  --muted:rgba(45,26,14,.6);
+  --gold:#c9934a;
+  --gold-deep:#a06d28;
+  --gold-lt:#e8c07e;
+  --gold-pale:#f5e8d0;
+  --rose:#e8b4a0;
+  --rose-deep:#c47a65;
+  --cream:rgba(255,248,238,.9);
+  --glass:rgba(255,252,246,.82);
+  --stroke:rgba(201,147,74,.22);
+  --line:rgba(201,147,74,.2);
+  --shadow-s:0 1px 2px rgba(62,38,28,.05),0 4px 12px rgba(62,38,28,.06),0 12px 28px -8px rgba(62,38,28,.06);
+  --shadow:0 2px 4px rgba(62,38,28,.06),0 8px 20px rgba(62,38,28,.1),0 24px 48px -12px rgba(62,38,28,.14);
+  --shadow-warm:0 1px 2px rgba(62,38,28,.04),0 6px 18px rgba(201,147,74,.1),0 18px 38px -10px rgba(201,147,74,.12);
+  --r:20px;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost",system-ui,sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:var(--sans);
-  color:var(--ink);
+  font-family:var(--sans);color:var(--ink);
   background:
-    radial-gradient(60% 40% at 8% -5%, rgba(200,146,60,.18), transparent 60%),
-    radial-gradient(50% 40% at 100% 8%, rgba(215,154,134,.16), transparent 55%),
-    linear-gradient(180deg,#fffdf8 0%, var(--cream) 38%, #fffdf8 100%);
-  -webkit-font-smoothing:antialiased;
+    radial-gradient(ellipse 80% 55% at 0% 0%, rgba(232,180,160,.45) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(237,217,176,.55) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(253,246,238,.8) 0%, transparent 70%),
+    linear-gradient(160deg,#fdf6ee 0%,#f8ece0 100%);
+  background-attachment:fixed;min-height:100vh;-webkit-font-smoothing:antialiased;
 }
-h1,h2,h3,.logo{font-family:var(--serif);font-weight:600;letter-spacing:-.01em}
+h1,h2,h3,.logo{font-family:var(--serif);font-weight:600;letter-spacing:.01em}
 a{text-decoration:none;color:inherit}
 button{font:inherit;cursor:pointer;border:0;background:none}
-::selection{background:var(--gold-soft);color:var(--espresso)}
+::selection{background:var(--gold-lt);color:var(--ink)}
 
 /* ── Top bar ── */
 .topbar{
-  position:sticky;top:0;z-index:60;
-  display:flex;align-items:center;gap:20px;
-  padding:14px clamp(18px,5vw,44px);
-  background:rgba(35,18,10,.92);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(200,146,60,.22);
+  position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:18px;
+  padding:13px clamp(16px,5vw,40px);
+  background:rgba(253,246,238,.85);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(201,147,74,.18);
 }
-.logo{color:var(--gold-soft);font-size:23px;letter-spacing:.04em;white-space:nowrap;display:flex;align-items:baseline;gap:3px}
-.logo sup{font-family:var(--sans);font-size:9px;letter-spacing:.05em;color:#f6e7cf;transform:translateY(-2px)}
-.nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.nav a{color:#e7d3bd;border-radius:999px;padding:8px 13px;font-weight:600;font-size:13px;transition:.18s;opacity:.85}
-.nav a:hover{background:rgba(200,146,60,.16);opacity:1}
-.lang{display:flex;gap:3px;margin-left:6px;background:rgba(200,146,60,.14);border-radius:999px;padding:3px}
-.lang button{color:#e7d3bd;border-radius:999px;padding:6px 12px;font-weight:700;font-size:12px;letter-spacing:.04em;transition:.18s}
-.lang button.active{background:var(--gold);color:#fff;box-shadow:0 2px 8px rgba(200,146,60,.5)}
+.logo{color:var(--gold-deep);font-size:25px;font-weight:600;white-space:nowrap;display:flex;align-items:baseline;gap:2px;letter-spacing:.02em}
+.logo sup{font-family:var(--sans);font-size:9px;color:var(--gold);transform:translateY(-3px)}
+.nav{margin-left:auto;display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav a{color:var(--ink-soft);border-radius:999px;padding:8px 13px;font-weight:600;font-size:13px;transition:.18s}
+.nav a:hover{background:rgba(201,147,74,.12);color:var(--gold-deep)}
+.lang{display:flex;gap:2px;margin-left:6px;background:rgba(201,147,74,.1);border-radius:999px;padding:3px}
+.lang button{color:var(--muted);border-radius:999px;padding:6px 13px;font-weight:600;font-size:12px;letter-spacing:.04em;transition:.18s}
+.lang button.active{background:var(--gold);color:#fff;box-shadow:0 2px 8px rgba(201,147,74,.4)}
 
 /* ── Hero ── */
-.hero{position:relative;overflow:hidden;padding:clamp(54px,8vw,96px) clamp(18px,5vw,44px) clamp(40px,6vw,64px);
-  background:linear-gradient(150deg,#1f0f07 0%,#3a1f12 52%,#7a4a23 105%);color:#fff}
-.hero::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;
-  background:radial-gradient(circle,var(--gold-soft),transparent 65%);filter:blur(40px);opacity:.3;right:-160px;top:-200px}
-.hero::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
-  background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:22px 22px}
-.hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.08fr .92fr;gap:38px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:7px;background:rgba(228,183,104,.14);border:1px solid rgba(228,183,104,.4);
-  color:#ffd692;border-radius:999px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:22px}
-.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-soft);box-shadow:0 0 0 3px rgba(228,183,104,.25)}
-.hero h1{font-size:clamp(40px,6.2vw,74px);line-height:1.02;margin-bottom:18px;font-weight:600}
-.hero h1 em{font-style:italic;color:var(--gold-soft)}
-.hero p{font-size:clamp(15px,1.4vw,18px);line-height:1.62;color:#ecdac6;max-width:30em;margin-bottom:26px}
+.hero{position:relative;overflow:hidden;padding:clamp(44px,7vw,84px) clamp(18px,5vw,44px) clamp(34px,5vw,56px)}
+.hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,147,74,.12);border:1px solid rgba(201,147,74,.3);
+  color:var(--gold-deep);border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(201,147,74,.2)}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.04;margin-bottom:16px;font-weight:600;color:var(--ink)}
+.hero h1 em{font-style:italic;color:var(--gold-deep)}
+.hero p{font-family:var(--sans);font-size:clamp(15px,1.3vw,17px);line-height:1.62;color:var(--ink-soft);max-width:32em;margin-bottom:24px}
 .cta{display:flex;gap:11px;flex-wrap:wrap}
-.btn{border-radius:999px;padding:13px 20px;font-weight:700;display:inline-flex;align-items:center;gap:8px;font-size:14px;transition:.2s}
-.btn-primary{background:var(--gold);color:#fff;box-shadow:0 10px 26px rgba(200,146,60,.36)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(200,146,60,.45)}
-.btn-light{background:rgba(255,250,242,.96);color:#8a561f;border:1px solid rgba(255,255,255,.5)}
-.btn-light:hover{transform:translateY(-2px)}
+.btn{border-radius:999px;padding:13px 22px;font-weight:700;display:inline-flex;align-items:center;gap:8px;font-size:14px;transition:.2s;font-family:var(--sans)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;box-shadow:0 8px 24px rgba(201,147,74,.4)}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn-light{background:var(--glass);backdrop-filter:blur(10px);color:var(--gold-deep);border:1.5px solid var(--gold)}
+.btn-light:hover{transform:translateY(-2px);background:var(--gold);color:#fff}
 
 /* quiz card */
-.quiz-card{background:var(--paper);color:var(--ink);border-radius:24px;padding:26px;box-shadow:var(--shadow);border:1px solid var(--line)}
-.quiz-card .kicker{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.quiz-card h3{font-size:26px;margin-bottom:6px}
-.quiz-card p{color:var(--muted);font-size:14px;margin-bottom:16px;line-height:1.5}
+.quiz-card{background:var(--glass);backdrop-filter:blur(16px);color:var(--ink);border-radius:var(--r);padding:26px;box-shadow:var(--shadow-warm);border:1px solid rgba(255,255,255,.9)}
+.quiz-card .kicker{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px}
+.quiz-card h3{font-size:28px;margin-bottom:6px;color:var(--ink)}
+.quiz-card p{color:var(--muted);font-size:14px;margin-bottom:16px;line-height:1.5;font-family:var(--sans)}
 .quiz-options{display:grid;gap:9px}
-.quiz-options button{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:13px 15px;text-align:left;font-weight:600;font-size:14px;color:var(--cocoa);transition:.16s;line-height:1.35}
-.quiz-options button:hover{border-color:var(--gold);background:#fff;transform:translateX(3px)}
-.quiz-result{margin-top:14px;background:linear-gradient(135deg,var(--gold-pale),#fff7e8);border:1px solid var(--gold-soft);border-radius:16px;padding:15px;color:var(--cocoa);font-size:14px;line-height:1.55;display:none}
+.quiz-options button{background:rgba(255,248,238,.7);border:1px solid var(--stroke);border-radius:14px;padding:13px 15px;text-align:left;font-weight:500;font-size:14px;color:var(--ink-soft);transition:.16s;line-height:1.35;font-family:var(--sans)}
+.quiz-options button:hover{border-color:var(--gold);background:#fff;transform:translateX(3px);color:var(--ink)}
+.quiz-result{margin-top:14px;background:linear-gradient(135deg,var(--gold-pale),#fff7e8);border:1px solid var(--gold-lt);border-radius:16px;padding:15px;color:var(--ink-soft);font-size:14px;line-height:1.55;display:none;font-family:var(--sans)}
 
 /* ── Sections ── */
-.section{max-width:1240px;margin:0 auto;padding:clamp(46px,6vw,72px) clamp(18px,5vw,24px)}
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.section{max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,68px) clamp(18px,5vw,24px)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);display:flex;align-items:center;gap:10px;margin-bottom:14px;font-family:var(--sans)}
 .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);border-radius:2px}
-.section h2{font-size:clamp(30px,4.4vw,42px);margin-bottom:12px;line-height:1.05}
-.lead{color:var(--muted);line-height:1.65;max-width:760px;font-size:16px}
+.section h2{font-size:clamp(30px,4.2vw,44px);margin-bottom:12px;line-height:1.08;color:var(--ink)}
+.lead{color:var(--ink-soft);line-height:1.65;max-width:760px;font-size:16px;font-family:var(--sans)}
 
 /* comparison table */
-.compare{overflow-x:auto;margin-top:24px;border-radius:20px;box-shadow:var(--shadow-s)}
-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;min-width:540px}
-th,td{padding:16px 18px;border-bottom:1px solid #f0ddc0;text-align:left;vertical-align:top;font-size:14px;line-height:1.5}
-th{background:linear-gradient(180deg,#f6e6c9,#f1dcb9);color:#6f4218;font-weight:700;font-family:var(--serif);font-size:15px}
-td strong{color:var(--cocoa)}
+.compare{overflow-x:auto;margin-top:24px;border-radius:var(--r);box-shadow:var(--shadow-s)}
+table{width:100%;border-collapse:separate;border-spacing:0;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--stroke);border-radius:var(--r);overflow:hidden;min-width:540px}
+th,td{padding:16px 18px;border-bottom:1px solid rgba(201,147,74,.16);text-align:left;vertical-align:top;font-size:14px;line-height:1.5;font-family:var(--sans)}
+th{background:linear-gradient(180deg,var(--gold-pale),rgba(232,192,126,.4));color:var(--gold-deep);font-weight:600;font-family:var(--serif);font-size:17px}
+td strong{color:var(--ink)}
 tr:last-child td{border-bottom:0}
 
 /* sticky filters */
-.filterbar{position:sticky;top:62px;z-index:40;margin:22px -8px 26px;padding:10px 8px;
-  background:linear-gradient(180deg,rgba(251,244,234,.96),rgba(251,244,234,.82));backdrop-filter:blur(10px);border-radius:14px}
+.filterbar{position:sticky;top:60px;z-index:40;margin:22px -8px 26px;padding:10px 8px;
+  background:linear-gradient(180deg,rgba(253,246,238,.96),rgba(253,246,238,.8));backdrop-filter:blur(12px);border-radius:14px}
 .filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{border:1px solid var(--line);background:var(--paper);color:#845b3e;border-radius:999px;padding:9px 15px;font-weight:600;font-size:13px;transition:.16s}
-.filter:hover{border-color:var(--gold);color:var(--cocoa)}
-.filter.active{background:var(--gold);color:#fff;border-color:var(--gold);box-shadow:0 4px 12px rgba(200,146,60,.35)}
+.filter{border:1.5px solid var(--stroke);background:var(--glass);color:var(--ink-soft);border-radius:999px;padding:9px 16px;font-weight:600;font-size:13px;transition:.16s;font-family:var(--sans)}
+.filter:hover{border-color:var(--gold);color:var(--gold-deep)}
+.filter.active{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(201,147,74,.35)}
 
 /* product grid */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-s);
-  transition:transform .22s cubic-bezier(.4,0,.2,1),box-shadow .22s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.9);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-warm);
+  transition:transform .22s cubic-bezier(.4,0,.2,1),box-shadow .22s,border-color .22s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--stroke)}
 .shelf{position:relative;height:188px;display:grid;place-items:center;overflow:hidden;
-  background:linear-gradient(180deg,#fdf4e6 0%,#f6e6cd 100%)}
+  background:linear-gradient(180deg,var(--gold-pale) 0%,rgba(201,147,74,.22) 100%)}
 .shelf::after{content:"";position:absolute;left:8%;right:8%;bottom:24px;height:14px;border-radius:50%;
-  background:rgba(60,33,15,.16);filter:blur(7px)}
-.shelf svg{position:relative;z-index:1;height:140px;width:auto;filter:drop-shadow(0 8px 14px rgba(60,33,15,.18))}
-.shelf .por-tag{position:absolute;top:12px;left:12px;z-index:2;background:rgba(35,18,10,.82);color:#ffe6bd;
+  background:rgba(62,38,28,.16);filter:blur(7px)}
+.shelf svg{position:relative;z-index:1;height:140px;width:auto;filter:drop-shadow(0 8px 14px rgba(62,38,28,.18))}
+.shelf .pv-wrap{position:relative;display:grid;place-items:center;width:100%;height:100%}
+.shelf .pv-photo{position:absolute;inset:0;margin:auto;height:152px;width:auto;max-width:82%;object-fit:contain;z-index:2;filter:drop-shadow(0 8px 14px rgba(62,38,28,.18))}
+.shelf .por-tag{position:absolute;top:12px;left:12px;z-index:2;background:rgba(45,26,14,.82);color:var(--gold-lt);
   border-radius:999px;padding:5px 11px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(4px)}
 .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
-.card-body h3{font-size:19px;line-height:1.15}
+.card-body h3{font-size:21px;line-height:1.15;color:var(--ink)}
 .meta{display:flex;gap:6px;flex-wrap:wrap}
-.tag{display:inline-flex;background:var(--gold-pale);color:#8a5a1d;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700}
-.small{font-size:13.5px;color:var(--muted);line-height:1.55}
-.note{background:linear-gradient(135deg,#fff6e6,#fdeed6);border:1px solid #f0d9b3;border-radius:13px;padding:11px 13px;color:#71471f;font-size:12.5px;line-height:1.5}
-.note strong,.small strong{color:var(--cocoa)}
+.tag{display:inline-flex;background:var(--gold-pale);color:var(--gold-deep);border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700;font-family:var(--sans)}
+.small{font-size:13.5px;color:var(--ink-soft);line-height:1.55;font-family:var(--sans)}
+.note{background:linear-gradient(135deg,rgba(232,180,160,.22),rgba(245,232,208,.5));border:1px solid var(--stroke);border-radius:13px;padding:11px 13px;color:var(--ink-soft);font-size:12.5px;line-height:1.5;font-family:var(--sans)}
+.note strong,.small strong{color:var(--ink)}
 .shop{margin-top:auto;padding-top:6px}
 .shop .btn-primary{width:100%;justify-content:center}
 
 /* DIY */
 .diy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.diy-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:start;box-shadow:var(--shadow-s);transition:.22s}
+.diy-card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.9);border-radius:var(--r);padding:18px;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:start;box-shadow:var(--shadow-warm);transition:.22s}
 .diy-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.diy-vessel{height:118px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(180deg,#fdf4e6,#f4e2c6);overflow:hidden}
-.diy-vessel svg{height:96px;width:auto;filter:drop-shadow(0 6px 10px rgba(60,33,15,.16))}
-.diy-card h3{font-size:19px;margin-bottom:6px;line-height:1.12}
-.warning{color:#9a5448;font-size:12.5px;line-height:1.5;margin-top:6px}
+.diy-vessel{height:118px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(180deg,var(--gold-pale),rgba(201,147,74,.2));overflow:hidden}
+.diy-vessel svg{height:96px;width:auto;filter:drop-shadow(0 6px 10px rgba(62,38,28,.16))}
+.diy-card h3{font-size:21px;margin-bottom:6px;line-height:1.12;color:var(--ink)}
+.warning{color:var(--rose-deep);font-size:12.5px;line-height:1.5;margin-top:6px;font-family:var(--sans)}
 
 /* market */
 .market{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
-.market a{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 16px;text-align:center;font-weight:700;color:var(--cocoa);box-shadow:var(--shadow-s);transition:.2s;font-size:15px}
+.market a{background:var(--glass);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:20px 16px;text-align:center;font-weight:700;color:var(--ink);box-shadow:var(--shadow-s);transition:.2s;font-size:15px;font-family:var(--sans)}
 .market a:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--gold)}
 .market a small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:3px;letter-spacing:.02em}
 
 /* disclosure */
-.disclosure{background:linear-gradient(150deg,#23120a,#3a1f12);color:#e8d4be;border-radius:24px;padding:30px;line-height:1.7;font-size:15px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.disclosure::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,60,.22),transparent 70%);right:-90px;bottom:-120px}
-.disclosure strong{color:#ffd692;font-family:var(--serif);font-size:17px}
+.disclosure{background:linear-gradient(150deg,#23120a,#3a1f12);color:#e8d4be;border-radius:var(--r);padding:30px;line-height:1.7;font-size:15px;box-shadow:var(--shadow);position:relative;overflow:hidden;font-family:var(--sans)}
+.disclosure::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(201,147,74,.22),transparent 70%);right:-90px;bottom:-120px}
+.disclosure strong{color:var(--gold-lt);font-family:var(--serif);font-size:18px;font-weight:600}
 .disclosure span{position:relative;z-index:1}
 
 /* footer */
-.footer{background:#1c0e05;color:#cdb39a;text-align:center;padding:38px 24px;margin-top:46px}
-.footer .fmark{font-family:var(--serif);font-size:18px;color:#e8d4be}
-.footer .credit{margin-top:14px;font-size:12px;letter-spacing:.05em;opacity:.75}
-.footer .credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.footer{text-align:center;padding:42px 24px 30px;margin-top:40px;font-family:var(--sans)}
+.footer .fdivider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,147,74,.3),transparent);max-width:560px;margin:0 auto 20px}
+.footer .fmark{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:600}
+.footer .credit{margin-top:12px;font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.footer .credit a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px;font-weight:600}
 
 @media(max-width:980px){
   .hero-inner{grid-template-columns:1fr;gap:30px}
@@ -176,13 +179,14 @@ tr:last-child td{border-bottom:0}
   .grid{grid-template-columns:1fr}
   .diy-grid{grid-template-columns:1fr}
   .market{grid-template-columns:1fr 1fr}
-  .filterbar{top:108px}
+  .filterbar{top:106px}
 }
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head>
 <body>
 
 <header class="topbar">
-  <div class="logo">SCHICGIRL<sup>™</sup></div>
+  <div class="logo">Schic<span style="color:var(--gold);font-style:italic">girl</span><sup>™</sup></div>
   <nav class="nav">
     <a href="#products" data-en="Products" data-fr="Produits">Products</a>
     <a href="#quiz" data-en="Porosity Quiz" data-fr="Quiz porosité">Porosity Quiz</a>
@@ -266,6 +270,7 @@ tr:last-child td{border-bottom:0}
 </section>
 
 <footer class="footer" role="contentinfo">
+  <div class="fdivider"></div>
   <div class="fmark" data-en="Schicgirl™ — Type 4 hair, made simple." data-fr="Schicgirl™ — Cheveux crépus, simplement.">Schicgirl™ — Type 4 hair, made simple.</div>
   <div class="credit">© 2024–2026 · Designed &amp; built by <a href="https://nabintousfofana.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Nabintou&nbsp;S.&nbsp;Fofana</a></div>
 </footer>
@@ -275,7 +280,7 @@ tr:last-child td{border-bottom:0}
    DATA — identical fields to the original (admin amazon-data.json
    can still override products / diy / copy at runtime).
    ════════════════════════════════════════════════════════════════ */
-const products = [{"en": "As I Am Leave-In Conditioner", "fr": "Après-shampooing sans rinçage As I Am", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "low", "goal_en": "Light moisture", "goal_fr": "Hydratation légère", "why_en": "Lightweight leave-in for curls/coils that need moisture without heavy buildup.", "why_fr": "Leave-in léger pour hydrater sans trop alourdir les cheveux.", "trust_en": "Popular textured-hair brand used in curly/coily routines.", "trust_fr": "Marque populaire pour cheveux texturés, souvent utilisée dans les routines bouclées/crépues.", "ing_en": "Botanical extracts, coconut, amla", "ing_fr": "Extraits botaniques, coco, amla", "url": "https://www.amazon.com/s?k=As+I+Am+Leave+In+Conditioner+8+oz&tag=fofananabinto-20"}, {"en": "Kinky-Curly Knot Today Leave-In Detangler", "fr": "Démêlant sans rinçage Kinky-Curly Knot Today", "cat_en": "Detangler", "cat_fr": "Démêlant", "por": "low", "goal_en": "Slip + detangling", "goal_fr": "Glissant + démêlage", "why_en": "A lighter detangling leave-in that helps reduce friction during styling.", "why_fr": "Démêlant léger qui aide à réduire les nœuds et la friction pendant le coiffage.", "trust_en": "Well-known staple in many natural hair routines.", "trust_fr": "Produit très connu dans de nombreuses routines de cheveux naturels.", "ing_en": "Marshmallow root, slippery elm, botanical blend", "ing_fr": "Racine de guimauve, orme rouge, mélange botanique", "url": "https://www.amazon.com/s?k=Kinky+Curly+Knot+Today+Leave+In+Detangler&tag=fofananabinto-20"}, {"en": "TGIN Rose Water Leave-In Conditioner", "fr": "Leave-in TGIN Rose Water", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "low", "goal_en": "Hydration without heaviness", "goal_fr": "Hydratation sans lourdeur", "why_en": "Rose water formulas are often lighter than butter-heavy creams.", "why_fr": "Les formules à l’eau de rose sont souvent plus légères que les crèmes très riches.", "trust_en": "Recognized textured-hair brand with lightweight collections.", "trust_fr": "Marque reconnue pour cheveux texturés avec des gammes plus légères.", "ing_en": "Rose water, botanical extracts", "ing_fr": "Eau de rose, extraits botaniques", "url": "https://www.amazon.com/s?k=TGIN+Rose+Water+Leave+In+Conditioner&tag=fofananabinto-20"}, {"en": "Camille Rose Curl Love Moisture Milk", "fr": "Lait hydratant Camille Rose Curl Love", "cat_en": "Moisturizer", "cat_fr": "Crème hydratante", "por": "low", "goal_en": "Softness", "goal_fr": "Douceur", "why_en": "Good when hair needs a creamy product but not a very heavy butter.", "why_fr": "Utile quand les cheveux ont besoin d’une crème douce mais pas trop lourde.", "trust_en": "Popular natural hair brand known for creamy moisturizers.", "trust_fr": "Marque populaire de cheveux naturels connue pour ses crèmes hydratantes.", "ing_en": "Rice milk, macadamia oil, slippery elm", "ing_fr": "Lait de riz, huile de macadamia, orme rouge", "url": "https://www.amazon.com/s?k=Camille+Rose+Curl+Love+Moisture+Milk&tag=fofananabinto-20"}, {"en": "Mielle Pomegranate & Honey Leave-In Conditioner", "fr": "Leave-in Mielle Grenade & Miel", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "normal", "goal_en": "Moisture + styling prep", "goal_fr": "Hydratation + préparation coiffage", "why_en": "Balanced leave-in for curls/coils that need moisture, slip, and frizz control.", "why_fr": "Leave-in équilibré pour hydrater, démêler et préparer le coiffage.", "trust_en": "Widely available textured-hair brand frequently used for type 4 styles.", "trust_fr": "Marque très accessible pour cheveux texturés, souvent utilisée pour le type 4.", "ing_en": "Pomegranate, honey, babassu oil", "ing_fr": "Grenade, miel, huile de babassu", "url": "https://www.amazon.com/s?k=Mielle+Pomegranate+Honey+Leave+In+Conditioner&tag=fofananabinto-20"}, {"en": "SheaMoisture Manuka Honey & Mafura Oil Masque", "fr": "Masque SheaMoisture Miel de Manuka & Huile de Mafura", "cat_en": "Deep conditioner", "cat_fr": "Soin profond", "por": "normal", "goal_en": "Deep moisture", "goal_fr": "Hydratation profonde", "why_en": "Useful when hair feels dry after shampoo or protective styles.", "why_fr": "Utile quand les cheveux sont secs après le shampooing ou une coiffure protectrice.", "trust_en": "Longstanding textured-hair brand with moisturizing mask options.", "trust_fr": "Marque reconnue pour cheveux texturés avec plusieurs soins hydratants.", "ing_en": "Manuka honey, mafura oil, fig extract", "ing_fr": "Miel de manuka, huile de mafura, extrait de figue", "url": "https://www.amazon.com/s?k=SheaMoisture+Manuka+Honey+Mafura+Oil+Intensive+Hydration+Masque&tag=fofananabinto-20"}, {"en": "Aunt Jackie's Quench Moisture Intensive Leave-In", "fr": "Leave-in hydratant Aunt Jackie’s Quench", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "normal", "goal_en": "Affordable moisture", "goal_fr": "Hydratation accessible", "why_en": "Budget-friendly leave-in for wash day and daily refresh routines.", "why_fr": "Option accessible pour hydrater après le lavage ou rafraîchir les cheveux.", "trust_en": "Commonly used affordable natural hair product line.", "trust_fr": "Gamme abordable très utilisée dans les routines naturelles.", "ing_en": "Shea butter, olive oil, marshmallow root", "ing_fr": "Beurre de karité, huile d’olive, racine de guimauve", "url": "https://www.amazon.com/s?k=Aunt+Jackie%27s+Quench+Moisture+Intensive+Leave+In+Conditioner&tag=fofananabinto-20"}, {"en": "TGIN Honey Miracle Hair Mask", "fr": "Masque TGIN Honey Miracle", "cat_en": "Mask", "cat_fr": "Masque", "por": "normal", "goal_en": "Softness + moisture", "goal_fr": "Douceur + hydratation", "why_en": "A rich mask for dry-feeling strands and routine deep conditioning.", "why_fr": "Masque riche pour apporter douceur et hydratation en soin profond.", "trust_en": "Popular deep conditioner among natural hair communities.", "trust_fr": "Soin profond populaire dans les communautés de cheveux naturels.", "ing_en": "Raw honey, olive oil", "ing_fr": "Miel brut, huile d’olive", "url": "https://www.amazon.com/s?k=TGIN+Honey+Miracle+Hair+Mask&tag=fofananabinto-20"}, {"en": "Mielle Rosemary Mint Strengthening Leave-In", "fr": "Leave-in fortifiant Mielle Romarin & Menthe", "cat_en": "Strengthening leave-in", "cat_fr": "Leave-in fortifiant", "por": "high", "goal_en": "Strength + moisture", "goal_fr": "Force + hydratation", "why_en": "Helpful for fragile-feeling hair that needs moisture with strengthening support.", "why_fr": "Utile pour les cheveux fragiles qui ont besoin d’hydratation et de renforcement.", "trust_en": "Widely available brand; rosemary mint line is commonly used for strengthening routines.", "trust_fr": "Marque très accessible; la gamme romarin/menthe est souvent utilisée pour fortifier.", "ing_en": "Rosemary, mint, biotin", "ing_fr": "Romarin, menthe, biotine", "url": "https://www.amazon.com/s?k=Mielle+Rosemary+Mint+Strengthening+Leave+In+Conditioner&tag=fofananabinto-20"}, {"en": "ApHogee Two-Step Protein Treatment", "fr": "Traitement protéiné ApHogee Two-Step", "cat_en": "Protein treatment", "cat_fr": "Soin protéiné", "por": "high", "goal_en": "Protein repair", "goal_fr": "Réparation protéinée", "why_en": "For serious breakage or over-processed hair; use carefully and follow directions.", "why_fr": "Pour cheveux très cassants ou abîmés; à utiliser prudemment en suivant les instructions.", "trust_en": "Classic protein treatment used in many damage-repair routines.", "trust_fr": "Soin protéiné classique utilisé dans de nombreuses routines de réparation.", "ing_en": "Protein treatment system", "ing_fr": "Système de traitement protéiné", "url": "https://www.amazon.com/s?k=ApHogee+Two+Step+Protein+Treatment&tag=fofananabinto-20"}, {"en": "SheaMoisture Jamaican Black Castor Oil Leave-In", "fr": "Leave-in SheaMoisture Huile de Ricin Noire Jamaïcaine", "cat_en": "Strengthening leave-in", "cat_fr": "Leave-in fortifiant", "por": "high", "goal_en": "Breakage support", "goal_fr": "Soutien contre la casse", "why_en": "Richer option for hair that needs sealing, softness, and strengthening support.", "why_fr": "Option plus riche pour les cheveux qui ont besoin de douceur et de protection contre la casse.", "trust_en": "Well-known line often used for damaged or transitioning hair.", "trust_fr": "Gamme connue, souvent utilisée pour cheveux abîmés ou en transition.", "ing_en": "Jamaican black castor oil, shea butter, peppermint", "ing_fr": "Huile de ricin noire jamaïcaine, beurre de karité, menthe poivrée", "url": "https://www.amazon.com/s?k=SheaMoisture+Jamaican+Black+Castor+Oil+Leave+In+Conditioner&tag=fofananabinto-20"}, {"en": "Olaplex No. 3 Hair Perfector", "fr": "Olaplex No. 3 Hair Perfector", "cat_en": "Bond treatment", "cat_fr": "Soin réparateur", "por": "high", "goal_en": "Bond support", "goal_fr": "Réparation des liaisons", "why_en": "For color-treated, heat-damaged, or chemically processed hair needing bond care.", "why_fr": "Pour cheveux colorés, chauffés ou chimiquement traités qui ont besoin de réparation.", "trust_en": "Widely recognized bond-care product line.", "trust_fr": "Gamme très reconnue pour les soins réparateurs.", "ing_en": "Bond-building technology", "ing_fr": "Technologie réparatrice des liaisons", "url": "https://www.amazon.com/s?k=Olaplex+No+3+Hair+Perfector&tag=fofananabinto-20"}, {"en": "Mielle Rosemary Mint Scalp & Hair Strengthening Oil", "fr": "Huile cuir chevelu Mielle Romarin & Menthe", "cat_en": "Scalp oil", "cat_fr": "Huile cuir chevelu", "por": "all", "goal_en": "Scalp care", "goal_fr": "Soin du cuir chevelu", "why_en": "Good for scalp massage and sealing ends; use small amounts to avoid buildup.", "why_fr": "Bonne pour le massage du cuir chevelu et les pointes; utiliser peu pour éviter l’accumulation.", "trust_en": "Very popular rosemary-based oil in natural hair routines.", "trust_fr": "Huile au romarin très populaire dans les routines de cheveux naturels.", "ing_en": "Rosemary oil, mint, biotin blend", "ing_fr": "Huile de romarin, menthe, mélange à la biotine", "url": "https://www.amazon.com/s?k=Mielle+Rosemary+Mint+Scalp+Hair+Strengthening+Oil&tag=fofananabinto-20"}, {"en": "As I Am Dry & Itchy Scalp Care Shampoo", "fr": "Shampooing As I Am Dry & Itchy Scalp Care", "cat_en": "Scalp shampoo", "cat_fr": "Shampooing cuir chevelu", "por": "all", "goal_en": "Itchy scalp", "goal_fr": "Cuir chevelu qui démange", "why_en": "For flaky or itchy scalp routines when oiling alone is not enough.", "why_fr": "Pour les routines cuir chevelu sec/irrité quand les huiles seules ne suffisent pas.", "trust_en": "Textured-hair brand with a dedicated scalp-care line.", "trust_fr": "Marque pour cheveux texturés avec une gamme dédiée au cuir chevelu.", "ing_en": "Scalp care cleansing ingredients", "ing_fr": "Ingrédients nettoyants pour le cuir chevelu", "url": "https://www.amazon.com/s?k=As+I+Am+Dry+Itchy+Scalp+Care+Shampoo&tag=fofananabinto-20"}, {"en": "Design Essentials Almond & Avocado Detangling Shampoo", "fr": "Shampooing démêlant Design Essentials Amande & Avocat", "cat_en": "Moisturizing shampoo", "cat_fr": "Shampooing hydratant", "por": "all", "goal_en": "Gentle wash day", "goal_fr": "Lavage doux", "why_en": "Moisturizing shampoo option for coils that need cleansing without a stripped feeling.", "why_fr": "Shampooing hydratant pour nettoyer sans laisser les cheveux trop secs.", "trust_en": "Professional textured-hair brand used in salons and home routines.", "trust_fr": "Marque professionnelle pour cheveux texturés utilisée en salon et à la maison.", "ing_en": "Almond, avocado", "ing_fr": "Amande, avocat", "url": "https://www.amazon.com/s?k=Design+Essentials+Almond+Avocado+Detangling+Shampoo&tag=fofananabinto-20"}, {"en": "Eco Style Olive Oil Styling Gel", "fr": "Gel Eco Style à l’huile d’olive", "cat_en": "Gel", "cat_fr": "Gel coiffant", "por": "all", "goal_en": "Hold", "goal_fr": "Tenue", "why_en": "Classic gel for sleek styles, edges, buns, and some wash-and-go routines.", "why_fr": "Gel classique pour coiffures plaquées, chignons, baby hair et wash-and-go.", "trust_en": "Widely used styling gel; affordable and easy to find.", "trust_fr": "Gel coiffant très utilisé, accessible et facile à trouver.", "ing_en": "Olive oil styling gel", "ing_fr": "Gel coiffant à l’huile d’olive", "url": "https://www.amazon.com/s?k=Eco+Style+Olive+Oil+Styling+Gel&tag=fofananabinto-20"}, {"en": "The Doux Mousse Def Texture Foam", "fr": "Mousse coiffante The Doux Mousse Def", "cat_en": "Foam", "cat_fr": "Mousse coiffante", "por": "all", "goal_en": "Twist-outs + braid-outs", "goal_fr": "Twist-outs + braid-outs", "why_en": "Foam option for twist-outs, braid-outs, and setting styles without heavy buildup.", "why_fr": "Mousse pour twist-outs, braid-outs et coiffures définies sans trop d’accumulation.", "trust_en": "Popular styling brand in textured-hair spaces.", "trust_fr": "Marque de coiffage populaire dans les communautés de cheveux texturés.", "ing_en": "Foam styling formula", "ing_fr": "Formule mousse coiffante", "url": "https://www.amazon.com/s?k=The+Doux+Mousse+Def+Texture+Foam&tag=fofananabinto-20"}];
+const products = [{"en": "As I Am Leave-In Conditioner", "fr": "Après-shampooing sans rinçage As I Am", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "low", "goal_en": "Light moisture", "goal_fr": "Hydratation légère", "why_en": "Lightweight leave-in for curls/coils that need moisture without heavy buildup.", "why_fr": "Leave-in léger pour hydrater sans trop alourdir les cheveux.", "trust_en": "Popular textured-hair brand used in curly/coily routines.", "trust_fr": "Marque populaire pour cheveux texturés, souvent utilisée dans les routines bouclées/crépues.", "ing_en": "Botanical extracts, coconut, amla", "ing_fr": "Extraits botaniques, coco, amla", "url": "https://www.amazon.com/s?k=As+I+Am+Leave+In+Conditioner+8+oz&tag=fofananabinto-20", "img": "assets/products/as-i-am-leavein.jpg"}, {"en": "Kinky-Curly Knot Today Leave-In Detangler", "fr": "Démêlant sans rinçage Kinky-Curly Knot Today", "cat_en": "Detangler", "cat_fr": "Démêlant", "por": "low", "goal_en": "Slip + detangling", "goal_fr": "Glissant + démêlage", "why_en": "A lighter detangling leave-in that helps reduce friction during styling.", "why_fr": "Démêlant léger qui aide à réduire les nœuds et la friction pendant le coiffage.", "trust_en": "Well-known staple in many natural hair routines.", "trust_fr": "Produit très connu dans de nombreuses routines de cheveux naturels.", "ing_en": "Marshmallow root, slippery elm, botanical blend", "ing_fr": "Racine de guimauve, orme rouge, mélange botanique", "url": "https://www.amazon.com/s?k=Kinky+Curly+Knot+Today+Leave+In+Detangler&tag=fofananabinto-20", "img": "assets/products/kinky-curly-knot-today.jpg"}, {"en": "TGIN Rose Water Leave-In Conditioner", "fr": "Leave-in TGIN Rose Water", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "low", "goal_en": "Hydration without heaviness", "goal_fr": "Hydratation sans lourdeur", "why_en": "Rose water formulas are often lighter than butter-heavy creams.", "why_fr": "Les formules à l’eau de rose sont souvent plus légères que les crèmes très riches.", "trust_en": "Recognized textured-hair brand with lightweight collections.", "trust_fr": "Marque reconnue pour cheveux texturés avec des gammes plus légères.", "ing_en": "Rose water, botanical extracts", "ing_fr": "Eau de rose, extraits botaniques", "url": "https://www.amazon.com/s?k=TGIN+Rose+Water+Leave+In+Conditioner&tag=fofananabinto-20", "img": "assets/products/tgin-rose-water.jpg"}, {"en": "Camille Rose Curl Love Moisture Milk", "fr": "Lait hydratant Camille Rose Curl Love", "cat_en": "Moisturizer", "cat_fr": "Crème hydratante", "por": "low", "goal_en": "Softness", "goal_fr": "Douceur", "why_en": "Good when hair needs a creamy product but not a very heavy butter.", "why_fr": "Utile quand les cheveux ont besoin d’une crème douce mais pas trop lourde.", "trust_en": "Popular natural hair brand known for creamy moisturizers.", "trust_fr": "Marque populaire de cheveux naturels connue pour ses crèmes hydratantes.", "ing_en": "Rice milk, macadamia oil, slippery elm", "ing_fr": "Lait de riz, huile de macadamia, orme rouge", "url": "https://www.amazon.com/s?k=Camille+Rose+Curl+Love+Moisture+Milk&tag=fofananabinto-20", "img": "assets/products/camille-rose-curl-love.jpg"}, {"en": "Mielle Pomegranate & Honey Leave-In Conditioner", "fr": "Leave-in Mielle Grenade & Miel", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "normal", "goal_en": "Moisture + styling prep", "goal_fr": "Hydratation + préparation coiffage", "why_en": "Balanced leave-in for curls/coils that need moisture, slip, and frizz control.", "why_fr": "Leave-in équilibré pour hydrater, démêler et préparer le coiffage.", "trust_en": "Widely available textured-hair brand frequently used for type 4 styles.", "trust_fr": "Marque très accessible pour cheveux texturés, souvent utilisée pour le type 4.", "ing_en": "Pomegranate, honey, babassu oil", "ing_fr": "Grenade, miel, huile de babassu", "url": "https://www.amazon.com/s?k=Mielle+Pomegranate+Honey+Leave+In+Conditioner&tag=fofananabinto-20", "img": "assets/products/mielle-pomegranate-honey.jpg"}, {"en": "SheaMoisture Manuka Honey & Mafura Oil Masque", "fr": "Masque SheaMoisture Miel de Manuka & Huile de Mafura", "cat_en": "Deep conditioner", "cat_fr": "Soin profond", "por": "normal", "goal_en": "Deep moisture", "goal_fr": "Hydratation profonde", "why_en": "Useful when hair feels dry after shampoo or protective styles.", "why_fr": "Utile quand les cheveux sont secs après le shampooing ou une coiffure protectrice.", "trust_en": "Longstanding textured-hair brand with moisturizing mask options.", "trust_fr": "Marque reconnue pour cheveux texturés avec plusieurs soins hydratants.", "ing_en": "Manuka honey, mafura oil, fig extract", "ing_fr": "Miel de manuka, huile de mafura, extrait de figue", "url": "https://www.amazon.com/s?k=SheaMoisture+Manuka+Honey+Mafura+Oil+Intensive+Hydration+Masque&tag=fofananabinto-20", "img": "assets/products/sheamoisture-manuka-mafura.jpg"}, {"en": "Aunt Jackie's Quench Moisture Intensive Leave-In", "fr": "Leave-in hydratant Aunt Jackie’s Quench", "cat_en": "Leave-in", "cat_fr": "Sans rinçage", "por": "normal", "goal_en": "Affordable moisture", "goal_fr": "Hydratation accessible", "why_en": "Budget-friendly leave-in for wash day and daily refresh routines.", "why_fr": "Option accessible pour hydrater après le lavage ou rafraîchir les cheveux.", "trust_en": "Commonly used affordable natural hair product line.", "trust_fr": "Gamme abordable très utilisée dans les routines naturelles.", "ing_en": "Shea butter, olive oil, marshmallow root", "ing_fr": "Beurre de karité, huile d’olive, racine de guimauve", "url": "https://www.amazon.com/s?k=Aunt+Jackie%27s+Quench+Moisture+Intensive+Leave+In+Conditioner&tag=fofananabinto-20", "img": "assets/products/aunt-jackies-quench.jpg"}, {"en": "TGIN Honey Miracle Hair Mask", "fr": "Masque TGIN Honey Miracle", "cat_en": "Mask", "cat_fr": "Masque", "por": "normal", "goal_en": "Softness + moisture", "goal_fr": "Douceur + hydratation", "why_en": "A rich mask for dry-feeling strands and routine deep conditioning.", "why_fr": "Masque riche pour apporter douceur et hydratation en soin profond.", "trust_en": "Popular deep conditioner among natural hair communities.", "trust_fr": "Soin profond populaire dans les communautés de cheveux naturels.", "ing_en": "Raw honey, olive oil", "ing_fr": "Miel brut, huile d’olive", "url": "https://www.amazon.com/s?k=TGIN+Honey+Miracle+Hair+Mask&tag=fofananabinto-20", "img": "assets/products/tgin-honey-miracle-mask.jpg"}, {"en": "Mielle Rosemary Mint Strengthening Leave-In", "fr": "Leave-in fortifiant Mielle Romarin & Menthe", "cat_en": "Strengthening leave-in", "cat_fr": "Leave-in fortifiant", "por": "high", "goal_en": "Strength + moisture", "goal_fr": "Force + hydratation", "why_en": "Helpful for fragile-feeling hair that needs moisture with strengthening support.", "why_fr": "Utile pour les cheveux fragiles qui ont besoin d’hydratation et de renforcement.", "trust_en": "Widely available brand; rosemary mint line is commonly used for strengthening routines.", "trust_fr": "Marque très accessible; la gamme romarin/menthe est souvent utilisée pour fortifier.", "ing_en": "Rosemary, mint, biotin", "ing_fr": "Romarin, menthe, biotine", "url": "https://www.amazon.com/s?k=Mielle+Rosemary+Mint+Strengthening+Leave+In+Conditioner&tag=fofananabinto-20", "img": "assets/products/mielle-rosemary-mint-leavein.jpg"}, {"en": "ApHogee Two-Step Protein Treatment", "fr": "Traitement protéiné ApHogee Two-Step", "cat_en": "Protein treatment", "cat_fr": "Soin protéiné", "por": "high", "goal_en": "Protein repair", "goal_fr": "Réparation protéinée", "why_en": "For serious breakage or over-processed hair; use carefully and follow directions.", "why_fr": "Pour cheveux très cassants ou abîmés; à utiliser prudemment en suivant les instructions.", "trust_en": "Classic protein treatment used in many damage-repair routines.", "trust_fr": "Soin protéiné classique utilisé dans de nombreuses routines de réparation.", "ing_en": "Protein treatment system", "ing_fr": "Système de traitement protéiné", "url": "https://www.amazon.com/s?k=ApHogee+Two+Step+Protein+Treatment&tag=fofananabinto-20", "img": "assets/products/aphogee-two-step.jpg"}, {"en": "SheaMoisture Jamaican Black Castor Oil Leave-In", "fr": "Leave-in SheaMoisture Huile de Ricin Noire Jamaïcaine", "cat_en": "Strengthening leave-in", "cat_fr": "Leave-in fortifiant", "por": "high", "goal_en": "Breakage support", "goal_fr": "Soutien contre la casse", "why_en": "Richer option for hair that needs sealing, softness, and strengthening support.", "why_fr": "Option plus riche pour les cheveux qui ont besoin de douceur et de protection contre la casse.", "trust_en": "Well-known line often used for damaged or transitioning hair.", "trust_fr": "Gamme connue, souvent utilisée pour cheveux abîmés ou en transition.", "ing_en": "Jamaican black castor oil, shea butter, peppermint", "ing_fr": "Huile de ricin noire jamaïcaine, beurre de karité, menthe poivrée", "url": "https://www.amazon.com/s?k=SheaMoisture+Jamaican+Black+Castor+Oil+Leave+In+Conditioner&tag=fofananabinto-20", "img": "assets/products/sheamoisture-jbco-leavein.jpg"}, {"en": "Olaplex No. 3 Hair Perfector", "fr": "Olaplex No. 3 Hair Perfector", "cat_en": "Bond treatment", "cat_fr": "Soin réparateur", "por": "high", "goal_en": "Bond support", "goal_fr": "Réparation des liaisons", "why_en": "For color-treated, heat-damaged, or chemically processed hair needing bond care.", "why_fr": "Pour cheveux colorés, chauffés ou chimiquement traités qui ont besoin de réparation.", "trust_en": "Widely recognized bond-care product line.", "trust_fr": "Gamme très reconnue pour les soins réparateurs.", "ing_en": "Bond-building technology", "ing_fr": "Technologie réparatrice des liaisons", "url": "https://www.amazon.com/s?k=Olaplex+No+3+Hair+Perfector&tag=fofananabinto-20", "img": "assets/products/olaplex-no3.jpg"}, {"en": "Mielle Rosemary Mint Scalp & Hair Strengthening Oil", "fr": "Huile cuir chevelu Mielle Romarin & Menthe", "cat_en": "Scalp oil", "cat_fr": "Huile cuir chevelu", "por": "all", "goal_en": "Scalp care", "goal_fr": "Soin du cuir chevelu", "why_en": "Good for scalp massage and sealing ends; use small amounts to avoid buildup.", "why_fr": "Bonne pour le massage du cuir chevelu et les pointes; utiliser peu pour éviter l’accumulation.", "trust_en": "Very popular rosemary-based oil in natural hair routines.", "trust_fr": "Huile au romarin très populaire dans les routines de cheveux naturels.", "ing_en": "Rosemary oil, mint, biotin blend", "ing_fr": "Huile de romarin, menthe, mélange à la biotine", "url": "https://www.amazon.com/s?k=Mielle+Rosemary+Mint+Scalp+Hair+Strengthening+Oil&tag=fofananabinto-20", "img": "assets/products/mielle-rosemary-mint-oil.jpg"}, {"en": "As I Am Dry & Itchy Scalp Care Shampoo", "fr": "Shampooing As I Am Dry & Itchy Scalp Care", "cat_en": "Scalp shampoo", "cat_fr": "Shampooing cuir chevelu", "por": "all", "goal_en": "Itchy scalp", "goal_fr": "Cuir chevelu qui démange", "why_en": "For flaky or itchy scalp routines when oiling alone is not enough.", "why_fr": "Pour les routines cuir chevelu sec/irrité quand les huiles seules ne suffisent pas.", "trust_en": "Textured-hair brand with a dedicated scalp-care line.", "trust_fr": "Marque pour cheveux texturés avec une gamme dédiée au cuir chevelu.", "ing_en": "Scalp care cleansing ingredients", "ing_fr": "Ingrédients nettoyants pour le cuir chevelu", "url": "https://www.amazon.com/s?k=As+I+Am+Dry+Itchy+Scalp+Care+Shampoo&tag=fofananabinto-20", "img": "assets/products/as-i-am-scalp-shampoo.jpg"}, {"en": "Design Essentials Almond & Avocado Detangling Shampoo", "fr": "Shampooing démêlant Design Essentials Amande & Avocat", "cat_en": "Moisturizing shampoo", "cat_fr": "Shampooing hydratant", "por": "all", "goal_en": "Gentle wash day", "goal_fr": "Lavage doux", "why_en": "Moisturizing shampoo option for coils that need cleansing without a stripped feeling.", "why_fr": "Shampooing hydratant pour nettoyer sans laisser les cheveux trop secs.", "trust_en": "Professional textured-hair brand used in salons and home routines.", "trust_fr": "Marque professionnelle pour cheveux texturés utilisée en salon et à la maison.", "ing_en": "Almond, avocado", "ing_fr": "Amande, avocat", "url": "https://www.amazon.com/s?k=Design+Essentials+Almond+Avocado+Detangling+Shampoo&tag=fofananabinto-20", "img": "assets/products/design-essentials-almond-avocado.jpg"}, {"en": "Eco Style Olive Oil Styling Gel", "fr": "Gel Eco Style à l’huile d’olive", "cat_en": "Gel", "cat_fr": "Gel coiffant", "por": "all", "goal_en": "Hold", "goal_fr": "Tenue", "why_en": "Classic gel for sleek styles, edges, buns, and some wash-and-go routines.", "why_fr": "Gel classique pour coiffures plaquées, chignons, baby hair et wash-and-go.", "trust_en": "Widely used styling gel; affordable and easy to find.", "trust_fr": "Gel coiffant très utilisé, accessible et facile à trouver.", "ing_en": "Olive oil styling gel", "ing_fr": "Gel coiffant à l’huile d’olive", "url": "https://www.amazon.com/s?k=Eco+Style+Olive+Oil+Styling+Gel&tag=fofananabinto-20", "img": "assets/products/eco-style-olive-oil-gel.jpg"}, {"en": "The Doux Mousse Def Texture Foam", "fr": "Mousse coiffante The Doux Mousse Def", "cat_en": "Foam", "cat_fr": "Mousse coiffante", "por": "all", "goal_en": "Twist-outs + braid-outs", "goal_fr": "Twist-outs + braid-outs", "why_en": "Foam option for twist-outs, braid-outs, and setting styles without heavy buildup.", "why_fr": "Mousse pour twist-outs, braid-outs et coiffures définies sans trop d’accumulation.", "trust_en": "Popular styling brand in textured-hair spaces.", "trust_fr": "Marque de coiffage populaire dans les communautés de cheveux texturés.", "ing_en": "Foam styling formula", "ing_fr": "Formule mousse coiffante", "url": "https://www.amazon.com/s?k=The+Doux+Mousse+Def+Texture+Foam&tag=fofananabinto-20", "img": "assets/products/the-doux-mousse-def.jpg"}];
 
 const diyItems = [{"en": "Raw Shea Butter", "fr": "Beurre de karité brut", "use_en": "Sealant, whipped creams, dry ends", "use_fr": "Sceller l’hydratation, crèmes fouettées, pointes sèches", "best_en": "High porosity, very dry hair, thick strands", "best_fr": "Forte porosité, cheveux très secs, cheveux épais", "warn_en": "Can be too heavy for low porosity or fine hair.", "warn_fr": "Peut être trop lourd pour faible porosité ou cheveux fins.", "url": "https://www.amazon.com/s?k=raw+unrefined+shea+butter+natural+hair&tag=fofananabinto-20"}, {"en": "Aloe Vera Gel / Juice", "fr": "Gel ou jus d’aloe vera", "use_en": "Hydration sprays, detangling, scalp soothing", "use_fr": "Sprays hydratants, démêlage, apaisement du cuir chevelu", "best_en": "All porosities, especially dry-feeling hair", "best_fr": "Toutes porosités, surtout cheveux secs au toucher", "warn_en": "Patch test first; some people are sensitive.", "warn_fr": "Fais un test avant; certaines personnes sont sensibles.", "url": "https://www.amazon.com/s?k=aloe+vera+gel+juice+natural+hair&tag=fofananabinto-20"}, {"en": "Jamaican Black Castor Oil", "fr": "Huile de ricin noire jamaïcaine", "use_en": "Scalp massage, edges, sealing ends", "use_fr": "Massage du cuir chevelu, tempes, pointes", "best_en": "High porosity, thick hair, dry ends", "best_fr": "Forte porosité, cheveux épais, pointes sèches", "warn_en": "Very thick; dilute with lighter oils if needed.", "warn_fr": "Très épaisse; diluer avec une huile plus légère si besoin.", "url": "https://www.amazon.com/s?k=Jamaican+black+castor+oil+natural+hair&tag=fofananabinto-20"}, {"en": "Rosemary Essential Oil", "fr": "Huile essentielle de romarin", "use_en": "Scalp oil blends only when diluted", "use_fr": "Mélanges pour cuir chevelu uniquement diluée", "best_en": "Scalp massage blends", "best_fr": "Mélanges pour massage du cuir chevelu", "warn_en": "Do not apply essential oils directly; dilute properly.", "warn_fr": "Ne pas appliquer directement; toujours diluer correctement.", "url": "https://www.amazon.com/s?k=rosemary+essential+oil+hair&tag=fofananabinto-20"}, {"en": "Grapeseed Oil", "fr": "Huile de pépins de raisin", "use_en": "Light sealing oil, scalp oil base", "use_fr": "Huile légère pour sceller, base d’huile cuir chevelu", "best_en": "Low/normal porosity, fine strands", "best_fr": "Faible/porosité normale, cheveux fins", "warn_en": "Use a small amount to avoid greasy hair.", "warn_fr": "Utiliser une petite quantité pour éviter l’effet gras.", "url": "https://www.amazon.com/s?k=grapeseed+oil+natural+hair&tag=fofananabinto-20"}, {"en": "Avocado Oil", "fr": "Huile d’avocat", "use_en": "Hot oil treatments, masks, sealing", "use_fr": "Bains d’huile, masques, scellage", "best_en": "Normal/high porosity, dry hair", "best_fr": "Porosité normale/forte, cheveux secs", "warn_en": "May feel heavy if overused.", "warn_fr": "Peut alourdir si trop utilisée.", "url": "https://www.amazon.com/s?k=avocado+oil+natural+hair&tag=fofananabinto-20"}, {"en": "Honey", "fr": "Miel", "use_en": "Humectant in masks and deep treatments", "use_fr": "Humectant dans les masques et soins profonds", "best_en": "Dry hair when climate is not extremely dry", "best_fr": "Cheveux secs quand le climat n’est pas trop sec", "warn_en": "Use carefully in very dry climates; rinse well.", "warn_fr": "À utiliser avec prudence en climat très sec; bien rincer.", "url": "https://www.amazon.com/s?k=raw+honey+hair+mask+natural+hair&tag=fofananabinto-20"}, {"en": "Flaxseeds", "fr": "Graines de lin", "use_en": "DIY flaxseed gel for twist-outs and definition", "use_fr": "Gel de lin maison pour twist-outs et définition", "best_en": "All porosities needing soft hold", "best_fr": "Toutes porosités qui veulent une tenue douce", "warn_en": "Refrigerate homemade gel and use quickly.", "warn_fr": "Conserver au frais et utiliser rapidement.", "url": "https://www.amazon.com/s?k=organic+flaxseeds+for+hair+gel&tag=fofananabinto-20"}, {"en": "Hibiscus Powder", "fr": "Poudre d’hibiscus", "use_en": "Shine rinses, herbal masks", "use_fr": "Rinçages brillance, masques aux plantes", "best_en": "Dull hair, softness routines", "best_fr": "Cheveux ternes, routines douceur", "warn_en": "Can tint very light hair or fabrics.", "warn_fr": "Peut colorer les cheveux très clairs ou les tissus.", "url": "https://www.amazon.com/s?k=hibiscus+powder+hair&tag=fofananabinto-20"}, {"en": "Slippery Elm Powder", "fr": "Poudre d’orme rouge", "use_en": "Slip for detangling sprays and masks", "use_fr": "Glissant pour sprays démêlants et masques", "best_en": "Tangled hair, tender-headed wash days", "best_fr": "Cheveux emmêlés, démêlage difficile", "warn_en": "Strain well to avoid residue.", "warn_fr": "Bien filtrer pour éviter les résidus.", "url": "https://www.amazon.com/s?k=slippery+elm+powder+hair&tag=fofananabinto-20"}];
 
@@ -286,16 +291,11 @@ const POR_TXT={en:{low:"Low Porosity",normal:"Normal Porosity",high:"High Porosi
 
 /* ════════════════════════════════════════════════════════════════
    ILLUSTRATED PRODUCT RENDERS
-   Each product gets a vector "bottle/jar/tube" rendered to match its
-   category + brand palette. Replaces the old emoji icons.
-   If admin sets a real hosted image URL (p.img), that wins instead.
    ════════════════════════════════════════════════════════════════ */
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
-// brand palette + vessel hints keyed by recognizable brand words
 function styleFor(name, cat){
   const n=(name||'').toLowerCase(), c=(cat||'').toLowerCase();
-  // vessel: pump | spray | jar | dropper | tall | tub | tube
   let vessel='pump';
   if(c.includes('detangler')) vessel='spray';
   if(c.includes('mask')||c.includes('deep')||c.includes('masque')) vessel='jar';
@@ -306,7 +306,6 @@ function styleFor(name, cat){
   if(c.includes('shampoo')||c.includes('shampooing')) vessel='tall';
   if(c.includes('moistur')||c.includes('hydrat')) vessel='pump';
 
-  // brand colors {body, cap, accent, label}
   let p={body:'#caa46e',cap:'#3a2a18',accent:'#8a5a1d',label:''};
   if(n.includes('as i am')){p={body:'#1fb6b6',cap:'#0e6b6b',accent:'#0b5757',label:'AS I AM'}}
   else if(n.includes('kinky')){p={body:'#5aa84b',cap:'#2f5e26',accent:'#356b2a',label:'KC'}}
@@ -325,11 +324,10 @@ function styleFor(name, cat){
   return Object.assign(p,{vessel});
 }
 
-// draw a vessel as an SVG string (viewBox 0 0 120 160)
 function vesselSVG(s){
   const {body,cap,accent,label}=s;
   const cream='#fffaf2';
-  const lbl=label?`<text x="60" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="${accent}" letter-spacing="0.5">${esc(label)}</text>`:'';
+  const lbl=label?`<text x="60" y="104" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" font-weight="700" fill="${accent}" letter-spacing="0.5">${esc(label)}</text>`:'';
   const sheen=`<rect x="0" y="0" width="14" height="200" fill="#ffffff" opacity="0.16"/>`;
   switch(s.vessel){
     case 'spray':
@@ -349,27 +347,27 @@ function vesselSVG(s){
         <rect x="18" y="64" width="84" height="78" rx="8" fill="${body}"/>
         <ellipse cx="60" cy="142" rx="42" ry="10" fill="${accent}" opacity=".4"/>
         <rect x="26" y="86" width="68" height="46" rx="8" fill="${cream}" opacity=".92"/>
-        <text x="60" y="114" text-anchor="middle" font-family="DM Sans" font-size="13" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
+        <text x="60" y="114" text-anchor="middle" font-family="Jost" font-size="13" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
     case 'dropper':
       return svg(`
         <rect x="48" y="2" width="24" height="20" rx="4" fill="${cap}"/>
         <rect x="56" y="22" width="8" height="20" fill="${accent}"/>
         <path d="M40 42 h40 v92 a16 16 0 0 1 -16 16 h-8 a16 16 0 0 1 -16 -16 z" fill="${body}"/>
         <rect x="46" y="70" width="28" height="56" rx="6" fill="${cream}" opacity=".9"/>
-        <text x="60" y="104" text-anchor="middle" font-family="DM Sans" font-size="11" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
+        <text x="60" y="104" text-anchor="middle" font-family="Jost" font-size="11" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
     case 'tall':
       return svg(`
         <rect x="44" y="4" width="32" height="20" rx="4" fill="${cap}"/>
         <path d="M40 24 h40 v118 a10 10 0 0 1 -10 10 h-20 a10 10 0 0 1 -10 -10 z" fill="${body}"/>
         <g><rect x="44" y="60" width="32" height="70" rx="6" fill="${cream}" opacity=".92"/></g>
-        <text x="60" y="100" text-anchor="middle" font-family="DM Sans" font-size="12" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
+        <text x="60" y="100" text-anchor="middle" font-family="Jost" font-size="12" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
     case 'tub':
       return svg(`
         <rect x="22" y="30" width="76" height="20" rx="6" fill="${cap}"/>
         <rect x="26" y="48" width="68" height="98" rx="12" fill="${body}"/>
         <ellipse cx="60" cy="146" rx="34" ry="8" fill="${accent}" opacity=".4"/>
         <rect x="34" y="78" width="52" height="50" rx="8" fill="${cream}" opacity=".92"/>
-        <text x="60" y="108" text-anchor="middle" font-family="DM Sans" font-size="13" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
+        <text x="60" y="108" text-anchor="middle" font-family="Jost" font-size="13" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
     default: // pump
       return svg(`
         <rect x="52" y="0" width="16" height="22" rx="4" fill="${cap}"/>
@@ -377,17 +375,19 @@ function vesselSVG(s){
         <rect x="50" y="22" width="20" height="12" rx="3" fill="${accent}"/>
         <rect x="34" y="34" width="52" height="118" rx="16" fill="${body}"/>
         <rect x="40" y="64" width="40" height="64" rx="8" fill="${cream}" opacity=".92"/>
-        <text x="60" y="102" text-anchor="middle" font-family="DM Sans" font-size="12" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
+        <text x="60" y="102" text-anchor="middle" font-family="Jost" font-size="12" font-weight="700" fill="${accent}">${esc(label||'')}</text>`);
   }
 }
 function svg(inner){return `<svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" role="img">${inner}</svg>`}
 
 function productVisual(p){
-  if(p.img) return `<img src="${esc(p.img)}" alt="" style="height:150px;width:auto;object-fit:contain" onerror="this.outerHTML='${vesselSVG(styleFor(p.en,p.cat_en)).replace(/'/g,"&#39;")}'">`;
-  return vesselSVG(styleFor(p.en, p.cat_en));
+  var svgMarkup = vesselSVG(styleFor(p.en, p.cat_en));
+  if(p.img){
+    return `<span class="pv-wrap"><span class="pv-svg">${svgMarkup}</span><img class="pv-photo" src="${esc(p.img)}" alt="" onload="var s=this.previousElementSibling; if(s) s.style.display='none'" onerror="this.style.display='none'"></span>`;
+  }
+  return svgMarkup;
 }
 
-/* ── DIY ingredient renders (natural jars / bottles) ── */
 function diyVisual(it){
   if(it.img) return `<img src="${esc(it.img)}" alt="" style="height:96px;width:auto;object-fit:contain">`;
   const n=(it.en||'').toLowerCase();
@@ -446,37 +446,8 @@ function setFilter(f){activeFilter=f;renderFilters();renderProducts();if(f==="di
 function quizResult(t){const box=document.getElementById("quizResult");box.style.display="block";box.textContent=t==="low"?tr("quizLow"):t==="normal"?tr("quizNormal"):tr("quizHigh")}
 function setLang(lang,btn){currentLang=lang;document.documentElement.lang=lang;document.querySelectorAll(".lang button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");document.querySelectorAll("[data-en]").forEach(el=>el.innerHTML=el.getAttribute("data-"+lang));renderFilters();renderProducts();renderDiy();document.getElementById("quizResult").style.display="none"}
 
-/* ── admin-published data (amazon-data.json) overrides defaults ── */
-async function loadAdminData(){
-  try{
-    const resp=await fetch("amazon-data.json",{cache:"no-cache"});
-    if(!resp.ok) throw new Error("not published yet");
-    const live=await resp.json();
-    if(Array.isArray(live.products)&&live.products.length){products.length=0;products.push(...live.products)}
-    if(Array.isArray(live.diy)&&live.diy.length){diyItems.length=0;diyItems.push(...live.diy)}
-    if(live.copy) applyCopy(live.copy);
-  }catch(e){/* fall back to built-in defaults */}
-}
-function applyCopy(copy){
-  const setB=(sel,key,first)=>{
-    const el=first?document.querySelector(sel):document.querySelectorAll(sel)[0];
-    if(!el) return;
-    if(copy[key+"_en"]) el.setAttribute("data-en",copy[key+"_en"]);
-    if(copy[key+"_fr"]) el.setAttribute("data-fr",copy[key+"_fr"]);
-    el.innerHTML=copy[key+"_"+currentLang]||el.innerHTML;
-  };
-  setB(".hero h1","hero_title",true);
-  setB(".hero p","hero_sub",true);
-  setB(".section .lead","start",false);
-  const disc=document.querySelector(".disclosure span");
-  if(disc){
-    if(copy.disclosure_en) disc.setAttribute("data-en"," "+copy.disclosure_en);
-    if(copy.disclosure_fr) disc.setAttribute("data-fr"," "+copy.disclosure_fr);
-    disc.innerHTML=" "+(copy["disclosure_"+currentLang]||disc.textContent.trim());
-  }
-}
 
-loadAdminData().then(()=>{renderFilters();renderProducts();renderDiy()});
+renderFilters();renderProducts();renderDiy();
 </script>
 </body>
 </html>
