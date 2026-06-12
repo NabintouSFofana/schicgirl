@@ -1,9 +1,9 @@
 # Schicgirl™
+<img width="702" height="732" alt="image" src="https://github.com/user-attachments/assets/de5e6c4e-a8a2-4a15-a32e-0a666561ab29" />
 
 A complete, bilingual (🇫🇷 / 🇬🇧) digital storefront and toolset for a Type 4 natural-hair brand — built as hand-written HTML/CSS/JavaScript, with no framework and no build step.
 
-**Live:** https://schicgirl.me · **Link-in-bio:** https://link.schicgirl.me
-
+**Live:** https://schicgirl.me 
 > Every page is a single, self-contained `.html` file. Open it, refresh the tab, see the change. The whole site deploys as static files, yet it still does real work: lead capture, booking, an AI hair assistant, diagnostics, and a bilingual product catalog.
 
 ---
