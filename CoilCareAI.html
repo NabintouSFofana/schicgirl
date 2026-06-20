@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<!--
+  ─────────────────────────────────────────────────────────────
+  CoilCare AI™ · l'app que j'ai construite pour mes cheveux Type 4
+  © 2024–2026 Schicgirl™
+
+  Construit à la main, ligne par ligne. Pas de framework, pas de build —
+  un seul fichier HTML qui fait le travail. La data vit dans localStorage,
+  l'IA vit dans l'Anthropic Claude API, et tout fonctionne hors-ligne sauf
+  le chat.
+
+  Reproduction et redistribution interdites sans autorisation écrite.
+  Pour licences : contacte.schicgirl@gmail.com
+  Portfolio : https://schicgirl.me
+  ─────────────────────────────────────────────────────────────
+-->
+<html lang="en" id="root">
+<head>
+<meta charset="UTF-8"/>
+
+<!-- Auteur & propriété -->
+<meta name="author" content="Schicgirl">
+<meta name="copyright" content="© 2024–2026 Schicgirl™. All rights reserved.">
+<meta name="robots" content="index, follow, noarchive, nosnippet">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#3D1F0D"/>
+
+<title>CoilCare AI™ — Your Type 4 Hair Best Friend</title>
+<meta name="description" content="Conversational AI hair assistant for Type 4 coily and kinky hair. Built by Schicgirl for Schicgirl.">
+
+<!-- Open Graph (when shared on Facebook, WhatsApp, etc.) -->
+<meta property="og:title" content="CoilCare AI™ — Your Type 4 Hair Best Friend">
+<meta property="og:description" content="The AI built for coils. Personalised hair advice for 4A, 4B, 4C.">
+<meta property="og:type" content="website">
+
+<!-- Favicon : SVG inline pour éviter une requête réseau supplémentaire.
+     Un cercle doré avec un coil stylisé — la marque Schicgirl en miniature. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23C9934A'/><stop offset='1' stop-color='%23A06D28'/></linearGradient></defs><circle cx='32' cy='32' r='30' fill='url(%23g)'/><text x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='600' fill='%23FDF6EE' font-style='italic'>S</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23C9934A'/><stop offset='1' stop-color='%23A06D28'/></linearGradient></defs><circle cx='32' cy='32' r='30' fill='url(%23g)'/><text x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='600' fill='%23FDF6EE' font-style='italic'>S</text></svg>">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/CoilCareAI.css" />
+</head>
+<body>
+<div id="app">
+
+<!-- ══════════════════════
+  ONBOARDING
+══════════════════════ -->
+<div class="screen" id="s-onboard">
+  <div class="ob-bar"><div class="ob-bar-fill" id="ob-fill"></div></div>
+  <div class="ob-slides">
+
+    <!-- SLIDE 0: Welcome -->
+    <div class="ob-slide on" id="obs0">
+      <svg class="ob-coil" width="128" height="128" viewBox="0 0 128 128" fill="none">
+        <circle cx="64" cy="64" r="62" fill="rgba(247,237,227,0.07)" stroke="rgba(201,147,74,0.26)" stroke-width="1"/>
+        <path d="M64 94 Q64 66 82 66 Q100 66 100 82 Q100 98 82 98 Q73 98 73 90 Q73 82 82 82 Q87 82 87 86" stroke="#C9934A" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M47 80 Q47 62 60 62 Q73 62 73 73 Q73 84 60 84 Q54 84 54 78" stroke="#E8956D" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M33 66 Q33 53 42 53 Q51 53 51 61 Q51 69 42 69 Q38 69 38 65" stroke="rgba(247,237,227,0.58)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="64" cy="31" r="7" fill="#C9934A" opacity="0.52"/>
+        <circle cx="50" cy="38" r="4.5" fill="#E8956D" opacity="0.44"/>
+        <circle cx="78" cy="38" r="4.5" fill="#E8956D" opacity="0.44"/>
+      </svg>
+      <h1 class="ob-h">Finally. An AI that <em>gets</em> your coils.</h1>
+      <p class="ob-p">Your Type 4 hair best friend — powered by AI, built with love for 4A, 4B, and 4C naturals.</p>
+      <button class="ob-cta" onclick="NS()">Let's get started →</button>
+    </div>
+
+    <!-- SLIDE 1: Name -->
+    <div class="ob-slide" id="obs1">
+      <div style="font-size:54px;margin-bottom:22px">🌿</div>
+      <h2 class="ob-h" style="font-size:36px">What should I <em>call you?</em></h2>
+      <p class="ob-p">Everything in this app will be personal, just for you.</p>
+      <input class="ob-inp" id="ob-name" placeholder="Your name" autocomplete="given-name"
+        onkeydown="if(event.key==='Enter')NS()"/>
+      <button class="ob-cta" style="margin-top:10px" onclick="NS()">Continue →</button>
+    </div>
+
+    <!-- SLIDE 2: Q1 -->
+    <div class="ob-slide" id="obs2">
+      <div class="ob-q-num">Question 1 of 8</div>
+      <h2 class="ob-q">What does a dry strand of your hair look like?</h2>
+      <p class="ob-qs">Look at a single natural shed strand</p>
+      <div class="ob-opts">
+        <button class="ob-opt" data-q="1" data-v="4C" onclick="selQ(this)"><span>⚡</span>Tight 'z' or zigzag — barely any curl shape</button>
+        <button class="ob-opt" data-q="1" data-v="4B" onclick="selQ(this)"><span>🌀</span>Dense coil, tightly wound</button>
+        <button class="ob-opt" data-q="1" data-v="4A" onclick="selQ(this)"><span>🔄</span>Tight spring coils with visible definition</button>
+        <button class="ob-opt" data-q="1" data-v="4mix" onclick="selQ(this)"><span>✨</span>Mix of patterns across my head</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Q2 -->
+    <div class="ob-slide" id="obs3">
+      <div class="ob-q-num">Question 2 of 8</div>
+      <h2 class="ob-q">Your hair shrinkage is approximately…</h2>
+      <p class="ob-qs">Compare stretched length to natural/shrunken length</p>
+      <div class="ob-opts">
+        <button class="ob-opt" data-q="2" data-v="low" onclick="selQ(this)"><span>📏</span>20–40% — I can still see my length</button>
+        <button class="ob-opt" data-q="2" data-v="med" onclick="selQ(this)"><span>📐</span>50–70% — significant shrinkage</button>
+        <button class="ob-opt" data-q="2" data-v="high" onclick="selQ(this)"><span>🎯</span>75%+ — major shrinkage</button>
+        <button class="ob-opt" data-q="2" data-v="extreme" onclick="selQ(this)"><span>🙈</span>90%+ — doesn't look long AT ALL</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Q3 -->
+    <div class="ob-slide" id="obs4">
+      <div class="ob-q-num">Question 3 of 8</div>
+      <h2 class="ob-q">Porosity test: drop a clean strand in water</h2>
+      <p class="ob-qs">Let it sit for 2–4 minutes</p>
+      <div class="ob-opts">
+        <button class="ob-opt" data-q="3" data-v="high" onclick="selQ(this)"><span>🏊</span>Sinks quickly — High Porosity</button>
+        <button class="ob-opt" data-q="3" data-v="normal" onclick="selQ(this)"><span>🌊</span>Floats in the middle — Normal Porosity</button>
+        <button class="ob-opt" data-q="3" data-v="low" onclick="selQ(this)"><span>🛁</span>Floats on top — Low Porosity</button>
+        <button class="ob-opt" data-q="3" data-v="unknown" onclick="selQ(this)"><span>🤷</span>Not sure — I'll test later</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Q4 -->
+    <div class="ob-slide" id="obs5">
+      <div class="ob-q-num">Question 4 of 8</div>
+      <h2 class="ob-q">Your strand thickness feels like…</h2>
+      <p class="ob-qs">Hold a single strand between your fingers</p>
+      <div class="ob-opts">
+        <button class="ob-opt" data-q="4" data-v="fine" onclick="selQ(this)"><span>🪡</span>Fine — almost invisible, like thread</button>
+        <button class="ob-opt" data-q="4" data-v="med" onclick="selQ(this)"><span>🧵</span>Medium — I can feel it but not thick</button>
+        <button class="ob-opt" data-q="4" data-v="coarse" onclick="selQ(this)"><span>🪢</span>Coarse — thick and wiry, strong</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Q5 -->
+    <div class="ob-slide" id="obs6">
+      <div class="ob-q-num">Question 5 of 8</div>
+      <h2 class="ob-q">Your scalp produces oil…</h2>
+      <div class="ob-opts">
+        <button class="ob-opt" data-q="5" data-v="oily" onclick="selQ(this)"><span>💦</span>A lot — oily within days</button>
+        <button class="ob-opt" data-q="5" data-v="normal" onclick="selQ(this)"><span>✅</span>Normal — balanced</button>
+        <button class="ob-opt" data-q="5" data-v="dry" onclick="selQ(this)"><span>🏜️</span>Very little — dry and flaky scalp</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Q6 -->
+    <div class="ob-slide" id="obs7">
+      <div class="ob-q-num">Question 6 of 8</div>
+      <h2 class="ob-q">Your biggest daily hair challenge?</h2>
+      <div class="ob-opts">
+        <button class="ob-opt" data-q="6" data-v="moisture" onclick="selQ(this)"><span>💧</span>Moisture retention — always dry</button>
+        <button class="ob-opt" data-q="6" data-v="breakage" onclick="selQ(this)"><span>💔</span>Breakage — breaks faster than it grows</button>
+        <button class="ob-opt" data-q="6" data-v="shrinkage" onclick="selQ(this)"><span>📉</span>Shrinkage — want my length to show</button>
+        <button class="ob-opt" data-q="6" data-v="tangles" onclick="selQ(this)"><span>🌪️</span>Tangles & knots — detangling is hard</button>
+        <button class="ob-opt" data-q="6" data-v="scalp" onclick="selQ(this)"><span>🧠</span>Scalp issues — itching/flaking/buildup</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: Q7 (multi) -->
+    <div class="ob-slide" id="obs8">
+      <div class="ob-q-num">Question 7 of 8 — pick all that apply</div>
+      <h2 class="ob-q">What are your hair goals?</h2>
+      <div class="ob-opts ob-multi">
+        <button class="ob-opt" data-q="7" data-v="length" onclick="selQM(this)"><span>📏</span>Length retention</button>
+        <button class="ob-opt" data-q="7" data-v="health" onclick="selQM(this)"><span>🌿</span>Overall hair health</button>
+        <button class="ob-opt" data-q="7" data-v="definition" onclick="selQM(this)"><span>✨</span>Better style definition</button>
+        <button class="ob-opt" data-q="7" data-v="scalp_h" onclick="selQM(this)"><span>🧖</span>Healthy scalp</button>
+        <button class="ob-opt" data-q="7" data-v="transition" onclick="selQM(this)"><span>✂️</span>Transitioning / big chop recovery</button>
+      </div>
+      <button class="ob-cta" style="margin-top:14px" onclick="NS()">Continue →</button>
+    </div>
+
+    <!-- SLIDE 9: Q8 -->
+    <div class="ob-slide" id="obs9">
+      <div class="ob-q-num">Question 8 of 8</div>
+      <h2 class="ob-q">How long have you been natural?</h2>
+      <div class="ob-opts">
+        <button class="ob-opt" data-q="8" data-v="newbie" onclick="selQ(this)"><span>🌱</span>0–6 months — just starting out</button>
+        <button class="ob-opt" data-q="8" data-v="learning" onclick="selQ(this)"><span>📚</span>1–3 years — still figuring it out</button>
+        <button class="ob-opt" data-q="8" data-v="seasoned" onclick="selQ(this)"><span>💫</span>3–7 years — know my hair mostly</button>
+        <button class="ob-opt" data-q="8" data-v="veteran" onclick="selQ(this)"><span>👑</span>7+ years — natural hair OG</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: Profile Reveal -->
+    <div class="ob-slide" id="obs10">
+      <div style="font-size:42px;margin-bottom:14px">🎉</div>
+      <h2 class="ob-h" style="font-size:32px;margin-bottom:14px">Meet your coils, <em id="rv-name">sis</em>.</h2>
+      <div class="rev-card">
+        <div class="rv-type" id="rv-type">4C</div>
+        <div class="rv-nick" id="rv-nick">The Fierce Kink</div>
+        <div class="rv-row"><span class="rv-l">Porosity</span><span class="rv-v" id="rv-por">High</span></div>
+        <div class="rv-row"><span class="rv-l">Strand</span><span class="rv-v" id="rv-thick">Coarse</span></div>
+        <div class="rv-row"><span class="rv-l">Shrinkage</span><span class="rv-v" id="rv-shrink">85%+</span></div>
+        <div class="rv-row"><span class="rv-l">Challenge</span><span class="rv-v" id="rv-chal">Moisture</span></div>
+        <div class="rv-note">✨ Your AI is now calibrated to your exact coil profile.</div>
+      </div>
+      <button class="ob-cta" style="margin-top:18px" onclick="finishOB()">Let's go, <span id="rv-name2">sis</span>! 🌿</button>
+    </div>
+  </div>
+  <div class="ob-dots" id="ob-dots"></div>
+</div>
+
+<!-- ══════════════════════
+  HOME
+══════════════════════ -->
+<div class="screen off" id="s-home">
+  <div class="hdr">
+    <div class="hdr-row">
+      <div><div class="hdr-greet" id="h-greet">Good morning ☀️</div><div class="hdr-name" id="h-name">Your coils are ready.</div></div>
+      <div class="av" onclick="go('settings')">👑</div>
+    </div>
+  </div>
+  <div class="sb">
+    <div class="px" style="padding-top:16px">
+      <div id="h-streak"></div>
+      <div class="wtip ani">
+        <div class="wtip-i">🌿</div>
+        <div class="wtip-t"><strong>Today's coil tip:</strong> <span id="h-tip">Seal your ends before bed — every night makes a difference.</span></div>
+      </div>
+    </div>
+    <div class="slbl px ani d1">✦ Dashboard</div>
+    <div class="hscroll ani d2">
+      <div class="dcard cdark" onclick="go('routines')">
+        <div class="dlbl">Next Wash Day</div>
+        <div class="dval" id="h-wash">—</div>
+        <div class="dsub" id="h-wash-s">Tap to schedule →</div>
+      </div>
+      <div class="dcard" style="background:linear-gradient(135deg,#F7EDE3,#FBF0E4)" onclick="go('profile')">
+        <div class="dlbl" style="color:var(--mu)">Hair Health</div>
+        <div style="display:flex;align-items:center;gap:10px;margin:4px 0">
+          <div class="sring">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(61,31,13,.1)" stroke-width="6"/>
+              <circle cx="30" cy="30" r="24" fill="none" stroke="#C9934A" stroke-width="6" stroke-linecap="round" stroke-dasharray="151" id="h-ring" stroke-dashoffset="100"/>
+            </svg>
+            <div class="sring-n" id="h-score" style="color:var(--p)">—</div>
+          </div>
+          <div><div class="dsub" style="color:var(--mu)">/100</div></div>
+        </div>
+        <div class="dsub" style="color:var(--mu)" id="h-score-l">Log to unlock →</div>
+      </div>
+      <div class="dcard cgold" onclick="go('journal')">
+        <div class="dlbl">Streak</div>
+        <div class="dval" id="h-streak-n">0 days</div>
+        <div class="dsub">Journal streak →</div>
+      </div>
+      <div class="dcard cdark" onclick="openChat()">
+        <div class="dlbl">AI Chats Left</div>
+        <div class="dval" id="h-chats">—</div>
+        <div class="dsub">Ask anything →</div>
+      </div>
+    </div>
+    <div class="slbl px ani d3" style="margin-top:18px">✦ Quick Actions</div>
+    <div class="qa-grid ani d4">
+      <div class="qa" onclick="openLog()"><div class="qa-i">📝</div><div class="qa-l">Log Today</div><div class="qa-s">How are your coils?</div></div>
+      <div class="qa" onclick="openChat()"><div class="qa-i">🤖</div><div class="qa-l">Ask AI</div><div class="qa-s">Instant answers</div></div>
+      <div class="qa" onclick="go('routines')"><div class="qa-i">🗓️</div><div class="qa-l">Wash Day</div><div class="qa-s">Schedule & plan</div></div>
+      <div class="qa" onclick="go('learn')"><div class="qa-i">📚</div><div class="qa-l">Learn</div><div class="qa-s">Type 4 knowledge</div></div>
+      <div class="qa" onclick="go('products')"><div class="qa-i">🛍️</div><div class="qa-l">Products</div><div class="qa-s">Trusted picks</div></div>
+      <div class="qa" onclick="go('decoder')"><div class="qa-i">🔬</div><div class="qa-l">Decoder</div><div class="qa-s">Ingredient check</div></div>
+    </div>
+    <div class="slbl px ani d5" style="margin-top:18px">✦ Coil Wisdom</div>
+    <div class="hscroll ani d5">
+      <div class="tip-card"><div class="tip-t">4C wisdom</div><div class="tip-q">"Detangle only on soaking wet hair with conditioner. Always."</div><div class="tip-b">— The golden rule of 4C care</div></div>
+      <div class="tip-card"><div class="tip-t">Moisture secret</div><div class="tip-q">"Water is the only true moisturizer. Everything else seals it in."</div><div class="tip-b">— Trichology 101</div></div>
+      <div class="tip-card"><div class="tip-t">Growth truth</div><div class="tip-q">"Your hair IS growing. Shrinkage isn't stunted growth — it's healthy elasticity."</div><div class="tip-b">— CoilCare reminder</div></div>
+      <div class="tip-card"><div class="tip-t">LOC method</div><div class="tip-q">"Liquid → Oil → Cream. The order matters more than the products."</div><div class="tip-b">— Moisture basics</div></div>
+    </div>
+    <div class="slbl px rowb" style="margin-top:18px">
+      <span>✦ Recent Logs</span>
+      <button class="btn bo bsm" onclick="go('journal')">See all</button>
+    </div>
+    <div id="h-logs" class="px"></div>
+    <div class="sp"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  CHAT
+══════════════════════ -->
+<div class="screen off" id="s-chat">
+  <div class="chat-hdr">
+    <div class="chat-av">🌿</div>
+    <div>
+      <div class="chat-name">CoilCare AI</div>
+      <div class="chat-st"><div class="odot"></div>Always here for your coils</div>
+    </div>
+    <button class="chat-x" onclick="go('home')">×</button>
+  </div>
+  <div class="ustrip off" id="u-strip">
+    <div><div class="uinfo"><span id="u-used">0</span>/<span id="u-max">10</span> free messages</div>
+    <div class="ubar"><div class="ufill" id="u-fill" style="width:0%"></div></div></div>
+    <button class="btn bg bsm" onclick="showUpgrade()">Upgrade</button>
+  </div>
+  <div class="chips-row" id="starters">
+    <div class="qchip" onclick="qs(this)">💧 Why won't my hair retain moisture?</div>
+    <div class="qchip" onclick="qs(this)">💔 My hair keeps breaking</div>
+    <div class="qchip" onclick="qs(this)">✨ Build me a wash day routine</div>
+    <div class="qchip" onclick="qs(this)">🌱 I just did my big chop</div>
+    <div class="qchip" onclick="qs(this)">❄️ Winter hair care tips for 4C</div>
+    <div class="qchip" onclick="qs(this)">📋 Analyze my product pantry</div>
+  </div>
+  <div class="msgs" id="msgs"></div>
+  <div class="chat-bar">
+    <div class="ciw">
+      <textarea id="cta" placeholder="Ask about your coils…" rows="1"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();doSend()}"
+        oninput="ar(this)"></textarea>
+    </div>
+    <button class="sbtn" id="sbtn" onclick="doSend()">→</button>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  PROFILE
+══════════════════════ -->
+<div class="screen off" id="s-profile">
+  <div class="phero">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,237,227,.4);margin-bottom:6px">Hair Profile</div>
+    <div class="ptype" id="p-type">4C</div>
+    <div class="pnick" id="p-nick">The Fierce Kink</div>
+    <div class="ppills" id="p-pills"></div>
+    <button class="ob-ghost" style="margin-top:14px;font-size:12.5px;padding:8px 20px" onclick="retakeQ()">Retake Quiz</button>
+  </div>
+  <div class="sb">
+    <div class="px" style="padding-top:18px">
+      <div class="slbl">✦ Your Goals</div>
+      <div id="p-goals" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px"></div>
+      <div class="slbl rowb"><span>✦ Product Pantry</span><button class="btn bg bsm" onclick="openAddP()">+ Add</button></div>
+      <div class="pcat-grid" style="margin-bottom:22px">
+        <div class="pcat" onclick="openPantry('Shampoos')"><div class="pcat-i">🧴</div><div class="pcat-n">Cleansers</div><div class="pcat-c" id="cnt-s">0</div></div>
+        <div class="pcat" onclick="openPantry('Conditioners')"><div class="pcat-i">💆</div><div class="pcat-n">Conditioners</div><div class="pcat-c" id="cnt-c">0</div></div>
+        <div class="pcat" onclick="openPantry('Leave-ins')"><div class="pcat-i">💧</div><div class="pcat-n">Leave-ins</div><div class="pcat-c" id="cnt-l">0</div></div>
+        <div class="pcat" onclick="openPantry('Stylers')"><div class="pcat-i">✨</div><div class="pcat-n">Stylers</div><div class="pcat-c" id="cnt-st">0</div></div>
+        <div class="pcat" onclick="openPantry('Oils')"><div class="pcat-i">🫙</div><div class="pcat-n">Oils & Butters</div><div class="pcat-c" id="cnt-o">0</div></div>
+        <div class="pcat" onclick="openPantry('Tools')"><div class="pcat-i">🪮</div><div class="pcat-n">Tools</div><div class="pcat-c" id="cnt-t">0</div></div>
+      </div>
+      <div class="slbl rowb"><span>✦ Length Tracker</span><button class="btn bo bsm" onclick="openGrow()">Log Length</button></div>
+      <div class="card cp" id="p-grow" style="margin-bottom:20px"><div class="empty"><div class="big">📏</div>No measurements yet.<br/><button class="btn bg bsm" style="margin-top:10px" onclick="openGrow()">Log My Length</button></div></div>
+      <div class="card cdark cp" style="margin-bottom:20px">
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,237,227,.4);margin-bottom:7px">AI Product Analysis</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:18px;color:#F7EDE3;margin-bottom:7px">Is your pantry working for you?</div>
+        <div style="font-size:13px;color:rgba(247,237,227,.6);margin-bottom:13px">Let AI review your products for gaps and recommendations specific to your Type 4 profile.</div>
+        <button class="ob-cta" style="font-size:13px;padding:11px 22px" onclick="analyzeP()">Analyze My Products</button>
+      </div>
+      <div class="sp"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  ROUTINES
+══════════════════════ -->
+<div class="screen off" id="s-routines">
+  <div class="hdr"><div class="hdr-row"><div><div class="hdr-name">My Routines</div><div class="hdr-greet">Your Type 4 wash day rituals</div></div></div></div>
+  <div class="sb">
+    <div class="px" style="padding-top:16px">
+      <div class="card cdark cp ani" style="margin-bottom:16px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="font-size:32px">✨</div>
+          <div><div style="font-family:'Playfair Display',Georgia,serif;font-size:16px;color:#F7EDE3;margin-bottom:3px">Build with AI</div><div style="font-size:12.5px;color:rgba(247,237,227,.58)">Get a routine for your exact profile.</div></div>
+        </div>
+        <button class="ob-cta" style="width:100%;padding:12px;text-align:center" onclick="aiRoutine()">✨ Generate My Routine</button>
+      </div>
+      <div class="slbl rowb"><span>✦ My Routines</span><button class="btn bg bsm" onclick="openNewR()">+ New</button></div>
+      <div id="r-list" style="margin-bottom:20px"></div>
+      <div class="slbl">✦ Wash Day Calendar</div>
+      <div class="card cp ani d2" id="r-cal" style="margin-bottom:20px"></div>
+      <div class="slbl">✦ Method Library</div>
+      <div id="r-methods"></div>
+      <div class="sp"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  LEARN
+══════════════════════ -->
+<div class="screen off" id="s-learn">
+  <div class="learn-top">
+    <div class="hdr-name">Knowledge Hub</div>
+    <div class="sbar"><span style="font-size:15px;color:var(--mu)">🔍</span><input id="lq" placeholder="Ask anything about Type 4 hair…" oninput="fArts()" onkeydown="if(event.key==='Enter')lqSend()"/></div>
+  </div>
+  <div class="ctabs" id="l-cats" style="padding-bottom:8px;border-bottom:1px solid var(--st)"></div>
+  <div class="sb" style="padding-top:11px"><div id="arts" class="px"></div><div class="sp"></div></div>
+</div>
+
+<!-- ══════════════════════
+  JOURNAL
+══════════════════════ -->
+<div class="screen off" id="s-journal">
+  <div class="hdr">
+    <div class="rowb">
+      <div class="hdr-name">Hair Journal</div>
+      <button class="btn bg bsm" onclick="openLog()">+ Log</button>
+    </div>
+    <div class="jtabs" style="margin:10px -18px 0;padding:0 18px">
+      <button class="jtab on" onclick="jTab('log',this)">Daily Log</button>
+      <button class="jtab" onclick="jTab('photos',this)">Photos</button>
+      <button class="jtab" onclick="jTab('growth',this)">Growth</button>
+      <button class="jtab" onclick="jTab('products',this)">Products</button>
+    </div>
+  </div>
+  <div class="sb" style="padding-top:12px">
+    <div id="jv-log" class="px"><div id="j-logs"></div></div>
+    <div id="jv-photos" class="off"><div class="pgrid" id="j-photos"></div></div>
+    <div id="jv-growth" class="off px"><div id="j-grow"></div></div>
+    <div id="jv-products" class="off px"><div id="j-perfs"></div></div>
+    <div class="sp"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  PRODUCTS — Curated Type 4 brand picks
+══════════════════════ -->
+<div class="screen off" id="s-products">
+  <div class="hdr">
+    <button class="sback" onclick="go('home')" style="margin-bottom:8px">← Home</button>
+    <div class="rowb">
+      <div>
+        <div class="hdr-name">Products I Trust</div>
+        <div style="font-size:12.5px;color:var(--mu);margin-top:3px">Curated picks for Type 4 coils.</div>
+      </div>
+    </div>
+    <div class="ctabs" id="p-cats" style="margin-top:12px;padding-bottom:8px"></div>
+  </div>
+  <div class="sb" style="padding-top:11px">
+    <div id="p-grid" class="px"></div>
+    <div class="sp"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  DECODER — Ingredient lookup
+══════════════════════ -->
+<div class="screen off" id="s-decoder">
+  <div class="hdr">
+    <button class="sback" onclick="go('home')" style="margin-bottom:8px">← Home</button>
+    <div class="hdr-name">Ingredient Decoder</div>
+    <div style="font-size:12.5px;color:var(--mu);margin-top:3px">Search any ingredient. Know what's in your products.</div>
+    <div class="sbar" style="margin-top:12px">
+      <span style="font-size:15px;color:var(--mu)">🔍</span>
+      <input id="dq" placeholder="e.g. glycerin, coconut oil, sulfate…" oninput="dSearch()"/>
+    </div>
+  </div>
+  <div class="sb" style="padding-top:11px">
+    <div id="d-results" class="px"></div>
+    <div class="sp"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  SETTINGS
+══════════════════════ -->
+<div class="screen off" id="s-settings">
+  <div class="hdr"><div class="hdr-name">Settings</div></div>
+  <div class="sb">
+    <div class="px" style="padding-top:16px">
+      <div class="card cdark cp" style="text-align:center;margin-bottom:16px">
+        <div style="font-size:46px;margin-bottom:9px">👑</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:22px;color:#F7EDE3" id="s-name">—</div>
+        <div style="font-size:13px;color:rgba(247,237,227,.48);margin-top:4px" id="s-type">Type 4 Natural</div>
+        <div style="margin-top:12px" id="s-plan-b"></div>
+      </div>
+      <div class="ssec" style="margin-bottom:13px">
+        <div class="ssec-h">AI Configuration</div>
+        <div class="srow" onclick="tApi()">
+          <div class="srow-i">🔑</div>
+          <div><div class="srow-l">Anthropic API Key</div><div class="srow-v" id="api-st">Not set — tap to add</div></div>
+          <div class="srow-a">→</div>
+        </div>
+        <div id="api-area" class="off" style="padding:0 16px 14px">
+          <div style="font-size:12px;color:var(--mu);margin-bottom:8px;line-height:1.65">Get your key at <strong>console.anthropic.com</strong> — stored locally on your device only.</div>
+          <input type="password" class="api-inp" id="api-inp" placeholder="sk-ant-api03-..."/>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn bg bsm" onclick="saveKey()">Save Key</button>
+            <button class="btn bo bsm" onclick="clearKey()">Clear</button>
+          </div>
+        </div>
+      </div>
+      <div class="ssec" style="margin-bottom:13px">
+        <div class="ssec-h">Subscription</div>
+        <div class="srow" onclick="showUpgrade()">
+          <div class="srow-i">✨</div>
+          <div><div class="srow-l" id="s-plan">Free Plan</div><div class="srow-v" id="s-plan-s">10 AI messages/month</div></div>
+          <div class="srow-a">→</div>
+        </div>
+      </div>
+      <div class="ssec" style="margin-bottom:13px">
+        <div class="ssec-h">Preferences</div>
+        <div class="srow">
+          <div class="srow-i">🌓</div><div class="srow-l">Dark Mode</div>
+          <label class="tog"><input type="checkbox" id="tog-dark" onchange="tDark(this.checked)"/><span class="tog-sl"></span></label>
+        </div>
+        <div class="srow">
+          <div class="srow-i">📏</div><div class="srow-l">Length Units</div><div class="srow-v" id="s-units">Inches</div>
+          <button class="btn bo bsm" onclick="sUnits()">Switch</button>
+        </div>
+      </div>
+      <div class="ssec" style="margin-bottom:13px">
+        <div class="ssec-h">Profile & Data</div>
+        <div class="srow" onclick="retakeQ()"><div class="srow-i">🔄</div><div class="srow-l">Retake Hair Quiz</div><div class="srow-a">→</div></div>
+        <div class="srow" onclick="expData()"><div class="srow-i">📥</div><div class="srow-l">Export My Data</div><div class="srow-a">→</div></div>
+        <div class="srow" onclick="if(confirm('Reset all CoilCare data?'))resetApp()"><div class="srow-i">🗑️</div><div class="srow-l" style="color:#c0392b">Reset App</div><div class="srow-a">→</div></div>
+      </div>
+      <div style="text-align:center;padding:14px 0;font-size:12px;color:var(--mu)">CoilCare AI™ v2.0 · Made with 🌿 for Type 4 naturals<br/>Your data stays on your device.</div>
+      <div class="sp"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  BOTTOM NAV
+══════════════════════ -->
+<nav id="nav">
+  <button class="nb on" id="nb-home" onclick="go('home')"><i>🏠</i>Home</button>
+  <button class="nb" id="nb-profile" onclick="go('profile')"><i>💆🏾‍♀️</i>My Hair</button>
+  <div class="fab-wrap"><div class="fab" onclick="openChat()">🌿</div></div>
+  <button class="nb" id="nb-learn" onclick="go('learn')"><i>📚</i>Learn</button>
+  <button class="nb" id="nb-journal" onclick="go('journal')"><i>📓</i>Journal</button>
+</nav>
+
+<!-- ══════════════════════
+  SHEETS
+══════════════════════ -->
+<!-- Log Sheet -->
+<div class="sheet" id="sh-log">
+  <div class="shdr"><button class="sback" onclick="cSh('log')">←</button><div class="stitle">Log Today's Hair</div><button class="btn bg bsm" onclick="saveLog()">Save</button></div>
+  <div class="sbody">
+    <div class="fg"><div class="fl">How are your coils today?</div>
+      <div class="mrow" id="log-states">
+        <div class="mc" data-v="💧" onclick="selSt(this)">💧 Moisturized</div>
+        <div class="mc" data-v="🔥" onclick="selSt(this)">🔥 Dry</div>
+        <div class="mc" data-v="✨" onclick="selSt(this)">✨ Defined</div>
+        <div class="mc" data-v="🌀" onclick="selSt(this)">🌀 Shrunken</div>
+        <div class="mc" data-v="💪" onclick="selSt(this)">💪 Thriving</div>
+      </div>
+    </div>
+    <div class="fg"><div class="fl">Rating</div><div class="stars" id="log-st"><span class="star" onclick="setSt(1)">★</span><span class="star" onclick="setSt(2)">★</span><span class="star" onclick="setSt(3)">★</span><span class="star" onclick="setSt(4)">★</span><span class="star" onclick="setSt(5)">★</span></div></div>
+    <div class="fg"><div class="fl">Products used</div><input type="text" class="fi" id="log-p" placeholder="e.g. Mielle Rosemary Oil, TGIN butter…"/></div>
+    <div class="fg"><div class="fl">Notes</div><textarea class="fi" id="log-n" placeholder="How did your hair feel? What did you do?" style="min-height:100px"></textarea></div>
+    <div class="fg"><div class="fl">Mood</div>
+      <div class="mrow" id="log-moods">
+        <div class="mc" data-v="😊" onclick="selMd(this)">😊 Confident</div>
+        <div class="mc" data-v="😤" onclick="selMd(this)">😤 Frustrated</div>
+        <div class="mc" data-v="😐" onclick="selMd(this)">😐 Neutral</div>
+        <div class="mc" data-v="💕" onclick="selMd(this)">💕 Loving it</div>
+      </div>
+    </div>
+    <div class="fg"><div class="fl">Photo (optional)</div>
+      <label class="btn bo bfull" style="cursor:pointer">📸 Add Photo<input type="file" accept="image/*" style="display:none" onchange="addLP(this)"/></label>
+      <div id="lp-prev"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Product Sheet -->
+<div class="sheet" id="sh-prod">
+  <div class="shdr"><button class="sback" onclick="cSh('prod')">←</button><div class="stitle" id="sh-prod-t">Add Product</div><button class="btn bg bsm" onclick="saveProd()">Save</button></div>
+  <div class="sbody">
+    <div class="fg"><div class="fl">Category</div>
+      <select class="fi" id="pr-cat"><option value="Shampoos">Cleanser/Shampoo</option><option value="Conditioners">Conditioner/Deep Treatment</option><option value="Leave-ins">Leave-in Conditioner</option><option value="Stylers">Styler/Curl Cream</option><option value="Oils">Oil/Butter</option><option value="Tools">Tool/Accessory</option></select>
+    </div>
+    <div class="fg"><div class="fl">Product Name *</div><input type="text" class="fi" id="pr-nm" placeholder="e.g. SheaMoisture Curl Smoothie"/></div>
+    <div class="fg"><div class="fl">Brand</div><input type="text" class="fi" id="pr-br" placeholder="e.g. SheaMoisture"/></div>
+    <div class="fg"><div class="fl">Emoji</div><input type="text" class="fi" id="pr-em" placeholder="🫙" style="max-width:72px;text-align:center;font-size:22px"/></div>
+    <div class="fg"><div class="fl">Rating</div><div class="stars" id="pr-st"><span class="star" onclick="setPSt(1)">★</span><span class="star" onclick="setPSt(2)">★</span><span class="star" onclick="setPSt(3)">★</span><span class="star" onclick="setPSt(4)">★</span><span class="star" onclick="setPSt(5)">★</span></div></div>
+    <div class="fg"><div class="fl">Notes</div><textarea class="fi" id="pr-no" placeholder="How does it work for your coils?"></textarea></div>
+  </div>
+</div>
+
+<!-- Growth Sheet -->
+<div class="sheet" id="sh-grow">
+  <div class="shdr"><button class="sback" onclick="cSh('grow')">←</button><div class="stitle">Log Hair Length</div><button class="btn bg bsm" onclick="saveGrow()">Save</button></div>
+  <div class="sbody">
+    <div style="text-align:center;color:var(--mu);font-size:13.5px;line-height:1.7;margin-bottom:18px">Measure your hair stretched from root to tip</div>
+    <div class="fg"><div class="fl">Crown Length (<span id="g-unit">in</span>)</div><input type="number" class="fi" id="g-cr" placeholder="0" step="0.5" min="0" style="max-width:100px"/></div>
+    <div class="fg"><div class="fl">Sides</div><input type="number" class="fi" id="g-si" placeholder="0" step="0.5" min="0" style="max-width:100px"/></div>
+    <div class="fg"><div class="fl">Back</div><input type="number" class="fi" id="g-ba" placeholder="0" step="0.5" min="0" style="max-width:100px"/></div>
+    <div class="fg"><div class="fl">Notes</div><textarea class="fi" id="g-no" placeholder="Any observations?"></textarea></div>
+  </div>
+</div>
+
+<!-- Routine Sheet -->
+<div class="sheet" id="sh-routine">
+  <div class="shdr"><button class="sback" onclick="cSh('routine')">←</button><div class="stitle">New Routine</div><button class="btn bg bsm" onclick="saveR()">Save</button></div>
+  <div class="sbody">
+    <div class="fg"><div class="fl">Name</div><input type="text" class="fi" id="r-nm" placeholder="e.g. Sunday Reset"/></div>
+    <div class="fg"><div class="fl">Type</div>
+      <select class="fi" id="r-ty"><option>Wash Day</option><option>Co-wash</option><option>Refresh Day</option><option>Deep Treatment</option><option>Protective Style Prep</option><option>Scalp Care</option></select>
+    </div>
+    <div class="fg"><div class="fl">Steps</div>
+      <div id="r-steps" style="margin-bottom:9px"></div>
+      <select class="fi" id="r-step-sel" style="margin-bottom:8px">
+        <option value="">— Add a step —</option>
+        <option>Pre-poo Treatment</option><option>Detangle</option><option>Clarifying Shampoo</option>
+        <option>Moisturizing Shampoo</option><option>Co-wash</option>
+        <option>Deep Condition (heat)</option><option>Deep Condition (no heat)</option>
+        <option>Protein Treatment</option><option>Apply Leave-in</option>
+        <option>LOC Method</option><option>LCO Method</option>
+        <option>Seal with Oil</option><option>Seal with Butter</option>
+        <option>Style: Twist-out</option><option>Style: Braid-out</option>
+        <option>Style: Wash-n-go</option><option>Air Dry</option>
+        <option>Diffuse</option><option>Scalp Massage</option>
+      </select>
+      <button class="btn bo bfull bsm" onclick="addRS()">+ Add Step</button>
+    </div>
+    <div class="fg"><div class="fl">Duration</div><input type="text" class="fi" id="r-du" placeholder="e.g. 2 hours"/></div>
+  </div>
+</div>
+
+<!-- Pantry Sheet -->
+<div class="sheet" id="sh-pantry">
+  <div class="shdr"><button class="sback" onclick="cSh('pantry')">←</button><div class="stitle" id="sh-pantry-t">Products</div><button class="btn bg bsm" onclick="openAddP()">+ Add</button></div>
+  <div class="sbody" id="sh-pantry-b"></div>
+</div>
+
+<!-- Article Reader -->
+<div id="reader">
+  <div class="reader-hdr">
+    <button class="rback" onclick="cRdr()">←</button>
+    <div class="rprog"><div class="rpfill" id="rpf" style="width:0%"></div></div>
+    <button class="btn bg bsm" onclick="artAI()">Ask AI →</button>
+  </div>
+  <div class="rbody" id="rdr-body"></div>
+</div>
+
+<!-- Upgrade Modal -->
+<div class="mov off" id="upgrade-modal">
+  <div class="msheet" style="animation:slideUp .35s cubic-bezier(.4,0,.2,1)">
+    <div class="mhandle"></div>
+    <div style="text-align:center;margin-bottom:18px">
+      <div style="font-size:44px;margin-bottom:9px">🌿</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:5px">Unlock Your Full Journey</div>
+      <div style="font-size:14px;color:var(--mu);line-height:1.65">Give your coils everything they deserve.</div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--st)"><span style="font-size:18px;width:26px;text-align:center">🤖</span><div><div style="font-size:13.5px;font-weight:600;color:var(--ink)">Unlimited AI Conversations</div><div style="font-size:11.5px;color:var(--mu)">No limits, ever</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--st)"><span style="font-size:18px;width:26px;text-align:center">📸</span><div><div style="font-size:13.5px;font-weight:600;color:var(--ink)">Full Photo Journal</div><div style="font-size:11.5px;color:var(--mu)">Track your visual progress</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--st)"><span style="font-size:18px;width:26px;text-align:center">📏</span><div><div style="font-size:13.5px;font-weight:600;color:var(--ink)">Growth Tracker + AI Predictions</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0"><span style="font-size:18px;width:26px;text-align:center">📚</span><div><div style="font-size:13.5px;font-weight:600;color:var(--ink)">Full Knowledge Library</div></div></div>
+    </div>
+    <div class="pcard best" onclick="sPlan('monthly')"><div class="pname">Monthly</div><div class="pprice">$9.99<span>/month</span></div><div class="pperk">Unlimited AI chat</div><div class="pperk">All features · Cancel anytime</div></div>
+    <div class="pcard best" onclick="sPlan('yearly')" style="margin-top:3px"><div class="pbadge">Save $40</div><div class="pname">Yearly</div><div class="pprice">$79.99<span>/year</span></div><div class="pperk">Everything in Monthly</div><div class="pperk">Annual AI hair review</div></div>
+    <div style="display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--st)">
+      <input class="cinp" id="promo" placeholder="Already subscribed? Enter code"/>
+      <button class="btn bg bsm" onclick="actCode()">Activate</button>
+    </div>
+    <button class="btn bo bfull" style="margin-top:11px" onclick="cMod()">Maybe later</button>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script src="assets/js/CoilCareAI.page.js"></script>
+
+<footer class="sg-foot">© 2024–2026 Schicgirl™</footer>
+
+
+</body>
+</html>

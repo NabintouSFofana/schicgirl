@@ -1,0 +1,56 @@
+/*
+  SCHICGIRL - coiffures.css (extracted from coiffures.html)
+  (c) 2024-2026 Schicgirl.
+*/
+:root{--bg:#fdf8f2;--ink:#2d1a0e;--ink-soft:#5a3a22;--muted:rgba(45,26,14,.6);--gold:#c9934a;--gold-deep:#a06d28;--gold-lt:#e8c07e;--gold-pale:#f5e8d0;--rose:#e8b4a0;--rose-deep:#c47a65;--cream:rgba(255,248,238,.9);--glass:rgba(255,252,246,.82);--stroke:rgba(201,147,74,.22);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif;--shadow:0 2px 4px rgba(62,38,28,.06),0 8px 20px rgba(62,38,28,.1),0 24px 48px -12px rgba(62,38,28,.14);--shadow-warm:0 1px 2px rgba(62,38,28,.04),0 6px 18px rgba(201,147,74,.1),0 18px 38px -10px rgba(201,147,74,.12);--r:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);min-height:100vh;padding:0 18px 120px;background:radial-gradient(ellipse 80% 55% at 0% 0%,rgba(232,180,160,.45) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(237,217,176,.55) 0%,transparent 50%),linear-gradient(160deg,#fdf6ee 0%,#f8ece0 100%);background-attachment:fixed;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:560px;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 0 0}
+.back{font-size:13px;font-weight:600;color:var(--gold-deep);text-decoration:none}
+.back:hover{text-decoration:underline}
+.lang-toggle{display:flex;background:rgba(201,147,74,.1);border-radius:100px;padding:3px;gap:2px}
+.lang-btn{padding:6px 14px;border:none;border-radius:100px;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);letter-spacing:.05em;transition:all .2s}
+.lang-btn.is-active{background:var(--gold);color:#fff;box-shadow:0 2px 8px rgba(201,147,74,.4)}
+.hero{text-align:center;padding:20px 0 6px}
+.cover{width:200px;aspect-ratio:3/4;object-fit:cover;border-radius:16px;box-shadow:var(--shadow);margin:0 auto 18px;display:block;border:1px solid var(--stroke);background:linear-gradient(135deg,var(--gold-pale),rgba(201,147,74,.25))}
+.cover-fb{width:200px;aspect-ratio:3/4;border-radius:16px;margin:0 auto 18px;background:linear-gradient(135deg,var(--gold-pale),rgba(201,147,74,.3));display:flex;align-items:center;justify-content:center;font-size:54px;color:var(--gold);box-shadow:var(--shadow)}
+.preview-img{width:100%;border-radius:12px;margin:12px 0 0;cursor:zoom-in;display:block;box-shadow:0 6px 18px rgba(62,38,28,.12);background:var(--gold-pale)}
+.preview-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px;font-style:italic}
+.prev-lightbox{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(45,26,14,.86);backdrop-filter:blur(6px)}
+.prev-lightbox.open{display:flex}
+.prev-lightbox img{max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.prev-lightbox .x{position:absolute;top:14px;right:18px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;background:rgba(255,255,255,.12);border-radius:50%;cursor:pointer}
+.badge{display:inline-block;background:var(--gold-pale);color:var(--gold-deep);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:12px}
+h1{font-family:var(--serif);font-size:clamp(30px,8vw,40px);font-weight:600;line-height:1.12;margin-bottom:10px}
+h1 .accent{color:var(--gold-deep);font-style:italic}
+.lead{font-size:16px;color:var(--ink-soft);line-height:1.55;max-width:440px;margin:0 auto}
+.section{background:var(--glass);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.9);border-radius:var(--r);padding:22px 22px;box-shadow:var(--shadow-warm);margin-top:18px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px}
+h2{font-family:var(--serif);font-size:24px;font-weight:600;margin-bottom:12px;line-height:1.2}
+.pain{background:linear-gradient(135deg,rgba(232,180,160,.18),rgba(245,232,208,.4));border:1px solid var(--stroke);border-radius:var(--r);padding:20px 22px;margin-top:18px;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.pain strong{color:var(--ink)}
+ul{list-style:none}
+.check li{position:relative;padding-left:30px;margin:11px 0;font-size:15px;line-height:1.5}
+.check li::before{content:"✓";position:absolute;left:0;top:-1px;width:21px;height:21px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.check li b{color:var(--gold-deep)}
+.inside li{position:relative;padding-left:18px;margin:9px 0;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
+.inside li::before{content:"·";position:absolute;left:4px;color:var(--gold);font-weight:700}
+.inside li b{color:var(--ink)}
+.forwho{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.faq dt{font-weight:700;margin-top:15px;font-size:15px}
+.faq dd{margin:4px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.55}
+.pricewrap{text-align:center;margin-top:8px}
+.price{font-family:var(--serif);font-size:42px;font-weight:600;color:var(--gold-deep);line-height:1}
+.price-cfa{font-size:14px;color:var(--muted);margin-top:4px}
+.price-note{font-size:12px;color:var(--muted);margin-top:8px}
+.guarantee{font-size:13px;color:var(--ink-soft);text-align:center;margin-top:14px;line-height:1.5}
+.cta-big{display:block;text-align:center;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:.02em;padding:17px 24px;border-radius:100px;margin-top:16px;box-shadow:0 8px 24px rgba(201,147,74,.42);transition:filter .2s,transform .1s}
+.cta-big:hover{filter:brightness(1.08)}
+.cta-big:active{transform:scale(.99)}
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,250,243,.96);backdrop-filter:blur(12px);border-top:1px solid var(--stroke);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 -6px 20px rgba(62,38,28,.1)}
+.stickybar .sp{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--gold-deep);line-height:1}
+.stickybar .scfa{font-size:10px;color:var(--muted)}
+.stickybar a{flex:1;max-width:300px;text-align:center;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:13px 18px;border-radius:100px;box-shadow:0 6px 16px rgba(201,147,74,.4)}
+.footer{text-align:center;margin-top:30px;font-size:11px;color:var(--muted)}
+.hide{display:none!important}

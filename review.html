@@ -1,0 +1,122 @@
+<!doctype html>
+<!--
+═══════════════════════════════════════════════════════════════════
+  SCHICGIRL — Laisser un avis / Leave a review
+  © 2024–2026 Schicgirl. All rights reserved.
+
+  ─────────────────────────────────────────────────────────────────
+  CONFIGURATION SUPABASE (à faire une seule fois)
+  ─────────────────────────────────────────────────────────────────
+  1) Dans Supabase → SQL Editor, exécute :
+
+     create table if not exists reviews (
+       id uuid primary key default gen_random_uuid(),
+       created_at timestamptz default now(),
+       author text not null,
+       text text not null,
+       rating int not null default 5,
+       lang text default 'fr',
+       approved boolean not null default false
+     );
+     alter table reviews enable row level security;
+
+     -- Les visiteurs peuvent ENVOYER un avis (forcément non-approuvé) :
+     create policy "anon insert pending" on reviews
+       for insert to anon with check (approved = false);
+
+     -- Tout le monde peut LIRE uniquement les avis approuvés :
+     create policy "anon read approved" on reviews
+       for select to anon using (approved = true);
+
+  1bis) POUR LES PHOTOS (optionnel) — dans SQL Editor, exécute :
+
+     alter table reviews add column if not exists photo_url text;
+
+     insert into storage.buckets (id, name, public)
+     values ('review-photos','review-photos', true)
+     on conflict (id) do nothing;
+
+     create policy "anon upload review photos" on storage.objects
+       for insert to anon with check (bucket_id = 'review-photos');
+     create policy "public read review photos" on storage.objects
+       for select to public using (bucket_id = 'review-photos');
+
+  2) Remplace les 2 valeurs SUPABASE_URL / SUPABASE_KEY ci-dessous
+     (mêmes valeurs que dans index.html).
+
+  3) Modération : dans Supabase → Table Editor → reviews, passe
+     "approved" à true pour publier un avis sur le site.
+
+  Tant que ce n'est pas configuré, le formulaire bascule
+  automatiquement sur l'envoi par e-mail (mailto) — rien ne casse.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/logo2.png" />
+    <link rel="apple-touch-icon" href="assets/logo2.png" />
+    <title>Schicgirl — Laisse ton avis</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/review.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="lang-bar">
+        <div class="lang-toggle">
+          <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
+          <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
+        </div>
+      </div>
+
+      <div class="hero">
+        <img class="logo" src="assets/logo2.png" alt="Schicgirl" onerror="this.outerHTML='<div class=&quot;logo-fb&quot;>S</div>'" />
+        <h1 data-fr='Ton avis compte <span class="accent">énormément</span>' data-en='Your review means <span class="accent">everything</span>'>Ton avis compte <span class="accent">énormément</span></h1>
+        <p class="sub" data-fr="Raconte-moi ton expérience avec Schicgirl — ça aide d'autres femmes à oser prendre soin de leurs cheveux crépus." data-en="Tell me about your experience with Schicgirl — it helps other women take the leap and care for their coily hair.">Raconte-moi ton expérience avec Schicgirl — ça aide d'autres femmes à oser prendre soin de leurs cheveux crépus.</p>
+      </div>
+
+      <div class="card" id="formCard">
+        <div class="field">
+          <label data-fr="Ta note" data-en="Your rating">Ta note</label>
+          <div class="stars" id="stars">
+            <span class="star" data-v="1">★</span>
+            <span class="star" data-v="2">★</span>
+            <span class="star" data-v="3">★</span>
+            <span class="star" data-v="4">★</span>
+            <span class="star" data-v="5">★</span>
+          </div>
+        </div>
+        <div class="field">
+          <label data-fr="Ton prénom (ou initiales)" data-en="Your first name (or initials)">Ton prénom (ou initiales)</label>
+          <input type="text" id="author" maxlength="40" data-ph-fr="Ex : Awa K." data-ph-en="E.g. Awa K." placeholder="Ex : Awa K." />
+        </div>
+        <div class="field">
+          <label data-fr="Ton avis" data-en="Your review">Ton avis</label>
+          <textarea id="text" maxlength="400" data-ph-fr="Qu'est-ce qui a changé pour tes cheveux ?" data-ph-en="What changed for your hair?" placeholder="Qu'est-ce qui a changé pour tes cheveux ?"></textarea>
+        </div>
+        <div class="field">
+          <label data-fr="Ta photo (optionnel)" data-en="Your photo (optional)">Ta photo (optionnel)</label>
+          <input type="file" id="photo" accept="image/*" style="display:none" />
+          <button type="button" id="photoBtn" class="photo-btn" data-fr="📷 Ajouter une photo" data-en="📷 Add a photo">📷 Ajouter une photo</button>
+          <img id="photoPreview" class="photo-preview" alt="" />
+        </div>
+        <button class="btn" id="submit" data-fr="Envoyer mon avis" data-en="Send my review">Envoyer mon avis</button>
+        <div class="msg" id="msg"></div>
+        <p class="note" data-fr="Ton avis est relu avant publication. Merci pour ta confiance 💛" data-en="Your review is checked before it goes live. Thank you for your trust 💛">Ton avis est relu avant publication. Merci pour ta confiance 💛</p>
+      </div>
+
+      <div class="thanks" id="thanks">
+        <div class="big" data-fr="Merci infiniment 💛" data-en="Thank you so much 💛">Merci infiniment 💛</div>
+        <p data-fr="Ton avis a bien été envoyé. Il apparaîtra bientôt sur la page après validation." data-en="Your review has been sent. It will appear on the page soon after review.">Ton avis a bien été envoyé. Il apparaîtra bientôt sur la page après validation.</p>
+        <a class="back" href="https://schicgirl.me" data-fr="← Retour à Schicgirl" data-en="← Back to Schicgirl">← Retour à Schicgirl</a>
+      </div>
+
+      <div class="footer">© 2024–2026 Schicgirl</div>
+    </div>
+
+    <script src="assets/js/review.page.js"></script>
+  </body>
+</html>

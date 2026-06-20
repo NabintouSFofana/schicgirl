@@ -41,6 +41,14 @@ build/
 .env.local
 secrets.json
 
+# ─── Internal business material — NOT part of the public site ────────
+# Launch kits, backend scripts, private notes, email templates, keys.
+secrets and important/
+
+# ─── Local tooling (preview config, throwaway scripts) ───────────────
+.claude/
+_*.py
+
 # ─── Customer & business data exports — NEVER push these ────────────
 # If I ever export bookings, leads, subscribers, or messages from any
 # admin dashboard, the JSON ends up on my Downloads folder. These

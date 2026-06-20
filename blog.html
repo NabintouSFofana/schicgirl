@@ -1,0 +1,101 @@
+<!doctype html>
+<!--
+═══════════════════════════════════════════════════════════════════
+  SCHICGIRL — Blog index · schicgirl.me
+  © 2024–2026 Schicgirl. All rights reserved.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fr">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-3952317552342233">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3952317552342233" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo2.png" />
+  <link rel="apple-touch-icon" href="assets/logo2.png" />
+  <title>Schicgirl Blog — Natural Hair Tips for Type 4 Curls &amp; Coils</title>
+  <meta name="author" content="Schicgirl" />
+  <meta name="description" content="Clear, expert natural hair advice for Type 4 curls and coils: why coily hair is dry, porosity, the perfect wash day, the LOC method, protective styles, breakage, scalp care and night routines." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Schicgirl Blog — Natural Hair Tips" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://schicgirl.me/blog.html" />
+  <meta name="theme-color" content="#c9934a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+<div class="wrap wrap--blog">
+  <div class="topbar">
+    <a class="back" href="index.html" data-fr="← Retour à l'accueil" data-en="← Back to home">← Retour à l'accueil</a>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
+      <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <span class="eyebrow-badge" data-fr="Le blog Schicgirl" data-en="The Schicgirl blog">Le blog Schicgirl</span>
+    <h1 data-fr="Comprendre tes <span class='accent'>cheveux</span>" data-en="Understand your <span class='accent'>hair</span>">Comprendre tes <span class='accent'>cheveux</span></h1>
+    <p class="lead" data-fr="Des explications simples et concrètes pour les cheveux crépus, frisés et bouclés. Zéro jargon, que du utile." data-en="Simple, practical explanations for coily, kinky and curly hair. Zero jargon, only what works.">Des explications simples et concrètes pour les cheveux crépus, frisés et bouclés. Zéro jargon, que du utile.</p>
+  </header>
+
+  <!-- Swipeable hero carousel -->
+  <div class="hero-carousel">
+    <button class="hc-btn hc-prev" id="hcPrev" aria-label="Précédent">‹</button>
+    <div class="hc-track" id="hcTrack">
+      <div class="hc-slide"><img src="assets/blog/blog1.jpg" alt="Cheveux crépus naturels" loading="lazy" /><div class="hc-cap" data-fr="Tes boucles, ta couronne" data-en="Your curls, your crown">Tes boucles, ta couronne</div></div>
+      <div class="hc-slide"><img src="assets/blog/blog2.jpg" alt="Afro naturel" loading="lazy" /><div class="hc-cap" data-fr="Crépu, frisé, bouclé — tout est là" data-en="Coily, kinky, curly — it's all here">Crépu, frisé, bouclé — tout est là</div></div>
+      <div class="hc-slide"><img src="assets/blog/blog3.jpg" alt="Cheveux bouclés naturels" loading="lazy" /><div class="hc-cap" data-fr="La bonne méthode change tout" data-en="The right method changes everything">La bonne méthode change tout</div></div>
+      <div class="hc-slide"><img src="assets/blog/blog4.jpg" alt="Coiffure protectrice" loading="lazy" /><div class="hc-cap" data-fr="Type 4 · 4A · 4B · 4C" data-en="Type 4 · 4A · 4B · 4C">Type 4 · 4A · 4B · 4C</div></div>
+    </div>
+    <button class="hc-btn hc-next" id="hcNext" aria-label="Suivant">›</button>
+    <div class="hc-dots" id="hcDots"></div>
+  </div>
+
+  <div class="blog-layout">
+    <main class="blog-main">
+      <!-- post grid rendered by blog.js -->
+      <div id="sgGrid"></div>
+
+      <div class="ad-slot">
+        <div class="ad-label" data-fr="Publicité" data-en="Advertisement">Publicité</div>
+        <!-- ⬇ MANUAL AD UNIT · replace 0000000000 with YOUR slot ID (see ADSENSE-GUIDE.md). The same ID can be reused on every page. -->
+        <ins class="adsbygoogle" style="display:block"
+             data-ad-client="ca-pub-3952317552342233"
+             data-ad-slot="0000000000"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <section class="section" style="text-align:center">
+        <div class="eyebrow" data-fr="Va plus loin" data-en="Go further">Va plus loin</div>
+        <h2 data-fr="Prête à passer à l'action ?" data-en="Ready to take action?">Prête à passer à l'action ?</h2>
+        <p class="prose" style="margin-bottom:16px" data-fr="Les guides Schicgirl transforment ces conseils en plans pas à pas, avec check-lists et routines prêtes à suivre." data-en="The Schicgirl guides turn this advice into step-by-step plans, with checklists and ready-to-follow routines.">Les guides Schicgirl transforment ces conseils en plans pas à pas, avec check-lists et routines prêtes à suivre.</p>
+        <a class="btn" href="https://selar.com/m/schicgirl" target="_blank" rel="noopener" data-fr="Voir les guides →" data-en="See the guides →">Voir les guides →</a>
+      </section>
+    </main>
+
+    <!-- sidebar rendered by blog.js -->
+    <aside class="blog-aside" id="sgSidebar"></aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-divider"></div>
+    <nav class="footer-nav">
+      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
+      <a href="terms.html" data-fr="Conditions" data-en="Terms">Conditions</a>
+    </nav>
+    <p class="legal" data-fr="© 2024–2026 Schicgirl · Cheveux crépus Type 4 · 4A 4B 4C" data-en="© 2024–2026 Schicgirl · Type 4 coily hair · 4A 4B 4C">© 2024–2026 Schicgirl · Cheveux crépus Type 4 · 4A 4B 4C</p>
+  </footer>
+</div>
+
+<script src="assets/js/blog.js"></script>
+<script src="assets/js/blog.page.js"></script>
+</body>
+</html>

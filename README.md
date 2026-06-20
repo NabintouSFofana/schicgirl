@@ -1,190 +1,122 @@
 # Schicgirl™
+<img width="702" height="732" alt="image" src="https://github.com/user-attachments/assets/de5e6c4e-a8a2-4a15-a32e-0a666561ab29" />
 
-Source code for the Schicgirl natural hair brand. Six live products, one Amazon
-affiliate page, all hand-written HTML/CSS/JS.
+A complete, bilingual (🇫🇷 / 🇬🇧) digital storefront and toolset for a Type 4 natural-hair brand — built as hand-written HTML/CSS/JavaScript, with no framework and no build step.
 
-Live: https://link.schicgirl.me/
-
-## Files
-
-- **`index_link_in_bio.html`** — public link-in-bio page
-- **`index_link_in_bio_admin.html`** — full content editor (Brand, Hero, Gifts,
-  Shop, Tools, Amazon, Reviews, Social, Footer, Clicks, Visits, Settings)
-- **`index_CoilCareAI.html`** — chat assistant. Uses the Anthropic Claude API.
-  Users bring their own API key; it stays in their browser.
-- **`index_hydracheck.html`** — hair hydration diagnostic
-- **`index_hydracheck_admin.html`** — leads dashboard (search, filter,
-  edit, delete, status tags, notes, stats, backup/restore)
-- **`index_schicchat.html`** — bilingual hair diagnostic chatbot
-- **`index_schicchat_admin.html`** — leads dashboard backed by Google Sheets
-  (charts, search, filter, CSV export, PDF print)
-- **`index_consultation.html`** — booking page
-- **`index_consultation_admin.html`** — bookings dashboard (search, filter,
-  edit, delete, status tags, notes, stats, backup/restore, manual add)
-- **`schicgirl_amazon_affiliate_minisite_bilingual.html`** — Amazon affiliate page
-- **`index_amazon_admin.html`** — Amazon page editor (manage products,
-  DIY ingredients, copy, and affiliate tag — outputs `amazon-data.json`)
-- **`logo.png`**
-
-## Why no framework
-
-Every page is one HTML file. No build step, no `node_modules`, no version
-mismatches. I can edit a file, refresh the tab, and see what changed. When
-something breaks I open dev tools, not a stack trace from three layers down.
-
-The tradeoff is repetition — some CSS is duplicated across files. I'll
-consolidate when it actually hurts.
-
-## Bilingual (FR/EN)
-
-Most user-facing pages have a language toggle. The two translations live on
-the same elements as `data-en` and `data-fr` attributes — there's only ever
-one HTML to keep in sync, and the language switcher is ~10 lines of JS.
-
-## Admin pages — what each one does
-
-**Consultation admin** and **HydraCheck admin** share the same feature set:
-
-- Login with a SHA-256 hashed password + 5-attempt rate limit
-- 5 stat cards (Total / Nouvelles / Contactées / Payées / 30 derniers jours)
-- 30-day daily chart (CSS bars, no library)
-- Search across name, contact, problem, country, notes
-- Status filter (new / contacted / paid / done / cancelled)
-- Sortable columns
-- Per-row Voir / Edit / Delete buttons
-- Edit modal with all fields + private notes textarea
-- Manual-add button (for bookings/diagnostics that came through DM/WhatsApp)
-- Detail modal with copy-message button (pre-fills a follow-up template)
-- CSV export
-- JSON backup + restore (so you can move data between devices)
-- "Zone sensible" with safer-delete flow (export first)
-
-**SchicChat admin** is read-from-Google-Sheets — it shows leads collected by
-the diagnostic chatbot, with charts, search, filter, CSV export, and PDF
-printing. It already had most of the consistent feature set before I
-touched it.
-
-**Link-in-bio admin** is a full content editor for the public link-in-bio
-page. It has 13 tabs (Analytics, Brand, Hero, Gifts, Shop, Tools, Amazon,
-Reviews, Social, Footer, Clicks, Visits, Settings). You can change every
-visible element on the public page without touching code.
-
-## Email notifications when someone books
-
-The consultation page can send you an email every time a new booking
-comes in. To enable it:
-
-1. Open `index_consultation.html`
-2. Find this line (near the top of the `<script>`):
-   ```js
-   const FORWARD_EMAIL = "";
-   ```
-3. Replace `""` with your email, e.g.:
-   ```js
-   const FORWARD_EMAIL = "you@example.com";
-   ```
-4. Save and re-deploy.
-
-The first booking will trigger one confirmation email from Formsubmit
-(it's a one-time thing — just click the link). After that, every new
-booking sends you an email automatically with all the details formatted
-as a nice table.
-
-If the email fails for any reason, the booking still saves to the admin
-dashboard and the user still gets redirected to payment. No blocking.
-
-## Amazon admin — how the publish flow works
-
-The Amazon affiliate page works a bit differently from the others. It has
-*lots* of editable content (products, DIY items, copy, affiliate tag),
-which would be a nightmare to edit in raw HTML. So:
-
-- **`index_amazon_admin.html`** is where you edit everything
-- When you click "🚀 Télécharger amazon-data.json", it downloads a single
-  file with all your changes
-- You **replace `amazon-data.json` on your site** with the new one
-- The public Amazon page fetches that JSON on load and uses your data
-
-If `amazon-data.json` doesn't exist yet (initial deploy), the public page
-falls back to the 17 products and 10 DIY items hardcoded inside it — so
-the site is never broken, just shows the default content.
-
-The admin manages:
-
-- **Products tab** — search, filter by porosity, edit/delete each product
-  (Modifier opens a modal with all bilingual EN/FR fields), add new.
-  Every product can have a **product image**, either by URL (Amazon,
-  Cloudinary, anywhere) or by uploading a file from your computer.
-- **DIY tab** — same pattern for the ingredient library, also with image
-  per ingredient.
-- **Textes tab** — edit hero title, hero subtitle, "Start Here" intro,
-  affiliate disclosure (all bilingual)
-- **Réglages tab** — set your Amazon Associates tag once; it gets applied
-  to every product URL automatically at publish time. Also has full
-  JSON backup/restore and reset-to-defaults.
-
-### Product images — two ways
-
-When editing a product, you have a choice:
-
-1. **Paste an image URL** (preferred). Right-click any Amazon product
-   image, copy address, paste. Lightweight, served from Amazon's CDN, no
-   bloat to your `amazon-data.json`. Note that Amazon may block hotlinking
-   from some domains; if the image doesn't show on your live site, host
-   it elsewhere (Cloudinary, ImgBB, your own server) and use that URL.
-
-2. **Upload a file** (when you have custom imagery). Click "📁 Ou
-   télécharger un fichier", pick a file from your computer. It gets
-   converted to a base64 data URI and embedded directly in
-   `amazon-data.json`. Easy, but each upload adds ~140% of the file size
-   to your data file. The admin warns you if any image is bigger than
-   200 KB.
-
-If an image fails to load on the public page (broken URL, hotlink block,
-network issue), the card automatically falls back to the original emoji
-icon. Your site never shows a broken image box.
-
-## A note on auth
-
-Admin pages use SHA-256 hashed passwords with a 5-attempt rate limit,
-stored in `sessionStorage`. This is a **deterrent**. Anyone who knows
-what dev tools are can still bypass it. Don't put real customer data
-behind this without a real backend.
-
-When I migrate, I'll start with the consultation admin (it has actual
-booking info) and use Cloudflare Pages Functions. Everything else can
-wait.
-
-## CoilCare AI key
-
-CoilCare AI talks to `api.anthropic.com` directly from the browser. The
-user pastes their own key into the UI, it's saved to their
-`localStorage`, and the request includes the
-`anthropic-dangerous-direct-browser-access` header.
-
-I don't have a server, so I don't have anyone's key. If you fork this,
-get a key at console.anthropic.com.
-
-## Data storage
-
-All admin data (bookings, diagnostics, link-in-bio content) lives in
-`localStorage` on the device where you log in. This means:
-
-- ✅ Free, no backend needed
-- ❌ If you use the admin from your phone and your laptop, the two won't sync
-- ❌ Clearing browser data wipes everything
-
-Use the **Sauvegarde JSON** button regularly to download a backup. You can
-restore from a backup with the **Restaurer JSON** button on the same device,
-or move data between devices by exporting on one and importing on the other.
-
-## License
-
-MIT for the code. Everything brand-related (the Schicgirl name, logo, color
-palette as used here, written copy) is mine — see `LICENSE`.
-
-You can borrow the code. Don't borrow the brand.
+**Live:** https://schicgirl.me 
+> Every page is a single, self-contained `.html` file. Open it, refresh the tab, see the change. The whole site deploys as static files, yet it still does real work: lead capture, booking, an AI hair assistant, diagnostics, and a bilingual product catalog.
 
 ---
 
-[Nabintou S. Fofana](https://nabintousfofana.github.io/portfolio/) · 2024–present
+## What this is
+
+I build and maintain Schicgirl end-to-end as its **full-stack developer**. This repo is the full front end of the brand: the link-in-bio hub, six on-site sales pages, a freebie funnel with self-hosted PDF delivery, two diagnostic tools, a booking system, an AI assistant, and an Amazon affiliate mini-site. Each tool ships with a matching admin dashboard so leads and content can be managed without touching code.
+
+It's intentionally low-tech: static files that host anywhere and edit in minutes.
+
+---
+
+## The apps
+
+### Storefront & funnel
+| File | What it does |
+|---|---|
+| `index.html` | Public link-in-bio hub — a numbered conversion ladder (free guide → tools → proof → shop). |
+| `admin.html` | Visual editor for the link-in-bio: brand, hero, gifts, shop, tools, reviews, social, footer, plus click/visit analytics. |
+| `toolkit-landing.html` | Landing page for the free "Type 4 Kit" lead magnet (email/WhatsApp capture). |
+| `toolkit-landing_admin.html` | Subscriber dashboard for the freebie list. |
+| `hydratee.html`, `pousse.html`, `pellicules.html`, `coiffures.html`, `stop-cheveux-secs.html`, `transition.html` | Six branded ebook sales pages, each with an interior preview and FR/EN toggle. |
+| `pack-complet.html` | Sales page for the full 6-guide bundle. |
+
+### Tools
+| File | What it does |
+|---|---|
+| `CoilCareAI.html` | **CoilCare AI™** — a Type 4 hair assistant powered by the Anthropic Claude API. Users bring their own API key; it stays in their browser. |
+| `hydracheck.html` | **HydraCheck** — a hair hydration/porosity diagnostic. |
+| `hydracheck_admin.html` | Leads dashboard for HydraCheck (search, filter, edit, status tags, notes, stats, backup/restore). |
+| `schicchat.html` | **SchicChat** — a bilingual hair-diagnostic chatbot. |
+| `schicchat_admin.html` | Leads dashboard backed by Google Sheets (charts, search, filter, CSV export, print). |
+| `products.html` | **Amazon affiliate mini-site** — trusted picks sorted by porosity, a 60-second porosity quiz, and a DIY ingredient library. Bilingual. |
+| `products_admin.html` | Editor for the Amazon page (products, DIY items, copy, affiliate tag) with optional GitHub-API publishing. |
+
+### Booking & reviews
+| File | What it does |
+|---|---|
+| `consultation.html` | Hair-consultation booking page. |
+| `consultation_admin.html` | Bookings dashboard (search, filter, edit, status tags, notes, stats, manual add). |
+| `review.html` | "Leave a review" page; approved reviews surface on the link-in-bio. |
+
+### Free guides (self-hosted PDFs)
+| Path | What it does |
+|---|---|
+| `guides/` | The lead-magnet PDF library, served directly from the site after moving off Google Drive (quota limits). Four guides, each in FR + EN: the **Type 4 Hair Guide**, **Porosity Cheat Sheet**, **Hydration Checklist**, and **Wash-Day Checklist**. Stored under an unguessable subfolder so the files aren't trivially scrapeable. |
+
+### Assets
+| Path | What it does |
+|---|---|
+| `assets/` | Logos, favicons, ebook covers, gallery SVGs, product imagery, and page previews. |
+| `logo.png`, `CNAME` | Brand logo and the custom-domain record (`schicgirl.me`) for GitHub Pages. |
+
+---
+
+## Stack
+
+- **HTML, CSS, vanilla JavaScript** — no framework, no bundler, no `node_modules`.
+- **Supabase** — stores and serves customer reviews (`index.html`, `review.html`).
+- **Google Apps Script + Google Sheets** — a free serverless backend for signups and chat leads; the script is configured per deployment and kept out of the repo.
+- **Anthropic Claude API** — powers the CoilCare AI assistant (key stays client-side).
+- **GitHub Pages** — static hosting on the `schicgirl.me` custom domain, including the self-hosted guide PDFs.
+- **localStorage** — drives the admin dashboards and analytics, with JSON backup/restore.
+
+---
+
+## Why no framework
+
+Every page is one HTML file. No build step, no dependency tree, no version mismatches. I edit a file, refresh the tab, and see what changed; when something breaks I open dev tools, not a stack trace three layers down. It also means the whole site is portable — it runs on any static host (GitHub Pages, Netlify, a plain bucket).
+
+The tradeoff is repetition: some CSS and markup is duplicated across files. I consolidate when it actually starts to hurt, not before.
+
+---
+
+## Bilingual (FR / EN)
+
+The brand serves the French-speaking West African diaspora first, English second. Most user-facing pages ship a language toggle, with both translations stored inline (`data-fr` / `data-en` attributes or a `setLang()` switch) so there's no extra request and no flash of the wrong language.
+
+---
+
+## Architecture notes
+
+- **Static front end, real backends.** The pages are static, but lead capture, reviews, and chat persistence run through Supabase and Google Apps Script — no server to maintain.
+- **Every tool has an admin twin.** Public page collects; admin dashboard manages. Dashboards run on `localStorage` with JSON export/import so data is portable.
+- **Customer data never ships.** `.gitignore` blocks every exported leads/bookings/subscribers JSON from being committed. `amazon-data.json` is the one data file tracked on purpose — it's the public product catalog the affiliate page loads at runtime.
+- **Secrets stay out of the repo.** API keys and Supabase/Apps Script credentials are configured per deployment, never hard-committed.
+
+---
+
+## Running locally
+
+No build step. Clone and serve the folder with any static server:
+
+```bash
+git clone https:///schicgirl.git
+cd schicgirl
+python3 -m http.server 8000
+# open http://localhost:8000/index.html
+```
+
+Pages that load assets or data files (covers, `amazon-data.json`) expect to be served over HTTP, so use a local server rather than opening the file directly — relative paths won't resolve from `file://`.
+
+---
+
+## License
+
+Code is MIT. Brand, content, copy, and visual identity are **All Rights Reserved** — see [`LICENSE`](./LICENSE).
+
+© 2024–2026 Schicgirl™
+
+---
+
+## About
+
+Built and maintained by **Schicgirl** — software-engineering student and the full-stack developer behind Schicgirl™.
+[Portfolio](https://schicgirl.me) · contacte.schicgirl@gmail.com
