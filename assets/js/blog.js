@@ -20,6 +20,13 @@
 
   // ── Posts (newest first) ──
   var POSTS = [
+    { slug: "hydrater-cheveux-crepus-secs", cat: "hydratation", emoji: "💧", img: "blog/blog3.jpg", date: "2026-06-22",
+      title_fr: "Cheveux crépus toujours secs ? Voici pourquoi (et la solution)",
+      title_en: "4C hair always dry? Here's why (and the fix)",
+      exc_fr: "Hydrater n'est pas sceller. Comprends ta porosité et retiens enfin l'eau.",
+      exc_en: "Moisturizing isn't sealing. Understand your porosity and finally lock water in.",
+      read_fr: "7 min de lecture", read_en: "7 min read" },
+
     { slug: "wash-day-cheveux-crepus", cat: "routine", emoji: "🚿", img: "blog/blog2.jpg", date: "2026-06-22",
       title_fr: "Le wash day parfait pour cheveux crépus 4C",
       title_en: "The perfect wash day for 4C coily hair",
