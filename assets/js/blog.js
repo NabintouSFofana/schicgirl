@@ -20,6 +20,13 @@
 
   // ── Posts (newest first) ──
   var POSTS = [
+    { slug: "transition-sans-big-chop", cat: "bases", emoji: "🌀", img: "blog/blog1.jpg", date: "2026-06-22",
+      title_fr: "Transition sans big chop : passer au naturel en douceur",
+      title_en: "Transitioning to natural hair without a big chop",
+      exc_fr: "Abandonner le défrisage sans tout couper ? Voici comment gérer deux textures sans casse.",
+      exc_en: "Ditch relaxers without cutting it all off? Here's how to manage two textures without breakage.",
+      read_fr: "7 min de lecture", read_en: "7 min read" },
+
     { slug: "routine-nuit-satin", cat: "routine", emoji: "🌙", img: "blog/routine-nuit-satin.jpg", date: "2026-06-18",
       title_fr: "La routine de nuit qui sauve tes cheveux",
       title_en: "The night routine that saves your hair",
