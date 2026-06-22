@@ -20,6 +20,13 @@
 
   // ── Posts (newest first) ──
   var POSTS = [
+    { slug: "wash-day-cheveux-crepus", cat: "routine", emoji: "🚿", img: "blog/blog2.jpg", date: "2026-06-22",
+      title_fr: "Le wash day parfait pour cheveux crépus 4C",
+      title_en: "The perfect wash day for 4C coily hair",
+      exc_fr: "Pré-poo, lavage, soin, LOC : la routine du jour de lavage, étape par étape.",
+      exc_en: "Pre-poo, cleanse, condition, LOC: the wash day routine, step by step.",
+      read_fr: "8 min de lecture", read_en: "8 min read" },
+
     { slug: "transition-sans-big-chop", cat: "bases", emoji: "🌀", img: "blog/blog1.jpg", date: "2026-06-22",
       title_fr: "Transition sans big chop : passer au naturel en douceur",
       title_en: "Transitioning to natural hair without a big chop",

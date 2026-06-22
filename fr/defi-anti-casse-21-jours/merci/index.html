@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/assets/logo2.png">
+<link rel="apple-touch-icon" href="/assets/logo2.png">
+<title>Commence ici — Ton Défi Anti-Casse 21 Jours | Schicgirl</title>
+<meta name="description" content="Bienvenue dans le Défi Anti-Casse 21 Jours. Télécharge ton Cahier et ton Tracker, puis commence tes trois premières étapes dès aujourd'hui.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/pousse.css?v=20260621c">
+
+<style>
+/* Styles propres à la page post-achat « Commence ici » / livraison.
+   À FAIRE : externaliser vers /assets/css/ (ex. challenge-start.css) comme pousse.css. */
+.welcome{background:linear-gradient(135deg,rgba(58,107,76,.12),rgba(245,232,208,.5));border:1px solid rgba(58,107,76,.3)}
+.welcome .will{color:var(--ink);font-weight:600}
+.welcome .wont{color:var(--rose-deep);font-weight:600}
+.welcome p{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-top:10px}
+.welcome p:first-of-type{margin-top:0}
+.downloads{display:grid;gap:14px;margin-top:6px}
+.dl{display:flex;align-items:center;gap:14px;border:1px solid var(--stroke);border-radius:16px;padding:16px 18px;background:linear-gradient(135deg,rgba(255,252,246,.7),rgba(245,232,208,.35));text-decoration:none;color:inherit;transition:filter .2s,transform .1s}
+.dl:hover{filter:brightness(1.03)}
+.dl:active{transform:scale(.995)}
+.dl .ico{flex:0 0 auto;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700}
+.dl .meta{flex:1;min-width:0}
+.dl .meta b{display:block;font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);line-height:1.2}
+.dl .meta span{display:block;font-size:13px;line-height:1.45;color:var(--ink-soft);margin-top:3px}
+.dl .arrow{flex:0 0 auto;font-weight:700;color:var(--gold-deep);font-size:18px}
+.dl-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:14px;font-style:italic}
+.steps{counter-reset:step;display:grid;gap:14px;margin-top:6px}
+.step{position:relative;border:1px solid var(--stroke);border-radius:16px;padding:16px 18px 16px 56px;background:linear-gradient(135deg,rgba(255,252,246,.7),rgba(245,232,208,.35))}
+.step::before{counter-increment:step;content:counter(step);position:absolute;left:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.step h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:1px 0 5px;line-height:1.2}
+.step p{font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+.afterword{font-size:13.5px;line-height:1.6;color:var(--ink-soft);font-style:italic;text-align:center;margin-top:4px}
+.afterword a{color:var(--gold-deep);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="https://schicgirl.me">&larr; Retour</a>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btnEn" onclick="location.href='https://schicgirl.me/en/21-day-breakage-challenge/start/'">🇬🇧 EN</button>
+      <button class="lang-btn is-active" id="btnFr" onclick="location.href='https://schicgirl.me/fr/defi-anti-casse-21-jours/merci/'">🇫🇷 FR</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <span class="badge">Commence ici · Défi 21 Jours</span>
+    <h1>Bienvenue. On va <span class="accent">garder</span> ta longueur.</h1>
+    <p class="lead">Ta place dans le Défi Anti-Casse est confirmée. Tout ce qu'il te faut pour commencer est ici — télécharge tes deux fichiers ci-dessous, puis fais tes trois premières étapes.</p>
+  </div>
+
+  <div class="section welcome">
+    <div class="eyebrow">Avant de commencer</div>
+    <p>Voici la promesse honnête, la même qu'avant ton inscription : <span class="will">ce défi va réduire ta casse et te donner une routine de 5 minutes qui tient enfin.</span> Moins de cheveux au wash day. Moins de pointes cassées. Une habitude construite autour de ton vrai wash day.</p>
+    <p><span class="wont">Ce qu'il ne fera PAS :</span> rendre tes cheveux plus longs en 21 jours — aucun défi honnête ne le peut. Ce que tu <em>peux</em> changer, c'est la quantité de ta pousse que tu gardes. C'est exactement le rôle des trois prochaines semaines.</p>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow">Télécharge tes fichiers</div>
+    <h2>Ton Cahier &amp; ton Tracker</h2>
+    <div class="downloads">
+      <!-- DOWNLOAD PLACEHOLDER : remplacer le href par le PDF du Cahier FR hébergé avant le lancement -->
+      <a class="dl" href="REPLACE-with-hosted-workbook-fr.pdf" download>
+        <span class="ico" aria-hidden="true">📘</span>
+        <span class="meta">
+          <b>Le Cahier d'Action 21 Jours</b>
+          <span>Une action claire, de 5 minutes maximum, par jour. Fais-le aujourd'hui, plutôt que lis-le un jour. (PDF)</span>
+        </span>
+        <span class="arrow" aria-hidden="true">&darr;</span>
+      </a>
+      <!-- DOWNLOAD PLACEHOLDER : remplacer le href par le PDF du Tracker FR hébergé avant le lancement -->
+      <a class="dl" href="REPLACE-with-hosted-tracker-fr.pdf" download>
+        <span class="ico" aria-hidden="true">📊</span>
+        <span class="meta">
+          <b>Le Tracker de Rétention</b>
+          <span>Ton journal quotidien avec les points de contrôle casse des jours 7, 14 &amp; 21 et le test du peigne. (PDF)</span>
+        </span>
+        <span class="arrow" aria-hidden="true">&darr;</span>
+      </a>
+    </div>
+    <p class="dl-note">Astuce : enregistre les deux fichiers sur ton téléphone ou imprime-les pour les avoir avec toi le jour du wash day. Un bouton ne marche pas ? Écris-moi sur Facebook 💛</p>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow">Tes 3 premières étapes</div>
+    <h2>Commence aujourd'hui.</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>Rassemble ton kit</h3>
+        <p>Ouvre le Cahier à la liste du kit. Tu n'as rien de neuf à acheter — un peigne à dents larges, ton après-shampoing habituel, de l'eau et quelques minutes. Prépare le tout pour un wash day sans friction.</p>
+      </div>
+      <div class="step">
+        <h3>Prends ton point de départ (jour 1)</h3>
+        <p>Prends tes premières photos et fais le test du peigne du jour 1 exactement comme l'indique le Tracker. C'est ton « avant ». On ne voit pas un progrès qu'on n'a jamais mesuré — alors ne saute pas cette étape.</p>
+      </div>
+      <div class="step">
+        <h3>Guette le contrôle du jour 7</h3>
+        <p>Ta première vraie comparaison, c'est le contrôle wash day du jour 7. Note ta casse du wash day dans le Tracker, puis compare le tas à celui du jour 1. Ce tas qui rétrécit, c'est ta preuve que ça marche.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="text-align:center">
+    <div class="eyebrow">Tu veux le pourquoi en profondeur ?</div>
+    <h2>Toute la science derrière la casse.</h2>
+    <p class="afterword">Tu n'en as pas besoin pour commencer — le défi tient tout seul. Mais si tu veux le système complet et la science du <em>pourquoi</em> les cheveux Type 4 cassent, ça vit dans notre <a href="/fr/faire-pousser-cheveux-crepus/">ebook Pousse</a>.</p>
+    <!-- CTA PLACEHOLDER : remplacer par la vraie URL produit Selar FR de l'ebook Pousse avant le lancement -->
+    <a class="cta-big" href="https://selar.com/REPLACE-grow-ebook-fr" target="_blank" rel="noopener noreferrer">Découvrir l'ebook Pousse &rarr;</a>
+  </div>
+
+  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
+    <a href="/fr/a-propos/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);">À propos</a>
+    <a href="/fr/blog/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);">Blog</a>
+    <a href="/fr/contact/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);">Contact</a>
+    <a href="/fr/confidentialite/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);">Confidentialité</a>
+    <a href="/fr/conditions/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;">Conditions</a>
+  </nav>
+  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
+</div>
+
+</body>
+</html>

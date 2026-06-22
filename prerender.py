@@ -23,7 +23,7 @@ def parse_utf8(path):
 
 SITE = "https://schicgirl.me"
 LOGO = f"{SITE}/assets/logo2.png"
-VERSION = "20260621d"  # bump to force browsers to re-fetch local css/js after a deploy
+VERSION = "20260621e"  # bump to force browsers to re-fetch local css/js after a deploy
 
 # old root file -> (clean FR url, clean EN url) for internal-link rewriting
 LINKMAP = {f"/{c['src']}": (f"/fr/{c['slug_fr']}/", f"/en/{c['slug_en']}/") for c in PAGES}
