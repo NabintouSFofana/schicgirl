@@ -203,6 +203,11 @@ def annotate_source(cfg):
     with open(cfg["src"], "r", encoding="utf-8") as f:
         html = f.read()
     html = re.sub(re.escape(SEO_MARK) + r".*?" + re.escape(SEO_MARK), "", html, flags=re.DOTALL)
+    # strip any stale canonical / hreflang / JSON-LD from earlier passes so the
+    # page ends up with exactly one canonical (-> the FR clean URL)
+    html = re.sub(r'\s*<link[^>]*rel="canonical"[^>]*>', "", html)
+    html = re.sub(r'\s*<link[^>]*\shreflang="[^"]*"[^>]*>', "", html)
+    html = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', "", html, flags=re.DOTALL)
     block = (SEO_MARK +
              f'\n<link rel="canonical" href="{url_fr}">'
              f'\n<link rel="alternate" hreflang="fr" href="{url_fr}">'
