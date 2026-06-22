@@ -101,7 +101,7 @@
   function tx(o) { return state.lang === "fr" ? o.fr : o.en; }
   function rootPrefix() { return state.ctx === "index" ? "" : "../"; }
   function articleHref(slug) { return state.ctx === "index" ? "blog/" + slug + ".html" : slug + ".html"; }
-  function indexHref() { return rootPrefix() + "blog.html"; }
+  function indexHref() { return rootPrefix() + "/fr/blog/"; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function pTitle(p) { return state.lang === "fr" ? p.title_fr : p.title_en; }
   function pExc(p)   { return state.lang === "fr" ? p.exc_fr : p.exc_en; }
@@ -151,7 +151,7 @@
       '<button type="submit" aria-label="' + esc(tx(L.search_t)) + '">🔍</button></form></div>';
 
     // categories
-    var catItems = '<a href="' + (state.ctx === "index" ? "blog.html" : indexHref()) + '" data-cat="all" class="' + (state.cat === "all" ? "is-active" : "") + '">' +
+    var catItems = '<a href="' + (state.ctx === "index" ? "/fr/blog/" : indexHref()) + '" data-cat="all" class="' + (state.cat === "all" ? "is-active" : "") + '">' +
       '<span>' + esc(tx(L.all)) + '</span><span class="cat-count">' + POSTS.length + '</span></a>';
     Object.keys(CATS).forEach(function (key) {
       if (!c[key]) return;
@@ -216,7 +216,7 @@
       var qs = [];
       if (cat !== "all") qs.push("cat=" + encodeURIComponent(cat));
       if (q) qs.push("q=" + encodeURIComponent(q));
-      var url = "blog.html" + (qs.length ? "?" + qs.join("&") : "");
+      var url = "/fr/blog/" + (qs.length ? "?" + qs.join("&") : "");
       try { history.replaceState(null, "", url); } catch (e) {}
     }
     renderSidebar();

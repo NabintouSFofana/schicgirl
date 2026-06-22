@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SchicGirl Ebook Studio</title>
+<style>
+  :root{
+    --pink:#f6c9d6; --pink-deep:#e89ab0; --lav:#d9c7ef; --mint:#bfe6d8;
+    --cream:#fff7fb; --ink:#3a2c33; --muted:#9b8791; --line:#f0dde6;
+    --accent:#e89ab0; --accent-ink:#fff; --card:#ffffff; --bg:#fdf3f7;
+    --book-font:Georgia, 'Times New Roman', serif;
+    --book-head:'Segoe UI', system-ui, sans-serif;
+    --book-bg:#fffdfb; --book-ink:#2e2730; --book-accent:#e89ab0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);}
+  button{font-family:inherit;cursor:pointer}
+  input,textarea,select{font-family:inherit}
+
+  /* ---------- Layout ---------- */
+  .app{display:flex;flex-direction:column;height:100vh}
+  header.top{display:flex;align-items:center;gap:14px;padding:10px 18px;background:linear-gradient(90deg,var(--pink),var(--lav));color:#5a3b48;box-shadow:0 2px 10px rgba(180,120,150,.18);z-index:20}
+  header.top .logo{font-weight:800;font-size:19px;letter-spacing:.3px;display:flex;align-items:center;gap:9px}
+  header.top .logo .dot{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.4)}
+  header.top .spacer{flex:1}
+  .tbtn{border:none;background:rgba(255,255,255,.65);color:#6b4555;padding:8px 14px;border-radius:20px;font-weight:600;font-size:13px;transition:.15s}
+  .tbtn:hover{background:#fff;transform:translateY(-1px)}
+  .tbtn.primary{background:#fff;color:var(--accent)}
+  .tbtn.ghost{background:transparent;color:#6b4555}
+
+  .body{display:flex;flex:1;min-height:0}
+
+  /* ---------- Sidebar (library) ---------- */
+  .side{width:248px;background:var(--card);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+  .side h3{margin:0;padding:16px 16px 8px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+  .booklist{flex:1;overflow:auto;padding:0 10px}
+  .bookitem{padding:11px 12px;border-radius:12px;margin-bottom:6px;cursor:pointer;border:1px solid transparent;transition:.12s}
+  .bookitem:hover{background:var(--cream)}
+  .bookitem.active{background:linear-gradient(90deg,var(--pink),#fbe5ec);border-color:var(--line)}
+  .bookitem .t{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bookitem .s{font-size:11px;color:var(--muted);margin-top:2px}
+  .side .newbtn{margin:10px;padding:11px;border-radius:12px;border:2px dashed var(--pink-deep);background:transparent;color:var(--pink-deep);font-weight:700}
+  .side .newbtn:hover{background:var(--cream)}
+  .side .io{display:flex;gap:6px;padding:0 10px 12px}
+  .side .io button{flex:1;font-size:11px;padding:7px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--muted)}
+  .side .io button:hover{color:var(--ink)}
+
+  /* ---------- Main ---------- */
+  .main{flex:1;display:flex;flex-direction:column;min-width:0}
+  .tabs{display:flex;gap:4px;padding:10px 16px 0;background:var(--card);border-bottom:1px solid var(--line)}
+  .tab{padding:9px 16px;border-radius:10px 10px 0 0;font-weight:600;font-size:13px;color:var(--muted);border:1px solid transparent;border-bottom:none}
+  .tab:hover{color:var(--ink)}
+  .tab.active{background:var(--bg);color:var(--accent);border-color:var(--line)}
+  .pane{flex:1;overflow:auto;padding:22px}
+  .pane.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+  .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);text-align:center;gap:10px}
+  .empty .big{font-size:46px}
+
+  /* ---------- Forms ---------- */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 12px rgba(190,150,170,.06)}
+  .card h2{margin:0 0 4px;font-size:16px}
+  .card .hint{color:var(--muted);font-size:12px;margin:0 0 14px}
+  label.field{display:block;margin-bottom:13px}
+  label.field .lab{display:block;font-size:12px;font-weight:700;color:#7a5d6a;margin-bottom:5px}
+  label.field .sub{font-weight:400;color:var(--muted)}
+  input.in,textarea.in,select.in{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:#fff;color:var(--ink)}
+  input.in:focus,textarea.in:focus,select.in:focus{outline:none;border-color:var(--pink-deep);box-shadow:0 0 0 3px var(--pink)}
+  textarea.in{resize:vertical;min-height:80px;line-height:1.5}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row > *{flex:1;min-width:160px}
+  .counter{font-size:11px;color:var(--muted);text-align:right;margin-top:3px}
+  .counter.warn{color:#d2691e}
+  .counter.good{color:#3fa57f}
+
+  /* keywords */
+  .kw{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .kw input{padding:9px 11px}
+  .kwnum{display:flex;align-items:center;gap:6px}
+  .kwnum span{width:20px;height:20px;border-radius:50%;background:var(--pink);color:#7a4f60;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+  .chip{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:5px 11px;font-size:12px;color:#7a5d6a;cursor:pointer}
+  .chip:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+
+  /* ---------- Editor ---------- */
+  .chaplist{width:230px;border-right:1px solid var(--line);overflow:auto;padding:8px}
+  .editwrap{display:flex;flex:1;min-height:0}
+  .chap{padding:10px 11px;border-radius:10px;margin-bottom:5px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px}
+  .chap:hover{background:var(--cream)}
+  .chap.active{background:linear-gradient(90deg,var(--pink),#fce7ee)}
+  .chap .gx{color:var(--muted);cursor:grab;font-size:13px}
+  .chap .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chap .del{opacity:0;color:var(--pink-deep);font-weight:700;border:none;background:none;padding:0 4px}
+  .chap:hover .del{opacity:1}
+  .addchap{width:100%;padding:9px;border:2px dashed var(--pink-deep);background:none;color:var(--pink-deep);border-radius:10px;font-weight:700;margin-top:4px}
+  .edcol{flex:1;display:flex;flex-direction:column;min-width:0}
+  .toolbar{display:flex;flex-wrap:wrap;gap:4px;padding:8px;border-bottom:1px solid var(--line);background:var(--card)}
+  .toolbar button{border:1px solid var(--line);background:#fff;border-radius:8px;width:34px;height:32px;font-size:14px;color:#6b4555}
+  .toolbar button:hover{background:var(--pink);color:#fff}
+  .toolbar .sep{width:1px;background:var(--line);margin:2px 3px}
+  .toolbar select{border:1px solid var(--line);border-radius:8px;padding:0 6px;height:32px;background:#fff;color:#6b4555}
+  .chaptitle{padding:12px 26px 0;border:none;font-size:22px;font-weight:800;width:100%;background:transparent;color:var(--ink)}
+  .chaptitle:focus{outline:none}
+  .editor{flex:1;overflow:auto;padding:14px 26px 60px;font-family:var(--book-font);font-size:17px;line-height:1.7;color:#332b31;outline:none}
+  .editor:empty:before{content:attr(data-ph);color:var(--muted)}
+  .editor h1{font-size:26px}
+  .editor h2{font-size:21px}
+  .editor blockquote{border-left:3px solid var(--pink-deep);margin:0;padding:4px 16px;color:#6b5560;font-style:italic}
+  .editor img{max-width:100%}
+  .wordcount{padding:6px 26px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);background:var(--card)}
+
+  /* ---------- Cover ---------- */
+  .coverstage{display:flex;gap:24px;flex-wrap:wrap}
+  .coverprev{width:340px;height:544px;border-radius:8px;box-shadow:0 14px 40px rgba(120,80,100,.3);display:flex;flex-direction:column;justify-content:space-between;padding:38px 30px;color:#fff;position:relative;overflow:hidden;flex:0 0 auto}
+  .coverprev .ctitle{font-size:38px;font-weight:800;line-height:1.1;font-family:var(--book-head)}
+  .coverprev .csub{font-size:18px;opacity:.92;margin-top:10px}
+  .coverprev .cauth{font-size:17px;font-weight:600;letter-spacing:1px}
+  .coverprev .cband{position:absolute;left:0;right:0;bottom:120px;height:2px;background:rgba(255,255,255,.6)}
+  .coverctl{flex:1;min-width:260px}
+  .swatches{display:flex;gap:8px;flex-wrap:wrap}
+  .sw{width:36px;height:36px;border-radius:8px;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer}
+  .sw.active{box-shadow:0 0 0 3px var(--pink-deep)}
+
+  /* ---------- Preview ---------- */
+  .previewpage{background:#fff;max-width:760px;margin:0 auto;border-radius:8px;box-shadow:0 6px 30px rgba(150,110,130,.12);overflow:hidden}
+  .pp-cover{padding:80px 50px;text-align:center;color:#fff}
+  .pp-cover h1{font-size:40px;margin:0;font-family:var(--book-head)}
+  .pp-cover .sub{font-size:20px;opacity:.92;margin-top:12px}
+  .pp-cover .auth{margin-top:34px;font-size:16px;letter-spacing:1px}
+  .pp-body{padding:46px 60px;font-family:var(--book-font);color:var(--book-ink);line-height:1.75;font-size:17px}
+  .pp-body h2.chh{font-family:var(--book-head);color:var(--book-accent);border-bottom:2px solid var(--line);padding-bottom:6px;margin-top:46px}
+  .pp-toc{padding:30px 60px 10px;font-family:var(--book-head)}
+  .pp-toc h2{color:var(--book-accent)}
+  .pp-toc ol{line-height:2;color:var(--book-ink)}
+
+  .theme-pick{display:flex;gap:10px;flex-wrap:wrap}
+  .themecard{border:2px solid var(--line);border-radius:12px;padding:10px;width:120px;cursor:pointer;text-align:center;font-size:12px;font-weight:700}
+  .themecard.active{border-color:var(--pink-deep)}
+  .themecard .bar{height:34px;border-radius:7px;margin-bottom:7px}
+
+  .pill{display:inline-block;background:var(--cream);border:1px solid var(--line);color:#7a5d6a;font-size:11px;padding:3px 9px;border-radius:12px;margin:0 4px 4px 0}
+  .savedmark{font-size:12px;color:#3fa57f;opacity:0;transition:.3s}
+  .savedmark.show{opacity:1}
+  .tip{background:linear-gradient(90deg,#fff7fb,#f7f0ff);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:#6b5560;margin-bottom:14px}
+  .tip b{color:var(--pink-deep)}
+  /* ---- AI assistant UI ---- */
+  .aistatus{font-size:12px;color:#6b4555;font-weight:600;margin-right:4px}
+  .toolbar button.aibtn{width:auto;padding:0 11px;border:1px solid var(--pink-deep);background:linear-gradient(90deg,#fff,#fdeef3);color:var(--pink-deep);font-weight:700;font-size:12px}
+  .toolbar button.aibtn:hover{background:var(--pink-deep);color:#fff}
+  .modal-bg{position:fixed;inset:0;background:rgba(90,59,72,.42);display:flex;align-items:center;justify-content:center;z-index:50}
+  .modal{background:#fff;border-radius:18px;padding:24px 26px;max-width:480px;width:92%;box-shadow:0 24px 70px rgba(120,80,100,.4)}
+  .modal h2{margin:0 0 6px;font-size:18px}
+  .titleopt{border:1px solid var(--line);border-radius:10px;padding:8px 11px;margin-bottom:6px;cursor:pointer;background:#fff}
+  .titleopt:hover{background:var(--cream);border-color:var(--pink-deep)}
+  input[type=range]{accent-color:var(--pink-deep)}
+  @media print{body *{visibility:hidden}#printArea,#printArea *{visibility:visible}#printArea{position:absolute;inset:0}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="logo"><span class="dot"></span> SchicGirl Ebook Studio</div>
+    <span class="spacer"></span>
+    <span class="aistatus" id="aiStatus"></span>
+    <button class="tbtn" id="btnSettings">✨ AI Writer</button>
+    <span class="savedmark" id="savedMark">✓ Saved</span>
+    <button class="tbtn" id="btnExportWord">⬇ Word</button>
+    <button class="tbtn" id="btnExportHtml">⬇ HTML</button>
+    <button class="tbtn" id="btnExportEpub">⬇ EPUB</button>
+    <button class="tbtn primary" id="btnExportPdf">🖨 PDF / Print</button>
+  </header>
+
+  <div class="body">
+    <!-- Library -->
+    <aside class="side">
+      <h3>My Ebooks</h3>
+      <div class="booklist" id="bookList"></div>
+      <button class="newbtn" id="btnNew">＋ New Ebook</button>
+      <button class="newbtn" id="btnImport" style="border-color:var(--lav);color:#7a5d6a">📥 Import / Convert ebook</button>
+      <div class="io">
+        <button id="btnBackup">⤓ Backup all</button>
+        <button id="btnRestore">⤒ Restore</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="tabs" id="tabs">
+        <div class="tab active" data-tab="write">✍ Write</div>
+        <div class="tab" data-tab="cover">🎨 Cover</div>
+        <div class="tab" data-tab="kdp">🚀 Amazon KDP</div>
+        <div class="tab" data-tab="preview">👁 Preview</div>
+      </div>
+
+      <div id="paneHost" style="flex:1;min-height:0;display:flex;flex-direction:column"></div>
+    </main>
+  </div>
+</div>
+
+<!-- hidden file input for restore -->
+<input type="file" id="fileInput" accept="application/json" style="display:none">
+<div id="printArea" style="display:none"></div>
+
+<!-- AI Writer settings -->
+<div class="modal-bg" id="settingsModal" style="display:none">
+  <div class="modal">
+    <h2>✨ AI Writing Assistant</h2>
+    <p class="hint" style="margin-bottom:14px">Connect your Anthropic (Claude) account to write, continue, improve and brainstorm right inside your ebook. Your key is stored <b>only in this browser, on this computer</b> — it is never sent anywhere except directly to Anthropic when you click an AI button.</p>
+    <label class="field"><span class="lab">Anthropic API key</span>
+      <input type="password" class="in" id="apiKeyIn" placeholder="sk-ant-..." autocomplete="off"></label>
+    <div class="hint" style="margin:-6px 0 14px">Get one at <b>console.anthropic.com → API Keys</b>. You pay Anthropic directly for usage.</div>
+    <label class="field"><span class="lab">Model</span>
+      <select class="in" id="modelIn">
+        <option value="claude-opus-4-8">Claude Opus 4.8 — best quality</option>
+        <option value="claude-sonnet-4-6">Claude Sonnet 4.6 — balanced &amp; cheaper</option>
+        <option value="claude-haiku-4-5">Claude Haiku 4.5 — fastest &amp; cheapest</option>
+      </select></label>
+    <div class="hint" style="margin:-6px 0 4px">Rough cost: a full chapter is about 1–4¢ on Opus, less on Sonnet/Haiku.</div>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <button class="tbtn primary" id="saveSettings" style="background:var(--accent);color:#fff">Save</button>
+      <button class="tbtn" id="closeSettings" style="background:var(--cream)">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Import / Convert -->
+<div class="modal-bg" id="importModal" style="display:none">
+  <div class="modal" style="max-width:560px">
+    <h2>📥 Import &amp; convert an existing ebook</h2>
+    <p class="hint" style="margin-bottom:14px">Bring a book you already have into the studio to edit it, design a cover, optimise it for Amazon KDP, and re-export. Supported: <b>Word (.docx)</b>, <b>EPUB</b>, <b>HTML</b>, <b>text / Markdown</b>, and <b>PDF</b>.</p>
+    <label class="field"><span class="lab">Upload a file</span>
+      <input type="file" class="in" id="importFile" accept=".docx,.epub,.html,.htm,.txt,.md,.pdf"></label>
+    <div class="hint" style="text-align:center;margin:2px 0 10px">— or —</div>
+    <label class="field"><span class="lab">Paste your text</span>
+      <textarea class="in" id="importPaste" style="min-height:110px" placeholder="Paste your chapters here.&#10;Tip for a PDF: open it, press Ctrl+A then Ctrl+C, and paste here."></textarea></label>
+    <label class="field"><span class="lab">Book title</span>
+      <input class="in" id="importTitle" placeholder="My Imported Book"></label>
+    <div class="hint">Chapters are detected automatically from headings (Heading 1/2 styles, <b># Markdown</b>, “Chapter N”, or ALL-CAPS lines). You can split, merge and rename them after importing.</div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="tbtn primary" id="doImport" style="background:var(--accent);color:#fff">Import</button>
+      <button class="tbtn" id="closeImport" style="background:var(--cream)">Cancel</button>
+    </div>
+    <div id="importStatus" class="hint" style="margin-top:8px;color:var(--pink-deep)"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   SchicGirl Ebook Studio  —  single-file, no-code ebook maker
+   Data persists in your browser (localStorage). Use Backup to
+   save a file you can move between computers.
+   ============================================================ */
+
+const LS_KEY = 'schicgirl_ebooks_v1';
+const $ = s => document.querySelector(s);
+const el = (t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const uid = () => 'b'+Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4);
+
+/* ---------- Themes ---------- */
+const THEMES = {
+  pastel:  {name:'SchicGirl Pastel', bg:'#fffdfb', ink:'#2e2730', accent:'#e89ab0',
+            cover:'linear-gradient(135deg,#f6c9d6,#d9c7ef)', head:"'Segoe UI',sans-serif", body:"Georgia,serif"},
+  mint:    {name:'Fresh Mint', bg:'#fbfffd', ink:'#22332c', accent:'#3fa57f',
+            cover:'linear-gradient(135deg,#bfe6d8,#9fd6c4)', head:"'Segoe UI',sans-serif", body:"Georgia,serif"},
+  noir:    {name:'Elegant Noir', bg:'#fafafa', ink:'#1c1c1c', accent:'#caa05a',
+            cover:'linear-gradient(135deg,#2b2b33,#4a3f52)', head:"'Segoe UI',sans-serif", body:"Georgia,serif"},
+  sky:     {name:'Soft Sky', bg:'#fbfdff', ink:'#23303a', accent:'#5b9bd5',
+            cover:'linear-gradient(135deg,#cfe5fb,#bcd4f5)', head:"'Segoe UI',sans-serif", body:"Georgia,serif"},
+  sunset:  {name:'Warm Sunset', bg:'#fffdf9', ink:'#3a2a22', accent:'#e8804f',
+            cover:'linear-gradient(135deg,#ffd6b0,#f6c9d6)', head:"'Segoe UI',sans-serif", body:"Georgia,serif"}
+};
+const COVER_PRESETS = [
+  'linear-gradient(135deg,#f6c9d6,#d9c7ef)','linear-gradient(135deg,#bfe6d8,#9fd6c4)',
+  'linear-gradient(135deg,#cfe5fb,#bcd4f5)','linear-gradient(135deg,#ffd6b0,#f6c9d6)',
+  'linear-gradient(135deg,#2b2b33,#4a3f52)','linear-gradient(135deg,#caa05a,#8a6d3b)',
+  'linear-gradient(135deg,#d9c7ef,#b8a0e0)','linear-gradient(160deg,#3a2c33,#7a4f60)'
+];
+
+/* ---------- Niche templates (bestseller-style outlines) ---------- */
+const TEMPLATES = {
+  blank:{label:'Blank book', chapters:[{title:'Chapter 1', html:'<p>Start writing here…</p>'}]},
+  howto:{label:'How-To Guide', chapters:[
+    {title:'Introduction — The Promise', html:'<p>Open with the transformation the reader will get. State the big benefit and who this book is for.</p>'},
+    {title:'Why This Matters', html:'<p>The problem, why most people fail at it, and why your method is different.</p>'},
+    {title:'The Core Method (Step by Step)', html:'<p>Break your system into clear, numbered steps.</p><ol><li>Step one…</li><li>Step two…</li></ol>'},
+    {title:'Common Mistakes to Avoid', html:'<p>List the pitfalls and how to dodge them.</p>'},
+    {title:'Putting It All Together', html:'<p>A worked example or 7-day action plan.</p>'},
+    {title:'Conclusion & Next Steps', html:'<p>Recap, encouragement, and a call to action (review request / your other books).</p>'}
+  ]},
+  workbook:{label:'Workbook / Journal', chapters:[
+    {title:'How to Use This Workbook', html:'<p>Explain the format and how to get the most from it.</p>'},
+    {title:'Self-Assessment', html:'<p>Questions that help the reader see where they are now.</p>'},
+    {title:'Week 1 — Foundations', html:'<p><b>Prompt:</b> ______________________</p><p><b>Action:</b> ______________________</p>'},
+    {title:'Week 2 — Building Momentum', html:'<p><b>Prompt:</b> ______________________</p>'},
+    {title:'Week 3 — Going Deeper', html:'<p><b>Prompt:</b> ______________________</p>'},
+    {title:'Week 4 — Reflection', html:'<p>What changed? What will you keep doing?</p>'}
+  ]},
+  guide:{label:'Ultimate Guide / Listicle', chapters:[
+    {title:'Introduction', html:'<p>Why this list matters and how to use it.</p>'},
+    {title:'1–10: The Essentials', html:'<p>First ten items with short, punchy explanations.</p>'},
+    {title:'11–20: Level Up', html:'<p>Intermediate ideas.</p>'},
+    {title:'21–30: Pro Secrets', html:'<p>Advanced tips most people miss.</p>'},
+    {title:'Quick-Reference Cheat Sheet', html:'<p>A scannable summary of everything.</p>'},
+    {title:'Final Thoughts', html:'<p>Wrap up + review request.</p>'}
+  ]},
+  recipe:{label:'Recipe / Plan Book', chapters:[
+    {title:'Welcome & The Approach', html:'<p>Your philosophy and what makes these different.</p>'},
+    {title:'Getting Started (Tools & Staples)', html:'<p>What the reader needs on hand.</p>'},
+    {title:'Recipes / Plans — Part 1', html:'<p><b>Name</b><br>Serves / Time<br><b>Ingredients:</b><br><b>Steps:</b></p>'},
+    {title:'Recipes / Plans — Part 2', html:'<p>Continue…</p>'},
+    {title:'Bonus: Shopping List', html:'<p>Make it effortless for the reader.</p>'}
+  ]}
+};
+
+/* ---------- KDP keyword suggestion helper (rule-based, offline) ---------- */
+function suggestKeywords(title, subtitle, niche){
+  const base = (title+' '+subtitle).toLowerCase();
+  const modifiers = ['guide','for beginners','step by step','2026','how to','tips','planner','workbook','made simple','for women','daily','easy','complete','quick start'];
+  const words = base.replace(/[^a-z0-9 ]/g,'').split(/\s+/).filter(w=>w.length>3);
+  const out = new Set();
+  words.slice(0,3).forEach(w=>{ modifiers.forEach(m=>{ if(out.size<14) out.add((w+' '+m).trim()); }); });
+  if(niche) out.add(niche.toLowerCase()+' guide');
+  return [...out].slice(0,7);
+}
+
+/* ---------- State ---------- */
+let DB = load();
+let currentId = DB.books[0] ? DB.books[0].id : null;
+let activeTab = 'write';
+let activeChapter = 0;
+let saveTimer = null;
+
+function load(){
+  try{ const d = JSON.parse(localStorage.getItem(LS_KEY)); if(d&&d.books) return d; }catch(e){}
+  return {books:[ newBook('My First Ebook') ]};
+}
+function persist(){
+  localStorage.setItem(LS_KEY, JSON.stringify(DB));
+  const m=$('#savedMark'); m.classList.add('show'); clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>m.classList.remove('show'),1200);
+}
+function newBook(title){
+  return {
+    id:uid(), title:title||'Untitled Ebook', subtitle:'', author:'', theme:'pastel',
+    cover:COVER_PRESETS[0], coverImage:'', coverImageSrc:'', coverFit:null,
+    chapters: JSON.parse(JSON.stringify(TEMPLATES.howto.chapters)),
+    kdp:{ desc:'', keywords:['','','','','','',''], cat1:'', cat2:'', series:'', price:'' }
+  };
+}
+function curBook(){ return DB.books.find(b=>b.id===currentId) || null; }
+
+/* ============================================================
+   RENDER: Library sidebar
+   ============================================================ */
+function renderLibrary(){
+  const list=$('#bookList'); list.innerHTML='';
+  DB.books.forEach(b=>{
+    const d=el('div','bookitem'+(b.id===currentId?' active':''));
+    d.innerHTML=`<div class="t">${esc(b.title)||'Untitled'}</div>
+      <div class="s">${b.chapters.length} chapter(s) · ${THEMES[b.theme].name}</div>`;
+    d.onclick=()=>{ currentId=b.id; activeChapter=0; renderAll(); };
+    list.appendChild(d);
+  });
+}
+
+/* ============================================================
+   RENDER: panes
+   ============================================================ */
+function renderAll(){ renderLibrary(); renderTabs(); renderPane(); }
+function renderTabs(){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===activeTab));
+}
+function renderPane(){
+  const host=$('#paneHost'); host.innerHTML='';
+  const b=curBook();
+  if(!b){ host.appendChild(emptyState()); return; }
+  if(activeTab==='write')  host.appendChild(paneWrite(b));
+  if(activeTab==='cover')  host.appendChild(paneCover(b));
+  if(activeTab==='kdp')    host.appendChild(paneKdp(b));
+  if(activeTab==='preview')host.appendChild(panePreview(b));
+}
+function emptyState(){
+  const e=el('div','empty');
+  e.innerHTML=`<div class="big">📚</div><div><b>No ebook selected</b></div>
+    <div>Click <b>＋ New Ebook</b> to begin.</div>`;
+  return e;
+}
+
+/* ---------------- WRITE PANE ---------------- */
+function paneWrite(b){
+  const wrap=el('div','editwrap');
+
+  // chapter list
+  const cl=el('div','chaplist');
+  b.chapters.forEach((c,i)=>{
+    const ch=el('div','chap'+(i===activeChapter?' active':''));
+    ch.draggable=true;
+    ch.innerHTML=`<span class="gx">⋮⋮</span><span class="nm">${esc(c.title)||'Untitled'}</span><button class="del" title="Delete">✕</button>`;
+    ch.onclick=(e)=>{ if(e.target.classList.contains('del'))return; activeChapter=i; renderPane(); };
+    ch.querySelector('.del').onclick=(e)=>{ e.stopPropagation();
+      if(b.chapters.length===1){alert('A book needs at least one chapter.');return;}
+      if(confirm('Delete "'+(c.title||'Untitled')+'"?')){ b.chapters.splice(i,1); if(activeChapter>=b.chapters.length)activeChapter=b.chapters.length-1; persist(); renderPane(); }
+    };
+    // drag reorder
+    ch.addEventListener('dragstart',e=>e.dataTransfer.setData('i',i));
+    ch.addEventListener('dragover',e=>e.preventDefault());
+    ch.addEventListener('drop',e=>{e.preventDefault();const from=+e.dataTransfer.getData('i');const m=b.chapters.splice(from,1)[0];b.chapters.splice(i,0,m);activeChapter=i;persist();renderPane();});
+    cl.appendChild(ch);
+  });
+  const add=el('button','addchap','＋ Add chapter'); add.onclick=()=>{b.chapters.push({title:'New Chapter',html:'<p></p>'});activeChapter=b.chapters.length-1;persist();renderPane();};
+  cl.appendChild(add);
+
+  const tmplWrap=el('div'); tmplWrap.style.marginTop='12px';
+  tmplWrap.innerHTML=`<div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin:6px 4px">Start from template</div>`;
+  const sel=el('select','in'); sel.style.fontSize='12px';
+  sel.innerHTML='<option value="">Insert template…</option>'+Object.entries(TEMPLATES).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');
+  sel.onchange=()=>{ if(!sel.value)return;
+    if(confirm('Replace all current chapters with the "'+TEMPLATES[sel.value].label+'" outline?')){
+      b.chapters=JSON.parse(JSON.stringify(TEMPLATES[sel.value].chapters)); activeChapter=0; persist(); renderPane();
+    } else sel.value='';
+  };
+  tmplWrap.appendChild(sel);
+  const aiOut=el('button','tbtn primary','✨ AI: build outline from an idea'); aiOut.style.cssText='width:100%;margin-top:8px;font-size:12px;background:var(--accent);color:#fff';
+  aiOut.onclick=()=>aiBuildOutline(b);
+  tmplWrap.appendChild(aiOut);
+  cl.appendChild(tmplWrap);
+
+  // editor column
+  const col=el('div','edcol');
+  const c=b.chapters[activeChapter];
+
+  // toolbar
+  const tb=el('div','toolbar');
+  const cmd=(c,v)=>{document.execCommand(c,false,v);};
+  const fmtSel=el('select');
+  fmtSel.innerHTML='<option value="p">Paragraph</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option><option value="blockquote">Quote</option>';
+  fmtSel.onchange=()=>cmd('formatBlock',fmtSel.value);
+  const mk=(label,fn,title)=>{const x=el('button',null,label);x.title=title||'';x.onmousedown=e=>{e.preventDefault();fn();};return x;};
+  tb.append(fmtSel,sep(),
+    mk('𝐁',()=>cmd('bold'),'Bold'),mk('𝑰',()=>cmd('italic'),'Italic'),mk('U̲',()=>cmd('underline'),'Underline'),sep(),
+    mk('•',()=>cmd('insertUnorderedList'),'Bullet list'),mk('1.',()=>cmd('insertOrderedList'),'Numbered list'),sep(),
+    mk('⟸',()=>cmd('justifyLeft'),'Align left'),mk('≣',()=>cmd('justifyCenter'),'Center'),sep(),
+    mk('🖼',()=>insertImage(),'Insert image'),mk('―',()=>cmd('insertHorizontalRule'),'Divider'),mk('⤺',()=>cmd('undo'),'Undo'));
+
+  function sep(){return el('div','sep');}
+  function insertImage(){
+    const inp=el('input'); inp.type='file'; inp.accept='image/*';
+    inp.onchange=()=>{const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{cmd('insertImage',r.result);ed.dispatchEvent(new Event('input'));};r.readAsDataURL(f);};
+    inp.click();
+  }
+
+  // title
+  const titleIn=el('input','chaptitle'); titleIn.value=c.title; titleIn.placeholder='Chapter title';
+  titleIn.oninput=()=>{c.title=titleIn.value;clearTimeout(saveTimer);saveTimer=setTimeout(persist,400);renderLibrary();
+    const nm=cl.querySelectorAll('.chap .nm')[activeChapter]; if(nm)nm.textContent=titleIn.value||'Untitled';};
+
+  // editor
+  const ed=el('div','editor'); ed.contentEditable=true; ed.dataset.ph='Write your chapter here… Use the toolbar to format.';
+  ed.innerHTML=c.html||'';
+  const wc=el('div','wordcount');
+  const updWc=()=>{const t=ed.innerText.trim();const n=t?t.split(/\s+/).length:0;wc.textContent=n+' words · ~'+Math.max(1,Math.ceil(n/250))+' page(s)';};
+  ed.oninput=()=>{c.html=ed.innerHTML;updWc();clearTimeout(saveTimer);saveTimer=setTimeout(persist,500);};
+  updWc();
+
+  // ---- AI assist (operates on the whole chapter) ----
+  tb.append(sep());
+  const aiGen=el('button','aibtn','✨ Write'); aiGen.title='Write this chapter with AI';
+  const aiCont=el('button','aibtn','➕ Continue'); aiCont.title='Continue from current text';
+  const aiImp=el('button','aibtn','♻ Improve'); aiImp.title='Rewrite this chapter to read better';
+  tb.append(aiGen,aiCont,aiImp);
+  aiGen.onclick =()=>aiWriteChapter(b,c,ed,updWc,'generate');
+  aiCont.onclick=()=>aiWriteChapter(b,c,ed,updWc,'continue');
+  aiImp.onclick =()=>aiWriteChapter(b,c,ed,updWc,'improve');
+
+  const rwBtn=el('button','aibtn','✎ Rewrite sel.'); rwBtn.title='Rewrite the selected text with AI';
+  let savedSel=null;
+  rwBtn.addEventListener('mousedown',()=>{ const s=window.getSelection(); savedSel=(s.rangeCount&&ed.contains(s.anchorNode))?s.getRangeAt(0).cloneRange():null; });
+  tb.append(rwBtn);
+  rwBtn.onclick=()=>aiRewriteSelection(b,c,ed,updWc,savedSel);
+
+  const splitBtn=el('button','aibtn','✂ Split here'); splitBtn.title='Split this chapter into two at your cursor';
+  splitBtn.style.cssText='border-color:var(--lav);background:linear-gradient(90deg,#fff,#f3eefb);color:#7a5d6a';
+  tb.append(splitBtn);
+  splitBtn.onclick=()=>splitChapterAtCursor(b,c,ed);
+
+  const mergeBtn=el('button','aibtn','⤴ Merge up'); mergeBtn.title='Merge this chapter into the one above it';
+  mergeBtn.style.cssText='border-color:var(--lav);background:linear-gradient(90deg,#fff,#f3eefb);color:#7a5d6a';
+  tb.append(mergeBtn);
+  mergeBtn.onclick=()=>mergeChapterUp(b,c);
+
+  col.append(tb,titleIn,ed,wc);
+  wrap.append(cl,col);
+  return wrap;
+}
+
+/* ---------------- COVER PANE ---------------- */
+function paneCover(b){
+  const pane=el('div','pane');
+  pane.innerHTML=`<div class="tip">💡 <b>Cover tip:</b> On Amazon your cover is a tiny thumbnail. Use a <b>big bold title</b>, high contrast, and 1–2 colors. Aim for a 1.6:1 ratio (1600×2560 px). Design one here <b>or upload your own artwork</b>.</div>`;
+  const stage=el('div','coverstage');
+
+  const prev=el('div','coverprev'); prev.id='coverPrev';
+  function renderPrev(){
+    if(b.coverImage){
+      prev.style.background='#fff';
+      prev.style.backgroundImage='url('+b.coverImage+')';
+      prev.style.backgroundSize='cover';
+      prev.style.backgroundPosition='center';
+      prev.style.padding='0';
+      prev.innerHTML='';
+    } else {
+      prev.style.backgroundImage='';
+      prev.style.background=b.cover;
+      prev.style.padding='';
+      prev.innerHTML=`<div><div class="ctitle">${esc(b.title)||'Your Title'}</div><div class="csub">${esc(b.subtitle)||''}</div></div>
+        <div class="cband"></div><div class="cauth">${esc((b.author||'YOUR NAME').toUpperCase())}</div>`;
+    }
+  }
+  renderPrev();
+
+  const ctl=el('div','coverctl');
+  ctl.append(fieldText('Book title',b.title,v=>{b.title=v;upd();}),
+             fieldText('Subtitle (the benefit / hook)',b.subtitle,v=>{b.subtitle=v;upd();}),
+             fieldText('Author / pen name',b.author,v=>{b.author=v;upd();}));
+
+  // AI title brainstorm
+  const btWrap=el('div'); btWrap.style.margin='4px 0';
+  const btBtn=el('button','tbtn primary','✨ Brainstorm 10 titles with AI'); btBtn.style.cssText='background:var(--accent);color:#fff';
+  const btRes=el('div'); btRes.style.marginTop='10px';
+  btBtn.onclick=()=>aiBrainstormTitles(b,btRes);
+  btWrap.append(btBtn,btRes); ctl.appendChild(btWrap);
+
+  const swl=el('div'); swl.style.marginTop='10px'; swl.innerHTML='<div class="lab" style="font-size:12px;font-weight:700;color:#7a5d6a;margin:6px 0 5px">Designed cover background</div>';
+  const sws=el('div','swatches');
+  COVER_PRESETS.forEach(p=>{const s=el('div','sw'+(!b.coverImage&&p===b.cover?' active':''));s.style.background=p;s.onclick=()=>{b.coverImage='';b.coverImageSrc='';b.coverFit=null;b.cover=p;persist();renderPane();};sws.appendChild(s);});
+  swl.appendChild(sws); ctl.appendChild(swl);
+
+  const upWrap=el('div'); upWrap.style.marginTop='16px';
+  upWrap.innerHTML='<div class="lab" style="font-size:12px;font-weight:700;color:#7a5d6a;margin:0 0 6px">Or upload your own cover image</div>';
+  const upBtn=el('button','tbtn primary','⬆ Upload cover image'); upBtn.style.cssText='background:var(--accent);color:#fff';
+  upBtn.onclick=()=>{ const inp=el('input'); inp.type='file'; inp.accept='image/*';
+    inp.onchange=()=>{ const f=inp.files[0]; if(!f)return; resizeImage(f,2000,d=>{ b.coverImageSrc=d; b.coverFit={zoom:1,x:50,y:50}; bakeCover(b,()=>{persist();renderPane();}); }); };
+    inp.click(); };
+  upWrap.appendChild(upBtn);
+  if(b.coverImage && b.coverImageSrc){
+    const rm=el('button','tbtn','✕ Remove'); rm.style.marginLeft='8px';
+    rm.onclick=()=>{ b.coverImage=''; b.coverImageSrc=''; b.coverFit=null; persist(); renderPane(); };
+    upWrap.appendChild(rm);
+
+    const fit=b.coverFit||(b.coverFit={zoom:1,x:50,y:50});
+    const ctrls=el('div'); ctrls.style.marginTop='12px';
+    const mkSlider=(label,key,min,max,step)=>{
+      const w=el('label','field'); w.style.marginBottom='8px';
+      w.innerHTML='<span class="lab" style="margin-bottom:2px">'+label+'</span>';
+      const s=el('input'); s.type='range'; s.min=min; s.max=max; s.step=step; s.value=fit[key]; s.style.width='100%';
+      s.oninput=()=>{ fit[key]=parseFloat(s.value); bakeCover(b,()=>{ prev.style.backgroundImage='url('+b.coverImage+')'; }); clearTimeout(saveTimer); saveTimer=setTimeout(persist,400); };
+      w.appendChild(s); return w;
+    };
+    ctrls.append(mkSlider('Zoom','zoom',1,3,0.01), mkSlider('Move left / right','x',0,100,1), mkSlider('Move up / down','y',0,100,1));
+    upWrap.appendChild(ctrls);
+    const note=el('div','hint'); note.style.marginTop='4px';
+    note.textContent='Drag the sliders to frame your artwork. The title/author fields above still feed the inside title page and your KDP listing.';
+    upWrap.appendChild(note);
+  }
+  ctl.appendChild(upWrap);
+
+  function upd(){ if(!b.coverImage)renderPrev(); clearTimeout(saveTimer);saveTimer=setTimeout(persist,400);renderLibrary(); }
+
+  stage.append(prev,ctl); pane.appendChild(stage);
+  return pane;
+}
+
+/* ---------------- KDP PANE ---------------- */
+function paneKdp(b){
+  const pane=el('div','pane');
+  const k=b.kdp;
+
+  // One-click KDP package
+  const cp=el('div','card');
+  cp.innerHTML='<h2>📦 One-click KDP package</h2><p class="hint">Download a single ZIP with everything you need to upload: the interior as <b>EPUB</b> (Kindle) and <b>Word .doc</b>, your <b>cover image</b>, and a <b>listing sheet</b> (title, description, keywords, categories) to copy-paste into KDP.</p>';
+  const cpBtn=el('button','tbtn primary','📦 Prepare KDP package (.zip)'); cpBtn.style.cssText='background:var(--accent);color:#fff';
+  cpBtn.onclick=exportKdpPackage; cp.appendChild(cpBtn); pane.appendChild(cp);
+
+  // Title/subtitle card
+  const c1=el('div','card');
+  c1.innerHTML=`<h2>📘 Listing basics</h2><p class="hint">These appear on your Amazon product page. Keep the title clear; put your main keyword in the subtitle.</p>`;
+  c1.append(fieldText('Title',b.title,v=>{b.title=v;persist();renderLibrary();}),
+            fieldText('Subtitle',b.subtitle,v=>{b.subtitle=v;persist();}),
+            fieldText('Author / pen name',b.author,v=>{b.author=v;persist();}));
+  const rowA=el('div','row');
+  rowA.append(fieldText('Series name (optional)',k.series,v=>{k.series=v;persist();}),
+              fieldText('List price (e.g. $4.99)',k.price,v=>{k.price=v;persist();}));
+  c1.appendChild(rowA);
+  pane.appendChild(c1);
+
+  // Description card
+  const c2=el('div','card');
+  c2.innerHTML=`<h2>📝 Book description</h2><p class="hint">The sales pitch shoppers read. Lead with the transformation, use short paragraphs, add a few benefit bullets. KDP allows up to ~4,000 characters.</p>`;
+  const ta=el('textarea','in'); ta.style.minHeight='150px'; ta.value=k.desc; ta.placeholder='Hook line that promises a result…\n\nWhat\'s inside:\n• Benefit one\n• Benefit two\n• Benefit three\n\nWho it\'s for + call to action.';
+  const cnt=el('div','counter'); const updc=()=>{const n=ta.value.length;cnt.textContent=n+' / 4000';cnt.className='counter '+(n>4000?'warn':n>200?'good':'');};
+  ta.oninput=()=>{k.desc=ta.value;updc();clearTimeout(saveTimer);saveTimer=setTimeout(persist,400);};
+  updc();
+  const tplBtn=el('button','tbtn primary','✨ Insert description template'); tplBtn.style.marginBottom='10px';
+  tplBtn.onclick=()=>{ if(ta.value && !confirm('Replace current description with a template?'))return;
+    ta.value=descTemplate(b); k.desc=ta.value; updc(); persist(); };
+  const aiDesc=el('button','tbtn primary','✨ Write with AI'); aiDesc.style.cssText='margin:0 0 10px 8px;background:var(--accent);color:#fff';
+  aiDesc.onclick=async()=>{
+    if(ta.value && !confirm('Replace the current description with an AI-written one?'))return;
+    const sys='You write irresistible Amazon book descriptions that turn browsers into buyers. Lead with the transformation, use short paragraphs and three benefit bullets (each starting with • ), and end with a call to action. Plain text only, under 1000 characters.';
+    const ctx='Title: '+b.title+'\nSubtitle: '+b.subtitle+'\nChapters: '+b.chapters.map(x=>x.title).join('; ');
+    setHeaderStatus('✨ Writing description…');
+    try{ await callClaudeStream([{role:'user',content:ctx+'\n\nWrite the book description.'}],{system:sys,maxTokens:1500,onText:f=>{ta.value=f;k.desc=f;updc();}}); persist(); }
+    catch(err){ alert(err.message); }
+    setHeaderStatus('');
+  };
+  c2.append(tplBtn,aiDesc,ta,cnt);
+  pane.appendChild(c2);
+
+  // Keywords card
+  const c3=el('div','card');
+  c3.innerHTML=`<h2>🔑 7 Keywords</h2><p class="hint">Amazon gives you 7 keyword slots. Use buyer phrases people actually type (e.g. "self care planner for women"), not single words.</p>`;
+  const sug=el('button','tbtn primary','✨ Suggest keywords from my title'); sug.style.marginBottom='12px';
+  const kwGrid=el('div','kw');
+  function drawKw(){ kwGrid.innerHTML=''; for(let i=0;i<7;i++){ const w=el('div','kwnum');
+      const num=el('span',null,i+1); const inp=el('input','in'); inp.value=k.keywords[i]||''; inp.placeholder='keyword phrase '+(i+1);
+      inp.oninput=()=>{k.keywords[i]=inp.value;clearTimeout(saveTimer);saveTimer=setTimeout(persist,400);};
+      w.append(num,inp); kwGrid.appendChild(w);
+  } }
+  drawKw();
+  sug.onclick=()=>{ const s=suggestKeywords(b.title,b.subtitle,k.cat1); s.forEach((v,i)=>{if(i<7)k.keywords[i]=v;}); persist(); drawKw(); };
+  const aiKw=el('button','tbtn primary','✨ AI keywords'); aiKw.style.cssText='margin:0 0 12px 8px;background:var(--accent);color:#fff';
+  aiKw.onclick=async()=>{
+    const sys='You are an Amazon KDP keyword expert. Suggest exactly 7 high-intent buyer search phrases (2 to 4 words each) for this book. Respond ONLY with a JSON array of 7 strings, no other text.';
+    setHeaderStatus('✨ Finding keywords…');
+    try{ const out=await callClaudeStream([{role:'user',content:'Title: '+b.title+'\nSubtitle: '+b.subtitle}],{system:sys,maxTokens:500});
+      const arr=JSON.parse(out.slice(out.indexOf('['),out.lastIndexOf(']')+1));
+      arr.slice(0,7).forEach((v,i)=>k.keywords[i]=String(v)); persist(); drawKw();
+    }catch(err){ alert('Could not get keywords: '+err.message); }
+    setHeaderStatus('');
+  };
+  c3.append(sug,aiKw,kwGrid);
+  pane.appendChild(c3);
+
+  // Categories card
+  const c4=el('div','card');
+  c4.innerHTML=`<h2>🗂 Categories</h2><p class="hint">Pick 2 specific categories — niche ones are easier to rank #1 in ("Bestseller" badge!). Click a suggestion or type your own.</p>`;
+  c4.append(fieldText('Category 1',k.cat1,v=>{k.cat1=v;persist();}),
+            fieldText('Category 2',k.cat2,v=>{k.cat2=v;persist();}));
+  const cats=['Self-Help › Personal Transformation','Health, Fitness & Dieting › Women\'s Health','Crafts, Hobbies & Home','Cookbooks › Special Diet','Business › Women & Business','Parenting & Relationships','Religion & Spirituality › Inspirational'];
+  const chipw=el('div','chips');
+  cats.forEach(ct=>{const ch=el('span','chip',ct);ch.onclick=()=>{ if(!k.cat1)k.cat1=ct; else k.cat2=ct; persist(); renderPane(); };chipw.appendChild(ch);});
+  c4.appendChild(chipw);
+  pane.appendChild(c4);
+
+  // Checklist
+  const c5=el('div','card');
+  c5.innerHTML=`<h2>✅ Bestseller checklist</h2><p class="hint">Honest version: software can't guarantee a bestseller, but these are what consistently help.</p>
+    <div style="line-height:2;font-size:14px">
+    ☐ Title + subtitle contain your main buyer keyword<br>
+    ☐ Cover is bold &amp; readable as a thumbnail<br>
+    ☐ Description leads with a clear transformation<br>
+    ☐ All 7 keyword slots filled with real search phrases<br>
+    ☐ 2 niche categories chosen (easier #1)<br>
+    ☐ Priced to match the category ($2.99–$9.99 sweet spot)<br>
+    ☐ Asked early readers for honest reviews<br>
+    ☐ Front + back matter: TOC, "leave a review", links to your other books</div>`;
+  pane.appendChild(c5);
+
+  return pane;
+}
+function descTemplate(b){
+  return `Do you want to ${b.subtitle? b.subtitle.toLowerCase() : 'finally get the results you\'ve been after'}? ${b.title} gives you a simple, proven path — even if you've tried before and felt stuck.
+
+Inside this ${b.chapters.length}-chapter guide you'll discover:
+• The core method, broken into easy steps you can start today
+• The common mistakes that hold most people back — and how to skip them
+• A clear action plan so you actually finish, not just read
+
+Whether you're a complete beginner or just need a fresh approach, this book meets you where you are.
+
+Scroll up and click "Buy Now" to start your transformation today.`;
+}
+
+/* ---------------- PREVIEW PANE ---------------- */
+function panePreview(b){
+  const pane=el('div','pane');
+  // theme picker
+  const tp=el('div','card');
+  tp.innerHTML='<h2>🎨 Book theme</h2><p class="hint">Choose the look of your interior + cover.</p>';
+  const pick=el('div','theme-pick');
+  Object.entries(THEMES).forEach(([k,t])=>{const c=el('div','themecard'+(k===b.theme?' active':''));
+    c.innerHTML=`<div class="bar" style="background:${t.cover}"></div>${t.name}`;
+    c.onclick=()=>{b.theme=k;persist();renderPane();renderLibrary();};pick.appendChild(c);});
+  tp.appendChild(pick); pane.appendChild(tp);
+
+  const wrap=el('div'); wrap.innerHTML=buildBookHTML(b,true);
+  pane.appendChild(wrap);
+  return pane;
+}
+
+/* ============================================================
+   Build full book HTML (used by preview + all exports)
+   ============================================================ */
+function buildBookHTML(b, screen){
+  const t=THEMES[b.theme];
+  const toc=b.chapters.map((c,i)=>`<li>${esc(c.title)||'Chapter '+(i+1)}</li>`).join('');
+  const chapters=b.chapters.map((c,i)=>`
+    <h2 class="chh">${esc(c.title)||'Chapter '+(i+1)}</h2>
+    <div>${c.html||''}</div>`).join('');
+  return `<div class="previewpage" style="--book-bg:${t.bg};--book-ink:${t.ink};--book-accent:${t.accent}">
+    ${b.coverImage
+      ? `<div class="pp-cover" style="padding:0;background:#fff"><img src="${b.coverImage}" style="width:100%;display:block"></div>`
+      : `<div class="pp-cover" style="background:${b.cover}">
+      <h1>${esc(b.title)||'Your Title'}</h1>
+      ${b.subtitle?`<div class="sub">${esc(b.subtitle)}</div>`:''}
+      <div class="auth">${esc((b.author||'').toUpperCase())}</div>
+    </div>`}
+    <div class="pp-toc"><h2>Contents</h2><ol>${toc}</ol></div>
+    <div class="pp-body" style="background:${t.bg};color:${t.ink}">${chapters}</div>
+  </div>`;
+}
+
+/* ---------- standalone HTML document (for export/print) ---------- */
+function fullDocument(b){
+  const t=THEMES[b.theme];
+  const toc=b.chapters.map((c,i)=>`<li>${esc(c.title)||'Chapter '+(i+1)}</li>`).join('');
+  const chapters=b.chapters.map((c,i)=>`
+    <h2 style="font-family:${t.head};color:${t.accent};border-bottom:2px solid #eee;padding-bottom:6px;margin-top:40px;page-break-after:avoid">${esc(c.title)||'Chapter '+(i+1)}</h2>
+    <div>${c.html||''}</div>`).join('');
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${esc(b.title)}</title>
+  <style>
+    @page{margin:1in}
+    body{font-family:${t.body};color:${t.ink};line-height:1.75;font-size:12pt;margin:0}
+    .cover{background:${b.cover};color:#fff;text-align:center;padding:160px 50px;page-break-after:always}
+    .cover h1{font-family:${t.head};font-size:34pt;margin:0}
+    .cover .sub{font-size:18pt;margin-top:16px;opacity:.95}
+    .cover .auth{margin-top:40px;font-size:14pt;letter-spacing:1px}
+    .toc{page-break-after:always;padding:30px 0}
+    .toc h2{font-family:${t.head};color:${t.accent}}
+    .toc ol{line-height:2.2;font-size:13pt}
+    .content{padding:0}
+    h2{page-break-after:avoid}
+    img{max-width:100%}
+    blockquote{border-left:3px solid ${t.accent};margin:0;padding:4px 16px;font-style:italic;color:#666}
+  </style></head>
+  <body>
+    ${b.coverImage?`<div style="page-break-after:always;text-align:center"><img src="${b.coverImage}" style="max-width:100%;max-height:9.5in"></div>`:`<div class="cover"><h1>${esc(b.title)||'Untitled'}</h1>${b.subtitle?`<div class="sub">${esc(b.subtitle)}</div>`:''}<div class="auth">${esc((b.author||'').toUpperCase())}</div></div>`}
+    <div class="toc"><h2>Contents</h2><ol>${toc}</ol></div>
+    <div class="content">${chapters}</div>
+  </body></html>`;
+}
+
+/* ============================================================
+   Exports
+   ============================================================ */
+function download(filename, content, mime){
+  const blob=new Blob([content],{type:mime});
+  const a=el('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+function safeName(b){ return (b.title||'ebook').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').toLowerCase(); }
+
+function exportHtml(){ const b=curBook(); if(!b)return; download(safeName(b)+'.html', fullDocument(b),'text/html'); }
+function exportWord(){ const b=curBook(); if(!b)return;
+  // .doc opens in Microsoft Word and uploads fine to KDP
+  const html=fullDocument(b).replace('<html>','<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">');
+  download(safeName(b)+'.doc', html,'application/msword');
+}
+function exportPdf(){ const b=curBook(); if(!b)return;
+  const w=window.open('','_blank');
+  if(!w){alert('Please allow pop-ups, then click PDF again.');return;}
+  w.document.write(fullDocument(b));
+  w.document.close();
+  w.onload=()=>{ setTimeout(()=>{ w.focus(); w.print(); },300); };
+  // In the print dialog choose "Save as PDF" as the printer.
+}
+
+/* ---------- Backup / restore ---------- */
+function backupAll(){ download('schicgirl-ebooks-backup.json', JSON.stringify(DB,null,2),'application/json'); }
+function restore(file){ const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result);
+    if(!d.books) throw 0;
+    if(confirm('Restore '+d.books.length+' book(s)? This replaces what\'s currently here.')){ DB=d; currentId=DB.books[0]?DB.books[0].id:null; activeChapter=0; persist(); renderAll(); }
+  }catch(e){ alert('That file doesn\'t look like a valid backup.'); } }; r.readAsText(file); }
+
+/* ============================================================
+   Small field helper
+   ============================================================ */
+function fieldText(label,val,onInput){
+  const l=el('label','field');
+  l.innerHTML=`<span class="lab">${label}</span>`;
+  const i=el('input','in'); i.value=val||''; i.oninput=()=>onInput(i.value);
+  l.appendChild(i); return l;
+}
+
+/* Resize an uploaded image down to maxW px wide (keeps storage small) */
+function resizeImage(file,maxW,cb){
+  const r=new FileReader();
+  r.onload=()=>{ const img=new Image();
+    img.onload=()=>{ let w=img.width,h=img.height; if(w>maxW){ h=Math.round(h*maxW/w); w=maxW; }
+      const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      try{ cb(cv.toDataURL('image/jpeg',0.85)); }catch(e){ alert('Could not process that image.'); } };
+    img.onerror=()=>alert('Could not read that image file.'); img.src=r.result; };
+  r.readAsDataURL(file);
+}
+
+/* Bake the uploaded cover (coverImageSrc) into a framed 1600×2560
+   JPEG (book.coverImage) using zoom + focal point — so the preview
+   and the PDF/Word export show exactly the same crop. */
+function bakeCover(b, cb){
+  const src=b.coverImageSrc; if(!src){ cb&&cb(); return; }
+  const fit=b.coverFit||{zoom:1,x:50,y:50};
+  const img=new Image();
+  img.onload=()=>{
+    const W=1600,H=2560;
+    const cv=document.createElement('canvas'); cv.width=W; cv.height=H;
+    const ctx=cv.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+    const base=Math.max(W/img.width, H/img.height);
+    const scale=base*(fit.zoom||1);
+    const dw=img.width*scale, dh=img.height*scale;
+    const dx=(W-dw)*((fit.x!=null?fit.x:50)/100);
+    const dy=(H-dh)*((fit.y!=null?fit.y:50)/100);
+    ctx.drawImage(img,dx,dy,dw,dh);
+    try{ b.coverImage=cv.toDataURL('image/jpeg',0.85); }catch(e){}
+    cb&&cb();
+  };
+  img.onerror=()=>{ cb&&cb(); };
+  img.src=src;
+}
+
+/* ============================================================
+   Wire up top-level controls
+   ============================================================ */
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{activeTab=t.dataset.tab;renderTabs();renderPane();});
+$('#btnNew').onclick=()=>{const b=newBook('Untitled Ebook');DB.books.unshift(b);currentId=b.id;activeChapter=0;activeTab='write';persist();renderAll();};
+$('#btnExportPdf').onclick=exportPdf;
+$('#btnExportWord').onclick=exportWord;
+$('#btnExportHtml').onclick=exportHtml;
+$('#btnBackup').onclick=backupAll;
+$('#btnRestore').onclick=()=>$('#fileInput').click();
+$('#fileInput').onchange=e=>{ if(e.target.files[0]) restore(e.target.files[0]); e.target.value=''; };
+
+/* ============================================================
+   AI WRITING ASSISTANT
+   Calls Anthropic's Claude directly from the browser. The API
+   key lives only in this browser's localStorage on this PC.
+   ============================================================ */
+const AI_CFG_KEY='schicgirl_ai_cfg';
+function getConfig(){ try{return JSON.parse(localStorage.getItem(AI_CFG_KEY))||{};}catch(e){return {};} }
+function setConfig(c){ localStorage.setItem(AI_CFG_KEY, JSON.stringify(c)); }
+function setHeaderStatus(s){ const e=$('#aiStatus'); if(e)e.textContent=s||''; }
+function setBusy(ed,on){ setHeaderStatus(on?'✨ AI writing…':''); if(ed){ed.style.opacity=on?'.6':'1'; ed.contentEditable=on?'false':'true';} }
+
+async function callClaudeStream(messages, opts){
+  opts=opts||{};
+  const cfg=getConfig();
+  if(!cfg.apiKey){ openSettings(); throw new Error('Add your Anthropic API key in the AI Writer panel first.'); }
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'content-type':'application/json',
+      'x-api-key':cfg.apiKey,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    },
+    body:JSON.stringify({
+      model:cfg.model||'claude-opus-4-8',
+      max_tokens:opts.maxTokens||8000,
+      stream:true,
+      system:opts.system||undefined,
+      messages:messages
+    })
+  });
+  if(!res.ok){ let t=''; try{t=await res.text();}catch(e){} throw new Error('Claude API '+res.status+(t?': '+t.slice(0,300):'')); }
+  const reader=res.body.getReader(), dec=new TextDecoder();
+  let buf='', full='';
+  while(true){
+    const {done,value}=await reader.read(); if(done)break;
+    buf+=dec.decode(value,{stream:true});
+    let nl;
+    while((nl=buf.indexOf('\n'))>=0){
+      const line=buf.slice(0,nl); buf=buf.slice(nl+1);
+      if(!line.startsWith('data:'))continue;
+      const data=line.slice(5).trim();
+      if(!data||data==='[DONE]')continue;
+      try{ const ev=JSON.parse(data);
+        if(ev.type==='content_block_delta'&&ev.delta&&ev.delta.type==='text_delta'){ full+=ev.delta.text; if(opts.onText)opts.onText(full); }
+      }catch(e){}
+    }
+  }
+  return full;
+}
+
+/* Convert Claude's Markdown into the editor's HTML */
+function mdToHtml(md){
+  const e=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const inl=s=>e(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>');
+  let html='', list=false;
+  const closeList=()=>{ if(list){html+='</ul>';list=false;} };
+  md.split('\n').forEach(raw=>{
+    const line=raw.replace(/\s+$/,'');
+    if(/^#{2,3}\s+/.test(line)){ closeList(); const lvl=line.startsWith('### ')?3:2; html+='<h'+lvl+'>'+inl(line.replace(/^#{2,3}\s+/,''))+'</h'+lvl+'>'; }
+    else if(/^[-*]\s+/.test(line)){ if(!list){html+='<ul>';list=true;} html+='<li>'+inl(line.replace(/^[-*]\s+/,''))+'</li>'; }
+    else if(line.trim()===''){ closeList(); }
+    else { closeList(); html+='<p>'+inl(line)+'</p>'; }
+  });
+  closeList();
+  return html||'<p></p>';
+}
+
+async function aiWriteChapter(b,c,ed,updWc,mode){
+  if(mode!=='generate' && !ed.innerText.trim()){ alert(mode==='continue'?'Write or generate something first, then use Continue.':'There is nothing to improve yet.'); return; }
+  let extra='';
+  if(mode==='generate') extra=prompt('What should this chapter cover? (optional — leave blank to use the chapter title)','')||'';
+  const sys='You are a professional non-fiction ebook ghostwriter for books sold on Amazon. Write clear, engaging, well-structured prose. Use Markdown: ## for section headings, **bold** for emphasis, - for bullets. Do NOT repeat the chapter title as a heading and do NOT add any commentary before or after — output only the chapter body.';
+  const ctx='Book title: '+(b.title||'(untitled)')+'\nSubtitle: '+(b.subtitle||'')+'\nChapter title: '+(c.title||'(untitled)');
+  let user;
+  if(mode==='generate') user=ctx+'\n\nWrite this chapter'+(extra?': '+extra:'')+'. Aim for 600–1000 words.';
+  else if(mode==='continue') user=ctx+'\n\nThe chapter so far:\n\n'+ed.innerText+'\n\nContinue writing naturally where it leaves off. Output only the new text to append.';
+  else user=ctx+'\n\nRewrite the following chapter to be clearer, more engaging and better organised, keeping the meaning and roughly the same length:\n\n'+ed.innerText;
+
+  const startHtml=ed.innerHTML;
+  setBusy(ed,true);
+  try{
+    await callClaudeStream([{role:'user',content:user}],{system:sys,maxTokens:8000,onText:full=>{
+      ed.innerHTML=(mode==='continue'?startHtml:'')+mdToHtml(full);
+      ed.scrollTop=ed.scrollHeight;
+    }});
+    c.html=ed.innerHTML; persist(); updWc();
+  }catch(err){ ed.innerHTML=startHtml; alert(err.message); }
+  setBusy(ed,false);
+}
+
+async function aiBuildOutline(b){
+  const idea=prompt('Describe your book idea (topic, who it is for, and the result the reader gets):','');
+  if(!idea)return;
+  const sys='You are a bestselling non-fiction book strategist. Design a compelling chapter outline for a short Amazon ebook. Respond ONLY with a JSON array (no prose, no code fences) of 6 to 9 objects, each {"title":"...","intro":"a one or two sentence chapter summary"}.';
+  setHeaderStatus('✨ AI planning your book…');
+  try{
+    const out=await callClaudeStream([{role:'user',content:'Book idea: '+idea}],{system:sys,maxTokens:2000});
+    const arr=JSON.parse(out.slice(out.indexOf('['),out.lastIndexOf(']')+1));
+    if(Array.isArray(arr)&&arr.length&&confirm('AI suggested '+arr.length+' chapters. Replace your current chapters with this outline? (Existing chapter text will be lost.)')){
+      b.chapters=arr.map(x=>({title:String(x.title||'Chapter'),html:'<p><i>'+esc(String(x.intro||''))+'</i></p>'}));
+      activeChapter=0; persist(); renderPane();
+    }
+  }catch(err){ alert('Could not build the outline: '+err.message); }
+  setHeaderStatus('');
+}
+
+async function aiBrainstormTitles(b, mount){
+  const topic=prompt('What is the book about? (a sentence or two — or leave blank to use your current title/subtitle)','')||'';
+  const basis=topic || ((b.title||'')+' '+(b.subtitle||'')).trim() || 'a short non-fiction self-help ebook';
+  mount.innerHTML='<div class="hint">✨ Thinking of titles…</div>';
+  setHeaderStatus('✨ Brainstorming titles…');
+  const sys='You are a bestselling book-title strategist for Amazon KDP. Propose 10 punchy, browsable title + benefit-subtitle pairs that would make a shopper click. Respond ONLY with a JSON array of 10 objects {"title":"...","subtitle":"..."}, no other text.';
+  try{
+    const out=await callClaudeStream([{role:'user',content:'Book: '+basis}],{system:sys,maxTokens:1500});
+    const arr=JSON.parse(out.slice(out.indexOf('['),out.lastIndexOf(']')+1));
+    mount.innerHTML='<div class="lab" style="font-size:12px;font-weight:700;color:#7a5d6a;margin:4px 0 6px">Click a title to use it</div>';
+    arr.slice(0,10).forEach(t=>{
+      const row=el('div','titleopt');
+      row.innerHTML='<b>'+esc(t.title||'')+'</b>'+(t.subtitle?'<div style="font-size:12px;color:var(--muted);margin-top:2px">'+esc(t.subtitle)+'</div>':'');
+      row.onclick=()=>{ if(t.title)b.title=t.title; if(t.subtitle)b.subtitle=t.subtitle; persist(); renderPane(); renderLibrary(); };
+      mount.appendChild(row);
+    });
+  }catch(err){ mount.innerHTML='<div class="hint" style="color:var(--pink-deep)">⚠ '+esc(err.message)+'</div>'; }
+  setHeaderStatus('');
+}
+
+/* ---- Split the current chapter at the cursor into two ---- */
+function splitChapterAtCursor(b,c,ed){
+  const sel=window.getSelection();
+  if(!sel || !sel.rangeCount || !ed.contains(sel.anchorNode)){ alert('Click inside the chapter, at the exact point where you want to split it, then press “Split here”.'); return; }
+  const r=sel.getRangeAt(0);
+  const before=document.createRange(); before.setStart(ed,0); before.setEnd(r.startContainer,r.startOffset);
+  const after=document.createRange(); after.setStart(r.startContainer,r.startOffset); after.setEnd(ed, ed.childNodes.length);
+  const d1=document.createElement('div'); d1.appendChild(before.cloneContents());
+  const d2=document.createElement('div'); d2.appendChild(after.cloneContents());
+  if(!d2.textContent.trim()){ alert('Put your cursor earlier in the chapter — there is nothing after the cursor to split into a new chapter.'); return; }
+  const clean=h=>{ h=(h||'').trim()
+      .replace(/^(?:<p>(?:\s|&nbsp;|<br\/?>)*<\/p>\s*)+/i,'')
+      .replace(/(?:<p>(?:\s|&nbsp;|<br\/?>)*<\/p>\s*)+$/i,''); return h.trim()||'<p></p>'; };
+  const idx=b.chapters.indexOf(c);
+  c.html=clean(d1.innerHTML);
+  b.chapters.splice(idx+1,0,{title:(c.title||'Chapter')+' (part 2)', html:clean(d2.innerHTML)});
+  activeChapter=idx+1; persist(); renderPane();
+}
+
+/* ---- Merge the current chapter into the one above it ---- */
+function mergeChapterUp(b,c){
+  const idx=b.chapters.indexOf(c);
+  if(idx<=0){ alert('This is the first chapter — there is nothing above to merge into.'); return; }
+  if(!confirm('Merge “'+(c.title||'this chapter')+'” into the chapter above it?')) return;
+  const prev=b.chapters[idx-1];
+  const t=(c.title||'').trim();
+  const head=(t && !/\(part 2\)$/i.test(t)) ? '<h2>'+esc(t)+'</h2>' : '';
+  prev.html=((prev.html||'').replace(/(?:<p>(?:\s|&nbsp;|<br\/?>)*<\/p>\s*)+$/i,'')) + head + (c.html||'');
+  b.chapters.splice(idx,1);
+  activeChapter=idx-1; persist(); renderPane();
+}
+
+/* ---- Settings / API key panel ---- */
+function openSettings(){ const c=getConfig(); $('#apiKeyIn').value=c.apiKey||''; $('#modelIn').value=c.model||'claude-opus-4-8'; $('#settingsModal').style.display='flex'; }
+$('#btnSettings').onclick=openSettings;
+$('#closeSettings').onclick=()=>$('#settingsModal').style.display='none';
+$('#saveSettings').onclick=()=>{ const c=getConfig(); c.apiKey=$('#apiKeyIn').value.trim(); c.model=$('#modelIn').value; setConfig(c); $('#settingsModal').style.display='none'; setHeaderStatus('✓ AI connected'); setTimeout(()=>setHeaderStatus(''),1500); };
+
+/* ============================================================
+   IMPORT / CONVERT — bring existing ebooks into the studio
+   Handles .docx, .epub, .html, .txt/.md (offline) and .pdf
+   (loads a reader from the web; falls back to paste).
+   ============================================================ */
+
+/* ---- minimal ZIP reader (for .docx & .epub), uses the browser's
+        built-in DecompressionStream — no external libraries ---- */
+async function inflateRaw(u8){
+  const ds=new DecompressionStream('deflate-raw');
+  const out=new Response(new Response(u8).body.pipeThrough(ds));
+  return new Uint8Array(await out.arrayBuffer());
+}
+async function unzip(arrayBuffer){
+  if(typeof DecompressionStream==='undefined') throw new Error('This browser can’t open .docx/.epub here. Use a recent Chrome or Edge, or paste the text instead.');
+  const dv=new DataView(arrayBuffer), u8=new Uint8Array(arrayBuffer);
+  let eocd=-1;
+  for(let i=arrayBuffer.byteLength-22;i>=0;i--){ if(dv.getUint32(i,true)===0x06054b50){eocd=i;break;} }
+  if(eocd<0) throw new Error('This file isn’t a valid .docx/.epub.');
+  const count=dv.getUint16(eocd+10,true); let off=dv.getUint32(eocd+16,true);
+  const files={};
+  for(let n=0;n<count;n++){
+    if(dv.getUint32(off,true)!==0x02014b50) break;
+    const method=dv.getUint16(off+10,true);
+    const compSize=dv.getUint32(off+20,true);
+    const nameLen=dv.getUint16(off+28,true);
+    const extraLen=dv.getUint16(off+30,true);
+    const commentLen=dv.getUint16(off+32,true);
+    const localOff=dv.getUint32(off+42,true);
+    const name=new TextDecoder().decode(u8.subarray(off+46,off+46+nameLen));
+    const lName=dv.getUint16(localOff+26,true), lExtra=dv.getUint16(localOff+28,true);
+    const dataStart=localOff+30+lName+lExtra;
+    files[name]={method,comp:u8.subarray(dataStart,dataStart+compSize)};
+    off+=46+nameLen+extraLen+commentLen;
+  }
+  return files;
+}
+async function readZipText(files,name){
+  const f=files[name]; if(!f)return null;
+  const bytes=f.method===0?f.comp:await inflateRaw(f.comp);
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+function sanitizeHtml(html){
+  return (html||'')
+    .replace(/<script[\s\S]*?<\/script>/gi,'')
+    .replace(/<style[\s\S]*?<\/style>/gi,'')
+    .replace(/\son\w+="[^"]*"/gi,'')
+    .replace(/\sstyle="[^"]*"/gi,'')
+    .replace(/\sclass="[^"]*"/gi,'')
+    .replace(/<\/?(html|head|body|meta|link|title|span)[^>]*>/gi,'');
+}
+
+/* turn a list of {level,html,text?} blocks into chapters,
+   breaking at level-1/2 headings */
+function assembleChapters(blocks, fallbackTitle){
+  const chapters=[]; let cur=null;
+  blocks.forEach(b=>{
+    const plain=(b.text!=null?b.text:(b.html||'').replace(/<[^>]+>/g,'')).trim();
+    if((b.level===1||b.level===2)&&plain){ cur={title:plain,html:''}; chapters.push(cur); return; }
+    if(!cur){ cur={title:fallbackTitle||'Chapter 1',html:''}; chapters.push(cur); }
+    cur.html+=b.html||('<p>'+esc(plain)+'</p>');
+  });
+  if(!chapters.length) chapters.push({title:fallbackTitle||'Chapter 1',html:'<p></p>'});
+  chapters.forEach(c=>{ if(!c.html.trim()) c.html='<p></p>'; });
+  return chapters;
+}
+
+function textToChapters(text, fallbackTitle){
+  const lines=(text||'').replace(/\r\n/g,'\n').split('\n');
+  const blocks=[]; let para=[];
+  const flush=()=>{ if(para.length){ blocks.push({level:0,html:'<p>'+esc(para.join(' '))+'</p>'}); para=[]; } };
+  lines.forEach(raw=>{
+    const line=raw.trim();
+    const md=line.match(/^(#{1,3})\s+(.*)/);
+    if(md){ flush(); const lvl=md[1].length; const tag=lvl===1?1:2; blocks.push({level:Math.min(lvl,3),text:md[2],html:lvl>=3?'<h2>'+esc(md[2])+'</h2>':'<h'+tag+'>'+esc(md[2])+'</h'+tag+'>'}); return; }
+    if(/^(chapter|part|section)\s+[\dIVXLC]+/i.test(line) || (line && line.length<=60 && line===line.toUpperCase() && /[A-Z]/.test(line) && !/[.?!]$/.test(line))){
+      flush(); blocks.push({level:1,text:line,html:'<h1>'+esc(line)+'</h1>'}); return;
+    }
+    if(line===''){ flush(); return; }
+    para.push(line);
+  });
+  flush();
+  return assembleChapters(blocks, fallbackTitle);
+}
+
+function htmlToChapters(htmlString){
+  const doc=new DOMParser().parseFromString(htmlString,'text/html');
+  const body=doc.body||doc.documentElement;
+  const nodes=[...body.querySelectorAll('h1,h2,h3,p,ul,ol,blockquote,img,pre')];
+  if(!nodes.length) return textToChapters(body.innerText||body.textContent||'', null);
+  const blocks=nodes.map(n=>{
+    const tag=n.tagName.toLowerCase();
+    let level=0; if(tag==='h1')level=1; else if(tag==='h2')level=2; else if(tag==='h3')level=3;
+    return {level, text:n.textContent, html:sanitizeHtml(n.outerHTML)};
+  });
+  return assembleChapters(blocks, null);
+}
+
+function docxBlocks(xml){
+  const doc=new DOMParser().parseFromString(xml,'application/xml');
+  const out=[];
+  [...doc.getElementsByTagName('w:p')].forEach(p=>{
+    const st=p.getElementsByTagName('w:pStyle')[0];
+    const style=st?(st.getAttribute('w:val')||''):'';
+    const isList=p.getElementsByTagName('w:numPr').length>0;
+    let html='';
+    [...p.getElementsByTagName('w:r')].forEach(r=>{
+      let t=[...r.getElementsByTagName('w:t')].map(x=>x.textContent).join('');
+      if(!t)return; t=esc(t);
+      const rpr=r.getElementsByTagName('w:rPr')[0];
+      if(rpr){ if(rpr.getElementsByTagName('w:b').length)t='<b>'+t+'</b>'; if(rpr.getElementsByTagName('w:i').length)t='<i>'+t+'</i>'; }
+      html+=t;
+    });
+    const plain=html.replace(/<[^>]+>/g,'').trim();
+    let level=0;
+    if(/heading\s*1/i.test(style)||/^title$/i.test(style))level=1;
+    else if(/heading\s*2/i.test(style))level=2;
+    else if(/heading\s*3/i.test(style))level=3;
+    if(level===1||level===2){ out.push({level,text:plain,html:''}); return; }
+    if(!plain) return;
+    if(isList){ out.push({level:0,html:'<ul><li>'+html+'</li></ul>'}); return; }
+    if(level===3){ out.push({level:3,html:'<h2>'+html+'</h2>'}); return; }
+    out.push({level:0,html:'<p>'+html+'</p>'});
+  });
+  return out;
+}
+
+async function epubToBook(files, fallbackTitle){
+  const container=await readZipText(files,'META-INF/container.xml');
+  let opfPath='';
+  if(container){ const m=container.match(/full-path="([^"]+)"/); if(m)opfPath=m[1]; }
+  if(!opfPath) opfPath=Object.keys(files).find(n=>/\.opf$/i.test(n))||'';
+  if(!opfPath) throw new Error('Could not read this EPUB.');
+  const opf=await readZipText(files,opfPath);
+  const base=opfPath.includes('/')?opfPath.slice(0,opfPath.lastIndexOf('/')+1):'';
+  const doc=new DOMParser().parseFromString(opf,'application/xml');
+  const manifest={};
+  [...doc.getElementsByTagName('item')].forEach(it=>{ manifest[it.getAttribute('id')]={href:it.getAttribute('href'),type:it.getAttribute('media-type')||''}; });
+  const spine=[...doc.getElementsByTagName('itemref')].map(r=>r.getAttribute('idref'));
+  let title=fallbackTitle;
+  const tEl=doc.getElementsByTagName('dc:title')[0];
+  if(tEl&&tEl.textContent.trim()) title=tEl.textContent.trim();
+  const chapters=[];
+  for(const id of spine){
+    const item=manifest[id]; if(!item||!/html|xml/i.test(item.type))continue;
+    const path=base+item.href;
+    const html=await readZipText(files,path)||await readZipText(files,decodeURIComponent(path));
+    if(!html)continue;
+    const cdoc=new DOMParser().parseFromString(html,'text/html');
+    let ct=''; const h=cdoc.querySelector('h1,h2'); if(h)ct=h.textContent.trim();
+    const inner=cdoc.body?cdoc.body.innerHTML:html;
+    const clean=sanitizeHtml(inner).trim();
+    if(clean) chapters.push({title:ct||('Chapter '+(chapters.length+1)), html:clean});
+  }
+  return {title, chapters: chapters.length?chapters:[{title:'Chapter 1',html:'<p></p>'}]};
+}
+
+async function pdfToChapters(arrayBuffer, fallbackTitle){
+  let pdfjs;
+  try{
+    pdfjs=await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.7.76/build/pdf.min.mjs');
+    pdfjs.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@4.7.76/build/pdf.worker.min.mjs';
+  }catch(e){ throw new Error('PDF import needs an internet connection to load the reader. Otherwise open your PDF, press Ctrl+A, Ctrl+C, and use “Paste text”.'); }
+  const pdf=await pdfjs.getDocument({data:arrayBuffer}).promise;
+  let text='';
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const content=await page.getTextContent();
+    content.items.forEach(it=>{ text+=it.str+(it.hasEOL?'\n':' '); });
+    text+='\n\n';
+  }
+  if(!text.trim()) throw new Error('This PDF has no selectable text (it may be scanned images). Use the Word version, or re-type/paste the text.');
+  return textToChapters(text, fallbackTitle);
+}
+
+async function runImport(){
+  const fileInput=$('#importFile'); const f=fileInput.files[0];
+  const pasted=$('#importPaste').value.trim();
+  let title=$('#importTitle').value.trim();
+  const status=$('#importStatus');
+  try{
+    let chapters=null, bookTitle=title;
+    if(f){
+      const name=f.name.replace(/\.[^.]+$/,''); if(!bookTitle)bookTitle=name;
+      const ext=(f.name.split('.').pop()||'').toLowerCase();
+      status.textContent='Reading '+f.name+'…';
+      if(ext==='txt'||ext==='md'){ chapters=textToChapters(await f.text(), name); }
+      else if(ext==='html'||ext==='htm'){ chapters=htmlToChapters(await f.text()); }
+      else if(ext==='docx'){ const files=await unzip(await f.arrayBuffer()); const xml=await readZipText(files,'word/document.xml'); if(!xml)throw new Error('Could not read this .docx.'); chapters=assembleChapters(docxBlocks(xml), name); }
+      else if(ext==='epub'){ const files=await unzip(await f.arrayBuffer()); const r=await epubToBook(files,name); if(!title)bookTitle=r.title; chapters=r.chapters; }
+      else if(ext==='pdf'){ status.textContent='Extracting text from PDF (loading reader)…'; chapters=await pdfToChapters(await f.arrayBuffer(), name); }
+      else throw new Error('Unsupported file type: .'+ext);
+    } else if(pasted){ if(!bookTitle)bookTitle='Imported Book'; chapters=textToChapters(pasted, bookTitle); }
+    else { status.textContent='Choose a file or paste some text first.'; return; }
+
+    const nb=newBook(bookTitle||'Imported Book');
+    nb.title=bookTitle||'Imported Book';
+    if(chapters&&chapters.length) nb.chapters=chapters;
+    DB.books.unshift(nb); currentId=nb.id; activeChapter=0; activeTab='write';
+    persist();
+    $('#importModal').style.display='none'; fileInput.value=''; $('#importPaste').value=''; $('#importTitle').value=''; status.textContent='';
+    renderAll();
+  }catch(err){ status.textContent='⚠ '+err.message; }
+}
+
+$('#btnImport').onclick=()=>{ $('#importStatus').textContent=''; $('#importModal').style.display='flex'; };
+$('#closeImport').onclick=()=>$('#importModal').style.display='none';
+$('#doImport').onclick=runImport;
+$('#importFile').onchange=()=>{ const f=$('#importFile').files[0]; if(f && !$('#importTitle').value.trim()) $('#importTitle').value=f.name.replace(/\.[^.]+$/,''); };
+
+/* ============================================================
+   EPUB EXPORT + KDP PACKAGE — pure-JS ZIP writer (no libraries)
+   ============================================================ */
+const CRC_TABLE=(()=>{ const t=[]; for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1; t[n]=c>>>0; } return t; })();
+function crc32(u8){ let c=0xFFFFFFFF; for(let i=0;i<u8.length;i++)c=CRC_TABLE[(c^u8[i])&0xFF]^(c>>>8); return (c^0xFFFFFFFF)>>>0; }
+function concatU8(arr){ let len=0; arr.forEach(a=>len+=a.length); const out=new Uint8Array(len); let o=0; arr.forEach(a=>{out.set(a,o);o+=a.length;}); return out; }
+function dataURLToBytes(d){ const bin=atob(d.slice(d.indexOf(',')+1)); const u8=new Uint8Array(bin.length); for(let j=0;j<bin.length;j++)u8[j]=bin.charCodeAt(j); return u8; }
+function makeZip(entries){
+  const enc=new TextEncoder();
+  const u16=n=>{const a=new Uint8Array(2);new DataView(a.buffer).setUint16(0,n&0xFFFF,true);return a;};
+  const u32=n=>{const a=new Uint8Array(4);new DataView(a.buffer).setUint32(0,n>>>0,true);return a;};
+  const chunks=[], central=[]; let offset=0;
+  entries.forEach(e=>{
+    const name=enc.encode(e.name);
+    const data=e.data instanceof Uint8Array?e.data:enc.encode(e.data);
+    const crc=crc32(data);
+    const local=concatU8([u32(0x04034b50),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name]);
+    chunks.push(local,data);
+    central.push(concatU8([u32(0x02014b50),u16(20),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]));
+    offset+=local.length+data.length;
+  });
+  const cd=concatU8(central);
+  const eocd=concatU8([u32(0x06054b50),u16(0),u16(0),u16(entries.length),u16(entries.length),u32(cd.length),u32(offset),u16(0)]);
+  return concatU8([...chunks,cd,eocd]);
+}
+function xhtmlSafe(html){
+  try{ const doc=new DOMParser().parseFromString('<div id="_w">'+(html||'')+'</div>','text/html');
+    const s=new XMLSerializer().serializeToString(doc.getElementById('_w'));
+    return s.replace(/^<div[^>]*>/,'').replace(/<\/div>$/,''); }
+  catch(e){ return esc(html||'').replace(/\n/g,'<br/>'); }
+}
+function buildEpub(b){
+  const t=THEMES[b.theme]||THEMES.pastel;
+  const uid=(self.crypto&&crypto.randomUUID)?crypto.randomUUID():('id-'+Math.random().toString(36).slice(2));
+  const modified=new Date().toISOString().replace(/\.\d+Z$/,'Z');
+  const css='body{font-family:Georgia,serif;line-height:1.6;margin:1em;color:'+t.ink+'}h1{font-family:sans-serif}h2{font-family:sans-serif;color:'+t.accent+'}blockquote{border-left:3px solid #ccc;padding-left:1em;font-style:italic;color:#555}img{max-width:100%}';
+  const files=[];
+  files.push({name:'mimetype',data:'application/epub+zip'});
+  files.push({name:'META-INF/container.xml',data:'<?xml version="1.0"?>\n<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles></container>'});
+  files.push({name:'OEBPS/style.css',data:css});
+  const manifest=[], spine=[], nav=[]; let coverMeta='';
+  if(b.coverImage){
+    files.push({name:'OEBPS/cover.jpg',data:dataURLToBytes(b.coverImage)});
+    files.push({name:'OEBPS/cover.xhtml',data:'<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE html>\n<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Cover</title></head><body style="margin:0;text-align:center"><img src="cover.jpg" alt="Cover" style="max-width:100%;height:auto"/></body></html>'});
+    manifest.push('<item id="cover-image" href="cover.jpg" media-type="image/jpeg" properties="cover-image"/>');
+    manifest.push('<item id="coverpage" href="cover.xhtml" media-type="application/xhtml+xml"/>');
+    spine.push('<itemref idref="coverpage"/>');
+    coverMeta='<meta name="cover" content="cover-image"/>';
+  } else {
+    files.push({name:'OEBPS/title.xhtml',data:'<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE html>\n<html xmlns="http://www.w3.org/1999/xhtml"><head><title>'+esc(b.title||'')+'</title><link rel="stylesheet" href="style.css"/></head><body><div style="text-align:center;margin-top:30%"><h1>'+esc(b.title||'Untitled')+'</h1>'+(b.subtitle?'<p style="font-size:1.2em">'+esc(b.subtitle)+'</p>':'')+(b.author?'<p style="margin-top:2em">'+esc(b.author.toUpperCase())+'</p>':'')+'</div></body></html>'});
+    manifest.push('<item id="titlepage" href="title.xhtml" media-type="application/xhtml+xml"/>');
+    spine.push('<itemref idref="titlepage"/>');
+  }
+  manifest.push('<item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>');
+  manifest.push('<item id="css" href="style.css" media-type="text/css"/>');
+  b.chapters.forEach((c,i)=>{
+    const id='chap'+(i+1), fn=id+'.xhtml', ttl=esc(c.title||('Chapter '+(i+1)));
+    files.push({name:'OEBPS/'+fn,data:'<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE html>\n<html xmlns="http://www.w3.org/1999/xhtml"><head><title>'+ttl+'</title><link rel="stylesheet" href="style.css"/></head><body><h1>'+ttl+'</h1>'+xhtmlSafe(c.html)+'</body></html>'});
+    manifest.push('<item id="'+id+'" href="'+fn+'" media-type="application/xhtml+xml"/>');
+    spine.push('<itemref idref="'+id+'"/>');
+    nav.push('<li><a href="'+fn+'">'+ttl+'</a></li>');
+  });
+  files.push({name:'OEBPS/nav.xhtml',data:'<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE html>\n<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head><title>Contents</title><link rel="stylesheet" href="style.css"/></head><body><nav epub:type="toc" id="toc"><h1>Contents</h1><ol>'+nav.join('')+'</ol></nav></body></html>'});
+  files.push({name:'OEBPS/content.opf',data:'<?xml version="1.0" encoding="utf-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="bookid">urn:uuid:'+uid+'</dc:identifier><dc:title>'+esc(b.title||'Untitled')+'</dc:title><dc:creator>'+esc(b.author||'Unknown')+'</dc:creator><dc:language>en</dc:language><meta property="dcterms:modified">'+modified+'</meta>'+coverMeta+'</metadata><manifest>'+manifest.join('')+'</manifest><spine>'+spine.join('')+'</spine></package>'});
+  return makeZip(files);
+}
+function exportEpub(){ const b=curBook(); if(!b)return; try{ download(safeName(b)+'.epub', buildEpub(b),'application/epub+zip'); }catch(e){ alert('EPUB export failed: '+e.message); } }
+
+function kdpSheet(b){
+  const k=b.kdp||{};
+  const kws=(k.keywords||[]).map((w,i)=>(i+1)+'. '+(w||'')).join('\n');
+  return 'AMAZON KDP LISTING SHEET\n========================\n\n'+
+    'TITLE:\n'+(b.title||'')+'\n\nSUBTITLE:\n'+(b.subtitle||'')+'\n\nAUTHOR / PEN NAME:\n'+(b.author||'')+'\n\n'+
+    'SERIES:\n'+(k.series||'')+'\n\nLIST PRICE:\n'+(k.price||'')+'\n\nDESCRIPTION:\n'+(k.desc||'')+'\n\n'+
+    '7 KEYWORDS:\n'+kws+'\n\nCATEGORIES:\n1. '+(k.cat1||'')+'\n2. '+(k.cat2||'')+'\n';
+}
+const KDP_README='YOUR KDP PACKAGE\n================\n\nUpload at https://kdp.amazon.com:\n\n'+
+  '- interior.epub   best for Kindle eBooks (reflowable)\n'+
+  '- interior.doc    alternative interior; opens in Microsoft Word\n'+
+  '- cover.jpg       your cover image (designed for ~1600x2560)\n'+
+  '- KDP-listing.txt copy/paste your title, description, 7 keywords and categories\n\n'+
+  'For a PDF interior, open the studio and use the "PDF / Print" button (choose Save as PDF).\n';
+
+function exportKdpPackage(){
+  const b=curBook(); if(!b)return;
+  try{
+    setHeaderStatus('📦 Building package…');
+    const doc=fullDocument(b);
+    const files=[
+      {name:'interior.epub',data:buildEpub(b)},
+      {name:'interior.doc',data:doc.replace('<html>','<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">')},
+      {name:'interior.html',data:doc},
+      {name:'KDP-listing.txt',data:kdpSheet(b)},
+      {name:'README.txt',data:KDP_README}
+    ];
+    if(b.coverImage) files.splice(3,0,{name:'cover.jpg',data:dataURLToBytes(b.coverImage)});
+    download(safeName(b)+'-KDP-package.zip', makeZip(files),'application/zip');
+    setHeaderStatus('✓ Package ready'); setTimeout(()=>setHeaderStatus(''),1500);
+  }catch(e){ setHeaderStatus(''); alert('Could not build package: '+e.message); }
+}
+
+async function aiRewriteSelection(b,c,ed,updWc,savedRange){
+  if(!savedRange || savedRange.collapsed || !savedRange.toString().trim()){ alert('Select some text in the chapter first, then click “✎ Rewrite sel.”.'); return; }
+  const passage=savedRange.toString();
+  const how=prompt('How should the AI rewrite the selected text?','make it clearer and more engaging')||'make it clearer and more engaging';
+  setHeaderStatus('✨ Rewriting selection…');
+  const sys='You rewrite a passage from an ebook exactly as instructed. Return ONLY the rewritten passage as plain text — it will directly replace the selection. No quotes, no preamble, no commentary.';
+  try{
+    const out=await callClaudeStream([{role:'user',content:'Instruction: '+how+'\n\nPassage:\n'+passage}],{system:sys,maxTokens:2000});
+    const sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(savedRange);
+    savedRange.deleteContents();
+    const parts=out.trim().split(/\n{2,}/);
+    const frag=document.createDocumentFragment();
+    parts.forEach((p,i)=>{ if(i)frag.appendChild(document.createElement('br')); frag.appendChild(document.createTextNode(p)); });
+    savedRange.insertNode(frag);
+    c.html=ed.innerHTML; persist(); updWc();
+  }catch(e){ alert(e.message); }
+  setHeaderStatus('');
+}
+
+$('#btnExportEpub').onclick=exportEpub;
+
+renderAll();
+</script>
+</body>
+</html>

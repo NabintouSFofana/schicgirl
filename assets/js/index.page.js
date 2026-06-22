@@ -56,35 +56,35 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
               title_fr: "Le Studio · Planner Type 4", title_en: "The Studio · Type 4 Planner",
               desc_fr: "Diagnostic, routine sur mesure, calendrier & suivi — l'app interactive + le cahier PDF 36 pages.",
               desc_en: "Diagnosis, custom routine, calendar & tracking — the interactive app + 36-page PDF workbook.",
-              price_fr: "9€", price_en: "$10", price_cfa: "(≈ 6 000 FCFA)", url_fr: "https://selar.com/studio-planner", url_en: "https://selar.com/studio-planner", page_fr: "planner.html", page_en: "planner.html?lang=en",
+              price_fr: "9€", price_en: "$10", price_cfa: "(≈ 6 000 FCFA)", url_fr: "https://selar.com/studio-planner", url_en: "https://selar.com/studio-planner", page_fr: "/fr/planner/", page_en: "/en/planner/",
             },
             {
               id: "hydratee", on: true, img_fr: "assets/hydratee.png", img_en: "assets/hydrated.png", badge_fr: "Best-seller", badge_en: "Best-seller",
               title_fr: "Hydratée", title_en: "Hydrated",
               desc_fr: "La science de l'hydratation pour cheveux crépus — 79 pages, la méthode complète.",
               desc_en: "The science of hydration for coily hair — 79 pages, the full method.",
-              price_fr: "17€", price_en: "$18", price_cfa: "(≈ 11 000 FCFA)", url_fr: "https://selar.com/hydratee", url_en: "https://selar.com/hydrated", page_fr: "hydratee.html", page_en: "hydratee.html?lang=en",
+              price_fr: "17€", price_en: "$18", price_cfa: "(≈ 11 000 FCFA)", url_fr: "https://selar.com/hydratee", url_en: "https://selar.com/hydrated", page_fr: "/fr/hydratation-cheveux-crepus/", page_en: "/en/hydrate-type-4-hair/",
             },
             {
               id: "pousse", on: true, img_fr: "assets/pousse.png", img_en: "assets/grow.png", badge_fr: "", badge_en: "",
               title_fr: "Pousse Maximale", title_en: "Maximum Growth",
               desc_fr: "Fais pousser tes cheveux crépus, sans casse ni frustration.",
               desc_en: "Grow your coily hair — without breakage or frustration.",
-              price_fr: "14€", price_en: "$15", price_cfa: "(≈ 9 000 FCFA)", url_fr: "https://selar.com/pousse", url_en: "https://selar.com/grow-hair", page_fr: "pousse.html", page_en: "pousse.html?lang=en",
+              price_fr: "14€", price_en: "$15", price_cfa: "(≈ 9 000 FCFA)", url_fr: "https://selar.com/pousse", url_en: "https://selar.com/grow-hair", page_fr: "/fr/faire-pousser-cheveux-crepus/", page_en: "/en/grow-type-4-hair/",
             },
             {
               id: "pellicules", on: true, img_fr: "assets/pellicules.png", img_en: "assets/dandruff.png", badge_fr: "", badge_en: "",
               title_fr: "Adieu Pellicules", title_en: "Goodbye Dandruff",
               desc_fr: "Comprends et élimine les pellicules sur cheveux crépus, durablement.",
               desc_en: "Understand and clear dandruff on coily hair, for good.",
-              price_fr: "8€", price_en: "$9", price_cfa: "(≈ 5 000 FCFA)", url_fr: "https://selar.com/pellicules", url_en: "https://selar.com/dandruff", page_fr: "pellicules.html", page_en: "pellicules.html?lang=en",
+              price_fr: "8€", price_en: "$9", price_cfa: "(≈ 5 000 FCFA)", url_fr: "https://selar.com/pellicules", url_en: "https://selar.com/dandruff", page_fr: "/fr/pellicules/", page_en: "/en/dandruff/",
             },
             {
               id: "coiffures", on: true, img_fr: "assets/coiffures-fr.png", img_en: "assets/hair-styles.png", badge_fr: "Petit prix", badge_en: "",
               title_fr: "Coiffures Protectrices", title_en: "Protective Styles",
               desc_fr: "Protège tes longueurs et gagne en pousse avec les bons styles.",
               desc_en: "Protect your length and gain growth with the right styles.",
-              price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url_fr: "https://selar.com/coiffures-protectrices", url_en: "https://selar.com/hair-styles", page_fr: "coiffures.html", page_en: "coiffures.html?lang=en",
+              price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url_fr: "https://selar.com/coiffures-protectrices", url_en: "https://selar.com/hair-styles", page_fr: "/fr/coiffures-protectrices/", page_en: "/en/protective-styles/",
             },
             
             {
@@ -92,14 +92,14 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
               title_fr: "Stop aux Cheveux Secs", title_en: "Stop Dry Hair",
               desc_fr: "Le guide express pour en finir avec la sécheresse. Parfait pour commencer.",
               desc_en: "The express guide to end dryness for good. Perfect to start.",
-              price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url_fr: "https://selar.com/stop-cheveux-secs", url_en: "https://selar.com/stop-dry-hair", page_fr: "stop-cheveux-secs.html", page_en: "stop-cheveux-secs.html?lang=en",
+              price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url_fr: "https://selar.com/stop-cheveux-secs", url_en: "https://selar.com/stop-dry-hair", page_fr: "/fr/cheveux-secs/", page_en: "/en/dry-hair/",
             },
             {
               id: "transition", on: true, img_fr: "assets/transition-fr.png", img_en: "assets/transition-en.png", badge_fr: "Petit prix", badge_en: "",
               title_fr: "Cheveux en Transition", title_en: "Transitioning Hair",
               desc_fr: "Passe du défrisé au naturel en douceur, étape par étape.",
               desc_en: "Go from relaxed to natural smoothly, step by step.",
-              price_fr: "7€", price_en: "$7", price_cfa: "(≈ 4 500 FCFA)", url_fr: "https://selar.com/transition-fr", url_en: "https://selar.com/transition-en", page_fr: "transition.html", page_en: "transition.html?lang=en",
+              price_fr: "7€", price_en: "$7", price_cfa: "(≈ 4 500 FCFA)", url_fr: "https://selar.com/transition-fr", url_en: "https://selar.com/transition-en", page_fr: "/fr/transition-capillaire/", page_en: "/en/hair-transition/",
             },
           ],
         },
@@ -113,7 +113,7 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
               title_fr: "Le Studio · Planner Type 4", title_en: "The Studio · Type 4 Planner",
               sub_fr: "Diagnostic, routine sur mesure, calendrier & suivi — l'app interactive + le cahier PDF 36 pages.",
               sub_en: "Diagnosis, custom routine, calendar & tracking — the interactive app + 36-page PDF workbook.",
-              url: "planner.html",
+              url: "/fr/planner/",
               cta_fr: "Découvrir", cta_en: "Open",
             },
             {
@@ -634,11 +634,11 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
           : "";
         const isFr = SCHICGIRL_LANG === "fr";
         const navItems = [
-          ["about.html", isFr ? "À propos" : "About"],
-          ["blog.html", isFr ? "Blog" : "Blog"],
-          ["contact.html", isFr ? "Contact" : "Contact"],
-          ["privacy-policy.html", isFr ? "Confidentialité" : "Privacy"],
-          ["terms.html", isFr ? "Conditions" : "Terms"],
+          ["/fr/a-propos/", isFr ? "À propos" : "About"],
+          ["/fr/blog/", isFr ? "Blog" : "Blog"],
+          ["/fr/contact/", isFr ? "Contact" : "Contact"],
+          ["/fr/confidentialite/", isFr ? "Confidentialité" : "Privacy"],
+          ["/fr/conditions/", isFr ? "Conditions" : "Terms"],
         ];
         const nav = navItems
           .map((it, i) => `<a href="${it[0]}" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;${i < navItems.length - 1 ? "border-right:1px solid var(--stroke);" : ""}">${it[1]}</a>`)

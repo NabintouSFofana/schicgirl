@@ -78,7 +78,7 @@ function buildDownloads(){
     var ok=document.getElementById("successView"); if(ok && ok.classList.contains("show")) buildDownloads();
   }
   document.querySelectorAll(".langbtn").forEach(function(b){ b.addEventListener("click", function(){ apply(b.dataset.lang); }); });
-  apply((navigator.language||"en").toLowerCase().indexOf("fr")===0 ? "fr" : "en");
+  apply(document.documentElement.getAttribute("lang") || ((navigator.language||"en").toLowerCase().indexOf("fr")===0 ? "fr" : "en"));
 })();
 
 document.getElementById("yr").textContent = new Date().getFullYear();

@@ -1,5 +1,6 @@
 var EBOOK = {"slug": "pousse", "img_fr": "assets/pousse.png", "img_en": "assets/grow.png", "url_fr": "https://selar.com/pousse", "url_en": "https://selar.com/grow-hair", "price_fr": "14€", "price_en": "$15", "price_cfa": "≈ 9 000 FCFA", "cta_fr": "Commencer ma pousse →", "cta_en": "Start my growth →"};
   var LANG = "fr";
+  function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }
   function render(){
     document.querySelectorAll("ul[data-lang]").forEach(function(u){u.classList.toggle("hide", u.getAttribute("data-lang")!==LANG);});
@@ -20,13 +21,13 @@ var EBOOK = {"slug": "pousse", "img_fr": "assets/pousse.png", "img_en": "assets/
     document.getElementById("barCfa").textContent = cfa;
     // cover per language
     var cov = document.getElementById("cover");
-    if (cov){ var src = T(EBOOK,"img"); if(src){ cov.setAttribute("src", src); } }
+    if (cov){ var src = T(EBOOK,"img"); if(src){ cov.setAttribute("src", ab(src)); } }
     // interior previews per language
     var suf = LANG==="en" ? "-en" : "";
     var pi = document.getElementById("prevInside");
     var pd = document.getElementById("prevDetail");
-    if (pi){ pi.setAttribute("src","assets/previews/"+EBOOK.slug+"-inside"+suf+".png"); }
-    if (pd){ pd.setAttribute("src","assets/previews/"+EBOOK.slug+"-detail"+suf+".png"); }
+    if (pi){ pi.setAttribute("src",ab("assets/previews/"+EBOOK.slug+"-inside"+suf+".png")); }
+    if (pd){ pd.setAttribute("src",ab("assets/previews/"+EBOOK.slug+"-detail"+suf+".png")); }
   }
   function zoomPrev(src){
     var lb=document.getElementById("prevLightbox");
@@ -42,4 +43,4 @@ var EBOOK = {"slug": "pousse", "img_fr": "assets/pousse.png", "img_en": "assets/
     render();
   }
   var qp = new URLSearchParams(location.search).get("lang");
-  setLang(qp==="en" ? "en" : "fr");
+  setLang(((new URLSearchParams(location.search).get("lang"))||document.documentElement.getAttribute("lang"))==="en"?"en":"fr");

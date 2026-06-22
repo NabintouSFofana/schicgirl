@@ -12,4 +12,4 @@ var LANG = "fr";
     });
   }
   var qp = new URLSearchParams(location.search).get("lang");
-  setLang(qp === "en" ? "en" : "fr");
+  setLang(((new URLSearchParams(location.search).get("lang"))||document.documentElement.getAttribute("lang"))==="en"?"en":"fr");

@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --shadow-warm: 0 1px 2px rgba(62, 38, 28, 0.04), 0 6px 18px rgba(201, 147, 74, 0.1),
+    0 18px 38px -10px rgba(201, 147, 74, 0.12);
+}
+
+body {
+  color: #2d1a0e;
+  background: radial-gradient(ellipse 80% 55% at 0% 0%, rgba(232, 180, 160, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(237, 217, 176, 0.55) 0%, transparent 50%),
+    linear-gradient(160deg, #fdf6ee 0%, #f8ece0 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn {
+    @apply inline-block rounded-full bg-gradient-to-br from-gold to-gold-deep px-6 py-3
+      font-semibold text-white shadow-[0_8px_24px_rgba(201,147,74,.42)]
+      transition hover:brightness-110 active:scale-[.99];
+  }
+  .card {
+    @apply rounded-brand border border-white/90 bg-cream/85 p-6 shadow-warm backdrop-blur-md;
+  }
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.14em] text-gold-deep;
+  }
+  .h-serif {
+    @apply font-serif font-semibold leading-tight text-ink;
+  }
+}
+
+/* Article body (rendered from the original prose HTML) */
+.prose-article {
+  @apply text-[15.5px] leading-relaxed text-ink-soft;
+}
+.prose-article p {
+  @apply my-4;
+}
+.prose-article h2 {
+  @apply mt-8 mb-2 font-serif text-2xl font-semibold text-ink;
+}
+.prose-article strong {
+  @apply font-semibold text-ink;
+}
+.prose-article ol {
+  @apply my-4 list-decimal space-y-2 pl-6;
+}
+.prose-article ul {
+  @apply my-4 list-disc space-y-2 pl-6;
+}
+.prose-article blockquote {
+  @apply my-6 border-l-4 border-gold pl-4 font-serif text-xl italic text-ink;
+}
+.prose-article .callout {
+  @apply my-6 rounded-2xl border border-stroke bg-gold-pale/50 p-4 text-[14.5px];
+}
+

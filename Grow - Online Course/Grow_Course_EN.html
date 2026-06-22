@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GROW — The Type 4 Hair Growth Course · Schicgirl Naturals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F4EE; --card:#FCFAF4; --green:#7DAA87; --green-deep:#3F5A49;
+  --sage-bg:#DCE7DD; --sage-tint:#EAF1EB; --sage-mid:#B7D0BD; --sage-deep:#466A51;
+  --gold:#C9A86A; --gold-deep:#8A6B2C; --gold-soft:#E0CC97;
+  --ink:#352E26; --ink-soft:#565C52; --line:#E7DDC9;
+  --cream-bg:#F4ECDD; --cream-tint:#F9F3E9;
+  --beige-bg:#EFEAE0; --beige-tint:#F6F2EA; --beige-deep:#6B6549;
+  --rose-bg:#F4E7E3; --rose-tint:#FBF2EF; --rose-mid:#E8CFC9; --rose-deep:#8F584F;
+  --serif-d:'Cormorant Garamond',Georgia,serif;
+  --serif:'Mulish',-apple-system,'Segoe UI',sans-serif;
+  --sans:'Jost',Arial,sans-serif;
+  --sb:300px;
+  --shadow:0 14px 40px -22px rgba(60,52,43,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--green-deep);}
+img{max-width:100%;}
+
+/* ============ SIDEBAR ============ */
+.sidebar{position:fixed;top:0;left:0;width:var(--sb);height:100vh;background:#FBF7F0;
+  border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:40;}
+.sb-head{padding:22px 22px 16px;border-bottom:1px solid var(--line);}
+.sb-logo{width:128px;display:block;margin:0 auto 12px;}
+.sb-prog{display:flex;align-items:center;gap:12px;}
+.ring{flex:0 0 auto;}
+.ring-pct{font-family:var(--sans);font-weight:600;font-size:10pt;fill:var(--green-deep);}
+.sb-prog .lbl{font-family:var(--sans);font-size:7.6pt;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);}
+.sb-prog .sub{font-family:var(--serif);font-style:italic;font-size:10.5pt;color:var(--ink-soft);}
+.sb-nav{flex:1;overflow-y:auto;padding:10px 0 28px;}
+.sb-nav::-webkit-scrollbar{width:8px;}
+.sb-nav::-webkit-scrollbar-thumb{background:#E3D9C5;border-radius:8px;}
+.modgrp{margin-top:8px;}
+.modtitle{font-family:var(--sans);font-weight:600;font-size:7.4pt;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-deep);padding:12px 22px 5px;display:flex;align-items:center;gap:7px;}
+.modtitle .mt-i{color:var(--sage-deep);display:flex;}
+.lk{display:flex;align-items:center;gap:10px;padding:7px 22px 7px 24px;cursor:pointer;
+  font-family:var(--serif);font-size:10.6pt;color:var(--ink);border-left:3px solid transparent;transition:.15s;}
+.lk:hover{background:var(--sage-tint);}
+.lk.active{background:var(--sage-tint);border-left-color:var(--gold);color:var(--green-deep);font-weight:500;}
+.lk .dot{flex:0 0 auto;width:16px;height:16px;border-radius:50%;border:1.6px solid var(--sage-mid);
+  display:flex;align-items:center;justify-content:center;}
+.lk.done .dot{background:var(--green);border-color:var(--green);}
+.lk.done .dot svg.ck{display:block;}
+.lk .dot svg{display:none;width:9px;height:9px;}
+.lk.locked{cursor:not-allowed;color:#A79E8C;}
+.lk.locked:hover{background:transparent;}
+.lk.locked .dot{border-style:dashed;border-color:#CFC6B2;background:transparent;}
+.lk.locked .dot svg.lk-lock{display:block;width:8px;height:8px;}
+.lk.locked .tt{font-style:italic;}
+.lk .tt{flex:1;line-height:1.28;}
+.sb-foot{padding:12px 22px;border-top:1px solid var(--line);font-family:var(--sans);font-size:7.6pt;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);text-align:center;}
+.sb-foot a{color:var(--gold-deep);text-decoration:none;}
+
+/* ============ MAIN ============ */
+.main{margin-left:var(--sb);min-height:100vh;}
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(248,244,238,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 32px;}
+.tb-crumb{font-family:var(--sans);font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);}
+.tb-crumb b{color:var(--green-deep);font-weight:600;}
+.tb-right{display:flex;align-items:center;gap:14px;}
+.btn{font-family:var(--sans);font-weight:500;font-size:9pt;letter-spacing:.04em;border:1px solid var(--line);
+  background:#fff;color:var(--green-deep);padding:8px 16px;border-radius:30px;cursor:pointer;transition:.15s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;}
+.btn:hover{border-color:var(--gold);color:var(--gold-deep);}
+.btn.solid{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+.btn.solid:hover{background:#34503f;color:#fff;}
+.btn.gold{background:var(--gold);color:#fff;border-color:var(--gold);}
+.btn.gold:hover{background:var(--gold-deep);color:#fff;}
+.hamb{display:none;background:none;border:none;cursor:pointer;color:var(--green-deep);}
+
+.wrap{max-width:672px;margin:0 auto;padding:46px 30px 90px;}
+
+/* lesson header */
+.kicker{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+h1.ch{font-family:var(--serif-d);font-weight:600;font-size:42pt;line-height:1.02;color:var(--green-deep);margin:6px 0 0;}
+.ch-rule{border:none;height:1px;background:linear-gradient(90deg,var(--gold),transparent);width:120px;margin:16px 0 22px;}
+.wrap p{font-size:13.4pt;line-height:1.75;margin:0 0 18px;}
+.wrap .lead{font-family:var(--serif-d);font-style:italic;font-size:18.5pt;line-height:1.45;color:var(--ink-soft);margin:0 0 24px;}
+.wrap .dear{font-family:var(--serif-d);font-style:italic;font-size:15pt;line-height:1.4;color:var(--ink-soft);margin:4px 0 12px;}
+.wrap p em{font-style:italic;}
+.wrap p strong,.wrap p b{font-weight:600;color:var(--green-deep);}
+h2.sub{font-family:var(--serif-d);font-weight:600;font-size:21pt;color:var(--green-deep);margin:30px 0 12px;
+  display:flex;align-items:center;gap:9px;}
+h2.sub svg{flex:0 0 auto;}
+
+/* component callouts */
+.cal{border-radius:11px;padding:16px 20px;margin:20px 0;break-inside:avoid;}
+.cal .cal-h{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:8pt;
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:7px;}
+.cal p{font-size:11.8pt;line-height:1.6;margin:0;}
+.cal-expert{background:var(--cream-tint);border:1px solid var(--gold-soft);}
+.cal-expert .cal-h{color:var(--gold-deep);}
+.cal-takeaway{background:#EAF0F4;border:1px solid #C4D4DE;}
+.cal-takeaway .cal-h{color:#4E7088;}
+.cal-takeaway .cal-h .ic,.cal-expert .cal-h .ic{color:currentColor;}
+.cal-reminder{background:var(--sage-tint);border:1px solid var(--sage-mid);}
+.cal-reminder .cal-h{color:var(--sage-deep);}
+.cal-caution{background:var(--rose-tint);border:1px solid var(--rose-mid);}
+.cal-caution .cal-h{color:var(--rose-deep);}
+.cal-exercise{background:#F1EEDF;border:1px solid #DED6BC;}
+.cal-exercise .cal-h{color:var(--beige-deep);}
+.affirm{background:var(--rose-tint);border:1px solid var(--rose-mid);border-radius:11px;padding:16px 22px;margin:20px 0;text-align:center;}
+.affirm .al{font-family:var(--sans);font-weight:600;font-size:7.4pt;letter-spacing:.18em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:6px;}
+.affirm p{font-family:var(--serif-d);font-style:italic;font-weight:500;font-size:15pt;line-height:1.42;color:var(--green-deep);margin:0;}
+
+/* cards & grids */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+.card{border-radius:11px;padding:15px 18px;}
+.card .ct{font-family:var(--serif-d);font-weight:600;font-size:14.5pt;color:var(--green-deep);margin-bottom:4px;}
+.card p{font-size:11.4pt;line-height:1.55;margin:0;}
+.card.sage{background:var(--sage-tint);border:1px solid var(--sage-mid);}
+.card.cream{background:var(--cream-tint);border:1px solid var(--gold-soft);}
+.card.beige{background:var(--beige-tint);border:1px solid #DED6BC;}
+.card.rose{background:var(--rose-tint);border:1px solid var(--rose-mid);}
+
+/* numbered steps */
+.steps{margin:18px 0;}
+.step{display:flex;gap:14px;margin-bottom:13px;align-items:flex-start;}
+.step .num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;
+  font-family:var(--sans);font-weight:600;font-size:11pt;display:flex;align-items:center;justify-content:center;}
+.step .bd .t{font-family:var(--serif-d);font-weight:600;font-size:14pt;color:var(--green-deep);}
+.step .bd p{font-size:11.5pt;line-height:1.55;margin:2px 0 0;}
+
+/* tables */
+table.lux{width:100%;border-collapse:collapse;margin:18px 0;font-size:10.6pt;}
+table.lux th{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold-deep);text-align:left;padding:9px 12px;border-bottom:2px solid var(--gold-soft);}
+table.lux td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+table.lux .nm{font-family:var(--serif-d);font-weight:600;font-size:12.5pt;color:var(--green-deep);}
+
+/* knowledge check */
+.quiz{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:30px 0 10px;box-shadow:var(--shadow);}
+.quiz .qh{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.quiz .qq{font-family:var(--serif-d);font-weight:600;font-size:16pt;color:var(--green-deep);margin-bottom:14px;line-height:1.25;}
+.opt{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:9px;cursor:pointer;font-size:11pt;transition:.15s;background:#fff;}
+.opt:hover{border-color:var(--sage-mid);background:var(--sage-tint);}
+.opt .mk{flex:0 0 auto;width:20px;height:20px;border-radius:50%;border:1.6px solid var(--sage-mid);font-family:var(--sans);font-weight:600;font-size:9pt;display:flex;align-items:center;justify-content:center;color:var(--sage-deep);}
+.opt.correct{border-color:var(--green);background:var(--sage-tint);}
+.opt.correct .mk{background:var(--green);border-color:var(--green);color:#fff;}
+.opt.wrong{border-color:var(--rose-deep);background:var(--rose-tint);}
+.opt.wrong .mk{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff;}
+.qfb{margin-top:6px;font-size:10.6pt;font-style:italic;color:var(--ink-soft);display:none;padding:10px 14px;background:var(--cream-tint);border-radius:9px;border:1px solid var(--gold-soft);}
+.qfb.show{display:block;}
+.qtry{margin-top:6px;font-size:10.4pt;font-weight:500;color:var(--rose-deep);display:none;padding:10px 14px;background:var(--rose-tint);border-radius:9px;border:1px solid var(--rose-mid);font-family:var(--sans);}
+.qtry.show{display:block;}
+.quiz.passed .opt{cursor:default;}
+
+/* reflection */
+.reflect{background:#F1EEDF;border:1px solid #DED6BC;border-radius:14px;padding:20px 22px;margin:26px 0;}
+.reflect .rl{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:var(--beige-deep);display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.reflect .rp{font-family:var(--serif-d);font-style:italic;font-size:14pt;color:var(--green-deep);margin-bottom:12px;line-height:1.35;}
+.reflect textarea{width:100%;min-height:96px;border:1px solid #D8CFB6;border-radius:9px;padding:12px 14px;
+  font-family:var(--serif);font-size:11pt;color:var(--ink);background:#FDFBF5;resize:vertical;line-height:1.6;}
+.reflect textarea:focus{outline:none;border-color:var(--gold);}
+.saved{font-family:var(--sans);font-size:7.6pt;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deep);margin-top:7px;opacity:0;transition:.3s;}
+.saved.show{opacity:1;}
+
+/* lesson footer nav */
+.lfoot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:46px;padding-top:26px;border-top:1px solid var(--line);}
+.complete-zone{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;margin:42px 0 0;
+  background:var(--sage-tint);border:1px solid var(--sage-mid);border-radius:16px;padding:26px;}
+.complete-zone .cz-t{font-family:var(--serif-d);font-style:italic;font-size:14pt;color:var(--green-deep);}
+.complete-zone.locked{background:#F4EFE6;border:1px dashed #DCCFB3;}
+.complete-zone.locked .cz-t{color:var(--gold-deep);font-style:normal;font-family:var(--sans);font-size:10.5pt;letter-spacing:.02em;}
+.btn[disabled]{opacity:.5;cursor:not-allowed;background:#EFE8DA;color:#9C8E70;border-color:#E0D6C0;}
+.btn[disabled]:hover{border-color:#E0D6C0;color:#9C8E70;}
+.navlinks{display:flex;justify-content:space-between;gap:12px;margin-top:30px;}
+.navlinks .btn{flex:0 1 auto;}
+
+/* ===== HOME / WELCOME ===== */
+.hero{text-align:center;padding:30px 0 8px;}
+.hero .brand{font-family:var(--sans);font-weight:600;font-size:10pt;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-deep);}
+.hero h1{font-family:var(--serif-d);font-weight:600;font-size:86pt;line-height:.9;color:var(--green-deep);margin:10px 0 6px;}
+.hero .sub{font-family:var(--serif-d);font-style:italic;font-size:19pt;color:var(--ink-soft);max-width:520px;margin:0 auto;}
+.flour{display:flex;align-items:center;justify-content:center;gap:14px;margin:20px 0;}
+.flour .r{width:70px;height:1px;background:var(--gold);}
+.hero .meta{font-family:var(--sans);font-weight:500;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep);margin-top:8px;}
+.hero .meta span{color:var(--gold-deep);margin:0 6px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0;}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 10px;text-align:center;}
+.stat .n{font-family:var(--serif-d);font-weight:600;font-size:30pt;color:var(--gold-deep);line-height:1;}
+.stat .l{font-family:var(--sans);font-size:7.6pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px;}
+.modlist{margin:30px 0;}
+.modcard{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:14px;cursor:pointer;transition:.18s;}
+.modcard:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:var(--shadow);}
+.modcard .mc-no{flex:0 0 auto;width:54px;height:54px;border-radius:50%;background:var(--sage-tint);border:1px solid var(--sage-mid);
+  display:flex;align-items:center;justify-content:center;font-family:var(--serif-d);font-weight:600;font-size:22pt;color:var(--green-deep);}
+.modcard .mc-b .mc-e{font-family:var(--sans);font-weight:600;font-size:7.6pt;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);}
+.modcard .mc-b .mc-t{font-family:var(--serif-d);font-weight:600;font-size:18pt;color:var(--green-deep);line-height:1.1;margin:1px 0 3px;}
+.modcard .mc-b p{font-size:10.4pt;color:var(--ink-soft);margin:0;}
+.modcard .mc-meta{font-family:var(--sans);font-size:7.8pt;color:var(--sage-deep);margin-top:6px;letter-spacing:.05em;}
+.welcome-box{background:var(--cream-tint);border:1px solid var(--gold-soft);border-radius:16px;padding:26px 28px;margin:30px 0;}
+.welcome-box h3{font-family:var(--serif-d);font-weight:600;font-size:20pt;color:var(--green-deep);margin-bottom:6px;}
+.welcome-box ol{margin:12px 0 0 20px;}
+.welcome-box li{font-size:11pt;margin-bottom:8px;}
+.goal-set{margin-top:16px;}
+.goal-set label{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);display:block;margin-bottom:6px;}
+.goal-set input{width:100%;border:1px solid var(--gold-soft);border-radius:9px;padding:11px 14px;font-family:var(--serif);font-size:11.5pt;background:#fff;}
+.goal-set input:focus{outline:none;border-color:var(--gold);}
+
+/* ===== 90-DAY CHALLENGE ===== */
+.band{display:flex;align-items:baseline;justify-content:space-between;border-radius:10px;padding:11px 18px;margin:26px 0 14px;}
+.band .bt{font-family:var(--serif-d);font-weight:600;font-size:16pt;}
+.band .bs{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;}
+.band.sage{background:var(--sage-tint);}.band.sage .bt{color:var(--green-deep);}.band.sage .bs{color:var(--sage-deep);}
+.band.beige{background:var(--beige-tint);}.band.beige .bt{color:var(--beige-deep);}.band.beige .bs{color:var(--beige-deep);}
+.band.rose{background:var(--rose-tint);}.band.rose .bt{color:var(--rose-deep);}.band.rose .bs{color:var(--rose-deep);}
+.wk{margin:14px 0 6px;}
+.wk .wt{font-family:var(--sans);font-weight:600;font-size:8.4pt;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-deep);}
+.wk .ws{font-family:var(--serif-d);font-style:italic;font-size:14pt;color:var(--ink-soft);}
+ul.check{list-style:none;margin:6px 0 4px;}
+ul.check li{display:flex;align-items:flex-start;gap:11px;padding:7px 0;font-size:11pt;cursor:pointer;}
+ul.check li .cb{flex:0 0 auto;width:20px;height:20px;border-radius:5px;border:1.7px solid var(--sage-mid);background:#fff;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+ul.check li .cb svg{display:none;width:12px;height:12px;}
+ul.check li.checked .cb{background:var(--green);border-color:var(--green);}
+ul.check li.checked .cb svg{display:block;}
+ul.check li.checked .ct{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--sage-mid);}
+table.track{width:100%;border-collapse:collapse;margin:14px 0;}
+table.track th{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);padding:9px 8px;border-bottom:2px solid var(--gold-soft);text-align:center;}
+table.track th:first-child{text-align:left;}
+table.track td{padding:0;border-bottom:1px solid var(--line);}
+table.track td.loc{font-family:var(--serif-d);font-weight:600;font-size:12.5pt;color:var(--green-deep);padding:8px 8px;}
+table.track td input{width:100%;border:none;background:transparent;text-align:center;font-family:var(--serif);font-size:11pt;padding:11px 4px;color:var(--ink);}
+table.track td input:focus{outline:none;background:var(--sage-tint);}
+.scale{font-family:var(--sans);font-size:8pt;letter-spacing:.06em;color:var(--ink-soft);text-align:right;margin-top:-6px;}
+
+/* ===== RECIPE LAB ===== */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 24px;}
+.filt{font-family:var(--sans);font-weight:500;font-size:8.6pt;letter-spacing:.04em;border:1px solid var(--line);background:#fff;color:var(--ink-soft);padding:7px 15px;border-radius:30px;cursor:pointer;transition:.15s;}
+.filt:hover{border-color:var(--sage-mid);}
+.filt.on{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+.recipe{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;margin-bottom:16px;position:relative;overflow:hidden;}
+.recipe::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-soft),var(--gold),var(--gold-deep));}
+.rtop{margin-bottom:5px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.badge{font-family:var(--sans);font-weight:600;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+.b-easy{background:var(--sage-bg);color:var(--green-deep);}
+.b-mod{background:#F1E6CC;color:var(--gold-deep);}
+.b-adv{background:#F3DED9;color:var(--rose-deep);}
+.b-type{background:transparent;border:1px solid var(--sage-mid);color:var(--ink-soft);}
+.rname{font-family:var(--serif-d);font-weight:600;font-size:20pt;color:var(--green-deep);line-height:1.05;margin-top:3px;}
+.rben{font-family:var(--serif);font-style:italic;font-size:10.4pt;color:var(--ink-soft);margin:2px 0 12px;}
+.rb{display:grid;grid-template-columns:42% 1fr;gap:18px;}
+.rh{font-family:var(--sans);font-weight:600;font-size:7.4pt;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px;}
+.ig{width:100%;border-collapse:collapse;}
+.ig td{font-family:var(--sans);font-size:9pt;padding:5px 0;border-bottom:1px solid #efe7d6;color:var(--ink);}
+.ig td.q{text-align:right;color:var(--green-deep);font-weight:600;white-space:nowrap;}
+.ig tr:last-child td{border-bottom:none;}
+ol.rsteps{margin:0;padding:0;list-style:none;counter-reset:s;}
+ol.rsteps li{position:relative;padding-left:26px;margin-bottom:9px;font-size:10pt;line-height:1.45;counter-increment:s;}
+ol.rsteps li::before{content:counter(s);position:absolute;left:0;top:1px;width:18px;height:18px;background:var(--green);color:#fff;border-radius:50%;font-family:var(--sans);font-weight:600;font-size:7.6pt;display:flex;align-items:center;justify-content:center;}
+.rmeta{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:18px;}
+.chip{font-family:var(--sans);font-size:8.4pt;color:var(--ink-soft);}
+.chip b{font-family:var(--sans);font-weight:600;color:var(--green-deep);text-transform:uppercase;letter-spacing:.06em;font-size:7.2pt;margin-right:4px;}
+
+/* ===== CERTIFICATE ===== */
+.cert{background:linear-gradient(160deg,#FCFAF4,#F4ECDD);border:2px solid var(--gold-soft);border-radius:18px;
+  padding:46px 40px;text-align:center;position:relative;box-shadow:var(--shadow);}
+.cert .cframe{position:absolute;inset:12px;border:1px solid var(--gold);border-radius:12px;pointer-events:none;}
+.cert .ce{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);}
+.cert h2{font-family:var(--serif-d);font-weight:600;font-size:40pt;color:var(--green-deep);margin:8px 0;line-height:1;}
+.cert .nm{font-family:var(--serif-d);font-style:italic;font-size:26pt;color:var(--gold-deep);margin:14px 0;border-bottom:1px solid var(--gold-soft);display:inline-block;padding:0 30px 6px;}
+.cert p{font-size:11pt;max-width:440px;margin:8px auto;}
+.cert.locked{filter:grayscale(.4);opacity:.6;}
+.lockmsg{text-align:center;font-family:var(--serif-d);font-style:italic;font-size:14pt;color:var(--ink-soft);margin:20px 0;}
+
+/* cross-sell */
+.xsell{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+.xs{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px;text-decoration:none;color:inherit;display:block;transition:.18s;}
+.xs:hover{border-color:var(--gold);transform:translateY(-2px);}
+.xs .xe{font-family:var(--sans);font-weight:600;font-size:7.4pt;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);}
+.xs .xt{font-family:var(--serif-d);font-weight:600;font-size:17pt;color:var(--green-deep);margin:2px 0 4px;}
+.xs p{font-size:10pt;color:var(--ink-soft);margin:0;}
+
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--green-deep);color:#fff;
+  font-family:var(--sans);font-size:9.5pt;padding:12px 24px;border-radius:30px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.3s;z-index:90;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.scrim{display:none;position:fixed;inset:0;background:rgba(60,52,43,.4);z-index:35;}
+
+@media(max-width:920px){
+  :root{--sb:0px;}
+  .sidebar{transform:translateX(-100%);transition:.25s;width:300px;box-shadow:var(--shadow);}
+  body.menu-open .sidebar{transform:translateX(0);}
+  body.menu-open .scrim{display:block;}
+  .hamb{display:inline-flex;}
+  .main{margin-left:0;}
+  .hero h1{font-size:62pt;}
+  .grid2,.stats,.xsell{grid-template-columns:1fr 1fr;}
+  .rb{grid-template-columns:1fr;}
+  .topbar{padding:11px 18px;}
+  .wrap{padding:32px 20px 80px;}
+}
+@media(max-width:560px){
+  .stats{grid-template-columns:1fr 1fr;}
+  .grid2{grid-template-columns:1fr;}
+  .hero h1{font-size:50pt;}
+  .modcard .mc-no{width:44px;height:44px;font-size:18pt;}
+}
+@media print{
+  .sidebar,.topbar,.lfoot,.navlinks,.complete-zone,.quiz,.scrim,.toast,.filters,.vlesson{display:none!important;}
+  .main{margin:0;}
+  .wrap{max-width:100%;padding:0;}
+}
+
+/* ===== INSTRUCTOR VIDEO PLAYER ===== */
+.vlesson{position:relative;margin:0 0 28px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#3F5A49;box-shadow:var(--shadow);}
+.vlesson .vplayer{display:block;width:100%;aspect-ratio:16/9;background:#3F5A49;}
+.vplaceholder{position:absolute;top:0;left:0;right:0;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;
+  background:linear-gradient(140deg,#3F5A49,#577E61);color:#F8F4EE;text-align:center;padding:24px;}
+.vlesson.hasvid .vplaceholder{display:none;}
+.vp-ring{width:64px;height:64px;border-radius:50%;border:2px solid rgba(248,244,238,.75);display:flex;align-items:center;justify-content:center;
+  font-size:21pt;color:#F8F4EE;padding-left:5px;}
+.vp-t{font-family:var(--serif-d);font-style:italic;font-size:18pt;line-height:1.1;}
+.vp-s{font-family:var(--sans);font-size:7.8pt;letter-spacing:.1em;text-transform:uppercase;color:#DCE7DD;}
+.vp-s code{background:rgba(0,0,0,.28);padding:2px 7px;border-radius:5px;letter-spacing:0;text-transform:none;font-family:monospace;}
+.vcap{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-deep);background:var(--cream-tint);border-top:1px solid var(--gold-soft);padding:10px 16px;}
+
+/* ===== MEET THE INSTRUCTOR ===== */
+.instructor{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--gold-soft);border-radius:16px;padding:22px 24px;margin:30px 0;}
+.instructor .iav{flex:0 0 auto;width:98px;height:98px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:var(--sage-tint);}
+.instructor .iav-fallback{align-items:center;justify-content:center;font-family:var(--serif-d);font-weight:600;font-size:30pt;font-style:italic;color:var(--green-deep);}
+.instructor .ie{font-family:var(--sans);font-weight:600;font-size:7.6pt;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+.instructor .inm{font-family:var(--serif-d);font-weight:600;font-size:23pt;color:var(--green-deep);line-height:1;margin:2px 0 7px;}
+.instructor .ib p{font-size:10.8pt;color:var(--ink-soft);margin:0;font-style:italic;font-family:var(--serif-d);}
+@media(max-width:560px){.instructor{flex-direction:column;text-align:center;}}
+</style>
+</head>
+<body>
+
+<div class="scrim" onclick="closeMenu()"></div>
+
+<!-- ===================== SIDEBAR ===================== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <img class="sb-logo" src="data:image/png;base64,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" alt="Schicgirl Naturals">
+    <div class="sb-prog">
+      <svg class="ring" width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#E7DDC9" stroke-width="5"/>
+        <circle id="ringFill" cx="26" cy="26" r="22" fill="none" stroke="#C9A86A" stroke-width="5"
+          stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="138.2" transform="rotate(-90 26 26)"/>
+        <text id="ringTxt" class="ring-pct" x="26" y="30" text-anchor="middle">0%</text>
+      </svg>
+      <div>
+        <div class="lbl">Your progress</div>
+        <div class="sub" id="progSub">Let's begin</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sb-nav" id="sbNav"></nav>
+  <div class="sb-foot"><a href="https://schicgirl.me" target="_blank" rel="noopener">schicgirl.me</a> · Reset <a href="#" onclick="resetCourse();return false;">progress</a></div>
+</aside>
+
+<!-- ===================== MAIN ===================== -->
+<div class="main">
+  <div class="topbar">
+    <button class="hamb" onclick="toggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="tb-crumb" id="crumb">GROW · The Type 4 Hair Growth Course</div>
+    <div class="tb-right">
+      <button class="btn" onclick="window.print()">Save / Print</button>
+    </div>
+  </div>
+  <div class="wrap" id="content"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   ICONS
+============================================================ */
+const I = {
+  leaf:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 6 4 11 4 16c0 4 3 6 8 6s8-2 8-6c0-5-3-10-8-14z" fill="#B7D0BD"/><path d="M12 3.5C8 7.5 5.5 11.5 5.5 16" stroke="#577E61" stroke-width="1" stroke-linecap="round"/></svg>',
+  leafg:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 6 4 11 4 16c0 4 3 6 8 6s8-2 8-6c0-5-3-10-8-14z" fill="#B7D0BD" opacity=".6"/><path d="M12 3.5C8 7.5 5.5 11.5 5.5 16" stroke="#577E61" stroke-width="1" stroke-linecap="round" opacity=".6"/></svg>',
+  star:'<svg class="ic" width="13" height="13" viewBox="0 0 24 24"><path d="M12 3l1.9 6.2 6.1 1.8-6.1 1.8L12 21l-1.9-6.2L4 11l6.1-1.8z" fill="currentColor" opacity=".8"/></svg>',
+  drop:'<svg class="ic" width="13" height="13" viewBox="0 0 24 24"><path d="M12 2C7 6 4 11 4 16c0 4 3 6 8 6s8-2 8-6c0-5-3-10-8-14z" fill="currentColor" opacity=".65"/></svg>',
+  tri:'<svg class="ic" width="12" height="12" viewBox="0 0 24 24"><path d="M12 3l8 9-8 9-8-9z" fill="currentColor" opacity=".8"/></svg>',
+  warn:'<svg class="ic" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5" stroke-linecap="round"/><circle cx="12" cy="17.6" r=".95" fill="currentColor" stroke="none"/></svg>',
+  pen:'<svg class="ic" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 20l1.2-4.2L16 5l3 3L8.2 18.8 4 20z"/></svg>',
+  check:'<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>',
+  lock:'<svg class="lk-lock" viewBox="0 0 24 24" fill="none" stroke="#A79E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+  flour:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z" fill="#C9A86A"/></svg>'
+};
+function tip(t){return '<div class="cal cal-expert"><div class="cal-h">'+I.drop+'<span>Schicgirl Tip</span></div><p>'+t+'</p></div>';}
+function takeaway(t){return '<div class="cal cal-takeaway"><div class="cal-h">'+I.star+'<span>Key Takeaway</span></div><p>'+t+'</p></div>';}
+function remind(h,t){return '<div class="cal cal-reminder"><div class="cal-h">'+I.tri+'<span>'+h+'</span></div><p>'+t+'</p></div>';}
+function caution(h,t){return '<div class="cal cal-caution"><div class="cal-h">'+I.warn+'<span>'+h+'</span></div><p>'+t+'</p></div>';}
+function affirm(t){return '<div class="affirm"><div class="al">Affirmation</div><p>&ldquo;'+t+'&rdquo;</p></div>';}
+function h2(t){return '<h2 class="sub">'+I.leafg+'<span>'+t+'</span></h2>';}
+
+/* ---- SCHICGIRL instructor video (drop videos/<id>.mp4 to enable) ---- */
+function video(id,title){
+  return '<div class="vlesson">'
+    +'<video class="vplayer" controls preload="metadata" playsinline poster="videos/'+id+'.jpg" '
+    +'onloadedmetadata="this.closest(\'.vlesson\').classList.add(\'hasvid\')">'
+    +'<source src="videos/'+id+'.mp4" type="video/mp4"></video>'
+    +'<div class="vplaceholder"><div class="vp-ring">&#9658;</div>'
+    +'<div class="vp-t">Watch SCHICGIRL teach this lesson</div>'
+    +'<div class="vp-s">Add <code>videos/'+id+'.mp4</code> to enable playback</div></div>'
+    +'<div class="vcap">'+I.flour+'<span>SCHICGIRL &middot; '+title+'</span></div></div>';
+}
+function lessonTitle(id){ let t=''; MODULES.forEach(m=>m.lessons.forEach(l=>{ if(l.id===id) t=l.title; })); return t; }
+function instructorBlock(){
+  return '<div class="instructor">'
+    +'<img class="iav" src="instructor.jpg" alt="SCHICGIRL, your instructor" '
+    +'onerror="this.style.display=\'none\';document.getElementById(\'iavfb\').style.display=\'flex\'">'
+    +'<div class="iav iav-fallback" id="iavfb" style="display:none">SG</div>'
+    +'<div class="ib"><div class="ie">Your instructor</div><div class="inm">SCHICGIRL</div>'
+    +'<p>&ldquo;I&rsquo;m the founder of Schicgirl Naturals and your guide through Grow. I spent years learning to work <em>with</em> Type 4 hair instead of against it &mdash; and in this course I&rsquo;ll walk you through all of it, lesson by lesson, in plain language. Let&rsquo;s grow your crown together.&rdquo;</p></div></div>';
+}
+
+/* ============================================================
+   QUIZ + REFLECTION builders (interactive, saved)
+============================================================ */
+function quiz(id,q,opts,correct,fb){
+  let h='<div class="quiz" data-quiz="'+id+'"><div class="qh">'+I.flour+'<span>Knowledge Check · answer correctly to continue</span></div><div class="qq">'+q+'</div>';
+  opts.forEach((o,i)=>{ h+='<div class="opt" data-i="'+i+'" onclick="answerQuiz(\''+id+'\','+i+','+correct+')"><span class="mk">'+String.fromCharCode(65+i)+'</span><span>'+o+'</span></div>'; });
+  h+='<div class="qtry" data-try="'+id+'">Not quite — review the lesson above and choose another answer.</div>';
+  h+='<div class="qfb" data-fb="'+id+'">'+fb+'</div></div>';
+  return h;
+}
+function reflect(id,prompt){
+  return '<div class="reflect"><div class="rl">'+I.pen+'<span>Reflection</span></div><div class="rp">'+prompt+'</div>'+
+    '<textarea data-reflect="'+id+'" placeholder="Write freely — only you can see this. It saves automatically."></textarea>'+
+    '<div class="saved" data-saved="'+id+'">Saved ✓</div></div>';
+}
+
+/* ============================================================
+   COURSE CONTENT
+============================================================ */
+const MODULES = [
+ { key:'start', no:'·', eyebrow:'Begin Here', label:'Welcome',
+   lessons:[ {id:'welcome', no:'', title:'Welcome to Grow'} ] },
+
+ { key:'m1', no:'I', eyebrow:'Module One', label:'Understanding Growth',
+   lessons:[
+     {id:'l1', no:'1', title:'How Type 4 Hair Actually Grows'},
+     {id:'l2', no:'2', title:'Why Your Hair Seems Stuck'},
+     {id:'l3', no:'3', title:'The Scalp Is Everything'},
+     {id:'l4', no:'4', title:'Moisture, Protein & Balance'},
+     {id:'l5', no:'5', title:'Diet, Sleep & Stress'},
+     {id:'m1exam', no:'✓', title:'Module I Exam'} ] },
+
+ { key:'m2', no:'II', eyebrow:'Module Two', label:'The Growth Mindset',
+   lessons:[
+     {id:'l6', no:'6', title:'Patience: The Hardest Skill'},
+     {id:'l7', no:'7', title:'Consistency Over Perfection'},
+     {id:'l8', no:'8', title:'Your Chapter 1 Is Not Her Chapter 10'},
+     {id:'l9', no:'9', title:'Your Emotional Relationship'},
+     {id:'l10', no:'10', title:'Confidence & Realistic Expectations'},
+     {id:'m2exam', no:'✓', title:'Module II Exam'} ] },
+
+ { key:'m3', no:'III', eyebrow:'Module Three', label:'The Practical System',
+   lessons:[
+     {id:'l11', no:'11', title:'Building Your Growth Routine'},
+     {id:'l12', no:'12', title:'Protective Styling for Retention'},
+     {id:'l13', no:'13', title:'Ingredients That Actually Work'},
+     {id:'l14', no:'14', title:'What to Stop Immediately'},
+     {id:'l15', no:'15', title:'Tracking Your Progress'},
+     {id:'m3exam', no:'✓', title:'Module III Exam'} ] },
+
+ { key:'m4', no:'IV', eyebrow:'Module Four', label:'The 90-Day Challenge',
+   lessons:[ {id:'challenge', no:'★', title:'The 90-Day Crown Challenge'} ] },
+
+ { key:'m5', no:'V', eyebrow:'Module Five', label:'The Recipe Lab',
+   lessons:[ {id:'recipes', no:'✿', title:'15 DIY Growth Treatments'} ] },
+
+ { key:'end', no:'✦', eyebrow:'Graduation', label:'Your Certificate',
+   lessons:[ {id:'certificate', no:'', title:'Course Complete'} ] },
+];
+
+/* flat list of lessons that count toward progress (exclude welcome + certificate) */
+const COUNTED = ['l1','l2','l3','l4','l5','m1exam','l6','l7','l8','l9','l10','m2exam','l11','l12','l13','l14','l15','m3exam','challenge','recipes'];
+
+/* ---- Lesson HTML renderers ---- */
+const L = {};
+
+L.welcome = ()=>`
+<div class="hero">
+  <div class="brand">Schicgirl Naturals</div>
+  <h1>Grow</h1>
+  <div class="flour"><span class="r"></span>${I.flour}<span class="r"></span></div>
+  <div class="sub">The complete Type 4 hair growth course — for kinky, coily &amp; curly crowns.</div>
+  <div class="meta">15 Lessons <span>·</span> 90-Day Challenge <span>·</span> 15 Recipes <span>·</span> Certificate</div>
+</div>
+
+${video('welcome','Welcome to Grow')}
+${instructorBlock()}
+
+<div class="stats">
+  <div class="stat"><div class="n">5</div><div class="l">Modules</div></div>
+  <div class="stat"><div class="n">15</div><div class="l">Core Lessons</div></div>
+  <div class="stat"><div class="n">90</div><div class="l">Day Challenge</div></div>
+  <div class="stat"><div class="n">15</div><div class="l">DIY Recipes</div></div>
+</div>
+
+<div class="welcome-box">
+  <h3>How this course works</h3>
+  <p style="margin:0;color:var(--ink-soft)">This is a self-paced journey. Move through it in order, or jump to what you need — your progress saves automatically on this device.</p>
+  <ol>
+    <li><b>Learn</b> — work through the 15 lessons across three modules. Each ends with a quick knowledge check and a private reflection.</li>
+    <li><b>Do</b> — start <b>The 90-Day Crown Challenge</b> to turn knowledge into habits, tracking your real measurements as you go.</li>
+    <li><b>Make</b> — visit <b>The Recipe Lab</b> for 15 DIY treatments formulated for Type 4 hair.</li>
+    <li><b>Graduate</b> — complete every lesson to unlock your certificate.</li>
+  </ol>
+  <div class="goal-set">
+    <label>Set your intention for this course</label>
+    <input type="text" data-reflect="goal" placeholder="e.g. Retain 8cm of length and finally love wash day">
+  </div>
+</div>
+
+<div class="modlist" id="modlist"></div>
+
+${takeaway('Your hair grows about half an inch a month — it always has. This course is not about growing faster. It is about <b>keeping</b> what you grow. That is a skill, and you are about to learn it.')}
+
+<div class="navlinks"><span></span>
+  <button class="btn solid" onclick="go('l1')">Start Module I &nbsp;→</button>
+</div>`;
+
+/* ---------- MODULE I ---------- */
+L.l1 = ()=>`
+${head('Module I · Understanding Growth','How Type 4 Hair<br>Actually Grows')}
+<p class="lead">For years I believed my hair just didn't grow. The truth was, it was growing — I just didn't know how to keep it.</p>
+<p>Let's start with the truth nobody told you clearly: your hair grows. It has always grown. The problem has never been growth — it's <em>retention</em>. Understanding this one distinction will change your relationship with your hair forever.</p>
+${h2('The hair growth cycle')}
+<p>Every follicle on your scalp moves through three distinct phases. The <strong>anagen</strong> phase is active growth, lasting two to seven years. On average, hair grows about half an inch a month — roughly five to seven inches a year — and this is consistent across every texture, from Type 1 straight to Type 4C coily.</p>
+<p>The <strong>catagen</strong> phase is a short transition of two to three weeks where growth pauses. The <strong>telogen</strong> phase is rest — the hair stays put for about three months before shedding naturally. Losing 50 to 100 hairs a day is completely normal.</p>
+${h2('Why Type 4 hair seems not to grow')}
+<p>Type 4 hair has a tightly coiled structure. Sebum — the natural oil your scalp produces to moisturise your strands — struggles to travel down the shaft. On straight hair it glides from root to tip; on tightly coiled hair it must navigate dozens of bends and curves. The result: the tips of Type 4 hair are naturally drier, more brittle, and more vulnerable to breakage.</p>
+${h2('The real issue: retention')}
+<p>Imagine filling a bucket with a hole in the bottom. Water flows in — but it leaks out just as fast. Your hair works the same way: growth happens at the root, loss happens at the ends. If you break as much as you grow, your length never changes. This is a <em>retention</em> problem, not a growth problem — and that is wonderful news, because retention is largely within your control.</p>
+${tip('Take a photo of your hair fully stretched today, then repeat in 90 days. You\'ll often be surprised by growth you hadn\'t noticed — because you were looking at your hair styled, not at its true length.')}
+${takeaway('Your Type 4 hair grows just like anyone else\'s — it\'s the quiet breakage at the ends that erases your progress. Protecting your length is the very first priority.')}
+${quiz('q1','Why does Type 4 hair often <em>look</em> like it isn\'t growing?',
+  ['Type 4 follicles grow more slowly than other textures','Growth happens at the root, but breakage at the ends erases the length','It only grows during the telogen phase'],1,
+  '<b>Exactly.</b> Growth rate is roughly the same across all textures. The visible problem is retention — length lost to breakage at the fragile ends.')}
+${reflect('r1','When you look at your hair, do you think of it as a growth problem or a retention problem? What changes if you see it as retention?')}`;
+
+L.l2 = ()=>`
+${head('Module I · Understanding Growth','Why Your Hair<br>Seems Stuck')}
+<p class="lead">I was doing everything I read online — but my hair stayed the same. Nobody had told me what I was doing wrong.</p>
+<p>If your hair has seemed stuck at the same length for months — or even years — that is not a curse. It is a pattern. Here are the seven silent enemies of length retention, and how to address each one.</p>
+<div class="steps">
+  ${step(1,'Breakage','The number-one enemy. Broken strands have jagged ends with no bulb. <b>Fix:</b> detangle only on wet or damp hair, with slip and a wide-tooth comb, ends to roots.')}
+  ${step(2,'Chronic dryness','Hair that snaps, looks dull and feels brittle is dehydrated. <b>Fix:</b> add a mid-week moisture refresh — even a light mist of plain water is a start.')}
+  ${step(3,'Excessive manipulation','Every touch, pull and restyle is mechanical stress. <b>Fix:</b> choose low-manipulation styles that last several days, and keep your hands out of your coils.')}
+  ${step(4,'Product build-up','Unremoved butters, creams and gels clog follicles and block moisture. <b>Fix:</b> clarify at least once a month.')}
+  ${step(5,'Scalp neglect','A blocked or irritated scalp slows growth at the source. <b>Fix:</b> massage for five minutes, two to three times a week.')}
+  ${step(6,'Styles that are too tight','Tight braids and ponytails pull the follicles, leading to traction alopecia. <b>Fix:</b> if it hurts going in, it\'s already too tight.')}
+  ${step(7,'Chronic stress','Stress raises cortisol and pushes follicles into rest early. <b>Fix:</b> a daily decompression ritual — even ten minutes of walking or breathing.')}
+</div>
+${tip('Don\'t fix all seven at once. Honestly assess your habits, name your main culprit, and start there. One sustained change is worth far more than seven you abandon.')}
+${takeaway('Stagnation isn\'t fate — it\'s usually the accumulation of small, correctable habits. Fixing even one can completely shift your trajectory.')}
+${quiz('q2','What is the single most effective way to act on these seven enemies?',
+  ['Fix all seven at the same time for fastest results','Buy new products for each problem','Identify your main culprit and change that one thing consistently'],2,
+  '<b>Yes.</b> One sustained change beats seven abandoned ones. Name your biggest enemy and start there.')}
+${reflect('r2','Of the seven silent enemies, which one is most true for you right now? What is the one change you\'ll commit to first?')}`;
+
+L.l3 = ()=>`
+${head('Module I · Understanding Growth','The Scalp<br>Is Everything')}
+<p class="lead">I kept buying product after product for my lengths. Nobody had told me to start with the scalp.</p>
+<p>If your hair is a plant, your scalp is the soil. You can tend the leaves all you like — but if the earth is poor, the plant never flourishes. Scalp health is not a side note. It is the foundation of everything.</p>
+${h2('Why the scalp comes first')}
+<div class="grid2">
+  ${card('sage','Blood circulation','Follicles need a steady supply of nutrients and oxygen through your blood. Good scalp circulation means well-nourished follicles — which is why massage is one of the best-documented ways to stimulate growth.')}
+  ${card('cream','Sebum balance &amp; pH','Your scalp sits at a slightly acidic pH of 4.5–5.5. Overly alkaline products strip its protective film. Choose formulas for textured hair and avoid sodium lauryl sulphate near the top of the list.')}
+</div>
+<p>Like your skin and gut, your scalp hosts a microbiome of beneficial microorganisms. Over-washing, harsh products and excessive heat destabilise it and trigger quiet inflammation that slows growth.</p>
+${card('rose','Signs of an unhealthy scalp','Persistent itching · excessive dandruff (white or oily flakes) · visible redness or irritation · tightness or burning · widespread, excessive shedding.')}
+${h2('Your scalp-care ritual')}
+<div class="steps">
+  ${step(1,'Massage','Fingertips (never nails) for at least five minutes, two to three times a week.')}
+  ${step(2,'Cleanse','Wash every one to two weeks as needed — you are cleansing the scalp, not just the lengths.')}
+  ${step(3,'Observe','Once a week, take thirty seconds to look at your scalp and catch problems early.')}
+</div>
+${tip('Try a weekly warm-oil massage: one tablespoon of jojoba oil with two drops of diluted peppermint. Massage five minutes, leave 30, then shampoo out. You\'ll feel the difference within weeks.')}
+${takeaway('No routine in the world can compensate for a neglected scalp. Start there, and everything else follows.')}
+${quiz('q3','Why is scalp massage so often recommended for growth?',
+  ['It makes hair grow past its genetic limit','It boosts blood circulation, delivering nutrients and oxygen to the follicles','It permanently changes your hair type'],1,
+  '<b>Correct.</b> Massage improves circulation at the source — one of the best-documented ways to support healthy growth.')}
+${reflect('r3','How would you honestly rate your scalp health today? When did you last actually look at it?')}`;
+
+L.l4 = ()=>`
+${head('Module I · Understanding Growth','Moisture, Protein<br>&amp; Balance')}
+<p class="lead">I was putting so many products on my hair. It felt heavy and lifeless. I needed balance, not more.</p>
+<p>Two words come up constantly in the natural-hair world: <em>moisture</em> and <em>protein</em>. They work together, like two sides of a scale. Understanding what each does will save you years of trial and error.</p>
+<div class="grid2">
+  ${card('sage','What moisture does','Water is the only true hydrator — not oil, not butter. A hydrated strand is supple, elastic and resilient; a dehydrated one is brittle, dull and prone to breakage.')}
+  ${card('beige','What protein does','Keratin is the protein that builds your hair. Protein treatments fill in damaged areas weakened by heat, manipulation or chemicals. A well-proteined strand is strong and structured.')}
+</div>
+${card('rose','Signs of imbalance','<b>Too much moisture, too little protein:</b> soft, mushy hair that stretches without snapping back — it lacks structure. <b>Too much protein, too little moisture:</b> stiff, rigid hair that snaps at the slightest tension — it lacks flexibility.')}
+${h2('The L.O.C. &amp; L.C.O. methods')}
+<p><b>L.O.C.</b> = Liquid · Oil · Cream. Begin with a liquid (water or a light leave-in), seal with an oil, then lock it in with a heavier cream. <b>L.C.O.</b> = Liquid · Cream · Oil — liquid first, cream to deeply moisturise, then oil on top. Very tight Type 4C hair often responds better to L.C.O.</p>
+${tip('The elasticity test: dampen one clean strand and gently stretch it. Stretches and returns — balance is good. Snaps at once — needs moisture. Stretches but won\'t return — needs protein.')}
+${takeaway('Your hair needs moisture AND protein — neither too much nor too little. Balance is the secret to hair that is both strong and supple.')}
+${quiz('q4','Your hair stretches when wet but won\'t bounce back, and feels mushy. What does it most likely need?',
+  ['More moisture','More protein','More oil'],1,
+  '<b>Right.</b> Mushy, over-stretchy hair that won\'t recoil signals a protein deficit. It needs structure, not more moisture.')}
+${reflect('r4','Run the elasticity test on one strand. What did it tell you — does your hair lean toward needing moisture or protein right now?')}`;
+
+L.l5 = ()=>`
+${head('Module I · Understanding Growth','Diet, Sleep<br>&amp; Stress')}
+<p class="lead">I was caring for my hair from the outside. I had forgotten that growth comes from within.</p>
+<p>We talk endlessly about products and techniques. But no cream can compensate for a body running on deficiencies, exhaustion or constant stress. Hair growth is a biological process — and it depends heavily on what you put into your body.</p>
+${h2('Key nutrients for growth')}
+<table class="lux"><thead><tr><th>Nutrient</th><th>Why it matters</th><th>Find it in</th></tr></thead><tbody>
+  <tr><td><span class="nm">Biotin (B7)</span></td><td>Supports keratin production</td><td>Eggs, nuts, sunflower seeds</td></tr>
+  <tr><td><span class="nm">Zinc</span></td><td>Essential to follicle function</td><td>Pumpkin seeds, oysters, legumes</td></tr>
+  <tr><td><span class="nm">Iron</span></td><td>A frequently missed cause of loss</td><td>Lentils, spinach (+ vitamin C)</td></tr>
+  <tr><td><span class="nm">Vitamin D</span></td><td>Low levels linked to alopecia</td><td>Sun, eggs (ask a professional)</td></tr>
+  <tr><td><span class="nm">Omega-3</span></td><td>Nourishes follicles from within</td><td>Salmon, sardines, flax, walnuts</td></tr>
+  <tr><td><span class="nm">Silica</span></td><td>Builds strand strength</td><td>Oats, bananas</td></tr>
+</tbody></table>
+<div class="grid2">
+  ${card('cream','Cortisol &amp; growth','The stress hormone is a quiet but powerful disruptor. Under chronic stress, the body diverts energy from non-essential processes like growth, and follicles shift early into rest — causing shedding weeks later (telogen effluvium).')}
+  ${card('sage','Sleep &amp; repair','In deep sleep your body releases growth hormone and repairs cells — follicles included. Routinely sleeping under six hours interrupts this. Protect your ends with satin overnight.')}
+</div>
+${tip('Build a simple evening ritual: satin bonnet, a calming herbal tea, and five screen-free minutes. Your hair and your mind will both thank you.')}
+${takeaway('Your hair reflects your internal health. Nourish your body, manage your stress and protect your sleep — it\'s the deepest care you can give your hair.')}
+${quiz('q5','Why can chronic stress cause shedding weeks later?',
+  ['It dries out the hair shaft directly','Cortisol pushes follicles into the resting (telogen) phase early','It removes iron from your diet'],1,
+  '<b>Yes.</b> This is telogen effluvium — stress shifts follicles into rest prematurely, and the shed shows up weeks afterward.')}
+${reflect('r5','Which is your weakest link right now — diet, sleep, or stress? What is one small, realistic change you can make this week?')}`;
+
+/* ---------- MODULE II ---------- */
+L.l6 = ()=>`
+${head('Module II · The Growth Mindset','Patience:<br>The Hardest Skill')}
+<p class="lead">I almost gave up at week 8. Today my hair is at my shoulders. I think often about who I would have been if I had stopped.</p>
+<p class="dear">Dear you,</p>
+<p>There is something nobody says loudly enough about this journey: it is hard. Not technically hard — <em>emotionally</em> hard. Hard because you're working, changing habits, believing — and then you look in the mirror six weeks later wondering whether it's really worth it. That moment — the one where you wonder whether to continue — is the most dangerous and the most decisive of your entire journey.</p>
+${h2('Reframing slowness as power')}
+<p>Hair growth is <em>compound</em> growth. Every month counts: 1.5&nbsp;cm in January, 1.5&nbsp;cm in February — by year's end you're at 15–18&nbsp;cm, and in two years, over 30. But quit at week six and restart from scratch, and you always begin from the same point. Week six is precisely where things start to work — and exactly where most people quit.</p>
+${h2('Staying the course')}
+<p>Celebrate the process, not just the outcome. Every completed wash day, every scalp massage, every satin night is a win — write them down. Keep a 'before' album: one photo, same background, once a month. And talk to yourself the way you'd talk to your best friend. The women who succeed are not the ones with the best products — they are the ones who decided not to quit.</p>
+${tip('Ask yourself each week: did I do something good for my hair? If yes, it was a successful week. Perfection is not the target — consistency is.')}
+${affirm('I trust the pace of my own growth. Every centimetre is a victory, even when I cannot see it yet.')}
+${takeaway('Patience is not passive — it is an active decision you renew every single week. And it is patience, more than any product, that grows your hair.')}
+${quiz('q6','Why is "week six" described as the most dangerous point in the journey?',
+  ['It\'s when hair stops growing entirely','It\'s exactly where results begin to show — and where most people quit','It\'s when you must change all your products'],1,
+  '<b>Exactly.</b> Compound growth is just starting to become visible around then. Quitting resets you to zero.')}
+${reflect('r6','Think of a past hair routine you abandoned. How far in did you get? What would have happened if you\'d stayed one more month?')}`;
+
+L.l7 = ()=>`
+${head('Module II · The Growth Mindset','Consistency<br>Over Perfection')}
+<p class="lead">I had the perfect routine on paper. But it was so complicated I abandoned it every time after two weeks.</p>
+<p class="dear">Dear you,</p>
+<p>Almost every woman makes the same mistake at the beginning — me included. We go looking for the <em>perfect</em> routine: four-hour wash day on Sunday, protein on Wednesday, hot oil on Friday. It looks beautiful on paper. Then life arrives, Sunday is packed, Wednesday you're exhausted — and you tell yourself you'll start over Monday. But there is no next Monday in hair growth. There is only today.</p>
+${h2('Why imperfect consistency wins')}
+<p>A routine kept imperfectly for 90 days creates real results. A perfect routine abandoned after 10 days creates only frustration. Your hair doesn't know perfection — it knows repetition, regularity, predictability. Those are the signals it responds to.</p>
+${h2('Building habit loops')}
+<p>Your brain retains <em>loops</em>, not isolated actions. A loop = a trigger + an action + a reward. Sunday morning you put on your favourite playlist (trigger), start wash day (action), watch a show while your deep conditioner processes (reward). On a busy week, consistency might simply be: a water spray and a drop of oil on your ends, a satin bonnet, your litre and a half of water. That's enough — because consistency isn't doing everything, it's never abandoning everything.</p>
+${tip('Create a \'minimal mode\' for hard weeks — three actions you can always manage: satin bonnet, moisture spray, no excessive manipulation.')}
+<div class="cal cal-exercise"><div class="cal-h">${I.pen}<span>Reflection Prompt</span></div><p>What pushes you to abandon your routine — tiredness, time, discouragement? Write without judgement. What would a simplified, sustainable version actually look like for you?</p></div>
+${takeaway('An imperfect routine kept for 90 days transforms your hair. A perfect one abandoned after 10 days leaves only frustration.')}
+${quiz('q7','What does your hair actually respond to?',
+  ['Expensive, complex routines','Repetition, regularity and predictability','Frequent product changes'],1,
+  '<b>Yes.</b> Hair responds to consistent signals over time — not to perfection or novelty.')}
+${reflect('r7','Design your personal "minimal mode" — the three actions you can keep even on your worst week.')}`;
+
+L.l8 = ()=>`
+${head('Module II · The Growth Mindset','Your Chapter 1 Is<br>Not Her Chapter 10')}
+<p class="lead">Social media gave me inspiration and depression at the same time.</p>
+<p class="dear">Dear you,</p>
+<p>You're scrolling. You see beautiful hair — long, thick, defined, luminous — and something stirs: admiration mixed with something like pain. <em>Why her and not me?</em> Let's talk about it honestly.</p>
+${h2('The comparison trap')}
+<p>What you see online is the result, rarely the process — not the two years of quiet routine, the bad wash days, the doubt. Comparing your beginning to someone's result is comparing a seed to a tree. The seed will become a tree — but not by staring at the tree.</p>
+${card('sage','Why 4C and 4A can\'t be compared','Type 4C is the tightest, with the highest shrinkage (hair looks far shorter than it is), the most limited sebum distribution, and greater sensitivity to dryness. It\'s not that 4C grows less — it needs a more targeted strategy and even more patience.')}
+${card('rose','Changing products every two weeks','One of the costliest mistakes comparison creates. Hair doesn\'t respond in a week — it responds in 60 to 90 days. Constant switching makes it impossible to ever truly evaluate anything.')}
+${tip('If scrolling leaves you sad rather than inspired, that is valuable information. You are allowed to curate your follows — tend your feed the way you tend your routine.')}
+${takeaway('You are not behind. You are at your own chapter — and your chapter, written with your consistency and patience, will be the most beautiful one of all.')}
+${quiz('q8','How long should you give a new product or routine before judging it?',
+  ['1–2 weeks','60–90 days','One wash day'],1,
+  '<b>Correct.</b> Hair responds over 60–90 days. Switching every two weeks makes real evaluation impossible.')}
+${reflect('r8','Who do you compare your hair to most? How does that comparison actually serve — or hurt — you?')}`;
+
+L.l9 = ()=>`
+${head('Module II · The Growth Mindset','Your Emotional<br>Relationship')}
+<p class="lead">My hair wasn't just hair. It carried everything I had been taught to feel about myself.</p>
+<p class="dear">Dear you,</p>
+<p>Black women's hair is not just hair. It carries a history — generations of messages, some spoken aloud, others absorbed through silence and looks: that straight is better, manageable is better, tamed is better.</p>
+${h2('Unlearning shame')}
+<p>Hair shame — the deep belief that your natural texture is a problem to be solved — is one of the most painful inheritances many Black women carry. Unlearning it is patient, tender, nonlinear work. But it begins with one decision: choosing to look at your hair with curiosity rather than judgement. Instead of <em>not again</em>, ask: <em>what are they telling me today?</em> Your hair speaks — learning its language is learning to know yourself.</p>
+${caution('When care becomes anxiety','If every morning at the mirror is dread, if a bad hair day derails your confidence, if you avoid events because of your hair — that is no longer care. It is anxiety dressed up as a routine. The goal is not perfect hair; it is a peaceful, loving relationship with your hair, in all its states.')}
+${affirm('My hair is not a problem to be solved — it is an extension of who I am. And who I am deserves to be loved, exactly as she is.')}
+${takeaway('Caring for your hair is learning to care for yourself. The most important relationship in this journey is not with your products — it is with you.')}
+${reflect('r9','What is one message about your hair you absorbed growing up? Is it still true for you — or is it time to set it down?')}`;
+
+L.l10 = ()=>`
+${head('Module II · The Growth Mindset','Confidence &amp;<br>Realistic Expectations')}
+<p class="lead">The day I stopped wanting someone else's hair, I finally started loving mine.</p>
+<p class="dear">Dear you,</p>
+<p>Let's close this section with the most liberating thing you can do for your hair: deciding that you are <em>enough</em>, right now, exactly where you are.</p>
+${h2('Goals grounded in biology')}
+<p>One to one-and-a-half centimetres a month — that is the biological reality, set by your genetics and follicles, not your credit card. No product can sustainably beat it. What you <em>can</em> do is make sure every centimetre that grows stays. That is the goal: not growing faster — retaining more.</p>
+${h2('Confidence beyond length')}
+<p>Celebrate centimetres, not just inches: 3&nbsp;cm in two months is real, 6&nbsp;cm in four is visible, 12&nbsp;cm in a year changes an entire hairstyle. And if your confidence hangs from the length of your hair, you'll never be at peace — there is always a next milestone. Real confidence is looking at yourself today, hair in any state, and saying: <em>I am beautiful. I am on my way.</em> Both are true at once.</p>
+${tip('Write your own definition of hair success — not the internet\'s, not your cousin\'s. Yours. Put it somewhere you\'ll see it each morning.')}
+${affirm('I don\'t wait until my hair is long to be beautiful. I am beautiful now — growing, building, exactly where I am.')}
+${takeaway('Your hair goals deserve to be rooted in the biology of your body — and your confidence deserves to exist independently of any outcome.')}
+${quiz('q10','What is a realistic monthly growth expectation to anchor your goals to?',
+  ['3–4 cm per month with the right products','1–1.5 cm per month, set by genetics','As much as your favourite influencer'],1,
+  '<b>Right.</b> ~1–1.5 cm/month is the biological norm. No product reliably beats it — so the real lever is retention.')}
+${reflect('r10','Write your own definition of hair success — in your words, for your life, not anyone else\'s.')}`;
+
+/* ---------- MODULE III ---------- */
+L.l11 = ()=>`
+${head('Module III · The Practical System','Building Your<br>Growth Routine')}
+<p class="lead">Before, I either had too much routine or none at all. Finding the middle ground changed everything.</p>
+<p>A growth routine is not a product list. It is a <em>care architecture</em> — a framework that adapts to your life and, repeated week after week, creates lasting results.</p>
+${h2('Your weekly structure')}
+<div class="grid2">
+  ${card('sage','Wash day · 1–2×/week','Pre-poo → shampoo → conditioner → deep condition (20–30 min) → detangle → moisturise (L.O.C./L.C.O.) → style.')}
+  ${card('cream','Refresh · 2–3×/week','A light water mist on the lengths, a few drops of light oil on the ends, minimal restyling only if needed.')}
+</div>
+${card('beige','Scalp massage · 2–3×/week','Five minutes of fingertip massage, with or without a light oil — circulation at the source.')}
+${h2('When time is scarce')}
+<p>A minimalist week still works: <b>Monday</b> — quick refresh (water + oil, 5 min). <b>Wednesday</b> — scalp massage (5 min). <b>Friday/Saturday</b> — full wash day. <b>Every night</b> — satin bonnet. Never skip two consecutive wash days; one week is recoverable, two and dryness compounds. If you only have an hour: shampoo + deep conditioner + a basic L.O.C. is the minimum viable routine.</p>
+${tip('Pack your wash-day basket the night before — products, microfibre towel, clips. In the morning, you just start. Less friction means more consistency.')}
+${takeaway('A realistic routine you keep is worth a hundred ideal ones you abandon. Build for your real life, not your perfect one.')}
+${quiz('q11','What is the correct order of the wash-day framework?',
+  ['Shampoo → style → deep condition → detangle','Pre-poo → shampoo → conditioner → deep condition → detangle → moisturise → style','Deep condition → shampoo → moisturise → pre-poo'],1,
+  '<b>Yes.</b> Pre-poo first to protect, cleanse, condition, deep-condition, detangle on slip, then moisturise (L.O.C./L.C.O.) and style.')}
+${reflect('r11','Sketch your realistic weekly routine — for your actual schedule, not your ideal one. When will wash day be?')}`;
+
+L.l12 = ()=>`
+${head('Module III · The Practical System','Protective Styling<br>for Retention')}
+<p class="lead">For years I was hiding behind my braids. I didn't know they could also help me grow.</p>
+<p>There is a difference between wearing a protective style to <em>hide</em> your hair and wearing one as an active retention strategy. One comes from avoidance; the other from intention.</p>
+<div class="grid2">
+  ${card('sage','Box / knotless braids','Excellent for retention; 4–6 weeks max. Knotless places less tension on the root.')}
+  ${card('cream','Two-strand twists','Ideal for shorter spells (1–2 weeks); easy to refresh without a full take-down.')}
+  ${card('beige','Low bun styles','Simple and daily, perfect for busy weeks — avoid elastics with metal clasps.')}
+  ${card('sage','Wigs &amp; extensions','Protective when properly installed, without tension on the edges.')}
+</div>
+${caution('The golden rule on duration','Never more than 6 to 8 weeks without taking the style down and inspecting your hair. Longer risks matting, breakage, and a neglected scalp. Watch for: pain or tension at the edges, persistent itching, flaky or red patches, or visible breakage on removal.')}
+${h2('Scalp care inside the style')}
+<p>At minimum: a light water or aloe spray on the visible scalp twice a week; a light oil (jojoba, argan) once or twice a week; and a gentle massage between the braids. The style protects your lengths — you still tend the scalp.</p>
+${tip('Before taking a style down, oil all along your lengths. It softens knots and makes detangling far easier — dramatically reducing breakage during the transition.')}
+${takeaway('A well-managed protective style is one of the most effective retention strategies there is — as long as you never neglect the scalp underneath.')}
+${quiz('q12','What is the maximum recommended time to keep a protective style in?',
+  ['As long as it still looks neat','6 to 8 weeks, then take down and inspect','3 to 4 months'],1,
+  '<b>Correct.</b> Beyond 6–8 weeks you risk matting, breakage and scalp neglect. Always take down and inspect.')}
+${reflect('r12','Have your protective styles been about hiding, or about intention? How could you make your next one a true retention strategy?')}`;
+
+L.l13 = ()=>`
+${head('Module III · The Practical System','Ingredients That<br>Actually Work')}
+<p class="lead">I had fifteen different products and no idea what any of them actually did.</p>
+<p>Products promise a lot; science says something more nuanced. Here are the ingredients with genuine documented evidence — and how to use each one properly.</p>
+<div class="grid2">
+  ${card('sage','Peppermint EO','Stimulates scalp circulation; a 2014 study showed effects comparable to minoxidil at 3%. <b>Use:</b> always diluted, 2–3 drops per tablespoon of carrier, 1–2×/week max.')}
+  ${card('cream','Castor oil','Rich in ricinoleic acid; nourishes the scalp and forms a protective barrier, with anti-inflammatory action. <b>Use:</b> pure or blended with a lighter oil, on the scalp.')}
+  ${card('beige','Rosemary','Inhibits the enzyme that converts testosterone to DHT; a 2015 study compared it favourably to 2% minoxidil. <b>Use:</b> 5–10 drops per tablespoon of carrier, or a daily rosemary-water spray.')}
+  ${card('sage','Aloe vera','Its pH (~4.5) matches the scalp\'s; it hydrates, soothes inflammation and supports a healthy follicle. <b>Use:</b> diluted daily spray, light leave-in, or direct scalp treatment.')}
+</div>
+${card('rose','Neem','A natural antifungal and antibacterial — ideal for scalps prone to dandruff, itching or microbiome imbalance. <b>Use:</b> as an oil (dilute to 5% max in a carrier) or in formulated products.')}
+${tip('Introduce one ingredient at a time. Use it consistently for four weeks, observe, then decide. Mix everything at once and you\'ll never know what\'s actually working.')}
+${takeaway('The best ingredients are the ones used correctly and consistently — not the ones bought in greatest quantity. Less, used well, is always worth more.')}
+${quiz('q13','How should you introduce a new active ingredient?',
+  ['All at once, layered together for a stronger effect','One at a time, used consistently for ~4 weeks, then evaluate','Only on days your hair already looks good'],1,
+  '<b>Yes.</b> One variable at a time is the only way to know what actually works for your hair.')}
+${reflect('r13','Which one evidence-based ingredient will you commit to testing for the next 4 weeks — and how will you use it?')}`;
+
+L.l14 = ()=>`
+${head('Module III · The Practical System','What to Stop<br>Immediately')}
+<p class="lead">Nobody had told me I was my own worst enemy.</p>
+<p>I'll be direct — with great warmth, but direct. Some of the most common habits in our routines are precisely the ones sabotaging our growth.</p>
+<div class="steps">
+  ${step(1,'Excessive heat','Heat damages the protein structure and creates permanent weak points. If you use it, rarely (once a month at most) and always with a protectant.')}
+  ${step(2,'Detangling on dry hair','Dry Type 4 hair is at its most fragile — guaranteed breakage. Detangle only on wet or damp hair, with high slip, ends to roots.')}
+  ${step(3,'Skipping trims','Split ends break upward, costing you more length. A small trim (1–2&nbsp;cm every 3–4 months) is not loss — it\'s investing.')}
+  ${step(4,'Metal elastics &amp; harsh accessories','Metal clasps and snagging clips create breakage at the same spots every time. Switch to satin scrunchies or seamless ties.')}
+  ${step(5,'Product overload','More products don\'t mean more moisture — they mean build-up and clogged follicles. An effective routine uses 3 to 5 products, not 15.')}
+  ${step(6,'Ignoring breakage signals','Short fragments after styling (not full strands with a bulb) are breakage. It\'s information — listen and adjust.')}
+</div>
+${tip('Audit your routine this week. For every habit, ask: is this helping, or harming? You may be surprised by what you find.')}
+${takeaway('Stopping one bad habit can do as much as adopting ten good ones. Sometimes doing less is the best care of all.')}
+${quiz('q14','How can you tell breakage from normal shedding?',
+  ['Shed hairs are short fragments; breakage hairs are long with a white bulb','Breakage hairs are short fragments with no bulb; shed hairs are full-length with a bulb','There is no way to tell the difference'],1,
+  '<b>Correct.</b> A natural shed has a tiny bulb (root). Short fragments without a bulb are breakage — a signal to adjust.')}
+${reflect('r14','Audit your habits honestly. Which one on this list are you guiltiest of — and will you stop this week?')}`;
+
+L.l15 = ()=>`
+${head('Module III · The Practical System','Tracking<br>Your Progress')}
+<p class="lead">I wasn't measuring. I just looked in the mirror and decided it wasn't working. Measuring changed everything.</p>
+<p>If you're not measuring, you're managing blind — and that almost always leads to frustration, because Type 4 hair, with its shrinkage, often looks short even when it has grown.</p>
+<div class="grid2">
+  ${card('sage','Unstretched vs stretched','Unstretched is what you see — coils compressed. Stretched is the true fibre length. Type 4C can shrink 50–75%, so hair that looks 6&nbsp;cm may measure 12–15. Always track <b>stretched</b>.')}
+  ${card('cream','The monthly photo protocol','Same day each month, four photos — stretched forward, left, right, and nape — same background, lighting and angle, with a tape visible if you can.')}
+</div>
+${card('beige','The five-line hair diary','Once a week, note: products used · hair condition (dry/supple/brittle) · scalp condition (balanced/irritated/oily) · breakage (more/less) · overall satisfaction. Over three months, you\'ll have a precise map of what works.')}
+${remind('When to adjust, when to stay','It\'s working if, after 90 days, stretched length is up, breakage is down, your scalp is calmer and your hair more supple. Adjust only if, after 60 days, you see clear worsening — and always give a full 90 days before concluding.')}
+${tip('Use the Growth Tracker in the 90-Day Challenge module to record your monthly measurements. Your diary becomes your proof that it\'s working — on the days you doubt it.')}
+${takeaway('What you measure, you manage. Start measuring, and you transform your journey — from frustration into evidence.')}
+${quiz('q15','Which length should you always track on Type 4 hair?',
+  ['Unstretched — what you see in the mirror','Stretched — the true fibre length','Whichever looks longest that day'],1,
+  '<b>Yes.</b> Type 4C can shrink 50–75%. Only stretched length reveals real progress.')}
+${reflect('r15','You\'ve finished the lessons. What are the THREE habits from this whole course you commit to for your 90-Day Challenge?')}`;
+
+/* ---------- MODULE EXAMS (must pass all to unlock next module) ---------- */
+function examIntro(crumb,title,blurb){
+  return head(crumb,title)+'<p class="lead">'+blurb+'</p>'+
+   '<div class="cal cal-reminder"><div class="cal-h">'+I.tri+'<span>Module Exam</span></div><p>Answer <b>every</b> question correctly to pass this module and unlock the next one. You can retry any question until you get it right — there is no penalty for trying.</p></div>';
+}
+L.m1exam = ()=>`
+${examIntro('Module I · Exam','Module&nbsp;I<br>Exam','Understanding Growth — a quick check before you move on.')}
+${quiz('e1a','Across all hair textures, hair grows on average about…',
+  ['Half an inch (1–1.5 cm) per month','Two inches per month with the right oils','Only while it is in a protective style'],0,
+  '<b>Correct.</b> Growth rate is similar for everyone — the Type 4 challenge is <em>retention</em>, not speed.')}
+${quiz('e1b','Why is the scalp the foundation of healthy growth?',
+  ['It changes your curl pattern','Good circulation and a balanced scalp nourish the follicles','It removes the need to moisturise the lengths'],1,
+  '<b>Yes.</b> The scalp is the soil — tend it first and everything else follows.')}
+${quiz('e1c','Soft, mushy hair that stretches and will not spring back needs…',
+  ['More protein','More water','More heat'],0,
+  '<b>Right.</b> That is a protein deficit — too much moisture, too little structure.')}`;
+
+L.m2exam = ()=>`
+${examIntro('Module II · Exam','Module&nbsp;II<br>Exam','The Growth Mindset — let’s lock in the inner work.')}
+${quiz('e2a','Around “week six”, why do so many people give up?',
+  ['Hair physically stops growing','Results are just starting to show and doubt peaks','Their products expire'],1,
+  '<b>Exactly.</b> It is the most decisive moment — quitting resets you to zero.')}
+${quiz('e2b','What does hair actually respond to over time?',
+  ['Perfection','Repetition and regularity','Switching products often'],1,
+  '<b>Yes.</b> Consistency beats perfection every time.')}
+${quiz('e2c','A realistic monthly growth goal to anchor your expectations is about…',
+  ['1–1.5 cm','5 cm','Whatever an influencer shows'],0,
+  '<b>Right.</b> Set goals to biology, then put your energy into retention.')}`;
+
+L.m3exam = ()=>`
+${examIntro('Module III · Exam','Module&nbsp;III<br>Exam','The Practical System — the final check before your challenge.')}
+${quiz('e3a','What is the maximum time to keep a protective style before taking it down?',
+  ['6–8 weeks, then take down and inspect','6 months','Until it starts to look messy'],0,
+  '<b>Correct.</b> Beyond 6–8 weeks you risk matting, breakage and a neglected scalp.')}
+${quiz('e3b','How should you introduce a new active ingredient?',
+  ['Use several at once for a stronger effect','One at a time, consistently, for about 4 weeks','Only on days your hair already looks good'],1,
+  '<b>Yes.</b> One variable at a time is the only way to know what truly works.')}
+${quiz('e3c','On Type 4 hair, which length should you always track?',
+  ['Stretched — the true fibre length','Unstretched — what you see','Whichever looks longest that day'],0,
+  '<b>Right.</b> Shrinkage hides progress, so always measure stretched.')}`;
+
+/* ---------- MODULE IV: 90-DAY CHALLENGE ---------- */
+L.challenge = ()=>`
+${head('Module IV · The Action Plan','The 90-Day<br>Crown Challenge')}
+<p class="lead">Knowledge without action is just reading. Here is your week-by-week plan to build habits, track progress, and see real results in 90 days — tap each box to check it off.</p>
+${remind('Record your starting measurements now','Measure your <b>stretched</b> length in five places — crown, right side, left side, edges, nape — on a clean wash day. Re-measure at weeks 4, 8 and 13. The table below saves automatically.')}
+
+<div class="band sage"><span class="bt">Phase One · Foundations</span><span class="bs">Weeks 1 – 4</span></div>
+<div class="wk"><div class="wt">Week 1</div><div class="ws">Know your hair</div></div>
+${checkList('c1',['Do the float &amp; spray tests to find your porosity','Take baseline length measurements and photos','Audit your products — identify your 5 essentials','Wear a satin bonnet every night — non-negotiable from Day 1'])}
+<div class="wk"><div class="wt">Week 2</div><div class="ws">Your first intentional wash day</div></div>
+${checkList('c2',['Follow the wash-day framework for the first time','Deep-condition for your porosity; apply L.O.C./L.C.O. straight after','Begin a 3–5 minute scalp massage each morning'])}
+<div class="wk"><div class="wt">Weeks 3 – 4</div><div class="ws">Address your main issue &amp; first measurements</div></div>
+${checkList('c3',['Name your main problem: dryness, breakage or scalp','Reread the relevant lesson; implement one targeted change','Week 4: measure, photograph, and do your first clarifying wash'])}
+
+<div class="band beige"><span class="bt">Phase Two · Skill Building</span><span class="bs">Weeks 5 – 8</span></div>
+<div class="wk"><div class="wt">Week 5</div><div class="ws">Introduce a protective style</div></div>
+${checkList('c4',['Install on fully moisturised, L.O.C./L.C.O.-treated hair','Keep it loose — no tension at roots or edges; remove within 6 weeks','Scalp spray every 3–4 days while the style is in'])}
+<div class="wk"><div class="wt">Week 8</div><div class="ws">Take down &amp; second measurements</div></div>
+${checkList('c5',['Remove gently, detangling section by section','Take week-8 measurements and photos; trim split ends if any','Give your hair one free week before the next style'])}
+
+<div class="band rose"><span class="bt">Phase Three · Retention Mastery</span><span class="bs">Weeks 9 – 13</span></div>
+<div class="wk"><div class="wt">Week 13</div><div class="ws">Final measurements &amp; celebration</div></div>
+${checkList('c6',['Take down, do a full wash day, take FINAL measurements and photos','Compare weeks 1, 4, 8 and 13 side by side','Note the 3 habits that made the biggest difference'])}
+
+${h2('Your progress — measure &amp; record')}
+<table class="track"><thead><tr><th>Location</th><th>Week 1</th><th>Week 4</th><th>Week 8</th><th>Week 13</th></tr></thead><tbody>
+  ${trackRow('Crown / top','t_crown')}
+  ${trackRow('Right side','t_right')}
+  ${trackRow('Left side','t_left')}
+  ${trackRow('Edges / hairline','t_edge')}
+  ${trackRow('Nape','t_nape')}
+</tbody></table>
+<div class="scale">Record stretched length in centimetres</div>
+${takeaway('This challenge translates the whole course into three progressive phases. Measure and photograph at weeks 1, 4, 8 and 13. The goal is not perfection — it is consistency. Your crown is growing. Keep going.')}`;
+
+/* ---------- MODULE V: RECIPE LAB ---------- */
+L.recipes = ()=>`
+${head('Module V · The Recipe Lab','15 DIY Growth<br>Treatments')}
+<p class="lead">Fifteen growth treatments — formulated for Type 4 hair, made by your own hands. Filter by difficulty, then tap to follow along.</p>
+${caution('Before you begin','Patch-test every formula, use clean tools and containers, and respect each one\'s shelf life. Fresh is potent — old is risky.')}
+<div class="filters" id="recFilters">
+  <button class="filt on" data-f="all" onclick="filterRecipes('all')">All 15</button>
+  <button class="filt" data-f="easy" onclick="filterRecipes('easy')">Easy</button>
+  <button class="filt" data-f="mod" onclick="filterRecipes('mod')">Moderate</button>
+  <button class="filt" data-f="adv" onclick="filterRecipes('adv')">Advanced</button>
+  <button class="filt" data-f="hp" onclick="filterRecipes('hp')">High porosity</button>
+</div>
+<div id="recipeList"></div>
+${takeaway('The most powerful products you\'ll ever use are the ones you understand completely. Start with one Easy recipe this week.')}`;
+
+/* ---------- CERTIFICATE ---------- */
+L.certificate = ()=>{
+  const done = COUNTED.every(id=>state.done[id]);
+  const name = (state.reflect.certname||'').trim();
+  return `
+${head('Graduation','Course<br>Complete')}
+${done ? '' : '<div class="lockmsg">Complete all 15 lessons, the Challenge and the Recipe Lab to unlock your certificate. You\'re almost there — keep going.</div>'}
+${done ? `<div class="goal-set" style="max-width:420px;margin:0 auto 24px">
+  <label>Your name (appears on the certificate)</label>
+  <input type="text" data-reflect="certname" placeholder="Enter your name" value="${name.replace(/"/g,'&quot;')}" oninput="render('certificate')">
+</div>`:''}
+<div class="cert ${done?'':'locked'}">
+  <div class="cframe"></div>
+  <div class="ce">Schicgirl Naturals · Certificate of Completion</div>
+  <h2>Grow</h2>
+  <div class="nm">${done ? (name||'Your Name') : '— locked —'}</div>
+  <p>has completed the complete Type&nbsp;4 Hair Growth Course — mastering the science of growth, the mindset of retention, and a practical system built for real life.</p>
+  <div class="flour"><span class="r"></span>${I.flour}<span class="r"></span></div>
+  <p style="font-family:var(--sans);font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)">Your crown is growing · schicgirl.me</p>
+</div>
+${done ? '<div class="navlinks"><span></span><button class="btn gold" onclick="window.print()">Print / Save certificate</button></div>':''}
+
+${h2('Keep growing with Schicgirl')}
+<div class="xsell">
+  <a class="xs" href="https://schicgirl.me/hydratee" target="_blank" rel="noopener"><div class="xe">Companion guide</div><div class="xt">Hydrated</div><p>Master deep hydration — the other half of length retention.</p></a>
+  <a class="xs" href="https://schicgirl.me" target="_blank" rel="noopener"><div class="xe">The full library</div><div class="xt">schicgirl.me</div><p>Scalp care, styles, transition &amp; more — all in the Schicgirl shop.</p></a>
+</div>
+${takeaway('You didn\'t just read a book — you built a system, and proved it on your own crown. Revisit any lesson anytime; this course is yours for life.')}`;
+};
+
+/* ============================================================
+   SMALL TEMPLATE HELPERS
+============================================================ */
+function head(crumb,title){ return '<div class="kicker">'+crumb+'</div><h1 class="ch">'+title+'</h1><hr class="ch-rule">'; }
+function step(n,t,p){ return '<div class="step"><div class="num">'+n+'</div><div class="bd"><div class="t">'+t+'</div><p>'+p+'</p></div></div>'; }
+function card(cls,t,p){ return '<div class="card '+cls+'"><div class="ct">'+t+'</div><p>'+p+'</p></div>'; }
+function checkList(group,items){
+  let h='<ul class="check">';
+  items.forEach((it,i)=>{ const id=group+'_'+i;
+    h+='<li data-chk="'+id+'" onclick="toggleChk(\''+id+'\')"><span class="cb">'+I.check+'</span><span class="ct">'+it+'</span></li>'; });
+  return h+'</ul>';
+}
+function trackRow(loc,key){
+  let h='<tr><td class="loc">'+loc+'</td>';
+  ['w1','w4','w8','w13'].forEach(w=>{ const id=key+'_'+w;
+    h+='<td><input type="text" data-trk="'+id+'" placeholder="–" oninput="saveTrack(\''+id+'\',this.value)"></td>'; });
+  return h+'</tr>';
+}
+
+/* ============================================================
+   RECIPE DATA
+============================================================ */
+const RECIPES=[
+ {n:'Signature Growth Oil',d:'easy',t:'All types',ben:'Stimulates follicles · strengthens the strand',
+  ing:[['Castor oil','40 ml'],['Jojoba oil','35 ml'],['Avocado oil','20 ml'],['Rosemary EO','15 drops'],['Peppermint EO','10 drops']],
+  m:['Combine all carrier oils in an amber glass dropper bottle.','Add the essential oils. Close and shake gently.'],keeps:'3 months away from light',use:'2× / week'},
+ {n:'Scalp Activator Spray',d:'easy',t:'All types',ben:'Hydrates scalp · activates circulation',
+  ing:[['Distilled water','140 ml'],['Pure aloe vera','40 ml'],['Rosemary water','16 ml'],['Vegetable glycerin','4 ml']],
+  m:['Prepare a rosemary infusion: boil 2 sprigs in 200 ml water for 15 minutes. Strain and cool completely.','Combine all ingredients in a clean, sanitised spray bottle.'],keeps:'7 days refrigerated',use:'3–4× / week'},
+ {n:'Fenugreek-Hibiscus Growth Mask',d:'mod',t:'High porosity',ben:'Strengthens · stimulates regrowth · anti-shedding',
+  ing:[['Fenugreek powder','40 g'],['Dried hibiscus flowers','20 g'],['Full-fat plain yoghurt','30 g'],['Castor oil','10 ml']],
+  m:['Soak fenugreek in warm water overnight. Next day, blend finely with hibiscus flowers.','Add the yoghurt and castor oil. Mix until you get a smooth paste.'],keeps:'Use fresh · does not keep',use:'1–2× / month'},
+ {n:'Botanical Growth Oil Maceration',d:'adv',t:'All types',ben:'Active infusion of key growth ingredients',
+  ing:[['Olive or jojoba oil (base)','140 ml'],['Dried rosemary','20 g'],['Dried red onion','20 g'],['Dried curry leaves','10 g'],['Amla powder','10 g']],
+  m:['Cold method (recommended): place all ingredients in an airtight glass jar.','Cover completely with oil. Close and leave to macerate 4–6 weeks in sunlight or a warm spot.'],keeps:'6 months away from light & moisture',use:'1× / week before wash day'},
+ {n:'Rice Water Protein Treatment',d:'easy',t:'High porosity',ben:'Restores elasticity · reduces breakage',
+  ing:[['Fermented rice water (24–48h)','160 ml'],['Pure aloe vera','30 ml'],['Argan oil','10 ml']],
+  m:['Rinse 200 g of white rice. Soak 24–48 hours at room temperature for a light fermentation.','Strain the rice water and combine with the aloe vera and argan oil.','After shampooing, apply to clean, damp hair. Distribute across all lengths.'],keeps:'3–5 days refrigerated',use:'1× / week maximum'},
+ {n:'Edge Recovery Serum',d:'easy',t:'All types',ben:'Targeted edge support · thin areas',
+  ing:[['Jamaican black castor oil','25 ml'],['Jojoba oil','15 ml'],['Grapeseed oil','7.5 ml'],['Rosemary EO','8 drops']],
+  m:['Combine all oils in a small bottle with a dropper or roller applicator.','Apply directly to the edges (baby hair, nape, temples) using fingers or a precision applicator.'],keeps:'4 months away from light',use:'Every evening if needed'},
+ {n:'Clove Hair Growth Oil',d:'mod',t:'All types',ben:'Boosts circulation · thickens strand · anti-shedding',
+  ing:[['Virgin olive oil (base)','80 ml'],['Clove bud EO','9 drops'],['Rosemary EO','21 drops'],['Lavender EO (soothing)','15 drops'],['Peppermint EO','15 drops']],
+  m:['Pour the olive oil into an amber glass dropper bottle.','Add the essential oils one by one. Close and shake for 30 seconds.','PATCH TEST: apply 2 drops on the wrist. Wait 24h. If redness, dilute more or remove clove EO.'],keeps:'3 months away from heat & light',use:'1× / week'},
+ {n:'Daily Rosemary Water Spray',d:'easy',t:'All types',ben:'Gentle daily stimulation · all hair profiles',
+  ing:[['Distilled water','150 ml'],['Concentrated rosemary infusion','40 ml'],['Pure aloe vera','10 ml']],
+  m:['Prepare the infusion: simmer 3 large rosemary sprigs in 250 ml water for 20 minutes. Strain. Cool completely.','Combine in a clean spray bottle.'],keeps:'5 days refrigerated · remake weekly',use:'Daily · morning & evening'},
+ {n:'Amla-Yoghurt Strengthening Mask',d:'easy',t:'High porosity',ben:'Strengthens strand · reduces breakage · adds volume',
+  ing:[['Amla powder','30 g'],['Full-fat plain yoghurt','50 g'],['Fractionated coconut oil','15 ml'],['Pure honey','1 tsp']],
+  m:['Combine amla powder with yoghurt until you have a smooth paste with no lumps.','Add coconut oil and honey. Mix well until fully combined.'],keeps:'Use fresh · do not store',use:'2× / month'},
+ {n:'Ayurvedic Bhringraj-Fenugreek Oil',d:'adv',t:'All types',ben:'Complete Ayurvedic treatment · growth + thickening',
+  ing:[['Sesame oil (base)','120 ml'],['Bhringraj powder','30 g'],['Fenugreek powder','30 g'],['Amla powder','20 g']],
+  m:['Combine the three powders in sesame oil in a small saucepan.','Heat over very low heat (max 60°C) stirring for 20–30 minutes. Never boil or let smoke.','Cool, strain into an amber bottle.'],keeps:'6 months away from light & humidity',use:'1× / week before wash day'},
+ {n:'Onion-Clay Scalp Detox Mask',d:'mod',t:'All types',ben:'Deep cleansing · restarts growth · anti-dandruff',
+  ing:[['Filtered red onion juice','40 ml'],['White kaolin clay','20 g'],['Pure aloe vera gel','25 ml'],['Castor oil','10 ml'],['Pure honey','5 ml'],['Tea tree EO','5 drops']],
+  m:['Press and strain onion juice. Leave 15 min to slightly reduce smell.','Mix onion juice + clay + aloe vera until smooth paste.','Add castor oil, honey and tea tree EO. Apply to scalp.'],keeps:'Use fresh · max 24h refrigerated',use:'2× / month maximum'},
+ {n:'Hibiscus-Curry Leaf Stimulating Oil',d:'mod',t:'All types',ben:'Stimulates regrowth · reduces shedding · thickening',
+  ing:[['Virgin coconut oil (base)','65 ml'],['Dried curry leaves','15 g'],['Dried hibiscus petals','10 g'],['Fenugreek seeds','8 g'],['Rosemary EO','10 drops']],
+  m:['Heat coconut oil on very low heat. Add curry leaves + hibiscus + fenugreek.','Simmer 20 min stirring. Never boil.','Remove from heat. Infuse until completely cool, then strain.'],keeps:'4 months away from light',use:'1–2× / week before wash day'},
+ {n:'Fermented Rice Water-Rosemary Serum',d:'easy',t:'All types',ben:'Anti-shedding · stimulates growth · strengthens fibre',
+  ing:[['Fermented rice water (48h)','60 ml'],['Concentrated rosemary infusion','20 ml'],['Pure aloe vera juice','12 ml'],['Panthenol Pro-B5','5 ml'],['Vegetable glycerin','2 ml'],['Germall Plus preservative','0.5 g'],['Peppermint EO','5 drops']],
+  m:['Prepare rice water: rinse 100 g rice, soak 48h at room temperature.','Rosemary infusion: 3 sprigs in 100 ml boiling water 15 min. Strain and cool.','Combine all, add preservative last, bottle.'],keeps:'5 days refrigerated · remake weekly',use:'Daily · light, residue-free'},
+ {n:'Fenugreek-Silk Protein Deep Treatment',d:'mod',t:'High porosity',ben:'Restores structure · reduces breakage · optimal elasticity',
+  ing:[['Fenugreek water (30 min infusion)','50 ml'],['Hydrolysed silk proteins','15 ml'],['Hydrolysed rice proteins','10 ml'],['Pure aloe vera gel','15 ml'],['Argan oil','8 ml'],['Citric acid','few drops'],['Germall Plus preservative','0.5 g'],['Lavender EO','5 drops']],
+  m:['Fenugreek water: 2 tbsp seeds + 200 ml boiling water 30 min. Strain.','Cool to 40°C. Whisk in silk and rice proteins.','Add aloe + argan. Adjust pH to 4.5–5 with citric acid; add preservative.'],keeps:'1 week refrigerated',use:'1× / week max · watch for protein overload'},
+ {n:'Cayenne-Ginger Growth Mask',d:'adv',t:'All types · avoid sensitive scalp',ben:'Thermal stimulation · activates microcirculation · visible regrowth',
+  ing:[['Virgin coconut oil (warm)','50 ml'],['Olive oil','25 ml'],['Cayenne pepper powder','2 g'],['Fresh grated ginger','10 g'],['Castor oil','10 ml'],['Peppermint EO','8 drops'],['Eucalyptus EO','8 drops'],['Vitamin E','few drops']],
+  m:['PATCH TEST REQUIRED 48h before: 2 drops on inner wrist.','Warm coconut + olive oil to max 38°C. Off heat, add ginger + cayenne. Infuse 10 min. Strain.','Add castor oil + EOs + vitamin E. Mix.','Apply ONLY to scalp with applicator. Massage 3 min.'],keeps:'Use immediately · degrades within 4 hours',use:'1× / month maximum · do not exceed'},
+];
+function renderRecipes(filter){
+  const badge={easy:'<span class="badge b-easy">Easy</span>',mod:'<span class="badge b-mod">Moderate</span>',adv:'<span class="badge b-adv">Advanced</span>'};
+  let h='';
+  RECIPES.forEach(r=>{
+    const hp = r.t.toLowerCase().includes('high porosity');
+    const show = filter==='all' || filter===r.d || (filter==='hp'&&hp);
+    if(!show) return;
+    let ig=''; r.ing.forEach(x=>ig+='<tr><td>'+x[0]+'</td><td class="q">'+x[1]+'</td></tr>');
+    let st=''; r.m.forEach(s=>st+='<li>'+s+'</li>');
+    h+='<div class="recipe"><div class="rtop">'+badge[r.d]+'<span class="badge b-type">'+r.t+'</span></div>'+
+       '<div class="rname">'+r.n+'</div><div class="rben">'+r.ben+'</div>'+
+       '<div class="rb"><div><div class="rh">Ingredients</div><table class="ig">'+ig+'</table></div>'+
+       '<div><div class="rh">Method</div><ol class="rsteps">'+st+'</ol></div></div>'+
+       '<div class="rmeta"><span class="chip"><b>Keeps</b>'+r.keeps+'</span><span class="chip"><b>Use</b>'+r.use+'</span></div></div>';
+  });
+  return h;
+}
+function filterRecipes(f){
+  document.querySelectorAll('#recFilters .filt').forEach(b=>b.classList.toggle('on',b.dataset.f===f));
+  document.getElementById('recipeList').innerHTML=renderRecipes(f);
+}
+
+/* ============================================================
+   STATE + PERSISTENCE
+============================================================ */
+const KEY='schic_grow_course';
+let state={done:{},reflect:{},chk:{},track:{},quiz:{},quizPass:{},current:'welcome'};
+function load(){ try{ const s=JSON.parse(localStorage.getItem(KEY)); if(s) state=Object.assign(state,s); if(!state.quizPass) state.quizPass={}; }catch(e){} }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+load();
+
+/* flat ordered lesson ids for prev/next */
+const FLAT=[]; MODULES.forEach(m=>m.lessons.forEach(l=>FLAT.push(l.id)));
+
+/* ============================================================
+   SEQUENTIAL GATING (university-style)
+   A lesson unlocks only when the PREVIOUS counted lesson is done.
+   A lesson can be marked done only when every knowledge-check in it is answered correctly.
+============================================================ */
+function isUnlocked(id){
+  if(id==='welcome') return true;
+  if(id==='certificate') return COUNTED.every(x=>state.done[x]);
+  const idx=COUNTED.indexOf(id);
+  if(idx<=0) return true;                 // l1 (first lesson) always open
+  return !!state.done[COUNTED[idx-1]];    // need the previous lesson completed
+}
+/* are all quizzes in the currently-rendered lesson answered correctly? */
+function lessonQuizzesPassed(){
+  const qs=document.querySelectorAll('#content [data-quiz]');
+  for(const b of qs){ if(!state.quizPass[b.dataset.quiz]) return false; }
+  return true;
+}
+/* is every reflection in the current lesson written? */
+function lessonReflectionsFilled(){
+  const ts=document.querySelectorAll('#content textarea[data-reflect]');
+  for(const t of ts){ if(!(t.value||'').trim()) return false; }
+  return true;
+}
+
+/* ============================================================
+   RENDER
+============================================================ */
+function buildNav(){
+  let h='';
+  MODULES.forEach(m=>{
+    h+='<div class="modgrp"><div class="modtitle"><span class="mt-i">'+I.leaf+'</span>'+m.eyebrow+' · '+m.label+'</div>';
+    m.lessons.forEach(l=>{
+      const done=state.done[l.id];
+      const locked=!done && !isUnlocked(l.id);
+      h+='<div class="lk'+(done?' done':'')+(locked?' locked':'')+(state.current===l.id?' active':'')+'" data-lk="'+l.id+'" onclick="go(\''+l.id+'\')">'+
+         '<span class="dot">'+I.check+I.lock+'</span><span class="tt">'+(l.no?'<b style="color:var(--gold-deep);font-weight:600">'+l.no+'.</b> ':'')+l.title+'</span></div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('sbNav').innerHTML=h;
+}
+function buildModList(){
+  const el=document.getElementById('modlist'); if(!el)return;
+  let h='';
+  MODULES.filter(m=>!['start','end'].includes(m.key)).forEach(m=>{
+    const total=m.lessons.length, done=m.lessons.filter(l=>state.done[l.id]).length;
+    const locked=!isUnlocked(m.lessons[0].id);
+    const meta = locked ? '🔒 Complete the previous module to unlock' : (done+' / '+total+' complete');
+    h+='<div class="modcard'+(locked?' locked':'')+'" onclick="go(\''+m.lessons[0].id+'\')"><div class="mc-no">'+m.no+'</div>'+
+       '<div class="mc-b"><div class="mc-e">'+m.eyebrow+'</div><div class="mc-t">'+m.label+'</div>'+
+       '<p>'+modBlurb(m.key)+'</p><div class="mc-meta">'+meta+'</div></div></div>';
+  });
+  el.innerHTML=h;
+}
+function modBlurb(k){return {
+  m1:'The science beneath every inch — growth cycles, retention, scalp, balance and nourishment from within.',
+  m2:'Patience, consistency and self-compassion — the inner work that actually keeps you in the game.',
+  m3:'Your routine, protective styling, evidence-based ingredients, what to stop, and how to track results.',
+  m4:'Turn everything into habit with a guided, trackable 13-week plan.',
+  m5:'Fifteen DIY treatments formulated for Type 4 hair, made by your own hands.'
+}[k]||'';}
+
+function updateProgress(){
+  const total=COUNTED.length;
+  const done=COUNTED.filter(id=>state.done[id]).length;
+  const pct=Math.round(done/total*100);
+  const circ=2*Math.PI*22;
+  const fill=document.getElementById('ringFill');
+  fill.setAttribute('stroke-dasharray',circ);
+  fill.setAttribute('stroke-dashoffset',circ*(1-done/total));
+  document.getElementById('ringTxt').textContent=pct+'%';
+  document.getElementById('progSub').textContent = pct===0?"Let's begin" : pct===100?'Complete! 🌿' : done+' of '+total+' lessons';
+}
+
+function render(id){
+  if(!L[id]) id='welcome';
+  state.current=id; save();
+  document.getElementById('content').innerHTML=L[id]();
+  // SCHICGIRL video lesson — injected after the title rule on every teaching lesson (not on exams)
+  if(COUNTED.includes(id) && !/exam$/.test(id)){
+    const rule=document.querySelector('#content .ch-rule');
+    if(rule) rule.insertAdjacentHTML('afterend', video(id, lessonTitle(id)));
+  }
+  // crumb
+  let mlabel=''; MODULES.forEach(m=>m.lessons.forEach(l=>{if(l.id===id)mlabel=m.label;}));
+  document.getElementById('crumb').innerHTML='GROW · <b>'+mlabel+'</b>';
+  // active nav
+  document.querySelectorAll('.lk').forEach(n=>n.classList.toggle('active',n.dataset.lk===id));
+  // post-render hydration
+  if(id==='welcome') buildModList();
+  if(id==='recipes') filterRecipes('all');
+  hydrateReflections();
+  hydrateChecks();
+  hydrateTracks();
+  hydrateQuizzes();
+  addCompleteZone(id);
+  window.scrollTo(0,0);
+}
+function go(id){
+  if(!isUnlocked(id)){
+    toast(id==='certificate' ? '🔒 Finish every lesson to unlock your certificate' : '🔒 Complete the previous lesson first');
+    return;
+  }
+  render(id); closeMenu();
+}
+
+/* the gated completion box for a counted lesson */
+function renderGate(id){
+  if(state.done[id]){
+    return '<div class="complete-zone"><div class="cz-t">✓ Lesson complete — beautifully done.</div>'+
+      '<button class="btn" onclick="toggleDone(\''+id+'\')">Mark as not done</button></div>';
+  }
+  const hasQuiz=document.querySelectorAll('#content [data-quiz]').length>0;
+  const hasRefl=document.querySelectorAll('#content textarea[data-reflect]').length>0;
+  const isExam=/exam$/.test(id);
+  if(hasQuiz && !lessonQuizzesPassed()){
+    const msg=isExam ? 'Answer every exam question correctly to pass this module.' : 'Answer the Knowledge Check correctly to unlock the next lesson.';
+    return '<div class="complete-zone locked" id="czone"><div class="cz-t">'+msg+'</div>'+
+      '<button class="btn" disabled>'+(isExam?'Pass &amp; unlock next module →':'Complete &amp; continue →')+'</button></div>';
+  }
+  if(hasRefl && !lessonReflectionsFilled()){
+    return '<div class="complete-zone locked" id="czone"><div class="cz-t">Write your Reflection above to complete this lesson.</div>'+
+      '<button class="btn" disabled>Complete &amp; continue →</button></div>';
+  }
+  const cta=isExam?'Pass &amp; unlock next module →':'Complete &amp; continue →';
+  const htxt=isExam?'Module passed — well done!':(hasQuiz?'Correct — you may continue.':'Ready to move on?');
+  return '<div class="complete-zone" id="czone"><div class="cz-t">'+htxt+'</div>'+
+    '<button class="btn solid" onclick="completeAndNext(\''+id+'\')">'+cta+'</button></div>';
+}
+/* re-render just the gate after a quiz is answered (without rebuilding the whole lesson) */
+function refreshGate(){
+  const z=document.getElementById('czone'); if(!z) return;
+  z.outerHTML=renderGate(state.current);
+}
+
+/* complete button + prev/next */
+function addCompleteZone(id){
+  if(id==='certificate'||id==='welcome'){ return; }
+  const c=document.getElementById('content');
+  const idx=FLAT.indexOf(id);
+  const prev=idx>0?FLAT[idx-1]:null, next=idx<FLAT.length-1?FLAT[idx+1]:null;
+  let zone = COUNTED.includes(id) ? renderGate(id) : '';
+  let nav='<div class="navlinks">';
+  nav+= prev?'<button class="btn" onclick="go(\''+prev+'\')">←  Previous</button>':'<span></span>';
+  // forward button only appears once this lesson is complete (enforces order)
+  if(state.done[id]){
+    nav+= next?'<button class="btn gold" onclick="go(\''+next+'\')">Next  →</button>'
+              :'<button class="btn gold" onclick="go(\'certificate\')">See your certificate  →</button>';
+  } else {
+    nav+='<span></span>';
+  }
+  nav+='</div>';
+  c.insertAdjacentHTML('beforeend',zone+nav);
+}
+function completeAndNext(id){
+  state.done[id]=true; save();
+  buildNav(); updateProgress();
+  const allDone=COUNTED.every(x=>state.done[x]);
+  const idx=FLAT.indexOf(id), next=idx<FLAT.length-1?FLAT[idx+1]:'certificate';
+  if(allDone){ toast('Course complete! Certificate unlocked ✦'); }
+  else { toast('Lesson complete 🌿'); }
+  go(next);
+}
+function toggleDone(id){
+  state.done[id]=!state.done[id]; save();
+  buildNav(); updateProgress(); render(id);
+}
+
+/* ---- reflections ---- */
+function hydrateReflections(){
+  document.querySelectorAll('[data-reflect]').forEach(t=>{
+    const k=t.dataset.reflect;
+    if(t.value==='' && state.reflect[k]!=null) t.value=state.reflect[k];
+    t.addEventListener('input',()=>{ state.reflect[k]=t.value; save();
+      const s=document.querySelector('[data-saved="'+k+'"]'); if(s){s.classList.add('show'); clearTimeout(s._t); s._t=setTimeout(()=>s.classList.remove('show'),1200);}
+      if(t.tagName==='TEXTAREA') refreshGate(); });
+  });
+}
+/* ---- checklists ---- */
+function toggleChk(id){ state.chk[id]=!state.chk[id]; save(); const li=document.querySelector('[data-chk="'+id+'"]'); if(li)li.classList.toggle('checked',state.chk[id]); }
+function hydrateChecks(){ document.querySelectorAll('[data-chk]').forEach(li=>{ if(state.chk[li.dataset.chk]) li.classList.add('checked'); }); }
+/* ---- tracker ---- */
+function saveTrack(id,v){ state.track[id]=v; save(); }
+function hydrateTracks(){ document.querySelectorAll('[data-trk]').forEach(i=>{ if(state.track[i.dataset.trk]!=null) i.value=state.track[i.dataset.trk]; }); }
+/* ---- quizzes ---- */
+function answerQuiz(qid,i,correct){
+  const box=document.querySelector('[data-quiz="'+qid+'"]'); if(!box)return;
+  if(state.quizPass[qid]) return;                 // already passed — locked
+  state.quiz[qid]=i;
+  const opts=box.querySelectorAll('.opt');
+  opts.forEach(o=>o.classList.remove('correct','wrong'));
+  const fb=box.querySelector('[data-fb="'+qid+'"]');
+  const tryEl=box.querySelector('[data-try="'+qid+'"]');
+  if(i===correct){
+    state.quizPass[qid]=true; save();
+    opts.forEach(o=>{ if(+o.dataset.i===correct)o.classList.add('correct'); });
+    box.classList.add('passed');
+    if(tryEl) tryEl.classList.remove('show');
+    if(fb) fb.classList.add('show');
+    toast('Correct ✓');
+    refreshGate();                                // unlock the Complete button
+  } else {
+    save();
+    const opt=box.querySelector('.opt[data-i="'+i+'"]'); if(opt)opt.classList.add('wrong');
+    if(fb) fb.classList.remove('show');
+    if(tryEl) tryEl.classList.add('show');        // ask them to try again, without revealing the answer
+    toast('Not quite — try again');
+  }
+}
+function hydrateQuizzes(){
+  document.querySelectorAll('[data-quiz]').forEach(box=>{
+    const qid=box.dataset.quiz;
+    if(state.quizPass[qid]){
+      const opt=box.querySelector('.opt[data-i="'+state.quiz[qid]+'"]');
+      const m=opt&&opt.getAttribute('onclick').match(/answerQuiz\('[^']+',\d+,(\d+)\)/);
+      const correct=m?+m[1]:-1;
+      box.querySelectorAll('.opt').forEach(o=>{ if(+o.dataset.i===correct)o.classList.add('correct'); });
+      box.classList.add('passed');
+      const fb=box.querySelector('[data-fb="'+qid+'"]'); if(fb)fb.classList.add('show');
+    }
+  });
+}
+
+/* ---- menu / toast / reset ---- */
+function toggleMenu(){ document.body.classList.toggle('menu-open'); }
+function closeMenu(){ document.body.classList.remove('menu-open'); }
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2400); }
+function resetCourse(){
+  if(!confirm('Reset all progress, reflections, checkboxes and trackers? This cannot be undone.')) return;
+  state={done:{},reflect:{},chk:{},track:{},quiz:{},quizPass:{},current:'welcome'};
+  localStorage.removeItem(KEY); buildNav(); updateProgress(); render('welcome'); toast('Progress reset');
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+buildNav();
+updateProgress();
+let _start = state.current||'welcome';
+if(!isUnlocked(_start)) _start='welcome';   // never resume onto a locked lesson
+render(_start);
+</script>
+</body>
+</html>

@@ -54,3 +54,84 @@ ul{list-style:none}
 .stickybar a{flex:1;max-width:300px;text-align:center;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:13px 18px;border-radius:100px;box-shadow:0 6px 16px rgba(201,147,74,.4)}
 .footer{text-align:center;margin-top:30px;font-size:11px;color:var(--muted)}
 .hide{display:none!important}
+
+/* ── Conversion sections (added) ───────────────────────────── */
+.lede{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:6px}
+
+/* Section 1 — Why different */
+.why{display:grid;gap:12px;margin-top:14px}
+.why-card{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.55);border:1px solid var(--stroke);border-radius:14px;padding:14px 15px}
+.why-ico{flex:0 0 36px;width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--gold-pale),rgba(201,147,74,.28));display:flex;align-items:center;justify-content:center;font-size:18px}
+.why-card h3{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.25}
+.why-card p{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+
+/* Section 2 — Before / After */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.ba-col{border-radius:16px;padding:16px 16px 18px}
+.ba-col h3{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:10px;letter-spacing:.01em}
+.ba-col ul{display:flex;flex-direction:column;gap:9px}
+.ba-col li{font-size:13.5px;line-height:1.45;padding-left:24px;position:relative}
+.ba-before{background:linear-gradient(160deg,rgba(196,122,101,.12),rgba(232,180,160,.16));border:1px solid rgba(196,122,101,.25)}
+.ba-before h3{color:var(--rose-deep)}
+.ba-before li::before{content:"✕";position:absolute;left:0;top:0;color:var(--rose-deep);font-weight:700;font-size:12px}
+.ba-after{background:linear-gradient(160deg,rgba(201,147,74,.14),rgba(245,232,208,.5));border:1px solid var(--stroke)}
+.ba-after h3{color:var(--gold-deep)}
+.ba-after li{color:var(--ink-soft)}
+.ba-after li::before{content:"✓";position:absolute;left:0;top:0;width:16px;height:16px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.ba-arrow{text-align:center;font-size:12.5px;color:var(--muted);margin-top:13px;font-style:italic}
+
+/* Section 3 — Testimonials */
+.testi{display:grid;gap:12px;margin-top:14px}
+.testi-card{background:rgba(255,255,255,.6);border:1px solid var(--stroke);border-radius:16px;padding:16px 17px;box-shadow:var(--shadow-warm)}
+.testi-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:8px}
+.testi-card p{font-family:var(--serif);font-size:16px;font-style:italic;line-height:1.45;color:var(--ink);margin-bottom:11px}
+.testi-who{display:flex;align-items:center;gap:11px}
+.testi-av{flex:0 0 38px;width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold-lt),var(--rose));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;font-family:var(--serif)}
+.testi-meta b{display:block;font-size:13.5px;font-weight:600;color:var(--ink)}
+.testi-meta span{font-size:12px;color:var(--muted)}
+
+/* Section 4 — Bonus stack */
+.bonus{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.bonus-row{display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.55);border:1px solid var(--stroke);border-radius:13px;padding:13px 15px}
+.bonus-tag{flex:0 0 auto;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--gold-deep);background:var(--gold-pale);border-radius:7px;padding:5px 8px;text-transform:uppercase}
+.bonus-row h3{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink);flex:1;line-height:1.3}
+.bonus-val{flex:0 0 auto;font-weight:700;font-size:14px;color:var(--gold-deep)}
+.bonus-total{display:flex;justify-content:space-between;align-items:center;margin-top:4px;padding:15px 17px;border-radius:14px;background:linear-gradient(135deg,rgba(201,147,74,.16),rgba(245,232,208,.55));border:1px solid var(--gold-lt)}
+.bonus-total span{font-weight:600;font-size:14.5px;color:var(--ink)}
+.bonus-total b{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--gold-deep)}
+
+/* Section 5 — About */
+.about{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.about-img{flex:0 0 92px;width:92px;height:92px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-lt);background:linear-gradient(135deg,var(--gold-pale),rgba(201,147,74,.3));display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--gold);box-shadow:var(--shadow-warm)}
+.about-body{flex:1;min-width:200px}
+.about-body p{font-size:14px;line-height:1.6;color:var(--ink-soft);margin-top:6px}
+.about-sign{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--gold-deep);margin-top:10px}
+
+/* Section 6 — For / Not for */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.fit-col{border-radius:16px;padding:16px}
+.fit-col h3{font-family:var(--sans);font-size:14px;font-weight:700;margin-bottom:11px;letter-spacing:.02em}
+.fit-col ul{display:flex;flex-direction:column;gap:9px}
+.fit-col li{font-size:13.5px;line-height:1.45;padding-left:23px;position:relative;color:var(--ink-soft)}
+.fit-yes{background:linear-gradient(160deg,rgba(201,147,74,.13),rgba(245,232,208,.45));border:1px solid var(--stroke)}
+.fit-yes h3{color:var(--gold-deep)}
+.fit-yes li::before{content:"✓";position:absolute;left:0;top:0;width:16px;height:16px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.fit-no{background:rgba(255,255,255,.45);border:1px solid var(--stroke)}
+.fit-no h3{color:var(--rose-deep)}
+.fit-no li::before{content:"✕";position:absolute;left:1px;top:0;color:var(--rose-deep);font-weight:700;font-size:12px}
+
+/* Section 7 — Pricing upgrades */
+.launch-badge{display:inline-block;background:var(--rose-deep);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:14px}
+.price-anchor{font-size:14px;color:var(--muted);text-decoration:line-through;margin-bottom:2px}
+.perks{list-style:none;max-width:300px;margin:16px auto 4px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.perks li{position:relative;padding-left:26px;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
+.perks li::before{content:"✓";position:absolute;left:0;top:-1px;width:18px;height:18px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.value-recap{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-top:12px;background:rgba(255,255,255,.5);border:1px solid var(--stroke);border-radius:12px;padding:11px 14px}
+.value-recap b{color:var(--gold-deep)}
+
+/* Section separator */
+.sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:26px 0 8px;color:var(--gold);opacity:.7}
+.sep::before,.sep::after{content:"";height:1px;width:54px;background:linear-gradient(90deg,transparent,var(--gold-lt))}
+.sep::after{background:linear-gradient(90deg,var(--gold-lt),transparent)}
+
+@media (max-width:380px){.ba,.fit{grid-template-columns:1fr}}

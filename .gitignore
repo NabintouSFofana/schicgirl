@@ -35,6 +35,9 @@ dist/
 build/
 .cache/
 .parcel-cache/
+.next/
+__pycache__/
+*.pyc
 
 # ─── Secrets ─────────────────────────────────────────────────────────
 .env

@@ -1,5 +1,6 @@
 var EBOOK = {"slug": "coiffures", "img_fr": "assets/coiffures-fr.png", "img_en": "assets/hair-styles.png", "url_fr": "https://selar.com/coiffures-protectrices", "url_en": "https://selar.com/hair-styles", "price_fr": "5€", "price_en": "$6", "price_cfa": "≈ 3 500 FCFA", "cta_fr": "Protéger mes cheveux →", "cta_en": "Protect my hair →"};
   var LANG = "fr";
+  function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }
   function render(){
     document.querySelectorAll("ul[data-lang]").forEach(function(u){u.classList.toggle("hide", u.getAttribute("data-lang")!==LANG);});
@@ -20,13 +21,13 @@ var EBOOK = {"slug": "coiffures", "img_fr": "assets/coiffures-fr.png", "img_en":
     document.getElementById("barCfa").textContent = cfa;
     // cover per language
     var cov = document.getElementById("cover");
-    if (cov){ var src = T(EBOOK,"img"); if(src){ cov.setAttribute("src", src); } }
+    if (cov){ var src = T(EBOOK,"img"); if(src){ cov.setAttribute("src", ab(src)); } }
     // interior previews per language
     var suf = LANG==="en" ? "-en" : "";
     var pi = document.getElementById("prevInside");
     var pd = document.getElementById("prevDetail");
-    if (pi){ pi.setAttribute("src","assets/previews/"+EBOOK.slug+"-inside"+suf+".png"); }
-    if (pd){ pd.setAttribute("src","assets/previews/"+EBOOK.slug+"-detail"+suf+".png"); }
+    if (pi){ pi.setAttribute("src",ab("assets/previews/"+EBOOK.slug+"-inside"+suf+".png")); }
+    if (pd){ pd.setAttribute("src",ab("assets/previews/"+EBOOK.slug+"-detail"+suf+".png")); }
   }
   function zoomPrev(src){
     var lb=document.getElementById("prevLightbox");
@@ -42,4 +43,4 @@ var EBOOK = {"slug": "coiffures", "img_fr": "assets/coiffures-fr.png", "img_en":
     render();
   }
   var qp = new URLSearchParams(location.search).get("lang");
-  setLang(qp==="en" ? "en" : "fr");
+  setLang(((new URLSearchParams(location.search).get("lang"))||document.documentElement.getAttribute("lang"))==="en"?"en":"fr");

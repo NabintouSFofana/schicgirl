@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POUSSE — Le cours en ligne · avec SCHICGIRL · Schicgirl Naturals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F4EE; --card:#FCFAF4; --green:#7DAA87; --green-deep:#3F5A49; --green-dk:#34503f;
+  --sage-tint:#EAF1EB; --sage-mid:#B7D0BD; --sage-deep:#577E61;
+  --gold:#C9A86A; --gold-deep:#A8884A; --gold-soft:#E0CC97;
+  --ink:#3C342B; --ink-soft:#6E776E; --line:#E7DDC9; --cream-tint:#F9F3E9; --rose-tint:#FBF2EF; --rose-mid:#E8CFC9; --rose-deep:#B98C84;
+  --serif-d:'Cormorant Garamond',Georgia,serif; --serif:'Lora',Georgia,serif; --sans:'Jost',Arial,sans-serif;
+  --shadow:0 18px 50px -26px rgba(60,52,43,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:10pt;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-deep);}
+h2.sec{font-family:var(--serif-d);font-weight:600;font-size:34pt;line-height:1.04;color:var(--green-deep);margin:8px 0 6px;text-align:center;}
+.sec-sub{font-family:var(--serif-d);font-style:italic;font-size:16pt;color:var(--ink-soft);text-align:center;max-width:620px;margin:0 auto 30px;}
+section{padding:62px 0;}
+.flour{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px 0;}
+.flour .r{width:64px;height:1px;background:var(--gold);}
+.flour svg{flex:0 0 auto;}
+.cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:12pt;letter-spacing:.04em;
+  background:var(--gold);color:#fff;border:none;padding:17px 38px;border-radius:40px;cursor:pointer;text-decoration:none;transition:.18s;box-shadow:var(--shadow);}
+.cta:hover{background:var(--gold-deep);transform:translateY(-2px);}
+.cta.green{background:var(--green-deep);}.cta.green:hover{background:var(--green-dk);}
+.center{text-align:center;}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#FBF7F0,#EAF1EB);border-bottom:1px solid var(--line);padding:70px 0 64px;text-align:center;}
+.hero .eyebrow{display:block;}
+.hero h1{font-family:var(--serif-d);font-weight:600;font-size:74pt;line-height:.92;color:var(--green-deep);margin:8px 0 4px;}
+.hero .tag{font-family:var(--serif-d);font-style:italic;font-size:21pt;color:var(--ink-soft);max-width:600px;margin:0 auto 10px;}
+.hero .meta{font-family:var(--sans);font-weight:500;font-size:9.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep);margin:18px 0 26px;}
+.hero .meta span{color:var(--gold-deep);margin:0 7px;}
+.guarantee{font-family:var(--sans);font-size:9pt;letter-spacing:.06em;color:var(--ink-soft);margin-top:14px;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:36px auto 0;max-width:760px;}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 8px;text-align:center;}
+.stat .n{font-family:var(--serif-d);font-weight:600;font-size:30pt;color:var(--gold-deep);line-height:1;}
+.stat .l{font-family:var(--sans);font-size:7.4pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px;}
+
+/* PAINS */
+.pains{background:var(--card);}
+.paingrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+.pain{display:flex;gap:13px;align-items:flex-start;background:var(--rose-tint);border:1px solid var(--rose-mid);border-radius:13px;padding:18px 20px;}
+.pain .x{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--rose-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:600;}
+.pain p{font-size:11.4pt;margin:0;}
+
+/* INSTRUCTOR */
+.instructor-sec{background:linear-gradient(160deg,#EAF1EB,#FBF7F0);}
+.instr-card{display:flex;gap:28px;align-items:center;background:var(--card);border:1px solid var(--gold-soft);border-radius:20px;padding:34px 36px;box-shadow:var(--shadow);}
+.instr-card .av{flex:0 0 auto;width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);
+  background:var(--sage-tint);display:flex;align-items:center;justify-content:center;font-family:var(--serif-d);font-style:italic;font-weight:600;font-size:46pt;color:var(--green-deep);}
+.instr-card .ie{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);}
+.instr-card .nm{font-family:var(--serif-d);font-weight:600;font-size:32pt;color:var(--green-deep);line-height:1;margin:2px 0 10px;}
+.instr-card p{font-size:11.6pt;color:var(--ink);font-style:italic;font-family:var(--serif-d);font-size:15pt;margin:0;}
+
+/* CURRICULUM */
+.modwrap{margin-top:8px;}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:22px 26px;margin-bottom:14px;}
+.mod .mh{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;}
+.mod .mno{font-family:var(--serif-d);font-weight:600;font-size:20pt;color:var(--gold-deep);}
+.mod .mt{font-family:var(--serif-d);font-weight:600;font-size:19pt;color:var(--green-deep);}
+.mod ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;}
+.mod li{font-size:10.8pt;color:var(--ink-soft);padding-left:20px;position:relative;}
+.mod li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:var(--sage-mid);}
+
+/* INCLUDES */
+.includes{background:var(--green-deep);color:#F8F4EE;}
+.includes h2.sec,.includes .sec-sub{color:#fff;}
+.includes .sec-sub{color:#DCE7DD;}
+.incgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;}
+.inc{background:rgba(255,255,255,.07);border:1px solid rgba(224,204,151,.4);border-radius:14px;padding:22px 22px;}
+.inc .it{font-family:var(--serif-d);font-weight:600;font-size:16pt;color:var(--gold-soft);margin-bottom:5px;}
+.inc p{font-size:10.6pt;color:#E7EFE8;margin:0;}
+
+/* WHO */
+.who{background:var(--card);}
+.whogrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+.whobox{border-radius:14px;padding:22px 24px;}
+.whobox.yes{background:var(--sage-tint);border:1px solid var(--sage-mid);}
+.whobox.no{background:var(--cream-tint);border:1px solid var(--gold-soft);}
+.whobox h3{font-family:var(--serif-d);font-weight:600;font-size:18pt;color:var(--green-deep);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.whobox ul{list-style:none;}
+.whobox li{font-size:11pt;padding:5px 0 5px 24px;position:relative;}
+.whobox.yes li::before{content:"✓";position:absolute;left:0;color:var(--sage-deep);font-weight:700;}
+.whobox.no li::before{content:"·";position:absolute;left:6px;color:var(--ink-soft);font-weight:700;}
+
+/* PRICE */
+.price-sec{background:linear-gradient(160deg,#FBF7F0,#EAF1EB);}
+.pricecard{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--gold-soft);border-radius:22px;padding:42px 40px;text-align:center;box-shadow:var(--shadow);}
+.pricecard .pe{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+.pricecard .pname{font-family:var(--serif-d);font-weight:600;font-size:28pt;color:var(--green-deep);margin:4px 0 14px;}
+.stack{text-align:left;max-width:380px;margin:0 auto 22px;}
+.stack li{list-style:none;font-size:11pt;padding:7px 0 7px 28px;position:relative;border-bottom:1px dashed var(--line);}
+.stack li::before{content:"✦";position:absolute;left:0;color:var(--gold);}
+.stack li b{color:var(--green-deep);}
+.pricerow{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:6px 0 4px;}
+.pricerow .old{font-family:var(--serif-d);font-size:20pt;color:var(--ink-soft);text-decoration:line-through;}
+.pricerow .now{font-family:var(--serif-d);font-weight:700;font-size:48pt;color:var(--gold-deep);line-height:1;}
+.pricecard .launch{font-family:var(--sans);font-size:9pt;letter-spacing:.06em;color:var(--rose-deep);text-transform:uppercase;font-weight:600;margin-bottom:20px;}
+
+/* FAQ */
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 22px;margin-bottom:11px;}
+.faq summary{font-family:var(--serif-d);font-weight:600;font-size:15pt;color:var(--green-deep);padding:14px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";font-family:var(--sans);font-size:18pt;color:var(--gold-deep);}
+.faq details[open] summary::after{content:"–";}
+.faq details p{font-size:11pt;color:var(--ink-soft);padding:0 0 16px;margin:0;}
+
+/* FINAL + FOOTER */
+.final{background:var(--green-deep);color:#fff;text-align:center;}
+.final h2{font-family:var(--serif-d);font-weight:600;font-size:40pt;line-height:1.02;color:#fff;margin-bottom:8px;}
+.final p{font-family:var(--serif-d);font-style:italic;font-size:17pt;color:#DCE7DD;max-width:560px;margin:0 auto 28px;}
+footer{background:var(--paper);text-align:center;padding:34px 0;font-family:var(--sans);font-size:8.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);}
+footer a{color:var(--gold-deep);text-decoration:none;}
+
+@media(max-width:780px){
+  .hero h1{font-size:56pt;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .paingrid,.incgrid,.whogrid,.mod ul{grid-template-columns:1fr;}
+  .instr-card{flex-direction:column;text-align:center;}
+  h2.sec{font-size:27pt;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Schicgirl Naturals · Cours en ligne</span>
+    <h1>Pousse</h1>
+    <p class="tag">Le cours complet pour faire pousser — et surtout garder — tes cheveux de type 4.</p>
+    <div class="flour"><span class="r"></span><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z" fill="#C9A86A"/></svg><span class="r"></span></div>
+    <div class="meta">Cours vidéo avec SCHICGIRL <span>·</span> 15 leçons <span>·</span> Défi 90 jours <span>·</span> 15 recettes <span>·</span> Certificat</div>
+    <br>
+    <a class="cta" href="https://schicgirl.me/pousse" target="_blank" rel="noopener">Rejoindre le cours&nbsp; →</a>
+    <div class="guarantee">Accès à vie · À ton rythme · Bilingue FR / EN · Garantie satisfaite 14 jours</div>
+    <div class="stats">
+      <div class="stat"><div class="n">5</div><div class="l">Modules</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">Leçons</div></div>
+      <div class="stat"><div class="n">90</div><div class="l">Jours de défi</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">Recettes</div></div>
+      <div class="stat"><div class="n">∞</div><div class="l">Accès à vie</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- PAINS -->
+<section class="pains"><div class="wrap">
+  <span class="eyebrow center" style="display:block">Si tu te reconnais…</span>
+  <h2 class="sec">Tes cheveux semblent bloqués depuis des années</h2>
+  <div class="paingrid">
+    <div class="pain"><span class="x">✕</span><p>Tu as l'impression que tes cheveux « ne poussent pas », quoi que tu fasses.</p></div>
+    <div class="pain"><span class="x">✕</span><p>Tu as un tiroir plein de produits à moitié vides qui n'ont rien changé.</p></div>
+    <div class="pain"><span class="x">✕</span><p>Tu te perds entre mille conseils contradictoires sur internet.</p></div>
+    <div class="pain"><span class="x">✕</span><p>Tu retiens ton souffle à chaque wash day, sans vraie routine.</p></div>
+  </div>
+  <p class="center" style="margin-top:24px;font-family:var(--serif-d);font-style:italic;font-size:16pt;color:var(--ink-soft)">Le problème n'a jamais été la pousse. C'est la <b style="color:var(--green-deep)">rétention</b> — et ça s'apprend.</p>
+</div></section>
+
+<!-- INSTRUCTOR -->
+<section class="instructor-sec"><div class="wrap">
+  <span class="eyebrow center" style="display:block">Ton accompagnatrice</span>
+  <h2 class="sec">Apprends avec SCHICGIRL</h2>
+  <p class="sec-sub">Chaque leçon est une vidéo : tu n'es jamais seule devant un texte.</p>
+  <div class="instr-card">
+    <img class="av" src="instructor.jpg" alt="SCHICGIRL" onerror="this.outerHTML='<div class=&quot;av&quot;>SG</div>'">
+    <div>
+      <div class="ie">Ton instructrice</div>
+      <div class="nm">SCHICGIRL</div>
+      <p>« Je suis la fondatrice de Schicgirl Naturals et ton guide tout au long de Pousse. J'ai passé des années à apprendre à travailler <em>avec</em> les cheveux de type 4 au lieu de lutter contre eux — et dans ce cours, je t'explique tout, leçon par leçon, simplement. Faisons pousser ta couronne ensemble. »</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- CURRICULUM -->
+<section><div class="wrap">
+  <span class="eyebrow center" style="display:block">Le programme</span>
+  <h2 class="sec">Ce que tu vas apprendre</h2>
+  <p class="sec-sub">Cinq modules pensés pour transformer ta compréhension en vraie longueur retenue.</p>
+  <div class="modwrap">
+    <div class="mod"><div class="mh"><span class="mno">I</span><span class="mt">Comprendre la pousse</span></div>
+      <ul><li>Comment poussent vraiment les cheveux 4</li><li>Pourquoi tes cheveux stagnent</li><li>Le cuir chevelu, c'est tout</li><li>Hydratation, protéines & équilibre</li><li>Alimentation, sommeil & stress</li></ul></div>
+    <div class="mod"><div class="mh"><span class="mno">II</span><span class="mt">L'état d'esprit de la pousse</span></div>
+      <ul><li>La patience, la compétence la plus dure</li><li>La régularité plutôt que la perfection</li><li>Ton chapitre 1 n'est pas son chapitre 10</li><li>Ta relation émotionnelle aux cheveux</li><li>Confiance & attentes réalistes</li></ul></div>
+    <div class="mod"><div class="mh"><span class="mno">III</span><span class="mt">Le système pratique</span></div>
+      <ul><li>Construire ta routine de pousse</li><li>Les coiffures protectrices</li><li>Les ingrédients qui marchent</li><li>Ce qu'il faut arrêter tout de suite</li><li>Suivre tes progrès</li></ul></div>
+    <div class="mod"><div class="mh"><span class="mno">IV</span><span class="mt">Le Défi Couronne 90 jours</span></div>
+      <ul><li>Un plan jour par jour sur 3 mois</li><li>Suivi de tes vraies mesures</li></ul></div>
+    <div class="mod"><div class="mh"><span class="mno">V</span><span class="mt">Le Labo Recettes</span></div>
+      <ul><li>15 soins maison formulés pour le type 4</li><li>Dosages, conservation & fréquence</li></ul></div>
+  </div>
+</div></section>
+
+<!-- INCLUDES -->
+<section class="includes"><div class="wrap">
+  <span class="eyebrow center" style="display:block;color:var(--gold-soft)">Tout est inclus</span>
+  <h2 class="sec">Ce que tu reçois</h2>
+  <div class="incgrid">
+    <div class="inc"><div class="it">15 leçons vidéo</div><p>SCHICGIRL t'enseigne chaque notion, à ton rythme, à vie.</p></div>
+    <div class="inc"><div class="it">Défi 90 jours</div><p>Un plan concret avec suivi de mesures pour passer à l'action.</p></div>
+    <div class="inc"><div class="it">15 recettes DIY</div><p>Huiles, sprays et masques maison avec dosages exacts.</p></div>
+    <div class="inc"><div class="it">Quiz & réflexions</div><p>Pour ancrer ce que tu apprends, sauvegardé automatiquement.</p></div>
+    <div class="inc"><div class="it">Suivi de progrès</div><p>Coche tes leçons, visualise ta progression, reste motivée.</p></div>
+    <div class="inc"><div class="it">Certificat</div><p>Termine le cours et débloque ton certificat Schicgirl.</p></div>
+  </div>
+</div></section>
+
+<!-- WHO -->
+<section class="who"><div class="wrap">
+  <h2 class="sec">Ce cours est pour toi si…</h2>
+  <div class="whogrid">
+    <div class="whobox yes"><h3>✓ Oui, c'est pour toi</h3>
+      <ul><li>Tu as les cheveux de type 4 (4A, 4B, 4C)</li><li>Tu veux enfin garder ta longueur</li><li>Tu veux une méthode claire, pas mille astuces</li><li>Tu es prête à être régulière, pas parfaite</li></ul></div>
+    <div class="whobox no"><h3>Ce n'est pas pour toi si…</h3>
+      <ul><li>Tu cherches une solution magique en une semaine</li><li>Tu ne veux pas changer tes habitudes</li><li>Tu veux qu'on fasse le travail à ta place</li></ul></div>
+  </div>
+</div></section>
+
+<!-- PRICE -->
+<section class="price-sec"><div class="wrap">
+  <span class="eyebrow center" style="display:block">L'offre de lancement</span>
+  <h2 class="sec">Rejoins Pousse aujourd'hui</h2>
+  <div class="pricecard">
+    <div class="pe">Cours complet · Accès à vie</div>
+    <div class="pname">Pousse — le cours</div>
+    <ul class="stack">
+      <li>Les <b>15 leçons vidéo</b> avec SCHICGIRL</li>
+      <li>Le <b>Défi Couronne 90 jours</b> + suivi</li>
+      <li>Le <b>Labo Recettes</b> — 15 soins maison</li>
+      <li>Quiz, réflexions & <b>certificat</b></li>
+      <li><b>Mises à jour gratuites</b> à vie</li>
+    </ul>
+    <div class="pricerow"><span class="old">67€</span><span class="now">37€</span></div>
+    <div class="launch">Prix de lancement — offre limitée</div>
+    <a class="cta" href="https://schicgirl.me/pousse" target="_blank" rel="noopener">Je rejoins le cours&nbsp; →</a>
+    <div class="guarantee" style="margin-top:16px">Garantie satisfaite ou remboursée 14 jours</div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="faq"><div class="wrap" style="max-width:720px">
+  <h2 class="sec">Questions fréquentes</h2>
+  <div style="margin-top:20px">
+    <details><summary>Le cours fonctionne pour tous les types 4 ?</summary><p>Oui — 4A, 4B et 4C. Les leçons et les recettes incluent des ajustements selon ta porosité et tes besoins.</p></details>
+    <details><summary>Combien de temps ça prend ?</summary><p>C'est à ton rythme. Tu peux faire une leçon par jour, ou tout regarder en un week-end. Tu as un accès à vie, donc aucune pression.</p></details>
+    <details><summary>Les produits des recettes sont-ils chers ?</summary><p>Non. Les 15 recettes utilisent des ingrédients abordables et naturels, avec les dosages exacts pour ne rien gaspiller.</p></details>
+    <details><summary>C'est en français ?</summary><p>Oui, le cours est bilingue français / anglais. Tu apprends dans la langue de ton choix.</p></details>
+    <details><summary>Et si ça ne me convient pas ?</summary><p>Tu es couverte par une garantie satisfaite ou remboursée de 14 jours. Aucun risque.</p></details>
+  </div>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="final"><div class="wrap">
+  <h2>Ta couronne t'attend.</h2>
+  <p>Arrête de deviner. Apprends la méthode, une leçon à la fois — avec SCHICGIRL à tes côtés.</p>
+  <a class="cta" href="https://schicgirl.me/pousse" target="_blank" rel="noopener">Rejoindre Pousse&nbsp; →</a>
+</div></section>
+
+<footer>
+  <a href="https://schicgirl.me" target="_blank" rel="noopener">schicgirl.me</a> · Schicgirl Naturals · Clarté · Soin · Confiance
+</footer>
+
+</body>
+</html>
