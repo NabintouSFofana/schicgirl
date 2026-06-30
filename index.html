@@ -313,6 +313,7 @@
         flex-shrink: 0; width: 240px; background: var(--card); border: 1.5px solid var(--line);
         border-radius: 15px; padding: 17px; box-shadow: var(--shadow-s);
       }
+      .ss-testi-photo { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-lt); margin-bottom: 12px; display: block; }
       .ss-testi-stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; margin-bottom: 8px; }
       .ss-testi-text { font-family: var(--serif); font-style: italic; font-size: 15px; line-height: 1.55; color: var(--ink); }
       .ss-testi-author { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
@@ -395,7 +396,7 @@
       let sgFirstRender = true;
       async function fetchReviews() {
         try {
-          const r = await fetch(SB_URL + "/rest/v1/" + SB_TABLE + "?select=author,text,rating,lang,created_at&approved=eq.true&order=created_at.desc", { headers: { apikey: SB_KEY, Authorization: "Bearer " + SB_KEY } });
+          const r = await fetch(SB_URL + "/rest/v1/" + SB_TABLE + "?select=author,text,rating,lang,created_at,photo_url&approved=eq.true&order=created_at.desc", { headers: { apikey: SB_KEY, Authorization: "Bearer " + SB_KEY } });
           if (!r.ok) return;
           const rows = await r.json();
           if (Array.isArray(rows)) { SB_REVIEWS = rows; render(); }
@@ -591,15 +592,16 @@
             </a>`;
         }).join("");
 
-        const testiCard = (stars, text, author) => `
+        const testiCard = (stars, text, author, photo) => `
           <div class="ss-testi">
+            ${photo ? `<img class="ss-testi-photo" src="${esc(photo)}" alt="${esc(author || "")}" loading="lazy" onerror="this.style.display='none'"/>` : ""}
             <div class="ss-testi-stars">${"★".repeat(Math.max(0, Math.min(5, stars || 5)))}</div>
             <div class="ss-testi-text">${esc(text)}</div>
             <div class="ss-testi-author">— ${esc(author || "")}</div>
           </div>`;
         const testis =
           SITE.testimonials.map((t) => testiCard(t.stars, tx(t, "text"), t.author)).join("") +
-          (SB_REVIEWS || []).map((r) => testiCard(r.rating, r.text, r.author)).join("");
+          (SB_REVIEWS || []).map((r) => testiCard(r.rating, r.text, r.author, r.photo_url)).join("");
         const reviewCta = `<div style="text-align:center;margin-top:14px"><a class="ss-seeall" href="${REVIEW_PAGE}" target="_blank" rel="noopener noreferrer" onclick="track('leave-review')">${LANG === "fr" ? "Laisser un avis ⭐" : "Leave a review ⭐"}</a></div>`;
 
         const nav = [
