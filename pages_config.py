@@ -10,7 +10,7 @@ def _ebook(img_fr, img_en, url_fr, url_en, pf, pe, cfa, cta_fr, cta_en, af, ae, 
 
 PAGES = [
   {"src": "pellicules.html", "slug_fr": "pellicules", "slug_en": "dandruff",
-   "ebook": _ebook("assets/pellicules.png", "assets/dandruff.png", "https://selar.com/pellicules", "https://selar.com/dandruff",
+   "ebook": _ebook("assets/pellicules.webp", "assets/dandruff.webp", "https://selar.com/pellicules", "https://selar.com/dandruff",
                    "8€", "$9", "≈ 5 000 FCFA", "Retrouver un cuir chevelu sain →", "Get a healthy scalp →", "8.00", "9.00", "pellicules"),
    "name_fr": "Adieu Pellicules", "name_en": "Goodbye Dandruff", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Adieu Pellicules — Guide Cuir Chevelu Cheveux Crépus Type 4 | Schicgirl",
@@ -19,7 +19,7 @@ PAGES = [
    "desc_en": "Understand and clear dandruff on Type 4 coily hair: the 6 types, diagnosis, routines, active ingredients, DIY recipes and a 30-day challenge."},
 
   {"src": "hydratee.html", "slug_fr": "hydratation-cheveux-crepus", "slug_en": "hydrate-type-4-hair",
-   "ebook": _ebook("assets/hydratee.png", "assets/hydrated.png", "https://selar.com/hydratee", "https://selar.com/hydrated",
+   "ebook": _ebook("assets/hydratee.webp", "assets/hydrated.webp", "https://selar.com/hydratee", "https://selar.com/hydrated",
                    "17€", "$18", "≈ 11 000 FCFA", "Obtenir Hydratée →", "Get Hydrated →", "17.00", "18.00", "hydratee"),
    "name_fr": "Hydratée", "name_en": "Hydrated", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Hydratée — Guide Hydratation Cheveux Crépus Type 4 (4A 4B 4C) | Schicgirl",
@@ -28,7 +28,7 @@ PAGES = [
    "desc_en": "The complete system to deeply hydrate Type 4 coily hair (4A 4B 4C): the LOC/LCO method, porosity, recipes and a lasting routine."},
 
   {"src": "pousse.html", "slug_fr": "faire-pousser-cheveux-crepus", "slug_en": "grow-type-4-hair",
-   "ebook": _ebook("assets/pousse.png", "assets/grow.png", "https://selar.com/pousse", "https://selar.com/grow-hair",
+   "ebook": _ebook("assets/pousse.webp", "assets/grow.webp", "https://selar.com/pousse", "https://selar.com/grow-hair",
                    "14€", "$15", "≈ 9 000 FCFA", "Commencer ma pousse →", "Start my growth →", "14.00", "15.00", "pousse"),
    "name_fr": "Pousse Maximale", "name_en": "Maximum Growth", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Pousse Maximale — Faire Pousser ses Cheveux Crépus Sans Casse | Schicgirl",
@@ -37,7 +37,7 @@ PAGES = [
    "desc_en": "The complete growth system for Type 4 coily hair: length retention, scalp care, the protein/moisture balance and a clear routine."},
 
   {"src": "coiffures.html", "slug_fr": "coiffures-protectrices", "slug_en": "protective-styles",
-   "ebook": _ebook("assets/coiffures-fr.png", "assets/hair-styles.png", "https://selar.com/coiffures-protectrices", "https://selar.com/hair-styles",
+   "ebook": _ebook("assets/coiffures-fr.webp", "assets/hair-styles.webp", "https://selar.com/coiffures-protectrices", "https://selar.com/hair-styles",
                    "5€", "$6", "≈ 3 500 FCFA", "Protéger mes cheveux →", "Protect my hair →", "5.00", "6.00", "coiffures"),
    "name_fr": "Coiffures Protectrices", "name_en": "Protective Styles", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Coiffures Protectrices Cheveux Crépus Type 4 — Sans Casse | Schicgirl",
@@ -46,7 +46,7 @@ PAGES = [
    "desc_en": "Master protective styles on Type 4 coily hair without dryness or breakage: the before/during/after cycle, choosing styles and upkeep."},
 
   {"src": "stop-cheveux-secs.html", "slug_fr": "cheveux-secs", "slug_en": "dry-hair",
-   "ebook": _ebook("assets/stop-cheveux-secs.png", "assets/stop-dry-hair.png", "https://selar.com/stop-cheveux-secs", "https://selar.com/stop-dry-hair",
+   "ebook": _ebook("assets/stop-cheveux-secs.webp", "assets/stop-dry-hair.webp", "https://selar.com/stop-cheveux-secs", "https://selar.com/stop-dry-hair",
                    "5€", "$6", "≈ 3 500 FCFA", "Commencer pour 5€ →", "Start for $6 →", "5.00", "6.00", "stop-cheveux-secs"),
    "name_fr": "Stop aux Cheveux Secs", "name_en": "Stop Dry Hair", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Stop aux Cheveux Secs — En Finir avec la Sécheresse Type 4 | Schicgirl",
@@ -55,7 +55,7 @@ PAGES = [
    "desc_en": "The express guide to understand why your coily hair dries out and stop it today. A simple system and ready-to-use sheets for Type 4."},
 
   {"src": "transition.html", "slug_fr": "transition-capillaire", "slug_en": "hair-transition",
-   "ebook": _ebook("assets/transition-fr.png", "assets/transition-en.png", "https://selar.com/transition-fr", "https://selar.com/transition-en",
+   "ebook": _ebook("assets/transition-fr.webp", "assets/transition-en.webp", "https://selar.com/transition-fr", "https://selar.com/transition-en",
                    "7€", "$7", "≈ 4 500 FCFA", "Réussir ma transition →", "Nail my transition →", "7.00", "7.00", "transition"),
    "name_fr": "Cheveux en Transition", "name_en": "Hair in Transition", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Transition Capillaire — Du Défrisé au Naturel Sans Casse | Schicgirl",
@@ -64,7 +64,7 @@ PAGES = [
    "desc_en": "Go from relaxed to natural without a forced big chop: manage two textures, avoid breakage, a 90-day plan and trims."},
 
   {"src": "pack-complet.html", "slug_fr": "pack-complet", "slug_en": "complete-pack",
-   "ebook": _ebook("assets/all-ebook.png", "assets/all-ebook.png", "https://selar.com/pack-complet", "https://selar.com/complete-pack",
+   "ebook": _ebook("assets/all-ebook.webp", "assets/all-ebook.webp", "https://selar.com/pack-complet", "https://selar.com/complete-pack",
                    "59€", "$65", "≈ 39 000 FCFA", "Obtenir le système complet →", "Get the complete system →", "59.00", "65.00", "pack-complet"),
    "name_fr": "Le Système Complet", "name_en": "The Complete System", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Le Système Complet — Les 6 Guides Cheveux Crépus Type 4 | Schicgirl",

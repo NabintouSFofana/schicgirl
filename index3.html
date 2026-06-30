@@ -1,0 +1,376 @@
+<!doctype html>
+<!--
+  SCHICGIRL — index3.html · schicgirl.me
+  Trimmed "funnel" link-in-bio (self-contained: inline CSS + JS).
+  ~2 screens: free kit first → 3 top products + see-all → 2 tools → footer.
+  Standalone — does NOT affect index.html / index2.html or the SEO pipeline.
+  © 2024–2026 Schicgirl. All rights reserved.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/logo2.png" />
+    <title>Schicgirl — Type 4 Hair</title>
+    <meta name="description" content="Schicgirl — your free Type 4 hair kit, expert guides and trusted picks for coily hair." />
+    <meta name="theme-color" content="#c9934a" />
+    <meta property="og:title" content="Schicgirl — Type 4 Hair" />
+    <meta property="og:image" content="assets/logo2.png" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fbf6ef; --card: #ffffff; --ink: #2a1a0f; --ink-soft: #6b4a30;
+        --muted: rgba(42, 26, 15, 0.55); --faint: rgba(42, 26, 15, 0.4);
+        --gold: #c9934a; --gold-deep: #a86d23; --gold-lt: #e8c07e; --gold-pale: #f6ead4;
+        --rose: #e8b4a0; --line: rgba(42, 26, 15, 0.08); --line-gold: rgba(201, 147, 74, 0.25);
+        --serif: "Cormorant Garamond", Georgia, serif; --sans: "Jost", system-ui, -apple-system, sans-serif;
+        --r: 18px;
+        --shadow-s: 0 1px 2px rgba(60, 38, 24, 0.04), 0 8px 20px -12px rgba(60, 38, 24, 0.14);
+        --shadow: 0 2px 6px rgba(60, 38, 24, 0.05), 0 18px 36px -18px rgba(60, 38, 24, 0.2);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans); color: var(--ink);
+        background: radial-gradient(ellipse 100% 40% at 50% -10%, rgba(232, 180, 160, 0.25), transparent 60%), linear-gradient(180deg, #fdf9f3, #f7efe4);
+        background-attachment: fixed; min-height: 100vh; padding: 0 0 40px;
+        -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+      }
+      img { display: block; max-width: 100%; -webkit-user-drag: none; }
+      a { text-decoration: none; color: inherit; }
+
+      .ss-top {
+        position: sticky; top: 0; z-index: 50; display: flex; justify-content: flex-end; padding: 10px 18px;
+        background: rgba(251, 246, 239, 0.72); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+      }
+      .ss-lang { display: flex; background: rgba(201, 147, 74, 0.1); border-radius: 100px; padding: 3px; gap: 2px; }
+      .ss-lang button {
+        border: none; background: transparent; cursor: pointer; font-family: var(--sans); font-size: 12px;
+        font-weight: 600; letter-spacing: 0.04em; color: var(--muted); padding: 6px 15px; border-radius: 100px; transition: all 0.2s;
+      }
+      .ss-lang button.on { background: var(--gold); color: #fff; box-shadow: 0 2px 8px rgba(201, 147, 74, 0.35); }
+
+      .ss-wrap { max-width: 560px; margin: 0 auto; padding: 0 20px; }
+
+      .ss-profile { text-align: center; padding: 40px 0 6px; }
+      .ss-avatar {
+        width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 16px; padding: 4px;
+        background: linear-gradient(135deg, var(--gold-lt), var(--rose)); box-shadow: var(--shadow-s);
+      }
+      .ss-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #fff; }
+      .ss-name { font-family: var(--serif); font-size: 40px; font-weight: 500; line-height: 1; letter-spacing: 0.005em; color: var(--ink); }
+      .ss-name span { color: var(--gold-deep); font-style: italic; font-weight: 600; }
+      .ss-proof {
+        display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 11px; font-weight: 600;
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-deep);
+      }
+      .ss-proof::before { content: "✦"; color: var(--gold); }
+      .ss-bio { font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--ink-soft); line-height: 1.5; max-width: 320px; margin: 10px auto 0; }
+      .ss-trust { display: inline-flex; align-items: center; gap: 9px; margin-top: 16px; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+      .ss-trust .stars { color: var(--gold); letter-spacing: 1px; }
+      .ss-trust .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--line-gold); }
+      .ss-trust .muted { color: var(--muted); font-weight: 500; }
+      .ss-socials { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
+      .ss-social {
+        width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow-s); color: var(--gold-deep);
+        font-size: 18px; transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .ss-social:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+      .ss-social svg { display: block; }
+
+      .ss-label {
+        display: flex; align-items: center; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em;
+        text-transform: uppercase; color: var(--gold-deep); margin: 30px 2px 14px;
+      }
+      .ss-label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line-gold), transparent); }
+
+      .ss-free {
+        display: block; background: linear-gradient(135deg, rgba(232, 180, 160, 0.18), #fffdf9);
+        border: 1.5px dashed var(--line-gold); border-radius: var(--r); padding: 20px; box-shadow: var(--shadow-s);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .ss-free:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-style: solid; }
+      .ss-free-top { display: flex; align-items: center; gap: 14px; }
+      .ss-free-icon {
+        width: 50px; height: 50px; border-radius: 15px; flex-shrink: 0; font-size: 24px;
+        display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--rose), var(--gold-lt));
+      }
+      .ss-free-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose); }
+      .ss-free-title { font-size: 16px; font-weight: 700; line-height: 1.25; margin-top: 2px; }
+      .ss-free-sub { font-size: 13px; color: var(--muted); line-height: 1.45; margin-top: 5px; }
+      .ss-free-btn {
+        display: block; text-align: center; margin-top: 16px; background: var(--gold); color: #fff; font-size: 13px;
+        font-weight: 700; letter-spacing: 0.03em; padding: 13px; border-radius: 12px; box-shadow: 0 6px 16px rgba(201, 147, 74, 0.32); transition: filter 0.2s;
+      }
+      .ss-free:hover .ss-free-btn { filter: brightness(1.06); }
+
+      .ss-products { display: flex; flex-direction: column; gap: 14px; }
+      .ss-product {
+        display: flex; gap: 14px; align-items: center; background: var(--card); border: 1px solid var(--line);
+        border-radius: var(--r); padding: 14px; box-shadow: var(--shadow-s); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      }
+      .ss-product:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--line-gold); }
+      .ss-product-media {
+        position: relative; width: 78px; flex-shrink: 0; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden;
+        background: linear-gradient(135deg, var(--gold-pale), rgba(201, 147, 74, 0.25)); display: flex; align-items: center; justify-content: center;
+        font-size: 28px; color: var(--gold);
+      }
+      .ss-product-media img { width: 100%; height: 100%; object-fit: cover; }
+      .ss-product-badge {
+        position: absolute; top: 6px; left: 6px; font-size: 8px; font-weight: 700; letter-spacing: 0.06em;
+        text-transform: uppercase; color: #3a2412; background: var(--gold-lt); padding: 3px 7px; border-radius: 100px;
+      }
+      .ss-product-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+      .ss-product-title { font-size: 16px; font-weight: 700; line-height: 1.2; }
+      .ss-product-desc {
+        font-size: 12.5px; color: var(--muted); line-height: 1.4; margin-top: 4px;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      .ss-product-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+      .ss-product-price { display: flex; align-items: baseline; gap: 6px; }
+      .ss-product-price .amt { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--gold-deep); line-height: 1; }
+      .ss-product-price .cfa { font-size: 10px; font-weight: 500; color: var(--faint); }
+      .ss-product-btn {
+        flex-shrink: 0; background: var(--gold); color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
+        padding: 9px 16px; border-radius: 100px; box-shadow: 0 5px 14px rgba(201, 147, 74, 0.3); transition: filter 0.2s;
+      }
+      .ss-product:hover .ss-product-btn { filter: brightness(1.07); }
+      .ss-product.feat { background: linear-gradient(150deg, rgba(45, 26, 14, 0.98), rgba(85, 42, 18, 0.95)); border-color: var(--line-gold); }
+      .ss-product.feat .ss-product-title { color: var(--gold-lt); }
+      .ss-product.feat .ss-product-desc { color: rgba(253, 240, 215, 0.7); }
+      .ss-product.feat .ss-product-price .amt { color: var(--gold-lt); }
+      .ss-product.feat .ss-product-price .cfa { color: rgba(232, 192, 126, 0.75); }
+
+      .ss-seeall {
+        display: block; text-align: center; margin-top: 14px; padding: 13px; border-radius: 100px;
+        font-size: 13px; font-weight: 700; letter-spacing: 0.03em; color: var(--gold-deep);
+        background: transparent; border: 1.5px solid var(--gold); transition: all 0.2s;
+      }
+      .ss-seeall:hover { background: var(--gold); color: #fff; box-shadow: 0 6px 16px rgba(201, 147, 74, 0.3); }
+
+      .ss-links { display: flex; flex-direction: column; gap: 11px; }
+      .ss-link {
+        display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--line);
+        border-radius: 15px; padding: 14px 16px; box-shadow: var(--shadow-s); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      }
+      .ss-link:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--line-gold); }
+      .ss-link-icon {
+        width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0; font-size: 20px; display: flex; align-items: center;
+        justify-content: center; overflow: hidden; background: rgba(201, 147, 74, 0.1); border: 1px solid var(--line-gold); color: var(--gold-deep);
+      }
+      .ss-link-icon img { width: 100%; height: 100%; object-fit: cover; }
+      .ss-link-body { flex: 1; min-width: 0; }
+      .ss-link-title { font-size: 14.5px; font-weight: 600; line-height: 1.25; }
+      .ss-link-sub { font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+      .ss-link-chev { flex-shrink: 0; color: var(--gold); font-size: 18px; transition: transform 0.2s; }
+      .ss-link:hover .ss-link-chev { transform: translateX(3px); }
+
+      .ss-footer { text-align: center; margin-top: 38px; font-size: 11px; color: var(--muted); line-height: 1.7; }
+      .ss-footer-div { height: 1px; background: linear-gradient(90deg, transparent, var(--line-gold), transparent); margin: 14px 0; }
+      .ss-footer strong { color: var(--gold-deep); }
+      .ss-footer-nav { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+      .ss-footer-nav a { font-weight: 600; color: var(--ink-soft); padding: 0 9px; }
+      .ss-footer-nav a:not(:last-child) { border-right: 1px solid var(--line); }
+      .ss-footer-copy { margin-top: 12px; font-size: 10px; letter-spacing: 0.04em; opacity: 0.85; }
+    </style>
+  </head>
+  <body>
+    <div class="ss-top">
+      <div class="ss-lang">
+        <button id="ssEn" onclick="ssSetLang('en')">🇬🇧 EN</button>
+        <button id="ssFr" class="on" onclick="ssSetLang('fr')">🇫🇷 FR</button>
+      </div>
+    </div>
+    <main class="ss-wrap" id="ssApp"></main>
+
+    <script>
+      const FB_SVG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="#1877F2"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6 4.39 10.97 10.13 11.87v-8.4H7.08v-3.47h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.47h-2.8v8.4C19.61 23.04 24 18.07 24 12.07Z"/></svg>';
+      const SITE = {
+        logo: "assets/logo2.webp", name_pre: "Schic", name_acc: "girl",
+        proof_fr: "Spécialiste cheveux crépus Type 4", proof_en: "Type 4 coily-hair specialist",
+        bio_fr: "Clarté, soin & confiance pour cheveux crépus.", bio_en: "Clarity, care & confidence for coily hair.",
+        rating: "5,0", meta_fr: "10 000+ femmes aidées", meta_en: "10,000+ women helped",
+        socials: [
+          { id: "facebook", svg: FB_SVG, url: "https://www.facebook.com/schicgirl", label: "Facebook" },
+          { id: "email", icon: "✉️", url: "mailto:contacte.schicgirl@gmail.com", label: "Email" },
+          { id: "shop", icon: "🛍️", url: "https://www.amazon.com/shop/schicgirl", label: "Amazon" },
+        ],
+        free: {
+          emoji: "📖", tag_fr: "Gratuit · Le Kit Type 4", tag_en: "Free · The Type 4 Kit",
+          title_fr: "Le Guide Complet Cheveux Type 4", title_en: "The Complete Type 4 Hair Guide",
+          sub_fr: "Comprends ta texture, construis ta routine, hydrate enfin tes cheveux.",
+          sub_en: "Understand your texture, build your routine, finally hydrate your hair.",
+          cta_fr: "Télécharger gratuitement", cta_en: "Download for free",
+          url: "https://schicgirl.me/toolkit-landing",
+        },
+        products_label_fr: "Mes Best-sellers", products_label_en: "My Best-sellers",
+        seeall_fr: "Voir tous mes guides →", seeall_en: "See all my guides →",
+        seeall_url: "https://selar.com/m/schicgirl",
+        products: [
+          { id: "studio-planner", img_fr: "assets/planner-cover-fr.svg", img_en: "assets/planner-cover-en.svg", badge_fr: "Nouveau", badge_en: "New",
+            title_fr: "Le Studio · Planner", title_en: "The Studio · Planner",
+            desc_fr: "Diagnostic, routine sur mesure & suivi — l'app + le cahier PDF.",
+            desc_en: "Diagnosis, custom routine & tracking — the app + PDF workbook.",
+            price_fr: "9€", price_en: "$10", cfa: "≈ 6 000 FCFA", url_fr: "/fr/planner/", url_en: "/en/planner/" },
+          { id: "hydratee", img_fr: "assets/hydratee.webp", img_en: "assets/hydrated.webp", badge_fr: "Best-seller", badge_en: "Best-seller",
+            title_fr: "Hydratée", title_en: "Hydrated",
+            desc_fr: "La science de l'hydratation pour cheveux crépus — la méthode complète.",
+            desc_en: "The science of hydration for coily hair — the full method.",
+            price_fr: "17€", price_en: "$18", cfa: "≈ 11 000 FCFA", url_fr: "/fr/hydratation-cheveux-crepus/", url_en: "/en/hydrate-type-4-hair/" },
+          { id: "cheveux-secs", img_fr: "assets/stop-cheveux-secs.webp", img_en: "assets/stop-dry-hair.webp", badge_fr: "Petit prix", badge_en: "Budget",
+            title_fr: "Stop aux Cheveux Secs", title_en: "Stop Dry Hair",
+            desc_fr: "Le guide express pour en finir avec la sécheresse. Parfait pour commencer.",
+            desc_en: "The express guide to end dryness for good. Perfect to start.",
+            price_fr: "5€", price_en: "$6", cfa: "≈ 3 500 FCFA", url_fr: "/fr/cheveux-secs/", url_en: "/en/dry-hair/" },
+        ],
+        tools_label_fr: "Outils & Boutique", tools_label_en: "Tools & Shop",
+        tools: [
+          { id: "schicchat", icon: "💬", title_fr: "Diagnostique mes cheveux", title_en: "Diagnose my hair",
+            sub_fr: "Réponses expertes instantanées.", sub_en: "Instant expert answers.", url: "https://selar.com/schicchat" },
+          { id: "consultation", icon: "📅", title_fr: "Consultation capillaire", title_en: "Hair consultation",
+            sub_fr: "Réserve un créneau avec moi.", sub_en: "Book a slot with me.", url: "https://schicgirl.me/consultation" },
+          { id: "amazon-shop", icon: "🛍️", title_fr: "Mes produits Amazon", title_en: "My Amazon picks",
+            sub_fr: "Tous mes coups de cœur capillaires.", sub_en: "Every product I trust.", url: "https://www.amazon.com/shop/schicgirl" },
+        ],
+        disc_fr: "En tant qu'associée Amazon, je gagne des revenus grâce aux achats éligibles.",
+        disc_en: "As an Amazon Associate I earn from qualifying purchases.",
+      };
+
+      let LANG = "fr";
+      try { const s = localStorage.getItem("sg_lang"); if (s === "fr" || s === "en") LANG = s; } catch (e) {}
+      const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      const tx = (o, k) => o[k + "_" + LANG] || o[k + "_fr"] || o[k] || "";
+      function safeUrl(u) {
+        const s = String(u || "").trim();
+        if (!s) return "#";
+        if (s[0] === "#" || s[0] === "/" || /^(https?:|mailto:|tel:)/i.test(s)) return s;
+        if (!/^[a-z][a-z0-9+.\-]*:/i.test(s)) return s;
+        return "#";
+      }
+      function track(value) {
+        try {
+          const d = JSON.parse(localStorage.getItem("schicgirl_analytics") || '{"visits":[],"clicks":[]}');
+          d.clicks.unshift({ ts: Date.now(), value });
+          if (d.clicks.length > 1200) d.clicks.length = 1200;
+          localStorage.setItem("schicgirl_analytics", JSON.stringify(d));
+        } catch (e) {}
+      }
+
+      function render() {
+        const ext = (u) => /^(https?:|mailto:)/i.test(u) ? ' target="_blank" rel="noopener noreferrer"' : "";
+
+        const socials = SITE.socials.map((s) =>
+          `<a class="ss-social" href="${esc(safeUrl(s.url))}"${ext(s.url)} aria-label="${esc(s.label)}" onclick="track('social-${esc(s.id)}')">${s.svg || esc(s.icon)}</a>`
+        ).join("");
+
+        const profile = `
+          <section class="ss-profile">
+            <div class="ss-avatar"><img src="${esc(SITE.logo)}" alt="Schicgirl" onerror="this.style.display='none'"/></div>
+            <h1 class="ss-name">${esc(SITE.name_pre)}<span>${esc(SITE.name_acc)}</span></h1>
+            <div class="ss-proof">${esc(tx(SITE, "proof"))}</div>
+            <p class="ss-bio">${esc(tx(SITE, "bio"))}</p>
+            <div class="ss-trust">
+              <span class="stars">★★★★★</span> ${esc(SITE.rating)}
+              <span class="dot"></span><span class="muted">${esc(tx(SITE, "meta"))}</span>
+            </div>
+            <div class="ss-socials">${socials}</div>
+          </section>`;
+
+        const f = SITE.free;
+        const free = `
+          <a class="ss-free" href="${esc(safeUrl(f.url))}"${ext(f.url)} onclick="track('free-kit-${LANG}')">
+            <div class="ss-free-top">
+              <div class="ss-free-icon">${esc(f.emoji)}</div>
+              <div>
+                <div class="ss-free-tag">${esc(tx(f, "tag"))}</div>
+                <div class="ss-free-title">${esc(tx(f, "title"))}</div>
+                <div class="ss-free-sub">${esc(tx(f, "sub"))}</div>
+              </div>
+            </div>
+            <span class="ss-free-btn">${esc(tx(f, "cta"))} ↓</span>
+          </a>`;
+
+        const buyTxt = LANG === "fr" ? "Voir" : "Get";
+        const products = SITE.products.map((p, i) => {
+          const img = tx(p, "img");
+          const media = img ? `<img src="${esc(img)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
+          const badge = tx(p, "badge");
+          const cfa = LANG === "fr" && p.cfa ? `<span class="cfa">${esc(p.cfa)}</span>` : "";
+          const url = LANG === "fr" ? p.url_fr || p.url_en : p.url_en || p.url_fr;
+          const feat = (i % 4 === 0) ? " feat" : "";
+          return `
+            <a class="ss-product${feat}" href="${esc(safeUrl(url))}" onclick="track('product-${esc(p.id)}')">
+              <div class="ss-product-media">${media}${badge ? `<span class="ss-product-badge">${esc(badge)}</span>` : ""}</div>
+              <div class="ss-product-body">
+                <div class="ss-product-title">${esc(tx(p, "title"))}</div>
+                <div class="ss-product-desc">${esc(tx(p, "desc"))}</div>
+                <div class="ss-product-foot">
+                  <div class="ss-product-price"><span class="amt">${esc(tx(p, "price"))}</span>${cfa}</div>
+                  <span class="ss-product-btn">${esc(buyTxt)} →</span>
+                </div>
+              </div>
+            </a>`;
+        }).join("");
+        const seeall = `<a class="ss-seeall" href="${esc(safeUrl(SITE.seeall_url))}" target="_blank" rel="noopener noreferrer" onclick="track('see-all-guides')">${esc(tx(SITE, "seeall"))}</a>`;
+
+        const tools = SITE.tools.map((t) => {
+          const ic = t.img ? `<span class="ss-link-icon"><img src="${esc(t.img)}" alt=""/></span>` : `<span class="ss-link-icon">${esc(t.icon || "🔗")}</span>`;
+          return `
+            <a class="ss-link" href="${esc(safeUrl(t.url))}"${ext(t.url)} onclick="track('tool-${esc(t.id)}')">
+              ${ic}
+              <div class="ss-link-body">
+                <div class="ss-link-title">${esc(tx(t, "title"))}</div>
+                <div class="ss-link-sub">${esc(tx(t, "sub"))}</div>
+              </div>
+              <span class="ss-link-chev">→</span>
+            </a>`;
+        }).join("");
+
+        const nav = [
+          ["/fr/a-propos/", LANG === "fr" ? "À propos" : "About"],
+          ["/fr/blog/", "Blog"],
+          ["/fr/contact/", "Contact"],
+          ["/fr/confidentialite/", LANG === "fr" ? "Confidentialité" : "Privacy"],
+          ["/fr/conditions/", LANG === "fr" ? "Conditions" : "Terms"],
+        ].map((n) => `<a href="${n[0]}">${esc(n[1])}</a>`).join("");
+
+        document.getElementById("ssApp").innerHTML =
+          profile +
+          `<div class="ss-label">${LANG === "fr" ? "Commence ici · Gratuit" : "Start here · Free"}</div>` + free +
+          `<div class="ss-label">${esc(tx(SITE, "products_label"))}</div><div class="ss-products">${products}</div>` + seeall +
+          `<div class="ss-label">${esc(tx(SITE, "tools_label"))}</div><div class="ss-links">${tools}</div>` +
+          `<footer class="ss-footer">
+             <div class="ss-footer-div"></div>
+             <strong>Schicgirl</strong><br/>${esc(tx(SITE, "disc"))}
+             <div class="ss-footer-nav">${nav}</div>
+             <div class="ss-footer-copy">© 2024–2026 Schicgirl · schicgirl.me</div>
+           </footer>`;
+      }
+
+      function ssSetLang(lang) {
+        LANG = lang;
+        document.getElementById("ssEn").classList.toggle("on", lang === "en");
+        document.getElementById("ssFr").classList.toggle("on", lang === "fr");
+        document.documentElement.lang = lang;
+        try { localStorage.setItem("sg_lang", lang); } catch (e) {}
+        render();
+      }
+      window.ssSetLang = ssSetLang;
+
+      document.getElementById("ssEn").classList.toggle("on", LANG === "en");
+      document.getElementById("ssFr").classList.toggle("on", LANG === "fr");
+      document.documentElement.lang = LANG;
+      render();
+      try {
+        const d = JSON.parse(localStorage.getItem("schicgirl_analytics") || '{"visits":[],"clicks":[]}');
+        d.visits.unshift({ ts: Date.now(), lang: LANG, ref: document.referrer, mob: /Mobi|Android/i.test(navigator.userAgent) });
+        if (d.visits.length > 600) d.visits.length = 600;
+        localStorage.setItem("schicgirl_analytics", JSON.stringify(d));
+      } catch (e) {}
+    </script>
+  </body>
+</html>

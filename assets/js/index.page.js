@@ -5,7 +5,7 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
       const DEFAULT_SITE = {
         v: 1,
         brand: {
-          logo: "assets/logo2.png",
+          logo: "assets/logo2.webp",
           name_pre: "Schic",
           name_acc: "girl",
           name_suf: "",
@@ -59,28 +59,28 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
               price_fr: "9€", price_en: "$10", price_cfa: "(≈ 6 000 FCFA)", url_fr: "https://selar.com/studio-planner", url_en: "https://selar.com/studio-planner", page_fr: "/fr/planner/", page_en: "/en/planner/",
             },
             {
-              id: "hydratee", on: true, img_fr: "assets/hydratee.png", img_en: "assets/hydrated.png", badge_fr: "Best-seller", badge_en: "Best-seller",
+              id: "hydratee", on: true, img_fr: "assets/hydratee.webp", img_en: "assets/hydrated.webp", badge_fr: "Best-seller", badge_en: "Best-seller",
               title_fr: "Hydratée", title_en: "Hydrated",
               desc_fr: "La science de l'hydratation pour cheveux crépus — 79 pages, la méthode complète.",
               desc_en: "The science of hydration for coily hair — 79 pages, the full method.",
               price_fr: "17€", price_en: "$18", price_cfa: "(≈ 11 000 FCFA)", url_fr: "https://selar.com/hydratee", url_en: "https://selar.com/hydrated", page_fr: "/fr/hydratation-cheveux-crepus/", page_en: "/en/hydrate-type-4-hair/",
             },
             {
-              id: "pousse", on: true, img_fr: "assets/pousse.png", img_en: "assets/grow.png", badge_fr: "", badge_en: "",
+              id: "pousse", on: true, img_fr: "assets/pousse.webp", img_en: "assets/grow.webp", badge_fr: "", badge_en: "",
               title_fr: "Pousse Maximale", title_en: "Maximum Growth",
               desc_fr: "Fais pousser tes cheveux crépus, sans casse ni frustration.",
               desc_en: "Grow your coily hair — without breakage or frustration.",
               price_fr: "14€", price_en: "$15", price_cfa: "(≈ 9 000 FCFA)", url_fr: "https://selar.com/pousse", url_en: "https://selar.com/grow-hair", page_fr: "/fr/faire-pousser-cheveux-crepus/", page_en: "/en/grow-type-4-hair/",
             },
             {
-              id: "pellicules", on: true, img_fr: "assets/pellicules.png", img_en: "assets/dandruff.png", badge_fr: "", badge_en: "",
+              id: "pellicules", on: true, img_fr: "assets/pellicules.webp", img_en: "assets/dandruff.webp", badge_fr: "", badge_en: "",
               title_fr: "Adieu Pellicules", title_en: "Goodbye Dandruff",
               desc_fr: "Comprends et élimine les pellicules sur cheveux crépus, durablement.",
               desc_en: "Understand and clear dandruff on coily hair, for good.",
               price_fr: "8€", price_en: "$9", price_cfa: "(≈ 5 000 FCFA)", url_fr: "https://selar.com/pellicules", url_en: "https://selar.com/dandruff", page_fr: "/fr/pellicules/", page_en: "/en/dandruff/",
             },
             {
-              id: "coiffures", on: true, img_fr: "assets/coiffures-fr.png", img_en: "assets/hair-styles.png", badge_fr: "Petit prix", badge_en: "",
+              id: "coiffures", on: true, img_fr: "assets/coiffures-fr.webp", img_en: "assets/hair-styles.webp", badge_fr: "Petit prix", badge_en: "",
               title_fr: "Coiffures Protectrices", title_en: "Protective Styles",
               desc_fr: "Protège tes longueurs et gagne en pousse avec les bons styles.",
               desc_en: "Protect your length and gain growth with the right styles.",
@@ -88,14 +88,14 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
             },
             
             {
-              id: "cheveux-secs", on: true, img_fr: "assets/stop-cheveux-secs.png", img_en: "assets/stop-dry-hair.png", badge_fr: "Petit prix", badge_en: "Budget",
+              id: "cheveux-secs", on: true, img_fr: "assets/stop-cheveux-secs.webp", img_en: "assets/stop-dry-hair.webp", badge_fr: "Petit prix", badge_en: "Budget",
               title_fr: "Stop aux Cheveux Secs", title_en: "Stop Dry Hair",
               desc_fr: "Le guide express pour en finir avec la sécheresse. Parfait pour commencer.",
               desc_en: "The express guide to end dryness for good. Perfect to start.",
               price_fr: "5€", price_en: "$6", price_cfa: "(≈ 3 500 FCFA)", url_fr: "https://selar.com/stop-cheveux-secs", url_en: "https://selar.com/stop-dry-hair", page_fr: "/fr/cheveux-secs/", page_en: "/en/dry-hair/",
             },
             {
-              id: "transition", on: true, img_fr: "assets/transition-fr.png", img_en: "assets/transition-en.png", badge_fr: "Petit prix", badge_en: "",
+              id: "transition", on: true, img_fr: "assets/transition-fr.webp", img_en: "assets/transition-en.webp", badge_fr: "Petit prix", badge_en: "",
               title_fr: "Cheveux en Transition", title_en: "Transitioning Hair",
               desc_fr: "Passe du défrisé au naturel en douceur, étape par étape.",
               desc_en: "Go from relaxed to natural smoothly, step by step.",
@@ -153,7 +153,7 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
               url: "https://www.amazon.com/shop/schicgirl", cta_fr: "Voir →", cta_en: "Shop →",
             },
             {
-              id: "auntjackies-baby", on: true, img: "assets/baby_curls_cream.png", emoji: "🧴",
+              id: "auntjackies-baby", on: true, img: "assets/baby_curls_cream.webp", emoji: "🧴",
               eyebrow_fr: "Enfants · Boucles", eyebrow_en: "Kids · Curl Care",
               name_fr: "Aunt Jackie's Baby Curls", name_en: "Aunt Jackie's Baby Curls",
               desc_fr: "Crème douce pour définir les boucles des enfants.",
@@ -161,7 +161,7 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
               url: "https://amzn.to/491lO7A", cta_fr: "Voir →", cta_en: "Get it →",
             },
             {
-              id: "auntjackies-bundle", on: true, img: "assets/amazon.png", emoji: "📦",
+              id: "auntjackies-bundle", on: true, img: "assets/amazon.webp", emoji: "📦",
               eyebrow_fr: "Boucles & Coils", eyebrow_en: "Curls & Coils",
               name_fr: "Aunt Jackie's Bundle", name_en: "Aunt Jackie's Bundle",
               desc_fr: "Le système complet soin boucles & coils.",

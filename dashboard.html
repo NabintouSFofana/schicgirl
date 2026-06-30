@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- Schicgirl — Command Center (unified admin dashboard) -->
+<html lang="fr">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="author" content="Schicgirl" />
+  <meta name="copyright" content="© 2024–2026 Schicgirl" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Schicgirl · Command Center</title>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body>
+
+<!-- ───────── LOGIN ───────── -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="lmark" id="loginMark">S</div>
+    <p class="pre-h">Espace privé · Schicgirl</p>
+    <h1>Command Center</h1>
+    <p class="sub">Connecte-toi pour gérer ta boutique, ton contenu et voir tes statistiques.</p>
+    <div class="form-group">
+      <label for="pwd">Mot de passe</label>
+      <input id="pwd" type="password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <button class="btn btn-primary btn-block" id="loginBtn">Entrer →</button>
+    <p class="login-error" id="loginErr">Mot de passe incorrect.</p>
+  </div>
+</div>
+
+<!-- ───────── APP ───────── -->
+<div class="app" id="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <div class="sb-mark" id="sbMark">S</div>
+      <div class="t"><p>Schicgirl</p><h1>Command Center</h1></div>
+    </div>
+    <nav class="sb-nav" id="sbNav">
+      <button class="nav-item active" data-go="overview"><span class="ico">📊</span> Vue d'ensemble</button>
+      <button class="nav-item" data-go="store"><span class="ico">🛍️</span> Boutique <span class="badge" id="navStoreCount">0</span></button>
+      <button class="nav-item" data-go="content"><span class="ico">✨</span> Contenu du site</button>
+      <button class="nav-item" data-go="blog"><span class="ico">✍️</span> Blog <span class="badge" id="navBlogCount">0</span></button>
+      <p class="sb-cat">Statistiques</p>
+      <button class="nav-item" data-go="traffic"><span class="ico">👣</span> Trafic &amp; visites</button>
+      <button class="nav-item" data-go="clicks"><span class="ico">🖱️</span> Clics &amp; conversions</button>
+      <p class="sb-cat">Modules</p>
+      <button class="nav-item" data-go="modules"><span class="ico">🧩</span> Outils &amp; éditeurs</button>
+      <button class="nav-item" data-go="settings"><span class="ico">⚙️</span> Réglages</button>
+    </nav>
+    <div class="sb-foot">
+      <a href="index.html" target="_blank" rel="noopener" class="btn btn-ghost btn-sm btn-block">👁 Voir le site</a>
+      <button class="btn btn-danger btn-sm btn-block" id="logoutBtn">Déconnexion</button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="mobile-bar">
+      <button class="hamb" id="hamb">☰</button>
+      <div class="mb-title">Command Center</div>
+    </div>
+
+    <div class="topbar">
+      <div class="page-title">
+        <p class="eyebrow" id="pgEyebrow">Tableau de bord</p>
+        <h2 id="pgTitle">Vue d'ensemble</h2>
+      </div>
+      <div class="topbar-actions" id="topActions"></div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="panel show" id="p-overview"></section>
+    <!-- STORE -->
+    <section class="panel" id="p-store"></section>
+    <!-- CONTENT -->
+    <section class="panel" id="p-content"></section>
+    <!-- BLOG -->
+    <section class="panel" id="p-blog"></section>
+    <!-- TRAFFIC -->
+    <section class="panel" id="p-traffic"></section>
+    <!-- CLICKS -->
+    <section class="panel" id="p-clicks"></section>
+    <!-- MODULES -->
+    <section class="panel" id="p-modules"></section>
+    <!-- SETTINGS -->
+    <section class="panel" id="p-settings"></section>
+  </main>
+</div>
+
+<!-- MODAL HOST -->
+<div id="modalHost"></div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/dashboard.page.js"></script>
+</body>
+</html>

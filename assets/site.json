@@ -1,7 +1,7 @@
 {
   "v": 1,
   "brand": {
-    "logo": "assets/logo2.png",
+    "logo": "assets/logo2.webp",
     "name_pre": "Schic",
     "name_acc": "girl",
     "name_suf": "™",
@@ -68,7 +68,7 @@
     "on": true,
     "label_fr": "Solutions Premium",
     "label_en": "Premium Solutions",
-    "img": "assets/all-ebook.png",
+    "img": "assets/all-ebook.webp",
     "img_fallback": "📚",
     "eyebrow_fr": "★ 8 Ebooks Experts",
     "eyebrow_en": "★ 8 Expert Ebooks",
@@ -151,7 +151,7 @@
       {
         "id": "auntjackies-baby",
         "on": true,
-        "img": "assets/baby_curls_cream.png",
+        "img": "assets/baby_curls_cream.webp",
         "emoji": "🧴",
         "eyebrow_fr": "Enfants · Boucles",
         "eyebrow_en": "Kids · Curl Care",
@@ -166,7 +166,7 @@
       {
         "id": "auntjackies-bundle",
         "on": true,
-        "img": "assets/amazon.png",
+        "img": "assets/amazon.webp",
         "emoji": "📦",
         "eyebrow_fr": "Boucles & Coils",
         "eyebrow_en": "Curls & Coils",
