@@ -1,6 +1,6 @@
 /* ── Config Supabase (mêmes valeurs que index.html) ── */
-      const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co"; // <-- à remplacer
-      const SUPABASE_KEY = "YOUR-ANON-KEY"; // <-- à remplacer (clé "anon public")
+      const SUPABASE_URL = "https://ouwzbqmmtbxqtffghncg.supabase.co";
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8";
       const REVIEWS_TABLE = "reviews";
       const CONTACT_EMAIL = "contacte.schicgirl@gmail.com"; // fallback e-mail
 

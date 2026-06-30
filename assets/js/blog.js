@@ -20,6 +20,27 @@
 
   // ── Posts (newest first) ──
   var POSTS = [
+    { slug: "journal-capillaire", cat: "routine", emoji: "📔", img: "blog/journal_capillaire.webp", date: "2026-06-29",
+      title_fr: "Tenir un journal capillaire : la méthode qui change tout",
+      title_en: "Keeping a hair journal: the habit that changes everything",
+      exc_fr: "Arrête de deviner. Note ce que tu fais, et tes cheveux te diront ce qui marche.",
+      exc_en: "Stop guessing. Track what you do, and your hair will tell you what works.",
+      read_fr: "6 min de lecture", read_en: "6 min read" },
+
+    { slug: "demelage-sans-casse", cat: "routine", emoji: "🪮", img: "blog/demelage-sans-casse.jpg", date: "2026-06-29",
+      title_fr: "Démêler ses cheveux crépus sans casse : la bonne méthode",
+      title_en: "Detangling 4C hair without breakage: the right way",
+      exc_fr: "90 % de la casse arrive au démêlage. Voici comment l'éviter, doigts et patience.",
+      exc_en: "90% of breakage happens while detangling. Here's how to avoid it.",
+      read_fr: "6 min de lecture", read_en: "6 min read" },
+
+    { slug: "ingredients-a-eviter", cat: "bases", emoji: "🏷️", img: "blog/ingredients-a-eviter.jpg", date: "2026-06-29",
+      title_fr: "Lire une étiquette : les ingrédients à éviter (et pourquoi)",
+      title_en: "Reading labels: the ingredients to avoid (and why)",
+      exc_fr: "Sulfates, silicones, alcools desséchants : ce qui assèche vraiment tes cheveux crépus.",
+      exc_en: "Sulfates, silicones, drying alcohols: what really dries out coily hair.",
+      read_fr: "6 min de lecture", read_en: "6 min read" },
+
     { slug: "hydrater-cheveux-crepus-secs", cat: "hydratation", emoji: "💧", img: "blog/blog3.jpg", date: "2026-06-22",
       title_fr: "Cheveux crépus toujours secs ? Voici pourquoi (et la solution)",
       title_en: "4C hair always dry? Here's why (and the fix)",
@@ -154,7 +175,7 @@
   // ── Card markup (index grid) ──
   function cardHTML(p) {
     return '<a class="post-card" href="' + articleHref(p.slug) + '">' +
-      '<img class="pc-thumb-img" src="' + pImg(p) + '" alt="" loading="lazy" />' +
+      '<img class="pc-thumb-img" src="' + pImg(p) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" />' +
       '<span class="pc-body">' +
         '<span class="pc-tag">' + esc(catLabel(p.cat)) + '</span>' +
         '<span class="pc-title">' + esc(pTitle(p)) + '</span>' +
@@ -186,7 +207,7 @@
     var recent = POSTS.filter(function (p) { return p.slug !== state.slug; }).slice(0, 5);
     var recItems = recent.map(function (p) {
       return '<a class="recent-item" href="' + articleHref(p.slug) + '">' +
-        '<img class="recent-thumb-img" src="' + pImg(p) + '" alt="" loading="lazy" />' +
+        '<img class="recent-thumb-img" src="' + pImg(p) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" />' +
         '<span class="recent-body"><span class="recent-title">' + esc(pTitle(p)) + '</span>' +
         '<span class="recent-meta">' + esc(catLabel(p.cat)) + ' · ' + esc(pRead(p)) + '</span></span></a>';
     }).join("");
@@ -286,7 +307,7 @@
     if (!box) return;
     var p = POSTS.filter(function (x) { return x.slug === state.slug; })[0];
     if (!p) { box.style.display = "none"; return; }
-    box.innerHTML = '<img src="' + pImg(p) + '" alt="' + esc(pTitle(p)) + '" />';
+    box.innerHTML = '<img src="' + pImg(p) + '" alt="' + esc(pTitle(p)) + '" onerror="this.parentElement.style.display=\'none\'" />';
   }
 
   // ── Public API ──
