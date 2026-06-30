@@ -46,10 +46,8 @@ body {
   min-height: 100vh;
   padding: 0 18px 90px;
   background:
-    radial-gradient(ellipse 80% 55% at 0% 0%, rgba(232, 180, 160, 0.45) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(237, 217, 176, 0.55) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(253, 246, 238, 0.8) 0%, transparent 70%),
-    linear-gradient(160deg, #fdf6ee 0%, #f8ece0 100%);
+    radial-gradient(ellipse 100% 40% at 50% -10%, rgba(232, 180, 160, 0.25) 0%, transparent 60%),
+    linear-gradient(180deg, #fdf9f3 0%, #f7efe4 100%);
   background-attachment: fixed;
   -webkit-tap-highlight-color: transparent;
 }
