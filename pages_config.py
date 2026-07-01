@@ -73,7 +73,7 @@ PAGES = [
    "desc_en": "Every Schicgirl guide in one pack: hydration, growth, dandruff, protective styles, dry hair and transition — the full Type 4 method."},
 
   {"src": "planner.html", "slug_fr": "planner", "slug_en": "planner",
-   "ebook": _ebook("assets/planner-cover-fr.svg", "assets/planner-cover-en.svg", "https://selar.com/studio-planner", "https://selar.com/studio-planner",
+   "ebook": _ebook("assets/planner-cover-fr.png", "assets/planner-cover-en.png", "https://selar.com/studio-planner", "https://selar.com/studio-planner",
                    "9€", "$10", "≈ 6 000 FCFA", "Obtenir le Studio →", "Get the Studio →", "9.00", "10.00", "planner"),
    "name_fr": "Le Studio · Planner Type 4", "name_en": "The Studio · Type 4 Planner", "cat_fr": "Le Studio", "cat_en": "The Studio",
    "title_fr": "Le Studio — Planificateur & Cahier Routine Cheveux Crépus Type 4 | Schicgirl",
