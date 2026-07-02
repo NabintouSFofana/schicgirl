@@ -7,9 +7,9 @@ var LANG = "fr";
     });
     var suf = LANG==="en" ? "-en" : "";
     var cov = document.getElementById("cover");
-    if (cov && cov.tagName==="IMG"){ cov.setAttribute("src", LANG==="en" ? "assets/planner-cover-en.svg" : "assets/planner-cover-fr.svg"); }
-    var pi = document.getElementById("prevInside"); if(pi){ pi.setAttribute("src","assets/previews/planner-inside"+suf+".png"); }
-    var pd = document.getElementById("prevDetail"); if(pd){ pd.setAttribute("src","assets/previews/planner-detail"+suf+".png"); }
+    if (cov && cov.tagName==="IMG"){ cov.setAttribute("src", LANG==="en" ? "/assets/planner-cover-en.png" : "/assets/planner-cover-fr.png"); }
+    var pi = document.getElementById("prevInside"); if(pi){ pi.setAttribute("src","/assets/previews/planner-inside"+suf+".png"); }
+    var pd = document.getElementById("prevDetail"); if(pd){ pd.setAttribute("src","/assets/previews/planner-detail"+suf+".png"); }
     var buy = LANG==="en" ? "https://selar.com/studio-en" : "https://selar.com/studio-fr";
     ["ctaTop","ctaBottom","barCta"].forEach(function(id){ var a=document.getElementById(id); if(a) a.setAttribute("href", buy); });
   }

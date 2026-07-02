@@ -52,7 +52,7 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
           cta_fr: "Voir tous mes ebooks →", cta_en: "See all my ebooks →",
           items: [
             {
-              id: "studio-planner", on: true, img_fr: "assets/planner-cover-fr.svg", img_en: "assets/planner-cover-en.svg", badge_fr: "Nouveau", badge_en: "New",
+              id: "studio-planner", on: true, img_fr: "assets/planner-cover-fr.png", img_en: "assets/planner-cover-en.png", badge_fr: "Nouveau", badge_en: "New",
               title_fr: "Le Studio · Planner Type 4", title_en: "The Studio · Type 4 Planner",
               desc_fr: "Diagnostic, routine sur mesure, calendrier & suivi — l'app interactive + le cahier PDF 36 pages.",
               desc_en: "Diagnosis, custom routine, calendar & tracking — the interactive app + 36-page PDF workbook.",
