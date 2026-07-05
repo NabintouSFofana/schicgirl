@@ -364,6 +364,8 @@
     
     
     
+    
+    
 
     <div class="sg-consent" id="sgConsent" role="region" aria-label="Consentement aux cookies" hidden>
       <p>On utilise des cookies pour mesurer l'audience (Google Analytics) et afficher des publicités (Google AdSense). <a href="/fr/confidentialite/">En savoir plus</a></p>
@@ -530,7 +532,8 @@
 
         const products = SITE.products.slice(0, 3).map((p, i) => {
           const img = tx(p, "img");
-          const media = img ? `<img src="${esc(img)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
+          const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260705" : "") : "";
+          const media = img ? `<img src="${esc(imgv)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
           const badge = tx(p, "badge");
           const cfa = LANG === "fr" && p.cfa ? `<span class="cfa">${esc(p.cfa)}</span>` : "";
           const url = LANG === "fr" ? p.url_fr || p.url_en : p.url_en || p.url_fr;

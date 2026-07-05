@@ -20,7 +20,7 @@ var EBOOK = {"slug": "creer-ma-routine", "img_fr": "assets/creer-ma-routine-fr.w
     document.getElementById("priceCfa").textContent = cfa;
     document.getElementById("barCfa").textContent = cfa;
     var cov = document.getElementById("cover");
-    if (cov){ var src = T(EBOOK,"img"); if(src){ cov.setAttribute("src", ab(src)); } }
+    if (cov){ var src = T(EBOOK,"img"); if(src){ var _cs = ab(src); cov.setAttribute("src", _cs + (_cs.indexOf("?")<0?"?v=20260705":"")); } }
     var suf = LANG==="en" ? "-en" : "";
     var pi = document.getElementById("prevInside");
     var pd = document.getElementById("prevDetail");

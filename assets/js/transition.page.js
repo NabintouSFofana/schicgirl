@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "transition", "img_fr": "assets/transition-fr.png", "img_en": "assets/transition-en.png", "url_fr": "https://selar.com/transition-fr", "url_en": "https://selar.com/transition-en", "price_fr": "7€", "price_en": "$7", "price_cfa": "≈ 4 500 FCFA", "cta_fr": "Réussir ma transition →", "cta_en": "Nail my transition →"};
+var EBOOK = {"slug": "transition", "img_fr": "assets/transition-fr.webp", "img_en": "assets/transition-en.webp", "url_fr": "https://selar.com/transition-fr", "url_en": "https://selar.com/transition-en", "price_fr": "7€", "price_en": "$7", "price_cfa": "≈ 4 500 FCFA", "cta_fr": "Réussir ma transition →", "cta_en": "Nail my transition →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }
@@ -21,7 +21,7 @@ var EBOOK = {"slug": "transition", "img_fr": "assets/transition-fr.png", "img_en
     document.getElementById("barCfa").textContent = cfa;
     // cover per language
     var cov = document.getElementById("cover");
-    if (cov){ var src = T(EBOOK,"img"); if(src){ cov.setAttribute("src", ab(src)); } }
+    if (cov){ var src = T(EBOOK,"img"); if(src){ var _cs = ab(src); cov.setAttribute("src", _cs + (_cs.indexOf("?")<0?"?v=20260705":"")); } }
     // interior previews per language
     var suf = LANG==="en" ? "-en" : "";
     var pi = document.getElementById("prevInside");
