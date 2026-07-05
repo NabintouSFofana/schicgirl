@@ -66,3 +66,6 @@ visits-export*.json
 # NOTE: amazon-data.json is NOT here on purpose — it's the published
 # product catalog that the public Amazon page loads at runtime.
 # Track it in git so the live site has products.
+
+# ebook/freebie backup artifacts
+*bak
