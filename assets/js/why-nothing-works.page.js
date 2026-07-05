@@ -20,7 +20,7 @@ var EBOOK = {"slug": "why-nothing-works", "img_fr": "assets/why-nothing-works-fr
     document.getElementById("priceCfa").textContent = cfa;
     document.getElementById("barCfa").textContent = cfa;
     var cov = document.getElementById("cover");
-    if (cov){ var src = T(EBOOK,"img"); if(src){ var _cs = ab(src); cov.setAttribute("src", _cs + (_cs.indexOf("?")<0?"?v=20260705":"")); } }
+    if (cov){ var src = T(EBOOK,"img"); if(src){ var _cs = ab(src); cov.setAttribute("src", _cs + (_cs.indexOf("?")<0?"?v=20260705b":"")); } }
     var suf = LANG==="en" ? "-en" : "";
     var pi = document.getElementById("prevInside");
     var pd = document.getElementById("prevDetail");
