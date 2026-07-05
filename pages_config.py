@@ -83,7 +83,7 @@ PAGES = [
 
   {"src": "why-nothing-works.html", "slug_fr": "pourquoi-rien-ne-fonctionne", "slug_en": "why-nothing-works",
    "ebook": _ebook("assets/why-nothing-works-fr.webp", "assets/why-nothing-works-en.webp", "https://selar.com/Pourquoi_Rien_Ne_Fonctionne", "https://selar.com/Why_Nothing_Works",
-                   "17€", "$18", "≈ 11 000 FCFA", "Obtenir le guide →", "Get the guide →", "17.00", "18.00", "why-nothing-works"),
+                   "12€", "$13", "≈ 8 000 FCFA", "Obtenir le guide →", "Get the guide →", "12.00", "13.00", "why-nothing-works"),
    "name_fr": "Pourquoi Rien Ne Fonctionne", "name_en": "Why Nothing Works", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Pourquoi Rien Ne Fonctionne — Le Système Diagnostic Cheveux Crépus Type 4 | Schicgirl",
    "title_en": "Why Nothing Works — The Diagnosis-First System for Type 4 Coily Hair | Schicgirl",
@@ -92,7 +92,7 @@ PAGES = [
 
   {"src": "creer-ma-routine.html", "slug_fr": "creer-ma-routine-capillaire", "slug_en": "build-my-hair-routine",
    "ebook": _ebook("assets/creer-ma-routine-fr.webp", "assets/creer-ma-routine-en.webp", "https://selar.com/Comment_creer_ma_routine_capillaire", "https://selar.com/How_to_Build_My_Hair_Routine",
-                   "9€", "$10", "≈ 6 000 FCFA", "Créer ma routine →", "Build my routine →", "9.00", "10.00", "creer-ma-routine"),
+                   "19€", "$20", "≈ 12 500 FCFA", "Créer ma routine →", "Build my routine →", "19.00", "20.00", "creer-ma-routine"),
    "name_fr": "Comment créer ma routine capillaire", "name_en": "How to Build My Hair Routine", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Comment Créer Ma Routine Capillaire — Guide Routine Cheveux Crépus Type 4 | Schicgirl",
    "title_en": "How to Build My Hair Routine — The Type 4 Coily Hair Routine Guide | Schicgirl",
