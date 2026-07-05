@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "creer-ma-routine", "img_fr": "assets/creer-ma-routine-fr.png", "img_en": "assets/creer-ma-routine-en.png", "url_fr": "https://selar.com/Comment_creer_ma_routine_capillaire", "url_en": "https://selar.com/How_to_Build_My_Hair_Routine", "price_fr": "9€", "price_en": "$10", "price_cfa": "≈ 6 000 FCFA", "cta_fr": "Créer ma routine →", "cta_en": "Build my routine →"};
+var EBOOK = {"slug": "creer-ma-routine", "img_fr": "assets/creer-ma-routine-fr.webp", "img_en": "assets/creer-ma-routine-en.webp", "url_fr": "https://selar.com/Comment_creer_ma_routine_capillaire", "url_en": "https://selar.com/How_to_Build_My_Hair_Routine", "price_fr": "9€", "price_en": "$10", "price_cfa": "≈ 6 000 FCFA", "cta_fr": "Créer ma routine →", "cta_en": "Build my routine →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }

@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "why-nothing-works", "img_fr": "assets/why-nothing-works-fr.png", "img_en": "assets/why-nothing-works-en.png", "url_fr": "https://selar.com/Pourquoi_Rien_Ne_Fonctionne", "url_en": "https://selar.com/Why_Nothing_Works", "price_fr": "17€", "price_en": "$18", "price_cfa": "≈ 11 000 FCFA", "cta_fr": "Obtenir le guide →", "cta_en": "Get the guide →"};
+var EBOOK = {"slug": "why-nothing-works", "img_fr": "assets/why-nothing-works-fr.webp", "img_en": "assets/why-nothing-works-en.webp", "url_fr": "https://selar.com/Pourquoi_Rien_Ne_Fonctionne", "url_en": "https://selar.com/Why_Nothing_Works", "price_fr": "17€", "price_en": "$18", "price_cfa": "≈ 11 000 FCFA", "cta_fr": "Obtenir le guide →", "cta_en": "Get the guide →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }
