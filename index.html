@@ -35,10 +35,10 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/fav-logo-48.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-logo.png" />
     <title>Schicgirl — Cheveux Crépus Type 4 : Guides, Routines &amp; Produits</title>
     <meta name="author" content="Schicgirl" />
     <meta name="copyright" content="© 2024–2026 Schicgirl. All rights reserved." />
@@ -366,6 +366,7 @@
     
     
     
+    
 
     <div class="sg-consent" id="sgConsent" role="region" aria-label="Consentement aux cookies" hidden>
       <p>On utilise des cookies pour mesurer l'audience (Google Analytics) et afficher des publicités (Google AdSense). <a href="/fr/confidentialite/">En savoir plus</a></p>
@@ -535,6 +536,7 @@
           const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260705" : "") : "";
           const media = img ? `<img src="${esc(imgv)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
           const badge = tx(p, "badge");
+          const desc = tx(p, "desc");
           const cfa = LANG === "fr" && p.cfa ? `<span class="cfa">${esc(p.cfa)}</span>` : "";
           const url = LANG === "fr" ? p.url_fr || p.url_en : p.url_en || p.url_fr;
           const feat = (i % 4 === 0) ? " feat" : "";
@@ -543,6 +545,7 @@
               <div class="ss-product-media">${media}${badge ? `<span class="ss-product-badge">${esc(badge)}</span>` : ""}</div>
               <div class="ss-product-body">
                 <div class="ss-product-title">${esc(tx(p, "title"))}</div>
+                ${desc ? `<div class="ss-product-desc">${esc(desc)}</div>` : ""}
                 <div class="ss-product-foot">
                   <div class="ss-product-price"><span class="amt">${esc(tx(p, "price"))}</span>${cfa}</div>
                 </div>
