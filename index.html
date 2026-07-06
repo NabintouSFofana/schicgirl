@@ -546,7 +546,7 @@
             <span class="ss-free-btn">${esc(tx(f, "cta"))} ↓</span>
           </a>`;
 
-        const products = SITE.products.slice(0, 5).map((p, i) => {
+        const products = SITE.products.slice(0, 3).map((p, i) => {
           const img = tx(p, "img");
           const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260705b" : "") : "";
           const media = img ? `<img src="${esc(imgv)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
