@@ -1,0 +1,98 @@
+/* SCHICGIRL — Le Studio Premium : courses layer · © 2024–2026 Schicgirl. */
+
+/* ── course list ── */
+.crs-pw .crs-pt{font-size:13px;font-weight:600;color:var(--ink,#3B2A20);margin-bottom:8px}
+.crs-part{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#a06d28;margin:22px 2px 8px;display:flex;align-items:center;gap:10px}
+.crs-part::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(201,147,74,.45),transparent)}
+.crs-mod{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid #e6dccb;
+  border-radius:13px;padding:12px 14px;margin-bottom:8px;cursor:pointer;
+  transition:transform .15s,box-shadow .15s,border-color .15s}
+.crs-mod:hover{transform:translateY(-1px);border-color:rgba(201,147,74,.55);
+  box-shadow:0 6px 18px -8px rgba(60,38,24,.25)}
+.crs-mod .num{flex:0 0 26px;height:26px;border-radius:50%;background:rgba(201,147,74,.12);
+  color:#a06d28;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.crs-mod .ttl{flex:1;font-size:14px;font-weight:600;line-height:1.3}
+.crs-mod .ck{flex:0 0 22px;text-align:center;color:#7a9a4f;font-weight:700}
+.crs-mod.done{background:#fbf8f0;border-color:rgba(122,154,79,.4)}
+.crs-mod.done .num{background:rgba(122,154,79,.15);color:#7a9a4f}
+
+/* ── reader chrome ── */
+.crs-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.crs-where{font-size:12px;font-weight:600;color:#a06d28;letter-spacing:.06em}
+.btn.sm{padding:8px 14px;font-size:12.5px}
+.crs-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px;flex-wrap:wrap}
+.crs-kick{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:#a06d28;margin:0 0 10px}
+
+/* ── lesson content typography (scoped) ── */
+.crs .crs-body{padding:26px 26px 30px;line-height:1.68;font-size:15px}
+.crs .crs-body h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:27px;font-weight:600;
+  color:#3b2a20;line-height:1.15;margin:0 0 14px}
+.crs .crs-body h3,.crs .crs-body .section-h{font-size:16.5px;font-weight:700;color:#3b2a20;
+  margin:22px 0 8px;line-height:1.3}
+.crs .crs-body h4{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#a06d28;margin:20px 0 6px}
+.crs .crs-body p{margin:0 0 12px}
+.crs .crs-body ul,.crs .crs-body ol{margin:0 0 14px;padding-left:22px}
+.crs .crs-body li{margin-bottom:6px}
+.crs .crs-body .crs-kick{margin:0 0 6px}
+.crs .crs-body .hook,.crs .crs-body .lead{font-family:"Cormorant Garamond",Georgia,serif;
+  font-style:italic;font-size:17.5px;line-height:1.6;color:#5d4a35;
+  border-left:3px solid rgba(201,147,74,.5);padding-left:14px;margin:0 0 16px}
+.crs .crs-body table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.crs .crs-body th{background:rgba(201,147,74,.12);color:#3b2a20;font-weight:700;text-align:left;
+  padding:8px 10px;border:1px solid #e6dccb}
+.crs .crs-body td{padding:8px 10px;border:1px solid #e6dccb;vertical-align:top}
+
+/* boxes (wnw: box insight/tip/recap + bx · recipes: box/tip) */
+.crs .crs-body .box,.crs .crs-body .bx,.crs .crs-body .tip{background:#fbf6ec;
+  border:1.5px solid rgba(201,147,74,.35);border-radius:12px;padding:14px 16px;margin:14px 0}
+.crs .crs-body .box.insight{background:#f6efdf;border-color:rgba(201,147,74,.55)}
+.crs .crs-body .box.recap{background:#f4f2e8;border-color:rgba(122,154,79,.4)}
+.crs .crs-body .box .lbl,.crs .crs-body .bx .lbl,.crs .crs-body .tip b:first-child,
+.crs .crs-body .lbl{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:#a06d28;margin-bottom:6px}
+.crs .crs-body .action{background:#fdf3e3;border:1.5px dashed rgba(201,147,74,.6);
+  border-radius:12px;padding:14px 16px;margin:14px 0}
+.crs .crs-body .check,.crs .crs-body .chk{margin:10px 0}
+
+/* recipes structure */
+.crs .crs-body .pour{font-style:italic;color:#6a5f52;margin-bottom:10px}
+.crs .crs-body .meta{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.crs .crs-body .meta span{background:rgba(201,147,74,.12);color:#7a5a24;border-radius:100px;
+  padding:5px 12px;font-size:12.5px;font-weight:600}
+.crs .crs-body .ingr{list-style:none;padding-left:2px}
+.crs .crs-body .ingr li{padding-left:20px;position:relative}
+.crs .crs-body .ingr li::before{content:"·";position:absolute;left:6px;color:#c9934a;font-weight:700}
+.crs .crs-body .steps{margin:12px 0;counter-reset:none}
+.crs .crs-body .steps .step{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;
+  background:transparent;border:0;padding:0}
+.crs .crs-body .steps .step .n{flex:0 0 24px;height:24px;border-radius:50%;background:#c9934a;
+  color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.crs .crs-body .steps .step p{margin:0}
+.crs .crs-body .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+@media(max-width:640px){.crs .crs-body .duo{grid-template-columns:1fr}}
+.crs .crs-body .duo>div{background:#fbf6ec;border:1.5px solid rgba(201,147,74,.3);
+  border-radius:12px;padding:12px 14px}
+
+/* worksheets / fill-in templates (render as visual guides) */
+.crs .crs-body .fl,.crs .crs-body .fline,.crs .crs-body .fill,.crs .crs-body .blank{
+  border-bottom:1.5px dotted rgba(160,109,40,.6);display:inline-block;min-width:80px;min-height:1em}
+.crs .crs-body .blank.w6{min-width:48px}.crs .crs-body .blank.w10{min-width:90px}
+.crs .crs-body .blank.w14{min-width:130px}
+.crs .crs-body .fillcard{background:#fbf6ec;border:1.5px solid rgba(201,147,74,.3);
+  border-radius:12px;padding:14px 16px;margin:12px 0}
+.crs .crs-body .tpl,.crs .crs-body .tpl-sec{margin:14px 0}
+.crs .crs-body .tpl-l{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#a06d28;margin:12px 0 4px;display:block}
+.crs .crs-body .tpl-q{font-weight:600;margin:12px 0 6px}
+.crs .crs-body .tpl-o{padding:6px 10px;border:1px solid #e6dccb;border-radius:9px;margin:4px 0;font-size:13.5px}
+.crs .crs-body .tpl-score{background:rgba(201,147,74,.1);border-radius:9px;padding:8px 12px;margin:8px 0}
+.crs .crs-body .gh{color:#6a5f52}
+.crs .crs-body .pgart{text-align:center;margin:14px 0;opacity:.85}
+.crs .crs-body .pgart-cap{text-align:center;font-style:italic;font-size:12.5px;color:#6a5f52;margin-top:4px}
+.crs .crs-body .clean{border:0}
+
+/* note under lesson */
+.crs-note{font-size:12px;color:#6a5f52;font-style:italic;text-align:center;margin-top:10px}
