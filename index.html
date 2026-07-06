@@ -452,6 +452,16 @@
             desc_fr: "Passe du défrisé au naturel en douceur, étape par étape.",
             desc_en: "Go from relaxed to natural smoothly, step by step.",
             price_fr: "7€", price_en: "$7", cfa: "≈ 4 500 FCFA", url_fr: "/fr/transition-capillaire/", url_en: "/en/hair-transition/" },
+          { id: "recettes", img_fr: "assets/recettes-fr.webp", img_en: "assets/recettes-en.webp", badge_fr: "Nouveau", badge_en: "New",
+            title_fr: "Mes Recettes Type 4", title_en: "My Type 4 Recipe Book",
+            desc_fr: "12 soins maison qui marchent — avec ce que tu as déjà en cuisine.",
+            desc_en: "12 homemade treatments that work — with what's already in your kitchen.",
+            price_fr: "9€", price_en: "$10", cfa: "≈ 6 000 FCFA", url_fr: "/fr/recettes-cheveux-crepus/", url_en: "/en/type-4-hair-recipes/" },
+          { id: "pack-suivi", img_fr: "assets/pack-suivi-fr.webp", img_en: "assets/pack-suivi-en.webp", badge_fr: "Petit prix", badge_en: "Budget",
+            title_fr: "Le Pack Suivi Type 4", title_en: "The Type 4 Tracker Pack",
+            desc_fr: "4 fiches à imprimer : wash day, pousse, produits, protéines-hydratation.",
+            desc_en: "4 printable sheets: wash day, growth, products, protein-moisture.",
+            price_fr: "5€", price_en: "$6", cfa: "≈ 3 500 FCFA", url_fr: "/fr/pack-suivi-type-4/", url_en: "/en/type-4-tracker-pack/" },
         ],
         tools_label_fr: "Outils & Diagnostic", tools_label_en: "Tools & Diagnostic",
         tools: [
@@ -535,7 +545,7 @@
             <span class="ss-free-btn">${esc(tx(f, "cta"))} ↓</span>
           </a>`;
 
-        const products = SITE.products.slice(0, 3).map((p, i) => {
+        const products = SITE.products.slice(0, 5).map((p, i) => {
           const img = tx(p, "img");
           const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260705b" : "") : "";
           const media = img ? `<img src="${esc(imgv)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
@@ -543,7 +553,7 @@
           const desc = tx(p, "desc");
           const cfa = LANG === "fr" && p.cfa ? `<span class="cfa">${esc(p.cfa)}</span>` : "";
           const url = LANG === "fr" ? p.url_fr || p.url_en : p.url_en || p.url_fr;
-          const feat = (i % 4 === 0) ? " feat" : "";
+          const feat = (i === 0) ? " feat" : "";
           return `
             <a class="ss-product${feat}" href="${esc(safeUrl(url))}" onclick="track('product-${esc(p.id)}')">
               <div class="ss-product-media">${media}${badge ? `<span class="ss-product-badge">${esc(badge)}</span>` : ""}</div>
