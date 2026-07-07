@@ -28,9 +28,15 @@ function crsData(c,cb,tries){var k=c.file+'-'+(L==='fr'?'fr':'en');tries=tries||
  fetch('assets/courses/'+k+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()})
  .then(function(d){CRS_CACHE[k]=d;cb(d)})
  .catch(function(){
-  if(tries<3)return setTimeout(function(){crsData(c,cb,tries+1)},400*(tries+1));
+  if(tries<4)return setTimeout(function(){crsData(c,cb,tries+1)},500*(tries+1));
   var el=document.getElementById('crsbody');
-  if(el)el.innerHTML='<div class="card">'+t('Could not load this course. Check your connection, then reload the page.','Impossible de charger ce cours. Vérifie ta connexion, puis recharge la page.')+'</div>'})}
+  if(el)el.innerHTML='<div class="card"><p style="margin:0 0 12px">'
+   +t('Could not load this course. Check your connection.','Impossible de charger ce cours. Vérifie ta connexion.')
+   +'</p><button class="btn" onclick="crsRetry(\''+c.id+'\')">'+t('Try again','Réessayer')+' ↻</button></div>'})}
+function crsRetry(cid){var c=crsById(cid);var el=document.getElementById('crsbody');
+ if(el)el.innerHTML='<div class="card">'+t('Loading…','Chargement…')+'</div>';
+ crsRender(c)}
+window.crsRetry=crsRetry;
 function crsDone(c){return S.courses[c.id]||{}}
 function crsRender(c){crsData(c,function(d){var el=document.getElementById('crsbody');if(!el)return;
  var open=CRS_OPEN[c.id];
