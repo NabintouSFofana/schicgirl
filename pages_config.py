@@ -117,6 +117,15 @@ PAGES = [
    "desc_fr": "4 fiches de suivi imprimables pour cheveux crépus Type 4 : jour de lavage, pousse 12 mois, inventaire produits, équilibre protéines-hydratation.",
    "desc_en": "4 printable tracker sheets for Type 4 coily hair: wash day, 12-month growth log, product inventory, protein-moisture balance."},
 
+  {"src": "le-studio-premium.html", "slug_fr": "le-studio-premium", "slug_en": "premium-studio",
+   "ebook": _ebook("assets/studio-premium-fr.webp", "assets/studio-premium-en.webp", "https://selar.com/studio_premium", "https://selar.com/studio_premium",
+                   "29€", "$32", "≈ 19 000 FCFA", "Débloquer mon Studio Premium →", "Unlock my Premium Studio →", "29.00", "32.00", "studio-premium"),
+   "name_fr": "Le Studio Premium", "name_en": "The Premium Studio", "cat_fr": "Ebooks", "cat_en": "Ebooks",
+   "title_fr": "Le Studio Premium — L'App Type 4 + 3 Guides Complets en Cours | Schicgirl",
+   "title_en": "The Premium Studio — The Type 4 App + 3 Full Guides as Courses | Schicgirl",
+   "desc_fr": "L'app interactive Type 4 + les 3 guides Schicgirl en cours interactifs : 76 leçons FR/EN, progression validée leçon par leçon, sauvegarde cloud, accès à vie.",
+   "desc_en": "The interactive Type 4 app + the 3 Schicgirl guides as interactive courses: 76 lessons FR/EN, lesson-by-lesson validation, cloud backup, lifetime access."},
+
   {"src": "about.html", "slug_fr": "a-propos", "slug_en": "about",
    "name_fr": "À Propos", "name_en": "About", "cat_fr": "À Propos", "cat_en": "About",
    "title_fr": "À Propos de Schicgirl — Cheveux Crépus Type 4 Simplifiés | Schicgirl",

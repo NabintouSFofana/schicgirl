@@ -248,6 +248,14 @@ const Q = {
       en:[{label:"Healthy, no visible split ends",value:"healthy"},{label:"A few splits, manageable",value:"some"},{label:"Many splits, transparent ends",value:"bad"},{label:"Ends crumbling or breaking on their own",value:"severe"}]
     }
   },
+  ask_trimFrequency:{
+    fr:"À quand remonte ta dernière coupe d'entretien (juste les pointes, pas un changement de style) ?\n\nUne fourche non coupée continue de remonter le long de la fibre — c'est l'une des causes silencieuses de casse les plus sous-estimées.",
+    en:"When was your last maintenance trim (just the ends, not a style change)?\n\nAn uncut split end keeps travelling up the hair shaft — it's one of the most underestimated silent causes of breakage.",
+    replies:{
+      fr:[{label:"Il y a moins de 3 mois",value:"recent"},{label:"Il y a 3 à 6 mois",value:"moderate"},{label:"Plus de 6 mois",value:"overdue"},{label:"Je ne coupe jamais mes pointes",value:"never"}],
+      en:[{label:"Less than 3 months ago",value:"recent"},{label:"3 to 6 months ago",value:"moderate"},{label:"More than 6 months ago",value:"overdue"},{label:"I never trim my ends",value:"never"}]
+    }
+  },
   ask_porosity:{
     fr:"Test de porosité — mouille une mèche propre à l'eau pure et observe :\n\n→ L'eau glisse et reste en surface = porosité faible\n→ Absorbée normalement = porosité normale\n→ Aspirée immédiatement + sèche vite = porosité élevée",
     en:"Porosity test — wet a clean strand with plain water and observe:\n\n→ Water beads and stays on the surface = low porosity\n→ Absorbed normally = normal porosity\n→ Absorbed immediately + dries quickly = high porosity",
@@ -272,6 +280,14 @@ const Q = {
       en:[{label:"Healthy, no particular issues",value:"normal"},{label:"Dry, tight or flaking",value:"dry"},{label:"Oily, gets greasy quickly",value:"oily"},{label:"Irritated, sensitive, red or painful",value:"irritated"},{label:"Mixed depending on area",value:"mixed"}]
     }
   },
+  ask_scalpSensitivity:{
+    fr:"As-tu déjà eu une réaction allergique, des démangeaisons inhabituelles ou des picotements avec certains produits capillaires ?",
+    en:"Have you ever had an allergic reaction, unusual itching or tingling with certain hair products?",
+    replies:{
+      fr:[{label:"Oui, réactions connues à certains ingrédients",value:"known_allergy"},{label:"Parfois, sans savoir pourquoi",value:"unsure_reaction"},{label:"Non, jamais",value:"none"}],
+      en:[{label:"Yes, known reactions to certain ingredients",value:"known_allergy"},{label:"Sometimes, without knowing why",value:"unsure_reaction"},{label:"No, never",value:"none"}]
+    }
+  },
   ask_dandruff:{
     fr:"As-tu des pellicules ou des squames visibles sur le cuir chevelu ?",
     en:"Do you have visible dandruff or flakes on your scalp?",
@@ -288,6 +304,14 @@ const Q = {
       en:[{label:"Only 1 to 2 days",value:"fast"},{label:"3 to 5 days",value:"medium"},{label:"1 week or more",value:"slow"},{label:"It almost never produces sebum",value:"very_slow"}]
     }
   },
+  ask_scalpMassage:{
+    fr:"Masses-tu régulièrement ton cuir chevelu pour stimuler la circulation ?",
+    en:"Do you regularly massage your scalp to stimulate circulation?",
+    replies:{
+      fr:[{label:"Oui, plusieurs fois par semaine",value:"regular"},{label:"De temps en temps",value:"occasional"},{label:"Jamais ou presque",value:"never"}],
+      en:[{label:"Yes, several times a week",value:"regular"},{label:"Occasionally",value:"occasional"},{label:"Rarely or never",value:"never"}]
+    }
+  },
   ask_styles:{
     fr:"Quel type de coiffure portes-tu le plus souvent au quotidien ?",
     en:"What type of hairstyle do you most often wear day-to-day?",
@@ -302,6 +326,14 @@ const Q = {
     replies:{
       fr:[{label:"Sur cheveux mouillés + produit, en sections",value:"gentle"},{label:"Sur cheveux humides + produit, sans sections",value:"moderate"},{label:"Parfois à sec ou sans produit",value:"sometimes_dry"},{label:"Souvent à sec ou au peigne fin",value:"rough"},{label:"Je ne sais pas vraiment comment faire",value:"unsure"}],
       en:[{label:"On wet hair + product, in sections",value:"gentle"},{label:"On damp hair + product, no sections",value:"moderate"},{label:"Sometimes dry or without product",value:"sometimes_dry"},{label:"Often dry or with a fine-tooth comb",value:"rough"},{label:"I'm not really sure how to do it",value:"unsure"}]
+    }
+  },
+  ask_protectiveDuration:{
+    fr:"Quand tu portes une coiffure protectrice (vanilles, tresses, box braids…), combien de temps la gardes-tu avant de la refaire ?\n\nUne coiffure gardée trop longtemps crée de la tension aux racines, du feutrage et une accumulation invisible sous les nattes.",
+    en:"When you wear a protective style (twists, braids, box braids…), how long do you keep it before redoing it?\n\nA style worn too long creates root tension, matting and hidden buildup under the braids.",
+    replies:{
+      fr:[{label:"1 à 2 semaines",value:"short"},{label:"3 à 4 semaines",value:"medium"},{label:"5 à 8 semaines",value:"long"},{label:"Plus de 8 semaines",value:"too_long"},{label:"Je ne porte pas de coiffures protectrices",value:"na"}],
+      en:[{label:"1 to 2 weeks",value:"short"},{label:"3 to 4 weeks",value:"medium"},{label:"5 to 8 weeks",value:"long"},{label:"More than 8 weeks",value:"too_long"},{label:"I don't wear protective styles",value:"na"}]
     }
   },
   ask_accessories:{
@@ -326,6 +358,30 @@ const Q = {
     replies:{
       fr:[{label:"Légers, souples et bien hydratés",value:"clean"},{label:"Lourds ou comme recouverts d'un film",value:"heavy"},{label:"Encore secs et rêches malgré le soin",value:"dry"},{label:"L'hydratation tient moins de 24 heures",value:"no_retention"}],
       en:[{label:"Light, supple and well moisturised",value:"clean"},{label:"Heavy or coated with a film",value:"heavy"},{label:"Still dry and rough despite the treatment",value:"dry"},{label:"Moisture lasts less than 24 hours",value:"no_retention"}]
+    }
+  },
+  ask_ingredientAwareness:{
+    fr:"Regardes-tu la liste d'ingrédients de tes produits — alcools asséchants, silicones lourds, sulfates agressifs ?",
+    en:"Do you check the ingredient list of your products — drying alcohols, heavy silicones, harsh sulphates?",
+    replies:{
+      fr:[{label:"Oui, systématiquement",value:"always"},{label:"Parfois, sans être experte",value:"sometimes"},{label:"Non, je ne sais pas quoi chercher",value:"never"}],
+      en:[{label:"Yes, systematically",value:"always"},{label:"Sometimes, but not an expert",value:"sometimes"},{label:"No, I don't know what to look for",value:"never"}]
+    }
+  },
+  ask_deepCondFrequency:{
+    fr:"En dehors de ton après-shampooing habituel, à quelle fréquence fais-tu un vrai masque ou soin profond (pose de 20 min ou plus) ?",
+    en:"Aside from your regular conditioner, how often do you do a real deep-conditioning mask or treatment (20+ minutes on)?",
+    replies:{
+      fr:[{label:"Chaque semaine",value:"weekly"},{label:"Toutes les 2 à 3 semaines",value:"biweekly"},{label:"Une fois par mois",value:"monthly"},{label:"Presque jamais",value:"rare"}],
+      en:[{label:"Every week",value:"weekly"},{label:"Every 2 to 3 weeks",value:"biweekly"},{label:"Once a month",value:"monthly"},{label:"Almost never",value:"rare"}]
+    }
+  },
+  ask_sunChlorine:{
+    fr:"Tes cheveux sont-ils souvent exposés au soleil direct, au chlore de piscine ou à l'eau de mer ?",
+    en:"Is your hair often exposed to direct sun, pool chlorine or sea water?",
+    replies:{
+      fr:[{label:"Oui, régulièrement, sans protection",value:"frequent_unprotected"},{label:"Oui, mais je protège mes cheveux",value:"frequent_protected"},{label:"Rarement",value:"rare"},{label:"Jamais",value:"never"}],
+      en:[{label:"Yes, regularly, unprotected",value:"frequent_unprotected"},{label:"Yes, but I protect my hair",value:"frequent_protected"},{label:"Rarely",value:"rare"},{label:"Never",value:"never"}]
     }
   },
   ask_heat:{
@@ -384,6 +440,22 @@ const Q = {
       en:[{label:"Yes — biotin, iron, zinc or other",value:"yes"},{label:"Yes — but I'm not sure if they're right for me",value:"unsure"},{label:"No supplements",value:"none"},{label:"I stopped — no visible results",value:"stopped"}]
     }
   },
+  ask_pastRoutine:{
+    fr:"As-tu déjà eu une routine ou un produit qui fonctionnait bien... puis qui a soudainement arrêté de marcher ?",
+    en:"Have you ever had a routine or product that worked well... then suddenly stopped working?",
+    replies:{
+      fr:[{label:"Oui, plusieurs fois",value:"often_stopped"},{label:"Oui, une fois",value:"once_stopped"},{label:"Non, jamais vécu ça",value:"never"},{label:"Je n'ai jamais eu de routine qui marchait",value:"never_worked"}],
+      en:[{label:"Yes, several times",value:"often_stopped"},{label:"Yes, once",value:"once_stopped"},{label:"No, never happened to me",value:"never"},{label:"I've never had a routine that worked",value:"never_worked"}]
+    }
+  },
+  ask_climateChange:{
+    fr:"As-tu vécu un changement de climat ou de saison récemment (déménagement, arrivée de l'hiver, saison sèche/humide) sans ajuster ta routine ?",
+    en:"Have you experienced a recent climate or seasonal change (move, winter arriving, dry/humid season) without adjusting your routine?",
+    replies:{
+      fr:[{label:"Oui, et je n'ai rien changé",value:"changed_no_adjust"},{label:"Oui, et j'ai déjà ajusté",value:"changed_adjusted"},{label:"Non, climat stable",value:"stable"}],
+      en:[{label:"Yes, and I haven't changed anything",value:"changed_no_adjust"},{label:"Yes, and I already adjusted",value:"changed_adjusted"},{label:"No, stable climate",value:"stable"}]
+    }
+  },
   ask_goal:{
     fr:"Excellent. On approche de la fin. Quel est ton objectif prioritaire pour les 3 prochains mois ?",
     en:"Excellent. We're almost done. What is your priority goal for the next 3 months?",
@@ -422,11 +494,12 @@ const state={
   elasticity:"",hairLength:"",
   lastHydration:"",washFrequency:"",washMethod:"",waterHardness:"",
   routine:"",lco:"",proteinBalance:"",
-  breakage:"",splitEnds:"",porosity:"",heatDamage:"",
-  scalp:"",dandruff:"",scalpOiliness:"",
-  styles:"",detangling:"",accessories:"",
-  products:"",buildup:"",heat:"",heatProtectant:"",
+  breakage:"",splitEnds:"",trimFrequency:"",porosity:"",heatDamage:"",
+  scalp:"",scalpSensitivity:"",dandruff:"",scalpOiliness:"",scalpMassage:"",
+  styles:"",detangling:"",protectiveDuration:"",accessories:"",
+  products:"",ingredientAwareness:"",deepCondFrequency:"",buildup:"",heat:"",heatProtectant:"",sunChlorine:"",
   water:"",foodProtein:"",hormonal:"",stressSleep:"",supplements:"",
+  pastRoutine:"",climateChange:"",
   goal:"",timeAvailable:"",budget:"",
   score:0,profile:"",priority:"",offer:"",redFlags:[],conversation:[],lang:"fr"
 };
@@ -436,11 +509,12 @@ const STEPS=[
   "ask_problem","ask_texture","ask_subTexture","ask_thickness","ask_density","ask_elasticity","ask_hairLength",
   "ask_hydration","ask_wash","ask_washMethod","ask_waterHardness",
   "ask_routine","ask_lco","ask_proteinBalance",
-  "ask_breakage","ask_splitEnds","ask_porosity","ask_heatDamage",
-  "ask_scalp","ask_dandruff","ask_scalpOiliness",
-  "ask_styles","ask_detangling","ask_accessories",
-  "ask_products","ask_buildup","ask_heat","ask_heatProtectant",
+  "ask_breakage","ask_splitEnds","ask_trimFrequency","ask_porosity","ask_heatDamage",
+  "ask_scalp","ask_scalpSensitivity","ask_dandruff","ask_scalpOiliness","ask_scalpMassage",
+  "ask_styles","ask_detangling","ask_protectiveDuration","ask_accessories",
+  "ask_products","ask_ingredientAwareness","ask_deepCondFrequency","ask_buildup","ask_heat","ask_heatProtectant","ask_sunChlorine",
   "ask_water","ask_foodProtein","ask_hormonal","ask_stressSleep","ask_supplements",
+  "ask_pastRoutine","ask_climateChange",
   "ask_goal","ask_time","ask_budget","done"
 ];
 
@@ -631,7 +705,10 @@ async function handleReply(value,label=value){
       state.breakage=inp;setStep("ask_splitEnds");
       await botSay(qText("ask_splitEnds"));setReplies(qReplies("ask_splitEnds"));break;
     case "ask_splitEnds":
-      state.splitEnds=inp;setStep("ask_porosity");
+      state.splitEnds=inp;setStep("ask_trimFrequency");
+      await botSay(qText("ask_trimFrequency"));setReplies(qReplies("ask_trimFrequency"));break;
+    case "ask_trimFrequency":
+      state.trimFrequency=inp;setStep("ask_porosity");
       await botSay(qText("ask_porosity"));setReplies(qReplies("ask_porosity"));break;
     case "ask_porosity":
       state.porosity=inp;setStep("ask_heatDamage");
@@ -640,25 +717,40 @@ async function handleReply(value,label=value){
       state.heatDamage=inp;setStep("ask_scalp");
       await botSay(qText("ask_scalp"));setReplies(qReplies("ask_scalp"));break;
     case "ask_scalp":
-      state.scalp=inp;setStep("ask_dandruff");
+      state.scalp=inp;setStep("ask_scalpSensitivity");
+      await botSay(qText("ask_scalpSensitivity"));setReplies(qReplies("ask_scalpSensitivity"));break;
+    case "ask_scalpSensitivity":
+      state.scalpSensitivity=inp;setStep("ask_dandruff");
       await botSay(qText("ask_dandruff"));setReplies(qReplies("ask_dandruff"));break;
     case "ask_dandruff":
       state.dandruff=inp;setStep("ask_scalpOiliness");
       await botSay(qText("ask_scalpOiliness"));setReplies(qReplies("ask_scalpOiliness"));break;
     case "ask_scalpOiliness":
-      state.scalpOiliness=inp;setStep("ask_styles");
+      state.scalpOiliness=inp;setStep("ask_scalpMassage");
+      await botSay(qText("ask_scalpMassage"));setReplies(qReplies("ask_scalpMassage"));break;
+    case "ask_scalpMassage":
+      state.scalpMassage=inp;setStep("ask_styles");
       await botSay(qText("ask_styles"));setReplies(qReplies("ask_styles"));break;
     case "ask_styles":
       state.styles=inp;setStep("ask_detangling");
       await botSay(qText("ask_detangling"));setReplies(qReplies("ask_detangling"));break;
     case "ask_detangling":
-      state.detangling=inp;setStep("ask_accessories");
+      state.detangling=inp;setStep("ask_protectiveDuration");
+      await botSay(qText("ask_protectiveDuration"));setReplies(qReplies("ask_protectiveDuration"));break;
+    case "ask_protectiveDuration":
+      state.protectiveDuration=inp;setStep("ask_accessories");
       await botSay(qText("ask_accessories"));setReplies(qReplies("ask_accessories"));break;
     case "ask_accessories":
       state.accessories=inp;setStep("ask_products");
       await botSay(qText("ask_products"));setReplies(qReplies("ask_products"));break;
     case "ask_products":
-      state.products=inp;setStep("ask_buildup");
+      state.products=inp;setStep("ask_ingredientAwareness");
+      await botSay(qText("ask_ingredientAwareness"));setReplies(qReplies("ask_ingredientAwareness"));break;
+    case "ask_ingredientAwareness":
+      state.ingredientAwareness=inp;setStep("ask_deepCondFrequency");
+      await botSay(qText("ask_deepCondFrequency"));setReplies(qReplies("ask_deepCondFrequency"));break;
+    case "ask_deepCondFrequency":
+      state.deepCondFrequency=inp;setStep("ask_buildup");
       await botSay(qText("ask_buildup"));setReplies(qReplies("ask_buildup"));break;
     case "ask_buildup":
       state.buildup=inp;setStep("ask_heat");
@@ -667,7 +759,10 @@ async function handleReply(value,label=value){
       state.heat=inp;setStep("ask_heatProtectant");
       await botSay(qText("ask_heatProtectant"));setReplies(qReplies("ask_heatProtectant"));break;
     case "ask_heatProtectant":
-      state.heatProtectant=inp;setStep("ask_water");
+      state.heatProtectant=inp;setStep("ask_sunChlorine");
+      await botSay(qText("ask_sunChlorine"));setReplies(qReplies("ask_sunChlorine"));break;
+    case "ask_sunChlorine":
+      state.sunChlorine=inp;setStep("ask_water");
       await botSay(qText("ask_water"));setReplies(qReplies("ask_water"));break;
     case "ask_water":
       state.water=inp;setStep("ask_foodProtein");
@@ -682,7 +777,13 @@ async function handleReply(value,label=value){
       state.stressSleep=inp;setStep("ask_supplements");
       await botSay(qText("ask_supplements"));setReplies(qReplies("ask_supplements"));break;
     case "ask_supplements":
-      state.supplements=inp;setStep("ask_goal");
+      state.supplements=inp;setStep("ask_pastRoutine");
+      await botSay(qText("ask_pastRoutine"));setReplies(qReplies("ask_pastRoutine"));break;
+    case "ask_pastRoutine":
+      state.pastRoutine=inp;setStep("ask_climateChange");
+      await botSay(qText("ask_climateChange"));setReplies(qReplies("ask_climateChange"));break;
+    case "ask_climateChange":
+      state.climateChange=inp;setStep("ask_goal");
       await botSay(qText("ask_goal"));setReplies(qReplies("ask_goal"));break;
     case "ask_goal":
       state.goal=inp;setStep("ask_time");
@@ -798,24 +899,37 @@ function analyzeProfile(){
   if(state.breakage==="high"){score-=2;causes.push(LANG==="en"?"Heavy breakage — fibre weakened by dryness, protein deficiency or aggressive handling":"Casse abondante — fibre fragilisée par sécheresse, manque de protéines ou manipulation agressive");}
   else if(state.breakage==="medium"){score-=1;causes.push(LANG==="en"?"Moderate breakage to monitor":"Casse modérée à surveiller");}
   if(["bad","severe"].includes(state.splitEnds)){score-=1;causes.push(LANG==="en"?"Very damaged ends — micro-trim and intensive protection needed":"Pointes très abîmées — micro-coupe et protection intensive nécessaires");}
+  if(state.trimFrequency==="never"){score-=2;causes.push(LANG==="en"?"Ends never trimmed — split ends travel up the shaft and multiply breakage over time":"Pointes jamais coupées — les fourches remontent le long de la fibre et multiplient la casse dans le temps");}
+  else if(state.trimFrequency==="overdue"){score-=1;causes.push(LANG==="en"?"Trim overdue — damaged ends have had time to travel further up the strand":"Coupe en retard — les pointes abîmées ont eu le temps de remonter plus haut");}
   if(state.porosity==="high"){score-=1;causes.push(LANG==="en"?"High porosity — fast absorption but poor moisture retention":"Porosité élevée — absorption rapide mais rétention d'hydratation insuffisante");}
   if(["chemical","color"].includes(state.heatDamage)){score-=2;causes.push(LANG==="en"?"Chemical history — fibre structure altered, progressive reconstruction required":"Historique chimique — structure de la fibre altérée, reconstruction progressive indispensable");redFlags.push(LANG==="en"?"Chemical history: avoid any new chemical treatment. Strengthen the structure gradually with gentle protein treatments.":"Historique chimique : évite tout nouveau traitement chimique. Renforce la structure progressivement avec des soins protéinés doux.");}
   if(state.heatDamage==="heat"){score-=1;causes.push(LANG==="en"?"Heat damage accumulated — heat without protection weakens the cuticle":"Dommages thermiques accumulés");}
   if(state.elasticity==="low"){score-=2;causes.push(LANG==="en"?"Very low elasticity — sign of severe protein or deep hydration deficiency":"Élasticité très faible — signe de carence sévère");redFlags.push(LANG==="en"?"Low elasticity: start a protein + hydration plan over 4 to 6 weeks before any other goal.":"Élasticité faible : commence un plan protéines + hydratation sur 4 à 6 semaines avant tout autre objectif.");}
   if(state.scalp==="irritated"){score-=1;causes.push(LANG==="en"?"Irritated or inflamed scalp":"Cuir chevelu irrité ou inflammé");redFlags.push(LANG==="en"?"Persistent irritated scalp (intense itching, patches, pain, localised hair loss): consult a dermatologist.":"Cuir chevelu irrité persistant : consulte un dermatologue.");}
+  if(state.scalpSensitivity==="known_allergy"){score-=1;causes.push(LANG==="en"?"Known product reactions — some ingredients don't suit your scalp":"Réactions connues à certains produits — certains ingrédients ne conviennent pas à ton cuir chevelu");redFlags.push(LANG==="en"?"Known allergic reactions: always patch-test new products and check ingredient lists before use.":"Réactions allergiques connues : teste toujours un nouveau produit sur une petite zone avant application complète.");}
+  else if(state.scalpSensitivity==="unsure_reaction"){score-=1;causes.push(LANG==="en"?"Unexplained reactions to some products — likely a sensitivity to a specific ingredient not yet identified":"Réactions inexpliquées à certains produits — probable sensibilité à un ingrédient non identifié");}
   if(state.dandruff==="severe"){score-=1;causes.push(LANG==="en"?"Significant flaking — possibly seborrhoeic dermatitis":"Squames importantes — possiblement dermite séborrhéique");redFlags.push(LANG==="en"?"Thick flakes or crusts: may be seborrhoeic dermatitis requiring medical treatment.":"Squames épaisses ou croûtes : peut être une dermite séborrhéique.");}
+  if(state.scalpMassage==="never"){score-=1;causes.push(LANG==="en"?"No scalp stimulation — circulation to the follicle is not being supported":"Aucune stimulation du cuir chevelu — la circulation vers le follicule n'est pas soutenue");}
   if(state.styles==="tight"){score-=2;causes.push(LANG==="en"?"Very tight hairstyles — chronic traction on the follicle, risk of traction alopecia":"Coiffures trop serrées — risque d'alopécie de traction");redFlags.push(LANG==="en"?"Very tight styles: traction alopecia is irreversible once established. Stop tension styles immediately.":"Coiffures très serrées : l'alopécie de traction est irréversible une fois installée.");}
   if(["rough","sometimes_dry"].includes(state.detangling)){score-=2;causes.push(LANG==="en"?"Aggressive or dry detangling — leading cause of mechanical breakage in natural hair":"Démêlage agressif ou à sec — première cause de casse mécanique");}
+  if(state.protectiveDuration==="too_long"){score-=2;causes.push(LANG==="en"?"Protective styles worn far too long — root tension, matting and hidden buildup accumulate under braids":"Coiffures protectrices gardées bien trop longtemps — tension aux racines, feutrage et accumulation invisible sous les nattes");}
+  else if(state.protectiveDuration==="long"){score-=1;causes.push(LANG==="en"?"Protective styles worn a bit long — monitor roots and scalp comfort closely":"Coiffures protectrices gardées un peu longtemps — surveille de près les racines et le confort du cuir chevelu");}
   if(state.accessories==="none"){score-=1;causes.push(LANG==="en"?"No night protection — cotton absorbs moisture and causes friction all night":"Pas de protection nocturne");}
   if(state.accessories==="elastic"){score-=1;causes.push(LANG==="en"?"Metal elastics — create highly localised breakage points":"Élastiques avec métal");}
   if(state.heat==="often"){score-=2;causes.push(LANG==="en"?"Heat too frequent — cumulative thermal damage to keratin":"Chaleur trop fréquente");}
   if(state.heat!=="rare"&&state.heat!=="cool"&&state.heatProtectant!=="always"){score-=1;causes.push(LANG==="en"?"Heat used without systematic thermal protection":"Chaleur sans protection thermique systématique");}
   if(state.buildup==="no_retention"){score-=1;causes.push(LANG==="en"?"Very short moisture retention — porosity or sealing issue":"Rétention d'hydratation très courte");}
   if(state.buildup==="heavy"){score-=1;causes.push(LANG==="en"?"Product buildup — blocks absorption of subsequent treatments":"Accumulation de produits");}
+  if(state.ingredientAwareness==="never"){score-=1;causes.push(LANG==="en"?"No ingredient awareness — drying alcohols, heavy silicones or harsh sulphates may be undoing your efforts unnoticed":"Aucune vérification des ingrédients — alcools asséchants, silicones lourds ou sulfates agressifs peuvent saboter tes efforts sans que tu le voies");}
+  if(state.deepCondFrequency==="rare"){score-=2;causes.push(LANG==="en"?"Almost no real deep-conditioning treatments — the conditioner alone isn't enough to restore the fibre":"Presque aucun vrai soin profond — l'après-shampooing seul ne suffit pas à restaurer la fibre");}
+  else if(state.deepCondFrequency==="monthly"){score-=1;causes.push(LANG==="en"?"Deep-conditioning too infrequent for the current level of dryness or damage":"Soin profond trop espacé par rapport au niveau de sécheresse ou d'abîmement actuel");}
+  if(state.sunChlorine==="frequent_unprotected"){score-=1;causes.push(LANG==="en"?"Frequent unprotected sun/chlorine/salt-water exposure — UV and chlorine strip moisture and weaken the cuticle":"Exposition fréquente et non protégée au soleil/chlore/eau de mer — les UV et le chlore assèchent et affaiblissent la cuticule");}
   if(["low","poor"].includes(state.water)){score-=1;causes.push(LANG==="en"?"Insufficient internal hydration — hair reflects overall body hydration":"Hydratation interne insuffisante");}
   if(state.foodProtein==="rare"){score-=1;causes.push(LANG==="en"?"Insufficient dietary protein intake — keratin needs raw material":"Apport protéique alimentaire insuffisant");}
   if(["high","chronic"].includes(state.stressSleep)){score-=1;causes.push(LANG==="en"?"High stress or insufficient sleep — disrupts the hair cycle":"Stress élevé ou sommeil insuffisant");}
   if(["postpartum","hormonal_issue","menopause"].includes(state.hormonal)){score-=1;causes.push(LANG==="en"?"Hormonal imbalance — directly impacts the growth cycle and density":"Déséquilibre hormonal");redFlags.push(LANG==="en"?"Hormonal context: a medical consultation (gynaecologist, endocrinologist) can usefully complement hair care.":"Contexte hormonal : un bilan médical peut compléter utilement les soins capillaires.");}
+  if(state.climateChange==="changed_no_adjust"){score-=1;causes.push(LANG==="en"?"Recent climate/season change without adjusting the routine — products and frequency need recalibrating":"Changement climatique/saisonnier récent sans ajustement de routine — produits et fréquence à recalibrer");}
+  if(state.pastRoutine==="often_stopped"){causes.push(LANG==="en"?"A routine that worked before stopped working more than once — this is usually a sign of plateauing needs (fibre changes over time, seasons, or buildup), not a failed method":"Une routine qui marchait a cessé de fonctionner plusieurs fois — c'est souvent un signe que les besoins évoluent (fibre qui change, saisons, accumulation), pas un échec de méthode");}
   score=Math.max(1,score);
 
   const isEN=LANG==="en";
@@ -871,6 +985,11 @@ function buildCoachReading(){
   if(["random","unknown"].includes(state.lco)) p.push(isEN?"LCO not mastered: the application order changes everything. LCO (Leave-in → Cream → Oil) is the most effective method for natural hair. The oil seals in the hydration last.":"LCO non maîtrisée : L → C → O. L'huile en dernier scelle l'hydratation apportée.");
   if(state.accessories==="none") p.push(isEN?"No night protection: 7 to 8 hours of friction on cotton every night tears the cuticle, absorbs moisture and creates knots. A satin bonnet or pillowcase is the most cost-effective hair investment that exists.":"Absence de protection nocturne : un bonnet ou une taie satin est l'investissement capillaire le plus rentable qui existe.");
   if(state.hormonal==="postpartum") p.push(isEN?"Postpartum: telogen effluvium after childbirth is normal. It occurs between 2 and 6 months after birth due to the sudden drop in oestrogen. It stops on its own. Priority: zero tension on follicles.":"Post-partum : la chute télogène est normale. Elle s'arrête d'elle-même. Priorité : zéro tension sur les follicules.");
+  if(state.trimFrequency==="never"||state.trimFrequency==="overdue") p.push(isEN?"Trims: a split end never repairs itself — it travels up the shaft until it's cut, weakening more hair over time. A small micro-trim every 10 to 12 weeks protects far more length than it removes.":"Coupe des pointes : une fourche ne se répare jamais seule — elle remonte le long de la fibre jusqu'à être coupée, fragilisant toujours plus de cheveu. Une micro-coupe toutes les 10 à 12 semaines protège bien plus de longueur qu'elle n'en retire.");
+  if(state.ingredientAwareness==="never") p.push(isEN?"Ingredients: three families to watch for on labels — drying alcohols (alcohol denat, SD alcohol), non-water-soluble silicones (dimethicone without 'PEG' or 'PPG' prefix) that build up over time, and harsh sulphates (sodium lauryl sulfate) that strip natural oils. You don't need to memorise everything — just scan the first 5 ingredients.":"Ingrédients : trois familles à surveiller sur les étiquettes — alcools asséchants (alcohol denat, SD alcohol), silicones non hydrosolubles (dimethicone sans préfixe 'PEG' ou 'PPG') qui s'accumulent, et sulfates agressifs (sodium lauryl sulfate) qui décapent le sébum naturel. Pas besoin de tout mémoriser — regarde juste les 5 premiers ingrédients.");
+  if(state.protectiveDuration==="too_long"||state.protectiveDuration==="long") p.push(isEN?"Protective style duration: even the best protective style becomes counter-productive past 6 to 8 weeks — new growth mats at the base, tension builds at the roots, and product residue accumulates unseen. Set a redo reminder before you install the style.":"Durée des coiffures protectrices : même la meilleure coiffure protectrice devient contre-productive au-delà de 6 à 8 semaines — la repousse feutre à la base, la tension s'installe aux racines et les résidus s'accumulent sans que tu le voies. Programme un rappel avant même de l'installer.");
+  if(state.sunChlorine==="frequent_unprotected") p.push(isEN?"Sun & chlorine: UV rays oxidise the protein bonds in your hair and chlorine strips natural lipids, leaving the cuticle rough and porous. A pre-wet with fresh water before swimming, plus a leave-in or oil barrier, blocks most of the absorption.":"Soleil & chlore : les UV oxydent les liaisons protéiques du cheveu et le chlore décape les lipides naturels, laissant la cuticule rêche et poreuse. Mouiller les cheveux à l'eau claire avant la baignade, avec un leave-in ou une barrière d'huile, bloque une grande partie de l'absorption.");
+  if(state.pastRoutine==="often_stopped"||state.pastRoutine==="once_stopped") p.push(isEN?"When a routine 'stops working': this is rarely the product's fault. Hair porosity and needs shift with seasons, hormonal changes, length and even water source. When something stops working, first check what changed around it — climate, stress, water — before switching products entirely.":"Quand une routine « arrête de marcher » : ce n'est presque jamais la faute du produit. La porosité et les besoins du cheveu évoluent avec les saisons, les changements hormonaux, la longueur et même la source d'eau. Quand quelque chose arrête de fonctionner, vérifie d'abord ce qui a changé autour — climat, stress, eau — avant de tout changer.");
   return p.join("\n\n")||(isEN?"Your hair presents a balanced profile. Focus on consistency and observe over 4 to 6 weeks.":"Tes cheveux présentent un profil équilibré. Concentre-toi sur la régularité et observe sur 4 à 6 semaines.");
 }
 
@@ -895,6 +1014,10 @@ function buildRoutine(profile){
   const notes=[];
   if(state.waterHardness==="hard") notes.push(isEN?"💧 HARD WATER: add 1 tbsp of apple cider vinegar to 500 ml of water for your final rinse. Removes calcium deposits and closes the cuticle.":"💧 EAU CALCAIRE : ajoute 1 c.s. de vinaigre de cidre dans 500 ml d'eau pour ton rinçage final.");
   if(["none","elastic"].includes(state.accessories)) notes.push(isEN?"🌙 NIGHT: start tonight with a satin bonnet or pillowcase. Without it, all your treatments will be partially undone every night.":"🌙 NUIT : commence dès ce soir avec un bonnet ou une taie satin.");
+  if(state.trimFrequency==="never"||state.trimFrequency==="overdue") notes.push(isEN?"✂️ TRIM: book a micro-trim (1-2 cm of ends) in the next 2 weeks — this protects future length rather than costing it.":"✂️ COUPE : programme une micro-coupe (1 à 2 cm de pointes) dans les 2 prochaines semaines — cela protège la longueur future au lieu de la coûter.");
+  if(state.deepCondFrequency==="rare"||state.deepCondFrequency==="monthly") notes.push(isEN?"🧴 DEEP TREATMENT: add a real 20-30 min deep-conditioning mask at least every 2 weeks — your regular conditioner alone can't rebuild the fibre.":"🧴 SOIN PROFOND : ajoute un vrai masque de 20 à 30 min au moins toutes les 2 semaines — l'après-shampooing seul ne peut pas reconstruire la fibre.");
+  if(state.protectiveDuration==="too_long"||state.protectiveDuration==="long") notes.push(isEN?"🎀 PROTECTIVE STYLES: redo your style every 4 to 6 weeks maximum, and moisturise your scalp and lengths through the braids mid-way.":"🎀 COIFFURES PROTECTRICES : refais ta coiffure toutes les 4 à 6 semaines maximum, et hydrate le cuir chevelu et les longueurs à travers les nattes à mi-parcours.");
+  if(state.sunChlorine==="frequent_unprotected") notes.push(isEN?"☀️ SUN/CHLORINE: pre-wet hair with fresh water and apply a leave-in or oil barrier before swimming or long sun exposure.":"☀️ SOLEIL/CHLORE : mouille tes cheveux à l'eau claire et applique un leave-in ou une barrière d'huile avant la baignade ou une longue exposition au soleil.");
   if(notes.length) r+="\n\n"+(isEN?"📌 PERSONALISED NOTES FOR YOU":"📌 NOTES PERSONNALISÉES POUR TOI")+"\n"+notes.join("\n");
   return r;
 }

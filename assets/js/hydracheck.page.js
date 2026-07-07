@@ -55,10 +55,26 @@
           askOverHydration:
             "Tes cheveux deviennent-ils parfois mous, sans tenue ou trop souples après trop d'eau/soins ?",
           askEnds: "Comment sont tes pointes ?",
+          askScalpDryness:
+            "Et ton cuir chevelu — est-il sec ou a-t-il tendance à peler ?",
           askNight: "Protèges-tu tes cheveux la nuit ?",
           askRoutine: "Ta routine est-elle simple et régulière ?",
           askEmergency:
             "Actuellement, tes cheveux sont-ils en situation d'urgence : très secs, cassants, difficiles à coiffer ?",
+          askHumectant:
+            "Utilises-tu des produits à base de glycérine ou d'autres humectants — et ajustes-tu selon l'humidité de l'air ?\n\nLa glycérine attire l'eau de l'air quand il est humide, mais peut aspirer l'eau HORS de tes cheveux quand l'air est très sec.",
+          askDeepMask:
+            "En dehors de ton hydratation habituelle, à quelle fréquence fais-tu un vrai masque profond (pose de 20 min ou plus) ?",
+          askMoistureProtein:
+            "Quand tes cheveux sont mouillés, comment se sentent-ils ?",
+          askWaterTemp:
+            "À quelle température laves-tu et rinces-tu généralement tes cheveux ?",
+          askAlkalineStyling:
+            "Utilises-tu souvent des gels ou edge control à base d'alcool ou très alcalins pour coiffer ?",
+          askClimateShift:
+            "As-tu vécu un changement de climat ou de saison récemment (déménagement, hiver, saison sèche) sans ajuster ta routine ?",
+          askPastAttempt:
+            "As-tu déjà eu une méthode d'hydratation qui fonctionnait bien... puis qui a arrêté de marcher ?",
           askGoal: "Quel est ton objectif principal maintenant ?",
           diagIntro: (name) =>
             `${name}, ton diagnostic est prêt. Retiens ceci : hydrater ne veut pas dire saturer les cheveux de produits. Hydrater, c'est apporter l'eau, l'aider à rester, puis observer.`,
@@ -115,6 +131,10 @@
             endsSplit: "Fourchues / transparentes",
             endsOk: "Correctes",
             endsUnknown: "Je ne vérifie jamais",
+            scalpDryYes: "Oui, sec et qui tire",
+            scalpDryFlaky: "Oui, avec des petites peaux",
+            scalpDryNo: "Non, cuir chevelu confortable",
+            scalpDryOily: "Plutôt gras, pas sec",
             nightSatin: "Oui, bonnet/taie satin",
             nightSometimes: "Parfois",
             nightNo: "Non",
@@ -124,6 +144,30 @@
             emergYes: "Oui, urgence sécheresse",
             emergMed: "Un peu",
             emergNo: "Non",
+            humectAdjust: "Oui, j'ajuste selon l'humidité",
+            humectAlways: "Oui, mais toujours pareil",
+            humectNo: "Non, je n'utilise pas de glycérine",
+            humectUnknown: "Je ne sais pas ce que c'est",
+            deepMaskWeekly: "Chaque semaine",
+            deepMaskBiweekly: "Toutes les 2-3 semaines",
+            deepMaskMonthly: "Une fois par mois",
+            deepMaskRare: "Presque jamais",
+            moistMushy: "Mous, gonflés, presque gluants",
+            moistStrawy: "Raides, comme de la paille",
+            moistNormal: "Souples et normaux",
+            moistUnsure: "Je n'ai jamais fait attention",
+            tempHot: "Eau chaude",
+            tempWarm: "Eau tiède",
+            tempCool: "Eau fraîche/froide",
+            alkalineOften: "Oui, souvent",
+            alkalineSometimes: "Parfois",
+            alkalineNo: "Non, ou produits doux",
+            climateYesAdjust: "Oui, et j'ai déjà ajusté",
+            climateYesNoAdjust: "Oui, mais rien changé",
+            climateNo: "Non, climat stable",
+            pastYes: "Oui, plusieurs fois",
+            pastOnce: "Oui, une fois",
+            pastNever: "Non, jamais vécu ça",
             goalRet: "Garder l'hydratation plus longtemps",
             goalPor: "Comprendre ma porosité",
             goalBreak: "Stopper la casse",
@@ -186,6 +230,22 @@
               "La routine manque de cohérence. Une routine simple mais stable donne plus de résultats.",
             emergency:
               "Tes cheveux sont en urgence sécheresse : il faut revenir à l'essentiel, pas multiplier les produits.",
+            scalpDry:
+              "Ton cuir chevelu montre des signes de sécheresse séparés de tes longueurs — il a besoin de son propre soin hydratant, pas seulement tes pointes.",
+            humectMismatch:
+              "Tu utilises la glycérine sans l'ajuster au climat — en air très sec, elle peut aspirer l'eau hors de tes cheveux au lieu de l'attirer.",
+            rareDeepMask:
+              "Tu fais rarement un vrai masque profond — ton après-shampooing seul ne suffit pas à restaurer la fibre en profondeur.",
+            moistureMushy:
+              "Tes cheveux deviennent mous et gonflés au mouillé — signe possible d'un excès d'hydratation sans assez de protéines pour structurer la fibre.",
+            moistureStrawy:
+              "Tes cheveux sont raides comme de la paille au mouillé — signe possible d'un excès de protéines ou d'un manque d'hydratation profonde.",
+            hotWater:
+              "L'eau chaude soulève la cuticule et accélère la perte d'hydratation — un rinçage plus frais aide à la refermer.",
+            alkalineStyling:
+              "Les gels ou edge control très alcalins ou à base d'alcool assèchent la fibre à chaque coiffage.",
+            climateNoAdjust:
+              "Ta routine n'a pas été ajustée malgré un changement de climat récent — les besoins d'hydratation changent avec l'air ambiant.",
           },
           actions: {
             waterFirst:
@@ -199,6 +259,22 @@
               "Scelle mieux, protège les pointes et évite de laisser sécher entre les étapes.",
             ends: "Hydrate les pointes séparément, scelle-les et protège-les immédiatement.",
             night: "Bonnet, foulard ou taie satin chaque nuit.",
+            scalpDry:
+              "Masse un soin ou une huile légère directement sur le cuir chevelu, pas seulement les longueurs.",
+            humectMismatch:
+              "En air sec, réduis la glycérine pure ou utilise-la seulement en climat humide ou après avoir mouillé les cheveux.",
+            rareDeepMask:
+              "Ajoute un vrai masque de 20 à 30 min au moins toutes les 2 semaines.",
+            moistureMushy:
+              "Ajoute un soin protéiné léger pour rééquilibrer avant d'hydrater davantage.",
+            moistureStrawy:
+              "Réduis les protéines et augmente l'hydratation profonde pendant 2 à 3 semaines.",
+            hotWater:
+              "Lave à l'eau tiède et termine toujours par un rinçage frais ou froid.",
+            alkalineStyling:
+              "Choisis des gels/edge control sans alcool asséchant et limite la fréquence d'application près du cuir chevelu.",
+            climateNoAdjust:
+              "Ajuste ta fréquence d'hydratation et tes produits au climat actuel plutôt qu'à celui d'avant.",
           },
           profiles: {
             balanced: "Hydratation à équilibrer",
@@ -227,6 +303,7 @@
           planHighPor: `\n\n📌 Spécial forte porosité : ne laisse pas sécher entre les étapes, scelle mieux, insiste sur les pointes et la protection nocturne.`,
           planFine: `\n\n📌 Mèches fines : applique moins de produit, en couches fines. Trop riche = lourd mais pas forcément hydraté.`,
           planThick: `\n\n📌 Mèches épaisses : tu peux utiliser un peu plus de matière, surtout sur longueurs et pointes.`,
+          planPastAttempt: `\n\n📌 Quand une méthode « arrête de marcher » : ce n'est presque jamais la faute du produit. La porosité et les besoins évoluent avec les saisons, le climat, les hormones et même la source d'eau. Avant de tout changer, vérifie d'abord ce qui a changé autour de ta routine.`,
 
           /* 7-day emergency */
           emergency7: `Jour 1 : Évalue l'état réel — sec, chargé, abîmé ou trop mou.\nJour 2 : Si les cheveux sont lourds/ternes, fais un nettoyage doux ou clarifiant léger avant shampoing.\nJour 3 : Fais un vrai soin hydratant sur cheveux bien humidifiés.\nJour 4 : Scelle correctement, surtout les pointes.\nJour 5 : Protège immédiatement avec une coiffure simple et satin la nuit.\nJour 6 : Réduis la surcharge : eau + soin hydratant + scellage + protection.\nJour 7 : Observe : douceur, souplesse, pointes, lourdeur, casse.`,
@@ -273,10 +350,25 @@
           askOverHydration:
             "Does your hair sometimes go limp, floppy or lose definition after too much water/product?",
           askEnds: "How are your ends?",
+          askScalpDryness:
+            "And your scalp — is it dry or does it tend to flake?",
           askNight: "Do you protect your hair at night?",
           askRoutine: "Is your routine simple and consistent?",
           askEmergency:
             "Right now, is your hair in a dry emergency — very dry, brittle, hard to style?",
+          askHumectant:
+            "Do you use glycerin-based products or other humectants — and do you adjust them based on air humidity?\n\nGlycerin draws moisture from the air when it's humid, but can pull moisture OUT of your hair when the air is very dry.",
+          askDeepMask:
+            "Aside from your usual moisturising, how often do you do a real deep mask (20+ minutes on)?",
+          askMoistureProtein: "When your hair is wet, how does it feel?",
+          askWaterTemp:
+            "What water temperature do you usually use to wash and rinse your hair?",
+          askAlkalineStyling:
+            "Do you often use alcohol-based or highly alkaline gels/edge control to style your hair?",
+          askClimateShift:
+            "Have you experienced a recent climate or season change (move, winter, dry season) without adjusting your routine?",
+          askPastAttempt:
+            "Have you ever had a hydration method that worked well... then stopped working?",
           askGoal: "What is your main goal right now?",
           diagIntro: (name) =>
             `${name}, your diagnostic is ready. Remember: moisturising doesn't mean loading your hair with products. It means bringing in water, helping it stay, then observing.`,
@@ -333,6 +425,10 @@
             endsSplit: "Split / transparent",
             endsOk: "Fine",
             endsUnknown: "I never check",
+            scalpDryYes: "Yes, dry and tight",
+            scalpDryFlaky: "Yes, with small flakes",
+            scalpDryNo: "No, comfortable scalp",
+            scalpDryOily: "Oily rather than dry",
             nightSatin: "Yes, satin bonnet/pillowcase",
             nightSometimes: "Sometimes",
             nightNo: "No",
@@ -342,6 +438,30 @@
             emergYes: "Yes, dry emergency",
             emergMed: "A little",
             emergNo: "No",
+            humectAdjust: "Yes, I adjust based on humidity",
+            humectAlways: "Yes, but always the same way",
+            humectNo: "No, I don't use glycerin",
+            humectUnknown: "I don't know what that is",
+            deepMaskWeekly: "Every week",
+            deepMaskBiweekly: "Every 2–3 weeks",
+            deepMaskMonthly: "Once a month",
+            deepMaskRare: "Almost never",
+            moistMushy: "Limp, swollen, almost gummy",
+            moistStrawy: "Stiff, like straw",
+            moistNormal: "Soft and normal",
+            moistUnsure: "I've never paid attention",
+            tempHot: "Hot water",
+            tempWarm: "Warm water",
+            tempCool: "Cool/cold water",
+            alkalineOften: "Yes, often",
+            alkalineSometimes: "Sometimes",
+            alkalineNo: "No, or gentle products",
+            climateYesAdjust: "Yes, and I already adjusted",
+            climateYesNoAdjust: "Yes, but nothing changed",
+            climateNo: "No, stable climate",
+            pastYes: "Yes, several times",
+            pastOnce: "Yes, once",
+            pastNever: "No, never happened",
             goalRet: "Keep moisture longer",
             goalPor: "Understand my porosity",
             goalBreak: "Stop breakage",
@@ -404,6 +524,22 @@
               "Your routine lacks consistency. A simple but stable routine delivers more results than a complex one.",
             emergency:
               "Your hair is in a dry emergency: go back to basics, don't multiply products.",
+            scalpDry:
+              "Your scalp shows signs of dryness separate from your lengths — it needs its own moisturising care, not just your ends.",
+            humectMismatch:
+              "You use glycerin without adjusting for climate — in very dry air, it can pull moisture OUT of your hair instead of drawing it in.",
+            rareDeepMask:
+              "You rarely do a real deep mask — your regular conditioner alone isn't enough to restore the fibre deeply.",
+            moistureMushy:
+              "Your hair goes limp and swollen when wet — a possible sign of excess moisture without enough protein to structure the fibre.",
+            moistureStrawy:
+              "Your hair feels stiff like straw when wet — a possible sign of excess protein or a lack of deep hydration.",
+            hotWater:
+              "Hot water lifts the cuticle and speeds up moisture loss — a cooler rinse helps close it back down.",
+            alkalineStyling:
+              "Highly alkaline or alcohol-based gels/edge control dry out the fibre with every styling session.",
+            climateNoAdjust:
+              "Your routine hasn't been adjusted despite a recent climate change — hydration needs shift with the surrounding air.",
           },
           actions: {
             waterFirst:
@@ -417,6 +553,22 @@
               "Seal better, protect your ends and avoid letting hair dry between steps.",
             ends: "Moisturise ends separately, seal them and protect them immediately.",
             night: "Satin bonnet, scarf or pillowcase every night.",
+            scalpDry:
+              "Massage a light oil or treatment directly onto the scalp, not just the lengths.",
+            humectMismatch:
+              "In dry air, cut back on pure glycerin or use it only in humid climates or right after wetting your hair.",
+            rareDeepMask:
+              "Add a real 20-30 min deep-conditioning mask at least every 2 weeks.",
+            moistureMushy:
+              "Add a light protein treatment to rebalance before moisturising further.",
+            moistureStrawy:
+              "Cut back on protein and increase deep hydration for 2-3 weeks.",
+            hotWater:
+              "Wash with warm water and always finish with a cool or cold rinse.",
+            alkalineStyling:
+              "Choose gels/edge control without drying alcohol and limit how often you apply them near the scalp.",
+            climateNoAdjust:
+              "Adjust your moisturising frequency and products to your current climate, not the previous one.",
           },
           profiles: {
             balanced: "Hydration to balance",
@@ -445,6 +597,7 @@
           planHighPor: `\n\n📌 High porosity tip: don't let hair dry between steps, seal better, focus on ends and nightly protection.`,
           planFine: `\n\n📌 Fine strands: apply less product, in thin layers. Richer doesn't mean more hydrated.`,
           planThick: `\n\n📌 Thick strands: you can use slightly more product, especially on lengths and ends.`,
+          planPastAttempt: `\n\n📌 When a method "stops working": it's rarely the product's fault. Porosity and needs shift with seasons, climate, hormones and even water source. Before switching everything, check what changed around your routine first.`,
 
           /* 7-day emergency */
           emergency7: `Day 1: Assess the real state — dry, loaded, damaged or too limp.\nDay 2: If hair is heavy/dull, do a gentle or light clarifying cleanse before shampooing.\nDay 3: Do a real moisturising treatment on very damp hair.\nDay 4: Seal properly, especially the ends.\nDay 5: Protect immediately with a simple style and satin at night.\nDay 6: Reduce overload — water + moisturiser + sealant + protection.\nDay 7: Observe: softness, flexibility, ends, heaviness, breakage.`,
@@ -466,16 +619,24 @@
         hydrationBasis: "",
         oilOnly: "",
         seal: "",
+        humectant: "",
         heavyProducts: "",
+        alkalineStyling: "",
         buildup: "",
+        waterTemp: "",
         porosity: "",
         thickness: "",
+        moistureProtein: "",
         frequency: "",
+        deepMaskFreq: "",
         overHydration: "",
         ends: "",
+        scalpDryness: "",
         nightProtection: "",
         routine: "",
+        climateShift: "",
         emergency: "",
+        pastAttempt: "",
         goal: "",
         score: 0,
         profile: "",
@@ -490,16 +651,24 @@
         "hydrationBasis",
         "oilOnly",
         "seal",
+        "humectant",
         "heavyProducts",
+        "alkalineStyling",
         "buildup",
+        "waterTemp",
         "porosity",
         "thickness",
+        "moistureProtein",
         "frequency",
+        "deepMaskFreq",
         "overHydration",
         "ends",
+        "scalpDryness",
         "nightProtection",
         "routine",
+        "climateShift",
         "emergency",
+        "pastAttempt",
         "goal",
         "done",
       ];
@@ -742,6 +911,49 @@
           score -= 1;
           causeKeys.push("emergency");
         }
+        if (["dry", "flaky"].includes(state.scalpDryness)) {
+          score -= 1;
+          causeKeys.push("scalpDry");
+          actionKeys.push("scalpDry");
+        }
+        if (
+          state.humectant === "always" &&
+          ["hot_dry", "cold"].includes(state.climate)
+        ) {
+          score -= 1;
+          causeKeys.push("humectMismatch");
+          actionKeys.push("humectMismatch");
+        }
+        if (["rare", "monthly"].includes(state.deepMaskFreq)) {
+          score -= state.deepMaskFreq === "rare" ? 2 : 1;
+          causeKeys.push("rareDeepMask");
+          actionKeys.push("rareDeepMask");
+        }
+        if (state.moistureProtein === "mushy") {
+          score -= 1;
+          causeKeys.push("moistureMushy");
+          actionKeys.push("moistureMushy");
+        }
+        if (state.moistureProtein === "strawy") {
+          score -= 1;
+          causeKeys.push("moistureStrawy");
+          actionKeys.push("moistureStrawy");
+        }
+        if (state.waterTemp === "hot") {
+          score -= 1;
+          causeKeys.push("hotWater");
+          actionKeys.push("hotWater");
+        }
+        if (state.alkalineStyling === "often") {
+          score -= 1;
+          causeKeys.push("alkalineStyling");
+          actionKeys.push("alkalineStyling");
+        }
+        if (state.climateShift === "no_adjust") {
+          score -= 1;
+          causeKeys.push("climateNoAdjust");
+          actionKeys.push("climateNoAdjust");
+        }
         score = Math.max(1, score);
 
         // Determine profile key
@@ -774,6 +986,8 @@
         if (state.porosity === "high") text += L.planHighPor;
         if (state.thickness === "fine") text += L.planFine;
         if (state.thickness === "thick") text += L.planThick;
+        if (["often", "once"].includes(state.pastAttempt))
+          text += L.planPastAttempt;
         return text;
       }
 
@@ -956,6 +1170,18 @@
 
           case "seal":
             state.seal = v;
+            setStep("humectant");
+            await bot(s("askHumectant"));
+            setReplies([
+              { label: q("humectAdjust"), value: "adjust" },
+              { label: q("humectAlways"), value: "always" },
+              { label: q("humectNo"), value: "no" },
+              { label: q("humectUnknown"), value: "unknown" },
+            ]);
+            break;
+
+          case "humectant":
+            state.humectant = v;
             setStep("heavyProducts");
             await bot(s("askHeavy"));
             setReplies([
@@ -967,6 +1193,17 @@
 
           case "heavyProducts":
             state.heavyProducts = v;
+            setStep("alkalineStyling");
+            await bot(s("askAlkalineStyling"));
+            setReplies([
+              { label: q("alkalineOften"), value: "often" },
+              { label: q("alkalineSometimes"), value: "sometimes" },
+              { label: q("alkalineNo"), value: "no" },
+            ]);
+            break;
+
+          case "alkalineStyling":
+            state.alkalineStyling = v;
             setStep("buildup");
             await bot(s("askBuildup"));
             setReplies([
@@ -978,6 +1215,17 @@
 
           case "buildup":
             state.buildup = v;
+            setStep("waterTemp");
+            await bot(s("askWaterTemp"));
+            setReplies([
+              { label: q("tempHot"), value: "hot" },
+              { label: q("tempWarm"), value: "warm" },
+              { label: q("tempCool"), value: "cool" },
+            ]);
+            break;
+
+          case "waterTemp":
+            state.waterTemp = v;
             setStep("porosity");
             await bot(s("askPorosity"));
             setReplies([
@@ -1002,6 +1250,18 @@
 
           case "thickness":
             state.thickness = v;
+            setStep("moistureProtein");
+            await bot(s("askMoistureProtein"));
+            setReplies([
+              { label: q("moistMushy"), value: "mushy" },
+              { label: q("moistStrawy"), value: "strawy" },
+              { label: q("moistNormal"), value: "normal" },
+              { label: q("moistUnsure"), value: "unsure" },
+            ]);
+            break;
+
+          case "moistureProtein":
+            state.moistureProtein = v;
             setStep("frequency");
             await bot(s("askFrequency"));
             setReplies([
@@ -1014,6 +1274,18 @@
 
           case "frequency":
             state.frequency = v;
+            setStep("deepMaskFreq");
+            await bot(s("askDeepMask"));
+            setReplies([
+              { label: q("deepMaskWeekly"), value: "weekly" },
+              { label: q("deepMaskBiweekly"), value: "biweekly" },
+              { label: q("deepMaskMonthly"), value: "monthly" },
+              { label: q("deepMaskRare"), value: "rare" },
+            ]);
+            break;
+
+          case "deepMaskFreq":
+            state.deepMaskFreq = v;
             setStep("overHydration");
             await bot(s("askOverHydration"));
             setReplies([
@@ -1037,6 +1309,18 @@
 
           case "ends":
             state.ends = v;
+            setStep("scalpDryness");
+            await bot(s("askScalpDryness"));
+            setReplies([
+              { label: q("scalpDryYes"), value: "dry" },
+              { label: q("scalpDryFlaky"), value: "flaky" },
+              { label: q("scalpDryNo"), value: "no" },
+              { label: q("scalpDryOily"), value: "oily" },
+            ]);
+            break;
+
+          case "scalpDryness":
+            state.scalpDryness = v;
             setStep("nightProtection");
             await bot(s("askNight"));
             setReplies([
@@ -1059,6 +1343,17 @@
 
           case "routine":
             state.routine = v;
+            setStep("climateShift");
+            await bot(s("askClimateShift"));
+            setReplies([
+              { label: q("climateYesAdjust"), value: "adjusted" },
+              { label: q("climateYesNoAdjust"), value: "no_adjust" },
+              { label: q("climateNo"), value: "stable" },
+            ]);
+            break;
+
+          case "climateShift":
+            state.climateShift = v;
             setStep("emergency");
             await bot(s("askEmergency"));
             setReplies([
@@ -1070,6 +1365,17 @@
 
           case "emergency":
             state.emergency = v;
+            setStep("pastAttempt");
+            await bot(s("askPastAttempt"));
+            setReplies([
+              { label: q("pastYes"), value: "often" },
+              { label: q("pastOnce"), value: "once" },
+              { label: q("pastNever"), value: "never" },
+            ]);
+            break;
+
+          case "pastAttempt":
+            state.pastAttempt = v;
             setStep("goal");
             await bot(s("askGoal"));
             setReplies([
