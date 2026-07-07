@@ -42,22 +42,29 @@ function crsRender(c){crsData(c,function(d){var el=document.getElementById('crsb
  var open=CRS_OPEN[c.id];
  el.innerHTML=open?crsReader(c,d,open):crsList(c,d);
  window.scrollTo(0,0)})}
+function crsUnlockedIx(c,d){var done=crsDone(c),mods=d.modules;
+ for(var i=0;i<mods.length;i++){if(!done[mods[i].id])return i}
+ return mods.length-1}
 function crsList(c,d){var done=crsDone(c),mods=d.modules,
  dn=mods.filter(function(m){return done[m.id]}).length,
- pct=mods.length?Math.round(dn/mods.length*100):0;
+ pct=mods.length?Math.round(dn/mods.length*100):0,
+ unlocked=crsUnlockedIx(c,d);
  var h='<div class="card"><div class="crs-pw"><div class="crs-pt">'+dn+'/'+mods.length+' '
   +t('lessons done','leçons terminées')+' · '+pct+'%</div><div class="bar"><i style="width:'+pct+'%"></i></div></div>';
  var next=null;for(var i=0;i<mods.length;i++){if(!done[mods[i].id]){next=mods[i];break}}
  if(next)h+='<button class="btn" style="margin-top:12px" onclick="crsOpen(\''+c.id+'\',\''+next.id+'\')">'
   +(dn?t('Continue','Continuer'):t('Start the course','Commencer le cours'))+' →</button>';
  if(!next)h+='<p class="muted sm" style="margin-top:10px">'+t('Course complete — well done! 🎉','Cours terminé — bravo ! 🎉')+'</p>';
+ h+='<p class="muted sm" style="margin-top:10px">'+t('Validate each lesson (“Mark as read”) to unlock the next one.','Valide chaque leçon (« Marquer comme lu ») pour débloquer la suivante.')+'</p>';
  h+='</div>';
  var part=null;
  mods.forEach(function(m,i){
   if((m.part||'')!==part){part=m.part||'';if(part)h+='<div class="crs-part">'+part+'</div>'}
-  h+='<div class="crs-mod'+(done[m.id]?' done':'')+'" onclick="crsOpen(\''+c.id+'\',\''+m.id+'\')">'
+  var locked=i>unlocked;
+  h+='<div class="crs-mod'+(done[m.id]?' done':'')+(locked?' lock':'')+'"'
+   +(locked?'':' onclick="crsOpen(\''+c.id+'\',\''+m.id+'\')"')+'>'
    +'<span class="num">'+(i+1)+'</span><span class="ttl">'+m.title+'</span>'
-   +'<span class="ck">'+(done[m.id]?'✓':'')+'</span></div>'});
+   +'<span class="ck">'+(done[m.id]?'✓':(locked?'🔒':''))+'</span></div>'});
  return h}
 function crsReader(c,d,mid){var mods=d.modules,ix=-1;
  mods.forEach(function(m,i){if(m.id===mid)ix=i});
@@ -70,20 +77,30 @@ function crsReader(c,d,mid){var mods=d.modules,ix=-1;
  h+='<div class="crs-nav">';
  h+=(ix>0?'<button class="btn ghost" onclick="crsOpen(\''+c.id+'\',\''+mods[ix-1].id+'\')">← '+t('Previous','Précédente')+'</button>':'<span></span>');
  h+='<button class="btn" onclick="crsMark(\''+c.id+'\',\''+m.id+'\')">'
-  +(done[m.id]?t('Read ✓','Lu ✓'):t('Mark as read','Marquer comme lu'))+'</button>';
- h+=(ix<mods.length-1?'<button class="btn ghost" onclick="crsOpen(\''+c.id+'\',\''+mods[ix+1].id+'\')">'+t('Next','Suivante')+' →</button>':'<span></span>');
+  +(done[m.id]?t('Validated ✓','Validée ✓'):t('Mark as read','Marquer comme lu'))+'</button>';
+ if(ix<mods.length-1){
+  h+=done[m.id]
+   ?'<button class="btn ghost" onclick="crsOpen(\''+c.id+'\',\''+mods[ix+1].id+'\')">'+t('Next','Suivante')+' →</button>'
+   :'<button class="btn ghost lockbtn" disabled>🔒 '+t('Next','Suivante')+'</button>';
+ }else h+='<span></span>';
  h+='</div>';
- h+='<div class="crs-note">'+t('Your progress is saved on this device.','Ta progression est enregistrée sur cet appareil.')+'</div>';
+ h+='<div class="crs-note">'+(done[m.id]
+  ?t('Your progress is saved on this device.','Ta progression est enregistrée sur cet appareil.')
+  :t('Validate this lesson to unlock the next one.','Valide cette leçon pour débloquer la suivante.'))+'</div>';
  return h}
-function crsOpen(cid,mid){CRS_OPEN[cid]=mid;crsRender(crsById(cid))}
+function crsOpen(cid,mid){var c=crsById(cid),k=c.file+'-'+(L==='fr'?'fr':'en'),d=CRS_CACHE[k];
+ if(d){var ix=-1;d.modules.forEach(function(m,i){if(m.id===mid)ix=i});
+  if(ix>crsUnlockedIx(c,d))return}
+ CRS_OPEN[cid]=mid;crsRender(c)}
 function crsBack(cid){CRS_OPEN[cid]=null;crsRender(crsById(cid))}
 function crsMark(cid,mid){S.courses[cid]=S.courses[cid]||{};
- S.courses[cid][mid]=!S.courses[cid][mid];
+ if(S.courses[cid][mid])return; // validation is one-way
+ S.courses[cid][mid]=true;
  var c=crsById(cid),k=c.file+'-'+(L==='fr'?'fr':'en'),d=CRS_CACHE[k];
  if(d){var all=d.modules.every(function(m){return !!S.courses[cid][m.id]});
   if(all)S.done[cid]=true;else delete S.done[cid]}
  sv();
- if(S.courses[cid][mid]&&d){var ix=-1;d.modules.forEach(function(m,i){if(m.id===mid)ix=i});
+ if(d){var ix=-1;d.modules.forEach(function(m,i){if(m.id===mid)ix=i});
   CRS_OPEN[cid]=(ix>=0&&ix<d.modules.length-1)?d.modules[ix+1].id:null}
  crsRender(c);updateNav()}
 window.crsOpen=crsOpen;window.crsBack=crsBack;window.crsMark=crsMark;

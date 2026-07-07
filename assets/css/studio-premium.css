@@ -16,6 +16,9 @@
 .crs-mod .ck{flex:0 0 22px;text-align:center;color:#7a9a4f;font-weight:700}
 .crs-mod.done{background:#fbf8f0;border-color:rgba(122,154,79,.4)}
 .crs-mod.done .num{background:rgba(122,154,79,.15);color:#7a9a4f}
+.crs-mod.lock{opacity:.5;cursor:default;background:#f7f2e9}
+.crs-mod.lock:hover{transform:none;box-shadow:none;border-color:#e6dccb}
+.btn.lockbtn{opacity:.55;cursor:not-allowed}
 
 /* ── reader chrome ── */
 .crs-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
