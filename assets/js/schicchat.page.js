@@ -527,6 +527,7 @@ const chatForm=document.getElementById("chatForm");
 const userInput=document.getElementById("userInput");
 const resetBtn=document.getElementById("resetBtn");
 const progFill=document.getElementById("progressFill");
+const progLabel=document.getElementById("progressLabel");
 
 /* ═══════════════════════════════════════════════════════════
    HELPERS
@@ -535,7 +536,11 @@ const norm=t=>String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u03
 function getSettings(){const s=localStorage.getItem(CONFIG.settingsStorageKey);return s?JSON.parse(s):{shopLink:CONFIG.shopLink,premiumLink:CONFIG.premiumLink};}
 function hasUsed(){return CONFIG.enableOneUse&&localStorage.getItem(CONFIG.usedStorageKey)==="true";}
 function markUsed(){if(CONFIG.enableOneUse)localStorage.setItem(CONFIG.usedStorageKey,"true");}
-function setStep(s){state.step=s;const i=STEPS.indexOf(s);progFill.style.width=i<0?"0%":`${Math.round((i/(STEPS.length-1))*100)}%`;}
+function setStep(s){
+  state.step=s;const i=STEPS.indexOf(s);const total=STEPS.length-1;
+  progFill.style.width=i<0?"0%":`${Math.round((i/total)*100)}%`;
+  if(progLabel) progLabel.textContent=(i<0||i>=total)?"":`${i+1} / ${total}`;
+}
 function setReplies(arr){
   quickR.innerHTML="";
   (arr||[]).forEach(r=>{const b=document.createElement("button");b.className="quick-btn";b.textContent=r.label;b.onclick=()=>handleReply(r.value,r.label);quickR.appendChild(b);});

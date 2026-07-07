@@ -681,6 +681,7 @@
       const form = document.getElementById("form");
       const input = document.getElementById("input");
       const progress = document.getElementById("progress");
+      const progressLabel = document.getElementById("progressLabel");
 
       /* ──────────────────────────────────────────────
    i18n helpers
@@ -735,8 +736,10 @@
       function setStep(step) {
         state.step = step;
         const i = steps.indexOf(step);
-        progress.style.width =
-          (i < 0 ? 0 : Math.round((i / (steps.length - 1)) * 100)) + "%";
+        const total = steps.length - 1;
+        progress.style.width = (i < 0 ? 0 : Math.round((i / total) * 100)) + "%";
+        if (progressLabel)
+          progressLabel.textContent = i < 0 || i >= total ? "" : `${i + 1} / ${total}`;
       }
 
       function setReplies(arr) {

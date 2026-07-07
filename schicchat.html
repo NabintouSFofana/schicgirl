@@ -45,8 +45,13 @@
 <body>
 <div class="shell">
   <header class="intro">
-    <p class="eyebrow" id="hEyebrow">Schicgirl™ — Diagnostic Capillaire Expert</p>
-    <h1 id="hTitle">Découvre ce qui freine vraiment tes cheveux</h1>
+    <div class="brand-row">
+      <div class="mark">💬</div>
+      <div class="brand-copy">
+        <p class="eyebrow" id="hEyebrow">Schicgirl™ — Diagnostic Capillaire Expert</p>
+        <h1 id="hTitle">Découvre ce qui freine vraiment tes cheveux</h1>
+      </div>
+    </div>
     <p class="intro-sub" id="hSub">Un diagnostic professionnel complet — porosité, structure, cuir chevelu, habitudes, alimentation. Tu reçois une routine sur mesure, des recettes naturelles détaillées et un plan d'action immédiat.</p>
     <div class="lang-switch">
       <button class="lang-btn active" data-lang="fr">🇫🇷 Français</button>
@@ -54,7 +59,10 @@
     </div>
   </header>
   <main class="panel">
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-label" id="progressLabel"></span>
+    </div>
     <button id="resetBtn" title="Restart" aria-label="Restart">↻</button>
     <div class="chat-box" id="chatBox"></div>
     <div class="quick-replies" id="quickReplies"></div>
