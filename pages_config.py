@@ -118,7 +118,7 @@ PAGES = [
    "desc_en": "4 printable tracker sheets for Type 4 coily hair: wash day, 12-month growth log, product inventory, protein-moisture balance."},
 
   {"src": "le-studio-premium.html", "slug_fr": "le-studio-premium", "slug_en": "premium-studio",
-   "ebook": _ebook("assets/studio-premium-fr.webp", "assets/studio-premium-en.webp", "https://selar.com/studio_premium", "https://selar.com/studio_premium",
+   "ebook": _ebook("assets/studio-premium-fr.webp", "assets/studio-premium-en.webp", "https://selar.com/le_studio_premium", "https://selar.com/the_studio_premium",
                    "29€", "$32", "≈ 19 000 FCFA", "Débloquer mon Studio Premium →", "Unlock my Premium Studio →", "29.00", "32.00", "studio-premium"),
    "name_fr": "Le Studio Premium", "name_en": "The Premium Studio", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Le Studio Premium — L'App Type 4 + 3 Guides Complets en Cours | Schicgirl",
