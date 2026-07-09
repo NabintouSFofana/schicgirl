@@ -231,6 +231,39 @@
       }
       .ss-free:hover .ss-free-btn { filter: brightness(1.06); }
 
+      /* Le Cercle — membership banner (recurring subscription, visually distinct) */
+      .ss-cercle {
+        display: block; position: relative; overflow: hidden;
+        background: linear-gradient(150deg, #3b2a20 0%, #4a3020 55%, #5a3a20 100%);
+        border: 1.5px solid var(--gold); border-radius: var(--r); padding: 22px 20px;
+        box-shadow: 0 10px 30px -10px rgba(60, 38, 24, 0.5); transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .ss-cercle:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(60, 38, 24, 0.6); }
+      .ss-cercle::after { content: ""; position: absolute; top: -40%; right: -20%; width: 260px; height: 260px;
+        background: radial-gradient(circle, rgba(232, 180, 160, 0.35), transparent 70%); pointer-events: none; }
+      .ss-cercle-tag {
+        display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        color: #2a1a0f; background: linear-gradient(135deg, var(--gold-lt), var(--rose)); padding: 5px 11px; border-radius: 100px;
+      }
+      .ss-cercle-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+      .ss-cercle-title { font-family: var(--serif); font-size: 30px; font-weight: 600; color: #fff; line-height: 1; }
+      .ss-cercle-price { display: flex; align-items: baseline; gap: 3px; white-space: nowrap; }
+      .ss-cercle-price .amt { font-family: var(--serif); font-size: 32px; font-weight: 600; color: var(--gold-lt); line-height: 1; }
+      .ss-cercle-price .per { font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.75); }
+      .ss-cercle-sub { font-size: 13.5px; color: rgba(255, 245, 235, 0.82); line-height: 1.5; margin-top: 10px; }
+      .ss-cercle-perks { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+      .ss-cercle-perks span {
+        font-size: 11.5px; font-weight: 600; color: #f6ead4; background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(232, 192, 126, 0.4); padding: 6px 11px; border-radius: 100px;
+      }
+      .ss-cercle-btn {
+        display: block; text-align: center; margin-top: 16px; background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+        color: #2a1a0f; font-size: 14.5px; font-weight: 700; letter-spacing: 0.02em; padding: 14px; border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(201, 147, 74, 0.4); transition: filter 0.2s;
+      }
+      .ss-cercle:hover .ss-cercle-btn { filter: brightness(1.07); }
+      .ss-cercle-note { text-align: center; font-size: 11px; color: rgba(255, 245, 235, 0.6); margin-top: 9px; }
+
       .ss-products { display: flex; flex-direction: column; gap: 9px; }
       .ss-product {
         display: flex; gap: 13px; align-items: center; background: var(--card); border: 1.5px solid var(--line);
@@ -437,6 +470,20 @@
           cta_fr: "Télécharger gratuitement", cta_en: "Download for free",
           url: "https://schicgirl.me/toolkit-landing",
         },
+        cercle_label_fr: "L'Abonnement", cercle_label_en: "The Membership",
+        cercle: {
+          tag_fr: "Abonnement mensuel", tag_en: "Monthly membership",
+          title_fr: "Le Cercle", title_en: "The Circle",
+          price_fr: "5€", price_en: "$6", per_fr: "/mois", per_en: "/mo", cfa: "≈ 3 500 FCFA",
+          sub_fr: "Rejoins notre communauté Type 4 : le Studio Premium inclus, le groupe privé, et un nouveau contenu exclusif chaque mois.",
+          sub_en: "Join our Type 4 community: Studio Premium included, the private group, and new exclusive content every month.",
+          perks_fr: ["✨ Studio Premium inclus", "🤝 Groupe privé", "🎁 Exclu chaque mois"],
+          perks_en: ["✨ Studio Premium included", "🤝 Private group", "🎁 Monthly exclusive"],
+          cta_fr: "Rejoindre Le Cercle", cta_en: "Join The Circle",
+          note_fr: "Sans engagement · résilie quand tu veux · carte ou mobile money",
+          note_en: "No commitment · cancel anytime · card or mobile money",
+          url_fr: "/fr/le-cercle/", url_en: "/en/the-circle/",
+        },
         products_label_fr: "La Boutique", products_label_en: "The Shop",
         seeall_fr: "Voir tous mes guides →", seeall_en: "See all my guides →",
         seeall_url: "https://selar.com/m/schicgirl",
@@ -554,6 +601,22 @@
             <span class="ss-free-btn">${esc(tx(f, "cta"))} ↓</span>
           </a>`;
 
+        const c = SITE.cercle;
+        const cercleUrl = LANG === "fr" ? (c.url_fr || c.url_en) : (c.url_en || c.url_fr);
+        const cerclePerks = (LANG === "fr" ? c.perks_fr : c.perks_en).map((p) => `<span>${esc(p)}</span>`).join("");
+        const cercle = `
+          <a class="ss-cercle" href="${esc(safeUrl(cercleUrl))}" onclick="track('cercle-${LANG}')">
+            <span class="ss-cercle-tag">${esc(tx(c, "tag"))}</span>
+            <div class="ss-cercle-head">
+              <div class="ss-cercle-title">${esc(tx(c, "title"))} 🤍</div>
+              <div class="ss-cercle-price"><span class="amt">${esc(tx(c, "price"))}</span><span class="per">${esc(tx(c, "per"))}</span></div>
+            </div>
+            <div class="ss-cercle-sub">${esc(tx(c, "sub"))}</div>
+            <div class="ss-cercle-perks">${cerclePerks}</div>
+            <span class="ss-cercle-btn">${esc(tx(c, "cta"))} →</span>
+            <div class="ss-cercle-note">${esc(tx(c, "note"))}</div>
+          </a>`;
+
         const products = SITE.products.slice(0, 4).map((p, i) => {
           const img = tx(p, "img");
           const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260705b" : "") : "";
@@ -624,6 +687,7 @@
 
         const jumpNav = `<nav class="ss-nav">
           <a href="#sec-free">${LANG === "fr" ? "Gratuit" : "Free"}</a>
+          <a href="#sec-cercle">${LANG === "fr" ? "Le Cercle" : "The Circle"}</a>
           <a href="#sec-shop">${LANG === "fr" ? "Boutique" : "Shop"}</a>
           <a href="#sec-tools">${LANG === "fr" ? "Outils" : "Tools"}</a>
           <a href="#sec-avis">${LANG === "fr" ? "Avis" : "Reviews"}</a>
@@ -633,6 +697,7 @@
         document.getElementById("ssApp").innerHTML =
           profile + `<div class="ss-divider"></div>` + jumpNav +
           `<div class="ss-label" id="sec-free">${LANG === "fr" ? "Commence ici · Gratuit" : "Start here · Free"}</div>` + free +
+          `<div class="ss-label" id="sec-cercle">${esc(tx(SITE, "cercle_label"))}</div>` + cercle +
           `<div class="ss-label" id="sec-shop">${esc(tx(SITE, "products_label"))}</div><div class="ss-products">${products}</div>` + seeall +
           `<div class="ss-label" id="sec-tools">${esc(tx(SITE, "tools_label"))}</div><div class="ss-links">${tools}</div>` +
           `<div class="ss-label" id="sec-avis">${esc(tx(SITE, "testi_label"))}</div><div class="ss-testi-scroll">${testis}</div>` + reviewCta +
