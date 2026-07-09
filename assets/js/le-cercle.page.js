@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "le-cercle", "img_fr": "assets/le-cercle-fr.webp", "img_en": "assets/le-cercle-en.webp", "url_fr": "https://selar.com/le_cercle_schicgirl", "url_en": "https://selar.com/the_circle_schicgirl", "price_fr": "5€/mois", "price_en": "$6/mo", "price_cfa": "≈ 3 500 FCFA/mois", "cta_fr": "Rejoindre Le Cercle →", "cta_en": "Join The Circle →"};
+var EBOOK = {"slug": "le-cercle", "img_fr": "assets/le-cercle-profil-sm.webp", "img_en": "assets/the-circle-profil-sm.webp", "url_fr": "https://selar.com/le_cercle_schicgirl", "url_en": "https://selar.com/the_circle_schicgirl", "price_fr": "5€/mois", "price_en": "$6/mo", "price_cfa": "≈ 3 500 FCFA/mois", "cta_fr": "Rejoindre Le Cercle →", "cta_en": "Join The Circle →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }
