@@ -685,17 +685,8 @@
           ["/fr/conditions/", LANG === "fr" ? "Conditions" : "Terms"],
         ].map((n) => `<a href="${n[0]}">${esc(n[1])}</a>`).join("");
 
-        const jumpNav = `<nav class="ss-nav">
-          <a href="#sec-free">${LANG === "fr" ? "Gratuit" : "Free"}</a>
-          <a href="#sec-cercle">${LANG === "fr" ? "Le Cercle" : "The Circle"}</a>
-          <a href="#sec-shop">${LANG === "fr" ? "Boutique" : "Shop"}</a>
-          <a href="#sec-tools">${LANG === "fr" ? "Outils" : "Tools"}</a>
-          <a href="#sec-avis">${LANG === "fr" ? "Avis" : "Reviews"}</a>
-          <a href="#sec-picks">Amazon</a>
-        </nav>`;
-
         document.getElementById("ssApp").innerHTML =
-          profile + `<div class="ss-divider"></div>` + jumpNav +
+          profile + `<div class="ss-divider"></div>` +
           `<div class="ss-label" id="sec-free">${LANG === "fr" ? "Commence ici · Gratuit" : "Start here · Free"}</div>` + free +
           `<div class="ss-label" id="sec-cercle">${esc(tx(SITE, "cercle_label"))}</div>` + cercle +
           `<div class="ss-label" id="sec-shop">${esc(tx(SITE, "products_label"))}</div><div class="ss-products">${products}</div>` + seeall +
