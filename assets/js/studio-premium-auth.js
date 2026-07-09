@@ -9,8 +9,22 @@ var SB_URL="https://ouwzbqmmtbxqtffghncg.supabase.co";
 var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8";
 var SB_TABLE="studio_premium_progress";
 /* SHA-256 des codes d'accès valides (le code lui-même n'apparaît pas ici).
-   Pour changer/ajouter un code : python -c "import hashlib;print(hashlib.sha256(b'NOUVEAUCODE').hexdigest())" */
-var CODE_HASHES=["6038f691d770cf926d39c838c472a17acba8876699604850f5dea71fce7d77e2"];
+   Pour changer/ajouter un code : python -c "import hashlib;print(hashlib.sha256(b'NOUVEAUCODE').hexdigest())"
+
+   ── Codes ACHETEUSES (accès à vie) — ne jamais retirer ──
+   COURONNE29 → 6038f691d770cf926d39c838c472a17acba8876699604850f5dea71fce7d77e2
+
+   ── Code CERCLE (abonnées mensuelles Le Cercle) — À FAIRE TOURNER CHAQUE MOIS ──
+   Le 1er de chaque mois : générer le nouveau code (ex. CERCLE-AOU26), calculer son
+   hash, l'AJOUTER ci-dessous, RETIRER le hash du mois précédent. Les abonnées encore
+   à jour reçoivent le nouveau code dans le Groupe Facebook / message Selar ; celles qui
+   n'ont pas renouvelé sont automatiquement déconnectées à leur prochaine visite (ce
+   fichier revérifie le hash à chaque chargement — voir plus bas).
+   2026-07 → CERCLE-JUIL26 → 57ede05fdff9ea7c06e762113d7c08c077a4994cb4e315ae1110cd5bc1b637ca */
+var CODE_HASHES=[
+  "6038f691d770cf926d39c838c472a17acba8876699604850f5dea71fce7d77e2", // COURONNE29 (acheteuses à vie)
+  "57ede05fdff9ea7c06e762113d7c08c077a4994cb4e315ae1110cd5bc1b637ca"  // CERCLE-JUIL26 (abonnées du mois)
+];
 var AUTH_KEY="sgp_auth";
 var auth=null;try{auth=JSON.parse(localStorage.getItem(AUTH_KEY))}catch(e){}
 

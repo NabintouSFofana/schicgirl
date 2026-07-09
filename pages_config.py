@@ -126,6 +126,15 @@ PAGES = [
    "desc_fr": "L'app interactive Type 4 + les 3 guides Schicgirl en cours interactifs : 76 leçons FR/EN, progression validée leçon par leçon, sauvegarde cloud, accès à vie.",
    "desc_en": "The interactive Type 4 app + the 3 Schicgirl guides as interactive courses: 76 lessons FR/EN, lesson-by-lesson validation, cloud backup, lifetime access."},
 
+  {"src": "le-cercle.html", "slug_fr": "le-cercle", "slug_en": "the-circle",
+   "ebook": _ebook("assets/le-cercle-fr.webp", "assets/le-cercle-en.webp", "https://selar.com/le_cercle_schicgirl", "https://selar.com/the_circle_schicgirl",
+                   "5€/mois", "$6/mo", "≈ 3 500 FCFA/mois", "Rejoindre Le Cercle →", "Join The Circle →", "5.00", "6.00", "le-cercle"),
+   "name_fr": "Le Cercle", "name_en": "The Circle", "cat_fr": "Abonnement", "cat_en": "Membership",
+   "title_fr": "Le Cercle Schicgirl — Abonnement Mensuel Type 4 | Schicgirl",
+   "title_en": "The Schicgirl Circle — Monthly Type 4 Membership | Schicgirl",
+   "desc_fr": "Abonnement mensuel Schicgirl : le Studio Premium inclus, le groupe Facebook privé, et un contenu exclusif chaque mois. Paiement carte ou mobile money, résiliable à tout moment.",
+   "desc_en": "Schicgirl's monthly membership: Studio Premium included, the private Facebook group, and exclusive content every month. Card or mobile money, cancel anytime."},
+
   {"src": "about.html", "slug_fr": "a-propos", "slug_en": "about",
    "name_fr": "À Propos", "name_en": "About", "cat_fr": "À Propos", "cat_en": "About",
    "title_fr": "À Propos de Schicgirl — Cheveux Crépus Type 4 Simplifiés | Schicgirl",
