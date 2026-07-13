@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- SCHICGIRL — Bonus delivery page (calendrier). Bilingual FR/EN. noindex. -->
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, follow"/>
+<title>Ton Calendrier Routine 🎁 | Schicgirl</title>
+<link rel="icon" href="/assets/fav-logo-32.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{--cream:#FBF4E8;--paper:#FFFDF8;--gold:#C39A45;--gold-deep:#A87D2E;--navy:#2C4866;--blue:#5E7E9B;--mint:#C7EBDD;--ink:#3C342B;--ink-soft:#6A5F52;--line:#E7D9BC;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+    background:radial-gradient(ellipse 90% 50% at 50% -10%,rgba(199,235,221,.4),transparent 60%),linear-gradient(180deg,#FEF5EC,#FBF4E8);}
+  .card{width:100%;max-width:460px;background:var(--paper);border:1px solid var(--line);border-radius:22px;
+    box-shadow:0 18px 50px -18px rgba(60,38,24,.28);padding:34px 30px;text-align:center;}
+  .langs{display:flex;gap:6px;justify-content:center;margin-bottom:18px;}
+  .langs button{font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;letter-spacing:.06em;border:1px solid var(--line);
+    background:#fff;color:var(--ink-soft);padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .15s;}
+  .langs button.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .badge{display:inline-block;background:var(--mint);color:var(--navy);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:6px 16px;border-radius:999px;}
+  h1{font-family:'Lora',Georgia,serif;font-weight:700;font-size:29px;line-height:1.14;color:var(--navy);margin-top:14px;}
+  .lead{font-family:'Lora',Georgia,serif;font-style:italic;font-size:16.5px;color:var(--ink-soft);line-height:1.55;margin-top:14px;}
+  .btn{display:block;margin-top:24px;background:var(--gold);color:#fff;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:.02em;
+    padding:16px;border-radius:14px;box-shadow:0 8px 22px rgba(201,147,74,.4);transition:filter .15s;}
+  .btn:hover{filter:brightness(1.07);}
+  .sub{font-size:12.5px;color:var(--ink-soft);margin-top:12px;line-height:1.5;}
+  .cross{display:block;margin-top:22px;padding:16px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--navy);text-decoration:none;font-weight:500;line-height:1.5;
+    background:linear-gradient(180deg,rgba(199,235,221,.18),transparent);border-radius:0 0 12px 12px;}
+  .cross span{color:var(--gold-deep);font-weight:700;}
+  .foot{margin-top:16px;font-size:11px;color:var(--ink-soft);letter-spacing:.04em;}
+  .foot a{color:inherit;text-decoration:none;}
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="langs"><button id="bFr" class="on" onclick="setLang('fr')">Français</button><button id="bEn" onclick="setLang('en')">English</button></div>
+    <span class="badge" id="badge">Ton bonus 🎁</span>
+    <h1 id="title">Ton Calendrier Routine</h1>
+    <p class="lead" id="lead">Un an de soins guidés, jour par jour — pour une pousse durable et des cheveux qui tiennent.</p>
+    <a class="btn" id="btn" href="/guides/50ed1d151e/Schicgirl_Calendrier_Routine_FR.pdf" download>📥 Télécharger mon calendrier</a>
+    <p class="sub" id="sub">S'ouvre dans ton navigateur · enregistre-le sur ton téléphone pour le garder.</p>
+    <a class="cross" id="cross" href="/fr/creer-ma-routine-capillaire/">Tu veux la routine complète qui va avec ? <span>Comment créer ma routine</span> te construit, étape par étape, la routine Type 4 qui marche pour TOI →</a>
+    <div class="foot">© 2024–2026 <a href="https://schicgirl.me">Schicgirl</a> · Cheveux Crépus Type 4</div>
+  </main>
+<script>
+  var D={
+    fr:{badge:'Ton bonus 🎁',title:'Ton Calendrier Routine',lead:'Un an de soins guidés, jour par jour — pour une pousse durable et des cheveux qui tiennent.',btn:'📥 Télécharger mon calendrier',sub:"S'ouvre dans ton navigateur \u00b7 enregistre-le sur ton t\u00e9l\u00e9phone pour le garder.",cross:'Tu veux la routine complète qui va avec ? <span>Comment créer ma routine</span> te construit, étape par étape, la routine Type 4 qui marche pour TOI →',crossUrl:'/fr/creer-ma-routine-capillaire/',pdf:'/guides/50ed1d151e/Schicgirl_Calendrier_Routine_FR.pdf'},
+    en:{badge:'Your bonus 🎁',title:'Your Routine Calendar',lead:'A full year of guided care, day by day — for lasting growth and hair that holds.',btn:'📥 Download my calendar',sub:"Opens in your browser \u00b7 save it to your phone to keep it.",cross:'Want the full routine that goes with it? <span>Build My Hair Routine</span> walks you step by step to the Type 4 routine that works for YOU →',crossUrl:'/en/build-my-hair-routine/',pdf:'/guides/50ed1d151e/Schicgirl_Routine_Calendar_EN.pdf'}
+  };
+  function setLang(l){
+    var d=D[l];document.documentElement.lang=l;
+    document.getElementById('badge').textContent=d.badge;
+    document.getElementById('title').textContent=d.title;
+    document.getElementById('lead').textContent=d.lead;
+    document.getElementById('btn').textContent=d.btn;
+    document.getElementById('btn').setAttribute('href',d.pdf);
+    document.getElementById('sub').textContent=d.sub;
+    document.getElementById('cross').innerHTML=d.cross;
+    document.getElementById('cross').setAttribute('href',d.crossUrl);
+    document.getElementById('bFr').classList.toggle('on',l==='fr');
+    document.getElementById('bEn').classList.toggle('on',l==='en');
+    try{gtag&&gtag('event','view',{item:'bonus-calendrier',lang:l})}catch(e){}
+  }
+  var qp=new URLSearchParams(location.search).get('lang');
+  if(qp==='en') setLang('en');
+</script>
+</body>
+</html>

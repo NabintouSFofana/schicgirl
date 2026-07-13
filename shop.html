@@ -39,16 +39,16 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="assets/fav-logo-48.png" />
     <link rel="apple-touch-icon" href="assets/apple-touch-logo.png" />
-    <title>Schicgirl — Cheveux Crépus Type 4 : Guides, Routines &amp; Produits</title>
+    <title>La Boutique Schicgirl — Guides &amp; Abonnement Cheveux Crépus Type 4</title>
     <meta name="author" content="Schicgirl" />
     <meta name="copyright" content="© 2024–2026 Schicgirl. All rights reserved." />
-    <meta name="description" content="Schicgirl helps women with curly, coily and textured hair understand dryness, build simple routines, and choose trusted products." />
+    <meta name="description" content="La boutique Schicgirl : tous les guides, l'abonnement Le Cercle et les outils pour cheveux crépus Type 4, bilingues et à télécharger à vie." />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Schicgirl — Cheveux Crépus Type 4 : Guides, Routines & Produits" />
+    <meta property="og:title" content="La Boutique Schicgirl — Guides & Abonnement Cheveux Crépus Type 4" />
     <meta property="og:image" content="https://schicgirl.me/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:description" content="Schicgirl — guides, routines et produits pour cheveux crépus Type 4." />
+    <meta property="og:description" content="Tous mes guides, l'abonnement et mes outils pour cheveux crépus Type 4 — au même endroit." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://schicgirl.me" />
@@ -57,7 +57,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <link rel="canonical" href="https://schicgirl.me/" />
+    <link rel="canonical" href="https://schicgirl.me/shop.html" />
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -277,14 +277,6 @@
       .ss-article-title { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.24; }
       .ss-article-exc { font-size: 12px; color: var(--muted); line-height: 1.42; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
       .ss-article-read { font-size: 10.5px; letter-spacing: .02em; color: var(--gold-deep); font-weight: 600; margin-top: 3px; }
-      .ss-shopcta { display: flex; align-items: center; gap: 12px; margin: 4px 0 6px; padding: 16px 18px; text-decoration: none;
-        background: linear-gradient(135deg, var(--gold-pale), #fffdf8); border: 2px solid var(--gold); border-radius: 16px;
-        box-shadow: 0 8px 26px rgba(201, 147, 74, 0.30); transition: box-shadow .15s ease, transform .15s ease; }
-      .ss-shopcta:hover { box-shadow: 0 12px 30px rgba(201, 147, 74, 0.42); transform: translateY(-1px); }
-      .ss-shopcta-emoji { font-size: 26px; flex: 0 0 auto; }
-      .ss-shopcta-txt { display: flex; flex-direction: column; line-height: 1.3; color: var(--ink-soft); font-size: 12.5px; flex: 1 1 auto; }
-      .ss-shopcta-txt b { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--gold-deep); }
-      .ss-shopcta-arrow { font-size: 20px; color: var(--gold-deep); flex: 0 0 auto; }
       .ss-products { display: flex; flex-direction: column; gap: 9px; }
       .ss-product {
         display: flex; gap: 13px; align-items: center; background: var(--card); border: 1.5px solid var(--line);
@@ -673,7 +665,7 @@
             <div class="ss-cercle-note">${esc(tx(c, "note"))}</div>
           </a>`;
 
-        const products = SITE.products.slice(0, 4).map((p, i) => {
+        const products = SITE.products.map((p, i) => {
           const img = tx(p, "img");
           const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260705b" : "") : "";
           const media = img ? `<img src="${esc(imgv)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
@@ -749,7 +741,6 @@
         const blogAll = `<div style="text-align:center;margin-top:12px"><a class="ss-seeall" href="${LANG === "en" ? "/en/blog/" : "/fr/blog/"}" onclick="track('see-all-articles')">${esc(tx(SITE, "articles_allcta"))}</a></div>`;
 
         const nav = [
-          ["/shop.html", LANG === "fr" ? "Boutique" : "Shop"],
           ["/fr/a-propos/", LANG === "fr" ? "À propos" : "About"],
           ["/fr/blog/", "Blog"],
           ["/fr/contact/", "Contact"],
@@ -757,22 +748,18 @@
           ["/fr/conditions/", LANG === "fr" ? "Conditions" : "Terms"],
         ].map((n) => `<a href="${n[0]}">${esc(n[1])}</a>`).join("");
 
-        // Commerce (Membership, Boutique, Tools, Amazon picks) now lives on /shop.html —
-        // the homepage stays content-first and links to the shop via this CTA.
-        const shopCta = `
-          <a class="ss-shopcta" href="/shop.html${LANG === "en" ? "?lang=en" : ""}" onclick="track('go-shop')">
-            <span class="ss-shopcta-emoji">🛍️</span>
-            <span class="ss-shopcta-txt"><b>${LANG === "fr" ? "La Boutique" : "The Shop"}</b>${LANG === "fr" ? "Tous mes guides, l'abonnement & mes outils" : "All my guides, the membership & tools"}</span>
-            <span class="ss-shopcta-arrow">→</span>
-          </a>`;
+        const shopIntro = `<div class="ss-intro">${LANG === "fr"
+          ? "<p><b>La boutique Schicgirl.</b> Tous mes guides, l'abonnement et mes outils pour cheveux crépus Type 4 — au même endroit. Chaque guide est bilingue, à télécharger à vie, et livré avec ses bonus.</p>"
+          : "<p><b>The Schicgirl shop.</b> All my guides, the membership and my tools for Type 4 coily hair — in one place. Every guide is bilingual, yours for life, and comes with its bonuses.</p>"}</div>`;
+        const backHome = `<div style="text-align:center;margin-bottom:12px"><a class="ss-seeall" href="/${LANG === "en" ? "?lang=en" : ""}" onclick="track('shop-back-home')">${LANG === "fr" ? "← Retour à l'accueil & au blog" : "← Back to home & blog"}</a></div>`;
 
         document.getElementById("ssApp").innerHTML =
           profile + `<div class="ss-divider"></div>` +
-          introHtml +
-          `<div class="ss-label" id="sec-blog">${esc(tx(SITE, "articles_label"))}</div><div class="ss-articles">${articles}</div>` + blogAll +
-          `<div class="ss-divider"></div>` +
-          `<div class="ss-label" id="sec-free">${LANG === "fr" ? "Commence ici · Gratuit" : "Start here · Free"}</div>` + free +
-          shopCta +
+          shopIntro + backHome +
+          `<div class="ss-label" id="sec-cercle">${esc(tx(SITE, "cercle_label"))}</div>` + cercle +
+          `<div class="ss-label" id="sec-shop">${esc(tx(SITE, "products_label"))}</div><div class="ss-products">${products}</div>` + seeall +
+          `<div class="ss-label" id="sec-tools">${esc(tx(SITE, "tools_label"))}</div><div class="ss-links">${tools}</div>` +
+          `<div class="ss-label" id="sec-picks">${esc(tx(SITE, "picks_label"))}</div><div class="ss-picks3">${picks}</div>` +
           `<div class="ss-label" id="sec-avis">${esc(tx(SITE, "testi_label"))}</div><div class="ss-testi-scroll">${testis}</div>` + reviewCta +
           `<footer class="ss-footer">
              <div class="ss-footer-div"></div>
