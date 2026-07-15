@@ -551,6 +551,11 @@
             desc_en: "The app + my 3 guides as courses: 76 lessons, progress saved.",
             bonus_fr: "🎁 5 bonus offerts (calendrier, pack suivi, recettes…)", bonus_en: "🎁 5 free bonuses (calendar, tracker, recipes…)",
             price_fr: "29€", price_en: "$32", cfa: "≈ 19 000 FCFA", url_fr: "/fr/le-studio-premium/", url_en: "/en/premium-studio/" },
+          { id: "hydratee", img_fr: "assets/hydratee.webp", img_en: "assets/hydrated.webp", badge_fr: "Best-seller", badge_en: "Best-seller",
+            title_fr: "Hydratée", title_en: "Hydrated",
+            desc_fr: "Diagnostique ta porosité, superpose dans le bon ordre, et retiens enfin l'hydratation.",
+            desc_en: "Diagnose your porosity, layer in the right order, and finally retain moisture.",
+            price_fr: "17€", price_en: "$18", cfa: "≈ 11 000 FCFA", url_fr: "/fr/hydratation-cheveux-crepus/", url_en: "/en/hydrate-type-4-hair/" },
           { id: "why-nothing-works", img_fr: "assets/why-nothing-works-fr.webp", img_en: "assets/why-nothing-works-en.webp", badge_fr: "Nouveau", badge_en: "New",
             title_fr: "Pourquoi Rien Ne Fonctionne", title_en: "Why Nothing Works",
             desc_fr: "Le diagnostic d'abord : comprends enfin pourquoi tes produits échouent.",
@@ -675,7 +680,7 @@
 
         const products = SITE.products.slice(0, 4).map((p, i) => {
           const img = tx(p, "img");
-          const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260705b" : "") : "";
+          const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260713a" : "") : "";
           const media = img ? `<img src="${esc(imgv)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
           const badge = tx(p, "badge");
           const desc = tx(p, "desc");
