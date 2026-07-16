@@ -61,8 +61,8 @@ const SCHICGIRL_SITE_KEY = "schicgirl_site";
             {
               id: "hydratee", on: true, img_fr: "assets/hydratee.webp", img_en: "assets/hydrated.webp", badge_fr: "Best-seller", badge_en: "Best-seller",
               title_fr: "Hydratée", title_en: "Hydrated",
-              desc_fr: "La science de l'hydratation pour cheveux crépus — 79 pages, la méthode complète.",
-              desc_en: "The science of hydration for coily hair — 79 pages, the full method.",
+              desc_fr: "La science de l'hydratation pour cheveux crépus — 85 pages, la méthode complète.",
+              desc_en: "The science of hydration for coily hair — 85 pages, the full method.",
               price_fr: "17€", price_en: "$18", price_cfa: "(≈ 11 000 FCFA)", url_fr: "https://selar.com/hydratee", url_en: "https://selar.com/hydrated", page_fr: "/fr/hydratation-cheveux-crepus/", page_en: "/en/hydrate-type-4-hair/",
             },
             {
