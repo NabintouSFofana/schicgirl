@@ -12,7 +12,11 @@ var COURSES=[
  {id:'crs-recipes',icon:'🍯',file:'recipes',
   ten:'Type 4 Recipe Book',tfr:'Mes Recettes Type 4',
   sen:'18 DIY treatments with porosity adaptations, plus your kitchen toolkit.',
-  sfr:'18 soins maison avec adaptations porosité, plus ton garde-manger capillaire.'}
+  sfr:'18 soins maison avec adaptations porosité, plus ton garde-manger capillaire.'},
+ {id:'crs-hydra',icon:'💧',file:'hydratee',
+  ten:'Hydrated — End Dry Hair',tfr:'Hydratée — Fini les cheveux secs',
+  sen:'The complete hydration system: why Type 4 dries out, and how to keep water in for days.',
+  sfr:'Le système hydratation complet : pourquoi le Type 4 se dessèche, et comment garder l\'eau des jours durant.'}
 ];
 S.courses=S.courses||{};
 var CRS_CACHE={},CRS_OPEN={};
