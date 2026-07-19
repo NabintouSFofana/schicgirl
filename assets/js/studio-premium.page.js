@@ -11,8 +11,8 @@ var COURSES=[
   sfr:'Ta routine Type 4 complète, étape par étape — de l\'anatomie au plan 90 jours.'},
  {id:'crs-recipes',icon:'🍯',file:'recipes',
   ten:'Type 4 Recipe Book',tfr:'Mes Recettes Type 4',
-  sen:'12 DIY treatments with porosity adaptations, plus your kitchen toolkit.',
-  sfr:'12 soins maison avec adaptations porosité, plus ton garde-manger capillaire.'}
+  sen:'18 DIY treatments with porosity adaptations, plus your kitchen toolkit.',
+  sfr:'18 soins maison avec adaptations porosité, plus ton garde-manger capillaire.'}
 ];
 S.courses=S.courses||{};
 var CRS_CACHE={},CRS_OPEN={};
