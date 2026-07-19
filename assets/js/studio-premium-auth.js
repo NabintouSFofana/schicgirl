@@ -92,12 +92,15 @@ function mergeRemote(remote){
  if(remote.streak&&(!S.streak||remote.streak>S.streak))S.streak=remote.streak;
  sv();
 }
+/* Lecture/écriture via des fonctions Supabase verrouillées (sgp_pull / sgp_push),
+   PAS la table directe : la clé anon ne peut plus "vider" la table des acheteuses.
+   Il faut connaître le couple email+code pour lire une seule ligne. */
 function pullRemote(done){
  if(!auth)return done&&done();
- fetch(SB_URL+'/rest/v1/'+SB_TABLE+'?select=state&email=eq.'+encodeURIComponent(auth.email),
-  {headers:sbHeaders()})
- .then(function(r){return r.ok?r.json():[]})
- .then(function(rows){if(rows&&rows[0]&&rows[0].state)mergeRemote(rows[0].state)})
+ fetch(SB_URL+'/rest/v1/rpc/sgp_pull',
+  {method:'POST',headers:sbHeaders(),body:JSON.stringify({p_email:auth.email,p_code:auth.code})})
+ .then(function(r){return r.ok?r.json():null})
+ .then(function(state){if(state&&typeof state==='object')mergeRemote(state)})
  .catch(function(){})
  .then(function(){done&&done()});
 }
@@ -105,9 +108,10 @@ var syncTimer=null,syncDirty=false;
 function pushRemote(){
  if(!auth)return;
  syncDirty=false;
- var body=JSON.stringify({email:auth.email,code:auth.code,state:S,updated_at:new Date().toISOString()});
- fetch(SB_URL+'/rest/v1/'+SB_TABLE+'?on_conflict=email',
-  {method:'POST',headers:sbHeaders({Prefer:'resolution=merge-duplicates'}),body:body})
+ var body=JSON.stringify({p_email:auth.email,p_code:auth.code,p_state:S});
+ fetch(SB_URL+'/rest/v1/rpc/sgp_push',
+  {method:'POST',headers:sbHeaders(),body:body})
+ .then(function(r){if(!r.ok)syncDirty=true})
  .catch(function(){syncDirty=true});
 }
 function scheduleSync(){
