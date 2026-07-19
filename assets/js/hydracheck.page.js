@@ -2,7 +2,7 @@
    CONFIG
 ──────────────────────────────────────────────── */
       const CONFIG = {
-        guideLink: "https://selar.com/hydratation-cheveux-crepus",
+        guideLink: "https://selar.com/hydratee",
         routineLink: "https://selar.com/70t3ur414k",
         adminStorageKey: "schicgirl_hydration_leads",
       };
