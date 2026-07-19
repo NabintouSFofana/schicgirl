@@ -16,7 +16,16 @@ const CONFIG = {
     en: "https://selar.com/toolkiten"
   },
 
-  // Your signups backend (Google Apps Script URL ending in /exec).
+  // Signups are saved to Supabase (write-only table — the list is readable
+  // only from your Supabase dashboard, never from the public site).
+  // ⚠️ Run once: "secrets and important/signups-supabase.sql" in Supabase SQL Editor.
+  SUPABASE: {
+    url: "https://ouwzbqmmtbxqtffghncg.supabase.co",
+    key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8",
+    table: "signups"
+  },
+
+  // Optional extra backend (Google Apps Script URL ending in /exec). Leave "" to skip.
   FORM_ENDPOINT: "",
 
   // Your 3 guides per language. The 'u' values are your PDF URLs, base64-
@@ -102,18 +111,32 @@ document.getElementById("yr").textContent = new Date().getFullYear();
   }
   function succeed(){ buildDownloads(); formV.setAttribute("hidden",""); okV.classList.add("show"); okV.scrollIntoView({behavior:"smooth",block:"center"}); }
 
+  // Fire-and-forget: the user always gets their guides even if the network hiccups.
+  function saveSignup(d){
+    var SB = CONFIG.SUPABASE;
+    if(SB && SB.url && SB.key){
+      try{
+        fetch(SB.url+"/rest/v1/"+SB.table, {
+          method:"POST",
+          headers:{ "apikey":SB.key, "Authorization":"Bearer "+SB.key, "Content-Type":"application/json", "Prefer":"return=minimal" },
+          body: JSON.stringify(d)
+        }).catch(function(){});
+      }catch(e){}
+    }
+    if(CONFIG.FORM_ENDPOINT){
+      try{ fetch(CONFIG.FORM_ENDPOINT,{method:"POST",body:new URLSearchParams(d)}).catch(function(){}); }catch(e){}
+    }
+  }
+
   function submit(){
     var okName=fname.value.trim().length>0, okContact=validEmail(email.value)||validPhone(phone.value);
     if(!okName || !okContact){ showError(true); return; }
     showError(false);
     btn.disabled=true; btn.textContent=(document.documentElement.lang==="fr")?"Envoi…":"Sending…";
-    if(CONFIG.FORM_ENDPOINT){
-      try{
-        fetch(CONFIG.FORM_ENDPOINT,{method:"POST",body:new URLSearchParams({
-          name:fname.value.trim(), email:email.value.trim(), phone:phone.value.trim(), lang:document.documentElement.lang
-        })});
-      }catch(e){}
-    }
+    saveSignup({
+      name:fname.value.trim(), email:email.value.trim(), phone:phone.value.trim(),
+      lang:document.documentElement.lang, source:(location.pathname||"").replace(/^\//,"") || "home"
+    });
     succeed();
   }
 
