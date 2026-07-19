@@ -10,7 +10,7 @@ var LANG = "fr";
     if (cov && cov.tagName==="IMG"){ cov.setAttribute("src", LANG==="en" ? "/assets/planner-cover-en.png" : "/assets/planner-cover-fr.png"); }
     var pi = document.getElementById("prevInside"); if(pi){ pi.setAttribute("src","/assets/previews/planner-inside"+suf+".png"); }
     var pd = document.getElementById("prevDetail"); if(pd){ pd.setAttribute("src","/assets/previews/planner-detail"+suf+".png"); }
-    var buy = LANG==="en" ? "https://selar.com/studio-en" : "https://selar.com/studio-fr";
+    var buy = LANG==="en" ? "https://selar.com/the_studio_premium" : "https://selar.com/le_studio_premium";
     ["ctaTop","ctaBottom","barCta"].forEach(function(id){ var a=document.getElementById(id); if(a) a.setAttribute("href", buy); });
   }
   function zoomPrev(src){ var lb=document.getElementById("prevLightbox"); document.getElementById("prevLightboxImg").setAttribute("src",src); lb.classList.add("open"); }

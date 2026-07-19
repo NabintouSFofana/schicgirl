@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "pousse", "img_fr": "assets/pousse.png", "img_en": "assets/grow.png", "url_fr": "https://selar.com/pousse", "url_en": "https://selar.com/grow-hair", "price_fr": "14€", "price_en": "$15", "price_cfa": "≈ 9 000 FCFA", "cta_fr": "Commencer ma pousse →", "cta_en": "Start my growth →"};
+var EBOOK = {"slug": "pousse", "img_fr": "assets/pousse.png", "img_en": "assets/grow.png", "url_fr": "/shop.html", "url_en": "/shop.html", "price_fr": "14€", "price_en": "$15", "price_cfa": "≈ 9 000 FCFA", "cta_fr": "Bientôt disponible · voir mes guides →", "cta_en": "Coming soon · see my guides →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }

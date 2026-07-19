@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "recettes", "img_fr": "assets/recettes-fr.webp", "img_en": "assets/recettes-en.webp", "url_fr": "https://selar.com/recettes_FR", "url_en": "https://selar.com/recipes_EN", "price_fr": "9€", "price_en": "$10", "price_cfa": "≈ 6 000 FCFA", "cta_fr": "Obtenir mes recettes →", "cta_en": "Get my recipes →"};
+var EBOOK = {"slug": "recettes", "img_fr": "assets/recettes-fr.webp", "img_en": "assets/recettes-en.webp", "url_fr": "/shop.html", "url_en": "/shop.html", "price_fr": "9€", "price_en": "$10", "price_cfa": "≈ 6 000 FCFA", "cta_fr": "Bientôt disponible · voir mes guides →", "cta_en": "Coming soon · see my guides →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }

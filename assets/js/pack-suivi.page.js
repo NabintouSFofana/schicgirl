@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "pack-suivi", "img_fr": "assets/pack-suivi-fr.webp", "img_en": "assets/pack-suivi-en.webp", "url_fr": "https://selar.com/Pack_Suivi_Type4_FR", "url_en": "https://selar.com/Type4_Tracker_Pack_EN", "price_fr": "5€", "price_en": "$6", "price_cfa": "≈ 3 500 FCFA", "cta_fr": "Obtenir le pack →", "cta_en": "Get the pack →"};
+var EBOOK = {"slug": "pack-suivi", "img_fr": "assets/pack-suivi-fr.webp", "img_en": "assets/pack-suivi-en.webp", "url_fr": "/shop.html", "url_en": "/shop.html", "price_fr": "5€", "price_en": "$6", "price_cfa": "≈ 3 500 FCFA", "cta_fr": "Bientôt disponible · voir mes guides →", "cta_en": "Coming soon · see my guides →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }

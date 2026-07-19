@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "stop-cheveux-secs", "img_fr": "assets/stop-cheveux-secs.png", "img_en": "assets/stop-dry-hair.png", "url_fr": "https://selar.com/stop-cheveux-secs", "url_en": "https://selar.com/stop-dry-hair", "price_fr": "5€", "price_en": "$6", "price_cfa": "≈ 3 500 FCFA", "cta_fr": "Commencer pour 5€ →", "cta_en": "Start for $6 →"};
+var EBOOK = {"slug": "stop-cheveux-secs", "img_fr": "assets/stop-cheveux-secs.png", "img_en": "assets/stop-dry-hair.png", "url_fr": "/shop.html", "url_en": "/shop.html", "price_fr": "5€", "price_en": "$6", "price_cfa": "≈ 3 500 FCFA", "cta_fr": "Bientôt disponible · voir mes guides →", "cta_en": "Coming soon · see my guides →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }

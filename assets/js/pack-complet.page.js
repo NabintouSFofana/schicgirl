@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "pack-complet", "img_fr": "assets/all-ebook.png", "img_en": "assets/all-ebook.png", "url_fr": "https://selar.com/pack-complet", "url_en": "https://selar.com/complete-pack", "price_fr": "59€", "price_en": "$65", "price_cfa": "≈ 39 000 FCFA", "cta_fr": "Obtenir le système complet →", "cta_en": "Get the complete system →"};
+var EBOOK = {"slug": "pack-complet", "img_fr": "assets/all-ebook.png", "img_en": "assets/all-ebook.png", "url_fr": "https://selar.com/pack-complet", "url_en": "https://selar.com/the_studio_premium", "price_fr": "59€", "price_en": "$65", "price_cfa": "≈ 39 000 FCFA", "cta_fr": "Obtenir le système complet →", "cta_en": "Get the complete system →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }
