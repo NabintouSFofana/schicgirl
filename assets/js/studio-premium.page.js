@@ -16,7 +16,11 @@ var COURSES=[
  {id:'crs-hydra',icon:'💧',file:'hydratee',
   ten:'Hydrated — End Dry Hair',tfr:'Hydratée — Fini les cheveux secs',
   sen:'The complete hydration system: why Type 4 dries out, and how to keep water in for days.',
-  sfr:'Le système hydratation complet : pourquoi le Type 4 se dessèche, et comment garder l\'eau des jours durant.'}
+  sfr:'Le système hydratation complet : pourquoi le Type 4 se dessèche, et comment garder l\'eau des jours durant.'},
+ {id:'crs-grow',icon:'🌱',file:'grow',
+  ten:'Grow — Length & Retention (bonus)',tfr:'Grow — Pousse & Rétention (bonus)',
+  sen:'Bonus: the full growth course — 15 lessons, a 90-day challenge, 15 recipes, a certificate.',
+  sfr:'Bonus : le cours pousse complet — 15 leçons, un défi 90 jours, 15 recettes, un certificat.'}
 ];
 S.courses=S.courses||{};
 var CRS_CACHE={},CRS_OPEN={};
