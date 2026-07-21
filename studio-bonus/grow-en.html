@@ -380,7 +380,7 @@ ol.rsteps li::before{content:counter(s);position:absolute;left:0;top:1px;width:1
     </button>
     <div class="tb-crumb" id="crumb">GROW · The Type 4 Hair Growth Course</div>
     <div class="tb-right">
-      <button class="btn" onclick="window.print()">Save / Print</button>
+      
     </div>
   </div>
   <div class="wrap" id="content"></div>
@@ -927,7 +927,7 @@ ${done ? `<div class="goal-set" style="max-width:420px;margin:0 auto 24px">
   <div class="flour"><span class="r"></span>${I.flour}<span class="r"></span></div>
   <p style="font-family:var(--sans);font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)">Your crown is growing · schicgirl.me</p>
 </div>
-${done ? '<div class="navlinks"><span></span><button class="btn gold" onclick="window.print()">Print / Save certificate</button></div>':''}
+${done ? '<p style="text-align:center;font:600 8.5pt/1.6 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep)">Your certificate lives in your Studio &middot; revisit it any time</p>':''}
 
 ${takeaway('You didn\'t just read a book — you built a system, and proved it on your own crown. Revisit any lesson anytime; this course is yours for life.')}`;
 };
@@ -1278,6 +1278,6 @@ let _start = state.current||'welcome';
 if(!isUnlocked(_start)) _start='welcome';   // never resume onto a locked lesson
 render(_start);
 </script>
-  <script src="/assets/js/studio-guard.js?v=20260719c"></script>
+  <script src="/assets/js/studio-guard.js?v=20260720b"></script>
 </body>
 </html>
