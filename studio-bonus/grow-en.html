@@ -403,16 +403,7 @@ function affirm(t){return '<div class="affirm"><div class="al">Affirmation</div>
 function h2(t){return '<h2 class="sub">'+I.leafg+'<span>'+t+'</span></h2>';}
 
 /* ---- SCHICGIRL instructor video (drop videos/<id>.mp4 to enable) ---- */
-function video(id,title){
-  return '<div class="vlesson">'
-    +'<video class="vplayer" controls preload="metadata" playsinline poster="videos/'+id+'.jpg" '
-    +'onloadedmetadata="this.closest(\'.vlesson\').classList.add(\'hasvid\')">'
-    +'<source src="videos/'+id+'.mp4" type="video/mp4"></video>'
-    +'<div class="vplaceholder"><div class="vp-ring">&#9658;</div>'
-    +'<div class="vp-t">Watch SCHICGIRL teach this lesson</div>'
-    +'<div class="vp-s">Add <code>videos/'+id+'.mp4</code> to enable playback</div></div>'
-    +'<div class="vcap">'+I.flour+'<span>SCHICGIRL &middot; '+title+'</span></div></div>';
-}
+function video(id,title){ return ''; /* no video — Schicgirl runs no-camera courses */ }
 function lessonTitle(id){ let t=''; MODULES.forEach(m=>m.lessons.forEach(l=>{ if(l.id===id) t=l.title; })); return t; }
 function instructorBlock(){
   return '<div class="instructor">'
