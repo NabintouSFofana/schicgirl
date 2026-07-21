@@ -714,7 +714,7 @@ function downloadPdf(lead){
   </div>` : '';
 
 
-  printWin.document.write(`<!DOCTYPE html><html lang="${lead.lang||'fr'}"><head>
+  printWin.document.write(`<!DOCTYPE html><html lang="${esc(lead.lang||'fr')}"><head>
 <meta charset="UTF-8">
 <title>Schicgirl Diagnostic — ${esc(lead.name||'Lead')}</title>
 <link rel="stylesheet" href="assets/css/schicchat_admin.page.css" />
