@@ -7,6 +7,16 @@
         adminStorageKey: "schicgirl_hydration_leads",
       };
 
+      // ─── Email forwarding ─────────────────────────────────────────────
+      // Set to your email to get a notification every time someone completes
+      // HydraCheck. First one asks you to confirm the address (Formsubmit
+      // sends one confirmation email). After that it's automatic.
+      // Leave as "" to disable forwarding.
+      const FORWARD_EMAIL = "contacte.schicgirl@gmail.com";
+      const FORWARD_ENDPOINT = FORWARD_EMAIL
+        ? `https://formsubmit.co/ajax/${encodeURIComponent(FORWARD_EMAIL)}`
+        : "";
+
       /* ──────────────────────────────────────────────
    STRINGS — all UI + conversation copy
 ──────────────────────────────────────────────── */
@@ -834,6 +844,27 @@
         list.push(lead);
 
         localStorage.setItem(CONFIG.adminStorageKey, JSON.stringify(list));
+
+        // Send email notification if forwarding is enabled.
+        // Fire-and-forget; never blocks the visitor's experience.
+        if (FORWARD_ENDPOINT) {
+          fetch(FORWARD_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+              _subject: `Nouveau diagnostic HydraCheck — ${lead.name || "Sans nom"}`,
+              _template: "table",
+              Nom: lead.name || "—",
+              Contact: lead.contact || "—",
+              Pays: lead.country || "—",
+              Langue: lead.lang || "—",
+              Porosité: lead.porosity || "—",
+              Profil: lead.profile || "—",
+              Score: lead.score != null ? String(lead.score) : "—",
+              Priorité: lead.priority || "—",
+            }),
+          }).catch(() => {});
+        }
       }
 
       /* ──────────────────────────────────────────────

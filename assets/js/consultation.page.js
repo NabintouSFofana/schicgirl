@@ -11,7 +11,7 @@ const STORAGE_KEY = "schicgirl_consultation_bookings";
 // First booking will ask you to confirm the address (Formsubmit sends one
 // confirmation email). After that it's automatic.
 // Leave as "" to disable forwarding.
-const FORWARD_EMAIL = ""; // e.g. "ton-email@gmail.com"
+const FORWARD_EMAIL = "contacte.schicgirl@gmail.com";
 const FORWARD_ENDPOINT = FORWARD_EMAIL
   ? `https://formsubmit.co/ajax/${encodeURIComponent(FORWARD_EMAIL)}`
   : "";

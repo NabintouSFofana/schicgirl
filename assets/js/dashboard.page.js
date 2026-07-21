@@ -709,7 +709,6 @@ const MODULES = [
   { e:'💬', fr:'Diagnostic Chat', en:'Diagnostic Chat', df:'Admin du chat Schicgirl', de:'Schicgirl chat admin', href:'schicchat_admin.html' },
   { e:'💧', fr:'HydraCheck', en:'HydraCheck', df:'Diagnostic d\'hydratation', de:'Hydration quiz admin', href:'hydracheck_admin.html' },
   { e:'📅', fr:'Consultations', en:'Consultations', df:'Réservations & messages', de:'Bookings & messages', href:'consultation_admin.html' },
-  { e:'🧰', fr:'Toolkit Landing', en:'Toolkit Landing', df:'Page de capture toolkit', de:'Toolkit opt-in page', href:'toolkit-landing_admin.html' },
   { e:'🎬', fr:'Ebook Studio', en:'Ebook Studio', df:'Créer des ebooks', de:'Create ebooks', href:'studio.html' },
   { e:'🤖', fr:'CoilCare AI', en:'CoilCare AI', df:'Assistant IA capillaire', de:'Hair AI assistant', href:'CoilCareAI.html' },
   { e:'⭐', fr:'Avis clients', en:'Reviews', df:'Modérer les avis', de:'Moderate reviews', href:'review.html' },

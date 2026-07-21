@@ -5,6 +5,5 @@ Disallow: /consultation_admin.html
 Disallow: /hydracheck_admin.html
 Disallow: /products_admin.html
 Disallow: /schicchat_admin.html
-Disallow: /toolkit-landing_admin.html
 
 Sitemap: https://schicgirl.me/sitemap.xml
