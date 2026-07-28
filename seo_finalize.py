@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate sitemap.xml (with hreflang) and repoint inbound JS links to the
 clean /fr/ + /en/ URLs. Idempotent."""
-import re, glob
+import re, glob, os
 from pages_config import PAGES
 
 SITE = "https://schicgirl.me"
@@ -31,6 +31,11 @@ def gen_sitemap():
         out.append("  </url>")
     for s in SINGLE:
         url(f"{SITE}/{s}", "1.0" if s == "" else "0.7")
+    # the blog is the site's editorial content — it must be discoverable,
+    # otherwise the sitemap describes a pure storefront (an AdSense
+    # "low value content" trigger) while 15k words sit unlisted.
+    for art in sorted(glob.glob('blog/*.html')):
+        url(f"{SITE}/blog/{os.path.basename(art)}", "0.8")
     for c in PAGES:
         fr, en = urls(c)
         alts = [("fr", fr), ("en", en), ("x-default", fr)]

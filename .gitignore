@@ -69,3 +69,10 @@ visits-export*.json
 
 # ebook/freebie backup artifacts
 *bak
+
+# ─── Working backups created while editing (never part of the site) ──
+_dev-archive/
+*.prebak.*
+*.prehydbak.*
+*.prerevbak
+*.precov*bak
