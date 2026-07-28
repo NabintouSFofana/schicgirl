@@ -177,12 +177,22 @@
       body: JSON.stringify({ p_email: auth.email, p_code: auth.code }),
     })
       .then(function (r) {
-        return r.ok ? r.json() : null;
+        if (!r.ok) {
+          // silent failure used to look identical to success: log it so a missing
+          // sgp_pull function or a permissions problem is visible in DevTools
+          r.text().then(function (t) {
+            console.warn("[SGP sync] pull failed — HTTP " + r.status + " " + t.slice(0, 200));
+          });
+          return null;
+        }
+        return r.json();
       })
       .then(function (state) {
         if (state && typeof state === "object") mergeRemote(state);
       })
-      .catch(function () {})
+      .catch(function (e) {
+        console.warn("[SGP sync] pull error (offline or blocked):", e && e.message);
+      })
       .then(function () {
         done && done();
       });
@@ -203,10 +213,19 @@
       body: body,
     })
       .then(function (r) {
-        if (!r.ok) syncDirty = true;
+        if (!r.ok) {
+          syncDirty = true;
+          r.text().then(function (t) {
+            console.warn("[SGP sync] push failed — HTTP " + r.status + " " + t.slice(0, 200) +
+                         "  (404 = run studio-premium-supabase.sql; 401/403 = grant execute to anon)");
+          });
+        } else {
+          console.info("[SGP sync] progress saved to Supabase");
+        }
       })
-      .catch(function () {
+      .catch(function (e) {
         syncDirty = true;
+        console.warn("[SGP sync] push error (offline or blocked):", e && e.message);
       });
   }
   function scheduleSync() {
