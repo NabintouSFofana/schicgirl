@@ -24,7 +24,7 @@
       communique le code aux abonnées à jour. Celles qui n'ont pas renouvelé
       sont déconnectées automatiquement à leur prochaine visite. */
   var CODE_HASHES = [
-    "6038f691d770cf926d39c838c472a17acba8876699604850f5dea71fce7d77e2", // acheteuses (accès à vie)
+    "4ae85a2a58e9ac3546894658a49eb900abbfe8e0f48bddbdaee6e47f030ac695", // acheteuses (accès à vie)
     "8b4ab941da2fad36e8aff872cede97319df69647ffc9818b6fb53c87376112cf", // Le Cercle (à faire tourner chaque mois)
   ];
   var AUTH_KEY = "sgp_auth";
