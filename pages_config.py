@@ -96,8 +96,8 @@ PAGES = [
    "name_fr": "Mes Recettes Type 4", "name_en": "My Type 4 Recipe Book", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Mes Recettes Type 4 — 12 Soins Maison Cheveux Crépus | Schicgirl",
    "title_en": "My Type 4 Recipe Book — 12 Homemade Treatments for Coily Hair | Schicgirl",
-   "desc_fr": "12 recettes maison pour cheveux crépus Type 4 : masques profonds, spritz hydratant, pré-poo, rhassoul — quantités exactes et adaptations porosité.",
-   "desc_en": "12 homemade recipes for Type 4 coily hair: deep masks, hydrating spritz, pre-poo, rhassoul — exact amounts and porosity adaptations."},
+   "desc_fr": "17 recettes maison pour cheveux crépus Type 4 : masques profonds, spritz hydratant, pré-poo, rhassoul — quantités exactes et adaptations porosité.",
+   "desc_en": "17 homemade recipes for Type 4 coily hair: deep masks, hydrating spritz, pre-poo, rhassoul — exact amounts and porosity adaptations."},
 
   {"src": "natural-hair-planner.html", "slug_fr": "planificateur-cheveux-naturels", "slug_en": "natural-hair-planner",
    "ebook": _ebook("assets/natural-hair-planner-fr.webp", "assets/natural-hair-planner-en.webp", "https://selar.com/planificateur", "https://selar.com/natural-hair-planner",
