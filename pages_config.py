@@ -94,8 +94,8 @@ PAGES = [
    "ebook": _ebook("assets/recettes-fr.webp", "assets/recettes-en.webp", "https://selar.com/recettes-type-4", "https://selar.com/recipes-type-4",
                    "9€", "$10", "≈ 6 000 FCFA", "Obtenir mes recettes →", "Get my recipes →", "9.00", "10.00", "recettes"),
    "name_fr": "Mes Recettes Type 4", "name_en": "My Type 4 Recipe Book", "cat_fr": "Ebooks", "cat_en": "Ebooks",
-   "title_fr": "Mes Recettes Type 4 — 12 Soins Maison Cheveux Crépus | Schicgirl",
-   "title_en": "My Type 4 Recipe Book — 12 Homemade Treatments for Coily Hair | Schicgirl",
+   "title_fr": "Mes Recettes Type 4 — 17 Soins Maison Cheveux Crépus | Schicgirl",
+   "title_en": "My Type 4 Recipe Book — 17 Homemade Treatments for Coily Hair | Schicgirl",
    "desc_fr": "17 recettes maison pour cheveux crépus Type 4 : masques profonds, spritz hydratant, pré-poo, rhassoul — quantités exactes et adaptations porosité.",
    "desc_en": "17 homemade recipes for Type 4 coily hair: deep masks, hydrating spritz, pre-poo, rhassoul — exact amounts and porosity adaptations."},
 
