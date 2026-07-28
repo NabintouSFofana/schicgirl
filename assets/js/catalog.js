@@ -47,5 +47,5 @@ window.SG_CATALOG.products = [
             title_fr: "Mes Recettes Type 4", title_en: "My Type 4 Recipe Book",
             desc_fr: "12 soins maison : masques, spritz, pré-poo — quantités exactes et adaptations porosité.",
             desc_en: "12 homemade treatments: masks, spritz, pre-poo — exact amounts, adapted to porosity.",
-            price_fr: "5€", price_en: "$10", cfa: "≈ 3 500 FCFA", url_fr: "/fr/recettes-cheveux-crepus/", url_en: "/en/type-4-hair-recipes/" },
+            price_fr: "9€", price_en: "$10", cfa: "≈ 6 000 FCFA", url_fr: "/fr/recettes-cheveux-crepus/", url_en: "/en/type-4-hair-recipes/" },
         ];
