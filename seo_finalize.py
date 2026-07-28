@@ -43,7 +43,7 @@ def gen_sitemap():
         url(en, "0.9", alts)
     out.append("</urlset>")
     open("sitemap.xml", "w", encoding="utf-8", newline="").write("\n".join(out) + "\n")
-    return len(SINGLE) + 2 * len(PAGES)
+    return len(SINGLE) + len(glob.glob('blog/*.html')) + 2 * len(PAGES)
 
 # ---------------- inbound JS links ----------------
 def repoint_links():
