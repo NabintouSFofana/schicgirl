@@ -30,9 +30,9 @@ PAGES = [
   {"src": "pousse.html", "slug_fr": "faire-pousser-cheveux-crepus", "slug_en": "grow-type-4-hair",
    "ebook": _ebook("assets/pousse.webp", "assets/grow.webp", "https://selar.com/pousse", "https://selar.com/grow-hair",
                    "14€", "$15", "≈ 9 000 FCFA", "Commencer ma pousse →", "Start my growth →", "14.00", "15.00", "pousse"),
-   "name_fr": "Pousse Maximale", "name_en": "Maximum Growth", "cat_fr": "Ebooks", "cat_en": "Ebooks",
-   "title_fr": "Pousse Maximale — Faire Pousser ses Cheveux Crépus Sans Casse | Schicgirl",
-   "title_en": "Maximum Growth — Grow Type 4 Coily Hair Without Breakage | Schicgirl",
+   "name_fr": "Pousse & Protège", "name_en": "Grow & Protect", "cat_fr": "Ebooks", "cat_en": "Ebooks",
+   "title_fr": "Pousse & Protège — Retenir sa Longueur sur Cheveux Crépus Type 4 | Schicgirl",
+   "title_en": "Grow & Protect — Keep Your Length on Type 4 Coily Hair | Schicgirl",
    "desc_fr": "Le système complet de pousse pour cheveux crépus Type 4 : rétention de longueur, cuir chevelu, équilibre protéines/hydratation et routine.",
    "desc_en": "The complete growth system for Type 4 coily hair: length retention, scalp care, the protein/moisture balance and a clear routine."},
 
