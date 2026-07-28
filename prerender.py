@@ -23,7 +23,7 @@ def parse_utf8(path):
 
 SITE = "https://schicgirl.me"
 LOGO = f"{SITE}/assets/logo2.png"
-VERSION = "20260702a"  # bump to force browsers to re-fetch local css/js after a deploy
+VERSION = "20260728c"  # bump to force browsers to re-fetch local css/js after a deploy
 
 # old root file -> (clean FR url, clean EN url) for internal-link rewriting
 LINKMAP = {f"/{c['src']}": (f"/fr/{c['slug_fr']}/", f"/en/{c['slug_en']}/") for c in PAGES}
@@ -103,11 +103,13 @@ def build(cfg, lang):
         if byid("barCta") is not None:
             byid("barCta").set("href", eb[f"url_{lang}"]); byid("barCta").text = "Obtenir →" if lang == "fr" else "Get it →"
         if byid("cover") is not None:
-            byid("cover").set("src", abspath(eb[f"img_{lang}"]))
+            # version the cover too: the filename never changes when the artwork is
+            # replaced, so without this a returning visitor keeps the cached old cover
+            byid("cover").set("src", abspath(eb[f"img_{lang}"]) + f"?v={VERSION}")
         suf = "-en" if lang == "en" else ""
         for i, kind in (("prevInside", "inside"), ("prevDetail", "detail")):
             if byid(i) is not None:
-                byid(i).set("src", f"/assets/previews/{eb['preview_slug']}-{kind}{suf}.png")
+                byid(i).set("src", f"/assets/previews/{eb['preview_slug']}-{kind}{suf}.png?v={VERSION}")
 
     # 4. language toggle buttons now navigate between the two URLs
     if byid("btnEn") is not None:
