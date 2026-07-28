@@ -91,8 +91,8 @@ PAGES = [
    "desc_en": "Build, step by step, the Type 4 coily hair routine that works for you: cleanse, moisturize, seal, wash day, weekly rhythm and night routine."},
 
   {"src": "recettes.html", "slug_fr": "recettes-cheveux-crepus", "slug_en": "type-4-hair-recipes",
-   "ebook": _ebook("assets/recettes-fr.webp", "assets/recettes-en.webp", "https://selar.com/recettes_FR", "https://selar.com/recipes_EN",
-                   "9€", "$10", "≈ 6 000 FCFA", "Obtenir mes recettes →", "Get my recipes →", "9.00", "10.00", "recettes"),
+   "ebook": _ebook("assets/recettes-fr.webp", "assets/recettes-en.webp", "https://selar.com/recettes-type-4", "https://selar.com/recipes-type-4",
+                   "5€", "$5", "≈ 3 500 FCFA", "Obtenir mes recettes →", "Get my recipes →", "5.00", "5.00", "recettes"),
    "name_fr": "Mes Recettes Type 4", "name_en": "My Type 4 Recipe Book", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Mes Recettes Type 4 — 12 Soins Maison Cheveux Crépus | Schicgirl",
    "title_en": "My Type 4 Recipe Book — 12 Homemade Treatments for Coily Hair | Schicgirl",
