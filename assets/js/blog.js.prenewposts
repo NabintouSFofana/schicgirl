@@ -20,19 +20,6 @@
 
   // ── Posts (newest first) ──
   var POSTS = [
-  { slug: "routine-cheveux-crepus-debutante", cat: "routine", emoji: "🌱", img: "blog/journal_capillaire.webp", date: "2026-07-29",
-    title_fr: "Routine cheveux crépus : par où commencer quand on débute", title_en: "Coily hair routine: where to start as a beginner",
-    exc_fr: "Quatre gestes, dans le bon ordre, avec ce que tu as déjà. Le reste vient après.",
-    exc_en: "Four steps, in the right order, with what you already own. The rest comes later." },
-  { slug: "shrinkage-cheveux-crepus", cat: "comprendre", emoji: "🌀", img: "blog/journal_capillaire.webp", date: "2026-07-29",
-    title_fr: "Shrinkage : pourquoi tes cheveux paraissent courts", title_en: "Shrinkage: why your hair looks short",
-    exc_fr: "Jusqu'à 80 % de ta longueur disparaît à l'œil. Et c'est bon signe.",
-    exc_en: "Up to 80% of your length disappears from view. And that is a good sign." },
-  { slug: "huile-de-ricin-cheveux", cat: "produits", emoji: "🫒", img: "blog/journal_capillaire.webp", date: "2026-07-29",
-    title_fr: "Huile de ricin : ce qu'elle fait vraiment", title_en: "Castor oil: what it actually does",
-    exc_fr: "Elle ne fait pas pousser les cheveux. Ce qu'elle fait est plus utile que la promesse.",
-    exc_en: "It does not grow hair. What it does is more useful than the promise." },
-
     { slug: "journal-capillaire", cat: "routine", emoji: "📔", img: "blog/journal_capillaire.webp", date: "2026-06-29",
       title_fr: "Tenir un journal capillaire : la méthode qui change tout",
       title_en: "Keeping a hair journal: the habit that changes everything",
