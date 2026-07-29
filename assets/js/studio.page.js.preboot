@@ -171,10 +171,8 @@ function badges(){var el=document.getElementById('badges');if(!el)return;var d=I
  el.innerHTML=ms.map(function(m){return '<div class="ck"><span class="bx '+(m[0]?'on':'')+'"></span>'+m[1]+'</div>'}).join('')}
 buildNav();
 (function(){var tt=new Date().toDateString();if(S.lastDay!==tt){S.streak=(S.lastDay&&(new Date(tt)-new Date(S.lastDay))<=2*864e5)?(S.streak||0)+1:1;S.lastDay=tt;sv()}})();
-/* Le demarrage vit desormais a la FIN du fichier : il appelait go('home'),
-   qui construit le panneau Accueil, qui appelle sgProfileCard() - definie plus
-   bas. L'app demarrait donc avant que ses propres briques existent, ce qui
-   levait une ReferenceError et laissait la page blanche. */
+document.getElementById('le').classList.toggle('on',L==='en');document.getElementById('lf').classList.toggle('on',L==='fr');
+var start=(location.hash||'#home').slice(1);go(IDS.indexOf(start)>=0?start:'home');
 
 /* ── SCHICGIRL — the diagnosis as the spine ────────────────────────────────
    The studio already asked the six questions (porosity, curl, density, strand
@@ -386,7 +384,3 @@ buildNav();
       + '</p>' + html;
   };
 })();
-
-/* ---- demarrage de l app : tout est defini au-dessus ---- */
-document.getElementById('le').classList.toggle('on',L==='en');document.getElementById('lf').classList.toggle('on',L==='fr');
-var start=(location.hash||'#home').slice(1);go(IDS.indexOf(start)>=0?start:'home');
