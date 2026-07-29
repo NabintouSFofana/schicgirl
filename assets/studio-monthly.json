@@ -1,0 +1,29 @@
+{
+  "_readme": [
+    "This is the ONLY file to edit to add next month's Studio update.",
+    "Copy the first entry, change the month, write the two languages, save, push. That's it.",
+    "month  : 'YYYY-MM'. An entry only appears once that month has arrived, so you can",
+    "         write several in advance and they will unlock on their own.",
+    "kicker : the small label above the title (Focus of the month, Recipe of the month...).",
+    "body   : simple HTML. Use <p> for paragraphs, <b> for bold, <ul><li> for lists.",
+    "link   : optional. Leave link_en/link_fr out entirely if there is no button.",
+    "Keep this separate from Le Cercle's monthly exclusive - Le Cercle is sold on having",
+    "its own content, so do not put the same thing in both."
+  ],
+  "updated": "2026-07-29",
+  "entries": [
+    {
+      "month": "2026-08",
+      "kicker_en": "Focus of the month",
+      "kicker_fr": "Le focus du mois",
+      "title_en": "August: heat, sweat, and the length you lose to both",
+      "title_fr": "Août : la chaleur, la sueur, et la longueur qu'on y perd",
+      "body_en": "<p>August is the month your routine quietly stops working. Not because you changed anything, but because the weather did.</p><p>Three things shift at once: sun dries the cuticle faster than your leave-in can hold, sweat leaves salt sitting on your scalp between washes, and heat makes you handle your hair more, not less.</p><p><b>What to change this month, and nothing else:</b></p><ul><li><b>Rinse after you sweat.</b> Water only, no shampoo. Salt left on the scalp is what turns into itch by day three.</li><li><b>Cover for UV.</b> A headwrap or a loose scarf on long sun days. Your ends are the oldest hair on your head and the least able to take it.</li><li><b>Add water, not product.</b> A plain water mist mid-week does more in August than any new cream. Seal it if your porosity is high.</li></ul><p>Change these three, keep everything else identical, and you will know in September whether it was the weather or the routine.</p>",
+      "body_fr": "<p>Août, c'est le mois où ta routine cesse discrètement de fonctionner. Pas parce que tu as changé quelque chose, mais parce que le climat a changé.</p><p>Trois choses bougent en même temps : le soleil dessèche la cuticule plus vite que ton leave-in ne peut retenir, la sueur laisse du sel sur ton cuir chevelu entre deux lavages, et la chaleur te fait manipuler tes cheveux davantage, pas moins.</p><p><b>Ce qu'il faut changer ce mois-ci, et rien d'autre :</b></p><ul><li><b>Rince après avoir transpiré.</b> À l'eau seulement, sans shampoing. C'est le sel resté sur le cuir chevelu qui devient démangeaison au troisième jour.</li><li><b>Couvre-toi contre les UV.</b> Un foulard ou une écharpe légère les jours de plein soleil. Tes pointes sont les cheveux les plus vieux de ta tête, et les moins capables d'encaisser.</li><li><b>Ajoute de l'eau, pas du produit.</b> Une brume d'eau pure en milieu de semaine fait plus en août que n'importe quelle nouvelle crème. Scelle derrière si ta porosité est élevée.</li></ul><p>Change ces trois choses, garde tout le reste identique, et en septembre tu sauras si c'était le climat ou la routine.</p>",
+      "link_en": "/en/hydrate-type-4-hair/",
+      "link_fr": "/fr/hydratation-cheveux-crepus/",
+      "cta_en": "The full moisture system →",
+      "cta_fr": "Le système hydratation complet →"
+    }
+  ]
+}
