@@ -27,6 +27,15 @@ PAGES = [
    "desc_fr": "Le système complet pour hydrater durablement les cheveux crépus Type 4 (4A 4B 4C) : méthode LOC/LCO, porosité, recettes et routine.",
    "desc_en": "The complete system to deeply hydrate Type 4 coily hair (4A 4B 4C): the LOC/LCO method, porosity, recipes and a lasting routine."},
 
+  {"src": "pousse.html", "slug_fr": "faire-pousser-cheveux-crepus", "slug_en": "grow-type-4-hair",
+   "ebook": _ebook("assets/pousse.webp", "assets/grow.webp", "https://selar.com/pousse", "https://selar.com/grow-hair",
+                   "14€", "$15", "≈ 9 000 FCFA", "Commencer ma pousse →", "Start my growth →", "14.00", "15.00", "pousse"),
+   "name_fr": "Pousse & Protège", "name_en": "Grow & Protect", "cat_fr": "Ebooks", "cat_en": "Ebooks",
+   "title_fr": "Pousse & Protège — Retenir sa Longueur sur Cheveux Crépus Type 4 | Schicgirl",
+   "title_en": "Grow & Protect — Keep Your Length on Type 4 Coily Hair | Schicgirl",
+   "desc_fr": "Le système complet de pousse pour cheveux crépus Type 4 : rétention de longueur, cuir chevelu, équilibre protéines/hydratation et routine.",
+   "desc_en": "The complete growth system for Type 4 coily hair: length retention, scalp care, the protein/moisture balance and a clear routine."},
+
   {"src": "coiffures.html", "slug_fr": "coiffures-protectrices", "slug_en": "protective-styles",
    "ebook": _ebook("assets/coiffures-fr.webp", "assets/hair-styles.webp", "https://selar.com/coiffures-protectrices", "https://selar.com/hair-styles",
                    "5€", "$6", "≈ 3 500 FCFA", "Protéger mes cheveux →", "Protect my hair →", "5.00", "6.00", "coiffures"),

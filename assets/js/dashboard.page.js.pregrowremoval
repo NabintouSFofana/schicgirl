@@ -120,6 +120,7 @@ async function loadJsArray(file, varName){
 // Curated premium / on-site products (sales + landing pages in this folder).
 const PREMIUM = [
   { id:'pack',      emoji:'📦', track:'selar-shop', fr:'Le Pack Complet',            en:'The Complete Pack',        page:'/fr/pack-complet/',     note_fr:'Bundle de tous les ebooks', note_en:'All-ebooks bundle' },
+  { id:'pousse',    emoji:'🌱', track:'pousse',     fr:'Faire Pousser ses Cheveux',  en:'Grow Your Hair',           page:'/fr/faire-pousser-cheveux-crepus/',           note_fr:'Ebook pousse', note_en:'Growth ebook' },
   { id:'hydra',     emoji:'💧', track:'hydratee',   fr:'Hydratation Cheveux Crépus', en:'Hydrate Type 4 Hair',      page:'/fr/hydratation-cheveux-crepus/',         note_fr:'Ebook hydratation', note_en:'Hydration ebook' },
   { id:'transition',emoji:'🌀', track:'transition', fr:'Transition Capillaire',      en:'Hair Transition',          page:'/fr/transition-capillaire/',       note_fr:'Ebook transition', note_en:'Transition ebook' },
   { id:'pellicules',emoji:'✨', track:'pellicules', fr:'Stop aux Pellicules',        en:'Stop Dandruff',            page:'/fr/pellicules/',       note_fr:'Ebook cuir chevelu', note_en:'Scalp ebook' },
