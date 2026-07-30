@@ -1,5 +1,5 @@
 /* SCHICGIRL — Le Studio Premium : accès par COMPTE (email + mot de passe),
-   le MÊME compte que le forum (forum.schicgirl.me) — même projet Supabase.
+   le MÊME compte que le forum (schicgirl.me/forum) — même projet Supabase.
 
    Remplace l'ancien système de code partagé. Un code partagé ne peut jamais
    distinguer deux personnes qui l'utilisent : impossible de savoir qui paie
@@ -40,10 +40,10 @@
   }
 
   /* ── passerelle forum <-> studio : le même compte ouvre les deux, mais
-     chaque sous-domaine a son propre stockage de session (localStorage
-     n'est jamais partagé entre schicgirl.me et forum.schicgirl.me), donc
-     un jeton passé dans le fragment d'URL (#h=...) évite d'avoir à se
-     reconnecter en changeant d'appli — jamais envoyé à un serveur. ── */
+     chaque appli garde sa session dans un format différent (ici un
+     localStorage maison, le forum utilise le SDK Supabase) — un jeton
+     passé dans le fragment d'URL (#h=...) évite d'avoir à se reconnecter
+     en changeant d'appli — jamais envoyé à un serveur. ── */
   (function consumeHandoff() {
     var m = /^#h=([^.]+)\.(.+)$/.exec(location.hash);
     if (!m) return;
@@ -57,8 +57,8 @@
     if (!a) return;
     a.href =
       session && session.access_token
-        ? "https://forum.schicgirl.me/#h=" + encodeURIComponent(session.access_token) + "." + encodeURIComponent(session.refresh_token)
-        : "https://forum.schicgirl.me/";
+        ? "https://schicgirl.me/forum/#h=" + encodeURIComponent(session.access_token) + "." + encodeURIComponent(session.refresh_token)
+        : "https://schicgirl.me/forum/";
   }
 
   /* ── appels bruts à l'API Auth de Supabase (pas besoin du SDK complet) ── */
@@ -109,8 +109,8 @@
       '<button class="sgp-tab on" id="sgpTabLogin">Se Connecter · Sign In</button>' +
       '<button class="sgp-tab" id="sgpTabRegister">Créer un Compte · Create Account</button>' +
       "</div>" +
-      '<p class="sgp-sub">Le même compte que ton forum privé (forum.schicgirl.me).<br/>' +
-      '<span class="sgp-en">The same account as your private forum (forum.schicgirl.me).</span></p>' +
+      '<p class="sgp-sub">Le même compte que ton forum privé (schicgirl.me/forum).<br/>' +
+      '<span class="sgp-en">The same account as your private forum (schicgirl.me/forum).</span></p>' +
       '<input type="email" id="sgpEmail" placeholder="ton@email.com" autocomplete="email"/>' +
       '<input type="password" id="sgpPassword" placeholder="Mot de passe · Password" autocomplete="current-password"/>' +
       '<button class="sgp-btn" id="sgpGo">Entrer · Enter →</button>' +
