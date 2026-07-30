@@ -10,7 +10,7 @@
 <link rel="icon" href="assets/fav-logo-32.png"/>
 <link rel="apple-touch-icon" href="assets/apple-touch-logo.png"/>
 <title>Le Cercle Schicgirl — Abonnement Mensuel Type 4 | Schicgirl</title>
-<meta name="description" content="Le Cercle Schicgirl : abonnement mensuel avec accès complet au Studio Premium (113 leçons + un bonus), le forum privé, et un nouveau contenu exclusif chaque mois. Paiement carte ou mobile money."/>
+<meta name="description" content="Le Cercle Schicgirl : abonnement mensuel avec accès complet au Studio Premium (113 leçons + un bonus), le groupe Facebook privé, et un nouveau contenu exclusif chaque mois. Paiement carte ou mobile money."/>
 <meta property="og:title" content="Le Cercle Schicgirl — Ta Communauté Type 4, Chaque Mois | Schicgirl"/>
 <meta property="og:description" content="L'app Studio Premium incluse + le groupe privé + du contenu exclusif chaque mois. Résilie quand tu veux."/>
 <meta property="og:type" content="product"/>
@@ -18,7 +18,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/le-cercle.css" />
-
 
 
 
@@ -78,12 +77,12 @@
 
   <div class="section">
     <div class="eyebrow" data-fr="CE QUE TU DÉBLOQUES CHAQUE MOIS" data-en="WHAT YOU UNLOCK EVERY MONTH">CE QUE TU DÉBLOQUES CHAQUE MOIS</div>
-    <ul class="check" data-lang="fr"><li><b>Le Studio Premium en entier</b> — l'app + les 6 cours (113 leçons), tant que tu es abonnée</li><li><b>Le forum privé Schicgirl</b> — forum.schicgirl.me : questions, réponses, avant/après, recettes partagées, et moi qui réponds directement</li><li><b>1 contenu exclusif par mois</b> — recette, fiche ou mini-guide inédit, réservé aux membres</li><li><b>Ton code d'accès renouvelé</b> chaque mois dans le forum — 2 minutes, zéro tracas</li><li><b>Résiliation libre</b> — tu arrêtes quand tu veux, sans engagement</li></ul><ul class="check hide" data-lang="en"><li><b>The full Studio Premium</b> — the app + 6 courses (113 lessons), while you're subscribed</li><li><b>The private Schicgirl forum</b> — forum.schicgirl.me: questions, answers, before/afters, shared recipes, and me answering directly</li><li><b>1 exclusive drop every month</b> — a recipe, sheet or mini-guide, members only</li><li><b>Your access code renewed</b> monthly in the forum — 2 minutes, zero hassle</li><li><b>Cancel anytime</b> — no commitment</li></ul>
+    <ul class="check" data-lang="fr"><li><b>Le Studio Premium en entier</b> — l'app + les 6 cours (113 leçons), tant que tu es abonnée</li><li><b>Le Groupe Facebook privé</b> — questions, échanges, moi qui réponds directement</li><li><b>1 contenu exclusif par mois</b> — recette, fiche ou mini-guide inédit, réservé aux membres</li><li><b>Ton code d'accès renouvelé</b> chaque mois dans le groupe — 2 minutes, zéro tracas</li><li><b>Résiliation libre</b> — tu arrêtes quand tu veux, sans engagement</li></ul><ul class="check hide" data-lang="en"><li><b>The full Studio Premium</b> — the app + 6 courses (113 lessons), while you're subscribed</li><li><b>The private Facebook Group</b> — questions, discussion, me answering directly</li><li><b>1 exclusive drop every month</b> — a recipe, sheet or mini-guide, members only</li><li><b>Your access code renewed</b> monthly in the group — 2 minutes, zero hassle</li><li><b>Cancel anytime</b> — no commitment</li></ul>
   </div>
 
   <div class="section">
     <div class="eyebrow" data-fr="COMMENT ÇA MARCHE" data-en="HOW IT WORKS">COMMENT ÇA MARCHE</div>
-    <ul class="inside" data-lang="fr"><li><b>1.</b> Tu t'abonnes sur Selar (carte ou mobile money selon ton pays)</li><li><b>2.</b> Tu reçois ton accès au <b>forum privé</b> + ton 1er code d'accès au Studio Premium</li><li><b>3.</b> Chaque mois, ton abonnement se renouvelle et tu reçois un nouveau code dans le forum</li><li><b>4.</b> Tu profites de l'app, du forum et du contenu du mois — à ton rythme</li><li><b>5.</b> Tu résilies quand tu veux depuis ton espace Selar, sans justification</li></ul><ul class="inside hide" data-lang="en"><li><b>1.</b> You subscribe on Selar (card or mobile money depending on your country)</li><li><b>2.</b> You get access to the <b>private forum</b> + your first Studio Premium code</li><li><b>3.</b> Every month your subscription renews and you get a new code in the forum</li><li><b>4.</b> You enjoy the app, the forum, and that month's content — at your pace</li><li><b>5.</b> You cancel anytime from your Selar account, no questions asked</li></ul>
+    <ul class="inside" data-lang="fr"><li><b>1.</b> Tu t'abonnes sur Selar (carte ou mobile money selon ton pays)</li><li><b>2.</b> Tu reçois ton accès au Groupe Facebook privé + ton 1er code d'accès au Studio Premium</li><li><b>3.</b> Chaque mois, ton abonnement se renouvelle et tu reçois un nouveau code dans le groupe</li><li><b>4.</b> Tu profites de l'app, du groupe et du contenu du mois — à ton rythme</li><li><b>5.</b> Tu résilies quand tu veux depuis ton espace Selar, sans justification</li></ul><ul class="inside hide" data-lang="en"><li><b>1.</b> You subscribe on Selar (card or mobile money depending on your country)</li><li><b>2.</b> You get access to the private Facebook Group + your first Studio Premium code</li><li><b>3.</b> Every month your subscription renews and you get a new code in the group</li><li><b>4.</b> You enjoy the app, the group, and that month's content — at your pace</li><li><b>5.</b> You cancel anytime from your Selar account, no questions asked</li></ul>
   </div>
 
   <div class="section">
