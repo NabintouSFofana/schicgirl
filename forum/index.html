@@ -786,6 +786,15 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   border-radius:var(--r-pill);font-size:13px;outline:none;
 }
 .cm-form input:focus{border-color:var(--gold);background:#fff}
+.cm-actions{display:flex;gap:12px;margin-top:4px}
+.cm-actions button{background:none;border:0;cursor:pointer;font-size:11px;font-weight:700;
+  color:var(--muted);padding:0;display:flex;align-items:center;gap:3px}
+.cm-actions button.on{color:#c0392b}
+.cm-replies{margin-top:8px;margin-left:30px;display:flex;flex-direction:column;gap:8px}
+.cm-reply-form{display:flex;gap:8px;margin-top:8px;margin-left:30px;align-items:center}
+.cm-reply-form input{flex:1;padding:7px 12px;background:var(--cream);border:1px solid var(--border);
+  border-radius:var(--r-pill);font-size:12.5px;outline:none}
+.cm-reply-form input:focus{border-color:var(--gold);background:#fff}
 .cm-send{
   width:34px;height:34px;border-radius:50%;
   background:linear-gradient(135deg,var(--gold),var(--gold-deep));
@@ -1933,6 +1942,7 @@ const Store = {
     if(!this.state.notes) this.state.notes = {};
     if(!this.state.progress) this.state.progress = {};
     if(!this.state.likes) this.state.likes = {};
+    if(!this.state.commentLikes) this.state.commentLikes = {};
     if(!this.state.polls) this.state.polls = {};
     if(!this.state.challengeProgress) this.state.challengeProgress = {};
     // v3.1 — Diagnostic, Tracker, Programs, Routines
@@ -2135,9 +2145,12 @@ const TX = {
     cta_profile_body:'12 questions to unlock personalized recipes, products & lessons tuned to YOUR porosity.',
     cta_profile_btn:'Take quiz →',
     empty_feed:'No posts here yet. Be the first to share something beautiful.',
-    write_comment:'Write a kind reply…', votes:'votes',
+    write_comment:'Write a kind reply…', write_reply:'Write a reply…', votes:'votes',
     before:'BEFORE', after:'AFTER',
     notif_liked:'Someone liked your post', notif_commented:'New comment on your post', notif_reply:'New reply in your thread',
+    notif_liked_comment:'Someone liked your reply', notif_reply_comment:'Someone replied to your comment',
+    notif_new_post:'New post in the forum', notif_new_thread:'New discussion started',
+    notif_new_comment_admin:'New comment posted', notif_new_reply_admin:'New reply posted',
     // Recipes
     recipes_h:'🧴 Recipe Library ✦',
     recipes_sub:'tested recipes — all DIY, all natural',
@@ -2449,9 +2462,12 @@ const TX = {
     cta_profile_body:'12 questions pour débloquer des recettes, produits et leçons personnalisés à TA porosité.',
     cta_profile_btn:'Faire le quiz →',
     empty_feed:'Aucune publication ici. Sois la première à partager.',
-    write_comment:'Écris une réponse bienveillante…', votes:'votes',
+    write_comment:'Écris une réponse bienveillante…', write_reply:'Écris une réponse…', votes:'votes',
     before:'AVANT', after:'APRÈS',
     notif_liked:'Quelqu\'un a aimé ta publication', notif_commented:'Nouveau commentaire sur ta publication', notif_reply:'Nouvelle réponse dans ton sujet',
+    notif_liked_comment:'Quelqu\'un a aimé ta réponse', notif_reply_comment:'Quelqu\'un a répondu à ton commentaire',
+    notif_new_post:'Nouvelle publication sur le forum', notif_new_thread:'Nouveau sujet créé',
+    notif_new_comment_admin:'Nouveau commentaire publié', notif_new_reply_admin:'Nouvelle réponse publiée',
     recipes_h:'🧴 Bibliothèque de Recettes ✦',
     recipes_sub:'recettes testées — toutes DIY, toutes naturelles',
     submit_recipe_btn:'+ Soumettre',
@@ -5478,12 +5494,19 @@ function renderFeed(){
   list.querySelectorAll('[data-poll]').forEach(btn => btn.onclick = () => votePoll(btn.dataset.poll, +btn.dataset.opt));
   list.querySelectorAll('[data-postdel]').forEach(btn => btn.onclick = () => adminDeletePost(btn.dataset.postdel));
   list.querySelectorAll('[data-cmdel]').forEach(btn => btn.onclick = () => adminDeleteComment(btn.dataset.cmpost, btn.dataset.cmdel));
+  list.querySelectorAll('[data-cmlike]').forEach(btn => btn.onclick = () => toggleCommentLike(btn.dataset.cmlike));
+  list.querySelectorAll('[data-cmreply]').forEach(btn => btn.onclick = () => toggleCommentReplyForm(btn.dataset.cmreply, btn.dataset.cmpost));
   list.querySelectorAll('.cm-form').forEach(f => f.onsubmit = (e) => {
     e.preventDefault();
     const inp = f.querySelector('input');
-    if(!inp.value.trim()) return;
-    addComment(f.dataset.post, inp.value.trim());
+    const val = inp.value.trim();
+    if(!val) return;
+    // Clear BEFORE calling addComment: it re-renders synchronously, and that
+    // re-render's "keep whatever you were typing" logic reads the input's
+    // CURRENT value — if it still held the old text, it would get written
+    // right back into the freshly-rendered box.
     inp.value = '';
+    addComment(f.dataset.post, val);
   });
   // Restore focus
   if(focusedPostId){
@@ -5550,16 +5573,33 @@ function renderPostCard(p, u){
   }
   const tagsHtml = (p.tags||[]).length ? `<div class="post-tags">${p.tags.map(tg => `<span class="tag">#${esc(tg)}</span>`).join('')}</div>` : '';
 
-  // Comments
-  const cmList = cm.slice(-3).map(c => {
+  // Comments (the app's own copy calls these "replies" — write_comment i18n
+  // key defaults to "Write a kind reply…" — so a comment can itself be liked
+  // and receive its own one-level-deep replies)
+  const renderOneComment = (c, isReply) => {
     const cu = Store.state.users.find(x => x.id === c.userId) || {firstName:'?', lastName:''};
     const cuPhoto = safeUrl(cu.photo);
     const cav = cuPhoto
       ? `<div class="cm-av" style="${bgStyle(cu.photo)}"></div>`
       : `<div class="cm-av">${initials(cu.firstName, cu.lastName)}</div>`;
     const delBtn = (isAdmin() && c.id) ? `<button class="cm-del" data-cmdel="${esc(c.id)}" data-cmpost="${esc(p.id)}" title="${esc(t('admin_delete')||'Delete')}" style="background:none;border:none;cursor:pointer;color:#c0392b;font-size:12px;align-self:flex-start">🗑</button>` : '';
-    return `<div class="cm" style="display:flex;align-items:flex-start;gap:8px">${cav}<div class="cm-body" style="flex:1"><div class="cm-author">${esc(cu.firstName)} ${esc(cu.lastName)}</div><div class="cm-text">${esc(c.text)}</div><div class="cm-time">${esc(timeAgo(c.createdAt))}</div></div>${delBtn}</div>`;
-  }).join('');
+    const cLiked = (Store.state.commentLikes[u.id] || []).includes(c.id);
+    const cLikeCount = Store.state.users.reduce((acc, uu) => acc + ((Store.state.commentLikes[uu.id]||[]).includes(c.id) ? 1 : 0), 0);
+    const replies = isReply ? '' : cm.filter(r => r.parentId === c.id)
+      .map(r => renderOneComment(r, true)).join('');
+    return `<div class="cm" style="display:flex;align-items:flex-start;gap:8px">${cav}<div class="cm-body" style="flex:1">
+      <div class="cm-author">${esc(cu.firstName)} ${esc(cu.lastName)}</div>
+      <div class="cm-text">${esc(c.text)}</div>
+      <div class="cm-time">${esc(timeAgo(c.createdAt))}</div>
+      <div class="cm-actions">
+        <button class="${cLiked?'on':''}" data-cmlike="${esc(c.id)}">${cLiked?'❤️':'🤍'} ${cLikeCount||''}</button>
+        ${isReply ? '' : `<button data-cmreply="${esc(c.id)}" data-cmpost="${esc(p.id)}">${esc(t('reply')||'Reply')}</button>`}
+      </div>
+      ${replies ? `<div class="cm-replies">${replies}</div>` : ''}
+    </div>${delBtn}</div>`;
+  };
+  const topLevel = cm.filter(c => !c.parentId);
+  const cmList = topLevel.slice(-3).map(c => renderOneComment(c, false)).join('');
   const meAv = safeUrl(u.photo)
     ? `<div class="cm-av" style="${bgStyle(u.photo)}"></div>`
     : `<div class="cm-av">${initials(u.firstName, u.lastName)}</div>`;
@@ -5628,28 +5668,36 @@ function focusComment(postId){
   if(f) f.querySelector('input').focus();
 }
 
-async function addComment(postId, text){
+async function addComment(postId, text, parentId){
   const u = Store.user();
   const post = Store.state.posts.find(p => p.id === postId);
   if(!post) return;
   if(!post.comments) post.comments = [];
+  const parent = parentId ? post.comments.find(c => c.id === parentId) : null;
   // Optimistic: render with a temp id
   const tempId = 'tmp_' + Date.now();
-  post.comments.push({id: tempId, userId: u.id, text, createdAt: Date.now()});
+  post.comments.push({id: tempId, userId: u.id, text, parentId: parentId || null, createdAt: Date.now()});
   Store.save();
   renderFeed();
   renderHeader();
   // Persist
   try {
     if(!window.Backend) return;
-    const saved = await Backend.addComment(postId, text);
+    const saved = await Backend.addComment(postId, text, parentId);
     // Replace temp with real
     const idx = post.comments.findIndex(c => c.id === tempId);
     if(idx >= 0) post.comments[idx] = saved;
-    if(post.userId !== u.id){
+    const notified = [];
+    if(parent && parent.userId !== u.id){
+      try { await Backend.addNotification(parent.userId, {icon:'💬', title: t('notif_reply_comment')||'Someone replied to your comment', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
+      try { await Backend.awardPoints(parent.userId, 2); } catch(e){}
+      notified.push(parent.userId);
+    } else if(!parent && post.userId !== u.id){
       try { await Backend.addNotification(post.userId, {icon:'💬', title: t('notif_commented')||'New comment on your post', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
       try { await Backend.awardPoints(post.userId, 3); } catch(e){}
+      notified.push(post.userId);
     }
+    notifyAdmins({icon:'💬', title: parent ? (t('notif_new_reply_admin')||'New reply posted') : (t('notif_new_comment_admin')||'New comment posted'), text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}, [u.id, ...notified]);
     try { await Backend.awardPoints(u.id, 1); u.points = num(u.points) + 1; } catch(e){}
     Store.save();
     renderHeader();
@@ -5660,6 +5708,80 @@ async function addComment(postId, text){
     if(idx >= 0) post.comments.splice(idx, 1);
     Store.save(); renderFeed();
   }
+}
+
+async function toggleCommentLike(commentId){
+  const u = Store.user();
+  if(!u) return;
+  if(!Store.state.commentLikes[u.id]) Store.state.commentLikes[u.id] = [];
+  const arr = Store.state.commentLikes[u.id];
+  const i = arr.indexOf(commentId);
+  const wasLiked = i >= 0;
+  if(wasLiked) arr.splice(i, 1); else arr.push(commentId);
+  Store.save();
+  renderFeed();
+  try {
+    if(window.Backend) await Backend.toggleCommentLike(commentId, wasLiked);
+    if(!wasLiked){
+      let theComment = null;
+      for(const p of Store.state.posts){
+        const c = (p.comments||[]).find(x => x.id === commentId);
+        if(c){ theComment = c; break; }
+      }
+      if(theComment && theComment.userId !== u.id && window.Backend){
+        try { await Backend.addNotification(theComment.userId, {icon:'❤️', title: t('notif_liked_comment')||'Someone liked your reply', text: `${u.firstName} ${u.lastName}`}); } catch(e){}
+        try { await Backend.awardPoints(theComment.userId, 1); } catch(e){}
+      }
+    }
+  } catch(e){
+    console.warn('comment like sync failed:', e);
+    toast(t('err_sync')||'Could not sync — try again.');
+    const arr2 = Store.state.commentLikes[u.id];
+    const j = arr2.indexOf(commentId);
+    if(wasLiked && j < 0) arr2.push(commentId);
+    else if(!wasLiked && j >= 0) arr2.splice(j, 1);
+    Store.save(); renderFeed();
+  }
+}
+
+function toggleCommentReplyForm(commentId, postId){
+  const existing = document.querySelector(`.cm-reply-form[data-parent="${CSS.escape(commentId)}"]`);
+  if(existing){ existing.remove(); return; }
+  document.querySelectorAll('.cm-reply-form').forEach(f => f.remove());
+  const btn = document.querySelector(`[data-cmreply="${CSS.escape(commentId)}"]`);
+  if(!btn) return;
+  const cmDiv = btn.closest('.cm');
+  if(!cmDiv) return;
+  const u = Store.user();
+  const meAv = safeUrl(u.photo)
+    ? `<div class="cm-av" style="${bgStyle(u.photo)}"></div>`
+    : `<div class="cm-av">${initials(u.firstName, u.lastName)}</div>`;
+  cmDiv.insertAdjacentHTML('afterend',
+    `<form class="cm-reply-form" data-parent="${esc(commentId)}" data-post="${esc(postId)}">${meAv}` +
+    `<input type="text" placeholder="${esc(t('write_reply')||'Write a reply…')}" maxlength="280">` +
+    `<button type="submit" class="cm-send" style="width:28px;height:28px;font-size:13px">→</button></form>`);
+  const form = cmDiv.nextElementSibling;
+  form.querySelector('input').focus();
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    const inp = form.querySelector('input');
+    const val = inp.value.trim();
+    if(!val) return;
+    form.remove();
+    addComment(postId, val, commentId);
+  };
+}
+
+/* ── un mot sur "notifier l'admin" : les propriétaires de contenu sont déjà
+   notifiés (like/commentaire/réponse sur LEUR post), mais l'admin (moi) ne
+   voyait rien passer sans regarder le forum activement. On ajoute ici une
+   notification séparée pour chaque admin, sauf si c'est justement l'admin
+   qui vient d'agir ou qui a déjà reçu la notification "propriétaire". ── */
+function notifyAdmins(payload, skipIds){
+  if(!window.Backend) return;
+  const skip = new Set((skipIds||[]).filter(Boolean));
+  const admins = (Store.state.users||[]).filter(x => x.role === 'admin' && !skip.has(x.id));
+  admins.forEach(a => { try{ Backend.addNotification(a.id, payload); }catch(e){} });
 }
 
 async function votePoll(postId, opt){
@@ -5755,6 +5877,7 @@ function openComposer(){
       }
       // Update local state
       Store.state.posts.unshift(savedPost);
+      notifyAdmins({icon:'📝', title: t('notif_new_post')||'New post in the forum', text: `${u.firstName} ${u.lastName}${title?': '+title:''}`}, [u.id]);
       toast(t('toast_posted')||'Posted! +10 points');
       // Award points (persist)
       try {
@@ -6349,6 +6472,7 @@ function renderThreadContent(){
           try { await Backend.addNotification(currentThread.userId, {icon:'💬', title: t('notif_reply')||'New reply in your thread', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
           try { await Backend.awardPoints(currentThread.userId, 2); } catch(e){}
         }
+        notifyAdmins({icon:'💬', title: t('notif_new_reply_admin')||'New reply posted', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}, [u.id, currentThread.userId]);
         try { await Backend.awardPoints(u.id, 3); u.points = num(u.points) + 3; } catch(e){}
       }
       Store.save();
@@ -6391,6 +6515,7 @@ function openNewThread(){
         saved = {id: uid('th'), userId: u.id, title, body, category: cat, messages: [], createdAt: Date.now()};
       }
       Store.state.threads.unshift(saved);
+      notifyAdmins({icon:'📝', title: t('notif_new_thread')||'New discussion started', text: `${u.firstName} ${u.lastName}: ${title}`}, [u.id]);
       try {
         if(window.Backend){ await Backend.awardPoints(u.id, 10); u.points = num(u.points) + 10; }
       } catch(e){}
@@ -7135,6 +7260,7 @@ async function hydrateFromBackend(){
     Store.state.pendingPosts = data.pendingPosts || [];
     Store.state.threads = data.threads || [];
     Store.state.likes = data.likes || {};
+    Store.state.commentLikes = data.commentLikes || {};
     Store.state.polls = data.polls || {};
     // Merge notifications for current user
     if(data.notifications){
@@ -7393,6 +7519,7 @@ const dbCommentToApp = (row) => ({
   id: row.id,
   userId: row.user_id,
   text: row.text,
+  parentId: row.parent_id || null,
   createdAt: new Date(row.created_at).getTime(),
 });
 
@@ -7601,11 +7728,18 @@ const Backend = {
     // Products — admin-managed catalogue (replaces local seed when present)
     const products = (productsRes && productsRes.data || []).map(dbProductToApp);
 
-    // Likes: build {[uid]: [postIds]} shape
+    // Likes: build {[uid]: [postIds]} shape (+ a parallel one for comment likes —
+    // the likes table holds either a post_id or a comment_id per row, never both)
     const likesByUser = {};
+    const commentLikesByUser = {};
     (likesRes.data || []).forEach(l => {
-      if(!likesByUser[l.user_id]) likesByUser[l.user_id] = [];
-      likesByUser[l.user_id].push(l.post_id);
+      if(l.post_id){
+        if(!likesByUser[l.user_id]) likesByUser[l.user_id] = [];
+        likesByUser[l.user_id].push(l.post_id);
+      } else if(l.comment_id){
+        if(!commentLikesByUser[l.user_id]) commentLikesByUser[l.user_id] = [];
+        commentLikesByUser[l.user_id].push(l.comment_id);
+      }
     });
 
     // Poll votes: {[uid]: {[postId]: optionIndex}}
@@ -7633,6 +7767,7 @@ const Backend = {
       userRecipes,
       products,
       likes: likesByUser,
+      commentLikes: commentLikesByUser,
       polls: pollsByUser,
       notifications: { [uid]: notifs },
     };
@@ -7667,11 +7802,11 @@ const Backend = {
     if(error) throw error;
   },
 
-  async addComment(postId, text){
+  async addComment(postId, text, parentId){
     const userId = this.currentUserId;
     if(!userId) throw new Error('Not signed in');
     const { data, error } = await sb.from('comments').insert({
-      post_id: postId, user_id: userId, text
+      post_id: postId, user_id: userId, text, parent_id: parentId || null
     }).select().single();
     if(error) throw error;
     return dbCommentToApp(data);
@@ -7685,6 +7820,18 @@ const Backend = {
       if(error) throw error;
     } else {
       const { error } = await sb.from('likes').insert({ user_id: userId, post_id: postId });
+      if(error && !String(error.message).includes('duplicate')) throw error;
+    }
+  },
+
+  async toggleCommentLike(commentId, currentlyLiked){
+    const userId = this.currentUserId;
+    if(!userId) throw new Error('Not signed in');
+    if(currentlyLiked){
+      const { error } = await sb.from('likes').delete().eq('user_id', userId).eq('comment_id', commentId);
+      if(error) throw error;
+    } else {
+      const { error } = await sb.from('likes').insert({ user_id: userId, comment_id: commentId });
       if(error && !String(error.message).includes('duplicate')) throw error;
     }
   },
