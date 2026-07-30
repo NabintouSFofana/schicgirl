@@ -353,6 +353,11 @@ select.fi{cursor:pointer}
   box-shadow:var(--shadow);transition:box-shadow .2s;
 }
 .post:hover{box-shadow:var(--shadow-lg)}
+.post-flash{animation:postFlash 2s ease-out}
+@keyframes postFlash{
+  0%{box-shadow:0 0 0 3px var(--gold);background:var(--cream)}
+  100%{box-shadow:var(--shadow);background:var(--card)}
+}
 .post-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
 .post-meta{flex:1;min-width:0}
 .post-author{font-weight:700;color:var(--brown);font-size:14px;display:flex;align-items:center;gap:6px}
@@ -2151,6 +2156,7 @@ const TX = {
     notif_liked_comment:'Someone liked your reply', notif_reply_comment:'Someone replied to your comment',
     notif_new_post:'New post in the forum', notif_new_thread:'New discussion started',
     notif_new_comment_admin:'New comment posted', notif_new_reply_admin:'New reply posted',
+    notif_post_gone:'This post is no longer available.',
     // Recipes
     recipes_h:'🧴 Recipe Library ✦',
     recipes_sub:'tested recipes — all DIY, all natural',
@@ -2216,7 +2222,8 @@ const TX = {
     // Products
     products_h:'⭐ Recommended Products', products_sub:'Curated by Schicgirl — tested for Type 4 hair',
     add_product_btn:'+ Add Product', add_product:'Add product', edit_product:'Edit product',
-    reviews_lbl:'Reviews', price_lbl:'Price', view_product:'View product',
+    reviews_lbl:'Reviews', price_lbl:'Price', view_product:'View on Amazon',
+    shop_on_amazon:'Shop on Amazon ↗', amazon_disclosure:'As an Amazon Associate I earn from qualifying purchases.',
     confirm_delete_product:'Delete this product for everyone?', toast_prod_added:'Product added',
     toast_prod_updated:'Product updated', toast_prod_deleted:'Product deleted',
     prod_name_required:'Product name is required.', err_admin_only:'Only admins can manage products.',
@@ -2468,6 +2475,7 @@ const TX = {
     notif_liked_comment:'Quelqu\'un a aimé ta réponse', notif_reply_comment:'Quelqu\'un a répondu à ton commentaire',
     notif_new_post:'Nouvelle publication sur le forum', notif_new_thread:'Nouveau sujet créé',
     notif_new_comment_admin:'Nouveau commentaire publié', notif_new_reply_admin:'Nouvelle réponse publiée',
+    notif_post_gone:'Cette publication n\'est plus disponible.',
     recipes_h:'🧴 Bibliothèque de Recettes ✦',
     recipes_sub:'recettes testées — toutes DIY, toutes naturelles',
     submit_recipe_btn:'+ Soumettre',
@@ -2526,7 +2534,8 @@ const TX = {
     todays_challenge:"Défi du jour", open_challenge:'Ouvrir',
     products_h:'⭐ Produits recommandés', products_sub:'Sélectionnés par Schicgirl — testés pour cheveux Type 4',
     add_product_btn:'+ Ajouter un produit', add_product:'Ajouter un produit', edit_product:'Modifier le produit',
-    reviews_lbl:'Avis', price_lbl:'Prix', view_product:'Voir le produit',
+    reviews_lbl:'Avis', price_lbl:'Prix', view_product:'Voir sur Amazon',
+    shop_on_amazon:'Voir sur Amazon ↗', amazon_disclosure:'En tant qu\'associée Amazon, je gagne des revenus grâce aux achats éligibles.',
     confirm_delete_product:'Supprimer ce produit pour tout le monde ?', toast_prod_added:'Produit ajouté',
     toast_prod_updated:'Produit mis à jour', toast_prod_deleted:'Produit supprimé',
     prod_name_required:'Le nom du produit est requis.', err_admin_only:'Seuls les admins peuvent gérer les produits.',
@@ -5603,7 +5612,7 @@ function renderPostCard(p, u){
   const meAv = safeUrl(u.photo)
     ? `<div class="cm-av" style="${bgStyle(u.photo)}"></div>`
     : `<div class="cm-av">${initials(u.firstName, u.lastName)}</div>`;
-  return `<article class="post${p._pending ? ' post-pending' : ''}">
+  return `<article class="post${p._pending ? ' post-pending' : ''}" id="post-${esc(p.id)}">
     ${p._pending ? `<div style="background:#fef3d4;color:#7a5510;padding:8px 14px;margin:-16px -16px 12px;border-radius:14px 14px 0 0;font-size:12px;font-weight:600;letter-spacing:0.3px;display:flex;align-items:center;gap:8px"><span>⏳</span><span>${esc(t('pending_review')||'Awaiting admin review — only you can see this')}</span></div>` : ''}
     <div class="post-head">
       ${avHtml}
@@ -5648,7 +5657,7 @@ async function toggleLike(postId){
       const post = Store.state.posts.find(p => p.id === postId);
       if(post && post.userId !== u.id && window.Backend){
         // Points for the recipient come from the points_on_like DB trigger.
-        try { await Backend.addNotification(post.userId, {icon:'❤️', title: t('notif_liked')||'Someone liked your post', text: `${u.firstName} ${u.lastName}`}); } catch(e){}
+        try { await Backend.addNotification(post.userId, {icon:'❤️', title: t('notif_liked')||'Someone liked your post', text: `${u.firstName} ${u.lastName}`, postId}); } catch(e){}
       }
     }
   } catch(e){
@@ -5692,13 +5701,13 @@ async function addComment(postId, text, parentId){
     // can't be gamed from the browser.
     const notified = [];
     if(parent && parent.userId !== u.id){
-      try { await Backend.addNotification(parent.userId, {icon:'💬', title: t('notif_reply_comment')||'Someone replied to your comment', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
+      try { await Backend.addNotification(parent.userId, {icon:'💬', title: t('notif_reply_comment')||'Someone replied to your comment', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`, postId}); } catch(e){}
       notified.push(parent.userId);
     } else if(!parent && post.userId !== u.id){
-      try { await Backend.addNotification(post.userId, {icon:'💬', title: t('notif_commented')||'New comment on your post', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
+      try { await Backend.addNotification(post.userId, {icon:'💬', title: t('notif_commented')||'New comment on your post', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`, postId}); } catch(e){}
       notified.push(post.userId);
     }
-    notifyAdmins({icon:'💬', title: parent ? (t('notif_new_reply_admin')||'New reply posted') : (t('notif_new_comment_admin')||'New comment posted'), text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}, [u.id, ...notified]);
+    notifyAdmins({icon:'💬', title: parent ? (t('notif_new_reply_admin')||'New reply posted') : (t('notif_new_comment_admin')||'New comment posted'), text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`, postId}, [u.id, ...notified]);
     Store.save();
     renderHeader();
   } catch(e){
@@ -5723,14 +5732,14 @@ async function toggleCommentLike(commentId){
   try {
     if(window.Backend) await Backend.toggleCommentLike(commentId, wasLiked);
     if(!wasLiked){
-      let theComment = null;
+      let theComment = null, theCommentPostId = null;
       for(const p of Store.state.posts){
         const c = (p.comments||[]).find(x => x.id === commentId);
-        if(c){ theComment = c; break; }
+        if(c){ theComment = c; theCommentPostId = p.id; break; }
       }
       if(theComment && theComment.userId !== u.id && window.Backend){
         // Points for the recipient come from the points_on_like DB trigger.
-        try { await Backend.addNotification(theComment.userId, {icon:'❤️', title: t('notif_liked_comment')||'Someone liked your reply', text: `${u.firstName} ${u.lastName}`}); } catch(e){}
+        try { await Backend.addNotification(theComment.userId, {icon:'❤️', title: t('notif_liked_comment')||'Someone liked your reply', text: `${u.firstName} ${u.lastName}`, postId: theCommentPostId}); } catch(e){}
       }
     }
   } catch(e){
@@ -5874,7 +5883,7 @@ function openComposer(){
       }
       // Update local state
       Store.state.posts.unshift(savedPost);
-      notifyAdmins({icon:'📝', title: t('notif_new_post')||'New post in the forum', text: `${u.firstName} ${u.lastName}${title?': '+title:''}`}, [u.id]);
+      notifyAdmins({icon:'📝', title: t('notif_new_post')||'New post in the forum', text: `${u.firstName} ${u.lastName}${title?': '+title:''}`, postId: savedPost.id}, [u.id]);
       // Points come from a DB trigger on insert (fixed amount, can't be
       // gamed from the browser) — the toast reflects that it's not live yet.
       toast(t('toast_pending_review')||'Submitted for review!');
@@ -6463,9 +6472,9 @@ function renderThreadContent(){
         // Points for both the thread owner and the replier come from DB
         // triggers (points_on_reply_received / points_on_thread_reply).
         if(currentThread.userId !== u.id){
-          try { await Backend.addNotification(currentThread.userId, {icon:'💬', title: t('notif_reply')||'New reply in your thread', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
+          try { await Backend.addNotification(currentThread.userId, {icon:'💬', title: t('notif_reply')||'New reply in your thread', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`, threadId: currentThread.id}); } catch(e){}
         }
-        notifyAdmins({icon:'💬', title: t('notif_new_reply_admin')||'New reply posted', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}, [u.id, currentThread.userId]);
+        notifyAdmins({icon:'💬', title: t('notif_new_reply_admin')||'New reply posted', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`, threadId: currentThread.id}, [u.id, currentThread.userId]);
       }
       Store.save();
       renderThreadContent();
@@ -6507,7 +6516,7 @@ function openNewThread(){
         saved = {id: uid('th'), userId: u.id, title, body, category: cat, messages: [], createdAt: Date.now()};
       }
       Store.state.threads.unshift(saved);
-      notifyAdmins({icon:'📝', title: t('notif_new_thread')||'New discussion started', text: `${u.firstName} ${u.lastName}: ${title}`}, [u.id]);
+      notifyAdmins({icon:'📝', title: t('notif_new_thread')||'New discussion started', text: `${u.firstName} ${u.lastName}: ${title}`, threadId: saved.id}, [u.id]);
       // Points come from a DB trigger on insert (fixed amount, can't be
       // gamed from the browser).
       Store.save();
@@ -6630,10 +6639,10 @@ function renderProducts(){
         <div class="pcard-name">${esc(lx(p,'name'))}</div>
         <div class="pcard-desc">${esc(lx(p,'desc'))}</div>
         ${score !== null ? `<div style="margin-bottom:8px">${matchBadge(score)}</div>` : ''}
-        <div class="pcard-foot">
-          <span class="pcard-rating">★ ${esc(String(p.rating))} <span style="font-weight:400;color:var(--muted)">(${num(p.reviews)})</span></span>
-          <span class="pcard-price">${esc(p.price)}</span>
-        </div>
+        ${(p.rating || p.price) ? `<div class="pcard-foot">
+          ${p.rating ? `<span class="pcard-rating">★ ${esc(String(p.rating))} <span style="font-weight:400;color:var(--muted)">(${num(p.reviews)})</span></span>` : '<span></span>'}
+          ${p.price ? `<span class="pcard-price">${esc(p.price)}</span>` : ''}
+        </div>` : `<div style="font-size:11px;color:var(--gold-deep);font-weight:700">${esc(t('shop_on_amazon')||'Shop on Amazon ↗')}</div>`}
         ${admin ? `<div class="admin-row" style="display:flex;gap:8px;margin-top:10px">
           <button class="btn-cancel" data-pedit="${esc(p.id)}" style="flex:1;padding:6px">✎ ${esc(t('edit')||'Edit')}</button>
           <button class="btn-reject" data-pdel="${esc(p.id)}" style="flex:1;padding:6px">🗑 ${esc(t('delete')||'Delete')}</button>
@@ -6659,12 +6668,13 @@ function openProduct(id){
     <h2 style="text-align:center;margin:8px 0 6px">${esc(lx(p,'name'))}</h2>
     <p style="text-align:center;color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:18px">${esc(lx(p,'desc'))}</p>
     ${score !== null ? `<div style="text-align:center;margin-bottom:16px">${matchBadge(score)}</div>` : ''}
-    <div style="display:flex;justify-content:space-around;padding:12px 0;background:var(--cream);border-radius:10px;margin-bottom:18px;font-size:12px">
-      <div style="text-align:center"><strong style="display:block;color:var(--gold-deep);font-size:15px">★ ${esc(String(p.rating))}</strong>${esc(t('rating_lbl')||'Rating')}</div>
-      <div style="text-align:center"><strong style="display:block;color:var(--brown);font-size:15px">${num(p.reviews)}</strong>${esc(t('reviews_lbl')||'Reviews')}</div>
-      <div style="text-align:center"><strong style="display:block;color:var(--brown);font-size:15px">${esc(p.price)}</strong>${esc(t('price_lbl')||'Price')}</div>
-    </div>
-    ${p.link ? `<a class="bcta" href="${esc(safeUrl(p.link))}" target="_blank" rel="noopener noreferrer" style="display:block;text-align:center;text-decoration:none;margin-bottom:10px">${esc(t('view_product')||'View product')} ↗</a>` : ''}
+    ${(p.rating || p.reviews || p.price) ? `<div style="display:flex;justify-content:space-around;padding:12px 0;background:var(--cream);border-radius:10px;margin-bottom:18px;font-size:12px">
+      ${p.rating ? `<div style="text-align:center"><strong style="display:block;color:var(--gold-deep);font-size:15px">★ ${esc(String(p.rating))}</strong>${esc(t('rating_lbl')||'Rating')}</div>` : ''}
+      ${p.reviews ? `<div style="text-align:center"><strong style="display:block;color:var(--brown);font-size:15px">${num(p.reviews)}</strong>${esc(t('reviews_lbl')||'Reviews')}</div>` : ''}
+      ${p.price ? `<div style="text-align:center"><strong style="display:block;color:var(--brown);font-size:15px">${esc(p.price)}</strong>${esc(t('price_lbl')||'Price')}</div>` : ''}
+    </div>` : ''}
+    ${p.link ? `<a class="bcta" href="${esc(safeUrl(p.link))}" target="_blank" rel="noopener sponsored" style="display:block;text-align:center;text-decoration:none;margin-bottom:10px">${esc(t('view_product')||'View on Amazon')} ↗</a>` : ''}
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin:-4px 0 14px">${esc(t('amazon_disclosure')||'As an Amazon Associate I earn from qualifying purchases.')}</p>
     <div class="modal-row">
       <button class="btn-cancel" onclick="closeModal()">${esc(t('close')||'Close')}</button>
       ${admin ? `<button class="bcta" id="prod-edit">✎ ${esc(t('edit')||'Edit')}</button>` : ''}
@@ -6961,7 +6971,7 @@ async function approvePost(id){
     Store.state.pendingPosts.splice(i, 1);
     try { if(window.Backend) await Backend.awardPoints(p.userId, 10); } catch(e){}
     const preview = (p.title || '').toString() || ((p.body||'').slice(0,40) + ((p.body||'').length>40?'…':''));
-    try { if(window.Backend) await Backend.addNotification(p.userId, {icon:'✨', title: t('post_approved')||'Your post is live!', text: preview + ' · +10 XP'}); } catch(e){}
+    try { if(window.Backend) await Backend.addNotification(p.userId, {icon:'✨', title: t('post_approved')||'Your post is live!', text: preview + ' · +10 XP', postId: p.id}); } catch(e){}
     Store.save();
     toast(t('toast_approved')||'Post approved');
     renderAdmin();
@@ -7157,7 +7167,30 @@ function renderNotifications(){
     if(n){ n.read = true; Store.save(); }
     it.classList.remove('unread');
     updateNotifBadge();
+    if(n && n.postId) goToPost(n.postId);
+    else if(n && n.threadId) goToThread(n.threadId);
   });
+}
+
+function goToPost(postId){
+  if(!postId) return;
+  const panel = $('#notif-panel'); if(panel) panel.classList.remove('on');
+  switchTab('feed');
+  const el = document.getElementById('post-' + postId);
+  if(el){
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    el.classList.add('post-flash');
+    setTimeout(() => el.classList.remove('post-flash'), 2000);
+  } else {
+    toast(t('notif_post_gone')||'This post is no longer available.');
+  }
+}
+
+function goToThread(threadId){
+  if(!threadId) return;
+  const panel = $('#notif-panel'); if(panel) panel.classList.remove('on');
+  switchTab('forum');
+  openThread(threadId);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -7666,13 +7699,16 @@ const Backend = {
     const [profilesRes, postsRes, commentsRes, likesRes, votesRes,
            threadsRes, msgsRes, recipesRes, notifsRes, productsRes] = await Promise.all([
       sb.from('profiles').select('id, first_name, last_name, hair_type, bio, bio_fr, location, photo_url, badges, badges_fr, points, role, hair_profile, access_until, created_at'),
-      sb.from('posts').select('*').or(`approved.eq.true,user_id.eq.${uid}`).order('created_at', {ascending:false}).limit(200),
+      // No .or() filter here: RLS alone decides visibility (approved+subscribed,
+      // your own, or admin-sees-everything) — an extra client-side filter would
+      // just re-narrow what RLS already correctly widened for admins.
+      sb.from('posts').select('*').order('created_at', {ascending:false}).limit(200),
       sb.from('comments').select('*').order('created_at',{ascending:true}).limit(2000),
       sb.from('likes').select('*'),
       sb.from('poll_votes').select('*'),
       sb.from('threads').select('*').order('created_at',{ascending:false}).limit(100),
       sb.from('thread_messages').select('*').order('created_at',{ascending:true}).limit(2000),
-      sb.from('recipes').select('*').or(`approved.eq.true,user_id.eq.${uid}`).limit(100),
+      sb.from('recipes').select('*').limit(100), // same reasoning: RLS alone decides
       sb.from('notifications').select('*').eq('user_id', uid).order('created_at',{ascending:false}).limit(100),
       sb.from('products').select('*').order('sort',{ascending:true}).limit(200),
     ]);
@@ -7747,6 +7783,8 @@ const Backend = {
       title: n.title || '',
       text: n.text || '',
       read: !!n.read,
+      postId: n.post_id || null,
+      threadId: n.thread_id || null,
       createdAt: new Date(n.created_at).getTime(),
     }));
 
@@ -8005,14 +8043,15 @@ const Backend = {
   },
 
   // ─── NOTIFICATIONS ────────────────────────────────────────────────
-  async addNotification(userId, { icon, title, text }){
+  async addNotification(userId, { icon, title, text, postId, threadId }){
     // notifications RLS only allows writing your OWN row (a member could
     // otherwise spam anyone's notification feed) — notify_user() is the
     // security-definer RPC made for this exact case: telling someone ELSE
     // that their post got a like/comment/reply. A raw insert() here would
     // fail silently every time for anyone but yourself.
     const { error } = await sb.rpc('notify_user', {
-      target: userId, p_icon: icon || null, p_title: title || '', p_text: text || ''
+      target: userId, p_icon: icon || null, p_title: title || '', p_text: text || '',
+      p_post_id: postId || null, p_thread_id: threadId || null,
     });
     if(error) console.warn('addNotification:', error);
   },
