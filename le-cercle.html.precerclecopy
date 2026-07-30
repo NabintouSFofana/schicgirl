@@ -12,13 +12,12 @@
 <title>Le Cercle Schicgirl — Abonnement Mensuel Type 4 | Schicgirl</title>
 <meta name="description" content="Le Cercle Schicgirl : abonnement mensuel avec accès complet au Studio Premium (113 leçons + un bonus), le forum privé, et un nouveau contenu exclusif chaque mois. Paiement carte ou mobile money."/>
 <meta property="og:title" content="Le Cercle Schicgirl — Ta Communauté Type 4, Chaque Mois | Schicgirl"/>
-<meta property="og:description" content="L'app Studio Premium incluse + ton forum privé + du contenu exclusif chaque mois. Résilie quand tu veux."/>
+<meta property="og:description" content="L'app Studio Premium incluse + le groupe privé + du contenu exclusif chaque mois. Résilie quand tu veux."/>
 <meta property="og:type" content="product"/>
 <meta property="og:image" content="https://schicgirl.me/assets/le-cercle-fr.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/le-cercle.css" />
-
 
 
 
@@ -72,7 +71,7 @@
     <img id="cover" class="cover cercle-avatar" src="assets/le-cercle-profil-sm.webp" alt="Schicgirl Le Cercle" onerror="this.outerHTML='<div class=&quot;cover-fb&quot;>🤍</div>'"/>
     <span class="badge" data-fr="Le Cercle 🤍 · Abonnement mensuel" data-en="The Circle 🤍 · Monthly membership">Le Cercle 🤍 · Abonnement mensuel</span>
     <h1 data-fr="Ta communauté cheveux Type 4, <span class='accent'>chaque mois</span>" data-en="Your Type 4 hair community, <span class='accent'>every month</span>">Ta communauté cheveux Type 4, <span class='accent'>chaque mois</span></h1>
-    <p class="lead" data-fr="L'app Studio Premium incluse + ton forum privé + un nouveau contenu exclusif chaque mois. Résilie quand tu veux, paiement carte ou mobile money." data-en="The Studio Premium app included + your private forum + new exclusive content every month. Cancel anytime, pay by card or mobile money.">L'app Studio Premium incluse + ton forum privé + un nouveau contenu exclusif chaque mois. Résilie quand tu veux, paiement carte ou mobile money.</p>
+    <p class="lead" data-fr="L'app Studio Premium incluse + le groupe privé + un nouveau contenu exclusif chaque mois. Résilie quand tu veux, paiement carte ou mobile money." data-en="The Studio Premium app included + the private group + new exclusive content every month. Cancel anytime, pay by card or mobile money.">L'app Studio Premium incluse + le groupe privé + un nouveau contenu exclusif chaque mois. Résilie quand tu veux, paiement carte ou mobile money.</p>
   </div>
 
   <div class="pain" data-fr="29€ d'un coup, c'est trop pour ton budget en ce moment ? <strong>Tu n'as pas à choisir entre attendre et abandonner.</strong> Le Cercle te donne le même accès complet, en petits paiements mensuels — et une communauté en plus." data-en="$32 all at once doesn't fit your budget right now? <strong>You don't have to choose between waiting and giving up.</strong> The Circle gives you the same full access, in small monthly payments — plus a community.">29€ d'un coup, c'est trop pour ton budget en ce moment ? <strong>Tu n'as pas à choisir entre attendre et abandonner.</strong> Le Cercle te donne le même accès complet, en petits paiements mensuels — et une communauté en plus.</div>
@@ -97,7 +96,7 @@
       <div class="price" id="price"></div>
       <div class="price-cfa" id="priceCfa"></div>
       <div class="price-note" data-fr="par mois · sans engagement · paiement sécurisé" data-en="per month · no commitment · secure checkout">par mois · sans engagement · paiement sécurisé</div>
-      <div class="price-note" style="color:var(--gold-deep);font-weight:600;" data-fr="✨ Studio Premium inclus + forum privé + contenu exclusif chaque mois" data-en="✨ Studio Premium included + private forum + exclusive content every month">✨ Studio Premium inclus + forum privé + contenu exclusif chaque mois</div>
+      <div class="price-note" style="color:var(--gold-deep);font-weight:600;" data-fr="✨ Studio Premium inclus + groupe privé + contenu exclusif chaque mois" data-en="✨ Studio Premium included + private group + exclusive content every month">✨ Studio Premium inclus + groupe privé + contenu exclusif chaque mois</div>
     </div>
     <a class="cta-big" id="mainCta" href="#" target="_blank" rel="noopener noreferrer"></a>
     <p class="guarantee" data-fr="Une question avant de t'abonner ? Écris-moi sur Facebook 💛" data-en="A question before joining? Message me on Facebook 💛">Une question avant de t'abonner ? Écris-moi sur Facebook 💛</p>

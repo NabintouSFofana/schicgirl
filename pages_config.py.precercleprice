@@ -110,7 +110,7 @@ PAGES = [
 
   {"src": "le-cercle.html", "slug_fr": "le-cercle", "slug_en": "the-circle",
    "ebook": _ebook("assets/le-cercle-fr.webp", "assets/le-cercle-en.webp", "https://selar.com/le_cercle_schicgirl", "https://selar.com/the_circle_schicgirl",
-                   "12€/mois", "$13/mo", "≈ 8 000 FCFA/mois", "Rejoindre Le Cercle →", "Join The Circle →", "5.00", "6.00", "le-cercle"),
+                   "5€/mois", "$6/mo", "≈ 3 500 FCFA/mois", "Rejoindre Le Cercle →", "Join The Circle →", "5.00", "6.00", "le-cercle"),
    "name_fr": "Le Cercle", "name_en": "The Circle", "cat_fr": "Abonnement", "cat_en": "Membership",
    "title_fr": "Le Cercle Schicgirl — Abonnement Mensuel Type 4 | Schicgirl",
    "title_en": "The Schicgirl Circle — Monthly Type 4 Membership | Schicgirl",

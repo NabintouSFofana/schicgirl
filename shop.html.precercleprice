@@ -40,16 +40,16 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="assets/fav-logo-48.png" />
     <link rel="apple-touch-icon" href="assets/apple-touch-logo.png" />
-    <title>Schicgirl — Cheveux Crépus Type 4 : Guides, Routines &amp; Produits</title>
+    <title>La Boutique Schicgirl — Guides &amp; Abonnement Cheveux Crépus Type 4</title>
     <meta name="author" content="Schicgirl" />
     <meta name="copyright" content="© 2024–2026 Schicgirl. All rights reserved." />
-    <meta name="description" content="Schicgirl helps women with curly, coily and textured hair understand dryness, build simple routines, and choose trusted products." />
+    <meta name="description" content="La boutique Schicgirl : tous les guides, l'abonnement Le Cercle et les outils pour cheveux crépus Type 4, bilingues et à télécharger à vie." />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Schicgirl — Cheveux Crépus Type 4 : Guides, Routines & Produits" />
+    <meta property="og:title" content="La Boutique Schicgirl — Guides & Abonnement Cheveux Crépus Type 4" />
     <meta property="og:image" content="https://schicgirl.me/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:description" content="Schicgirl — guides, routines et produits pour cheveux crépus Type 4." />
+    <meta property="og:description" content="Tous mes guides, l'abonnement et mes outils pour cheveux crépus Type 4 — au même endroit." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://schicgirl.me" />
@@ -58,7 +58,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <link rel="canonical" href="https://schicgirl.me/" />
+    <link rel="canonical" href="https://schicgirl.me/shop.html" />
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -278,14 +278,6 @@
       .ss-article-title { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.24; }
       .ss-article-exc { font-size: 12px; color: var(--muted); line-height: 1.42; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
       .ss-article-read { font-size: 10.5px; letter-spacing: .02em; color: var(--gold-deep); font-weight: 600; margin-top: 3px; }
-      .ss-shopcta { display: flex; align-items: center; gap: 12px; margin: 4px 0 6px; padding: 16px 18px; text-decoration: none;
-        background: linear-gradient(135deg, var(--gold-pale), #fffdf8); border: 2px solid var(--gold); border-radius: 16px;
-        box-shadow: 0 8px 26px rgba(201, 147, 74, 0.30); transition: box-shadow .15s ease, transform .15s ease; }
-      .ss-shopcta:hover { box-shadow: 0 12px 30px rgba(201, 147, 74, 0.42); transform: translateY(-1px); }
-      .ss-shopcta-emoji { font-size: 26px; flex: 0 0 auto; }
-      .ss-shopcta-txt { display: flex; flex-direction: column; line-height: 1.3; color: var(--ink-soft); font-size: 12.5px; flex: 1 1 auto; }
-      .ss-shopcta-txt b { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--gold-deep); }
-      .ss-shopcta-arrow { font-size: 20px; color: var(--gold-deep); flex: 0 0 auto; }
       .ss-products { display: flex; flex-direction: column; gap: 9px; }
       .ss-product {
         display: flex; gap: 13px; align-items: center; background: var(--card); border: 1.5px solid var(--line);
@@ -416,35 +408,7 @@
 
     <!-- SEO anchor (kept for seo_finalize.py hub-link injection; hidden from view) -->
     <div class="schicgirl-wrap" id="schicgirlWrap"></div>
-    <!-- seo:hublinks --><noscript><section><h1>Schicgirl — Cheveux Crépus Type 4 / Type 4 Coily Hair</h1><p>Schicgirl aide les femmes aux cheveux crépus Type 4 (4A 4B 4C) à comprendre la sécheresse, construire une routine et choisir des produits fiables. Schicgirl helps women with Type 4 coily hair understand dryness, build a routine and choose trusted products.</p><h2>Guides &amp; pages (Français)</h2><ul><li><a href="/fr/pellicules/">Adieu Pellicules</a></li><li><a href="/fr/hydratation-cheveux-crepus/">Hydratée</a></li><li><a href="/fr/coiffures-protectrices/">Coiffures Protectrices</a></li><li><a href="/fr/cheveux-secs/">Stop aux Cheveux Secs</a></li><li><a href="/fr/transition-capillaire/">Cheveux en Transition</a></li><li><a href="/fr/planner/">Le Studio · Planner Type 4</a></li><li><a href="/fr/pourquoi-rien-ne-fonctionne/">Pourquoi Rien Ne Fonctionne</a></li><li><a href="/fr/creer-ma-routine-capillaire/">Comment créer ma routine capillaire</a></li><li><a href="/fr/recettes-cheveux-crepus/">Mes Recettes Type 4</a></li><li><a href="/fr/planificateur-cheveux-naturels/">Planificateur Cheveux Naturels</a></li><li><a href="/fr/le-studio-premium/">Le Studio Premium</a></li><li><a href="/fr/le-cercle/">Le Cercle</a></li><li><a href="/fr/a-propos/">À Propos</a></li><li><a href="/fr/blog/">Blog</a></li><li><a href="/fr/contact/">Contact</a></li><li><a href="/fr/confidentialite/">Politique de Confidentialité</a></li><li><a href="/fr/conditions/">Conditions d'Utilisation</a></li><li><a href="/fr/produits/">Produits</a></li><li><a href="/fr/kit-gratuit/">Le Kit Type 4 (Gratuit)</a></li></ul><h2>Guides &amp; pages (English)</h2><ul><li><a href="/en/dandruff/">Goodbye Dandruff</a></li><li><a href="/en/hydrate-type-4-hair/">Hydrated</a></li><li><a href="/en/protective-styles/">Protective Styles</a></li><li><a href="/en/dry-hair/">Stop Dry Hair</a></li><li><a href="/en/hair-transition/">Hair in Transition</a></li><li><a href="/en/planner/">The Studio · Type 4 Planner</a></li><li><a href="/en/why-nothing-works/">Why Nothing Works</a></li><li><a href="/en/build-my-hair-routine/">How to Build My Hair Routine</a></li><li><a href="/en/type-4-hair-recipes/">My Type 4 Recipe Book</a></li><li><a href="/en/natural-hair-planner/">Natural Hair Planner</a></li><li><a href="/en/premium-studio/">The Premium Studio</a></li><li><a href="/en/the-circle/">The Circle</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/blog/">Blog</a></li><li><a href="/en/contact/">Contact</a></li><li><a href="/en/privacy-policy/">Privacy Policy</a></li><li><a href="/en/terms/">Terms of Service</a></li><li><a href="/en/products/">Products</a></li><li><a href="/en/free-kit/">The Free Type 4 Kit</a></li></ul></section></noscript><!-- seo:hublinks -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- seo:hublinks --><noscript><section><h1>Schicgirl — Cheveux Crépus Type 4 / Type 4 Coily Hair</h1><h2>Guides &amp; pages (Français)</h2><ul><li><a href="/fr/pellicules/">Adieu Pellicules</a></li><li><a href="/fr/hydratation-cheveux-crepus/">Hydratée</a></li><li><a href="/fr/coiffures-protectrices/">Coiffures Protectrices</a></li><li><a href="/fr/cheveux-secs/">Stop aux Cheveux Secs</a></li><li><a href="/fr/transition-capillaire/">Cheveux en Transition</a></li><li><a href="/fr/planner/">Le Studio · Planner Type 4</a></li><li><a href="/fr/pourquoi-rien-ne-fonctionne/">Pourquoi Rien Ne Fonctionne</a></li><li><a href="/fr/creer-ma-routine-capillaire/">Comment créer ma routine capillaire</a></li><li><a href="/fr/recettes-cheveux-crepus/">Mes Recettes Type 4</a></li><li><a href="/fr/planificateur-cheveux-naturels/">Planificateur Cheveux Naturels</a></li><li><a href="/fr/le-studio-premium/">Le Studio Premium</a></li><li><a href="/fr/le-cercle/">Le Cercle</a></li><li><a href="/fr/a-propos/">À Propos</a></li><li><a href="/fr/blog/">Blog</a></li><li><a href="/fr/contact/">Contact</a></li><li><a href="/fr/confidentialite/">Politique de Confidentialité</a></li><li><a href="/fr/conditions/">Conditions d'Utilisation</a></li><li><a href="/fr/produits/">Produits</a></li><li><a href="/fr/kit-gratuit/">Le Kit Type 4 (Gratuit)</a></li></ul><h2>Guides &amp; pages (English)</h2><ul><li><a href="/en/dandruff/">Goodbye Dandruff</a></li><li><a href="/en/hydrate-type-4-hair/">Hydrated</a></li><li><a href="/en/protective-styles/">Protective Styles</a></li><li><a href="/en/dry-hair/">Stop Dry Hair</a></li><li><a href="/en/hair-transition/">Hair in Transition</a></li><li><a href="/en/planner/">The Studio · Type 4 Planner</a></li><li><a href="/en/why-nothing-works/">Why Nothing Works</a></li><li><a href="/en/build-my-hair-routine/">How to Build My Hair Routine</a></li><li><a href="/en/type-4-hair-recipes/">My Type 4 Recipe Book</a></li><li><a href="/en/natural-hair-planner/">Natural Hair Planner</a></li><li><a href="/en/premium-studio/">The Premium Studio</a></li><li><a href="/en/the-circle/">The Circle</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/blog/">Blog</a></li><li><a href="/en/contact/">Contact</a></li><li><a href="/en/privacy-policy/">Privacy Policy</a></li><li><a href="/en/terms/">Terms of Service</a></li><li><a href="/en/products/">Products</a></li><li><a href="/en/free-kit/">The Free Type 4 Kit</a></li></ul></section></noscript><!-- seo:hublinks -->
     
     
     
@@ -512,8 +476,8 @@
         logo: "assets/logo2.webp", name_pre: "Schic", name_acc: "girl",
         proof_fr: "Spécialiste cheveux crépus Type 4", proof_en: "Type 4 coily-hair specialist",
         bio_fr: "Clarté, soin & confiance pour cheveux crépus.", bio_en: "Clarity, care & confidence for coily hair.",
-        intro_fr: "<p>Bienvenue chez <b>Schicgirl</b>. Ici, on parle vraiment de cheveux crépus Type 4 — 4A, 4B, 4C — sans promesses miracles ni jargon.</p><p>Tes cheveux ne sont pas « difficiles » : leur spirale serrée ralentit le trajet du sébum, donc ils sèchent plus vite. Comprendre ça change tout.</p>",
-        intro_en: "<p>Welcome to <b>Schicgirl</b>. Real talk about Type 4 coily hair — 4A, 4B, 4C — no miracle promises, no jargon.</p><p>Your hair isn't &laquo; difficult &raquo;: its tight coil slows sebum down, so it dries faster. Understanding that changes everything.</p>",
+        intro_fr: "<p>Bienvenue chez <b>Schicgirl</b>. Ici, on parle vraiment de cheveux crépus Type 4 — 4A, 4B, 4C — sans promesses miracles ni jargon compliqué. Que tes cheveux soient secs, cassants, ou que tu commences tout juste ta transition, tu es au bon endroit.</p><p>Les cheveux crépus ne sont pas « difficiles » : ils sont simplement différents. Leur forme en spirale serrée rend le trajet du sébum plus long, ce qui les rend naturellement plus secs et plus fragiles au démêlage. Comprendre ça change tout — au lieu de lutter contre tes cheveux, tu apprends à travailler avec eux.</p><p>Tu trouveras ici des articles clairs et gratuits sur l'hydratation, la porosité, le jour de lavage, les coiffures protectrices et la pousse. Commence par un article ci-dessous 👇</p>",
+        intro_en: "<p>Welcome to <b>Schicgirl</b>. This is where we talk honestly about Type 4 coily hair — 4A, 4B, 4C — with no miracle promises and no confusing jargon. Whether your hair is dry, breaking, or you're just starting your transition, you're in the right place.</p><p>Coily hair isn't « difficult » — it's simply different. Its tight spiral shape makes the journey of your scalp's natural oils longer, which is why it's naturally drier and more fragile when detangling. Understanding that changes everything — instead of fighting your hair, you learn to work with it.</p><p>Here you'll find clear, free articles on moisture, porosity, wash day, protective styles and growth. Start with an article below 👇</p>",
         articles_label_fr: "Sur le blog · Derniers articles", articles_label_en: "From the blog · Latest articles",
         articles_allcta_fr: "Tous les articles →", articles_allcta_en: "All articles →",
         articles: [
@@ -560,7 +524,7 @@
         cercle: {
           tag_fr: "Abonnement mensuel", tag_en: "Monthly membership",
           title_fr: "Le Cercle", title_en: "The Circle",
-          price_fr: "12€", price_en: "$13", per_fr: "/mois", per_en: "/mo", cfa: "≈ 8 000 FCFA",
+          price_fr: "5€", price_en: "$6", per_fr: "/mois", per_en: "/mo", cfa: "≈ 3 500 FCFA",
           sub_fr: "Rejoins notre communauté Type 4 : le Studio Premium inclus, le groupe privé, et un nouveau contenu exclusif chaque mois.",
           sub_en: "Join our Type 4 community: Studio Premium included, the private group, and new exclusive content every month.",
           perks_fr: ["✨ Studio Premium inclus", "🤝 Groupe privé", "🎁 Exclu chaque mois"],
@@ -672,7 +636,7 @@
             <div class="ss-cercle-note">${esc(tx(c, "note"))}</div>
           </a>`;
 
-        const products = SITE.products.slice(0, 4).map((p, i) => {
+        const products = SITE.products.map((p, i) => {
           const img = tx(p, "img");
           const imgv = img ? img + (img.indexOf("?") < 0 ? "?v=20260728c" : "") : "";
           const media = img ? `<img src="${esc(imgv)}" alt="${esc(tx(p, "title"))}" loading="lazy" onerror="this.parentElement.textContent='📖'"/>` : "📖";
@@ -732,15 +696,6 @@
         const testis =
           SITE.testimonials.map((t) => testiCard(t.stars, tx(t, "text"), t.author)).join("") +
           (SB_REVIEWS || []).map((r) => testiCard(r.rating, r.text, r.author, r.photo_url)).join("");
-        // Why the anonymity is stated: these quotes are real messages from women
-        // Schicgirl coached, shared with permission but without names or photos at
-        // their request. Saying so turns "no face, no full name" from a red flag
-        // into the reason it is trustworthy.
-        const testiNote = `<div style="text-align:center;margin-top:10px;font-size:11.5px;line-height:1.55;color:var(--muted);max-width:520px;margin-left:auto;margin-right:auto">${
-          LANG === "fr"
-            ? "Messages reçus de femmes que j'accompagne, partagés avec leur accord. Prénom abrégé et sans photo à leur demande."
-            : "Messages from women I've coached, shared with their permission. First name shortened and no photo, at their request."
-        }</div>`;
         const reviewCta = `<div style="text-align:center;margin-top:14px"><a class="ss-seeall" href="${REVIEW_PAGE}" target="_blank" rel="noopener noreferrer" onclick="track('leave-review')">${LANG === "fr" ? "Laisser un avis ⭐" : "Leave a review ⭐"}</a></div>`;
 
         const introHtml = `<div class="ss-intro">${LANG === "fr" ? SITE.intro_fr : SITE.intro_en}</div>`;
@@ -757,7 +712,6 @@
         const blogAll = `<div style="text-align:center;margin-top:12px"><a class="ss-seeall" href="${LANG === "en" ? "/en/blog/" : "/fr/blog/"}" onclick="track('see-all-articles')">${esc(tx(SITE, "articles_allcta"))}</a></div>`;
 
         const nav = [
-          ["/shop.html", LANG === "fr" ? "Boutique" : "Shop"],
           ["/fr/a-propos/", LANG === "fr" ? "À propos" : "About"],
           ["/fr/blog/", "Blog"],
           ["/fr/contact/", "Contact"],
@@ -765,23 +719,19 @@
           ["/fr/conditions/", LANG === "fr" ? "Conditions" : "Terms"],
         ].map((n) => `<a href="${n[0]}">${esc(n[1])}</a>`).join("");
 
-        // Commerce (Membership, Boutique, Tools, Amazon picks) now lives on /shop.html —
-        // the homepage stays content-first and links to the shop via this CTA.
-        const shopCta = `
-          <a class="ss-shopcta" href="/shop.html${LANG === "en" ? "?lang=en" : ""}" onclick="track('go-shop')">
-            <span class="ss-shopcta-emoji">🛍️</span>
-            <span class="ss-shopcta-txt"><b>${LANG === "fr" ? "La Boutique" : "The Shop"}</b>${LANG === "fr" ? "Tous mes guides, l'abonnement & mes outils" : "All my guides, the membership & tools"}</span>
-            <span class="ss-shopcta-arrow">→</span>
-          </a>`;
+        const shopIntro = `<div class="ss-intro">${LANG === "fr"
+          ? "<p><b>La boutique Schicgirl.</b> Tous mes guides, l'abonnement et mes outils pour cheveux crépus Type 4 — au même endroit. Chaque guide est bilingue, à télécharger à vie, et livré avec ses bonus.</p>"
+          : "<p><b>The Schicgirl shop.</b> All my guides, the membership and my tools for Type 4 coily hair — in one place. Every guide is bilingual, yours for life, and comes with its bonuses.</p>"}</div>`;
+        const backHome = `<div style="text-align:center;margin-bottom:12px"><a class="ss-seeall" href="/${LANG === "en" ? "?lang=en" : ""}" onclick="track('shop-back-home')">${LANG === "fr" ? "← Retour à l'accueil & au blog" : "← Back to home & blog"}</a></div>`;
 
         document.getElementById("ssApp").innerHTML =
           profile + `<div class="ss-divider"></div>` +
-          introHtml +
-                    `<div class="ss-label" id="sec-free">${LANG === "fr" ? "Commence ici · Gratuit" : "Start here · Free"}</div>` + free +
-          shopCta +
-          `<div class="ss-label" id="sec-blog">${esc(tx(SITE, "articles_label"))}</div><div class="ss-articles">${articles}</div>` + blogAll +
-          `<div class="ss-divider"></div>` +
-          `<div class="ss-label" id="sec-avis">${esc(tx(SITE, "testi_label"))}</div><div class="ss-testi-scroll">${testis}</div>` + testiNote + reviewCta +
+          shopIntro + backHome +
+          `<div class="ss-label" id="sec-cercle">${esc(tx(SITE, "cercle_label"))}</div>` + cercle +
+          `<div class="ss-label" id="sec-shop">${esc(tx(SITE, "products_label"))}</div><div class="ss-products">${products}</div>` + seeall +
+          `<div class="ss-label" id="sec-tools">${esc(tx(SITE, "tools_label"))}</div><div class="ss-links">${tools}</div>` +
+          `<div class="ss-label" id="sec-picks">${esc(tx(SITE, "picks_label"))}</div><div class="ss-picks3">${picks}</div>` +
+          `<div class="ss-label" id="sec-avis">${esc(tx(SITE, "testi_label"))}</div><div class="ss-testi-scroll">${testis}</div>` + reviewCta +
           `<footer class="ss-footer">
              <div class="ss-footer-div"></div>
              <strong>Schicgirl</strong><br/>${esc(tx(SITE, "disc"))}
