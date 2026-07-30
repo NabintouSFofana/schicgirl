@@ -1196,9 +1196,25 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
 <body>
 
 <!-- ═══════════════════════════════════════════════════════════════
+     BOOT LOADING — shown by default so a returning, already-logged-in
+     visitor never sees a flash of the login form while the session check
+     and initial data load are still running. init() hides this once it
+     knows whether to show the auth page or the app.
+═══════════════════════════════════════════════════════════════ -->
+<div id="boot-loading" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:#fffdf8;z-index:9999">
+  <div style="text-align:center">
+    <div style="font-size:34px;margin-bottom:8px">🌸</div>
+    <div style="width:26px;height:26px;border:3px solid #e6dccb;border-top-color:#c9934a;border-radius:50%;
+      margin:0 auto;animation:bootspin .8s linear infinite"></div>
+  </div>
+</div>
+<style>@keyframes bootspin{to{transform:rotate(360deg)}}</style>
+
+<!-- ═══════════════════════════════════════════════════════════════
      AUTH PAGE
 ═══════════════════════════════════════════════════════════════ -->
-<div id="ap" class="page on">
+<div id="ap" class="page">
   <div class="auth-card">
     <div class="auth-brand">
       <div class="auth-crown">👑</div>
@@ -7446,26 +7462,31 @@ async function init(){
   if(!window.supabase){
     console.error('⚠ Supabase SDK failed to load. Check that the CDN is accessible. The app will run in localStorage-only mode.');
   }
-  Store.load();
-  applyLang();
-  setupAuth();
-  setupRouter();
-  await consumeHandoff();
-  // Check Supabase session — if logged in, hydrate and show app
-  if(window.Backend){
-    try {
-      const session = await Backend.getSession();
-      if(session){
-        console.log('✓ Existing session found — restoring app');
-        await bootApp();
-        return;
-      } else {
-        console.log('No active session — showing auth screen');
-      }
-    } catch(e){ console.warn('session check failed:', e); }
+  try {
+    Store.load();
+    applyLang();
+    setupAuth();
+    setupRouter();
+    await consumeHandoff();
+    // Check Supabase session — if logged in, hydrate and show app
+    if(window.Backend){
+      try {
+        const session = await Backend.getSession();
+        if(session){
+          console.log('✓ Existing session found — restoring app');
+          await bootApp();
+          return;
+        } else {
+          console.log('No active session — showing auth screen');
+        }
+      } catch(e){ console.warn('session check failed:', e); }
+    }
+    // No session: show auth screen
+    showAuth();
+  } finally {
+    const bl = document.getElementById('boot-loading');
+    if(bl) bl.remove();
   }
-  // No session: show auth screen
-  showAuth();
 }
 
 // Boot when DOM is ready
