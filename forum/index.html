@@ -2138,7 +2138,7 @@ const TX = {
     cancel:'Cancel', submit:'Submit Post', close:'Close',
     err_empty:'Please write something first',
     err_image:'Could not read image',
-    toast_posted:'Posted! +10 points', toast_pending:'Submitted for review! +5 points',
+    toast_posted:'Posted! +10 points', toast_pending:'Submitted for review! +5 points', toast_pending_review:'Submitted for review!',
     pending_text:'of your posts are awaiting approval',
     pending_review:'Awaiting admin review — only you can see this',
     cta_profile_title:'Complete your hair profile',
@@ -2166,7 +2166,7 @@ const TX = {
     recipe_desc:'Short description', recipe_ings:'Ingredients (one per line)',
     recipe_steps:'Steps (one per line)', recipe_tip:'Pro tip',
     err_recipe:'Add a title, description, ingredients and steps',
-    toast_recipe:'Recipe added! +25 points',
+    toast_recipe:'Recipe added! +30 points',
     // Learn
     learn_h:'📚 Learning Library ✦',
     learn_sub:'courses with quiz-locked lessons',
@@ -2455,7 +2455,7 @@ const TX = {
     cancel:'Annuler', submit:'Publier', close:'Fermer',
     err_empty:"Écris d'abord quelque chose",
     err_image:"Impossible de lire l'image",
-    toast_posted:'Publié ! +10 points', toast_pending:'Soumis pour relecture ! +5 points',
+    toast_posted:'Publié ! +10 points', toast_pending:'Soumis pour relecture ! +5 points', toast_pending_review:'Soumis pour relecture !',
     pending_text:"de tes publications attendent l'approbation",
     pending_review:"En attente d'approbation — visible par toi seule",
     cta_profile_title:'Complète ton profil capillaire',
@@ -2482,7 +2482,7 @@ const TX = {
     recipe_desc:'Courte description', recipe_ings:'Ingrédients (un par ligne)',
     recipe_steps:'Étapes (une par ligne)', recipe_tip:'Astuce pro',
     err_recipe:'Ajoute un titre, une description, des ingrédients et des étapes',
-    toast_recipe:'Recette ajoutée ! +25 points',
+    toast_recipe:'Recette ajoutée ! +30 points',
     learn_h:"📚 Bibliothèque d'apprentissage ✦",
     learn_sub:'cours avec leçons et quiz',
     learn_back:'← Retour aux modules',
@@ -5647,8 +5647,8 @@ async function toggleLike(postId){
     if(!wasLiked){
       const post = Store.state.posts.find(p => p.id === postId);
       if(post && post.userId !== u.id && window.Backend){
+        // Points for the recipient come from the points_on_like DB trigger.
         try { await Backend.addNotification(post.userId, {icon:'❤️', title: t('notif_liked')||'Someone liked your post', text: `${u.firstName} ${u.lastName}`}); } catch(e){}
-        try { await Backend.awardPoints(post.userId, 2); } catch(e){}
       }
     }
   } catch(e){
@@ -5687,18 +5687,18 @@ async function addComment(postId, text, parentId){
     // Replace temp with real
     const idx = post.comments.findIndex(c => c.id === tempId);
     if(idx >= 0) post.comments[idx] = saved;
+    // Points for both the recipient and the commenter come from DB triggers
+    // (points_on_comment_received / points_on_comment) — fixed amounts,
+    // can't be gamed from the browser.
     const notified = [];
     if(parent && parent.userId !== u.id){
       try { await Backend.addNotification(parent.userId, {icon:'💬', title: t('notif_reply_comment')||'Someone replied to your comment', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
-      try { await Backend.awardPoints(parent.userId, 2); } catch(e){}
       notified.push(parent.userId);
     } else if(!parent && post.userId !== u.id){
       try { await Backend.addNotification(post.userId, {icon:'💬', title: t('notif_commented')||'New comment on your post', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
-      try { await Backend.awardPoints(post.userId, 3); } catch(e){}
       notified.push(post.userId);
     }
     notifyAdmins({icon:'💬', title: parent ? (t('notif_new_reply_admin')||'New reply posted') : (t('notif_new_comment_admin')||'New comment posted'), text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}, [u.id, ...notified]);
-    try { await Backend.awardPoints(u.id, 1); u.points = num(u.points) + 1; } catch(e){}
     Store.save();
     renderHeader();
   } catch(e){
@@ -5729,8 +5729,8 @@ async function toggleCommentLike(commentId){
         if(c){ theComment = c; break; }
       }
       if(theComment && theComment.userId !== u.id && window.Backend){
+        // Points for the recipient come from the points_on_like DB trigger.
         try { await Backend.addNotification(theComment.userId, {icon:'❤️', title: t('notif_liked_comment')||'Someone liked your reply', text: `${u.firstName} ${u.lastName}`}); } catch(e){}
-        try { await Backend.awardPoints(theComment.userId, 1); } catch(e){}
       }
     }
   } catch(e){
@@ -5794,9 +5794,7 @@ async function votePoll(postId, opt){
   try {
     if(window.Backend){
       await Backend.votePoll(postId, opt);
-      if(prev === undefined){
-        try { await Backend.awardPoints(u.id, 1); u.points = num(u.points) + 1; } catch(e){}
-      }
+      // Points (first vote only) come from the points_on_poll_vote DB trigger.
     }
     renderHeader();
   } catch(e){
@@ -5859,9 +5857,8 @@ function openComposer(){
           return;
         }
       }
-      // For launch: ALL posts are auto-approved so members see results immediately.
-      // The admin Approve/Reject queue remains available for any future moderation toggle.
-      const autoApprove = true;
+      // Every post needs admin approval before it's visible to the community.
+      const autoApprove = false;
       // Persist to Supabase
       let savedPost;
       if(window.Backend){
@@ -5878,14 +5875,9 @@ function openComposer(){
       // Update local state
       Store.state.posts.unshift(savedPost);
       notifyAdmins({icon:'📝', title: t('notif_new_post')||'New post in the forum', text: `${u.firstName} ${u.lastName}${title?': '+title:''}`}, [u.id]);
-      toast(t('toast_posted')||'Posted! +10 points');
-      // Award points (persist)
-      try {
-        if(window.Backend){
-          await Backend.awardPoints(u.id, 10);
-          u.points = num(u.points) + 10;
-        }
-      } catch(e){}
+      // Points come from a DB trigger on insert (fixed amount, can't be
+      // gamed from the browser) — the toast reflects that it's not live yet.
+      toast(t('toast_pending_review')||'Submitted for review!');
       Store.save();
       closeModal();
       renderHeader();
@@ -6036,7 +6028,7 @@ function openRecipeSubmit(){
       let savedRecipe;
       if(window.Backend){
         savedRecipe = await Backend.createRecipe({ title, desc, category: cat, diff, ings, steps, tip });
-        try { await Backend.awardPoints(u.id, 25); u.points = num(u.points) + 25; } catch(e){}
+        // Points come from the points_on_recipe DB trigger (30 pts).
       } else {
         savedRecipe = {
           id: uid('r'), title, desc, cat, diff, hair:'All 4A-4C',
@@ -6468,12 +6460,12 @@ function renderThreadContent(){
         const saved = await Backend.addThreadMessage(currentThread.id, text);
         const idx = currentThread.messages.findIndex(m => m.id === tempId);
         if(idx >= 0) currentThread.messages[idx] = saved;
+        // Points for both the thread owner and the replier come from DB
+        // triggers (points_on_reply_received / points_on_thread_reply).
         if(currentThread.userId !== u.id){
           try { await Backend.addNotification(currentThread.userId, {icon:'💬', title: t('notif_reply')||'New reply in your thread', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}); } catch(e){}
-          try { await Backend.awardPoints(currentThread.userId, 2); } catch(e){}
         }
         notifyAdmins({icon:'💬', title: t('notif_new_reply_admin')||'New reply posted', text: `${u.firstName}: ${text.slice(0,40)}${text.length>40?'…':''}`}, [u.id, currentThread.userId]);
-        try { await Backend.awardPoints(u.id, 3); u.points = num(u.points) + 3; } catch(e){}
       }
       Store.save();
       renderThreadContent();
@@ -6516,9 +6508,8 @@ function openNewThread(){
       }
       Store.state.threads.unshift(saved);
       notifyAdmins({icon:'📝', title: t('notif_new_thread')||'New discussion started', text: `${u.firstName} ${u.lastName}: ${title}`}, [u.id]);
-      try {
-        if(window.Backend){ await Backend.awardPoints(u.id, 10); u.points = num(u.points) + 10; }
-      } catch(e){}
+      // Points come from a DB trigger on insert (fixed amount, can't be
+      // gamed from the browser).
       Store.save();
       toast(t('toast_thread')||'Thread posted! +10 points');
       closeModal();
@@ -8015,8 +8006,13 @@ const Backend = {
 
   // ─── NOTIFICATIONS ────────────────────────────────────────────────
   async addNotification(userId, { icon, title, text }){
-    const { error } = await sb.from('notifications').insert({
-      user_id: userId, icon: icon || null, title: title || '', text: text || ''
+    // notifications RLS only allows writing your OWN row (a member could
+    // otherwise spam anyone's notification feed) — notify_user() is the
+    // security-definer RPC made for this exact case: telling someone ELSE
+    // that their post got a like/comment/reply. A raw insert() here would
+    // fail silently every time for anyone but yourself.
+    const { error } = await sb.rpc('notify_user', {
+      target: userId, p_icon: icon || null, p_title: title || '', p_text: text || ''
     });
     if(error) console.warn('addNotification:', error);
   },
