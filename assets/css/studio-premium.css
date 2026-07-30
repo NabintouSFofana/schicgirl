@@ -100,7 +100,14 @@
 /* note under lesson */
 .crs-note{font-size:12px;color:#6a5f52;font-style:italic;text-align:center;margin-top:10px}
 
-/* ── écran de verrouillage (code d'accès) ── */
+/* ── lien croisé vers le forum (barre latérale) ── */
+.sgp-forum-link{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 10px;
+  padding:10px 12px;background:rgba(201,147,74,.12);border:1.5px solid rgba(201,147,74,.35);
+  border-radius:100px;color:#a06d28;font-size:12.5px;font-weight:700;text-decoration:none;
+  transition:background .15s}
+.sgp-forum-link:hover{background:rgba(201,147,74,.22)}
+
+/* ── écran de verrouillage (compte email + mot de passe) ── */
 .sgp-lock{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
   padding:20px;background:radial-gradient(ellipse 90% 60% at 50% -10%,rgba(201,147,74,.22),transparent 60%),#fbf4e8}
 .sgp-card{width:100%;max-width:420px;background:#fffdf8;border:1.5px solid rgba(201,147,74,.4);
@@ -111,6 +118,10 @@
   border:2px solid rgba(201,147,74,.5)}
 .sgp-card h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;font-weight:600;
   color:#3b2a20;margin:0 0 8px}
+.sgp-tabs{display:flex;gap:6px;background:#f3ead8;border-radius:100px;padding:4px;margin:0 0 16px}
+.sgp-tab{flex:1;border:0;background:transparent;cursor:pointer;font-family:inherit;font-size:12.5px;
+  font-weight:700;padding:10px 6px;border-radius:100px;color:#8a7a62;transition:all .15s}
+.sgp-tab.on{background:#fff;color:#3b2a20;box-shadow:0 2px 8px rgba(60,38,24,.12)}
 .sgp-sub{font-size:13.5px;color:#6a5f52;line-height:1.55;margin:0 0 20px}
 .sgp-sub .sgp-en{font-size:12px;opacity:.75;font-style:italic}
 .sgp-card input{width:100%;box-sizing:border-box;margin-bottom:10px;padding:13px 16px;

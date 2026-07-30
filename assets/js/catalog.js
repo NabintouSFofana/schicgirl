@@ -4,12 +4,6 @@
    drifted apart, which silently hid two products from the shop.) */
 window.SG_CATALOG = window.SG_CATALOG || {};
 window.SG_CATALOG.products = [
-          { id: "studio-premium", img_fr: "assets/studio-premium-fr.webp", img_en: "assets/studio-premium-en.webp", badge_fr: "✨ Vedette", badge_en: "✨ Featured",
-            title_fr: "Le Studio Premium", title_en: "The Premium Studio",
-            desc_fr: "L'app + mes 6 guides en cours (113 leçons), ton parcours personnalisé, progression sauvegardée.",
-            desc_en: "The app + my 6 guides as courses (113 lessons), your personalised path, progress saved.",
-            bonus_fr: "🎁 5 bonus offerts (calendrier, pack suivi, recettes…)", bonus_en: "🎁 5 free bonuses (calendar, tracker, recipes…)",
-            price_fr: "29€", price_en: "$32", cfa: "≈ 19 000 FCFA", url_fr: "/fr/le-studio-premium/", url_en: "/en/premium-studio/" },
           { id: "hydratee", img_fr: "assets/hydratee.webp", img_en: "assets/hydrated.webp", badge_fr: "Best-seller", badge_en: "Best-seller",
             title_fr: "Hydratée", title_en: "Hydrated",
             desc_fr: "Diagnostique ta porosité, superpose dans le bon ordre, et retiens enfin l'hydratation.",

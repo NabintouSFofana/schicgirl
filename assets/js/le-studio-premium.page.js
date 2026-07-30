@@ -1,4 +1,4 @@
-var EBOOK = {"slug": "studio-premium", "img_fr": "assets/studio-premium-fr.webp", "img_en": "assets/studio-premium-en.webp", "url_fr": "https://selar.com/le_studio_premium", "url_en": "https://selar.com/the_studio_premium", "price_fr": "29€", "price_en": "$32", "price_cfa": "≈ 19 000 FCFA", "cta_fr": "Débloquer mon Studio Premium →", "cta_en": "Unlock my Premium Studio →"};
+var EBOOK = {"slug": "studio-premium", "img_fr": "assets/studio-premium-fr.webp", "img_en": "assets/studio-premium-en.webp", "url_fr": "/fr/le-cercle/", "url_en": "/en/the-circle/", "price_fr": "12€/mois", "price_en": "$13/mo", "price_cfa": "≈ 8 000 FCFA/mois", "cta_fr": "Rejoindre Le Cercle →", "cta_en": "Join The Circle →"};
   var LANG = "fr";
   function ab(p){ return (!p || p.charAt(0)==="/" || /^https?:/.test(p)) ? p : "/"+p.replace(/^\.?\//,""); }
   function T(o,k){ return LANG==="fr" ? (o[k+"_fr"]||o[k+"_en"]||"") : (o[k+"_en"]||o[k+"_fr"]||""); }
