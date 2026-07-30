@@ -39,6 +39,28 @@
     } catch (e) {}
   }
 
+  /* ── passerelle forum <-> studio : le même compte ouvre les deux, mais
+     chaque sous-domaine a son propre stockage de session (localStorage
+     n'est jamais partagé entre schicgirl.me et forum.schicgirl.me), donc
+     un jeton passé dans le fragment d'URL (#h=...) évite d'avoir à se
+     reconnecter en changeant d'appli — jamais envoyé à un serveur. ── */
+  (function consumeHandoff() {
+    var m = /^#h=([^.]+)\.(.+)$/.exec(location.hash);
+    if (!m) return;
+    try {
+      history.replaceState(null, "", location.pathname + location.search);
+    } catch (e) {}
+    saveSession({ access_token: decodeURIComponent(m[1]), refresh_token: decodeURIComponent(m[2]), email: "" });
+  })();
+  function updateForumLink() {
+    var a = document.querySelector(".sgp-forum-link");
+    if (!a) return;
+    a.href =
+      session && session.access_token
+        ? "https://forum.schicgirl.me/#h=" + encodeURIComponent(session.access_token) + "." + encodeURIComponent(session.refresh_token)
+        : "https://forum.schicgirl.me/";
+  }
+
   /* ── appels bruts à l'API Auth de Supabase (pas besoin du SDK complet) ── */
   function authCall(path, body) {
     return fetch(SB_URL + "/auth/v1/" + path, {
@@ -170,6 +192,7 @@
       }
       pullRemote(function () {
         hideLock();
+        updateForumLink();
         var hh = (location.hash || "#home").slice(1);
         go(IDS.indexOf(hh) >= 0 ? hh : "home");
       });
@@ -255,6 +278,7 @@
           return;
         }
         pullRemote(function () {
+          updateForumLink();
           var hh = (location.hash || "#home").slice(1);
           go(IDS.indexOf(hh) >= 0 ? hh : "home");
         });
