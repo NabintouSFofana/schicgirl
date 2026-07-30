@@ -85,7 +85,7 @@
       "<h1>Le Studio Premium</h1>" +
       '<div class="sgp-tabs">' +
       '<button class="sgp-tab on" id="sgpTabLogin">Se Connecter · Sign In</button>' +
-      '<button class="sgp-tab" id="sgpTabRegister">Créer un Compte · Create Account</button>' +
+      '<button class="sgp-tab" id="sgpTabRegister">Créer un Compte · Create Account</button>' +
       "</div>" +
       '<p class="sgp-sub">Le même compte que ton forum privé (forum.schicgirl.me).<br/>' +
       '<span class="sgp-en">The same account as your private forum (forum.schicgirl.me).</span></p>' +
@@ -115,7 +115,7 @@
     document.getElementById("sgpTabLogin").classList.toggle("on", t === "login");
     document.getElementById("sgpTabRegister").classList.toggle("on", t === "register");
     document.getElementById("sgpGo").textContent =
-      t === "login" ? "Entrer · Enter →" : "Créer mon compte · Create my account →";
+      t === "login" ? "Entrer · Enter →" : "Créer mon compte · Create my account →";
     document.getElementById("sgpErr").textContent = "";
   }
   function hideLock() {
@@ -165,7 +165,7 @@
         if (err) err.textContent =
           "Ce compte n'a pas (ou plus) d'abonnement actif au Cercle · This account has no active Circle subscription";
         var btn = document.getElementById("sgpGo");
-        if (btn) btn.textContent = tab === "login" ? "Entrer · Enter →" : "Créer mon compte · Create my account →";
+        if (btn) btn.textContent = tab === "login" ? "Entrer · Enter →" : "Créer mon compte · Create my account →";
         return;
       }
       pullRemote(function () {
