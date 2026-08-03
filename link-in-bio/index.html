@@ -1,0 +1,413 @@
+<!doctype html>
+<!--
+═══════════════════════════════════════════════════════════════════
+  SCHICGIRL — schicgirl.me/link-in-bio/
+  Link in bio. Un seul fichier, zero dependance, zero framework.
+  Pour modifier les liens : voir le tableau LINKS dans le <script>
+  tout en bas. C'est le seul endroit a toucher.
+  © 2024–2026 Schicgirl. All rights reserved.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Schicgirl — Tous mes liens</title>
+<meta name="description" content="Blog, boutique, produits Amazon, Le Cercle et contact — tous les liens Schicgirl au meme endroit.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://schicgirl.me/link-in-bio/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Schicgirl — Tous mes liens">
+<meta property="og:description" content="Blog, boutique, produits Amazon, Le Cercle et contact — tous les liens Schicgirl au meme endroit.">
+<meta property="og:url" content="https://schicgirl.me/link-in-bio/">
+<meta property="og:image" content="https://schicgirl.me/link-in-bio/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
+
+<!-- Les polices sont un bonus : la page s'affiche instantanement avec les
+     polices systeme, puis bascule sur Cormorant/Jost quand elles arrivent. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'"
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#fbf6ef; --card:#fff; --ink:#2a1a0f; --muted:rgba(42,26,15,.62);
+  --gold:#c9934a; --gold-deep:#a86d23; --gold-pale:#f6ead4;
+  --line:#e3d9c8; --line-gold:rgba(201,147,74,.4);
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --shadow:0 1px 3px rgba(60,38,24,.07), 0 10px 26px -14px rgba(60,38,24,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans); color:var(--ink);
+  background:
+    radial-gradient(ellipse 110% 38% at 50% -8%, rgba(232,180,160,.28), transparent 62%),
+    linear-gradient(180deg,#fdf9f3,#f7efe4);
+  background-attachment:fixed; min-height:100vh;
+  -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:transparent;
+  padding:34px 18px calc(46px + env(safe-area-inset-bottom));
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:8px}
+
+.wrap{max-width:440px;margin:0 auto}
+
+/* ── EN / FR ─────────────────────────────────────────────── */
+.lang{display:flex;justify-content:center;gap:6px;margin-bottom:26px}
+.lang button{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:1.4px;
+  padding:6px 15px;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--muted);
+  border:1px solid var(--line);transition:all .18s;
+}
+.lang button:hover{color:var(--gold-deep);border-color:var(--line-gold)}
+.lang button[aria-pressed="true"]{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+/* ── En-tete ─── identique a la page d'accueil de schicgirl.me ─── */
+.head{text-align:center;margin-bottom:30px}
+.avatar{
+  width:100px;height:100px;border-radius:50%;margin:0 auto 16px;padding:4px;
+  background:linear-gradient(135deg,var(--gold-lt),var(--rose));
+  box-shadow:0 1px 3px rgba(60,38,24,.09), 0 6px 16px -6px rgba(60,38,24,.2);
+}
+.avatar img{
+  width:100%;height:100%;border-radius:50%;
+  object-fit:cover;background:#fff;display:block;
+}
+.mark{
+  font-family:var(--serif);font-size:40px;font-weight:500;
+  line-height:1;letter-spacing:.005em;color:var(--ink);
+}
+.mark span{color:var(--gold-deep);font-style:italic;font-weight:600}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  font-size:11px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold-deep);
+}
+.tag::before{content:"✦";color:var(--gold)}
+
+/* ── Les liens ───────────────────────────────────────────── */
+.links{display:flex;flex-direction:column;gap:11px}
+.link{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:15px;padding:17px 20px;
+  box-shadow:var(--shadow);
+  font-size:13.5px;font-weight:600;letter-spacing:1.7px;text-transform:uppercase;
+  transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+  width:100%;text-align:left;font-family:var(--sans);color:var(--ink);
+  cursor:pointer;
+}
+.link:hover{
+  transform:translateY(-2px);border-color:var(--line-gold);
+  box-shadow:0 2px 5px rgba(60,38,24,.08), 0 16px 30px -16px rgba(60,38,24,.34);
+}
+.link:active{transform:translateY(0)}
+.link .arrow{color:var(--gold);font-size:15px;font-weight:400;flex:none;transition:transform .16s}
+.link:hover .arrow{transform:translateX(3px)}
+
+/* Le lien principal (Le Cercle) */
+.link.feature{
+  background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+  border-color:var(--gold-deep);color:#fff;
+}
+.link.feature .arrow{color:rgba(255,255,255,.9)}
+.link.feature:hover{box-shadow:0 2px 6px rgba(168,109,35,.3), 0 16px 32px -14px rgba(168,109,35,.55)}
+
+/* ── HOW TO PAY : panneau depliant ───────────────────────── */
+.pay-btn .arrow{transition:transform .22s}
+.pay-btn[aria-expanded="true"] .arrow{transform:rotate(90deg)}
+.pay-panel{
+  display:none;
+  background:var(--card);border:1px solid var(--line-gold);
+  border-radius:15px;padding:20px 20px 22px;margin-top:-2px;
+  box-shadow:var(--shadow);
+}
+.pay-panel.open{display:block;animation:fade .3s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .pay-panel.open{animation:none}
+  .link,.link .arrow{transition:none}
+}
+.pay-panel h2{
+  font-family:var(--serif);font-size:21px;font-weight:600;
+  letter-spacing:.4px;margin-bottom:4px;
+}
+.pay-panel .sub{font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:16px}
+.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:13px}
+.steps li{
+  counter-increment:s;position:relative;padding-left:34px;
+  font-size:13px;line-height:1.6;color:var(--ink);
+}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:1px;
+  width:23px;height:23px;border-radius:50%;
+  background:var(--gold-pale);color:var(--gold-deep);
+  border:1px solid var(--line-gold);
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.steps b{font-weight:600;color:var(--gold-deep)}
+.pay-fig{margin:18px 0 0}
+.pay-fig img{
+  display:block;width:100%;height:auto;border-radius:11px;
+  border:1px solid var(--line);background:var(--gold-pale);
+}
+.pay-fig figcaption{
+  font-size:11px;color:var(--muted);text-align:center;
+  margin-top:8px;line-height:1.5;
+}
+.pay-note{
+  margin-top:16px;padding:13px 15px;border-radius:11px;
+  background:var(--gold-pale);border:1px solid var(--line-gold);
+  font-size:12.5px;line-height:1.6;color:var(--ink);
+}
+.pay-help{display:block;margin-top:16px;text-align:center;
+  font-size:12px;font-weight:600;letter-spacing:.6px;color:var(--gold-deep)}
+.pay-help:hover{text-decoration:underline}
+
+/* ── Pied de page ────────────────────────────────────────── */
+.foot{text-align:center;margin-top:30px;font-size:11px;color:var(--muted);line-height:1.9}
+.foot a{color:var(--gold-deep);font-weight:500}
+.foot a:hover{text-decoration:underline}
+
+@media(max-width:380px){
+  .mark{font-size:34px}
+  .avatar{width:86px;height:86px}
+  .link{padding:15px 17px;font-size:12.5px;letter-spacing:1.3px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <div class="lang" role="group" aria-label="Language / Langue">
+    <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+
+  <header class="head">
+    <div class="avatar">
+      <img src="assets/logo2.webp" alt="Schicgirl" width="92" height="92"
+           onerror="this.parentNode.style.display='none'">
+    </div>
+    <h1 class="mark">Schic<span>girl</span></h1>
+    <p class="tag" id="tagline">Spécialiste cheveux crépus Type 4</p>
+  </header>
+
+  <nav class="links" id="links" aria-label="Liens"></nav>
+
+  <footer class="foot">
+    <div id="footNote">Tous mes liens au même endroit.</div>
+    <div>© <span id="year"></span> Schicgirl — <a href="https://schicgirl.me" target="_blank" rel="noopener">schicgirl.me</a></div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ═══════════════════════════════════════════════════════════
+     LES LIENS — le seul endroit a modifier.
+
+       label_fr / label_en : le texte du bouton
+       url                 : la meme adresse dans les deux langues
+       url_fr / url_en     : une adresse differente par langue
+       feature: true       : bouton dore (garder un seul)
+       panel: "pay"        : ouvre le panneau "Comment payer"
+     ═══════════════════════════════════════════════════════════ */
+  var LINKS = [
+    { label_fr:"S'abonner au Cercle", label_en:"Subscribe to The Circle",
+      url_fr:"https://selar.com/le_cercle_schicgirl",
+      url_en:"https://selar.com/the_circle_schicgirl", feature:true },
+
+    { label_fr:"Blog",             label_en:"Blog",
+      url:"https://schicgirl.me/blog.html" },
+
+    { label_fr:"Boutique",         label_en:"Shop",
+      url:"https://schicgirl.me/shop.html" },
+
+    { label_fr:"Produits Amazon",  label_en:"Amazon Products",
+      url:"https://www.amazon.com/shop/schicgirl" },
+
+    { label_fr:"Le Forum",         label_en:"The Forum",
+      url:"https://schicgirl.me/forum/" },
+
+    { label_fr:"Facebook",         label_en:"Facebook",
+      url:"https://facebook.com/schicgirl" },
+
+    { label_fr:"M'écrire",         label_en:"Email me",
+      url:"mailto:contacte.schicgirl@gmail.com" },
+
+    { label_fr:"Comment payer",    label_en:"How to pay", panel:"pay" }
+  ];
+
+  /* ═══════════════════════════════════════════════════════════
+     LE PANNEAU "COMMENT PAYER"
+     Remplace les deux images par tes vraies captures d'ecran de
+     Selar (voir README.md, section "Captures d'ecran").
+     ═══════════════════════════════════════════════════════════ */
+  var PAY = {
+    fr:{
+      title:"Payer sur Selar, depuis n'importe quel pays",
+      sub:"Toutes mes ventes passent par Selar. Tu peux payer dans ta propre devise — carte bancaire, mobile money ou Wave selon ton pays.",
+      steps:[
+        "Clique sur le lien du produit ou de l'abonnement. Tu arrives sur la page Selar.",
+        "En haut de la page, ouvre le <b>sélecteur de devise</b> et choisis la tienne (EUR, USD, XOF/FCFA, NGN, GHS…). Le prix se convertit tout seul.",
+        "Clique sur <b>Buy Now / Acheter</b>, puis renseigne ton <b>nom</b> et ton <b>email</b> — c'est à cette adresse que tout sera envoyé, vérifie-la bien.",
+        "Choisis ton <b>moyen de paiement</b> : carte bancaire, mobile money (Orange, MTN, Moov, Wave…) ou transfert, selon ce que Selar propose dans ton pays.",
+        "Valide. Tu reçois <b>immédiatement</b> un email de Selar avec ton produit à télécharger, ou ton accès si c'est un abonnement."
+      ],
+      figs:[
+        { src:"assets/how-to-pay-currency-fr.svg",
+          cap:"Le sélecteur de devise, en haut de la page Selar." },
+        { src:"assets/how-to-pay-checkout-fr.svg",
+          cap:"Le choix du moyen de paiement, à l'étape suivante." }
+      ],
+      note:"⚠️ Tu ne reçois rien ? Regarde d'abord dans tes <b>spams</b> et dans l'onglet <b>Promotions</b> de Gmail. Si ce n'est toujours pas là, écris-moi : je te renvoie tout à la main.",
+      help:"Un souci ? Écris-moi →"
+    },
+    en:{
+      title:"Paying on Selar, from any country",
+      sub:"Everything I sell goes through Selar. You can pay in your own currency — bank card, mobile money or Wave depending on your country.",
+      steps:[
+        "Click the product or subscription link. It takes you to the Selar page.",
+        "At the top of the page, open the <b>currency selector</b> and pick yours (EUR, USD, XOF/CFA, NGN, GHS…). The price converts automatically.",
+        "Click <b>Buy Now</b>, then enter your <b>name</b> and <b>email</b> — everything is sent to that address, so double-check it.",
+        "Pick your <b>payment method</b>: bank card, mobile money (Orange, MTN, Moov, Wave…) or transfer, depending on what Selar offers in your country.",
+        "Confirm. Selar emails you <b>right away</b> with your download, or with your access if it's a subscription."
+      ],
+      figs:[
+        { src:"assets/how-to-pay-currency-en.svg",
+          cap:"The currency selector, at the top of the Selar page." },
+        { src:"assets/how-to-pay-checkout-en.svg",
+          cap:"Choosing your payment method, on the next step." }
+      ],
+      note:"⚠️ Nothing arrived? Check your <b>spam</b> folder and Gmail's <b>Promotions</b> tab first. Still nothing — email me and I'll resend it by hand.",
+      help:"Something went wrong? Email me →"
+    }
+  };
+
+  /* Les memes formulations que la page d'accueil de schicgirl.me. */
+  var UI = {
+    fr:{ tag:"Spécialiste cheveux crépus Type 4", foot:"Tous mes liens au même endroit.",
+         title:"Schicgirl — Tous mes liens", nav:"Liens" },
+    en:{ tag:"Type 4 coily-hair specialist",      foot:"All my links in one place.",
+         title:"Schicgirl — All my links", nav:"Links" }
+  };
+
+  var MAIL = "mailto:contacte.schicgirl@gmail.com";
+
+  var $ = function(s){ return document.querySelector(s); };
+  var lang = "fr";
+  var payOpen = false;
+
+  /* Les liens externes s'ouvrent dans un nouvel onglet ; mailto: dans
+     le client mail (pas de nouvel onglet vide). */
+  function isExternal(u){ return /^https?:/i.test(u); }
+
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function payHTML(){
+    var p = PAY[lang];
+    var h = '<div class="pay-panel" id="pay-panel" role="region" aria-label="'+esc(p.title)+'">';
+    h += '<h2>'+esc(p.title)+'</h2>';
+    h += '<p class="sub">'+esc(p.sub)+'</p>';
+    h += '<ol class="steps">';
+    for (var i=0;i<p.steps.length;i++){ h += '<li>'+p.steps[i]+'</li>'; }
+    h += '</ol>';
+    for (var j=0;j<p.figs.length;j++){
+      /* Si une capture manque, la figure disparait au lieu d'afficher
+         une image cassee. */
+      h += '<figure class="pay-fig">'
+         +   '<img src="'+esc(p.figs[j].src)+'" alt="'+esc(p.figs[j].cap)+'"'
+         +     ' loading="lazy" decoding="async"'
+         +     ' onerror="this.closest(\'figure\').style.display=\'none\'">'
+         +   '<figcaption>'+esc(p.figs[j].cap)+'</figcaption>'
+         + '</figure>';
+    }
+    h += '<p class="pay-note">'+p.note+'</p>';
+    h += '<a class="pay-help" href="'+MAIL+'">'+esc(p.help)+'</a>';
+    h += '</div>';
+    return h;
+  }
+
+  function render(){
+    var u = UI[lang];
+    document.documentElement.lang = lang;
+    document.title = u.title;
+    $("#tagline").textContent = u.tag;
+    $("#footNote").textContent = u.foot;
+    $("#links").setAttribute("aria-label", u.nav);
+
+    var html = "";
+    for (var i=0;i<LINKS.length;i++){
+      var L = LINKS[i];
+      var label = esc(lang === "fr" ? L.label_fr : L.label_en);
+      var cls = "link" + (L.feature ? " feature" : "");
+
+      if (L.panel === "pay"){
+        html += '<button type="button" class="'+cls+' pay-btn" id="pay-btn"'
+              + ' aria-expanded="'+(payOpen?"true":"false")+'" aria-controls="pay-panel">'
+              + '<span>'+label+'</span><span class="arrow" aria-hidden="true">›</span></button>'
+              + payHTML();
+      } else {
+        var url = L.url || (lang === "fr" ? L.url_fr : L.url_en);
+        var tgt = isExternal(url) ? ' target="_blank" rel="noopener"' : '';
+        html += '<a class="'+cls+'" href="'+esc(url)+'"'+tgt+'>'
+              + '<span>'+label+'</span><span class="arrow" aria-hidden="true">›</span></a>';
+      }
+    }
+    $("#links").innerHTML = html;
+
+    if (payOpen) $("#pay-panel").classList.add("open");
+
+    $("#pay-btn").addEventListener("click", function(){
+      payOpen = !payOpen;
+      this.setAttribute("aria-expanded", payOpen ? "true" : "false");
+      var panel = $("#pay-panel");
+      panel.classList.toggle("open", payOpen);
+      if (payOpen) panel.scrollIntoView({ behavior:"smooth", block:"nearest" });
+    });
+  }
+
+  function setLang(next){
+    lang = next;
+    try { localStorage.setItem("sg_lang", lang); } catch(e){}
+    var btns = document.querySelectorAll(".lang button");
+    for (var i=0;i<btns.length;i++){
+      btns[i].setAttribute("aria-pressed", btns[i].dataset.lang === lang ? "true" : "false");
+    }
+    render();
+  }
+
+  /* Langue de depart : ?lang= dans l'URL, sinon le dernier choix,
+     sinon la langue du navigateur (tout ce qui n'est pas FR -> EN). */
+  function initialLang(){
+    var q = (location.search.match(/[?&]lang=(fr|en)/i) || [])[1];
+    if (q) return q.toLowerCase();
+    try { var s = localStorage.getItem("sg_lang"); if (s === "fr" || s === "en") return s; } catch(e){}
+    return /^fr\b/i.test(navigator.language || "") ? "fr" : "en";
+  }
+
+  document.querySelector(".lang").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-lang]");
+    if (b) setLang(b.dataset.lang);
+  });
+
+  $("#year").textContent = new Date().getFullYear();
+  setLang(initialLang());
+})();
+</script>
+</body>
+</html>

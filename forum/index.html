@@ -191,6 +191,8 @@ select.fi{cursor:pointer}
   font-size:16px;position:relative;transition:all .2s;
 }
 .tbtn:hover{background:rgba(201,147,74,.3);transform:scale(1.08)}
+/* liens externes dans la topbar (blog, facebook) : meme pastille que les boutons */
+.tbtn-ext{text-decoration:none}
 .tbtn .badge{
   position:absolute;top:-2px;right:-2px;
   background:var(--danger);color:#fff;
@@ -754,6 +756,8 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   .ba-grid{grid-template-columns:1fr}
   .topbar-right .tbtn{width:34px;height:34px;font-size:14px}
   .tav{width:34px;height:34px;font-size:13px}
+  /* sur mobile la topbar est deja pleine : blog et facebook restent dans le menu lateral */
+  .topbar-right .tbtn-ext{display:none}
 }
 
 /* ── ADDITIONAL UTILITY CLASSES ─────────────────────────────────── */
@@ -1311,6 +1315,8 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
         🔔<span class="badge" id="notif-badge" style="display:none">0</span>
       </button>
       <a class="tbtn" id="studio-link-btn" href="https://schicgirl.me/studio-premium.html" title="Le Studio Premium" style="display:flex;align-items:center;justify-content:center;text-decoration:none">🎓</a>
+      <a class="tbtn tbtn-ext" href="https://schicgirl.me/blog.html" target="_blank" rel="noopener" data-i18n-title="blog_title_attr" title="Blog">📖</a>
+      <a class="tbtn tbtn-ext" href="https://facebook.com/schicgirl" target="_blank" rel="noopener" data-i18n-title="facebook_title_attr" title="Facebook">📘</a>
       <div class="tav" id="topbar-av" data-i18n-title="profile_title_attr" title="My Profile">A</div>
       <div class="lang-tog topbar-lang">
         <button class="lb on" data-lang="en">EN</button>
@@ -1345,6 +1351,12 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
         <a class="sb-link" data-tab="tracker"><span class="sb-icon">📈</span><span data-i18n="nav_tracker">Tracker</span></a>
         <a class="sb-link" data-tab="programs"><span class="sb-icon">🎯</span><span data-i18n="nav_programs">Programs</span></a>
         <a class="sb-link admin-only" data-tab="admin" style="display:none"><span class="sb-icon">⚙️</span><span data-i18n="nav_admin">Admin</span></a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title" data-i18n="sb_elsewhere">Elsewhere</div>
+        <a class="sb-link" href="https://schicgirl.me/blog.html" target="_blank" rel="noopener"><span class="sb-icon">📖</span><span data-i18n="nav_blog">Blog</span></a>
+        <a class="sb-link" href="https://facebook.com/schicgirl" target="_blank" rel="noopener"><span class="sb-icon">📘</span><span data-i18n="nav_facebook">Facebook Page</span></a>
+        <a class="sb-link" href="https://schicgirl.me/" target="_blank" rel="noopener"><span class="sb-icon">🌸</span><span data-i18n="nav_website">schicgirl.me</span></a>
       </div>
       <div class="sb-section">
         <div class="sb-title" data-i18n="sb_topics">Topics</div>
@@ -2128,7 +2140,9 @@ const TX = {
     brand_tag:'Your Natural Hair Community',
     search_title_attr:'Search', notif_title_attr:'Notifications', profile_title_attr:'My Profile',
     notifications:'Notifications', mark_all_read:'Mark all read', no_notifs:'No notifications yet',
-    sb_navigate:'Navigate', sb_topics:'Topics', sb_stats:'Quick Stats',
+    sb_navigate:'Navigate', sb_topics:'Topics', sb_stats:'Quick Stats', sb_elsewhere:'Elsewhere',
+    blog_title_attr:'Blog', facebook_title_attr:'Facebook Page',
+    nav_blog:'Blog', nav_facebook:'Facebook Page', nav_website:'schicgirl.me',
     nav_feed:'Home Feed', nav_recipes:'Recipes', nav_learn:'Learn', nav_members:'Members',
     nav_notes:'Notes', nav_forum:'Forum', nav_challenges:'Challenges', nav_products:'Products',
     nav_profile:'My Profile', nav_diagnose:'Diagnose', nav_tracker:'Tracker',
@@ -2450,7 +2464,9 @@ const TX = {
     brand_tag:'Ta Communauté Cheveux Naturels',
     search_title_attr:'Rechercher', notif_title_attr:'Notifications', profile_title_attr:'Mon profil',
     notifications:'Notifications', mark_all_read:'Tout marquer comme lu', no_notifs:'Aucune notification pour le moment',
-    sb_navigate:'Navigation', sb_topics:'Sujets', sb_stats:'Statistiques',
+    sb_navigate:'Navigation', sb_topics:'Sujets', sb_stats:'Statistiques', sb_elsewhere:'Ailleurs',
+    blog_title_attr:'Blog', facebook_title_attr:'Page Facebook',
+    nav_blog:'Blog', nav_facebook:'Page Facebook', nav_website:'schicgirl.me',
     nav_feed:"Fil d'actualité", nav_recipes:'Recettes', nav_learn:'Apprendre', nav_members:'Membres',
     nav_notes:'Carnet', nav_forum:'Forum', nav_challenges:'Défis', nav_products:'Produits',
     nav_profile:'Mon profil', nav_diagnose:'Diagnostic', nav_tracker:'Suivi',

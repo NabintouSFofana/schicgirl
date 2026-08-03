@@ -419,4 +419,10 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://schicgirl.me/en/free-kit/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/kit-gratuit/"/>
   </url>
+  <url>
+    <loc>https://schicgirl.me/link-in-bio/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
