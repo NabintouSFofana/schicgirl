@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
+     role="img" aria-label="Mon compte">
+  <!--
+    Silhouette de profil aux cheveux crepus, dans les tons de la marque.
+    Dessinee pour rester lisible a 16-18 px dans la barre de navigation :
+    formes larges, pas de details fins, fort contraste cheveux / peau.
+  -->
+  <defs>
+    <clipPath id="c"><circle cx="24" cy="24" r="24"/></clipPath>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#f6ead4"/>
+      <stop offset="1" stop-color="#e8c07e"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0.2" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#5a3a20"/>
+      <stop offset="1" stop-color="#3d2716"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#c)">
+    <rect width="48" height="48" fill="url(#bg)"/>
+
+    <!-- Buste -->
+    <path d="M9 48c0-7.2 6.7-11.4 15-11.4S39 40.8 39 48z" fill="#f3e2cd"/>
+
+    <!-- Cou -->
+    <path d="M20.6 31.4h6.6v6.2c0 1.9-1.5 3-3.3 3s-3.3-1.1-3.3-3z" fill="#a9714a"/>
+
+    <!-- Visage, de trois quarts vers la gauche -->
+    <path d="M15.2 20.6c0-5.2 3.9-9 8.9-9s8.6 3.8 8.6 9c0 5.6-3.5 10.3-8.6 10.3
+             s-8.9-4.7-8.9-10.3z" fill="#c2825a"/>
+
+    <!-- Chevelure crepue : un halo de boucles autour du visage -->
+    <g fill="url(#hair)">
+      <path d="M24 4c8.6 0 14.6 5.6 14.6 13.4 0 3.5-1 6.3-2.7 8.4-.5-3.6-1.4-6-2.8-7.6
+               -2.3.9-5 .6-7-.8-1.7 2.2-4.4 3.2-7.3 2.6-1.6 1.6-2.5 4-2.8 7.3
+               -2.3-2.2-3.6-5.3-3.6-9.1C12.4 9.9 16.9 4 24 4z"/>
+      <circle cx="13.4" cy="12.6" r="4.6"/>
+      <circle cx="10.6" cy="19.4" r="4.4"/>
+      <circle cx="12.4" cy="26" r="3.8"/>
+      <circle cx="19" cy="7.6" r="4.6"/>
+      <circle cx="26.6" cy="6.2" r="4.8"/>
+      <circle cx="33.6" cy="9.6" r="4.6"/>
+      <circle cx="37.6" cy="16" r="4.4"/>
+      <circle cx="36.6" cy="23" r="4"/>
+      <circle cx="33.6" cy="28.4" r="3.4"/>
+    </g>
+
+    <!-- Boucle d'oreille doree : le detail feminin qui se lit meme en petit -->
+    <circle cx="17.2" cy="26.4" r="2" fill="#c9934a"/>
+  </g>
+</svg>

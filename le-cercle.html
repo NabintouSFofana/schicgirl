@@ -1,142 +1,515 @@
 <!doctype html>
-<!-- SCHICGIRL — Page de vente : le-cercle (abonnement mensuel) · © 2024–2026 Schicgirl. -->
-<html lang="fr">
+<!--
+===============================================================
+  SCHICGIRL — le-cercle.html
+  Page de vente de l'abonnement Le Cercle. Pleine largeur.
+
+  Prix et liens Selar : voir l'objet CERCLE dans le script en bas.
+  C'est le seul endroit a modifier si le tarif change.
+
+  Style   : assets/css/site-complete.css
+  Moteur  : assets/js/site-complete.js
+  Compte  : assets/js/account.js  (adapte le bouton si deja membre)
+  L'ancienne version est conservee en le-cercle-v1.html.
+  © 2024–2026 Schicgirl. All rights reserved.
+===============================================================
+-->
+<html lang="fr"
+      data-title-fr="Le Cercle — l'abonnement Schicgirl pour cheveux crépus Type 4"
+      data-title-en="The Circle — the Schicgirl membership for Type 4 coily hair">
 <head>
-  <meta name="robots" content="index, follow" />
-  <meta name="google-adsense-account" content="ca-pub-3952317552342233">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3952317552342233" crossorigin="anonymous"></script>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="icon" href="assets/fav-logo-32.png"/>
-<link rel="apple-touch-icon" href="assets/apple-touch-logo.png"/>
-<title>Le Cercle Schicgirl — Abonnement Mensuel Type 4 | Schicgirl</title>
-<meta name="description" content="Le Cercle Schicgirl : abonnement mensuel avec accès complet au Studio Premium (113 leçons), TOUS les ebooks Schicgirl, le forum privé, et un nouveau contenu exclusif chaque mois. Paiement carte ou mobile money."/>
-<meta property="og:title" content="Le Cercle Schicgirl — Ta Communauté Type 4, Chaque Mois | Schicgirl"/>
-<meta property="og:description" content="L'app Studio Premium incluse + TOUS les ebooks Schicgirl + ton forum privé + du contenu exclusif chaque mois. Résilie quand tu veux."/>
-<meta property="og:type" content="product"/>
-<meta property="og:image" content="https://schicgirl.me/assets/le-cercle-fr.jpg"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/le-cercle.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le Cercle — l'abonnement Schicgirl pour cheveux crépus Type 4</title>
+<meta name="description" content="Le Studio Premium, TOUS les guides Schicgirl, le forum privé et un contenu exclusif chaque mois. 12€/mois, sans engagement, carte ou mobile money.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Le Cercle — l'abonnement Schicgirl">
+<meta property="og:description" content="Le Studio Premium, tous les guides, le forum privé et du contenu exclusif chaque mois. 12€/mois, sans engagement.">
+<meta property="og:image" content="https://schicgirl.me/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-complete.css">
+<script>document.documentElement.className+=" js";</script>
 
+<style>
+  /* Comparatif « a la carte » vs abonnement */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:820px;margin:0 auto}
+  @media(max-width:700px){.compare{grid-template-columns:1fr}}
+  .comp{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:26px 24px;box-shadow:var(--shadow-s);position:relative;
+  }
+  .comp.win{border-color:var(--gold);box-shadow:var(--shadow)}
+  .comp .tag{
+    position:absolute;top:-12px;left:24px;background:var(--gold-deep);color:#fff;
+    font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+    padding:5px 12px;border-radius:var(--r-pill);
+  }
+  .comp h3{font-size:19px;margin-bottom:4px}
+  .comp .amount{font-family:var(--serif);font-size:38px;font-weight:600;color:var(--ink);line-height:1.1;margin:10px 0 2px}
+  .comp .per{font-size:13px;color:var(--muted);margin-bottom:16px}
+  .comp ul{list-style:none;display:grid;gap:9px;font-size:14px;color:var(--ink-soft)}
+  .comp li{display:flex;gap:9px;align-items:flex-start;line-height:1.5}
+  .comp li::before{content:"·";color:var(--gold);font-weight:700;flex:none}
+  .comp.win li::before{content:"✓";font-size:12px;color:var(--gold-deep)}
 
+  /* Ce qui est inclus */
+  .incl{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:760px){.incl{grid-template-columns:1fr}}
+  .inc{
+    display:flex;gap:15px;align-items:flex-start;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:22px;box-shadow:var(--shadow-s);
+  }
+  .inc .ic{
+    flex:none;width:44px;height:44px;border-radius:50%;
+    background:var(--gold-pale);border:1px solid var(--line-gold);
+    display:flex;align-items:center;justify-content:center;font-size:20px;
+  }
+  .inc b{display:block;font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:4px}
+  .inc span{font-size:14px;color:var(--muted);line-height:1.6}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- seo:hreflang -->
-<link rel="canonical" href="https://schicgirl.me/fr/le-cercle/">
-<link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/le-cercle/">
-<link rel="alternate" hreflang="en" href="https://schicgirl.me/en/the-circle/">
-<link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/le-cercle/">
-<!-- seo:hreflang -->
+  /* Barre d'achat collante en bas sur mobile */
+  .buybar{
+    position:fixed;left:0;right:0;bottom:0;z-index:70;
+    background:rgba(255,253,248,.97);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line-gold);
+    padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+    display:none;align-items:center;gap:12px;justify-content:space-between;
+    box-shadow:0 -6px 20px -10px rgba(60,38,24,.35);
+  }
+  .buybar .p{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--ink);line-height:1}
+  .buybar .p small{display:block;font-family:var(--sans);font-size:10.5px;color:var(--muted);font-weight:500}
+  @media(max-width:820px){
+    .buybar{display:flex}
+    body{padding-bottom:76px}
+  }
+</style>
 </head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour" data-en="← Back">← Retour</a>
-    <div class="lang-toggle">
-      <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
-      <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
+
+<div class="topstrip">
+  <span data-fr="Sans engagement · résilie en un clic · carte ou mobile money"
+        data-en="No commitment · cancel in one click · card or mobile money">Sans engagement · résilie en un clic · carte ou mobile money</span>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Schicgirl">
+      <img src="assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="brand-name">Schic<span>girl</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html"     data-fr="Accueil"   data-en="Home">Accueil</a>
+      <a href="shop.html"      data-fr="Guides"    data-en="Guides">Guides</a>
+      <a href="le-cercle.html" class="on" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="blog.html"      data-fr="Blog"      data-en="Blog">Blog</a>
+      <a href="about.html"     data-fr="À propos"  data-en="About">À propos</a>
+      <a href="contact.html"   data-fr="Contact"   data-en="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtog" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav-acct" id="navAcct" href="mon-compte.html"><img class="ic" src="assets/icon-compte.svg" alt="" width="22" height="22"><span class="lbl" data-fr="Mon compte" data-en="My account">Mon compte</span></a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     </div>
   </div>
+</nav>
 
-  <div class="hero">
-    <img id="cover" class="cover cercle-avatar" src="assets/le-cercle-profil-sm.webp" alt="Schicgirl Le Cercle" onerror="this.outerHTML='<div class=&quot;cover-fb&quot;>🤍</div>'"/>
-    <span class="badge" data-fr="Le Cercle 🤍 · Abonnement mensuel" data-en="The Circle 🤍 · Monthly membership">Le Cercle 🤍 · Abonnement mensuel</span>
-    <h1 data-fr="Ta communauté cheveux Type 4, <span class='accent'>chaque mois</span>" data-en="Your Type 4 hair community, <span class='accent'>every month</span>">Ta communauté cheveux Type 4, <span class='accent'>chaque mois</span></h1>
-    <p class="lead" data-fr="L'app Studio Premium + TOUS les ebooks Schicgirl + ton forum privé + un nouveau contenu exclusif chaque mois. Résilie quand tu veux, paiement carte ou mobile money." data-en="The Studio Premium app + ALL Schicgirl ebooks + your private forum + new exclusive content every month. Cancel anytime, pay by card or mobile money.">L'app Studio Premium + TOUS les ebooks Schicgirl + ton forum privé + un nouveau contenu exclusif chaque mois. Résilie quand tu veux, paiement carte ou mobile money.</p>
-  </div>
+<main>
 
-  <div class="pain" data-fr="72€ de guides d'un coup, ce n'est pas dans ton budget en ce moment ? <strong>Tu n'as pas à choisir entre attendre et abandonner.</strong> Le Cercle te donne accès à tout — Studio, forum et tous les ebooks — en petits paiements mensuels, résiliables quand tu veux." data-en="$77 of guides all at once doesn't fit your budget right now? <strong>You don't have to choose between waiting and giving up.</strong> The Circle gives you access to everything — Studio, forum and every ebook — in small monthly payments, cancel anytime.">72€ de guides d'un coup, ce n'est pas dans ton budget en ce moment ? <strong>Tu n'as pas à choisir entre attendre et abandonner.</strong> Le Cercle te donne accès à tout — Studio, forum et tous les ebooks — en petits paiements mensuels, résiliables quand tu veux.</div>
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="eyebrow" data-fr="Abonnement mensuel" data-en="Monthly membership">Abonnement mensuel</span>
+      <h1 style="margin:16px 0 18px"
+          data-fr="Tout Schicgirl, <em>chaque mois</em>."
+          data-en="All of Schicgirl, <em>every month</em>.">Tout Schicgirl, <em>chaque mois</em>.</h1>
+      <p class="lead"
+         data-fr="Le Studio Premium, TOUS les guides, le forum privé et un nouveau contenu exclusif chaque mois. Pour le prix d'un seul guide."
+         data-en="Studio Premium, EVERY guide, the private forum and new exclusive content each month. For the price of a single guide.">
+        Le Studio Premium, TOUS les guides, le forum privé et un nouveau contenu exclusif chaque mois. Pour le prix d'un seul guide.</p>
 
-  <div class="section">
-    <div class="eyebrow" data-fr="CE QUE TU DÉBLOQUES CHAQUE MOIS" data-en="WHAT YOU UNLOCK EVERY MONTH">CE QUE TU DÉBLOQUES CHAQUE MOIS</div>
-    <ul class="check" data-lang="fr"><li><b>Le Studio Premium en entier</b> — l'app + les 6 cours (113 leçons), tant que tu es abonnée</li><li><b>TOUS les ebooks Schicgirl</b> — Hydratée, Recettes, Pourquoi Rien Ne Fonctionne, Créer Ma Routine, Adieu Pellicules, Transition, Planificateur — le catalogue complet, présent et à venir</li><li><b>Le forum privé Schicgirl</b> — schicgirl.me/forum : questions, réponses, avant/après, recettes partagées, et moi qui réponds directement</li><li><b>1 contenu exclusif par mois</b> — recette, fiche ou mini-guide inédit, réservé aux membres</li><li><b>Un seul compte</b> — ton email + mot de passe donnent accès au forum ET au Studio, renouvelé automatiquement tant que ton abonnement est actif</li><li><b>Résiliation libre</b> — tu arrêtes quand tu veux, sans engagement</li></ul><ul class="check hide" data-lang="en"><li><b>The full Studio Premium</b> — the app + 6 courses (113 lessons), while you're subscribed</li><li><b>ALL Schicgirl ebooks</b> — Hydrated, Recipes, Why Nothing Works, Build My Routine, Goodbye Dandruff, Transition, Planner — the whole catalog, present and future</li><li><b>The private Schicgirl forum</b> — schicgirl.me/forum: questions, answers, before/afters, shared recipes, and me answering directly</li><li><b>1 exclusive drop every month</b> — a recipe, sheet or mini-guide, members only</li><li><b>One single account</b> — your email + password unlock both the forum and the Studio, renewed automatically for as long as your subscription is active</li><li><b>Cancel anytime</b> — no commitment</li></ul>
-  </div>
+      <div class="hero-cta">
+        <a class="btn btn-gold btn-lg" id="ctaTop" href="https://selar.com/le_cercle_schicgirl" target="_blank" rel="noopener"
+           data-fr="Rejoindre Le Cercle" data-en="Join The Circle">Rejoindre Le Cercle</a>
+        <a class="btn btn-ghost btn-lg" href="#inclus"
+           data-fr="Ce qui est inclus" data-en="What's included">Ce qui est inclus</a>
+      </div>
 
-  <div class="section">
-    <div class="eyebrow" data-fr="COMMENT ÇA MARCHE" data-en="HOW IT WORKS">COMMENT ÇA MARCHE</div>
-    <ul class="inside" data-lang="fr"><li><b>1.</b> Tu t'abonnes sur Selar (carte ou mobile money selon ton pays)</li><li><b>2.</b> Tu reçois un email avec tes liens (forum + Studio) et crées ton compte — un seul email + mot de passe pour tout</li><li><b>3.</b> Cet unique compte te donne accès au <b>forum privé</b>, au <b>Studio Premium</b> et à <b>tous les ebooks</b>, tant que ton abonnement est actif</li><li><b>4.</b> Chaque mois, ton abonnement se renouvelle automatiquement et ton accès continue, sans rien à refaire</li><li><b>5.</b> Tu résilies quand tu veux depuis ton espace Selar, sans justification</li></ul><ul class="inside hide" data-lang="en"><li><b>1.</b> You subscribe on Selar (card or mobile money depending on your country)</li><li><b>2.</b> You get an email with your links (forum + Studio) and create your account — one email + password for everything</li><li><b>3.</b> That one account unlocks the <b>private forum</b>, <b>Studio Premium</b> and <b>every ebook</b>, for as long as your subscription is active</li><li><b>4.</b> Every month your subscription renews automatically and your access continues, nothing to redo</li><li><b>5.</b> You cancel anytime from your Selar account, no questions asked</li></ul>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow" data-fr="POUR QUI ?" data-en="WHO IT'S FOR">POUR QUI ?</div>
-    <p class="forwho" data-fr="Pour toute femme aux cheveux crépus (4A, 4B, 4C) qui veut le programme complet sans payer d'un coup — et qui a envie d'une vraie communauté pour ne plus avancer seule." data-en="For every woman with coily hair (4A, 4B, 4C) who wants the full program without paying all at once — and wants a real community instead of figuring it out alone.">Pour toute femme aux cheveux crépus (4A, 4B, 4C) qui veut le programme complet sans payer d'un coup — et qui a envie d'une vraie communauté pour ne plus avancer seule.</p>
-  </div>
-
-  <div class="section" style="text-align:center">
-    <div class="pricewrap">
-      <div class="price" id="price"></div>
-      <div class="price-cfa" id="priceCfa"></div>
-      <div class="price-note" data-fr="par mois · sans engagement · paiement sécurisé" data-en="per month · no commitment · secure checkout">par mois · sans engagement · paiement sécurisé</div>
-      <div class="price-note" style="color:var(--gold-deep);font-weight:600;" data-fr="✨ Studio Premium + tous les ebooks + forum privé + contenu exclusif chaque mois" data-en="✨ Studio Premium + all ebooks + private forum + exclusive content every month">✨ Studio Premium + tous les ebooks + forum privé + contenu exclusif chaque mois</div>
+      <div class="hero-trust">
+        <span class="stars">★★★★★</span>
+        <b id="priceInline">12€ <span data-fr="par mois" data-en="per month">par mois</span></b>
+        <span class="dot"></span>
+        <span data-fr="Résilie quand tu veux" data-en="Cancel anytime">Résilie quand tu veux</span>
+      </div>
     </div>
-    <a class="cta-big" id="mainCta" href="#" target="_blank" rel="noopener noreferrer"></a>
-    <p class="guarantee" data-fr="Une question avant de t'abonner ? Écris-moi sur Facebook 💛" data-en="A question before joining? Message me on Facebook 💛">Une question avant de t'abonner ? Écris-moi sur Facebook 💛</p>
-    <p class="price-note" style="margin-top:14px;font-size:11.5px;line-height:1.6;opacity:.85" data-fr="Produit numérique à téléchargement immédiat. En finalisant ton achat, tu demandes la livraison immédiate et tu renonces à ton droit de rétractation de 14 jours : aucun remboursement une fois le fichier téléchargé. Un doute ? Pose-moi tes questions AVANT d&rsquo;acheter, je réponds vraiment." data-en="Digital product, delivered instantly. By completing your purchase you request immediate delivery and waive your 14-day right of withdrawal: no refunds once the file has been downloaded. Unsure? Ask me anything BEFORE you buy — I really do answer.">Produit numérique à téléchargement immédiat. En finalisant ton achat, tu demandes la livraison immédiate et tu renonces à ton droit de rétractation de 14 jours : aucun remboursement une fois le fichier téléchargé. Un doute ? Pose-moi tes questions AVANT d&rsquo;acheter, je réponds vraiment.</p>
-  </div>
 
-  <div class="section">
-    <div class="eyebrow" data-fr="QUESTIONS FRÉQUENTES" data-en="FREQUENTLY ASKED">QUESTIONS FRÉQUENTES</div>
-    <dl class="faq"><dt data-fr="Je peux payer par mobile money ?" data-en="Can I pay by mobile money?">Je peux payer par mobile money ?</dt><dd data-fr="Oui — Selar accepte la carte et le mobile money selon ton pays, contrairement aux abonnements Facebook qui exigent une carte bancaire." data-en="Yes — Selar accepts card and mobile money depending on your country, unlike Facebook's own subscriptions which require a bank card.">Oui — Selar accepte la carte et le mobile money selon ton pays, contrairement aux abonnements Facebook qui exigent une carte bancaire.</dd><dt data-fr="Si j'arrête de payer, je perds tout ?" data-en="If I stop paying, do I lose everything?">Si j'arrête de payer, je perds tout ?</dt><dd data-fr="Tu perds l'accès au forum, au Studio et aux ebooks le mois suivant. Si tu te réabonnes plus tard, tu retrouves ta progression sauvegardée dans le Studio — rien n'est perdu, juste en pause." data-en="You lose access to the forum, the Studio and the ebooks the following month. If you resubscribe later, your saved progress in the Studio is still there — nothing is lost, just paused.">Tu perds l'accès au forum, au Studio et aux ebooks le mois suivant. Si tu te réabonnes plus tard, tu retrouves ta progression sauvegardée dans le Studio — rien n'est perdu, juste en pause.</dd><dt data-fr="Le Studio et le forum, c'est le même compte ?" data-en="Are the Studio and the forum the same account?">Le Studio et le forum, c'est le même compte ?</dt><dd data-fr="Oui — un seul email + mot de passe pour les deux, plus besoin de code séparé. Tu te connectes une fois de chaque côté et ça reste ouvert tant que Le Cercle est actif." data-en="Yes — one email + password for both, no separate code needed. You sign in once on each side and it stays open for as long as The Circle is active.">Oui — un seul email + mot de passe pour les deux, plus besoin de code séparé. Tu te connectes une fois de chaque côté et ça reste ouvert tant que Le Cercle est actif.</dd><dt data-fr="Comment je résilie ?" data-en="How do I cancel?">Comment je résilie ?</dt><dd data-fr="Directement depuis ton espace Selar, en 2 clics, sans avoir à me contacter." data-en="Directly from your Selar account, in 2 clicks, no need to contact me.">Directement depuis ton espace Selar, en 2 clics, sans avoir à me contacter.</dd></dl>
+    <div class="hero-art">
+      <img src="assets/le-cercle-profil.jpg" fetchpriority="high"
+           data-fr-attr="alt:Le Cercle Schicgirl" data-en-attr="alt:The Schicgirl Circle"
+           alt="Le Cercle Schicgirl"
+           onerror="sgArtFallback(this,'.hero-art')">
+      <div class="hero-badge">
+        <div class="n" id="badgeN">72€</div>
+        <div class="t" data-fr="de guides inclus, dès le premier mois"
+                       data-en="of guides included, from month one">de guides inclus, dès le premier mois</div>
+      </div>
+    </div>
   </div>
+</header>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="about.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="À propos" data-en="About">À propos</a>
-    <a href="blog.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Blog" data-en="Blog">Blog</a>
-    <a href="contact.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Contact" data-en="Contact">Contact</a>
-    <a href="privacy-policy.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
-    <a href="terms.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-fr="Conditions" data-en="Terms">Conditions</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
+<!-- ═══════════ LE PROBLÈME ═══════════ -->
+<section class="section">
+  <div class="wrap-narrow">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Pourquoi Le Cercle existe" data-en="Why The Circle exists">Pourquoi Le Cercle existe</span>
+      <h2 data-fr="Tu ne devrais pas avoir à <em>choisir</em>." data-en="You shouldn't have to <em>choose</em>.">Tu ne devrais pas avoir à <em>choisir</em>.</h2>
+    </div>
+    <div class="prose reveal" style="font-size:16.5px;text-align:center">
+      <p data-fr="Acheter tous les guides d'un coup, c'est <b>72€</b>. Pour beaucoup, ce n'est pas possible ce mois-ci. Alors on prend un guide, on avance un peu, on bloque sur autre chose, et on attend."
+         data-en="Buying every guide at once is <b>72€</b>. For a lot of women that isn't possible this month. So you buy one, move forward a little, get stuck on something else, and wait.">
+        Acheter tous les guides d'un coup, c'est <b>72€</b>. Pour beaucoup, ce n'est pas possible ce mois-ci.</p>
+      <p data-fr="Le Cercle règle ça : tu paies un petit montant chaque mois, et tu as <b>tout</b>, tout de suite. Si un mois ça ne te sert pas, tu résilies. Tu ne perds rien."
+         data-en="The Circle fixes that: you pay a small amount each month and you get <b>everything</b>, right away. If a month goes by and you don't need it, you cancel. Nothing is lost.">
+        Le Cercle règle ça : tu paies un petit montant chaque mois, et tu as <b>tout</b>, tout de suite.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMPARATIF ═══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Le calcul" data-en="The maths">Le calcul</span>
+      <h2 data-fr="Un guide, ou <em>tous</em> ?" data-en="One guide, or <em>all</em> of them?">Un guide, ou <em>tous</em> ?</h2>
+    </div>
+    <div class="compare reveal">
+      <div class="comp">
+        <h3 data-fr="À la carte" data-en="One by one">À la carte</h3>
+        <div class="amount">72€</div>
+        <div class="per" data-fr="pour les 7 guides, en une fois" data-en="for all 7 guides, paid at once">pour les 7 guides, en une fois</div>
+        <ul>
+          <li data-fr="Les guides, et c'est tout" data-en="The guides, and that's it">Les guides, et c'est tout</li>
+          <li data-fr="Pas de Studio Premium" data-en="No Studio Premium">Pas de Studio Premium</li>
+          <li data-fr="Pas de forum privé" data-en="No private forum">Pas de forum privé</li>
+          <li data-fr="Rien de nouveau après l'achat" data-en="Nothing new after you buy">Rien de nouveau après l'achat</li>
+        </ul>
+      </div>
+      <div class="comp win">
+        <span class="tag" data-fr="Le Cercle" data-en="The Circle">Le Cercle</span>
+        <h3 data-fr="Abonnement" data-en="Membership">Abonnement</h3>
+        <div class="amount" id="priceBig">12€</div>
+        <div class="per" id="pricePer" data-fr="par mois · sans engagement" data-en="per month · no commitment">par mois · sans engagement</div>
+        <ul>
+          <li data-fr="Les 7 guides, et ceux à venir" data-en="All 7 guides, and the ones to come">Les 7 guides, et ceux à venir</li>
+          <li data-fr="Le Studio Premium inclus" data-en="Studio Premium included">Le Studio Premium inclus</li>
+          <li data-fr="Le forum privé, entre nous" data-en="The private forum, just us">Le forum privé, entre nous</li>
+          <li data-fr="Un contenu exclusif chaque mois" data-en="New exclusive content every month">Un contenu exclusif chaque mois</li>
+          <li data-fr="Tu arrêtes quand tu veux" data-en="Stop whenever you want">Tu arrêtes quand tu veux</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note" style="max-width:820px;margin:22px auto 0;text-align:center"
+       data-fr="Six mois dans Le Cercle coûtent encore moins cher que les guides achetés séparément — et tu as le Studio, le forum et tout ce qui sort entre-temps."
+       data-en="Six months in The Circle still costs less than buying the guides separately — and you get the Studio, the forum and everything released in between.">
+      Six mois dans Le Cercle coûtent encore moins cher que les guides achetés séparément.</p>
+  </div>
+</section>
+
+<!-- ═══════════ CE QUI EST INCLUS ═══════════ -->
+<section class="section" id="inclus">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Ce que tu débloques" data-en="What you unlock">Ce que tu débloques</span>
+      <h2 data-fr="Quatre choses, <em>dès aujourd'hui</em>." data-en="Four things, <em>starting today</em>.">Quatre choses, <em>dès aujourd'hui</em>.</h2>
+    </div>
+    <div class="incl">
+      <div class="inc reveal"><span class="ic">🎓</span><span>
+        <b data-fr="Le Studio Premium" data-en="Studio Premium">Le Studio Premium</b>
+        <span data-fr="Ton espace personnel : ton diagnostic, ton plan, tes routines et tes outils de suivi au même endroit."
+              data-en="Your personal space: your diagnosis, your plan, your routines and your tracking tools in one place.">Ton espace personnel : ton diagnostic, ton plan, tes routines et tes outils de suivi.</span></span></div>
+      <div class="inc reveal"><span class="ic">📚</span><span>
+        <b data-fr="Tous les guides" data-en="Every guide">Tous les guides</b>
+        <span data-fr="Hydratée, Pourquoi Rien Ne Fonctionne, Créer ma routine, Adieu Pellicules, Transition, Recettes, Planificateur."
+              data-en="Hydrated, Why Nothing Works, Build My Routine, Goodbye Dandruff, Transition, Recipes, Planner.">Les 7 guides, plus ceux qui sortiront pendant ton abonnement.</span></span></div>
+      <div class="inc reveal"><span class="ic">💬</span><span>
+        <b data-fr="Le forum privé" data-en="The private forum">Le forum privé</b>
+        <span data-fr="Poser tes questions, montrer tes progrès, suivre les défis — entre femmes qui ont les mêmes cheveux que toi."
+              data-en="Ask your questions, show your progress, follow the challenges — among women with the same hair as you.">Poser tes questions et suivre les défis, entre femmes qui ont les mêmes cheveux.</span></span></div>
+      <div class="inc reveal"><span class="ic">🎁</span><span>
+        <b data-fr="Un exclu chaque mois" data-en="A monthly exclusive">Un exclu chaque mois</b>
+        <span data-fr="Une nouvelle ressource réservée aux membres : fiche, mini-guide, routine saisonnière ou défi."
+              data-en="A new members-only resource each month: worksheet, mini-guide, seasonal routine or challenge.">Une nouvelle ressource réservée aux membres, chaque mois.</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ POUR QUI ═══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="grid grid-2" style="gap:44px;align-items:start;max-width:900px;margin:0 auto">
+      <div class="reveal">
+        <span class="eyebrow" data-fr="C'est pour toi si" data-en="It's for you if">C'est pour toi si</span>
+        <ol class="steps" style="margin-top:16px">
+          <li><b data-fr="Tu as les cheveux Type 4" data-en="You have Type 4 hair">Tu as les cheveux Type 4</b>
+              <span data-fr="4A, 4B, 4C, en transition ou en locs." data-en="4A, 4B, 4C, transitioning or locs.">4A, 4B, 4C, en transition ou en locs.</span></li>
+          <li><b data-fr="Tu veux tout, sans payer 72€ d'un coup" data-en="You want it all without paying 72€ at once">Tu veux tout, sans payer 72€ d'un coup</b>
+              <span data-fr="Étaler la dépense change tout quand le budget est serré." data-en="Spreading the cost changes everything on a tight budget.">Étaler la dépense change tout quand le budget est serré.</span></li>
+          <li><b data-fr="Tu en as assez d'être seule là-dedans" data-en="You're tired of doing this alone">Tu en as assez d'être seule là-dedans</b>
+              <span data-fr="Le forum, c'est des femmes qui comprennent, et moi qui réponds." data-en="The forum is women who understand, and me answering.">Le forum, c'est des femmes qui comprennent, et moi qui réponds.</span></li>
+        </ol>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow" data-fr="Ce n'est pas pour toi si" data-en="It's not for you if">Ce n'est pas pour toi si</span>
+        <div class="prose" style="margin-top:16px">
+          <p data-fr="Tu cherches un produit miracle qui règle tout en une semaine. Ça n'existe pas, et je ne le vendrai pas."
+             data-en="You're looking for a miracle product that fixes everything in a week. That doesn't exist, and I won't sell it.">
+            Tu cherches un produit miracle qui règle tout en une semaine. Ça n'existe pas, et je ne le vendrai pas.</p>
+          <p data-fr="Tu veux un seul guide sur un seul sujet précis. Dans ce cas, prends-le à l'unité — ce sera moins cher pour toi."
+             data-en="You want one guide on one specific topic. Then buy that one — it'll cost you less.">
+            Tu veux un seul guide sur un seul sujet précis. Dans ce cas, prends-le à l'unité.</p>
+          <a class="textlink" href="shop.html" data-fr="Voir les guides à l'unité →" data-en="See individual guides →">Voir les guides à l'unité →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TÉMOIGNAGES ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Elles y sont déjà" data-en="They're already in">Elles y sont déjà</span>
+      <h2 data-fr="Ce que ça change" data-en="What it changes">Ce que ça change</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="testi reveal"><div class="stars">★★★★★</div>
+        <p data-fr="« J'ai enfin compris ma porosité. Tout fait sens maintenant ! »"
+           data-en="“Finally understood my porosity. Everything clicked!”">« J'ai enfin compris ma porosité. Tout fait sens maintenant ! »</p>
+        <div class="who">Fatoumata D.</div></div>
+      <div class="testi reveal"><div class="stars">★★★★★</div>
+        <p data-fr="« Première fois que ma routine tient toute la semaine. Merci ! »"
+           data-en="“First time my routine holds all week. Thank you!”">« Première fois que ma routine tient toute la semaine. Merci ! »</p>
+        <div class="who">Awa K.</div></div>
+      <div class="testi reveal"><div class="stars">★★★★★</div>
+        <p data-fr="« Mes longueurs ne cassent plus. J'ai retrouvé confiance en mes cheveux. »"
+           data-en="“My ends stopped breaking. I've got my confidence back.”">« Mes longueurs ne cassent plus. J'ai retrouvé confiance en mes cheveux. »</p>
+        <div class="who">Khadija B.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRIX + CTA ═══════════ -->
+<section class="section section-alt" id="rejoindre">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow" data-fr="On y va ?" data-en="Shall we?">On y va ?</span>
+          <h2 style="margin:10px 0 14px">Le Cercle</h2>
+          <ul class="perks">
+            <li data-fr="Le Studio Premium inclus" data-en="Studio Premium included">Le Studio Premium inclus</li>
+            <li data-fr="Les 7 guides, et ceux à venir" data-en="All 7 guides, and the ones to come">Les 7 guides, et ceux à venir</li>
+            <li data-fr="Le forum privé" data-en="The private forum">Le forum privé</li>
+            <li data-fr="Un contenu exclusif chaque mois" data-en="New exclusive content every month">Un contenu exclusif chaque mois</li>
+            <li data-fr="Carte bancaire ou mobile money" data-en="Card or mobile money">Carte bancaire ou mobile money</li>
+          </ul>
+        </div>
+        <div class="priceplate">
+          <div>
+            <span class="amt" id="priceAmt">12€</span>
+            <span class="per" data-fr="/mois" data-en="/mo">/mois</span>
+          </div>
+          <div class="cfa" id="priceCfa">≈ 8 000 FCFA</div>
+          <a class="btn btn-gold btn-block" id="ctaMain" href="https://selar.com/le_cercle_schicgirl" target="_blank" rel="noopener"
+             data-fr="Rejoindre Le Cercle" data-en="Join The Circle">Rejoindre Le Cercle</a>
+          <p class="note" data-fr="Sans engagement · résilie en un clic · paiement sécurisé Selar"
+                          data-en="No commitment · cancel in one click · secure Selar checkout">Sans engagement · résilie en un clic · paiement sécurisé Selar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="section" id="faq">
+  <div class="wrap-narrow">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Avant de t'abonner" data-en="Before you join">Avant de t'abonner</span>
+      <h2 data-fr="Questions fréquentes" data-en="Frequently asked">Questions fréquentes</h2>
+    </div>
+    <div class="faq reveal">
+      <details open>
+        <summary data-fr="Je peux payer par mobile money ?" data-en="Can I pay by mobile money?">Je peux payer par mobile money ?</summary>
+        <div class="answer" data-fr="Oui. Selar accepte la carte et le mobile money selon ton pays — Orange, MTN, Moov, Wave. Contrairement aux abonnements Facebook, tu n'as pas besoin d'une carte bancaire. Tu choisis aussi ta devise en haut de la page. <a href='shop.html#payer' style='color:var(--gold-deep);font-weight:600'>Voir les étapes en images</a>."
+                            data-en="Yes. Selar accepts card and mobile money depending on your country — Orange, MTN, Moov, Wave. Unlike Facebook subscriptions you don't need a bank card. You also pick your currency at the top of the page. <a href='shop.html#payer' style='color:var(--gold-deep);font-weight:600'>See the steps in pictures</a>.">
+          Oui — carte ou mobile money selon ton pays, dans ta devise.</div>
+      </details>
+      <details>
+        <summary data-fr="Comment j'accède au forum et au Studio ?" data-en="How do I get into the forum and the Studio?">Comment j'accède au forum et au Studio ?</summary>
+        <div class="answer" data-fr="Après ton paiement, crée ton compte sur <a href='mon-compte.html' style='color:var(--gold-deep);font-weight:600'>Mon compte</a> avec l'email utilisé chez Selar. J'ouvre ton accès à la main — compte quelques heures. Ensuite, le même email et le même mot de passe ouvrent le site, le forum et le Studio."
+                            data-en="After paying, create your account on <a href='mon-compte.html' style='color:var(--gold-deep);font-weight:600'>My account</a> using the email you paid with. I open your access by hand — allow a few hours. After that the same email and password open the site, the forum and the Studio.">
+          Crée ton compte avec l'email du paiement ; j'ouvre l'accès à la main.</div>
+      </details>
+      <details>
+        <summary data-fr="Le Studio et le forum, c'est le même compte ?" data-en="Are the Studio and the forum the same account?">Le Studio et le forum, c'est le même compte ?</summary>
+        <div class="answer" data-fr="Oui, un seul compte pour tout : même email, même mot de passe. Tu le changes une fois, il change partout."
+                            data-en="Yes, one account for everything: same email, same password. Change it once and it changes everywhere.">
+          Oui — un seul compte pour le site, le forum et le Studio.</div>
+      </details>
+      <details>
+        <summary data-fr="Si j'arrête de payer, je perds tout ?" data-en="If I stop paying, do I lose everything?">Si j'arrête de payer, je perds tout ?</summary>
+        <div class="answer" data-fr="Tu perds l'accès au Studio, au forum et aux guides du Cercle. Les guides que tu as achetés séparément restent à toi, définitivement — l'abonnement n'y touche pas."
+                            data-en="You lose access to the Studio, the forum and the Circle guides. Any guide you bought separately stays yours forever — the membership doesn't touch it.">
+          Tu perds l'accès aux contenus du Cercle ; les guides achetés à l'unité restent à toi.</div>
+      </details>
+      <details>
+        <summary data-fr="Comment je résilie ?" data-en="How do I cancel?">Comment je résilie ?</summary>
+        <div class="answer" data-fr="En un clic depuis ton compte Selar, sans me demander et sans justification. Tu gardes l'accès jusqu'à la fin du mois déjà payé."
+                            data-en="One click from your Selar account, without asking me and without giving a reason. You keep access until the end of the month you've already paid for.">
+          En un clic depuis Selar, quand tu veux.</div>
+      </details>
+      <details>
+        <summary data-fr="J'ai une question avant de m'abonner" data-en="I have a question before joining">J'ai une question avant de m'abonner</summary>
+        <div class="answer" data-fr="Écris-moi à <a href='mailto:contacte.schicgirl@gmail.com' style='color:var(--gold-deep);font-weight:600'>contacte.schicgirl@gmail.com</a> ou sur <a href='https://www.facebook.com/schicgirl' target='_blank' rel='noopener' style='color:var(--gold-deep);font-weight:600'>Facebook</a>. C'est moi qui réponds."
+                            data-en="Email me at <a href='mailto:contacte.schicgirl@gmail.com' style='color:var(--gold-deep);font-weight:600'>contacte.schicgirl@gmail.com</a> or message me on <a href='https://www.facebook.com/schicgirl' target='_blank' rel='noopener' style='color:var(--gold-deep);font-weight:600'>Facebook</a>. I answer personally.">
+          Écris-moi, c'est moi qui réponds.</div>
+      </details>
+    </div>
+
+    <p class="note" style="margin-top:26px"
+       data-fr="Produit numérique à accès immédiat. En finalisant ton abonnement, tu demandes la mise à disposition immédiate du contenu et renonces de ce fait au droit de rétractation de 14 jours."
+       data-en="Digital product with immediate access. By completing your subscription you request immediate delivery of the content and therefore waive the 14-day right of withdrawal.">
+      Produit numérique à accès immédiat.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- Barre d'achat collante, mobile uniquement -->
+<div class="buybar">
+  <div class="p"><span id="barPrice">12€</span><small data-fr="par mois · sans engagement" data-en="per month · no commitment">par mois · sans engagement</small></div>
+  <a class="btn btn-gold" id="ctaBar" href="https://selar.com/le_cercle_schicgirl" target="_blank" rel="noopener"
+     data-fr="Rejoindre" data-en="Join">Rejoindre</a>
 </div>
 
-<div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
-  <span class="x" onclick="closePrev()">✕</span>
-  <img id="prevLightboxImg" src="" alt="Aperçu"/>
-</div>
-
-<div class="stickybar">
-  <div>
-    <div class="sp" id="barPrice"></div>
-    <div class="scfa" id="barCfa"></div>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand-name">Schic<span>girl</span></span>
+        <p data-fr="Clarté, soin et confiance pour cheveux crépus Type 4."
+           data-en="Clarity, care and confidence for Type 4 coily hair.">Clarté, soin et confiance pour cheveux crépus Type 4.</p>
+      </div>
+      <div>
+        <h4 data-fr="Découvrir" data-en="Discover">Découvrir</h4>
+        <ul>
+          <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+          <li><a href="shop.html" data-fr="Tous les guides" data-en="All guides">Tous les guides</a></li>
+          <li><a href="blog.html" data-fr="Blog" data-en="Blog">Blog</a></li>
+          <li><a href="mon-compte.html" data-fr="Mon compte" data-en="My account">Mon compte</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Aide" data-en="Help">Aide</h4>
+        <ul>
+          <li><a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
+          <li><a href="shop.html#payer" data-fr="Comment payer" data-en="How to pay">Comment payer</a></li>
+          <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Légal" data-en="Legal">Légal</h4>
+        <ul>
+          <li><a href="privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></li>
+          <li><a href="terms.html" data-fr="Conditions" data-en="Terms">Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Schicgirl</span>
+      <span data-fr="Cheveux crépus Type 4 · 4A 4B 4C" data-en="Type 4 coily hair · 4A 4B 4C">Cheveux crépus Type 4 · 4A 4B 4C</span>
+    </div>
   </div>
-  <a id="barCta" href="#" target="_blank" rel="noopener noreferrer"></a>
-</div>
+</footer>
 
-<script src="assets/js/le-cercle.page.js"></script>
+<script src="assets/js/account.js"></script>
+<script src="assets/js/site-complete.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ═══════════════════════════════════════════════════════
+     PRIX ET LIENS — le seul endroit a modifier.
+     ═══════════════════════════════════════════════════════ */
+  var CERCLE = {
+    price_fr: "12€",  price_en: "$13",
+    cfa: "≈ 8 000 FCFA",
+    bundle_fr: "72€", bundle_en: "$76",
+    url_fr: "https://selar.com/le_cercle_schicgirl",
+    url_en: "https://selar.com/the_circle_schicgirl"
+  };
+
+  var e = SGSite.esc;
+
+  function paint() {
+    var fr = SGSite.lang === "fr";
+    var price = fr ? CERCLE.price_fr : CERCLE.price_en;
+    var url = fr ? CERCLE.url_fr : CERCLE.url_en;
+
+    ["priceBig", "priceAmt", "barPrice"].forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.textContent = price;
+    });
+    var pi = document.getElementById("priceInline");
+    if (pi) pi.innerHTML = e(price) + " <span>" + e(fr ? "par mois" : "per month") + "</span>";
+    var bn = document.getElementById("badgeN");
+    if (bn) bn.textContent = fr ? CERCLE.bundle_fr : CERCLE.bundle_en;
+    var cf = document.getElementById("priceCfa");
+    if (cf) cf.textContent = fr ? CERCLE.cfa : "";
+
+    ["ctaTop", "ctaMain", "ctaBar"].forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.setAttribute("href", url);
+    });
+  }
+
+  /* Si la visiteuse est deja connectee, « Rejoindre » n'a plus de sens :
+     on l'envoie vers son espace plutot que vers un second paiement. */
+  function adaptForMember() {
+    if (!window.SGAccount || !SGAccount.isLoggedIn()) return;
+    SGAccount.hasAccess().then(function (ok) {
+      if (!ok) return;
+      var fr = SGSite.lang === "fr";
+      var label = fr ? "Aller à mon espace" : "Go to my account";
+      ["ctaTop", "ctaMain", "ctaBar"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.setAttribute("href", "mon-compte.html");
+        el.removeAttribute("target");
+        el.setAttribute("data-fr", "Aller à mon espace");
+        el.setAttribute("data-en", "Go to my account");
+        el.textContent = id === "ctaBar" ? (fr ? "Mon espace" : "My account") : label;
+      });
+      var na = document.getElementById("navAcct");
+      if (na) na.classList.add("is-member");
+    }).catch(function () {});
+  }
+
+  paint();
+  adaptForMember();
+  SGSite.onLang(function () { paint(); adaptForMember(); });
+})();
+</script>
 </body>
 </html>

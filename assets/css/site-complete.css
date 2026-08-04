@@ -160,7 +160,10 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:600;color:var(--gold-deep)}
   background:rgba(255,255,255,.6);transition:all .16s;white-space:nowrap;
 }
 .nav-acct:hover{background:var(--gold-pale);transform:translateY(-1px)}
-.nav-acct .ic{font-size:14px;line-height:1}
+/* Le portrait remplace l'emoji « personne » : plus feminin, et surtout
+   fidele aux femmes a qui le site s'adresse. */
+.nav-acct .ic{width:22px;height:22px;border-radius:50%;display:block;flex:none;
+  box-shadow:0 0 0 1px rgba(201,147,74,.35)}
 .nav-acct.is-member{background:linear-gradient(135deg,var(--gold),var(--gold-deep));
   border-color:var(--gold-deep);color:#fff}
 @media(max-width:560px){
