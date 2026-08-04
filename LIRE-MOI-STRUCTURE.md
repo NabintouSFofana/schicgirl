@@ -114,21 +114,23 @@ je la copie dans `assets/blog/` au bon nom et je mets `blog.js` à jour.
 
 - [ ] Décider si le nouveau site remplace l'ancien (renommer les 5 fichiers)
 - [ ] Relire la capture de paiement anonymisée (`assets/how-to-pay-checkout-fr.png`)
-- [ ] `blog.js` : les catégories `comprendre` et `produits` manquent dans la
-      table `CATS` (ligne 11). Trois articles affichent donc leur code brut
-      dans la barre latérale de l'ancien `blog.html`. Deux lignes à ajouter.
-- [ ] `products.html` : les 17 photos de `assets/products/` ont disparu avec
-      le dossier. La page masque les images manquantes, donc elle s'affiche,
-      mais sans aucune photo. Elle n'est liée par aucune page et n'est pas
-      dans le sitemap — à supprimer ou à réalimenter.
+- [ ] `products.html` n'est liée par aucune page et n'est pas dans le
+      sitemap : personne ne la trouve. Soit tu l'ajoutes au menu, soit tu
+      la retires. (Elle fonctionne, voir ci-dessous.)
 
 ### Vérifié, rien à faire
 
 Les cinq pages réellement en ligne — `index.html`, `shop.html`, `blog.html`,
 `about.html`, `contact.html` — n'ont **aucune image cassée**.
 
-Les couvertures manquantes de `pousse`, `coiffures` et `stop-cheveux-secs`
-sont normales : ces ebooks affichent « Bientôt disponible » et les pages
-remplacent l'image absente par une icône 📖. Idem pour `MonHistoire` /
-`MyStory` : l'ebook n'existe pas, les fichiers ont été retirés, et plus
-aucune page ne les appelle.
+**Un fichier image absent ne veut pas dire une page cassée.** Trois cas ici
+où l'absence est prévue par le code :
+
+- `pousse`, `coiffures`, `stop-cheveux-secs` : ebooks « Bientôt disponible ».
+  Les couvertures ont été retirées exprès, les pages affichent une icône 📖.
+- `MonHistoire` / `MyStory` : l'ebook n'existe pas, les fichiers sont partis,
+  et plus aucune page ne les appelle.
+- `products.html` : les 17 photos de `assets/products/` ont disparu, mais la
+  page a été conçue avec un repli — chaque produit est dessiné en SVG. Les
+  17 fiches s'affichent et les 31 liens affiliés Amazon fonctionnent. Ajouter
+  les photos serait un bonus, pas une réparation.

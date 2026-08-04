@@ -8,11 +8,16 @@
   "use strict";
 
   // ── Categories (bilingual labels) ──
+  // Toute categorie utilisee par un article doit figurer ici, sinon la
+  // barre laterale affiche la cle brute ("comprendre") et n'en propose
+  // pas le filtre.
   var CATS = {
     bases:        { fr: "Les bases",   en: "Basics" },
+    comprendre:   { fr: "Comprendre",  en: "Understand" },
     diagnostic:   { fr: "Diagnostic",  en: "Diagnosis" },
     routine:      { fr: "Routine",     en: "Routine" },
     hydratation:  { fr: "Hydratation", en: "Moisture" },
+    produits:     { fr: "Produits",    en: "Products" },
     coiffures:    { fr: "Coiffures",   en: "Styles" },
     pousse:       { fr: "Pousse",      en: "Growth" },
     "cuir-chevelu": { fr: "Cuir chevelu", en: "Scalp" }
