@@ -9,8 +9,8 @@
     · articles  → assets/js/blog.js     (window.SchicBlog.posts)
   Ce fichier ne fait que les mettre en page.
 
-  Les anciennes pages (index-v1.html, shop-v1.html…) sont conservees
-  mais ne chargent pas ce fichier : elles gardent leur propre code.
+  Les anciennes pages sont archivees dans _dev-archive/anciennes-pages/
+  et ne sont plus servies par le site.
   © 2024–2026 Schicgirl. All rights reserved.
 */
 (function () {
