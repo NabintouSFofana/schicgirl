@@ -1,0 +1,498 @@
+<!doctype html>
+<!--
+===============================================================
+  SCHICGIRL — mon-compte.html
+  L'espace membre. Une seule page, trois etats :
+    1. pas connectee      -> connexion / creation de compte
+    2. connectee, sans abonnement actif -> comment activer
+    3. connectee, abonnement actif      -> tableau de bord
+
+  C'est le MEME compte que le forum et Le Studio Premium (meme projet
+  Supabase, meme session). L'acces est verifie par la base via
+  has_forum_access() : le navigateur ne fait qu'afficher la reponse.
+
+  Style   : assets/css/site-complete.css
+  Moteur  : assets/js/site-complete.js
+  Compte  : assets/js/account.js
+  © 2024–2026 Schicgirl. All rights reserved.
+===============================================================
+-->
+<html lang="fr"
+      data-title-fr="Mon compte — Schicgirl"
+      data-title-en="My account — Schicgirl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon compte — Schicgirl</title>
+<meta name="description" content="Connecte-toi à ton espace membre Schicgirl : Le Cercle, le forum privé et Le Studio Premium.">
+<!-- Page privee : rien a indexer, et surtout pas a faire remonter dans Google. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-complete.css">
+<script>document.documentElement.className+=" js";</script>
+
+<style>
+  .acct{max-width:560px;margin:0 auto}
+  .acct-wide{max-width:920px;margin:0 auto}
+
+  .panel{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:28px 26px;box-shadow:var(--shadow-s);
+  }
+  .panel + .panel{margin-top:18px}
+  .panel h3{font-size:20px;margin-bottom:4px}
+  .panel .hint{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px}
+
+  .tabs{display:flex;gap:6px;background:var(--gold-pale);padding:5px;
+        border-radius:var(--r-pill);margin-bottom:22px}
+  .tabs button{
+    flex:1;padding:10px;border-radius:var(--r-pill);font-size:13.5px;font-weight:600;
+    color:var(--gold-deep);transition:all .15s;
+  }
+  .tabs button.on{background:#fff;box-shadow:var(--shadow-s);color:var(--ink)}
+
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:12px;font-weight:600;letter-spacing:.05em;
+               text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .field input,.field select{
+    width:100%;font-family:var(--sans);font-size:15px;padding:12px 14px;
+    border:1px solid var(--line);border-radius:var(--r-s);
+    background:var(--bg);color:var(--ink);outline:none;
+  }
+  .field input:focus,.field select:focus{
+    border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,147,74,.14);background:#fff}
+
+  .msg{border-radius:var(--r-s);padding:12px 15px;font-size:13.5px;line-height:1.6;margin-bottom:16px}
+  .msg-err{background:#fdecea;border:1px solid #f0b6ae;color:#9d2f1f}
+  .msg-ok{background:#eaf6ee;border:1px solid #a9d8bb;color:#1f6b3a}
+
+  /* Bandeau d'etat de l'abonnement */
+  .status{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    border-radius:var(--r);padding:18px 22px;margin-bottom:22px;
+  }
+  .status-on{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff}
+  .status-off{background:var(--gold-pale);border:1px solid var(--line-gold);color:var(--ink)}
+  .status .dot-ind{width:10px;height:10px;border-radius:50%;flex:none}
+  .status-on .dot-ind{background:#8ff0a4}
+  .status-off .dot-ind{background:var(--gold-deep)}
+  .status b{font-size:15.5px}
+  .status .sub{font-size:13px;opacity:.9;width:100%}
+
+  /* Portes vers le forum et le studio */
+  .doors{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+  @media(max-width:620px){.doors{grid-template-columns:1fr}}
+  .door{
+    display:flex;flex-direction:column;gap:7px;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:22px;box-shadow:var(--shadow-s);
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .door:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line-gold)}
+  .door .ic{font-size:28px}
+  .door b{font-size:17px;font-family:var(--serif);font-weight:600}
+  .door span{font-size:13.5px;color:var(--muted);line-height:1.55}
+  .door .go{color:var(--gold-deep);font-size:13px;font-weight:600;margin-top:auto;padding-top:8px}
+  .door[aria-disabled="true"]{opacity:.55;pointer-events:none}
+
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:14px}
+  .kv dt{color:var(--muted)}
+  .kv dd{color:var(--ink);font-weight:500;word-break:break-word}
+
+  .linkbtn{background:none;border:0;color:var(--gold-deep);font-size:13px;
+           font-weight:600;cursor:pointer;padding:0}
+  .linkbtn:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Schicgirl">
+      <img src="assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="brand-name">Schic<span>girl</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html"   data-fr="Accueil"   data-en="Home">Accueil</a>
+      <a href="shop.html"    data-fr="Guides"    data-en="Guides">Guides</a>
+      <a href="le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="blog.html"    data-fr="Blog"      data-en="Blog">Blog</a>
+      <a href="about.html"   data-fr="À propos"  data-en="About">À propos</a>
+      <a href="contact.html" data-fr="Contact"   data-en="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtog" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav-acct" id="navAcct" href="mon-compte.html"><span class="ic" aria-hidden="true">👤</span><span class="lbl" data-fr="Mon compte" data-en="My account">Mon compte</span></a>
+
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section" style="padding-top:48px">
+    <div class="wrap">
+      <div id="acctRoot" aria-live="polite">
+        <p class="empty" data-fr="Chargement…" data-en="Loading…">Chargement…</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-bottom" style="margin-top:0;border-top:0">
+      <span>© <span id="year">2026</span> Schicgirl</span>
+      <span><a href="contact.html" data-fr="Un souci de connexion ? Écris-moi" data-en="Trouble signing in? Email me">Un souci de connexion ? Écris-moi</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/account.js"></script>
+<script src="assets/js/site-complete.js"></script>
+<script>
+(function () {
+  "use strict";
+  var A = window.SGAccount, root = document.getElementById("acctRoot");
+  var tab = "login";      // login | signup | reset
+  var busy = false;
+  var msg = null;         // {type:'err'|'ok', fr:'', en:''}
+  var state = { access: null, profile: null };
+
+  var FR = function () { return SGSite.lang === "fr"; };
+  var e = SGSite.esc;
+  function T(fr, en) { return FR() ? fr : en; }
+  function say(type, fr, en) { msg = { type: type, fr: fr, en: en }; }
+
+  /* Les messages d'erreur de Supabase arrivent en anglais et sont parfois
+     cryptiques : on traduit les cas courants, sinon on affiche l'original. */
+  function humanError(err) {
+    var m = String((err && err.message) || err || "");
+    if (/Invalid login credentials/i.test(m))
+      return T("Email ou mot de passe incorrect.", "Wrong email or password.");
+    if (/Email not confirmed/i.test(m))
+      return T("Ton email n'est pas encore confirmé — regarde ta boîte mail (et tes spams).",
+               "Your email isn't confirmed yet — check your inbox (and spam).");
+    if (/User already registered|already been registered/i.test(m))
+      return T("Un compte existe déjà avec cet email. Connecte-toi.",
+               "An account already exists with this email. Sign in instead.");
+    if (/Password should be at least/i.test(m))
+      return T("Le mot de passe doit faire au moins 6 caractères.",
+               "Password must be at least 6 characters.");
+    if (/rate limit|too many/i.test(m))
+      return T("Trop de tentatives. Réessaie dans quelques minutes.",
+               "Too many attempts. Try again in a few minutes.");
+    return m || T("Une erreur est survenue.", "Something went wrong.");
+  }
+
+  function msgHtml() {
+    if (!msg) return "";
+    return '<div class="msg msg-' + (msg.type === "err" ? "err" : "ok") + '">' +
+           e(FR() ? msg.fr : msg.en) + "</div>";
+  }
+
+  /* ═══════════ ÉTAT 1 — pas connectée ═══════════ */
+  function viewLoggedOut() {
+    var isLogin = tab === "login", isSignup = tab === "signup";
+    var h = '<div class="acct">';
+
+    h += '<div class="section-head center" style="margin-bottom:26px">' +
+           '<span class="eyebrow">' + e(T("Espace membre", "Member area")) + '</span>' +
+           '<h1 style="font-size:clamp(30px,5vw,42px);margin:10px 0 10px">' +
+             (FR() ? 'Te voilà, <em>enfin</em>.' : 'There you are, <em>at last</em>.') + '</h1>' +
+           '<p class="lead" style="margin-inline:auto">' +
+             e(T("Le même compte ouvre Le Cercle, le forum privé et Le Studio Premium.",
+                 "One account opens The Circle, the private forum and Studio Premium.")) +
+           '</p></div>';
+
+    h += '<div class="panel">';
+    h += '<div class="tabs" role="tablist">' +
+           '<button type="button" data-tab="login"' + (isLogin ? ' class="on"' : '') + '>' +
+             e(T("Je me connecte", "Sign in")) + '</button>' +
+           '<button type="button" data-tab="signup"' + (isSignup ? ' class="on"' : '') + '>' +
+             e(T("Je crée mon compte", "Create account")) + '</button>' +
+         '</div>';
+
+    h += msgHtml();
+
+    if (tab === "reset") {
+      h += '<h3>' + e(T("Mot de passe oublié", "Forgot password")) + '</h3>' +
+           '<p class="hint">' + e(T("Donne ton email : tu recevras un lien pour en choisir un nouveau.",
+                                    "Enter your email and you'll get a link to choose a new one.")) + '</p>' +
+           '<form id="frm">' +
+             field("email", "email", T("Ton email", "Your email"), "email") +
+             '<button class="btn btn-gold btn-block" type="submit"' + (busy ? " disabled" : "") + '>' +
+               e(busy ? T("Envoi…", "Sending…") : T("Envoyer le lien", "Send the link")) + '</button>' +
+           '</form>' +
+           '<p style="text-align:center;margin-top:14px">' +
+             '<button class="linkbtn" data-tab="login">' + e(T("← Retour", "← Back")) + '</button></p>';
+    } else {
+      h += '<form id="frm">' +
+             field("email", "email", T("Email", "Email"), "email") +
+             field("password", "password", T("Mot de passe", "Password"),
+                   isSignup ? "new-password" : "current-password") +
+             (isSignup
+               ? '<p class="hint" style="margin:-4px 0 16px">' +
+                   e(T("6 caractères minimum.", "6 characters minimum.")) + '</p>'
+               : '') +
+             '<button class="btn btn-gold btn-block" type="submit"' + (busy ? " disabled" : "") + '>' +
+               e(busy ? T("Un instant…", "One moment…")
+                      : (isSignup ? T("Créer mon compte", "Create my account")
+                                  : T("Me connecter", "Sign in"))) + '</button>' +
+           '</form>';
+      if (isLogin)
+        h += '<p style="text-align:center;margin-top:14px">' +
+               '<button class="linkbtn" data-tab="reset">' +
+               e(T("Mot de passe oublié ?", "Forgot your password?")) + '</button></p>';
+    }
+    h += "</div>";  // panel
+
+    /* Pas encore abonnée : on l'envoie vers la page de vente, pas dans le vide. */
+    h += '<div class="panel" style="text-align:center">' +
+           '<h3>' + e(T("Pas encore membre ?", "Not a member yet?")) + '</h3>' +
+           '<p class="hint">' +
+             e(T("Le Cercle, c'est le Studio Premium, tous les guides, le forum privé et un contenu exclusif chaque mois.",
+                 "The Circle is Studio Premium, every guide, the private forum and new exclusive content each month.")) +
+           '</p>' +
+           '<a class="btn btn-ghost" href="le-cercle.html">' +
+             e(T("Découvrir Le Cercle →", "Discover The Circle →")) + '</a>' +
+         '</div>';
+
+    h += "</div>";
+    return h;
+  }
+
+  function field(id, type, label, autocomplete) {
+    return '<div class="field"><label for="f-' + id + '">' + e(label) + '</label>' +
+           '<input id="f-' + id + '" name="' + id + '" type="' + type + '" required ' +
+           'autocomplete="' + autocomplete + '"></div>';
+  }
+
+  /* ═══════════ ÉTATS 2 & 3 — connectée ═══════════ */
+  function viewLoggedIn() {
+    var p = state.profile || {}, active = state.access === true;
+    var name = [p.first_name, p.last_name].filter(Boolean).join(" ");
+    var h = '<div class="acct-wide">';
+
+    h += '<div class="section-head" style="max-width:none;margin-bottom:22px">' +
+           '<span class="eyebrow">' + e(T("Espace membre", "Member area")) + '</span>' +
+           '<h1 style="font-size:clamp(28px,4.5vw,38px);margin:10px 0 0">' +
+             e(name ? T("Bonjour ", "Hello ") + name : T("Bonjour 👋", "Hello 👋")) + '</h1></div>';
+
+    /* Bandeau d'etat */
+    if (active) {
+      h += '<div class="status status-on"><span class="dot-ind"></span>' +
+             '<b>' + e(T("Ton abonnement est actif", "Your membership is active")) + '</b>' +
+             (p.access_until
+               ? '<span class="sub">' + e(T("Accès ouvert jusqu'au ", "Access open until ") +
+                   SGSite.fmtDate(String(p.access_until).slice(0, 10))) + '</span>'
+               : '') +
+           '</div>';
+    } else {
+      h += '<div class="status status-off"><span class="dot-ind"></span>' +
+             '<b>' + e(T("Ton abonnement n'est pas actif", "Your membership isn't active")) + '</b>' +
+             '<span class="sub">' +
+               e(T("Ton compte existe bien. L'accès au forum et au Studio s'ouvre dès que ton paiement Selar est enregistré — je l'active à la main, compte quelques heures.",
+                   "Your account exists. Access to the forum and Studio opens once your Selar payment is recorded — I activate it by hand, so allow a few hours.")) +
+             '</span></div>' +
+           '<div class="panel" style="text-align:center;margin-bottom:18px">' +
+             '<a class="btn btn-gold" href="le-cercle.html">' +
+               e(T("Rejoindre Le Cercle", "Join The Circle")) + '</a>' +
+             '<p class="hint" style="margin:14px 0 0">' +
+               e(T("Déjà payé ? Écris-moi et j'ouvre ton accès tout de suite.",
+                   "Already paid? Email me and I'll open your access right away.")) +
+             ' <a href="contact.html" style="color:var(--gold-deep);font-weight:600">' +
+               e(T("Me contacter", "Contact me")) + '</a></p>' +
+           '</div>';
+    }
+
+    /* Portes : forum + studio */
+    h += '<div class="doors">' +
+           door("💬", T("Le forum privé", "The private forum"),
+                T("Poser tes questions, partager tes routines, suivre les défis.",
+                  "Ask your questions, share routines, follow the challenges."),
+                active ? A.forumUrl() : null) +
+           door("🎓", T("Le Studio Premium", "Studio Premium"),
+                T("Tes guides, ton plan et tes outils, au même endroit.",
+                  "Your guides, your plan and your tools in one place."),
+                active ? A.studioUrl() : null) +
+         '</div>';
+
+    h += msgHtml();
+
+    /* Mes informations */
+    h += '<div class="panel">' +
+           '<h3>' + e(T("Mes informations", "My details")) + '</h3>' +
+           '<p class="hint">' + e(T("Ces informations sont celles de ton profil sur le forum.",
+                                    "These are the details shown on your forum profile.")) + '</p>' +
+           '<form id="frmProfile">' +
+             '<div class="grid grid-2" style="gap:0 16px">' +
+               fieldVal("first_name", "text", T("Prénom", "First name"), p.first_name || "") +
+               fieldVal("last_name", "text", T("Nom", "Last name"), p.last_name || "") +
+             '</div>' +
+             '<div class="field"><label for="f-hair_type">' + e(T("Type de cheveux", "Hair type")) + '</label>' +
+               '<select id="f-hair_type" name="hair_type">' +
+                 ["", "4A", "4B", "4C", T("Transition", "Transitioning"), T("Locs", "Locs")]
+                   .map(function (o) {
+                     return '<option value="' + e(o) + '"' +
+                            ((p.hair_type || "") === o ? " selected" : "") + '>' +
+                            e(o || T("— non précisé —", "— not set —")) + "</option>";
+                   }).join("") +
+               '</select></div>' +
+             '<button class="btn btn-gold btn-sm" type="submit"' + (busy ? " disabled" : "") + '>' +
+               e(busy ? T("Enregistrement…", "Saving…") : T("Enregistrer", "Save")) + '</button>' +
+           '</form>' +
+           '<dl class="kv" style="margin-top:22px">' +
+             '<dt>' + e(T("Email", "Email")) + '</dt><dd>' + e(A.email() || "—") + '</dd>' +
+             '<dt>' + e(T("Points", "Points")) + '</dt><dd>' + e(String(p.points == null ? "—" : p.points)) + '</dd>' +
+           '</dl>' +
+           '<p class="hint" style="margin:14px 0 0">' +
+             e(T("L'email du compte ne peut pas être changé ici — écris-moi si tu en as besoin.",
+                 "The account email can't be changed here — email me if you need to.")) + '</p>' +
+         '</div>';
+
+    /* Mot de passe */
+    h += '<div class="panel">' +
+           '<h3>' + e(T("Mot de passe", "Password")) + '</h3>' +
+           '<p class="hint">' + e(T("Il ouvre aussi le forum et Le Studio : le changer ici le change partout.",
+                                    "It also opens the forum and the Studio: changing it here changes it everywhere.")) + '</p>' +
+           '<form id="frmPass">' +
+             '<div class="field"><label for="f-np">' + e(T("Nouveau mot de passe", "New password")) + '</label>' +
+               '<input id="f-np" name="np" type="password" required minlength="6" autocomplete="new-password"></div>' +
+             '<button class="btn btn-ghost btn-sm" type="submit"' + (busy ? " disabled" : "") + '>' +
+               e(busy ? T("…", "…") : T("Changer mon mot de passe", "Change my password")) + '</button>' +
+           '</form>' +
+         '</div>';
+
+    h += '<p style="text-align:center;margin-top:22px">' +
+           '<button class="linkbtn" id="btnOut">' + e(T("Me déconnecter", "Sign out")) + '</button></p>';
+
+    h += "</div>";
+    return h;
+  }
+
+  function door(icon, title, sub, href) {
+    var open = !!href;
+    return '<a class="door" ' + (open ? 'href="' + e(href) + '"' : 'aria-disabled="true" href="#"') +
+           (open && /^https?:/.test(href) ? ' target="_blank" rel="noopener"' : '') + '>' +
+             '<span class="ic">' + icon + '</span>' +
+             '<b>' + e(title) + '</b><span>' + e(sub) + '</span>' +
+             '<span class="go">' +
+               e(open ? T("Ouvrir →", "Open →") : T("Réservé aux membres", "Members only")) +
+             '</span></a>';
+  }
+
+  function fieldVal(id, type, label, val) {
+    return '<div class="field"><label for="f-' + id + '">' + e(label) + '</label>' +
+           '<input id="f-' + id + '" name="' + id + '" type="' + type +
+           '" value="' + e(val) + '"></div>';
+  }
+
+  /* ═══════════ Rendu + évènements ═══════════ */
+  function render() {
+    root.innerHTML = A.isLoggedIn() ? viewLoggedIn() : viewLoggedOut();
+    wire();
+  }
+
+  function wire() {
+    root.querySelectorAll("[data-tab]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        tab = b.getAttribute("data-tab"); msg = null; render();
+      });
+    });
+
+    var frm = root.querySelector("#frm");
+    if (frm) frm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (busy) return;
+      var email = (frm.email && frm.email.value) || "";
+      var pass = (frm.password && frm.password.value) || "";
+      busy = true; msg = null; render();
+
+      var done = function () { busy = false; render(); };
+
+      if (tab === "reset") {
+        A.resetPassword(email).then(function () {
+          tab = "login";
+          say("ok", "Si un compte existe avec cet email, le lien vient de partir. Regarde aussi tes spams.",
+                    "If an account exists for that email, the link is on its way. Check your spam too.");
+        }).catch(function (err) { say("err", humanError(err), humanError(err)); }).then(done);
+        return;
+      }
+
+      if (tab === "signup") {
+        A.signUp(email, pass).then(function (s) {
+          if (s && s.access_token) return boot();       // session directe
+          tab = "login";
+          say("ok", "Compte créé. Confirme ton email, puis connecte-toi ici.",
+                    "Account created. Confirm your email, then sign in here.");
+          done();
+        }).catch(function (err) { say("err", humanError(err), humanError(err)); done(); });
+        return;
+      }
+
+      A.signIn(email, pass).then(function () { boot(); })
+        .catch(function (err) { say("err", humanError(err), humanError(err)); done(); });
+    });
+
+    var fp = root.querySelector("#frmProfile");
+    if (fp) fp.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (busy) return;
+      busy = true; msg = null; render();
+      A.updateProfile({
+        first_name: fp.first_name.value.trim(),
+        last_name: fp.last_name.value.trim(),
+        hair_type: fp.hair_type.value || null
+      }).then(function () {
+        say("ok", "C'est enregistré.", "Saved.");
+        return A.getProfile().then(function (p) { state.profile = p; });
+      }).catch(function (err) { say("err", humanError(err), humanError(err)); })
+        .then(function () { busy = false; render(); });
+    });
+
+    var fpw = root.querySelector("#frmPass");
+    if (fpw) fpw.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (busy) return;
+      busy = true; msg = null; render();
+      A.changePassword(fpw.np.value).then(function () {
+        say("ok", "Mot de passe changé. Il vaut aussi pour le forum et Le Studio.",
+                  "Password changed. It works for the forum and the Studio too.");
+      }).catch(function (err) { say("err", humanError(err), humanError(err)); })
+        .then(function () { busy = false; render(); });
+    });
+
+    var out = root.querySelector("#btnOut");
+    if (out) out.addEventListener("click", function () {
+      A.signOut(); state = { access: null, profile: null }; tab = "login"; msg = null;
+      say("ok", "Tu es déconnectée.", "You're signed out.");
+      render();
+    });
+  }
+
+  /* Charge l'état réel depuis la base, puis affiche */
+  function boot() {
+    busy = false;
+    if (!A.isLoggedIn()) { render(); return; }
+    Promise.all([A.hasAccess(), A.getProfile().catch(function () { return null; })])
+      .then(function (r) { state.access = r[0]; state.profile = r[1]; render(); })
+      .catch(function () { render(); });
+  }
+
+  SGSite.onLang(function () { render(); });
+  boot();
+})();
+</script>
+</body>
+</html>
