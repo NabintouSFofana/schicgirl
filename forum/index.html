@@ -756,8 +756,68 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   .ba-grid{grid-template-columns:1fr}
   .topbar-right .tbtn{width:34px;height:34px;font-size:14px}
   .tav{width:34px;height:34px;font-size:13px}
-  /* sur mobile la topbar est deja pleine : blog et facebook restent dans le menu lateral */
-  .topbar-right .tbtn-ext{display:none}
+
+  /* ── TOPBAR SUR MOBILE ───────────────────────────────────────
+     A 375px, le contenu de la topbar mesurait 445px : les boutons
+     de droite debordaient hors de l'ecran. On enleve de la barre
+     ce qui est deja accessible dans le menu lateral (studio, blog,
+     facebook) et on resserre le reste. */
+  .topbar{padding:10px 12px}
+  .topbar-left{gap:8px}
+  .topbar-right{gap:6px}
+  .topbar-right .tbtn-ext,
+  .topbar-right #studio-link-btn{display:none}
+
+  /* Le selecteur de langue passait 80px a lui seul */
+  .topbar-lang{margin-left:2px;gap:2px;padding:2px}
+  .topbar-lang .lb{padding:4px 7px;font-size:10px;letter-spacing:0}
+
+  /* ── MODALES ─────────────────────────────────────────────────
+     Element flex, donc min-width:auto l'empechait de descendre
+     sous sa largeur min-content : la boite sortait de l'ecran. */
+  .modal-bg{padding:16px 10px}
+  .modal{padding:18px 16px}
+  .modal-row{flex-wrap:wrap}
+  .modal-row > *{flex:1 1 auto}
+}
+
+/* ── TRES PETITS ECRANS (iPhone SE, Android d'entree de gamme) ──
+   A 320px la topbar depassait encore de 36px. On resserre la marque
+   et les pastilles ; tous les boutons restent accessibles. */
+@media(max-width:360px){
+  .topbar{padding:10px 8px}
+  .topbar-left{gap:6px}
+  .topbar-right{gap:4px}
+  .brand-mark{font-size:13px;letter-spacing:1.5px}
+  .topbar-right .tbtn,.tav,.menu-toggle{width:30px;height:30px;font-size:13px}
+  .topbar-lang .lb{padding:3px 5px;font-size:9px}
+  .modal-bg{padding:12px 8px}
+  .modal{padding:16px 13px}
+}
+
+/* Vaut a toutes les tailles, pas seulement sur mobile. */
+.modal{min-width:0;max-width:min(600px,100%)}
+.modal-lg{max-width:min(800px,100%)}
+
+/* ── BARRE D'ONGLETS ───────────────────────────────────────────
+   13 onglets pour ~350px : la barre defile deja lateralement, mais
+   rien ne l'indiquait. Defilement fluide, barre masquee, et un
+   degrade a droite qui signale qu'il reste des onglets. */
+.tbar{
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  scroll-snap-type:x proximity;
+  position:relative;
+}
+.tbar::-webkit-scrollbar{display:none}
+.tbar .tb{scroll-snap-align:start}
+@media(max-width:780px){
+  .tbar-wrap{position:relative}
+  .tbar-wrap::after{
+    content:"";position:absolute;top:0;right:0;bottom:0;width:34px;
+    pointer-events:none;border-radius:0 var(--r) var(--r) 0;
+    background:linear-gradient(90deg,rgba(255,253,248,0),var(--bg) 78%);
+  }
 }
 
 /* ── ADDITIONAL UTILITY CLASSES ─────────────────────────────────── */
@@ -1314,7 +1374,9 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
       <button class="tbtn" id="notif-btn" data-i18n-title="notif_title_attr" title="Notifications">
         🔔<span class="badge" id="notif-badge" style="display:none">0</span>
       </button>
-      <a class="tbtn" id="studio-link-btn" href="https://schicgirl.me/studio-premium.html" title="Le Studio Premium" style="display:flex;align-items:center;justify-content:center;text-decoration:none">🎓</a>
+      <!-- Le style etait en ligne, ce qui empechait de masquer le bouton
+           sur mobile via la CSS. .tbtn fait deja le centrage. -->
+      <a class="tbtn tbtn-ext" id="studio-link-btn" href="https://schicgirl.me/studio-premium.html" title="Le Studio Premium">🎓</a>
       <a class="tbtn tbtn-ext" href="https://schicgirl.me/blog.html" target="_blank" rel="noopener" data-i18n-title="blog_title_attr" title="Blog">📖</a>
       <a class="tbtn tbtn-ext" href="https://facebook.com/schicgirl" target="_blank" rel="noopener" data-i18n-title="facebook_title_attr" title="Facebook">📘</a>
       <div class="tav" id="topbar-av" data-i18n-title="profile_title_attr" title="My Profile">A</div>
@@ -1354,6 +1416,7 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
       </div>
       <div class="sb-section">
         <div class="sb-title" data-i18n="sb_elsewhere">Elsewhere</div>
+        <a class="sb-link" href="https://schicgirl.me/studio-premium.html" target="_blank" rel="noopener"><span class="sb-icon">🎓</span><span data-i18n="nav_studio">Le Studio Premium</span></a>
         <a class="sb-link" href="https://schicgirl.me/blog.html" target="_blank" rel="noopener"><span class="sb-icon">📖</span><span data-i18n="nav_blog">Blog</span></a>
         <a class="sb-link" href="https://facebook.com/schicgirl" target="_blank" rel="noopener"><span class="sb-icon">📘</span><span data-i18n="nav_facebook">Facebook Page</span></a>
         <a class="sb-link" href="https://schicgirl.me/" target="_blank" rel="noopener"><span class="sb-icon">🌸</span><span data-i18n="nav_website">schicgirl.me</span></a>
@@ -1397,7 +1460,9 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
         </div>
       </div>
 
-      <!-- Tab bar -->
+      <!-- Tab bar. Le wrapper ne sert qu'au degrade de droite sur mobile,
+           qui signale que la barre continue de defiler. -->
+      <div class="tbar-wrap">
       <div class="tbar">
         <button class="tb on" data-tab="feed">🏠 <span data-i18n="tab_feed">Feed</span></button>
         <button class="tb" data-tab="recipes">🧴 <span data-i18n="tab_recipes">Recipes</span></button>
@@ -1412,6 +1477,7 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
         <button class="tb" data-tab="tracker">📈 <span data-i18n="tab_tracker">Tracker</span></button>
         <button class="tb" data-tab="programs">🎯 <span data-i18n="tab_programs">Programs</span></button>
         <button class="tb admin-only" data-tab="admin" style="display:none">⚙️ <span data-i18n="tab_admin">Admin</span></button>
+      </div>
       </div>
 
       <!-- FEED -->
@@ -2141,6 +2207,7 @@ const TX = {
     search_title_attr:'Search', notif_title_attr:'Notifications', profile_title_attr:'My Profile',
     notifications:'Notifications', mark_all_read:'Mark all read', no_notifs:'No notifications yet',
     sb_navigate:'Navigate', sb_topics:'Topics', sb_stats:'Quick Stats', sb_elsewhere:'Elsewhere',
+    nav_studio:'The Premium Studio',
     blog_title_attr:'Blog', facebook_title_attr:'Facebook Page',
     nav_blog:'Blog', nav_facebook:'Facebook Page', nav_website:'schicgirl.me',
     nav_feed:'Home Feed', nav_recipes:'Recipes', nav_learn:'Learn', nav_members:'Members',
@@ -2465,6 +2532,7 @@ const TX = {
     search_title_attr:'Rechercher', notif_title_attr:'Notifications', profile_title_attr:'Mon profil',
     notifications:'Notifications', mark_all_read:'Tout marquer comme lu', no_notifs:'Aucune notification pour le moment',
     sb_navigate:'Navigation', sb_topics:'Sujets', sb_stats:'Statistiques', sb_elsewhere:'Ailleurs',
+    nav_studio:'Le Studio Premium',
     blog_title_attr:'Blog', facebook_title_attr:'Page Facebook',
     nav_blog:'Blog', nav_facebook:'Page Facebook', nav_website:'schicgirl.me',
     nav_feed:"Fil d'actualité", nav_recipes:'Recettes', nav_learn:'Apprendre', nav_members:'Membres',
