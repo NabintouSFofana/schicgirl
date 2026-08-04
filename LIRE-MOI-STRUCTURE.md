@@ -2,24 +2,24 @@
 
 Carte du dossier `APPLICATIONS`. À lire quand tu ne sais plus où chercher.
 
-> **Rien n'a été supprimé.** L'ancien site est intact. Le nouveau site vit
-> à côté, sous les noms `*-complete.html`.
+> **Le nouveau site est en ligne** depuis le 4 août 2026. Rien n'a été
+> supprimé : l'ancien site est conservé sous les noms `*-v1.html`.
 
 ---
 
-## 1. LE NOUVEAU SITE — c'est ici que tu travailles
+## 1. LE SITE — c'est ici que tu travailles
 
-Cinq pages, reliées entre elles. `index-complete.html` est la page d'accueil.
+Cinq pages, reliées entre elles. `index.html` est la page d'accueil.
 
 | Fichier | Page |
 |---|---|
-| `index-complete.html` | **Accueil** — point d'entrée du nouveau site |
-| `shop-complete.html` | Boutique — guides, Le Cercle, comment payer, FAQ |
-| `blog-complete.html` | Blog — article à la une, recherche, filtres |
-| `about-complete.html` | À propos |
-| `contact-complete.html` | Contact + FAQ |
+| `index.html` | **Accueil** |
+| `shop.html` | Boutique — guides, Le Cercle, comment payer, FAQ |
+| `blog.html` | Blog — article à la une, recherche, filtres |
+| `about.html` | À propos |
+| `contact.html` | Contact + FAQ |
 
-### Les 3 fichiers partagés par ces 5 pages
+### Les 4 fichiers partagés par ces 5 pages
 
 | Fichier | Rôle |
 |---|---|
@@ -32,25 +32,19 @@ Cinq pages, reliées entre elles. `index-complete.html` est la page d'accueil.
 Pour ajouter un article, `blog.js`. Les pages se mettent à jour toutes seules.
 Tu ne copies jamais un produit ou un article dans une page.
 
-### Pour mettre le nouveau site en ligne (le jour où tu décides)
+## 2. L'ANCIEN SITE — archivé, plus servi
 
-Renomme les cinq fichiers en retirant `-complete` :
-`index-complete.html` → `index.html`, etc.
-Les balises `canonical` pointent déjà vers les bonnes adresses finales.
-Sauvegarde d'abord les anciens (par exemple dans `_dev-archive/`).
+`index-v1.html`, `shop-v1.html`, `blog-v1.html`, `about-v1.html`,
+`contact-v1.html`. Ce sont les versions d'avant la bascule, gardées pour
+comparaison. Elles sont en `noindex` : Google ne les référencera pas et
+elles ne feront pas concurrence aux vraies pages.
 
----
-
-## 2. L'ANCIEN SITE — toujours en ligne, ne rien casser
-
-`index.html`, `shop.html`, `blog.html`, `about.html`, `contact.html` et les
-~40 autres pages à la racine. C'est **ce qui tourne aujourd'hui sur
-schicgirl.me**. Tant que tu n'as pas basculé, ne les déplace pas.
+Les ~40 autres pages à la racine (guides, ebooks, outils) n'ont pas changé.
 
 Les pages `/fr/` et `/en/` sont les versions pré-rendues pour Google,
-générées par `prerender.py`. Ne les édite pas à la main.
-
----
+générées par `prerender.py`. **Elles contiennent encore l'ancien design** :
+relance `prerender.py` quand tu voudras les régénérer depuis les nouvelles
+pages.
 
 ## 3. LES AUTRES PROJETS (indépendants)
 
@@ -112,7 +106,8 @@ je la copie dans `assets/blog/` au bon nom et je mets `blog.js` à jour.
 
 ## 7. Ce qu'il reste à faire
 
-- [ ] Décider si le nouveau site remplace l'ancien (renommer les 5 fichiers)
+- [ ] Relancer `prerender.py` pour que `/fr/` et `/en/` reprennent le
+      nouveau design (elles servent encore l'ancien)
 - [ ] Relire la capture de paiement anonymisée (`assets/how-to-pay-checkout-fr.png`)
 - [ ] `products.html` n'est liée par aucune page et n'est pas dans le
       sitemap : personne ne la trouve. Soit tu l'ajoutes au menu, soit tu

@@ -1,15 +1,16 @@
 /*
   SCHICGIRL — site-complete.js
-  Moteur partage par index-complete.html, blog-complete.html et
-  shop-complete.html : langue FR/EN, menu mobile, apparition au
-  defilement, et rendu des grilles produits / articles.
+  Moteur partage par les cinq pages du site : index, shop, blog, about
+  et contact. Gere la langue FR/EN, le menu mobile, l'apparition au
+  defilement, et le rendu des grilles produits / articles.
 
   Les donnees ne sont PAS dupliquees ici :
     · produits  → assets/js/catalog.js  (window.SG_CATALOG)
     · articles  → assets/js/blog.js     (window.SchicBlog.posts)
   Ce fichier ne fait que les mettre en page.
 
-  Il ne remplace rien : les pages actuelles ne le chargent pas.
+  Les anciennes pages (index-v1.html, shop-v1.html…) sont conservees
+  mais ne chargent pas ce fichier : elles gardent leur propre code.
   © 2024–2026 Schicgirl. All rights reserved.
 */
 (function () {
