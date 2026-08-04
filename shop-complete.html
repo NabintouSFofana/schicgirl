@@ -1,0 +1,441 @@
+<!doctype html>
+<!--
+═══════════════════════════════════════════════════════════════════
+  SCHICGIRL — shop-complete.html
+  Version "site complet" de la boutique, a comparer avec shop.html
+  (qui reste en place et n'est pas modifie).
+
+  shop.html est un mini-site en colonne de 560px. Ici c'est une vraie
+  page boutique : filtres, fiches produits completes, abonnement,
+  moyens de paiement et FAQ.
+
+  Les produits viennent de assets/js/catalog.js — source unique.
+  © 2024–2026 Schicgirl. All rights reserved.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fr"
+      data-title-fr="La Boutique Schicgirl — Guides &amp; abonnement cheveux crépus Type 4"
+      data-title-en="The Schicgirl Shop — Type 4 coily hair guides &amp; membership">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Boutique Schicgirl — Guides &amp; abonnement cheveux crépus Type 4</title>
+<meta name="description" content="Tous les guides Schicgirl pour cheveux crépus Type 4, l'abonnement Le Cercle et mes outils — au même endroit. Paiement carte ou mobile money, dans ta devise.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://schicgirl.me/shop.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="La Boutique Schicgirl — Guides &amp; abonnement">
+<meta property="og:description" content="Tous mes guides, l'abonnement et mes outils pour cheveux crépus Type 4 — au même endroit.">
+<meta property="og:image" content="https://schicgirl.me/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-complete.css">
+
+<!-- Pose « js » sur <html> avant le premier rendu. La CSS ne masque les
+     blocs .reveal que si cette classe est presente : script casse =
+     page quand meme lisible, et pas de clignotement au chargement. -->
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+
+<div class="topstrip">
+  <span data-fr="Paiement carte ou mobile money — dans ta propre devise."
+        data-en="Card or mobile money — in your own currency.">Paiement carte ou mobile money — dans ta propre devise.</span>
+  <a href="#payer" data-fr="Comment payer →" data-en="How to pay →">Comment payer →</a>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index-complete.html" aria-label="Schicgirl">
+      <img src="assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="brand-name">Schic<span>girl</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index-complete.html" data-fr="Accueil"   data-en="Home">Accueil</a>
+      <a href="shop-complete.html" class="on" data-fr="Guides" data-en="Guides">Guides</a>
+      <a href="#cercle"            data-fr="Le Cercle"  data-en="The Circle">Le Cercle</a>
+      <a href="blog-complete.html" data-fr="Blog"       data-en="Blog">Blog</a>
+      <a href="#outils"            data-fr="Outils"     data-en="Tools">Outils</a>
+      <a href="#payer"             data-fr="Comment payer" data-en="How to pay">Comment payer</a>
+      <a href="contact-complete.html"       data-fr="Contact"    data-en="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtog" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-gold btn-sm nav-cta" href="#cercle" data-fr="Rejoindre" data-en="Join">Rejoindre</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="wrap" style="padding-top:60px;padding-bottom:12px;text-align:center;max-width:760px">
+    <span class="eyebrow" data-fr="La boutique" data-en="The shop">La boutique</span>
+    <h1 style="margin:16px 0 18px"
+        data-fr="Tout ce qu'il te faut, <em>au même endroit</em>."
+        data-en="Everything you need, <em>in one place</em>.">Tout ce qu'il te faut, <em>au même endroit</em>.</h1>
+    <p class="lead" style="margin:0 auto"
+       data-fr="Sept guides, un abonnement, des outils. Chaque guide règle un problème précis — tu prends ce dont tu as besoin, quand tu en as besoin."
+       data-en="Seven guides, one membership, a few tools. Each guide solves one specific problem — take what you need, when you need it.">
+      Sept guides, un abonnement, des outils. Chaque guide règle un problème précis — tu prends ce dont tu as besoin, quand tu en as besoin.</p>
+    <div class="hero-trust" style="justify-content:center">
+      <span class="stars">★★★★★</span>
+      <b data-fr="Téléchargement immédiat" data-en="Instant download">Téléchargement immédiat</b>
+      <span class="dot"></span>
+      <span data-fr="Carte ou mobile money" data-en="Card or mobile money">Carte ou mobile money</span>
+      <span class="dot"></span>
+      <span data-fr="FR &amp; EN" data-en="FR &amp; EN">FR &amp; EN</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ GUIDES ═══════════ -->
+<section class="section" id="guides" style="padding-top:44px">
+  <div class="wrap">
+    <div class="filters" style="margin-bottom:30px;justify-content:center" id="shopFilters"></div>
+    <div class="grid grid-3" id="shopGrid"></div>
+    <p class="empty hide" id="shopEmpty"
+       data-fr="Aucun guide dans cette catégorie." data-en="No guides in this category.">Aucun guide dans cette catégorie.</p>
+  </div>
+</section>
+
+<!-- ═══════════ LE CERCLE ═══════════ -->
+<section class="section section-alt" id="cercle">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Le meilleur rapport" data-en="Best value">Le meilleur rapport</span>
+      <h2 data-fr="Ou prends <em>tout</em>, chaque mois." data-en="Or take <em>everything</em>, every month.">Ou prends <em>tout</em>, chaque mois.</h2>
+      <p class="lead" data-fr="Si tu hésites entre deux guides, l'abonnement revient moins cher dès le premier mois."
+                      data-en="If you're torn between two guides, the membership costs less from month one.">
+        Si tu hésites entre deux guides, l'abonnement revient moins cher dès le premier mois.</p>
+    </div>
+
+    <div class="band reveal">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow" data-fr="Abonnement mensuel" data-en="Monthly membership">Abonnement mensuel</span>
+          <h2 style="margin:10px 0 14px">Le Cercle</h2>
+          <p style="font-size:16px;margin-bottom:22px"
+             data-fr="Le Studio Premium, TOUS les ebooks, le forum privé, et un nouveau contenu exclusif chaque mois."
+             data-en="Studio Premium, ALL the ebooks, the private forum, and new exclusive content every month.">
+            Le Studio Premium, TOUS les ebooks, le forum privé, et un nouveau contenu exclusif chaque mois.</p>
+          <ul class="perks">
+            <li data-fr="Le Studio Premium inclus" data-en="Studio Premium included">Le Studio Premium inclus</li>
+            <li data-fr="Les 7 guides, et ceux à venir" data-en="All 7 guides, and the ones to come">Les 7 guides, et ceux à venir</li>
+            <li data-fr="Le forum privé, entre nous" data-en="The private forum, just us">Le forum privé, entre nous</li>
+            <li data-fr="Un contenu exclusif chaque mois" data-en="New exclusive content every month">Un contenu exclusif chaque mois</li>
+            <li data-fr="Résiliable en un clic, quand tu veux" data-en="Cancel in one click, whenever">Résiliable en un clic, quand tu veux</li>
+          </ul>
+        </div>
+        <div class="priceplate">
+          <div>
+            <span class="amt" data-fr="12€" data-en="$13">12€</span>
+            <span class="per" data-fr="/mois" data-en="/mo">/mois</span>
+          </div>
+          <div class="cfa">≈ 8 000 FCFA</div>
+          <a class="btn btn-gold btn-block" data-href-fr="/fr/le-cercle/" data-href-en="/en/the-circle/"
+             href="/fr/le-cercle/" data-fr="Rejoindre Le Cercle" data-en="Join The Circle">Rejoindre Le Cercle</a>
+          <p class="note" data-fr="Sans engagement · carte ou mobile money" data-en="No commitment · card or mobile money">Sans engagement · carte ou mobile money</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ OUTILS ═══════════ -->
+<section class="section" id="outils">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Outils &amp; diagnostic" data-en="Tools &amp; diagnosis">Outils &amp; diagnostic</span>
+      <h2 data-fr="Pas encore sûre de ce qu'il te faut ?" data-en="Not sure what you need yet?">Pas encore sûre de ce qu'il te faut ?</h2>
+      <p class="lead" data-fr="Commence par un diagnostic. Tu sauras quel guide te servira vraiment."
+                      data-en="Start with a diagnosis. You'll know which guide will actually help.">
+        Commence par un diagnostic. Tu sauras quel guide te servira vraiment.</p>
+    </div>
+    <div class="grid grid-3">
+      <a class="card reveal" href="https://selar.com/schicchat" target="_blank" rel="noopener">
+        <div class="card-body">
+          <div style="font-size:30px">💬</div>
+          <h3 data-fr="Diagnostique mes cheveux" data-en="Diagnose my hair">Diagnostique mes cheveux</h3>
+          <p class="card-txt" data-fr="Des réponses expertes, tout de suite." data-en="Expert answers, right away.">Des réponses expertes, tout de suite.</p>
+          <div class="card-foot"><span class="textlink" data-fr="Ouvrir →" data-en="Open →">Ouvrir →</span></div>
+        </div>
+      </a>
+      <a class="card reveal" href="https://selar.com/hydracheck" target="_blank" rel="noopener">
+        <div class="card-body">
+          <div style="font-size:30px">💧</div>
+          <h3 data-fr="Pourquoi mes cheveux restent secs ?" data-en="Why does my hair stay dry?">Pourquoi mes cheveux restent secs ?</h3>
+          <p class="card-txt" data-fr="Le test express." data-en="The quick test.">Le test express.</p>
+          <div class="card-foot"><span class="textlink" data-fr="Faire le test →" data-en="Take the test →">Faire le test →</span></div>
+        </div>
+      </a>
+      <a class="card reveal" href="consultation.html">
+        <div class="card-body">
+          <div style="font-size:30px">📅</div>
+          <h3 data-fr="Consultation capillaire" data-en="Hair consultation">Consultation capillaire</h3>
+          <p class="card-txt" data-fr="Un créneau avec moi, et un plan." data-en="A slot with me, and a plan.">Un créneau avec moi, et un plan.</p>
+          <div class="card-foot"><span class="textlink" data-fr="Réserver →" data-en="Book →">Réserver →</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ AMAZON ═══════════ -->
+<section class="section-sm section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Mes produits Amazon" data-en="My Amazon picks">Mes produits Amazon</span>
+      <h2 data-fr="Les produits que j'utilise" data-en="The products I use">Les produits que j'utilise</h2>
+    </div>
+    <div class="grid grid-3">
+      <a class="card reveal" href="https://www.amazon.com/shop/schicgirl" target="_blank" rel="noopener">
+        <div class="card-media"><img src="assets/icon_amazon_clear.webp" alt="" loading="lazy" style="object-fit:contain;padding:22px"></div>
+        <div class="card-body">
+          <h3 data-fr="Tous mes coups de cœur" data-en="All my picks">Tous mes coups de cœur</h3>
+          <p class="card-txt" data-fr="Ma boutique Amazon." data-en="My Amazon storefront.">Ma boutique Amazon.</p>
+        </div>
+      </a>
+      <a class="card reveal" href="https://amzn.to/491lO7A" target="_blank" rel="noopener">
+        <div class="card-media"><img src="assets/baby_curls_cream.png" alt="" loading="lazy" style="object-fit:contain;padding:16px"></div>
+        <div class="card-body">
+          <h3>Aunt Jackie's Baby Curls</h3>
+          <p class="card-txt" data-fr="Crème boucles pour les enfants." data-en="Curl cream for little ones.">Crème boucles pour les enfants.</p>
+        </div>
+      </a>
+      <a class="card reveal" href="https://amzn.to/3OkUfzm" target="_blank" rel="noopener">
+        <div class="card-media"><img src="assets/amazon.webp" alt="" loading="lazy" style="object-fit:contain;padding:16px"></div>
+        <div class="card-body">
+          <h3>Aunt Jackie's Bundle</h3>
+          <p class="card-txt" data-fr="Le système de soin complet." data-en="The full care system.">Le système de soin complet.</p>
+        </div>
+      </a>
+    </div>
+    <p class="note" style="margin-top:26px;text-align:center"
+       data-fr="En tant qu'associée Amazon, je gagne des revenus grâce aux achats éligibles."
+       data-en="As an Amazon Associate I earn from qualifying purchases.">
+      En tant qu'associée Amazon, je gagne des revenus grâce aux achats éligibles.</p>
+  </div>
+</section>
+
+<!-- ═══════════ COMMENT PAYER ═══════════ -->
+<section class="section" id="payer">
+  <div class="wrap">
+    <div class="grid grid-2" style="gap:52px;align-items:start">
+      <div class="reveal">
+        <span class="eyebrow" data-fr="Comment payer" data-en="How to pay">Comment payer</span>
+        <h2 style="margin:10px 0 14px"
+            data-fr="Depuis <em>n'importe quel</em> pays." data-en="From <em>any</em> country.">Depuis <em>n'importe quel</em> pays.</h2>
+        <p class="lead" style="margin-bottom:26px"
+           data-fr="Toutes mes ventes passent par Selar. Tu peux payer dans ta propre devise — carte bancaire, mobile money ou Wave selon ton pays."
+           data-en="Everything I sell goes through Selar. You can pay in your own currency — bank card, mobile money or Wave depending on your country.">
+          Toutes mes ventes passent par Selar. Tu peux payer dans ta propre devise — carte bancaire, mobile money ou Wave selon ton pays.</p>
+
+        <ol class="steps">
+          <li><b data-fr="Ouvre la page du guide" data-en="Open the guide page">Ouvre la page du guide</b>
+              <span data-fr="Le bouton t'emmène directement sur Selar." data-en="The button takes you straight to Selar.">Le bouton t'emmène directement sur Selar.</span></li>
+          <li><b data-fr="Choisis ta devise" data-en="Pick your currency">Choisis ta devise</b>
+              <span data-fr="En haut de la page : EUR, USD, XOF/FCFA, NGN, GHS… Le prix se convertit tout seul."
+                    data-en="At the top of the page: EUR, USD, XOF/CFA, NGN, GHS… The price converts automatically.">En haut de la page : EUR, USD, XOF/FCFA, NGN, GHS… Le prix se convertit tout seul.</span></li>
+          <li><b data-fr="Renseigne ton email" data-en="Enter your email">Renseigne ton email</b>
+              <span data-fr="C'est là que tout sera envoyé — vérifie-le bien." data-en="That's where everything is sent — double-check it.">C'est là que tout sera envoyé — vérifie-le bien.</span></li>
+          <li><b data-fr="Paie comme tu veux" data-en="Pay how you like">Paie comme tu veux</b>
+              <span data-fr="Carte, mobile money (Orange, MTN, Moov, Wave…) ou transfert, selon ton pays."
+                    data-en="Card, mobile money (Orange, MTN, Moov, Wave…) or transfer, depending on your country.">Carte, mobile money (Orange, MTN, Moov, Wave…) ou transfert, selon ton pays.</span></li>
+          <li><b data-fr="Reçois tout de suite" data-en="Get it right away">Reçois tout de suite</b>
+              <span data-fr="Selar t'envoie ton guide par email dans la minute." data-en="Selar emails your guide within the minute.">Selar t'envoie ton guide par email dans la minute.</span></li>
+        </ol>
+
+        <p class="note" style="margin-top:24px"
+           data-fr="⚠️ Tu ne reçois rien ? Regarde dans tes <b>spams</b> et dans l'onglet <b>Promotions</b> de Gmail. Si ce n'est toujours pas là, <a href='mailto:contacte.schicgirl@gmail.com' style='color:var(--gold-deep);font-weight:600'>écris-moi</a> — je te renvoie tout à la main."
+           data-en="⚠️ Nothing arrived? Check your <b>spam</b> folder and Gmail's <b>Promotions</b> tab. Still nothing — <a href='mailto:contacte.schicgirl@gmail.com' style='color:var(--gold-deep);font-weight:600'>email me</a> and I'll resend it by hand.">
+          ⚠️ Tu ne reçois rien ? Regarde dans tes <b>spams</b> et dans l'onglet <b>Promotions</b> de Gmail.</p>
+      </div>
+
+      <div class="reveal">
+        <h3 style="margin-bottom:6px" data-fr="Questions fréquentes" data-en="Frequently asked">Questions fréquentes</h3>
+        <div class="faq">
+          <details open>
+            <summary data-fr="Je peux payer par mobile money ?" data-en="Can I pay by mobile money?">Je peux payer par mobile money ?</summary>
+            <div class="answer" data-fr="Oui. Selar accepte la carte et le mobile money selon ton pays — Orange, MTN, Moov, Wave. Contrairement aux abonnements Facebook, tu n'as pas besoin d'une carte bancaire."
+                                data-en="Yes. Selar accepts card and mobile money depending on your country — Orange, MTN, Moov, Wave. Unlike Facebook subscriptions, you don't need a bank card.">
+              Oui. Selar accepte la carte et le mobile money selon ton pays.</div>
+          </details>
+          <details>
+            <summary data-fr="Sous quel format je reçois le guide ?" data-en="What format is the guide?">Sous quel format je reçois le guide ?</summary>
+            <div class="answer" data-fr="En PDF, lisible sur téléphone, tablette et ordinateur. Tu le télécharges et il est à toi pour toujours — pas besoin de connexion pour le relire."
+                                data-en="A PDF, readable on phone, tablet and computer. You download it and it's yours forever — no connection needed to read it again.">
+              En PDF, lisible partout. Il est à toi pour toujours.</div>
+          </details>
+          <details>
+            <summary data-fr="Les guides sont en français ou en anglais ?" data-en="Are the guides in French or English?">Les guides sont en français ou en anglais ?</summary>
+            <div class="answer" data-fr="Les deux. Chaque guide existe dans les deux langues — tu reçois la version qui correspond à la langue du site au moment de l'achat."
+                                data-en="Both. Every guide exists in both languages — you get the version matching the site language when you buy.">
+              Les deux. Tu reçois la version qui correspond à la langue du site.</div>
+          </details>
+          <details>
+            <summary data-fr="Quelle différence entre un guide et Le Cercle ?" data-en="Guide or The Circle — what's the difference?">Quelle différence entre un guide et Le Cercle ?</summary>
+            <div class="answer" data-fr="Un guide, tu l'achètes une fois et il règle un problème précis. Le Cercle est un abonnement mensuel : tu as TOUS les guides, le Studio Premium, le forum privé et du nouveau contenu chaque mois. Si tu veux plus d'un guide, l'abonnement est plus intéressant."
+                                data-en="A guide is a one-off purchase that solves one specific problem. The Circle is a monthly membership: you get ALL the guides, Studio Premium, the private forum and new content every month. If you want more than one guide, the membership is better value.">
+              Un guide règle un problème précis. Le Cercle donne accès à tout, chaque mois.</div>
+          </details>
+          <details>
+            <summary data-fr="Si j'arrête l'abonnement, je perds tout ?" data-en="If I cancel, do I lose everything?">Si j'arrête l'abonnement, je perds tout ?</summary>
+            <div class="answer" data-fr="Tu perds l'accès au Studio, au forum et aux ebooks du Cercle. Les guides que tu as achetés séparément restent à toi, définitivement."
+                                data-en="You lose access to the Studio, the forum and the Circle ebooks. Any guide you bought separately stays yours, permanently.">
+              Les guides achetés séparément restent à toi, définitivement.</div>
+          </details>
+          <details>
+            <summary data-fr="J'ai une question avant d'acheter" data-en="I have a question before buying">J'ai une question avant d'acheter</summary>
+            <div class="answer" data-fr="Écris-moi à <a href='mailto:contacte.schicgirl@gmail.com' style='color:var(--gold-deep);font-weight:600'>contacte.schicgirl@gmail.com</a> ou sur <a href='https://www.facebook.com/schicgirl' target='_blank' rel='noopener' style='color:var(--gold-deep);font-weight:600'>Facebook</a>. Je réponds moi-même."
+                                data-en="Email me at <a href='mailto:contacte.schicgirl@gmail.com' style='color:var(--gold-deep);font-weight:600'>contacte.schicgirl@gmail.com</a> or message me on <a href='https://www.facebook.com/schicgirl' target='_blank' rel='noopener' style='color:var(--gold-deep);font-weight:600'>Facebook</a>. I answer personally.">
+              Écris-moi — je réponds moi-même.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ KIT GRATUIT ═══════════ -->
+<section class="section-sm">
+  <div class="wrap">
+    <div class="band reveal" style="background:linear-gradient(135deg,#3d2716,var(--ink))">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow" data-fr="Gratuit · Le Kit Type 4" data-en="Free · The Type 4 Kit">Gratuit · Le Kit Type 4</span>
+          <h2 style="margin:10px 0 12px" data-fr="Pas encore prête à acheter ?" data-en="Not ready to buy yet?">Pas encore prête à acheter ?</h2>
+          <p data-fr="Commence par le Kit Type 4. Il est offert, et il couvre déjà l'essentiel : ta texture, ta porosité, ta première routine."
+             data-en="Start with the Type 4 Kit. It's free, and it already covers the essentials: your texture, your porosity, your first routine.">
+            Commence par le Kit Type 4. Il est offert, et il couvre déjà l'essentiel.</p>
+        </div>
+        <div style="text-align:center">
+          <a class="btn btn-gold btn-lg" href="toolkit-landing.html"
+             data-fr="Télécharger gratuitement" data-en="Download for free">Télécharger gratuitement</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand-name">Schic<span>girl</span></span>
+        <p data-fr="Clarté, soin et confiance pour cheveux crépus Type 4. Sans jargon, sans promesse miracle."
+           data-en="Clarity, care and confidence for Type 4 coily hair. No jargon, no miracle promises.">
+          Clarté, soin et confiance pour cheveux crépus Type 4.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/schicgirl" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="mailto:contacte.schicgirl@gmail.com" aria-label="Email">✉</a>
+          <a href="https://www.amazon.com/shop/schicgirl" target="_blank" rel="noopener" aria-label="Amazon">🛍</a>
+        </div>
+      </div>
+      <div>
+        <h4 data-fr="Découvrir" data-en="Discover">Découvrir</h4>
+        <ul>
+          <li><a href="index-complete.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+          <li><a href="blog-complete.html" data-fr="Blog" data-en="Blog">Blog</a></li>
+          <li><a href="#cercle" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a></li>
+          <li><a href="/forum/" data-fr="Le forum" data-en="The forum">Le forum</a></li>
+          <li><a href="toolkit-landing.html" data-fr="Le Kit gratuit" data-en="The free Kit">Le Kit gratuit</a></li>
+          <li><a href="review.html" data-fr="Laisser un avis" data-en="Leave a review">Laisser un avis</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Aide" data-en="Help">Aide</h4>
+        <ul>
+          <li><a href="#payer" data-fr="Comment payer" data-en="How to pay">Comment payer</a></li>
+          <li><a href="contact-complete.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+          <li><a href="consultation.html" data-fr="Consultation" data-en="Consultation">Consultation</a></li>
+          <li><a href="about-complete.html" data-fr="À propos" data-en="About">À propos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Légal" data-en="Legal">Légal</h4>
+        <ul>
+          <li><a href="privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></li>
+          <li><a href="terms.html" data-fr="Conditions" data-en="Terms">Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Schicgirl —
+        <span data-fr="Cheveux crépus Type 4 · 4A 4B 4C" data-en="Type 4 coily hair · 4A 4B 4C">Cheveux crépus Type 4 · 4A 4B 4C</span></span>
+      <span data-fr="En tant qu'associée Amazon, je gagne des revenus grâce aux achats éligibles."
+            data-en="As an Amazon Associate I earn from qualifying purchases.">
+        En tant qu'associée Amazon, je gagne des revenus grâce aux achats éligibles.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/site-complete.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* Regroupement des guides par besoin. Un guide peut appartenir a
+     plusieurs groupes — l'id vient de catalog.js. */
+  var GROUPS = [
+    { id: "all",         fr: "Tout",           en: "All" },
+    { id: "comprendre",  fr: "Comprendre",     en: "Understand", ids: ["why-nothing-works", "hydratee"] },
+    { id: "routine",     fr: "Routine",        en: "Routine",    ids: ["creer-ma-routine", "natural-hair-planner", "recettes"] },
+    { id: "problemes",   fr: "Problèmes",      en: "Problems",   ids: ["pellicules", "hydratee", "transition"] }
+  ];
+
+  var active = "all";
+
+  function inGroup(p, g) {
+    if (g === "all") return true;
+    var grp = GROUPS.filter(function (x) { return x.id === g; })[0];
+    return !!(grp && grp.ids && grp.ids.indexOf(p.id) > -1);
+  }
+
+  function paint() {
+    var lang = SGSite.lang;
+    var all = SGSite.products();
+
+    /* Les filtres, avec le nombre de guides dans chaque groupe. */
+    document.getElementById("shopFilters").innerHTML = GROUPS.map(function (g) {
+      var n = all.filter(function (p) { return inGroup(p, g.id); }).length;
+      return '<button type="button" class="filter' + (active === g.id ? " on" : "") + '" data-g="' +
+             g.id + '">' + SGSite.esc(lang === "fr" ? g.fr : g.en) +
+             '<span class="n">' + n + '</span></button>';
+    }).join("");
+
+    var list = all.filter(function (p) { return inGroup(p, active); });
+    document.getElementById("shopGrid").innerHTML = list.map(SGSite.productCard).join("");
+    document.getElementById("shopEmpty").classList.toggle("hide", list.length > 0);
+  }
+
+  document.getElementById("shopFilters").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-g]");
+    if (!b) return;
+    active = b.getAttribute("data-g");
+    paint();
+  });
+
+  paint();
+  SGSite.onLang(paint);
+})();
+</script>
+</body>
+</html>

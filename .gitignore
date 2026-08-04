@@ -76,3 +76,7 @@ _dev-archive/
 *.prehydbak.*
 *.prerevbak
 *.precov*bak
+
+# Originaux deposes a la main, jamais servis par le site.
+# Les vraies images utilisees sont copiees dans assets/.
+_sources-images/

@@ -1,0 +1,334 @@
+<!doctype html>
+<!--
+═══════════════════════════════════════════════════════════════════
+  SCHICGIRL — contact-complete.html
+  Version "site complet" de la page Contact, a comparer avec
+  contact.html (qui reste en place et n'est pas modifie).
+
+  Meme navigation et meme pied de page que les autres pages
+  "-complete". Pas de formulaire : le site est statique (GitHub
+  Pages), il n'y a pas de serveur pour recevoir un envoi. Les
+  contacts passent donc par email et Facebook, comme aujourd'hui.
+  © 2024–2026 Schicgirl. All rights reserved.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fr"
+      data-title-fr="Contact — Schicgirl, parlons cheveux crépus Type 4"
+      data-title-en="Contact — Schicgirl, let's talk Type 4 coily hair">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Schicgirl, parlons cheveux crépus Type 4</title>
+<meta name="description" content="Une question sur ta routine, un guide, une commande ou une collaboration ? Écris à Schicgirl par email ou sur Facebook — réponse sous 48 h.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://schicgirl.me/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact — Schicgirl">
+<meta property="og:description" content="Une question sur ta routine, un guide, une collaboration ? Écris-moi.">
+<meta property="og:image" content="https://schicgirl.me/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-complete.css">
+
+<!-- Pose « js » sur <html> avant le premier rendu. La CSS ne masque les
+     blocs .reveal que si cette classe est presente : script casse =
+     page quand meme lisible, et pas de clignotement au chargement. -->
+<script>document.documentElement.className+=" js";</script>
+
+<style>
+  /* Tuiles de contact — specifiques a cette page */
+  .tile{
+    display:flex;align-items:center;gap:17px;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:22px 24px;box-shadow:var(--shadow-s);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line-gold)}
+  .tile .ico{
+    flex:none;width:48px;height:48px;border-radius:50%;
+    background:var(--gold-pale);border:1px solid var(--line-gold);
+    display:flex;align-items:center;justify-content:center;font-size:21px;
+  }
+  .tile .ico svg{width:20px;height:20px;fill:var(--gold-deep)}
+  .tile b{display:block;font-size:16px;color:var(--ink);margin-bottom:2px}
+  .tile span.sub{font-size:13.5px;color:var(--muted);line-height:1.5;word-break:break-word}
+  .tile .go{margin-left:auto;color:var(--gold);font-size:18px;flex:none}
+
+  .delay{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--gold-pale);border:1px solid var(--line-gold);border-radius:var(--r-pill);
+    padding:7px 16px;font-size:12.5px;font-weight:600;color:var(--gold-deep);
+  }
+  .contact-art img{width:100%;border-radius:var(--r-l);box-shadow:var(--shadow-lg);aspect-ratio:4/5;object-fit:cover}
+  @media(max-width:900px){.contact-art{max-width:380px;margin:0 auto}}
+</style>
+</head>
+<body>
+
+<div class="topstrip">
+  <span data-fr="Une question avant d'acheter ? Écris-moi, je réponds moi-même."
+        data-en="A question before buying? Write to me — I answer personally.">Une question avant d'acheter ? Écris-moi, je réponds moi-même.</span>
+  <a href="#faq" data-fr="Voir la FAQ →" data-en="See the FAQ →">Voir la FAQ →</a>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index-complete.html" aria-label="Schicgirl">
+      <img src="assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="brand-name">Schic<span>girl</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index-complete.html" data-fr="Accueil"   data-en="Home">Accueil</a>
+      <a href="shop-complete.html"  data-fr="Guides"    data-en="Guides">Guides</a>
+      <a href="shop-complete.html#cercle" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="blog-complete.html"  data-fr="Blog"      data-en="Blog">Blog</a>
+      <a href="about-complete.html" data-fr="À propos"  data-en="About">À propos</a>
+      <a href="contact-complete.html" class="on" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtog" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-gold btn-sm nav-cta" href="mailto:contacte.schicgirl@gmail.com" data-fr="M'écrire" data-en="Email me">M'écrire</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="delay">⏱ <span data-fr="Réponse sous 48 h" data-en="Reply within 48 h">Réponse sous 48 h</span></span>
+      <h1 style="margin:18px 0 18px" data-fr="Parlons <em>cheveux</em>." data-en="Let's talk <em>hair</em>.">Parlons <em>cheveux</em>.</h1>
+      <p class="lead"
+         data-fr="Une question sur ta routine, un guide, une commande ou une collaboration ? Écris-moi — c'est moi qui réponds, pas un robot."
+         data-en="A question about your routine, a guide, an order or a collaboration? Write to me — I answer personally, not a bot.">
+        Une question sur ta routine, un guide, une commande ou une collaboration ? Écris-moi — c'est moi qui réponds, pas un robot.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold btn-lg" href="mailto:contacte.schicgirl@gmail.com" data-fr="Envoyer un email" data-en="Send an email">Envoyer un email</a>
+        <a class="btn btn-ghost btn-lg" href="https://www.facebook.com/schicgirl" target="_blank" rel="noopener" data-fr="Message Facebook" data-en="Facebook message">Message Facebook</a>
+      </div>
+    </div>
+    <div class="hero-art contact-art">
+      <img src="assets/contact.jpg" fetchpriority="high"
+           data-fr-attr="alt:Contacter Schicgirl" data-en-attr="alt:Contact Schicgirl"
+           alt="Contacter Schicgirl"
+           onerror="sgArtFallback(this,'.contact-art')">
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ CANAUX ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Le plus rapide" data-en="Fastest way">Le plus rapide</span>
+      <h2 data-fr="Où me trouver" data-en="Where to find me">Où me trouver</h2>
+      <p class="lead" data-fr="Deux canaux, c'est tout. Je les lis tous les deux — choisis celui que tu préfères."
+                      data-en="Two channels, that's it. I read both — pick whichever you prefer.">
+        Deux canaux, c'est tout. Je les lis tous les deux — choisis celui que tu préfères.</p>
+    </div>
+
+    <div class="grid grid-2" style="max-width:860px;margin:0 auto">
+      <a class="tile reveal" href="mailto:contacte.schicgirl@gmail.com">
+        <span class="ico">✉️</span>
+        <span>
+          <b data-fr="Email" data-en="Email">Email</b>
+          <span class="sub">contacte.schicgirl@gmail.com</span>
+        </span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+      <a class="tile reveal" href="https://www.facebook.com/schicgirl" target="_blank" rel="noopener">
+        <span class="ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+        </span>
+        <span>
+          <b>Facebook</b>
+          <span class="sub" data-fr="Message direct &amp; conseils quotidiens" data-en="Direct message &amp; daily tips">Message direct &amp; conseils quotidiens</span>
+        </span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+    </div>
+
+    <p class="note" style="max-width:860px;margin:26px auto 0"
+       data-fr="Pour aller plus vite : dis-moi ton <b>type de cheveux</b> (4A, 4B, 4C ou « je ne sais pas »), ton <b>souci principal</b>, et — s'il s'agit d'une commande — l'<b>email utilisé au paiement</b>."
+       data-en="To speed things up: tell me your <b>hair type</b> (4A, 4B, 4C or “I don't know”), your <b>main concern</b>, and — for an order — the <b>email you paid with</b>.">
+      Pour aller plus vite : dis-moi ton <b>type de cheveux</b>, ton <b>souci principal</b>, et pour une commande l'<b>email utilisé au paiement</b>.</p>
+  </div>
+</section>
+
+<!-- ═══════════ POUR QUOI M'ÉCRIRE ═══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Pour quoi m'écrire" data-en="What to write about">Pour quoi m'écrire</span>
+      <h2 data-fr="Tu peux m'écrire pour <em>tout ça</em>." data-en="You can reach out about <em>all of this</em>.">Tu peux m'écrire pour <em>tout ça</em>.</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <div class="card-body">
+          <div style="font-size:28px">💇🏾‍♀️</div>
+          <h3 data-fr="Ta routine" data-en="Your routine">Ta routine</h3>
+          <p class="card-txt" data-fr="Tu bloques sur une étape, un produit, une texture ? Décris-moi ta situation."
+                              data-en="Stuck on a step, a product, a texture? Describe your situation.">Tu bloques sur une étape, un produit, une texture ? Décris-moi ta situation.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-body">
+          <div style="font-size:28px">📦</div>
+          <h3 data-fr="Une commande" data-en="An order">Une commande</h3>
+          <p class="card-txt" data-fr="Guide non reçu, mauvais email, question de paiement — je règle ça à la main."
+                              data-en="Guide not received, wrong email, payment question — I sort it by hand.">Guide non reçu, mauvais email, question de paiement — je règle ça à la main.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-body">
+          <div style="font-size:28px">🤝</div>
+          <h3 data-fr="Une collaboration" data-en="A collaboration">Une collaboration</h3>
+          <p class="card-txt" data-fr="Marques, médias, partenariats — mets « Collaboration » en objet."
+                              data-en="Brands, media, partnerships — put “Collaboration” in the subject.">Marques, médias, partenariats — mets « Collaboration » en objet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="section" id="faq">
+  <div class="wrap-narrow">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Avant d'écrire" data-en="Before you write">Avant d'écrire</span>
+      <h2 data-fr="Questions fréquentes" data-en="Frequently asked">Questions fréquentes</h2>
+      <p class="lead" style="margin-inline:auto" data-fr="La réponse est peut-être déjà là — ça t'évitera d'attendre 48 h."
+                                                 data-en="Your answer might already be here — it'll save you a 48 h wait.">
+        La réponse est peut-être déjà là — ça t'évitera d'attendre 48 h.</p>
+    </div>
+
+    <div class="faq reveal">
+      <details open>
+        <summary data-fr="Je n'ai pas reçu mon guide après l'achat" data-en="I didn't receive my guide after buying">Je n'ai pas reçu mon guide après l'achat</summary>
+        <div class="answer" data-fr="Regarde d'abord dans tes <b>spams</b> et dans l'onglet <b>Promotions</b> de Gmail, puis vérifie l'email utilisé au moment du paiement. Si tu n'as toujours rien après une heure, écris-moi avec ton numéro de commande — je te renvoie tout à la main."
+                            data-en="First check your <b>spam</b> folder and Gmail's <b>Promotions</b> tab, then check the email you used at checkout. If there's still nothing after an hour, email me your order number — I'll resend it by hand.">
+          Regarde dans tes spams et l'onglet Promotions, puis vérifie l'email utilisé au paiement.</div>
+      </details>
+      <details>
+        <summary data-fr="Comment je paie depuis mon pays ?" data-en="How do I pay from my country?">Comment je paie depuis mon pays ?</summary>
+        <div class="answer" data-fr="Tout passe par Selar : tu choisis ta devise en haut de la page, puis tu paies par carte, mobile money ou Wave selon ton pays. Les étapes détaillées sont sur la <a href='shop-complete.html#payer' style='color:var(--gold-deep);font-weight:600'>page boutique</a>."
+                            data-en="Everything goes through Selar: pick your currency at the top of the page, then pay by card, mobile money or Wave depending on your country. Full steps are on the <a href='shop-complete.html#payer' style='color:var(--gold-deep);font-weight:600'>shop page</a>.">
+          Tout passe par Selar — carte, mobile money ou Wave, dans ta devise.</div>
+      </details>
+      <details>
+        <summary data-fr="Tu fais des consultations personnalisées ?" data-en="Do you do personalised consultations?">Tu fais des consultations personnalisées ?</summary>
+        <div class="answer" data-fr="Oui. Tu peux <a href='consultation.html' style='color:var(--gold-deep);font-weight:600'>réserver un créneau</a>, ou m'écrire directement en précisant ton type de cheveux et ton souci principal."
+                            data-en="Yes. You can <a href='consultation.html' style='color:var(--gold-deep);font-weight:600'>book a slot</a>, or write to me directly with your hair type and main concern.">
+          Oui — réserve un créneau, ou écris-moi directement.</div>
+      </details>
+      <details>
+        <summary data-fr="Quel guide me faut-il ?" data-en="Which guide do I need?">Quel guide me faut-il ?</summary>
+        <div class="answer" data-fr="Si tu ne sais pas par où commencer, prends d'abord le <a href='toolkit-landing.html' style='color:var(--gold-deep);font-weight:600'>Kit Type 4</a>, il est gratuit. Sinon décris-moi ton souci en deux lignes et je te dis lequel te servira vraiment — même si c'est aucun."
+                            data-en="If you don't know where to start, get the free <a href='toolkit-landing.html' style='color:var(--gold-deep);font-weight:600'>Type 4 Kit</a> first. Otherwise describe your issue in two lines and I'll tell you which one will actually help — even if the answer is none.">
+          Commence par le Kit gratuit, ou décris-moi ton souci et je te oriente.</div>
+      </details>
+      <details>
+        <summary data-fr="Je peux annuler Le Cercle quand je veux ?" data-en="Can I cancel The Circle anytime?">Je peux annuler Le Cercle quand je veux ?</summary>
+        <div class="answer" data-fr="Oui, en un clic depuis Selar, sans avoir à me demander. Les guides que tu as achetés séparément restent à toi définitivement."
+                            data-en="Yes, in one click from Selar, without asking me. Any guide you bought separately stays yours forever.">
+          Oui, en un clic depuis Selar. Les guides achetés séparément restent à toi.</div>
+      </details>
+      <details>
+        <summary data-fr="Vous proposez des partenariats de marque ?" data-en="Do you offer brand partnerships?">Vous proposez des partenariats de marque ?</summary>
+        <div class="answer" data-fr="Je collabore uniquement avec des produits que j'approuve vraiment et que j'ai testés. Écris-moi par email avec « Collaboration » en objet."
+                            data-en="I only partner with products I genuinely approve of and have tested. Email me with “Collaboration” in the subject.">
+          Uniquement avec des produits testés et approuvés. Objet : « Collaboration ».</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="section-sm">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow" data-fr="Toujours une question ?" data-en="Still have a question?">Toujours une question ?</span>
+          <h2 style="margin:10px 0 12px" data-fr="Écris-moi, vraiment." data-en="Write to me, really.">Écris-moi, vraiment.</h2>
+          <p data-fr="Aucune question n'est bête. Si tes cheveux te posent problème depuis des années, c'est qu'on t'a mal expliqué — pas que tu n'as pas compris."
+             data-en="No question is silly. If your hair has been a problem for years, it's because it was badly explained — not because you didn't get it.">
+            Aucune question n'est bête. Si tes cheveux te posent problème depuis des années, c'est qu'on t'a mal expliqué.</p>
+        </div>
+        <div style="text-align:center">
+          <a class="btn btn-gold btn-lg" href="mailto:contacte.schicgirl@gmail.com" data-fr="M'écrire maintenant" data-en="Email me now">M'écrire maintenant</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand-name">Schic<span>girl</span></span>
+        <p data-fr="Clarté, soin et confiance pour cheveux crépus Type 4. Sans jargon, sans promesse miracle."
+           data-en="Clarity, care and confidence for Type 4 coily hair. No jargon, no miracle promises.">
+          Clarté, soin et confiance pour cheveux crépus Type 4.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/schicgirl" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="mailto:contacte.schicgirl@gmail.com" aria-label="Email">✉</a>
+          <a href="https://www.amazon.com/shop/schicgirl" target="_blank" rel="noopener" aria-label="Amazon">🛍</a>
+        </div>
+      </div>
+      <div>
+        <h4 data-fr="Découvrir" data-en="Discover">Découvrir</h4>
+        <ul>
+          <li><a href="index-complete.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+          <li><a href="blog-complete.html" data-fr="Blog" data-en="Blog">Blog</a></li>
+          <li><a href="shop-complete.html" data-fr="Tous les guides" data-en="All guides">Tous les guides</a></li>
+          <li><a href="shop-complete.html#cercle" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a></li>
+          <li><a href="/forum/" data-fr="Le forum" data-en="The forum">Le forum</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Aide" data-en="Help">Aide</h4>
+        <ul>
+          <li><a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
+          <li><a href="shop-complete.html#payer" data-fr="Comment payer" data-en="How to pay">Comment payer</a></li>
+          <li><a href="consultation.html" data-fr="Consultation" data-en="Consultation">Consultation</a></li>
+          <li><a href="about-complete.html" data-fr="À propos" data-en="About">À propos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Légal" data-en="Legal">Légal</h4>
+        <ul>
+          <li><a href="privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></li>
+          <li><a href="terms.html" data-fr="Conditions" data-en="Terms">Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Schicgirl —
+        <span data-fr="Cheveux crépus Type 4 · 4A 4B 4C" data-en="Type 4 coily hair · 4A 4B 4C">Cheveux crépus Type 4 · 4A 4B 4C</span></span>
+      <span>contacte.schicgirl@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site-complete.js"></script>
+</body>
+</html>

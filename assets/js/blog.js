@@ -20,15 +20,15 @@
 
   // ── Posts (newest first) ──
   var POSTS = [
-  { slug: "routine-cheveux-crepus-debutante", cat: "routine", emoji: "🌱", img: "blog/journal_capillaire.webp", date: "2026-07-29",
+  { slug: "routine-cheveux-crepus-debutante", cat: "routine", emoji: "🌱", img: "blog/routine-debutante.jpg", date: "2026-07-29",
     title_fr: "Routine cheveux crépus : par où commencer quand on débute", title_en: "Coily hair routine: where to start as a beginner",
     exc_fr: "Quatre gestes, dans le bon ordre, avec ce que tu as déjà. Le reste vient après.",
     exc_en: "Four steps, in the right order, with what you already own. The rest comes later." },
-  { slug: "shrinkage-cheveux-crepus", cat: "comprendre", emoji: "🌀", img: "blog/journal_capillaire.webp", date: "2026-07-29",
+  { slug: "shrinkage-cheveux-crepus", cat: "comprendre", emoji: "🌀", img: "blog/shrinkage-cheveux-crepus.jpg", date: "2026-07-29",
     title_fr: "Shrinkage : pourquoi tes cheveux paraissent courts", title_en: "Shrinkage: why your hair looks short",
     exc_fr: "Jusqu'à 80 % de ta longueur disparaît à l'œil. Et c'est bon signe.",
     exc_en: "Up to 80% of your length disappears from view. And that is a good sign." },
-  { slug: "huile-de-ricin-cheveux", cat: "produits", emoji: "🫒", img: "blog/journal_capillaire.webp", date: "2026-07-29",
+  { slug: "huile-de-ricin-cheveux", cat: "produits", emoji: "🫒", img: "blog/huile-de-ricin.jpg", date: "2026-07-29",
     title_fr: "Huile de ricin : ce qu'elle fait vraiment", title_en: "Castor oil: what it actually does",
     exc_fr: "Elle ne fait pas pousser les cheveux. Ce qu'elle fait est plus utile que la promesse.",
     exc_en: "It does not grow hair. What it does is more useful than the promise." },
@@ -54,21 +54,21 @@
       exc_en: "Sulfates, silicones, drying alcohols: what really dries out coily hair.",
       read_fr: "6 min de lecture", read_en: "6 min read" },
 
-    { slug: "hydrater-cheveux-crepus-secs", cat: "hydratation", emoji: "💧", img: "blog/blog3.jpg", date: "2026-06-22",
+    { slug: "hydrater-cheveux-crepus-secs", cat: "hydratation", emoji: "💧", img: "blog/hydrater-cheveux-crepus-secs.jpg", date: "2026-06-22",
       title_fr: "Cheveux crépus toujours secs ? Voici pourquoi (et la solution)",
       title_en: "4C hair always dry? Here's why (and the fix)",
       exc_fr: "Hydrater n'est pas sceller. Comprends ta porosité et retiens enfin l'eau.",
       exc_en: "Moisturizing isn't sealing. Understand your porosity and finally lock water in.",
       read_fr: "7 min de lecture", read_en: "7 min read" },
 
-    { slug: "wash-day-cheveux-crepus", cat: "routine", emoji: "🚿", img: "blog/blog2.jpg", date: "2026-06-22",
+    { slug: "wash-day-cheveux-crepus", cat: "routine", emoji: "🚿", img: "blog/wash-day-cheveux-crepus.jpg", date: "2026-06-22",
       title_fr: "Le wash day parfait pour cheveux crépus 4C",
       title_en: "The perfect wash day for 4C coily hair",
       exc_fr: "Pré-poo, lavage, soin, LOC : la routine du jour de lavage, étape par étape.",
       exc_en: "Pre-poo, cleanse, condition, LOC: the wash day routine, step by step.",
       read_fr: "8 min de lecture", read_en: "8 min read" },
 
-    { slug: "transition-sans-big-chop", cat: "bases", emoji: "🌀", img: "blog/blog1.jpg", date: "2026-06-22",
+    { slug: "transition-sans-big-chop", cat: "bases", emoji: "🌀", img: "blog/transition-sans-big-chop.jpg", date: "2026-06-22",
       title_fr: "Transition sans big chop : passer au naturel en douceur",
       title_en: "Transitioning to natural hair without a big chop",
       exc_fr: "Abandonner le défrisage sans tout couper ? Voici comment gérer deux textures sans casse.",

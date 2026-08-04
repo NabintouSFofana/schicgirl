@@ -245,6 +245,12 @@ a{color:inherit;text-decoration:none}
     { label_fr:"Facebook",         label_en:"Facebook",
       url:"https://facebook.com/schicgirl" },
 
+    /* Lien d'invitation WhatsApp (wa.me/message/...). Avantage : ton
+       numero n'apparait jamais sur la page. Si tu regeneres le lien
+       depuis WhatsApp Business, remplace-le ici. */
+    { label_fr:"WhatsApp",         label_en:"WhatsApp",
+      url:"https://wa.me/message/ZDXXV2OOOKOME1" },
+
     { label_fr:"M'écrire",         label_en:"Email me",
       url:"mailto:contacte.schicgirl@gmail.com" },
 
@@ -268,10 +274,10 @@ a{color:inherit;text-decoration:none}
         "Valide. Tu reçois <b>immédiatement</b> un email de Selar avec ton produit à télécharger, ou ton accès si c'est un abonnement."
       ],
       figs:[
-        { src:"assets/how-to-pay-currency-fr.svg",
-          cap:"Le sélecteur de devise, en haut de la page Selar." },
-        { src:"assets/how-to-pay-checkout-fr.svg",
-          cap:"Le choix du moyen de paiement, à l'étape suivante." }
+        { src:"assets/how-to-pay-currency-fr.png",
+          cap:"① Le sélecteur de devise (XOF, EUR, USD…) en haut de la page Selar. ② Ton panier, déjà converti dans ta devise." },
+        { src:"assets/how-to-pay-checkout-fr.png",
+          cap:"Le choix du moyen de paiement : mobile money (Orange, MTN, Moov, Wave, Airtel…) ou carte." }
       ],
       note:"⚠️ Tu ne reçois rien ? Regarde d'abord dans tes <b>spams</b> et dans l'onglet <b>Promotions</b> de Gmail. Si ce n'est toujours pas là, écris-moi : je te renvoie tout à la main.",
       help:"Un souci ? Écris-moi →"
@@ -286,11 +292,14 @@ a{color:inherit;text-decoration:none}
         "Pick your <b>payment method</b>: bank card, mobile money (Orange, MTN, Moov, Wave…) or transfer, depending on what Selar offers in your country.",
         "Confirm. Selar emails you <b>right away</b> with your download, or with your access if it's a subscription."
       ],
+      /* Memes captures qu'en francais : l'interface Selar est identique,
+         seule la langue de l'interface change. A remplacer le jour ou tu
+         auras des captures en anglais. */
       figs:[
-        { src:"assets/how-to-pay-currency-en.svg",
-          cap:"The currency selector, at the top of the Selar page." },
-        { src:"assets/how-to-pay-checkout-en.svg",
-          cap:"Choosing your payment method, on the next step." }
+        { src:"assets/how-to-pay-currency-fr.png",
+          cap:"① The currency selector (XOF, EUR, USD…) at the top of the Selar page. ② Your cart, already converted." },
+        { src:"assets/how-to-pay-checkout-fr.png",
+          cap:"Choosing your payment method: mobile money (Orange, MTN, Moov, Wave, Airtel…) or card." }
       ],
       note:"⚠️ Nothing arrived? Check your <b>spam</b> folder and Gmail's <b>Promotions</b> tab first. Still nothing — email me and I'll resend it by hand.",
       help:"Something went wrong? Email me →"

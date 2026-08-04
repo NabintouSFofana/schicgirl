@@ -1,0 +1,322 @@
+<!doctype html>
+<!--
+═══════════════════════════════════════════════════════════════════
+  SCHICGIRL — about-complete.html
+  Version "site complet" de la page À propos, a comparer avec
+  about.html (qui reste en place et n'est pas modifie).
+
+  Meme navigation et meme pied de page que index-complete.html,
+  shop-complete.html et blog-complete.html.
+  © 2024–2026 Schicgirl. All rights reserved.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fr"
+      data-title-fr="À propos — Schicgirl, spécialiste cheveux crépus Type 4"
+      data-title-en="About — Schicgirl, Type 4 coily hair specialist">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>À propos — Schicgirl, spécialiste cheveux crépus Type 4</title>
+<meta name="description" content="Schicgirl est née d'une certitude simple : la bonne méthode change tout, surtout pour les cheveux crépus Type 4. Notre mission, mon histoire et nos principes.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://schicgirl.me/about.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="À propos — Schicgirl">
+<meta property="og:description" content="Tes cheveux ne sont pas le problème. La bonne méthode change tout.">
+<meta property="og:image" content="https://schicgirl.me/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-complete.css">
+
+<!-- Pose « js » sur <html> avant le premier rendu. La CSS ne masque les
+     blocs .reveal que si cette classe est presente : script casse =
+     page quand meme lisible, et pas de clignotement au chargement. -->
+<script>document.documentElement.className+=" js";</script>
+
+<style>
+  /* Citation mise en avant — specifique a cette page */
+  .pull{
+    font-family:var(--serif);font-size:clamp(21px,2.6vw,27px);font-style:italic;
+    line-height:1.45;color:var(--gold-deep);
+    border-left:2px solid var(--gold);padding:6px 0 6px 24px;margin:28px 0;
+  }
+  .values{list-style:none;display:grid;gap:20px}
+  .values li{display:flex;gap:15px;align-items:flex-start}
+  .values .k{
+    flex:none;width:34px;height:34px;border-radius:50%;
+    background:var(--gold-pale);border:1px solid var(--line-gold);color:var(--gold-deep);
+    display:flex;align-items:center;justify-content:center;font-size:15px;
+  }
+  .values b{display:block;font-size:16px;color:var(--ink);margin-bottom:3px}
+  .values span{font-size:14.5px;color:var(--muted);line-height:1.6}
+  .portrait img{width:100%;border-radius:var(--r-l);box-shadow:var(--shadow-lg);aspect-ratio:4/5;object-fit:cover}
+  /* L'image de « Mon histoire » est carree : on garde le 1/1 pour ne rien rogner. */
+  .portrait-square img{aspect-ratio:1/1}
+  @media(max-width:900px){.portrait{max-width:380px;margin:0 auto}}
+</style>
+</head>
+<body>
+
+<div class="topstrip">
+  <span data-fr="Le Kit Type 4 est gratuit — comprends enfin tes cheveux."
+        data-en="The Type 4 Kit is free — finally understand your hair.">Le Kit Type 4 est gratuit — comprends enfin tes cheveux.</span>
+  <a href="toolkit-landing.html" data-fr="Le recevoir →" data-en="Get it →">Le recevoir →</a>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index-complete.html" aria-label="Schicgirl">
+      <img src="assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="brand-name">Schic<span>girl</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index-complete.html" data-fr="Accueil"   data-en="Home">Accueil</a>
+      <a href="shop-complete.html"  data-fr="Guides"    data-en="Guides">Guides</a>
+      <a href="shop-complete.html#cercle" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="blog-complete.html"  data-fr="Blog"      data-en="Blog">Blog</a>
+      <a href="about-complete.html" class="on" data-fr="À propos" data-en="About">À propos</a>
+      <a href="contact-complete.html" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtog" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-gold btn-sm nav-cta" href="shop-complete.html#cercle" data-fr="Rejoindre" data-en="Join">Rejoindre</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="eyebrow" data-fr="Spécialiste cheveux crépus Type 4" data-en="Type 4 coily-hair specialist">Spécialiste cheveux crépus Type 4</span>
+      <h1 style="margin:16px 0 18px"
+          data-fr="Tes cheveux ne sont pas le <em>problème</em>."
+          data-en="Your hair was never the <em>problem</em>.">Tes cheveux ne sont pas le <em>problème</em>.</h1>
+      <p class="lead"
+         data-fr="Schicgirl est née d'une certitude simple : la bonne méthode change tout, surtout pour les cheveux crépus."
+         data-en="Schicgirl was born from one simple belief: the right method changes everything — especially for coily hair.">
+        Schicgirl est née d'une certitude simple : la bonne méthode change tout, surtout pour les cheveux crépus.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold btn-lg" href="shop-complete.html" data-fr="Découvrir les guides" data-en="Explore the guides">Découvrir les guides</a>
+        <a class="btn btn-ghost btn-lg" href="contact-complete.html" data-fr="Me contacter" data-en="Get in touch">Me contacter</a>
+      </div>
+    </div>
+    <!-- Image carree : le 1/1 evite de rogner le feuillage sur les cotes. -->
+    <div class="hero-art portrait portrait-square">
+      <img src="assets/about-histoire.jpg" fetchpriority="high"
+           data-fr-attr="alt:Cheveux crépus Type 4, vivants et en bonne santé"
+           data-en-attr="alt:Type 4 coily hair, alive and healthy"
+           alt="Cheveux crépus Type 4, vivants et en bonne santé"
+           onerror="sgArtFallback(this,'.hero-art')">
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ MISSION ═══════════ -->
+<section class="section">
+  <div class="wrap-narrow">
+    <div class="section-head reveal" style="margin-bottom:22px">
+      <span class="eyebrow" data-fr="Notre mission" data-en="Our mission">Notre mission</span>
+      <h2 data-fr="Rendre les cheveux crépus <em>simples à comprendre</em>."
+          data-en="Making coily hair <em>simple to understand</em>.">Rendre les cheveux crépus <em>simples à comprendre</em>.</h2>
+    </div>
+    <div class="prose reveal" style="font-size:16.5px">
+      <p data-fr="Schicgirl aide les femmes aux cheveux bouclés, frisés et crépus — surtout le <b>Type 4 (4A, 4B, 4C)</b> — à comprendre pourquoi leurs cheveux sont secs, à construire une routine simple qui tient dans la vraie vie, et à choisir des produits dignes de confiance sans se ruiner."
+         data-en="Schicgirl helps women with curly, kinky and coily hair — especially <b>Type 4 (4A, 4B, 4C)</b> — understand why their hair feels dry, build a simple routine that survives real life, and choose trusted products without overspending.">
+        Schicgirl aide les femmes aux cheveux bouclés, frisés et crépus — surtout le <b>Type 4 (4A, 4B, 4C)</b> — à comprendre pourquoi leurs cheveux sont secs, à construire une routine simple qui tient dans la vraie vie, et à choisir des produits dignes de confiance sans se ruiner.</p>
+      <p data-fr="Pas de jargon. Pas de routine à 12 étapes impossible à tenir. Juste des explications claires, des plans pas à pas et des outils gratuits pour que tu reprennes le contrôle de tes cheveux."
+         data-en="No jargon. No impossible 12-step routine. Just clear explanations, step-by-step plans and free tools so you can take back control of your hair.">
+        Pas de jargon. Pas de routine à 12 étapes impossible à tenir. Juste des explications claires, des plans pas à pas et des outils gratuits pour que tu reprennes le contrôle de tes cheveux.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MON HISTOIRE ═══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="grid grid-2" style="gap:54px;align-items:center">
+      <!-- Image portrait : on garde le 4/5 par defaut. -->
+      <div class="portrait reveal">
+        <img src="assets/about-hero.jpg" loading="lazy"
+             data-fr-attr="alt:Schicgirl Naturals — soin des cheveux crépus Type 4"
+             data-en-attr="alt:Schicgirl Naturals — Type 4 coily hair care"
+             alt="Schicgirl Naturals — soin des cheveux crépus Type 4"
+             onerror="sgArtFallback(this,'.portrait')">
+      </div>
+      <div class="reveal">
+        <span class="eyebrow" data-fr="Mon histoire" data-en="My story">Mon histoire</span>
+        <h2 style="margin:10px 0 16px" data-fr="Bonjour, moi c'est Schicgirl 👋" data-en="Hi, I'm Schicgirl 👋">Bonjour, moi c'est Schicgirl 👋</h2>
+        <div class="prose">
+          <p data-fr="J'ai grandi en pensant que mes cheveux étaient « trop ». Trop secs, trop difficiles, trop longs à coiffer. J'ai essayé tous les produits à la mode, suivi toutes les routines virales — et mes cheveux cassaient quand même."
+             data-en="I grew up believing my hair was just “too much.” Too dry, too difficult, too time-consuming. I tried every trending product, followed every viral routine — and my hair still kept breaking.">
+            J'ai grandi en pensant que mes cheveux étaient « trop ». Trop secs, trop difficiles, trop longs à coiffer. J'ai essayé tous les produits à la mode, suivi toutes les routines virales — et mes cheveux cassaient quand même.</p>
+          <p data-fr="Le déclic n'est pas venu d'un produit miracle. Il est venu de la <b>compréhension</b> : la porosité, l'hydratation, le scellage, le démêlage en douceur. Une fois la méthode comprise, tout est devenu plus simple — et mes cheveux ont enfin poussé en bonne santé."
+             data-en="The turning point wasn't a miracle product. It came from <b>understanding</b>: porosity, moisture, sealing, gentle detangling. Once I understood the method, everything got simpler — and my hair finally grew healthy.">
+            Le déclic n'est pas venu d'un produit miracle. Il est venu de la <b>compréhension</b> : la porosité, l'hydratation, le scellage, le démêlage en douceur.</p>
+        </div>
+        <p class="pull" data-fr="« J'ai créé Schicgirl pour donner aux autres femmes le raccourci que j'aurais aimé avoir. »"
+                        data-en="“I built Schicgirl to give other women the shortcut I wish I'd had.”">
+          « J'ai créé Schicgirl pour donner aux autres femmes le raccourci que j'aurais aimé avoir. »</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRINCIPES ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Ce qu'on croit" data-en="What we believe">Ce qu'on croit</span>
+      <h2 data-fr="Nos principes" data-en="Our principles">Nos principes</h2>
+    </div>
+    <div class="grid grid-2" style="gap:34px 46px;max-width:900px;margin:0 auto">
+      <ul class="values reveal">
+        <li><span class="k">🔍</span><span>
+          <b data-fr="La compréhension avant les produits" data-en="Understanding before products">La compréhension avant les produits</b>
+          <span data-fr="Savoir pourquoi bat acheter au hasard. Toujours." data-en="Knowing why beats buying blindly. Always.">Savoir pourquoi bat acheter au hasard. Toujours.</span></span></li>
+        <li><span class="k">🌿</span><span>
+          <b data-fr="Simple gagne toujours" data-en="Simple always wins">Simple gagne toujours</b>
+          <span data-fr="Une routine qu'on tient vaut mieux qu'une routine parfaite abandonnée." data-en="A routine you keep beats a perfect one you quit.">Une routine qu'on tient vaut mieux qu'une routine parfaite abandonnée.</span></span></li>
+      </ul>
+      <ul class="values reveal">
+        <li><span class="k">👑</span><span>
+          <b data-fr="Tes cheveux sont normaux" data-en="Your hair is normal">Tes cheveux sont normaux</b>
+          <span data-fr="Le crépu n'est pas un défaut à corriger." data-en="Coily texture is not a flaw to fix.">Le crépu n'est pas un défaut à corriger.</span></span></li>
+        <li><span class="k">🤝</span><span>
+          <b data-fr="Honnêteté totale" data-en="Full honesty">Honnêteté totale</b>
+          <span data-fr="On recommande seulement ce qu'on utiliserait nous-mêmes." data-en="We only recommend what we'd use ourselves.">On recommande seulement ce qu'on utiliserait nous-mêmes.</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMMENT ON AIDE ═══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Comment on aide" data-en="How we help">Comment on aide</span>
+      <h2 data-fr="Des outils faits <em>pour le Type 4</em>." data-en="Tools built <em>for Type 4</em>.">Des outils faits <em>pour le Type 4</em>.</h2>
+    </div>
+    <div class="grid grid-4">
+      <a class="card reveal" href="toolkit-landing.html">
+        <div class="card-body">
+          <div style="font-size:28px">🎁</div>
+          <h3 data-fr="Outils gratuits" data-en="Free tools">Outils gratuits</h3>
+          <p class="card-txt" data-fr="Test de porosité, check hydratation, planner de routine." data-en="Porosity test, hydration check, routine planner.">Test de porosité, check hydratation, planner de routine.</p>
+        </div>
+      </a>
+      <a class="card reveal" href="shop-complete.html">
+        <div class="card-body">
+          <div style="font-size:28px">📚</div>
+          <h3 data-fr="Guides &amp; ebooks" data-en="Guides &amp; ebooks">Guides &amp; ebooks</h3>
+          <p class="card-txt" data-fr="Hydratation, transition, pousse, coiffures, pellicules." data-en="Moisture, transitioning, growth, styles, dandruff.">Hydratation, transition, pousse, coiffures, pellicules.</p>
+        </div>
+      </a>
+      <a class="card reveal" href="blog-complete.html">
+        <div class="card-body">
+          <div style="font-size:28px">✍️</div>
+          <h3 data-fr="Le blog" data-en="The blog">Le blog</h3>
+          <p class="card-txt" data-fr="Des explications claires sur la sécheresse, la porosité et le wash day." data-en="Clear explanations on dryness, porosity and wash day.">Des explications claires sur la sécheresse, la porosité et le wash day.</p>
+        </div>
+      </a>
+      <a class="card reveal" href="https://www.amazon.com/shop/schicgirl" target="_blank" rel="noopener">
+        <div class="card-body">
+          <div style="font-size:28px">🛍️</div>
+          <h3 data-fr="Sélections produits" data-en="Product picks">Sélections produits</h3>
+          <p class="card-txt" data-fr="Uniquement des produits testés et approuvés." data-en="Only products we've tested and approved.">Uniquement des produits testés et approuvés.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="section-sm">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow" data-fr="On commence ?" data-en="Shall we start?">On commence ?</span>
+          <h2 style="margin:10px 0 12px" data-fr="Le raccourci, c'est par ici." data-en="The shortcut starts here.">Le raccourci, c'est par ici.</h2>
+          <p data-fr="Le Kit Type 4 est gratuit : ta texture, ta porosité, ta première routine. C'est le meilleur endroit pour commencer."
+             data-en="The Type 4 Kit is free: your texture, your porosity, your first routine. It's the best place to start.">
+            Le Kit Type 4 est gratuit : ta texture, ta porosité, ta première routine.</p>
+        </div>
+        <div style="text-align:center">
+          <a class="btn btn-gold btn-lg" href="toolkit-landing.html" data-fr="Recevoir le Kit gratuit" data-en="Get the free Kit">Recevoir le Kit gratuit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand-name">Schic<span>girl</span></span>
+        <p data-fr="Clarté, soin et confiance pour cheveux crépus Type 4. Sans jargon, sans promesse miracle."
+           data-en="Clarity, care and confidence for Type 4 coily hair. No jargon, no miracle promises.">
+          Clarté, soin et confiance pour cheveux crépus Type 4.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/schicgirl" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="mailto:contacte.schicgirl@gmail.com" aria-label="Email">✉</a>
+          <a href="https://www.amazon.com/shop/schicgirl" target="_blank" rel="noopener" aria-label="Amazon">🛍</a>
+        </div>
+      </div>
+      <div>
+        <h4 data-fr="Découvrir" data-en="Discover">Découvrir</h4>
+        <ul>
+          <li><a href="index-complete.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+          <li><a href="blog-complete.html" data-fr="Blog" data-en="Blog">Blog</a></li>
+          <li><a href="shop-complete.html" data-fr="Tous les guides" data-en="All guides">Tous les guides</a></li>
+          <li><a href="shop-complete.html#cercle" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a></li>
+          <li><a href="/forum/" data-fr="Le forum" data-en="The forum">Le forum</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Aide" data-en="Help">Aide</h4>
+        <ul>
+          <li><a href="contact-complete.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+          <li><a href="shop-complete.html#payer" data-fr="Comment payer" data-en="How to pay">Comment payer</a></li>
+          <li><a href="consultation.html" data-fr="Consultation" data-en="Consultation">Consultation</a></li>
+          <li><a href="toolkit-landing.html" data-fr="Le Kit gratuit" data-en="The free Kit">Le Kit gratuit</a></li>
+          <li><a href="review.html" data-fr="Laisser un avis" data-en="Leave a review">Laisser un avis</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Légal" data-en="Legal">Légal</h4>
+        <ul>
+          <li><a href="privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></li>
+          <li><a href="terms.html" data-fr="Conditions" data-en="Terms">Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Schicgirl —
+        <span data-fr="Cheveux crépus Type 4 · 4A 4B 4C" data-en="Type 4 coily hair · 4A 4B 4C">Cheveux crépus Type 4 · 4A 4B 4C</span></span>
+      <span>contacte.schicgirl@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site-complete.js"></script>
+</body>
+</html>
