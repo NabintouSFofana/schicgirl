@@ -52,7 +52,39 @@
   }
   .contact-art img{width:100%;border-radius:var(--r-l);box-shadow:var(--shadow-lg);aspect-ratio:4/5;object-fit:cover}
   @media(max-width:900px){.contact-art{max-width:380px;margin:0 auto}}
+
+  /* Formulaire de contact */
+  .cform{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:30px 28px;box-shadow:var(--shadow-s);
+  }
+  @media(max-width:520px){.cform{padding:22px 18px}}
+  .cform .field{margin-bottom:16px}
+  .cform label{display:block;font-size:12px;font-weight:600;letter-spacing:.05em;
+               text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .cform input,.cform select,.cform textarea{
+    width:100%;font-family:var(--sans);font-size:15px;padding:12px 14px;
+    border:1px solid var(--line);border-radius:var(--r-s);
+    background:var(--bg);color:var(--ink);outline:none;
+  }
+  .cform textarea{resize:vertical;min-height:130px;line-height:1.6}
+  .cform input:focus,.cform select:focus,.cform textarea:focus{
+    border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,147,74,.14);background:#fff}
+  .cform input[aria-invalid="true"],.cform textarea[aria-invalid="true"]{border-color:#c0563f}
+  .cform .hint{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+  /* Champ piege : hors de l'ecran plutot que display:none, que certains
+     robots savent detecter. Retire du parcours clavier. */
+  .cform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+  .cmsg{border-radius:var(--r-s);padding:13px 16px;font-size:13.5px;line-height:1.6;margin-bottom:18px}
+  .cmsg-ok{background:#eaf6ee;border:1px solid #a9d8bb;color:#1f6b3a}
+  .cmsg-err{background:#fdecea;border:1px solid #f0b6ae;color:#9d2f1f}
 </style>
+
+
+<!-- seo:hreflang -->
+<!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/contact/"><link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/contact/"><link rel="alternate" hreflang="en" href="https://schicgirl.me/en/contact/"><link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/contact/"><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -106,7 +138,8 @@
     <div class="nav-links" id="navLinks">
       <a href="/index.html" data-fr="Accueil">Accueil</a>
       <a href="/shop.html" data-fr="Guides">Guides</a>
-      <a href="/shop.html#cercle" data-fr="Le Cercle">Le Cercle</a>
+      <a href="/fr/produits/" data-fr="Produits">Produits</a>
+      <a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a>
       <a href="/fr/blog/" data-fr="Blog">Blog</a>
       <a href="/fr/a-propos/" data-fr="À propos">À propos</a>
       <a href="/fr/contact/" class="on" data-fr="Contact">Contact</a>
@@ -116,6 +149,8 @@
         <button type="button" data-lang="fr" aria-pressed="true">FR</button>
         </div>
       <a class="btn btn-gold btn-sm nav-cta" href="mailto:contacte.schicgirl@gmail.com" data-fr="M'écrire">M'écrire</a>
+      <a class="nav-acct" id="navAcct" href="/mon-compte.html"><img class="ic" src="/assets/icon-compte.png" alt="" width="22" height="22"><span class="lbl" data-fr="Mon compte">Mon compte</span></a>
+
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     </div>
   </div>
@@ -172,6 +207,59 @@
     </div>
 
     <p class="note" style="max-width:860px;margin:26px auto 0" data-fr="Pour aller plus vite : dis-moi ton &lt;b&gt;type de cheveux&lt;/b&gt; (4A, 4B, 4C ou « je ne sais pas »), ton &lt;b&gt;souci principal&lt;/b&gt;, et — s'il s'agit d'une commande — l'&lt;b&gt;email utilisé au paiement&lt;/b&gt;.">Pour aller plus vite : dis-moi ton <b>type de cheveux</b> (4A, 4B, 4C ou « je ne sais pas »), ton <b>souci principal</b>, et — s'il s'agit d'une commande — l'<b>email utilisé au paiement</b>.</p>
+  </div>
+</section>
+
+<!-- ═══════════ FORMULAIRE ═══════════ -->
+<section class="section section-alt" id="formulaire">
+  <div class="wrap-narrow">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Ou écris-moi ici">Ou écris-moi ici</span>
+      <h2 data-fr="Envoie-moi un &lt;em&gt;message&lt;/em&gt;.">Envoie-moi un <em>message</em>.</h2>
+      <p class="lead" style="margin-inline:auto" data-fr="Pas besoin d'ouvrir ta boîte mail. Remplis, envoie, je reçois.">Pas besoin d'ouvrir ta boîte mail. Remplis, envoie, je reçois.</p>
+    </div>
+
+    <form class="cform reveal" id="cform" novalidate>
+      <div id="cformMsg" aria-live="polite"></div>
+
+      <div class="grid grid-2" style="gap:0 16px">
+        <div class="field">
+          <label for="cf-name" data-fr="Ton prénom">Ton prénom</label>
+          <input id="cf-name" name="name" type="text" required maxlength="120" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="cf-email" data-fr="Ton email">Ton email</label>
+          <input id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="cf-topic" data-fr="C'est à quel sujet ?">C'est à quel sujet ?</label>
+        <select id="cf-topic" name="topic">
+          <option value="routine" data-fr="Ma routine / mes cheveux">Ma routine / mes cheveux</option>
+          <option value="commande" data-fr="Une commande ou un guide">Une commande ou un guide</option>
+          <option value="cercle" data-fr="Le Cercle / mon accès">Le Cercle / mon accès</option>
+          <option value="collab" data-fr="Une collaboration">Une collaboration</option>
+          <option value="autre" data-fr="Autre chose">Autre chose</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="cf-message" data-fr="Ton message">Ton message</label>
+        <textarea id="cf-message" name="message" required maxlength="4000" rows="6" data-fr-attr="placeholder:Dis-moi ton type de cheveux (4A, 4B, 4C ou « je ne sais pas ») et ce qui te bloque — plus tu es précise, mieux je peux t'aider." data-en-attr="placeholder:Tell me your hair type (4A, 4B, 4C or “I don't know”) and what's blocking you — the more precise, the better I can help." placeholder="Dis-moi ton type de cheveux et ce qui te bloque."></textarea>
+      </div>
+
+      <!-- Piege a robots : invisible pour une personne, rempli par les scripts.
+           Si ce champ contient quoi que ce soit, on n'envoie rien. -->
+      <div class="hp" aria-hidden="true">
+        <label for="cf-website">Website</label>
+        <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button class="btn btn-gold btn-lg btn-block" type="submit" id="cfSend" data-fr="Envoyer mon message">Envoyer mon message</button>
+
+      <p class="hint" style="text-align:center;margin-top:14px" data-fr="Je réponds sous 48 h, en personne. Ton email ne sert qu'à te répondre.">Je réponds sous 48 h, en personne. Ton email ne sert qu'à te répondre.</p>
+    </form>
   </div>
 </section>
 
@@ -276,6 +364,7 @@
           <a href="https://www.facebook.com/schicgirl" target="_blank" rel="noopener" aria-label="Facebook">
             <svg viewbox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"></path></svg>
           </a>
+          <a href="https://wa.me/message/ZDXXV2OOOKOME1" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewbox="0 0 24 24" aria-hidden="true"><path d="M12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.3l-.3-.2-3 .9.9-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6c-.3-.1-1.5-.700-1.7-.8-.2-.1-.4-.1-.6.1s-.6.8-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1.1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"></path></svg></a>
           <a href="mailto:contacte.schicgirl@gmail.com" aria-label="Email">✉</a>
           <a href="https://www.amazon.com/shop/schicgirl" target="_blank" rel="noopener" aria-label="Amazon">🛍</a>
         </div>
@@ -286,7 +375,7 @@
           <li><a href="/index.html" data-fr="Accueil">Accueil</a></li>
           <li><a href="/fr/blog/" data-fr="Blog">Blog</a></li>
           <li><a href="/shop.html" data-fr="Tous les guides">Tous les guides</a></li>
-          <li><a href="/shop.html#cercle" data-fr="Le Cercle">Le Cercle</a></li>
+          <li><a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a></li>
           <li><a href="/forum/" data-fr="Le forum">Le forum</a></li>
         </ul>
       </div>
@@ -316,5 +405,98 @@
 </footer>
 
 <script src="/assets/js/site-complete.js?v=20260729a"></script>
+<script>
+/* Envoi du formulaire de contact vers Supabase.
+   La table n'autorise QUE l'insertion : personne ne peut relire les
+   messages depuis le site (voir supabase/CONTACT - formulaire du site).
+   La cle ci-dessous est la cle publique « anon », faite pour etre ici. */
+(function () {
+  "use strict";
+  var SB_URL = "https://ouwzbqmmtbxqtffghncg.supabase.co";
+  var SB_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8";
+
+  var form = document.getElementById("cform");
+  if (!form) return;
+  var box = document.getElementById("cformMsg");
+  var btn = document.getElementById("cfSend");
+  var sending = false;
+  var FR = function () { return SGSite.lang === "fr"; };
+
+  function show(kind, fr, en) {
+    box.innerHTML = '<div class="cmsg cmsg-' + kind + '">' +
+                    SGSite.esc(FR() ? fr : en) + "</div>";
+    box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function invalid(el, yes) {
+    if (yes) el.setAttribute("aria-invalid", "true");
+    else el.removeAttribute("aria-invalid");
+    return !yes;
+  }
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (sending) return;
+
+    var name = form.name, email = form.email, message = form.message;
+    var ok = true;
+    ok = invalid(name, !name.value.trim()) && ok;
+    ok = invalid(email, !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) && ok;
+    ok = invalid(message, message.value.trim().length < 5) && ok;
+    if (!ok) {
+      show("err",
+        "Il manque quelque chose : ton prénom, un email valide et quelques mots.",
+        "Something's missing: your first name, a valid email and a few words.");
+      return;
+    }
+
+    /* Le piege a robots est rempli : on fait comme si tout allait bien,
+       sans rien envoyer. Un robot qui voit une erreur reessaie. */
+    if (form.website && form.website.value) {
+      form.reset();
+      show("ok", "Merci, ton message est parti.", "Thanks, your message is on its way.");
+      return;
+    }
+
+    sending = true;
+    btn.disabled = true;
+    btn.textContent = FR() ? "Envoi…" : "Sending…";
+
+    fetch(SB_URL + "/rest/v1/contact_messages", {
+      method: "POST",
+      headers: {
+        apikey: SB_KEY,
+        Authorization: "Bearer " + SB_KEY,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal"
+      },
+      body: JSON.stringify({
+        name: name.value.trim().slice(0, 120),
+        email: email.value.trim().slice(0, 200),
+        topic: (form.topic && form.topic.value) || null,
+        message: message.value.trim().slice(0, 4000),
+        lang: SGSite.lang,
+        user_agent: String(navigator.userAgent || "").slice(0, 300)
+      })
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { throw new Error(t.slice(0, 200)); });
+      form.reset();
+      show("ok",
+        "C'est envoyé 💛 Je te réponds sous 48 h, à l'adresse que tu as donnée.",
+        "Sent 💛 I'll reply within 48 h to the address you gave.");
+    }).catch(function () {
+      /* Repli honnete : on ne fait pas semblant que c'est parti. */
+      show("err",
+        "L'envoi n'a pas marché. Écris-moi directement à contacte.schicgirl@gmail.com — je réponds pareil.",
+        "That didn't go through. Email me directly at contacte.schicgirl@gmail.com — same reply either way.");
+    }).then(function () {
+      sending = false;
+      btn.disabled = false;
+      btn.textContent = FR() ? "Envoyer mon message" : "Send my message";
+    });
+  });
+})();
+</script>
 </body>
 </html>

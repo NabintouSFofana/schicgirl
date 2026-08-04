@@ -3,48 +3,54 @@
 Carte du dossier `APPLICATIONS`. À lire quand tu ne sais plus où chercher.
 
 > **Le nouveau site est en ligne** depuis le 4 août 2026. Rien n'a été
-> supprimé : l'ancien site est conservé sous les noms `*-v1.html`.
+> supprimé : les anciennes pages sont dans `_dev-archive/anciennes-pages/`.
 
 ---
 
 ## 1. LE SITE — c'est ici que tu travailles
 
-Cinq pages, reliées entre elles. `index.html` est la page d'accueil.
+Huit pages, reliées entre elles. `index.html` est la page d'accueil.
 
 | Fichier | Page |
 |---|---|
 | `index.html` | **Accueil** |
-| `shop.html` | Boutique — guides, Le Cercle, comment payer, FAQ |
+| `shop.html` | Boutique — les 7 guides, comment payer, FAQ |
+| `products.html` | Mes produits Amazon, filtrables par porosité |
+| `le-cercle.html` | Page de vente de l'abonnement |
 | `blog.html` | Blog — article à la une, recherche, filtres |
 | `about.html` | À propos |
-| `contact.html` | Contact + FAQ |
+| `contact.html` | Contact — formulaire, canaux, FAQ |
+| `mon-compte.html` | Espace membre (connexion + tableau de bord) |
 
-### Les 4 fichiers partagés par ces 5 pages
+### Les fichiers partagés
 
 | Fichier | Rôle |
 |---|---|
-| `assets/css/site-complete.css` | **Tout le style** : couleurs, polices, cartes, grilles, pied de page, responsive |
-| `assets/js/site-complete.js` | **Tout le comportement** : langue FR/EN, menu mobile, apparitions, rendu des grilles |
-| `assets/js/catalog.js` | **Les 7 guides** — un seul endroit, utilisé par la boutique ET l'accueil |
-| `assets/js/blog.js` | **Les 17 articles** — un seul endroit, utilisé par le blog ET l'accueil |
+| `assets/css/site-complete.css` | **Tout le style** |
+| `assets/js/site-complete.js` | **Tout le comportement** : langue FR/EN, menu mobile, apparitions, grilles |
+| `assets/js/account.js` | Le compte membre (Supabase, partagé avec le forum et le Studio) |
+| `assets/js/catalog.js` | Les **7 guides** |
+| `assets/js/blog.js` | Les **17 articles** |
+| `assets/js/amazon-picks.js` | Les **17 produits Amazon** |
 
-**Conséquence pratique :** pour ajouter un guide, tu modifies `catalog.js`.
-Pour ajouter un article, `blog.js`. Les pages se mettent à jour toutes seules.
-Tu ne copies jamais un produit ou un article dans une page.
+**Conséquence pratique :** un guide s'ajoute dans `catalog.js`, un article
+dans `blog.js`, un produit dans `amazon-picks.js`. Les pages se mettent à
+jour toutes seules. Tu ne copies jamais un contenu dans une page.
 
-## 2. L'ANCIEN SITE — archivé, plus servi
+**Un seul compte** pour le site, le forum et Le Studio : même email, même
+mot de passe, même projet Supabase. L'accès est décidé par la base
+(`has_forum_access()`), jamais par le navigateur.
 
-`index-v1.html`, `shop-v1.html`, `blog-v1.html`, `about-v1.html`,
-`contact-v1.html`. Ce sont les versions d'avant la bascule, gardées pour
-comparaison. Elles sont en `noindex` : Google ne les référencera pas et
-elles ne feront pas concurrence aux vraies pages.
+## 2. L'ANCIEN SITE — archivé
+
+Tout est dans `_dev-archive/anciennes-pages/` : les sept versions `-v1`
+d'avant la refonte, et les essais `index2/3/4` et `index-classic`.
+Ce dossier n'est pas publié. Un `LIRE-MOI.txt` y explique chaque fichier.
 
 Les ~40 autres pages à la racine (guides, ebooks, outils) n'ont pas changé.
 
 Les pages `/fr/` et `/en/` sont les versions pré-rendues pour Google,
-générées par `prerender.py`. **Elles contiennent encore l'ancien design** :
-relance `prerender.py` quand tu voudras les régénérer depuis les nouvelles
-pages.
+générées par `prerender.py` — voir la section 7.
 
 ## 3. LES AUTRES PROJETS (indépendants)
 
@@ -85,7 +91,7 @@ Ce ne sont **pas** des dossiers du site. Ils ne sont jamais servis aux visiteurs
 | Dossier | Contenu |
 |---|---|
 | `_sources-images/` | Les photos originales que tu déposes, avant renommage. Le vrai fichier utilisé est la copie dans `assets/`. |
-| `_dev-archive/` | Anciennes versions de fichiers (`.preseo`, `.precercleprice`…). Gardées au cas où, jamais chargées. |
+| `_dev-archive/` | Sauvegardes (`.preseo`…) et `anciennes-pages/` : tout ce que le site ne sert plus. |
 
 Si tu déposes une nouvelle photo d'article, mets-la dans
 `_sources-images/blog/` avec un nom parlant, puis demande-moi de la placer :
@@ -106,26 +112,26 @@ je la copie dans `assets/blog/` au bon nom et je mets `blog.js` à jour.
 
 ## 7. Ce qu'il reste à faire
 
-- [ ] Relancer `prerender.py` pour que `/fr/` et `/en/` reprennent le
-      nouveau design (elles servent encore l'ancien)
+- [ ] Lancer `supabase/CONTACT - menage des messages.sql` pour supprimer
+      le message de test laissé par la vérification du formulaire
 - [ ] Relire la capture de paiement anonymisée (`assets/how-to-pay-checkout-fr.png`)
-- [ ] `products.html` n'est liée par aucune page et n'est pas dans le
-      sitemap : personne ne la trouve. Soit tu l'ajoutes au menu, soit tu
-      la retires. (Elle fonctionne, voir ci-dessous.)
 
-### Vérifié, rien à faire
+### Bon à savoir
 
-Les cinq pages réellement en ligne — `index.html`, `shop.html`, `blog.html`,
-`about.html`, `contact.html` — n'ont **aucune image cassée**.
+**Après avoir modifié une page, relance `prerender.py`.** Les 42 pages
+`/fr/` et `/en/` sont construites à partir des pages de la racine : tant
+que tu ne relances pas, elles servent l'ancienne version. C'est ce qui
+avait laissé `/en/the-circle/` afficher un prix en euros et renvoyer vers
+la page de paiement française.
 
-**Un fichier image absent ne veut pas dire une page cassée.** Trois cas ici
-où l'absence est prévue par le code :
+`prerender.py` connaît des identifiants précis : `price`, `barPrice`,
+`priceCfa`, `mainCta`, `barCta`. Une page de vente doit les utiliser pour
+que le prix et le lien Selar changent selon la langue. Tout le reste
+passe par `data-fr` / `data-en`.
 
-- `pousse`, `coiffures`, `stop-cheveux-secs` : ebooks « Bientôt disponible ».
-  Les couvertures ont été retirées exprès, les pages affichent une icône 📖.
-- `MonHistoire` / `MyStory` : l'ebook n'existe pas, les fichiers sont partis,
-  et plus aucune page ne les appelle.
-- `products.html` : les 17 photos de `assets/products/` ont disparu, mais la
-  page a été conçue avec un repli — chaque produit est dessiné en SVG. Les
-  17 fiches s'affichent et les 31 liens affiliés Amazon fonctionnent. Ajouter
-  les photos serait un bonus, pas une réparation.
+**Le tableau de bord** (`dashboard.html`) et les pages `*_admin.html`
+restent à la racine : ce sont tes outils, ouverts directement par leur
+adresse. Ils sont en `noindex` et bloqués dans `robots.txt`.
+Note : le mot de passe du tableau de bord est vérifié dans le navigateur
+(empreinte SHA-256 dans le code). Ça écarte les curieux, pas quelqu'un de
+déterminé — ne mets rien de sensible derrière.

@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin.html
+Disallow: /dashboard.html
 Disallow: /consultation_admin.html
 Disallow: /hydracheck_admin.html
 Disallow: /products_admin.html
