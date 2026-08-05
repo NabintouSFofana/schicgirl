@@ -291,6 +291,21 @@
            '<h1 style="font-size:clamp(28px,4.5vw,38px);margin:10px 0 0">' +
              e(name ? T("Bonjour ", "Hello ") + name : T("Bonjour 👋", "Hello 👋")) + '</h1></div>';
 
+    /* Etat inconnu : ni « abonnee » ni « pas abonnee ». On le dit, au lieu
+       d'annoncer a une abonnee qu'elle ne l'est pas. */
+    if (state.access === null) {
+      h += '<div class="status status-off"><span class="dot-ind"></span>' +
+             '<b>' + e(T("Connexion à rafraîchir", "Session needs refreshing")) + '</b>' +
+             '<span class="sub">' +
+               e(T("Je n'ai pas pu vérifier ton abonnement — souvent une connexion internet capricieuse. Recharge la page ; si ça persiste, déconnecte-toi et reconnecte-toi.",
+                   "I couldn't check your membership — usually a flaky connection. Reload the page; if it persists, sign out and back in.")) +
+             '</span></div>' +
+           '<div class="panel" style="text-align:center;margin-bottom:18px">' +
+             '<button class="btn btn-gold" onclick="location.reload()">' +
+               e(T("Recharger", "Reload")) + '</button>' +
+           '</div>';
+    }
+
     /* Bandeau d'etat */
     if (active) {
       h += '<div class="status status-on"><span class="dot-ind"></span>' +
@@ -300,7 +315,7 @@
                    SGSite.fmtDate(String(p.access_until).slice(0, 10))) + '</span>'
                : '') +
            '</div>';
-    } else {
+    } else if (state.access === false) {
       h += '<div class="status status-off"><span class="dot-ind"></span>' +
              '<b>' + e(T("Ton abonnement n'est pas actif", "Your membership isn't active")) + '</b>' +
              '<span class="sub">' +
