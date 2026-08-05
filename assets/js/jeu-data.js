@@ -141,5 +141,64 @@ window.SG_JEU = {
       d_fr: "Prends cinq produits de ta salle de bain et lis vraiment la liste. Tu vas avoir des surprises.",
       d_en: "Take five products from your bathroom and actually read the list. You'll be surprised.",
       lien: "ingredients-a-eviter" }
-  ]
+  ],
+  /* ── MANCHE RESERVEE AUX MEMBRES ──────────────────────────────
+     Debloquee seulement si has_forum_access() dit oui. Plus pointue
+     que la premiere manche : on suppose les bases acquises.
+     Attention : cacher des questions dans le navigateur n'est PAS une
+     protection — quelqu'un de curieux lira ce fichier. C'est un bonus,
+     pas un secret. Rien de payant ne doit dependre de ce masquage. */
+  quizPro: [
+    { q_fr: "Un masque protéiné est bon pour tous les cheveux crépus.",
+      q_en: "A protein treatment is good for all coily hair.",
+      ok: false,
+      why_fr: "Non. Trop de protéines sur un cheveu qui n'en manque pas le rend <b>raide et cassant</b> — c'est l'overload protéinique. La protéine répare, elle n'hydrate pas : elle s'alterne avec l'hydratation, elle ne la remplace pas.",
+      why_en: "No. Too much protein on hair that doesn't need it turns it <b>stiff and brittle</b> — protein overload. Protein repairs, it doesn't moisturise: it alternates with hydration, it doesn't replace it.",
+      lien: "stopper-la-casse" },
+
+    { q_fr: "Une porosité faible profite d'un bonnet chauffant pendant le soin.",
+      q_en: "Low porosity hair benefits from heat during a treatment.",
+      ok: true,
+      why_fr: "Oui. Les écailles sont serrées et laissent mal entrer l'eau ; la chaleur douce les entrouvre le temps du soin. Sur une porosité forte, c'est l'inverse — les écailles sont déjà ouvertes.",
+      why_en: "Yes. The cuticles lie flat and resist water; gentle heat lifts them during the treatment. On high porosity it's the opposite — the cuticles are already open.",
+      lien: "porosite-cheveux" },
+
+    { q_fr: "Le gel qui « croustille » a abîmé mes boucles.",
+      q_en: "Gel that goes crunchy has damaged my curls.",
+      ok: false,
+      why_fr: "C'est le <b>cast</b> : une coque qui protège la boucle pendant le séchage. On la casse aux doigts une fois sec, et la boucle ressort souple. Casser le cast trop tôt, ça, ça fait du frisottis.",
+      why_en: "That's the <b>cast</b>: a shell protecting the curl while it dries. You scrunch it out once dry and the curl springs back soft. Breaking the cast too early is what causes frizz.",
+      lien: "routine-wash-day" },
+
+    { q_fr: "Se laver les cheveux souvent les abîme forcément.",
+      q_en: "Washing often necessarily damages your hair.",
+      ok: false,
+      why_fr: "Ce qui abîme, c'est le <b>produit</b> et le geste, pas la fréquence. Un cuir chevelu qui gratte ou qui pèle a besoin d'être lavé. Espacer les lavages sur un cuir chevelu encrassé aggrave tout.",
+      why_en: "What damages is the <b>product</b> and the handling, not the frequency. An itchy or flaking scalp needs washing. Stretching washes on a congested scalp makes it worse.",
+      lien: "cuir-chevelu-sain-pellicules" },
+
+    { q_fr: "Appliquer son leave-in sur cheveux secs, c'est pareil.",
+      q_en: "Applying leave-in on dry hair works just as well.",
+      ok: false,
+      why_fr: "Non. Le leave-in ne fabrique pas d'eau : il <b>retient</b> celle qui est déjà là. Sur cheveux secs, il enrobe le vide. D'où la règle : toujours sur cheveux humides, jamais trempés, jamais secs.",
+      why_en: "No. Leave-in doesn't create water: it <b>holds</b> what's already there. On dry hair it coats emptiness. Hence the rule: always on damp hair, never soaking, never dry.",
+      lien: "methode-loc-hydratation" },
+
+    { q_fr: "Le big chop est obligatoire pour passer au naturel.",
+      q_en: "A big chop is required to go natural.",
+      ok: false,
+      why_fr: "Jamais obligatoire. La transition longue marche — c'est juste plus exigeant : deux textures, une ligne de démarcation fragile, et beaucoup de douceur au démêlage.",
+      why_en: "Never required. A long transition works — it's just more demanding: two textures, a fragile line of demarcation, and a lot of gentleness when detangling.",
+      lien: "transition-sans-big-chop" }
+  ],
+
+  /* ── LE CONCOURS ──────────────────────────────────────────────
+     Les entrees sont enregistrees dans la table contact_messages
+     (topic = "concours") : pas de nouvelle table a creer. */
+  concours: {
+    actif: true,
+    fin: "2026-09-15",                 // date de cloture, format AAAA-MM-JJ
+    placesGratuites: 5,
+    cadeauParticipation: true
+  }
 };

@@ -109,6 +109,42 @@
   .dcard .cnt{font-size:12px;font-weight:600;color:var(--muted)}
   .dcard.done .cnt{color:var(--gold-deep)}
 
+  /* Manche membres : verrouillee tant que l'abonnement n'est pas actif */
+  .locked{
+    background:var(--card);border:1px dashed var(--line-gold);border-radius:var(--r-l);
+    padding:34px 28px;text-align:center;
+  }
+  .locked .lk{font-size:34px;margin-bottom:10px}
+  .locked h3{font-size:22px;margin-bottom:8px}
+  .locked p{font-size:14.5px;color:var(--muted);line-height:1.65;max-width:44ch;margin:0 auto 18px}
+
+  /* Concours */
+  .cx{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;
+      border-radius:var(--r-l);padding:38px 32px;box-shadow:0 24px 56px -28px rgba(168,109,35,.85)}
+  @media(max-width:560px){.cx{padding:28px 20px}}
+  .cx h2{color:#fff;margin:10px 0 12px}
+  .cx .eyebrow{color:rgba(255,255,255,.9)}
+  .cx .eyebrow::before{color:rgba(255,255,255,.75)}
+  .cx p{color:rgba(255,255,255,.92);line-height:1.7}
+  .prizes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
+  @media(max-width:620px){.prizes{grid-template-columns:1fr}}
+  .prize{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
+         border-radius:var(--r);padding:20px}
+  .prize b{display:block;font-family:var(--serif);font-size:20px;margin-bottom:5px}
+  .prize span{font-size:13.5px;color:rgba(255,255,255,.9);line-height:1.55}
+  .cxform{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+          padding:26px 24px;margin-top:20px}
+  .cxform .field{margin-bottom:14px}
+  .cxform label{display:block;font-size:12px;font-weight:600;letter-spacing:.05em;
+                text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .cxform input,.cxform textarea{width:100%;font-family:var(--sans);font-size:15px;
+    padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-s);
+    background:var(--bg);color:var(--ink);outline:none}
+  .cxform textarea{min-height:90px;resize:vertical;line-height:1.6}
+  .cxform input:focus,.cxform textarea:focus{border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,147,74,.14);background:#fff}
+  .cxform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
   .hello{
     display:inline-flex;align-items:center;gap:9px;
     background:var(--gold-pale);border:1px solid var(--line-gold);
@@ -197,6 +233,82 @@
     <div style="text-align:center;margin-top:30px">
       <button class="btn btn-ghost btn-sm" id="dReset"
               data-fr="Tout remettre à zéro" data-en="Reset everything">Tout remettre à zéro</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MANCHE MEMBRES ═══════════ -->
+<section class="section" id="pro">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Manche membres" data-en="Members round">Manche membres</span>
+      <h2 data-fr="Six questions <em>plus pointues</em>." data-en="Six <em>tougher</em> questions.">Six questions <em>plus pointues</em>.</h2>
+      <p class="lead" style="margin-inline:auto"
+         data-fr="Overload protéinique, cast du gel, chaleur et porosité — les sujets qui séparent celles qui suivent une routine de celles qui la comprennent."
+         data-en="Protein overload, gel cast, heat and porosity — the topics that separate following a routine from understanding one.">
+        Les sujets qui séparent celles qui suivent une routine de celles qui la comprennent.</p>
+    </div>
+    <div class="quiz" id="proBox"></div>
+  </div>
+</section>
+
+<!-- ═══════════ CONCOURS ═══════════ -->
+<section class="section section-alt" id="concours">
+  <div class="wrap">
+    <div class="cx reveal">
+      <span class="eyebrow" data-fr="Concours" data-en="Contest">Concours</span>
+      <h2 data-fr="Gagne ta place dans Le Cercle." data-en="Win your place in The Circle.">Gagne ta place dans Le Cercle.</h2>
+      <p data-fr="Termine le quiz, avance sur les défis, et raconte-moi où tu en es avec tes cheveux. Je choisis les gagnantes à la main — pas au hasard, sur ce que tu écris."
+         data-en="Finish the quiz, work through the challenges, and tell me where you are with your hair. I pick the winners by hand — not at random, but on what you write.">
+        Termine le quiz, avance sur les défis, et raconte-moi où tu en es.</p>
+
+      <div class="prizes">
+        <div class="prize">
+          <b data-fr="5 × un mois offert" data-en="5 × one month free">5 × un mois offert</b>
+          <span data-fr="Le Cercle complet pendant un mois : Studio, tous les guides, le forum. En échange, tu me laisses un avis honnête à la fin — bon ou mauvais."
+                data-en="The full Circle for a month: Studio, every guide, the forum. In exchange you leave me an honest review at the end — good or bad.">
+            Le Cercle complet pendant un mois, contre un avis honnête à la fin.</span>
+        </div>
+        <div class="prize">
+          <b data-fr="Un guide pour toutes" data-en="A guide for everyone">Un guide pour toutes</b>
+          <span data-fr="Toutes les participantes qui vont au bout reçoivent le guide de leur choix, offert. Pas de perdantes."
+                data-en="Everyone who completes the contest gets the guide of their choice, free. No losers.">
+            Toutes celles qui vont au bout reçoivent le guide de leur choix.</span>
+        </div>
+      </div>
+
+      <p style="font-size:13.5px" id="cxDeadline"></p>
+
+      <form class="cxform" id="cxForm">
+        <div id="cxMsg"></div>
+        <div class="grid grid-2" style="gap:0 14px">
+          <div class="field">
+            <label for="cx-name" data-fr="Ton prénom" data-en="Your first name">Ton prénom</label>
+            <input id="cx-name" name="name" type="text" required maxlength="120" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="cx-email" data-fr="Ton email" data-en="Your email">Ton email</label>
+            <input id="cx-email" name="email" type="email" required maxlength="200" autocomplete="email">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cx-msg" data-fr="Où tu en es avec tes cheveux" data-en="Where you are with your hair">Où tu en es avec tes cheveux</label>
+          <textarea id="cx-msg" name="message" required maxlength="1500"
+            data-fr-attr="placeholder:Ton type (4A, 4B, 4C ou « je ne sais pas »), ce qui te bloque, et ce que tu espères changer."
+            data-en-attr="placeholder:Your type (4A, 4B, 4C or “I don't know”), what's blocking you, and what you hope to change."
+            placeholder="Ton type, ce qui te bloque, ce que tu espères changer."></textarea>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="cx-web">Website</label>
+          <input id="cx-web" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <button class="btn btn-gold btn-lg btn-block" type="submit" id="cxSend"
+                data-fr="Participer au concours" data-en="Enter the contest">Participer au concours</button>
+        <p class="hint" style="font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px"
+           data-fr="Ton score et ta progression sont joints automatiquement. Un avis est demandé aux gagnantes — honnête, quel qu'il soit : je ne demande jamais un avis positif."
+           data-en="Your score and progress are attached automatically. Winners are asked for a review — an honest one, whatever it says: I never ask for a positive review.">
+          Ton score et ta progression sont joints automatiquement.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -469,8 +581,184 @@
   var saved = load(KEY_Q, null);
   if (saved && typeof saved.qi === "number") { qi = saved.qi; score = saved.score || 0; }
 
-  function paintAll() { hello(); paintQuiz(); paintDefis(); }
+  /* ═══════════ MANCHE MEMBRES ═══════════
+     Le verrou est un CONFORT, pas une securite : ces questions sont dans
+     jeu-data.js, lisible par n'importe qui. On ne met donc jamais derriere
+     ce verrou quelque chose qui doit rester secret. */
+  var proAccess = null, pi = 0, pscore = 0, pans = null;
+
+  function paintPro() {
+    var box = document.getElementById("proBox");
+    var P = D.quizPro || [];
+    var connectee = window.SGAccount && SGAccount.isLoggedIn();
+
+    if (proAccess !== true) {
+      box.innerHTML =
+        '<div class="locked">' +
+          '<div class="lk">🔒</div>' +
+          '<h3>' + e(T("Réservé aux membres du Cercle", "Members of The Circle only")) + '</h3>' +
+          '<p>' + e(proAccess === null && connectee
+              ? T("Je n'ai pas pu vérifier ton abonnement. Recharge la page.",
+                  "I couldn't check your membership. Reload the page.")
+              : T("Six questions de plus, pour celles qui ont déjà les bases. Elles s'ouvrent dès que ton abonnement est actif.",
+                  "Six more questions, for those who already have the basics. They open as soon as your membership is active.")) + '</p>' +
+          '<div class="hero-cta" style="justify-content:center">' +
+            '<a class="btn btn-ghost" href="mon-compte.html">' +
+              e(connectee ? T("Mon compte", "My account") : T("Je me connecte", "Sign in")) + '</a>' +
+            '<a class="btn btn-gold" href="le-cercle.html">' +
+              e(T("Rejoindre Le Cercle", "Join The Circle")) + '</a>' +
+          '</div>' +
+        '</div>';
+      return;
+    }
+
+    if (pi >= P.length) {
+      box.innerHTML = '<div class="qcard res">' +
+        '<div class="big">' + pscore + "/" + P.length + '</div>' +
+        '<div class="badge-t">' + e(T("Manche membres terminée", "Members round complete")) + '</div>' +
+        '<button class="btn btn-ghost" id="pAgain">' + e(T("Rejouer", "Play again")) + '</button></div>';
+      document.getElementById("pAgain").addEventListener("click", function () {
+        pi = 0; pscore = 0; pans = null; paintPro();
+      });
+      return;
+    }
+
+    var q = P[pi];
+    if (pans === null) {
+      box.innerHTML =
+        '<div class="qhead"><span>' + e(T("Question ", "Question ")) + (pi + 1) + "/" + P.length +
+          '</span><span class="sc">' + pscore + '</span></div>' +
+        '<div class="qcard"><p class="stmt">« ' + e(tx(q, "q")) + ' »</p>' +
+        '<div class="qbtns">' +
+          '<button class="btn btn-gold" data-p="1">' + e(T("Vrai", "True")) + '</button>' +
+          '<button class="btn btn-ghost" data-p="0">' + e(T("Faux", "False")) + '</button>' +
+        '</div></div>';
+      box.querySelectorAll("[data-p]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          pans = b.getAttribute("data-p") === "1";
+          if (pans === q.ok) pscore++;
+          paintPro();
+        });
+      });
+      return;
+    }
+
+    var good = pans === q.ok;
+    box.innerHTML = '<div class="qcard"><div class="qfb ' + (good ? "good" : "bad") + '">' +
+        '<div class="verdict">' + (good ? "✓ " : "✗ ") +
+          e(good ? T("Exact", "Correct") : T("Raté", "Missed")) + '</div>' +
+        '<p class="why">' + tx(q, "why") + '</p>' +
+        (q.lien ? '<a class="textlink" href="' + e(articleLink(q.lien)) + '">' +
+                  e(T("Lire l'article →", "Read the article →")) + '</a>' : "") +
+        '<button class="btn btn-gold btn-block" style="margin-top:18px" id="pNext">' +
+          e(pi + 1 >= P.length ? T("Voir mon résultat", "See my result") : T("Suivante", "Next")) + '</button>' +
+      '</div></div>';
+    document.getElementById("pNext").addEventListener("click", function () {
+      pi++; pans = null; paintPro();
+    });
+  }
+
+  function checkPro() {
+    if (!window.SGAccount || !SGAccount.isLoggedIn()) { proAccess = false; paintPro(); return; }
+    SGAccount.hasAccess()
+      .then(function (v) { proAccess = v; paintPro(); })
+      .catch(function () { proAccess = null; paintPro(); });
+  }
+
+  /* ═══════════ CONCOURS ═══════════
+     Les participations sont enregistrees dans contact_messages avec
+     topic = "concours" : aucune table supplementaire a creer, et la
+     meme regle de securite s'applique (ecriture seule, lecture fermee). */
+  var SB_URL = "https://ouwzbqmmtbxqtffghncg.supabase.co";
+  var SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91d3picW1tdGJ4cXRmZmdobmNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU4NDMsImV4cCI6MjA5NjY3MTg0M30.UuRoYPPDL18-J9WyFK5kpFhRguq_9aDeacXDRhdkmD8";
+  var cxBusy = false;
+
+  function paintDeadline() {
+    var c = D.concours || {}, el = document.getElementById("cxDeadline");
+    if (!el) return;
+    el.textContent = c.actif
+      ? T("Clôture le ", "Closes on ") + SGSite.fmtDate(c.fin) +
+        T(". Les gagnantes sont prévenues par email.", ". Winners are notified by email.")
+      : T("Le concours est terminé — merci à toutes.", "The contest is closed — thank you all.");
+  }
+
+  var cxForm = document.getElementById("cxForm");
+
+  function cxShow(kind, fr, en) {
+    var okStyle  = "background:#eaf6ee;border:1px solid #a9d8bb;color:#1f6b3a";
+    var errStyle = "background:#fdecea;border:1px solid #f0b6ae;color:#9d2f1f";
+    document.getElementById("cxMsg").innerHTML =
+      '<div style="border-radius:10px;padding:13px 16px;font-size:13.5px;' +
+      'line-height:1.6;margin-bottom:16px;' + (kind === "ok" ? okStyle : errStyle) + '">' +
+      e(FR() ? fr : en) + '</div>';
+  }
+
+  cxForm.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (cxBusy) return;
+
+    if (cxForm.website && cxForm.website.value) {          // piege a robots
+      cxForm.reset();
+      cxShow("ok", "Merci, ta participation est enregistrée.", "Thanks, your entry is in.");
+      return;
+    }
+
+    var nm = cxForm.name.value.trim();
+    var em = cxForm.email.value.trim();
+    var ms = cxForm.message.value.trim();
+    var emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em);
+    if (!nm || !emailOk || ms.length < 10) {
+      cxShow("err",
+        "Il me faut ton prénom, un email valide, et quelques phrases sur tes cheveux.",
+        "I need your first name, a valid email, and a few sentences about your hair.");
+      return;
+    }
+
+    /* Le score et l'avancement des defis partent avec la participation :
+       c'est ce qui permet de departager, plutot qu'un tirage au sort. */
+    var done = 0, total = 0;
+    (D.defis || []).forEach(function (d) {
+      total += d.duree;
+      done += Math.min(dState[d.id] || 0, d.duree);
+    });
+    var recap = "[CONCOURS] Quiz " + score + "/" + D.quiz.length +
+                " - Defis " + done + "/" + total +
+                (proAccess === true ? " - deja membre" : "") + "\n\n" + ms;
+
+    cxBusy = true;
+    var btn = document.getElementById("cxSend");
+    btn.disabled = true;
+    btn.textContent = T("Envoi…", "Sending…");
+
+    fetch(SB_URL + "/rest/v1/contact_messages", {
+      method: "POST",
+      headers: {
+        apikey: SB_KEY, Authorization: "Bearer " + SB_KEY,
+        "Content-Type": "application/json", Prefer: "return=minimal"
+      },
+      body: JSON.stringify({
+        name: nm.slice(0, 120), email: em.slice(0, 200), topic: "concours",
+        message: recap.slice(0, 4000), lang: SGSite.lang,
+        user_agent: String(navigator.userAgent || "").slice(0, 300)
+      })
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { throw new Error(t); });
+      cxForm.reset();
+      cxShow("ok", "C'est enregistré 💛 Je reviens vers toi par email à la clôture.",
+                   "You are entered 💛 I will email you when the contest closes.");
+    }).catch(function () {
+      cxShow("err",
+        "L'envoi n'a pas marché. Écris-moi à contacte.schicgirl@gmail.com avec « Concours » en objet.",
+        "That did not go through. Email me at contacte.schicgirl@gmail.com with Contest in the subject.");
+    }).then(function () {
+      cxBusy = false; btn.disabled = false;
+      btn.textContent = T("Participer au concours", "Enter the contest");
+    });
+  });
+
+  function paintAll() { hello(); paintQuiz(); paintDefis(); paintPro(); paintDeadline(); }
   paintAll();
+  checkPro();
   SGSite.onLang(paintAll);
 })();
 </script>

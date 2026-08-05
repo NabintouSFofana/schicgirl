@@ -6,7 +6,17 @@
 -- ── 1. SUPPRIMER LE MESSAGE DE TEST ──────────────────────────
 -- Laisse par la verification du formulaire. A supprimer.
 delete from public.contact_messages
-where email = 'verif@schicgirl.test';
+where email in ('verif@schicgirl.test', 'concours@schicgirl.test');
+
+
+-- ── 1 bis. LES PARTICIPATIONS AU CONCOURS ────────────────────
+-- Elles arrivent dans la meme table, avec topic = 'concours'.
+-- Le score du quiz et l'avancement des defis sont en tete du message,
+-- ce qui permet de departager sans tirage au sort.
+-- select created_at, name, email, message
+-- from public.contact_messages
+-- where topic = 'concours'
+-- order by created_at desc;
 
 
 -- ── 2. LIRE TES MESSAGES ─────────────────────────────────────
