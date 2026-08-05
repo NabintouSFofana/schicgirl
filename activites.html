@@ -1,0 +1,478 @@
+<!doctype html>
+<!--
+===============================================================
+  SCHICGIRL — activites.html
+  Le quiz « Vrai ou Faux » et les defis a cocher.
+
+  Ouvert a tout le monde, volontairement : c'est ce qui donne
+  envie de rester, et donc de rejoindre Le Cercle ensuite. Les
+  membres connectees sont saluees par leur prenom et retrouvent
+  un raccourci vers leur espace.
+
+  La progression est gardee dans le navigateur (localStorage),
+  pas en base : rien a installer, rien a demander a la visiteuse,
+  et aucune donnee personnelle collectee pour un jeu.
+
+  Contenu : assets/js/jeu-data.js  (source unique)
+  Style   : assets/css/site-complete.css
+  Moteur  : assets/js/site-complete.js
+  © 2024–2026 Schicgirl. All rights reserved.
+===============================================================
+-->
+<html lang="fr"
+      data-title-fr="Activités & quiz cheveux Type 4 — Schicgirl"
+      data-title-en="Activities & Type 4 hair quiz — Schicgirl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activités &amp; quiz cheveux Type 4 — Schicgirl</title>
+<meta name="description" content="Teste ce que tu sais vraiment sur les cheveux crépus Type 4, et relève les défis : nuits satin, démêlage sans casse, méthode LOC, journal capillaire.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Activités &amp; quiz cheveux Type 4 — Schicgirl">
+<meta property="og:description" content="12 affirmations, vrai ou faux. Et 6 défis à cocher pour passer à l'action.">
+<meta property="og:image" content="https://schicgirl.me/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/fav-logo-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-complete.css">
+<script>document.documentElement.className+=" js";</script>
+
+<style>
+  /* ── Le quiz ───────────────────────────────────────────── */
+  .quiz{max-width:640px;margin:0 auto}
+  .qbar{height:5px;background:var(--gold-pale);border-radius:99px;overflow:hidden;margin-bottom:22px}
+  .qbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-lt),var(--gold-deep));
+          border-radius:99px;transition:width .35s ease}
+  .qhead{display:flex;justify-content:space-between;align-items:center;
+         font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+         color:var(--muted);margin-bottom:14px}
+  .qhead .sc{color:var(--gold-deep)}
+
+  .qcard{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);
+    padding:34px 30px;box-shadow:var(--shadow);text-align:center;
+  }
+  @media(max-width:520px){.qcard{padding:26px 20px}}
+  .qcard .stmt{font-family:var(--serif);font-size:clamp(21px,3.4vw,27px);
+               line-height:1.35;color:var(--ink);margin-bottom:26px}
+  .qbtns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .qbtns .btn{width:100%}
+
+  .qfb{text-align:left;animation:fadeUp .3s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .qfb .verdict{display:flex;align-items:center;gap:10px;font-family:var(--serif);
+                font-size:24px;font-weight:600;margin-bottom:12px}
+  .qfb.good .verdict{color:#1f6b3a}
+  .qfb.bad  .verdict{color:#a8452f}
+  .qfb .why{font-size:15px;line-height:1.7;color:var(--ink-soft);margin-bottom:18px}
+  .qfb .why b{color:var(--gold-deep);font-weight:600}
+
+  /* ── Le resultat ───────────────────────────────────────── */
+  .res{text-align:center}
+  .res .big{font-family:var(--serif);font-size:64px;font-weight:600;
+            color:var(--gold-deep);line-height:1}
+  .res .badge-t{font-family:var(--serif);font-size:27px;margin:6px 0 10px}
+  .res .say{font-size:15.5px;color:var(--muted);line-height:1.7;max-width:44ch;margin:0 auto 22px}
+
+  /* ── Les defis ─────────────────────────────────────────── */
+  .dcard{
+    display:flex;flex-direction:column;gap:11px;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:22px;box-shadow:var(--shadow-s);
+    transition:border-color .16s ease, box-shadow .16s ease;
+  }
+  .dcard.done{border-color:var(--gold);box-shadow:var(--shadow)}
+  .dcard .dtop{display:flex;align-items:center;gap:11px}
+  .dcard .ic{font-size:24px;flex:none}
+  .dcard h3{font-size:17px;line-height:1.3}
+  .dcard p{font-size:13.5px;color:var(--muted);line-height:1.6}
+  .dots{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+  .dot-b{
+    width:30px;height:30px;border-radius:50%;flex:none;
+    border:1.5px solid var(--line-gold);background:var(--bg);
+    color:var(--gold-deep);font-size:12px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .15s;
+  }
+  .dot-b:hover{background:var(--gold-pale);transform:scale(1.08)}
+  .dot-b.on{background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+            border-color:var(--gold-deep);color:#fff}
+  .dcard .dfoot{margin-top:auto;padding-top:10px;display:flex;
+                justify-content:space-between;align-items:center;gap:10px}
+  .dcard .cnt{font-size:12px;font-weight:600;color:var(--muted)}
+  .dcard.done .cnt{color:var(--gold-deep)}
+
+  .hello{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--gold-pale);border:1px solid var(--line-gold);
+    border-radius:var(--r-pill);padding:8px 18px;font-size:13.5px;
+    font-weight:600;color:var(--gold-deep);margin-bottom:18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topstrip">
+  <span data-fr="Gratuit, sans inscription. Ta progression reste sur ton téléphone."
+        data-en="Free, no sign-up. Your progress stays on your phone.">Gratuit, sans inscription. Ta progression reste sur ton téléphone.</span>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Schicgirl">
+      <img src="assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="brand-name">Schic<span>girl</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html"     data-fr="Accueil"   data-en="Home">Accueil</a>
+      <a href="shop.html"      data-fr="Guides"    data-en="Guides">Guides</a>
+      <a href="products.html"  data-fr="Produits"  data-en="Products">Produits</a>
+      <a href="activites.html" class="on" data-fr="Activités" data-en="Activities">Activités</a>
+      <a href="le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="blog.html"      data-fr="Blog"      data-en="Blog">Blog</a>
+      <a href="contact.html"   data-fr="Contact"   data-en="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtog" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav-acct" id="navAcct" href="mon-compte.html"><img class="ic" src="assets/icon-compte.png" alt="" width="22" height="22"><span class="lbl" data-fr="Mon compte" data-en="My account">Mon compte</span></a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="wrap" style="padding-top:52px;padding-bottom:6px;text-align:center;max-width:760px">
+    <div id="hello"></div>
+    <span class="eyebrow" data-fr="Activités" data-en="Activities">Activités</span>
+    <h1 style="margin:16px 0 18px"
+        data-fr="Apprends tes cheveux <em>en jouant</em>."
+        data-en="Learn your hair <em>by playing</em>.">Apprends tes cheveux <em>en jouant</em>.</h1>
+    <p class="lead" style="margin:0 auto"
+       data-fr="Douze affirmations sur les cheveux crépus. Vrai ou faux ? Puis six défis à cocher, pour transformer ce que tu sais en ce que tu fais."
+       data-en="Twelve statements about coily hair. True or false? Then six challenges to tick off, turning what you know into what you do.">
+      Douze affirmations sur les cheveux crépus. Vrai ou faux ? Puis six défis à cocher.</p>
+  </div>
+</header>
+
+<!-- ═══════════ LE QUIZ ═══════════ -->
+<section class="section" id="quiz" style="padding-top:38px">
+  <div class="wrap">
+    <div class="quiz">
+      <div class="qbar"><i id="qProg" style="width:0%"></i></div>
+      <div class="qhead">
+        <span id="qCount"></span>
+        <span class="sc" id="qScore"></span>
+      </div>
+      <div id="qBox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LES DÉFIS ═══════════ -->
+<section class="section section-alt" id="defis">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Les défis" data-en="The challenges">Les défis</span>
+      <h2 data-fr="Savoir, c'est bien. <em>Faire</em>, c'est mieux." data-en="Knowing is good. <em>Doing</em> is better.">Savoir, c'est bien. <em>Faire</em>, c'est mieux.</h2>
+      <p class="lead" style="margin-inline:auto"
+         data-fr="Coche une case à chaque fois que tu le fais. Rien à installer, rien à créer : ça reste sur ton téléphone."
+         data-en="Tick a box each time you do it. Nothing to install, no account: it stays on your phone.">
+        Coche une case à chaque fois que tu le fais.</p>
+    </div>
+
+    <div class="grid grid-3" id="dGrid"></div>
+
+    <div style="text-align:center;margin-top:30px">
+      <button class="btn btn-ghost btn-sm" id="dReset"
+              data-fr="Tout remettre à zéro" data-en="Reset everything">Tout remettre à zéro</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SUITE ═══════════ -->
+<section class="section-sm">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow" data-fr="Et après ?" data-en="What next?">Et après ?</span>
+          <h2 style="margin:10px 0 12px" data-fr="Tu veux le plan complet ?" data-en="Want the full plan?">Tu veux le plan complet ?</h2>
+          <p data-fr="Les défis te font démarrer. Les guides te donnent la méthode entière, étape par étape — et Le Cercle y ajoute le Studio, le forum et un contenu exclusif chaque mois."
+             data-en="The challenges get you started. The guides give you the whole method, step by step — and The Circle adds the Studio, the forum and new exclusive content each month.">
+            Les défis te font démarrer. Les guides te donnent la méthode entière.</p>
+        </div>
+        <div style="text-align:center">
+          <a class="btn btn-gold btn-lg" href="le-cercle.html" data-fr="Découvrir Le Cercle" data-en="Discover The Circle">Découvrir Le Cercle</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Repli robots / sans JavaScript : le quiz et les defis sont construits par JS. -->
+<!-- seo:activites --><noscript><section>
+<h2>Activités cheveux crépus Type 4</h2>
+<p>Un quiz de 12 affirmations vrai/faux et 6 défis à cocher. Chaque réponse renvoie à l'article correspondant :</p>
+<ul>
+<li><a href="/blog/porosite-cheveux.html">La porosité, expliquée simplement</a></li>
+<li><a href="/blog/methode-loc-hydratation.html">LOC vs LCO : sceller l'hydratation</a></li>
+<li><a href="/blog/demelage-sans-casse.html">Démêler sans casse</a></li>
+<li><a href="/blog/routine-nuit-satin.html">La routine de nuit qui sauve tes cheveux</a></li>
+<li><a href="/blog/stopper-la-casse.html">Stopper la casse</a></li>
+<li><a href="/blog/shrinkage-cheveux-crepus.html">Le shrinkage expliqué</a></li>
+<li><a href="/blog/huile-de-ricin-cheveux.html">Huile de ricin : ce qu'elle fait vraiment</a></li>
+<li><a href="/blog/ingredients-a-eviter.html">Les ingrédients à éviter</a></li>
+<li><a href="/blog/journal-capillaire.html">Tenir un journal capillaire</a></li>
+</ul></section></noscript><!-- seo:activites -->
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand-name">Schic<span>girl</span></span>
+        <p data-fr="Clarté, soin et confiance pour cheveux crépus Type 4."
+           data-en="Clarity, care and confidence for Type 4 coily hair.">Clarté, soin et confiance pour cheveux crépus Type 4.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/schicgirl" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="https://wa.me/message/ZDXXV2OOOKOME1" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.3l-.3-.2-3 .9.9-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6c-.3-.1-1.5-.700-1.7-.8-.2-.1-.4-.1-.6.1s-.6.8-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1.1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>
+          </a>
+          <a href="mailto:contacte.schicgirl@gmail.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <div>
+        <h4 data-fr="Découvrir" data-en="Discover">Découvrir</h4>
+        <ul>
+          <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+          <li><a href="blog.html" data-fr="Blog" data-en="Blog">Blog</a></li>
+          <li><a href="shop.html" data-fr="Tous les guides" data-en="All guides">Tous les guides</a></li>
+          <li><a href="products.html" data-fr="Mes produits" data-en="My picks">Mes produits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Aide" data-en="Help">Aide</h4>
+        <ul>
+          <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+          <li><a href="mon-compte.html" data-fr="Mon compte" data-en="My account">Mon compte</a></li>
+          <li><a href="le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-fr="Légal" data-en="Legal">Légal</h4>
+        <ul>
+          <li><a href="privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></li>
+          <li><a href="terms.html" data-fr="Conditions" data-en="Terms">Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Schicgirl</span>
+      <span data-fr="Cheveux crépus Type 4 · 4A 4B 4C" data-en="Type 4 coily hair · 4A 4B 4C">Cheveux crépus Type 4 · 4A 4B 4C</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/jeu-data.js"></script>
+<script src="assets/js/account.js"></script>
+<script src="assets/js/site-complete.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = window.SG_JEU, e = SGSite.esc;
+  var FR = function () { return SGSite.lang === "fr"; };
+  var T  = function (fr, en) { return FR() ? fr : en; };
+  var tx = function (o, k) { return FR() ? o[k + "_fr"] : o[k + "_en"]; };
+
+  var KEY_Q = "sg_quiz", KEY_D = "sg_defis";
+  function load(k, def) {
+    try { return JSON.parse(localStorage.getItem(k)) || def; } catch (x) { return def; }
+  }
+  function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (x) {} }
+
+  /* ═══════════ SALUTATION MEMBRE ═══════════ */
+  function hello() {
+    var box = document.getElementById("hello");
+    if (!window.SGAccount || !SGAccount.isLoggedIn()) { box.innerHTML = ""; return; }
+    SGAccount.getProfile().then(function (p) {
+      var n = (p && p.first_name) ? p.first_name : "";
+      box.innerHTML = '<span class="hello">👋 ' +
+        e(n ? T("Contente de te revoir, ", "Good to see you again, ") + n
+            : T("Contente de te revoir", "Good to see you again")) + "</span>";
+    }).catch(function () { box.innerHTML = ""; });
+  }
+
+  /* ═══════════ LE QUIZ ═══════════ */
+  var qi = 0, score = 0, answered = null;
+
+  function articleLink(slug) {
+    return "/blog/" + slug + ".html" + (FR() ? "" : "?lang=en");
+  }
+
+  function paintQuiz() {
+    var box  = document.getElementById("qBox");
+    var prog = document.getElementById("qProg");
+    var n = D.quiz.length;
+
+    /* Fin du quiz : le resultat */
+    if (qi >= n) {
+      prog.style.width = "100%";
+      document.getElementById("qCount").textContent = T("Terminé", "Finished");
+      document.getElementById("qScore").textContent = score + "/" + n;
+      var pct = Math.round((score / n) * 100), badge, say;
+      if (pct >= 85) {
+        badge = T("Tu connais tes cheveux", "You know your hair");
+        say = T("Franchement, bravo. Tu as les bases solides — ce qu'il te reste, c'est la régularité, pas la théorie.",
+                "Honestly, well done. Your foundations are solid — what's left is consistency, not theory.");
+      } else if (pct >= 60) {
+        badge = T("Sur la bonne voie", "On the right track");
+        say = T("Tu sais déjà beaucoup. Les quelques trous qui restent sont exactement ceux qui font stagner — les articles liés ci-dessus les comblent.",
+                "You already know a lot. The few gaps left are exactly the ones that stall progress — the linked articles fill them.");
+      } else {
+        badge = T("Tout est à découvrir", "Everything to discover");
+        say = T("Et c'est une bonne nouvelle : si tes cheveux te résistent, ce n'est pas toi le problème, c'est qu'on ne t'a jamais expliqué. Commence par le Kit gratuit.",
+                "And that's good news: if your hair resists you, you're not the problem — nobody ever explained it. Start with the free Kit.");
+      }
+      box.innerHTML =
+        '<div class="qcard res">' +
+          '<div class="big">' + score + "/" + n + '</div>' +
+          '<div class="badge-t">' + e(badge) + '</div>' +
+          '<p class="say">' + e(say) + '</p>' +
+          '<div class="hero-cta" style="justify-content:center">' +
+            '<a class="btn btn-gold" href="toolkit-landing.html">' +
+              e(T("Recevoir le Kit gratuit", "Get the free Kit")) + '</a>' +
+            '<button class="btn btn-ghost" id="qAgain">' +
+              e(T("Rejouer", "Play again")) + '</button>' +
+          '</div>' +
+        '</div>';
+      document.getElementById("qAgain").addEventListener("click", function () {
+        qi = 0; score = 0; answered = null; save(KEY_Q, null); paintQuiz();
+        document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      save(KEY_Q, { qi: qi, score: score });
+      return;
+    }
+
+    var q = D.quiz[qi];
+    prog.style.width = Math.round((qi / n) * 100) + "%";
+    document.getElementById("qCount").textContent =
+      T("Question ", "Question ") + (qi + 1) + "/" + n;
+    document.getElementById("qScore").textContent =
+      score + " " + T("bonne(s)", "correct");
+
+    /* Pas encore repondu : l'affirmation et les deux boutons */
+    if (answered === null) {
+      box.innerHTML =
+        '<div class="qcard">' +
+          '<p class="stmt">« ' + e(tx(q, "q")) + ' »</p>' +
+          '<div class="qbtns">' +
+            '<button class="btn btn-gold" data-a="1">' + e(T("Vrai", "True")) + '</button>' +
+            '<button class="btn btn-ghost" data-a="0">' + e(T("Faux", "False")) + '</button>' +
+          '</div>' +
+        '</div>';
+      box.querySelectorAll("[data-a]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          answered = b.getAttribute("data-a") === "1";
+          if (answered === q.ok) score++;
+          paintQuiz();
+        });
+      });
+      return;
+    }
+
+    /* Repondu : le verdict et l'explication */
+    var good = answered === q.ok;
+    box.innerHTML =
+      '<div class="qcard">' +
+        '<div class="qfb ' + (good ? "good" : "bad") + '">' +
+          '<div class="verdict">' + (good ? "✓ " : "✗ ") +
+            e(good ? T("Exact", "Correct") : T("Raté", "Missed")) + '</div>' +
+          '<p class="stmt" style="font-size:19px;text-align:left;margin-bottom:14px">« ' +
+            e(tx(q, "q")) + ' » — <b>' +
+            e(q.ok ? T("vrai", "true") : T("faux", "false")) + '</b>' +
+          '</p>' +
+          '<p class="why">' + tx(q, "why") + '</p>' +
+          (q.lien
+            ? '<a class="textlink" href="' + e(articleLink(q.lien)) + '">' +
+                e(T("Lire l'article →", "Read the article →")) + "</a>"
+            : "") +
+          '<button class="btn btn-gold btn-block" style="margin-top:20px" id="qNext">' +
+            e(qi + 1 >= n ? T("Voir mon résultat", "See my result")
+                          : T("Question suivante", "Next question")) + '</button>' +
+        '</div>' +
+      '</div>';
+    document.getElementById("qNext").addEventListener("click", function () {
+      qi++; answered = null; save(KEY_Q, { qi: qi, score: score }); paintQuiz();
+    });
+  }
+
+  /* ═══════════ LES DÉFIS ═══════════ */
+  var dState = load(KEY_D, {});
+
+  function paintDefis() {
+    document.getElementById("dGrid").innerHTML = D.defis.map(function (d) {
+      var got = dState[d.id] || 0, done = got >= d.duree;
+      var dots = "";
+      for (var i = 1; i <= d.duree; i++) {
+        dots += '<button type="button" class="dot-b' + (i <= got ? " on" : "") +
+                '" data-d="' + d.id + '" data-n="' + i + '" ' +
+                'aria-label="' + e(T("Étape ", "Step ") + i) + '">' + i + "</button>";
+      }
+      return '<article class="dcard' + (done ? " done" : "") + '">' +
+        '<div class="dtop"><span class="ic">' + d.ic + '</span>' +
+          '<h3>' + e(tx(d, "t")) + "</h3></div>" +
+        '<p>' + e(tx(d, "d")) + "</p>" +
+        '<div class="dots">' + dots + "</div>" +
+        '<div class="dfoot">' +
+          '<span class="cnt">' + (done ? "✓ " + T("Défi réussi", "Challenge done")
+                                       : got + "/" + d.duree) + "</span>" +
+          (d.lien ? '<a class="textlink" style="font-size:12px" href="' +
+                    e(articleLink(d.lien)) + '">' + e(T("La méthode →", "The method →")) + "</a>" : "") +
+        "</div></article>";
+    }).join("");
+  }
+
+  document.getElementById("dGrid").addEventListener("click", function (ev) {
+    var b = ev.target.closest("button[data-d]");
+    if (!b) return;
+    var id = b.getAttribute("data-d"), n = +b.getAttribute("data-n");
+    /* Recliquer sur la derniere case cochee la decoche : on corrige une
+       erreur sans devoir tout remettre a zero. */
+    dState[id] = (dState[id] === n) ? n - 1 : n;
+    save(KEY_D, dState);
+    paintDefis();
+  });
+
+  document.getElementById("dReset").addEventListener("click", function () {
+    if (!confirm(T("Effacer toute ta progression ?", "Erase all your progress?"))) return;
+    dState = {}; save(KEY_D, dState);
+    qi = 0; score = 0; answered = null; save(KEY_Q, null);
+    paintDefis(); paintQuiz();
+  });
+
+  /* ═══════════ Démarrage ═══════════ */
+  var saved = load(KEY_Q, null);
+  if (saved && typeof saved.qi === "number") { qi = saved.qi; score = saved.score || 0; }
+
+  function paintAll() { hello(); paintQuiz(); paintDefis(); }
+  paintAll();
+  SGSite.onLang(paintAll);
+})();
+</script>
+</body>
+</html>

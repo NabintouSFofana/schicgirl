@@ -133,9 +133,9 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:600;color:var(--gold-deep)}
 .brand-name{font-family:var(--serif);font-size:25px;font-weight:500;line-height:1;color:var(--ink)}
 .brand-name span{color:var(--gold-deep);font-style:italic;font-weight:600}
 
-.nav-links{display:flex;align-items:center;gap:5px}
+.nav-links{display:flex;align-items:center;gap:3px}
 .nav-links a{
-  font-size:13.5px;font-weight:500;padding:9px 13px;border-radius:var(--r-pill);
+  font-size:13px;font-weight:500;padding:9px 10px;border-radius:var(--r-pill);
   color:var(--ink-soft);transition:background .15s, color .15s;white-space:nowrap;
 }
 .nav-links a:hover{background:var(--gold-pale);color:var(--gold-deep)}
@@ -174,7 +174,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:600;color:var(--gold-deep)}
 .burger{display:none;width:40px;height:40px;border-radius:50%;align-items:center;justify-content:center;font-size:19px;color:var(--ink)}
 .burger:hover{background:var(--gold-pale)}
 
-@media(max-width:1000px){
+@media(max-width:1240px){
   /* ── Sans JavaScript ──────────────────────────────────────────
      Le menu devient une simple liste sous la marque, et l'en-tete
      s'agrandit pour la contenir (sans « height:auto » les liens
