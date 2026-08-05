@@ -180,7 +180,11 @@ select.fi{cursor:pointer}
   position:sticky;top:0;z-index:100;
   box-shadow:0 4px 20px rgba(0,0,0,.25);
 }
-.topbar-left{display:flex;align-items:center;gap:14px}
+.topbar-left{display:flex;align-items:center;gap:12px}
+/* Logo, comme sur le Studio : ancre visuellement le forum a la marque. */
+.brand-logo{display:flex;flex:none;line-height:0}
+.brand-logo img{width:34px;height:34px;border-radius:50%;object-fit:cover;
+  background:#fff;box-shadow:0 0 0 1px rgba(201,147,74,.45)}
 .brand-mark{font-family:"Cinzel",serif;font-size:18px;color:var(--gold-light);letter-spacing:5px;font-weight:600}
 .brand-tag{font-size:10px;color:var(--lite);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
 .topbar-right{display:flex;align-items:center;gap:10px}
@@ -744,6 +748,7 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   .menu-toggle{display:flex}
   .topbar{padding:12px 18px}
   .brand-mark{font-size:15px;letter-spacing:3px}
+  .brand-logo img{width:30px;height:30px}
   .brand-tag{display:none}
   .welcome{padding:20px}
   .welcome-title{font-size:20px}
@@ -788,7 +793,11 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   .topbar{padding:10px 8px}
   .topbar-left{gap:6px}
   .topbar-right{gap:4px}
-  .brand-mark{font-size:13px;letter-spacing:1.5px}
+  /* Le logo suffit a identifier la marque quand la place manque :
+     on retire le mot « SCHICGIRL » plutot que de laisser la barre
+     deborder. */
+  .brand-mark{display:none}
+  .brand-logo img{width:28px;height:28px}
   .topbar-right .tbtn,.tav,.menu-toggle{width:30px;height:30px;font-size:13px}
   .topbar-lang .lb{padding:3px 5px;font-size:9px}
   .modal-bg{padding:12px 8px}
@@ -1364,6 +1373,10 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   <div class="topbar">
     <div class="topbar-left">
       <button class="tbtn menu-toggle" id="menu-toggle">☰</button>
+      <a class="brand-logo" href="https://schicgirl.me/" aria-label="Schicgirl">
+        <img src="/assets/logo2.webp" alt="" width="34" height="34"
+             onerror="this.parentNode.style.display='none'">
+      </a>
       <div>
         <div class="brand-mark">SCHICGIRL</div>
         <div class="brand-tag" data-i18n="brand_tag">Your Natural Hair Community</div>
