@@ -22,7 +22,7 @@
       data-title-en="My account — Schicgirl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mon compte — Schicgirl</title>
 <meta name="description" content="Connecte-toi à ton espace membre Schicgirl : Le Cercle, le forum privé et Le Studio Premium.">
 <!-- Page privee : rien a indexer, et surtout pas a faire remonter dans Google. -->
@@ -109,6 +109,11 @@
   .linkbtn{background:none;border:0;color:var(--gold-deep);font-size:13px;
            font-weight:600;cursor:pointer;padding:0}
   .linkbtn:hover{text-decoration:underline}
+
+  /* iOS : 16px minimum sur mobile, sinon Safari zoome au focus. */
+  @media(max-width:820px){
+    .field input,.field select{font-size:16px}
+  }
 </style>
 </head>
 <body>

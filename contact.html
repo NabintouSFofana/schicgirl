@@ -18,7 +18,7 @@
       data-title-en="Contact — Schicgirl, let's talk Type 4 coily hair">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Contact — Schicgirl, parlons cheveux crépus Type 4</title>
 <meta name="description" content="Une question sur ta routine, un guide, une commande ou une collaboration ? Écris à Schicgirl par email ou sur Facebook — réponse sous 48 h.">
 <meta name="robots" content="index, follow">
@@ -96,6 +96,13 @@
   .cmsg{border-radius:var(--r-s);padding:13px 16px;font-size:13.5px;line-height:1.6;margin-bottom:18px}
   .cmsg-ok{background:#eaf6ee;border:1px solid #a9d8bb;color:#1f6b3a}
   .cmsg-err{background:#fdecea;border:1px solid #f0b6ae;color:#9d2f1f}
+
+  /* iOS : Safari zoome la page si un champ fait moins de 16px au focus.
+     Regle placee ici car « .cform input » est plus specifique que la
+     regle globale de site-complete.css. */
+  @media(max-width:820px){
+    .cform input,.cform select,.cform textarea{font-size:16px}
+  }
 </style>
 
 
