@@ -204,7 +204,11 @@ def annotate_source(cfg):
     url_en = f"{SITE}/en/{cfg['slug_en']}/"
     with open(cfg["src"], "r", encoding="utf-8") as f:
         html = f.read()
-    html = re.sub(re.escape(SEO_MARK) + r".*?" + re.escape(SEO_MARK), "", html, flags=re.DOTALL)
+    # On avale aussi les blancs autour du bloc : sans ca, la ligne vide laissee
+    # derriere s'ajoutait a la precedente et le fichier source gagnait une ligne
+    # vide a chaque passage.
+    html = re.sub(r"\s*" + re.escape(SEO_MARK) + r".*?" + re.escape(SEO_MARK) + r"\s*",
+                  "\n", html, flags=re.DOTALL)
     # strip any stale canonical / hreflang / JSON-LD from earlier passes so the
     # page ends up with exactly one canonical (-> the FR clean URL)
     html = re.sub(r'\s*<link[^>]*rel="canonical"[^>]*>', "", html)

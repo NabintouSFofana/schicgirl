@@ -207,7 +207,7 @@
     getProfile: function () {
       var id = API.userId();
       if (!id) return Promise.reject(new Error("non connectee"));
-      return rest("profiles?select=first_name,last_name,hair_type,photo_url,points,role,access_until&id=eq."
+      return rest("profiles?select=first_name,last_name,hair_type,bio,bio_fr,location,photo_url,points,role,access_until,created_at&id=eq."
                   + encodeURIComponent(id))
         .then(function (rows) { return (rows && rows[0]) || null; });
     },

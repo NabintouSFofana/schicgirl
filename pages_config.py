@@ -135,8 +135,8 @@ PAGES = [
    "name_fr": "Contact", "name_en": "Contact", "cat_fr": "Contact", "cat_en": "Contact",
    "title_fr": "Contact Schicgirl — Questions, Collabs & Support | Schicgirl",
    "title_en": "Contact Schicgirl — Questions, Collabs & Support | Schicgirl",
-   "desc_fr": "Contacte Schicgirl — questions sur ta routine cheveux naturels, les guides, collaborations ou support. Email, Facebook et réseaux.",
-   "desc_en": "Get in touch with Schicgirl — questions about your natural hair routine, the guides, collaborations or support. Email, Facebook and socials."},
+   "desc_fr": "Contacte Schicgirl — questions sur ta routine cheveux naturels, les guides, collaborations ou support. WhatsApp, email et Facebook.",
+   "desc_en": "Get in touch with Schicgirl — questions about your natural hair routine, the guides, collaborations or support. WhatsApp, email and Facebook."},
 
   {"src": "privacy-policy.html", "slug_fr": "confidentialite", "slug_en": "privacy-policy",
    "name_fr": "Politique de Confidentialité", "name_en": "Privacy Policy", "cat_fr": "Légal", "cat_en": "Legal",
