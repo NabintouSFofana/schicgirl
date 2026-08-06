@@ -70,6 +70,19 @@
   .field input:focus,.field select:focus,.field textarea:focus{
     border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,147,74,.14);background:#fff}
 
+  /* Photo de profil : c'est SA photo sur sa propre page, elle merite
+     d'etre vue. Le cercle recule sur petit ecran, sans passer sous 88px. */
+  .myphoto{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+  .myphoto img{
+    width:112px;height:112px;flex:none;border-radius:50%;object-fit:cover;
+    box-shadow:0 0 0 1px var(--line-gold), var(--shadow-s);
+  }
+  .myphoto .hint{margin:0}
+  @media(max-width:480px){
+    .myphoto{gap:14px}
+    .myphoto img{width:88px;height:88px}
+  }
+
   .msg{border-radius:var(--r-s);padding:12px 15px;font-size:13.5px;line-height:1.6;margin-bottom:16px}
   .msg-err{background:#fdecea;border:1px solid #f0b6ae;color:#9d2f1f}
   .msg-ok{background:#eaf6ee;border:1px solid #a9d8bb;color:#1f6b3a}
@@ -201,7 +214,48 @@
     if (/rate limit|too many/i.test(m))
       return T("Trop de tentatives. Réessaie dans quelques minutes.",
                "Too many attempts. Try again in a few minutes.");
+    /* Erreurs Postgres renvoyees telles quelles par PostgREST : sans ca,
+       elles s'affichaient en JSON brut, illisible. On garde le code a la
+       fin — c'est ce qui permet de diagnostiquer si ca recommence. */
+    if (/23502/.test(m))
+      return T("Un champ obligatoire est vide. Remplis prénom et nom, puis réessaie. (23502)",
+               "A required field is empty. Fill in first and last name, then try again. (23502)");
+    if (/23514/.test(m))
+      return T("Une des valeurs n'est pas acceptée. Choisis ton type de cheveux dans la liste. (23514)",
+               "One of the values isn't accepted. Pick your hair type from the list. (23514)");
+    if (/42501|permission denied/i.test(m))
+      return T("Tu n'as pas le droit de modifier ce profil. Déconnecte-toi et reconnecte-toi. (42501)",
+               "You're not allowed to edit this profile. Sign out and back in. (42501)");
+    if (/JWT|token is expired|401/i.test(m))
+      return T("Ta session a expiré. Déconnecte-toi et reconnecte-toi.",
+               "Your session expired. Sign out and back in.");
     return m || T("Une erreur est survenue.", "Something went wrong.");
+  }
+
+  /* Les valeurs ENREGISTREES doivent etre exactement celles du forum
+     ("Type 4A", pas "4A"), sinon le profil du site et celui du forum ne
+     parlent pas de la meme chose. L'etiquette se traduit, la valeur non :
+     c'est pour ca que chaque option porte un attribut value fixe.
+     Si la base contient autre chose (ancienne saisie), on l'ajoute a la
+     liste plutot que de la faire disparaitre en silence. */
+  var HAIR = [
+    ["Type 4A", "Type 4A", "Type 4A"],
+    ["Type 4B", "Type 4B", "Type 4B"],
+    ["Type 4C", "Type 4C", "Type 4C"],
+    ["Transitioning", "En transition", "Transitioning"],
+    ["Locs", "Locs", "Locs"]
+  ];
+  function hairOptions(actuel) {
+    actuel = actuel || "";
+    var liste = HAIR.slice();
+    if (actuel && !liste.some(function (o) { return o[0] === actuel; }))
+      liste.push([actuel, actuel, actuel]);
+    return '<option value="">' + e(T("— non précisé —", "— not set —")) + "</option>" +
+      liste.map(function (o) {
+        return '<option value="' + e(o[0]) + '"' +
+               (actuel === o[0] ? " selected" : "") + ">" +
+               e(FR() ? o[1] : o[2]) + "</option>";
+      }).join("");
   }
 
   function msgHtml() {
@@ -363,11 +417,10 @@
            '<p class="hint">' + e(T("Visible par les autres membres sur le forum.",
                                     "Visible to other members on the forum.")) + '</p>' +
            (p.photo_url
-             ? '<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">' +
+             ? '<div class="myphoto">' +
                  '<img src="' + e(SGSite.safeUrl(p.photo_url)) + '" alt="" ' +
-                 'style="width:64px;height:64px;border-radius:50%;object-fit:cover;' +
-                 'box-shadow:0 0 0 1px var(--line-gold)">' +
-                 '<span class="hint" style="margin:0">' +
+                 'onerror="this.parentNode.style.display=\'none\'">' +
+                 '<span class="hint">' +
                    e(T("Ta photo se change depuis ton profil sur le forum.",
                        "Your photo is changed from your forum profile.")) + '</span>' +
                '</div>'
@@ -378,13 +431,7 @@
                fieldVal("last_name", "text", T("Nom", "Last name"), p.last_name || "") +
              '</div>' +
              '<div class="field"><label for="f-hair_type">' + e(T("Type de cheveux", "Hair type")) + '</label>' +
-               '<select id="f-hair_type" name="hair_type">' +
-                 ["", "4A", "4B", "4C", T("Transition", "Transitioning"), T("Locs", "Locs")]
-                   .map(function (o) {
-                     return '<option value="' + e(o) + '"' +
-                            ((p.hair_type || "") === o ? " selected" : "") + '>' +
-                            e(o || T("— non précisé —", "— not set —")) + "</option>";
-                   }).join("") +
+               '<select id="f-hair_type" name="hair_type">' + hairOptions(p.hair_type) +
                '</select></div>' +
              fieldVal("location", "text", T("Ville ou pays", "City or country"), p.location || "") +
              '<div class="field"><label for="f-bio">' + e(T("En deux lignes", "In two lines")) + '</label>' +
@@ -532,15 +579,18 @@
       ev.preventDefault();
       if (busy) return;
       busy = true; msg = null; render();
+      /* Un champ vide s'enregistre en chaine vide, PAS en null : c'est ce
+         que le forum ecrit, et les colonnes existantes contiennent "" —
+         envoyer null faisait echouer l'enregistrement. */
       var champs = {
         first_name: fp.first_name.value.trim(),
         last_name: fp.last_name.value.trim(),
-        hair_type: fp.hair_type.value || null,
-        location: fp.location.value.trim() || null
+        hair_type: fp.hair_type.value,
+        location: fp.location.value.trim()
       };
       /* La bio existe en deux colonnes : on ecrit dans celle de la
          langue affichee, pour ne pas ecraser l'autre version. */
-      champs[FR() ? "bio_fr" : "bio"] = fp.bio.value.trim() || null;
+      champs[FR() ? "bio_fr" : "bio"] = fp.bio.value.trim();
       A.updateProfile(champs).then(function () {
         say("ok", "C'est enregistré.", "Saved.");
         return A.getProfile().then(function (p) { state.profile = p; });

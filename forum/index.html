@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#c9934a" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" />
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 /* ════════════════════════════════════════════════════════════════
@@ -185,11 +185,21 @@ select.fi{cursor:pointer}
 .brand-logo{display:flex;flex:none;line-height:0}
 .brand-logo img{width:34px;height:34px;border-radius:50%;object-fit:cover;
   background:#fff;box-shadow:0 0 0 1px rgba(201,147,74,.45)}
-.brand-mark{font-family:"Cinzel",serif;font-size:18px;color:var(--gold-light);letter-spacing:5px;font-weight:600}
+/* Meme signature que schicgirl.me : Cormorant, « girl » en italique dore.
+   L'ancien SCHICGIRL en Cinzel espace de 5px occupait presque le double
+   de largeur dans la barre. Couleurs claires, la barre est sombre. */
+.brand-mark{
+  font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:500;
+  line-height:1;color:#fff;letter-spacing:0;white-space:nowrap;
+}
+.brand-mark span{color:var(--gold-light);font-style:italic;font-weight:600}
 .brand-tag{font-size:10px;color:var(--lite);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
 .topbar-right{display:flex;align-items:center;gap:10px}
+/* flex:none — sans ca, les ronds se font ecraser en ovales des que la
+   barre manque de place : c'est ce qui deformait le ☰ sur telephone.
+   Un element flex retrecit sous sa largeur par defaut. */
 .tbtn{
-  width:38px;height:38px;border-radius:50%;
+  width:38px;height:38px;flex:none;border-radius:50%;
   background:rgba(255,255,255,.08);
   color:#fff;display:flex;align-items:center;justify-content:center;
   font-size:16px;position:relative;transition:all .2s;
@@ -205,7 +215,7 @@ select.fi{cursor:pointer}
   display:flex;align-items:center;justify-content:center;padding:0 5px;
 }
 .tav{
-  width:38px;height:38px;border-radius:50%;
+  width:38px;height:38px;flex:none;border-radius:50%;
   background:var(--gold);color:#fff;
   display:flex;align-items:center;justify-content:center;
   font-weight:700;font-size:14px;cursor:pointer;
@@ -747,7 +757,7 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   .sb.on{display:block}
   .menu-toggle{display:flex}
   .topbar{padding:12px 18px}
-  .brand-mark{font-size:15px;letter-spacing:3px}
+  .brand-mark{font-size:19px}
   .brand-logo img{width:30px;height:30px}
   .brand-tag{display:none}
   .welcome{padding:20px}
@@ -759,7 +769,9 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
 @media(max-width:480px){
   .rgrid,.lgrid,.cgrid,.pgrid,.mgrid{grid-template-columns:1fr}
   .ba-grid{grid-template-columns:1fr}
-  .topbar-right .tbtn{width:34px;height:34px;font-size:14px}
+  /* Le ☰ est dans topbar-left : sans lui, il restait a 38px face a des
+     pastilles de 34px a sa droite. */
+  .topbar .tbtn{width:34px;height:34px;font-size:14px}
   .tav{width:34px;height:34px;font-size:13px}
 
   /* ── TOPBAR SUR MOBILE ───────────────────────────────────────
@@ -793,12 +805,14 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
   .topbar{padding:10px 8px}
   .topbar-left{gap:6px}
   .topbar-right{gap:4px}
-  /* Le logo suffit a identifier la marque quand la place manque :
-     on retire le mot « SCHICGIRL » plutot que de laisser la barre
-     deborder. */
-  .brand-mark{display:none}
+  /* Le mot tenait autrefois 144px en Cinzel espace : il fallait le
+     masquer ici. En Cormorant il fait moins de la moitie, il reste
+     donc lisible meme a 320px. */
+  .brand-mark{font-size:17px}
   .brand-logo img{width:28px;height:28px}
-  .topbar-right .tbtn,.tav,.menu-toggle{width:30px;height:30px;font-size:13px}
+  /* « .menu-toggle » seul (0,1,0) perdait contre « .topbar .tbtn » (0,2,0)
+     de la regle 480px : le ☰ restait a 34px a cote de pastilles de 30px. */
+  .topbar .tbtn,.tav{width:30px;height:30px;font-size:13px}
   .topbar-lang .lb{padding:3px 5px;font-size:9px}
   .modal-bg{padding:12px 8px}
   .modal{padding:16px 13px}
@@ -1408,7 +1422,7 @@ textarea.fi{min-height:120px;resize:vertical;font-family:inherit}
              onerror="this.parentNode.style.display='none'">
       </a>
       <div>
-        <div class="brand-mark">SCHICGIRL</div>
+        <div class="brand-mark">Schic<span>girl</span></div>
         <div class="brand-tag" data-i18n="brand_tag">Your Natural Hair Community</div>
       </div>
     </div>
