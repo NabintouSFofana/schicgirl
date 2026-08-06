@@ -152,6 +152,40 @@
     font-weight:600;color:var(--gold-deep);margin-bottom:18px;
   }
 
+  /* ── RESERVE AUX INSCRITES ───────────────────────────────────
+     Les sections membres sont masquees des le premier rendu, et non
+     par le script apres coup : sinon le quiz apparaissait une demi-
+     seconde avant de disparaitre. Le masquage est conditionne a « js »
+     — sans JavaScript rien n'est masque, et le repli <noscript> plus
+     bas reste lisible pour les robots. */
+  .js [data-membres]{display:none}
+  .js #gate{display:block}
+  #gate{display:none}
+
+  .gate-card{
+    max-width:620px;margin:0 auto;text-align:center;
+    background:var(--card);border:1px solid var(--line-gold);
+    border-radius:var(--r-l);padding:44px 34px;box-shadow:var(--shadow);
+  }
+  @media(max-width:520px){.gate-card{padding:32px 20px}}
+  .gate-card .lock{
+    width:58px;height:58px;margin:0 auto 20px;border-radius:50%;
+    background:var(--gold-pale);border:1px solid var(--line-gold);
+    display:flex;align-items:center;justify-content:center;font-size:24px;
+  }
+  .gate-card h2{margin-bottom:14px}
+  .gate-card .lead{margin:0 auto 26px;max-width:440px}
+  .gate-card .btn{margin:0 5px 10px}
+  .gate-list{
+    list-style:none;margin:28px auto 0;padding:22px 0 0;max-width:400px;
+    border-top:1px solid var(--line);text-align:left;
+  }
+  .gate-list li{
+    display:flex;gap:11px;align-items:flex-start;
+    font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:11px;
+  }
+  .gate-list li::before{content:"✓";color:var(--gold-deep);font-weight:700;flex:none}
+
   /* iOS : voir contact.html — 16px minimum sur mobile, sinon Safari zoome. */
   @media(max-width:820px){
     .cxform input,.cxform textarea{font-size:16px}
@@ -207,8 +241,41 @@
   </div>
 </header>
 
+<!-- ═══════════ PORTE D'ENTREE ═══════════
+     Visible tant qu'on n'est pas connectee. Le compte est gratuit :
+     ce n'est pas le paywall du Cercle, juste une inscription. -->
+<section class="section" id="gate" style="padding-top:38px">
+  <div class="wrap">
+    <div class="gate-card">
+      <div class="lock" aria-hidden="true">🔐</div>
+      <span class="eyebrow" data-fr="Réservé aux inscrites" data-en="Members only">Réservé aux inscrites</span>
+      <h2 style="margin:14px 0"
+          data-fr="Crée ton compte pour <em>jouer</em>."
+          data-en="Create your account to <em>play</em>.">Crée ton compte pour <em>jouer</em>.</h2>
+      <p class="lead"
+         data-fr="Le quiz et les défis gardent ta progression d'une fois à l'autre. Pour ça, il me faut savoir qui tu es — le compte est gratuit et prend une minute."
+         data-en="The quiz and challenges remember where you left off. For that I need to know who you are — the account is free and takes a minute.">
+        Le quiz et les défis gardent ta progression d'une fois à l'autre.</p>
+
+      <a class="btn btn-gold btn-lg" href="mon-compte.html"
+         data-fr="Créer mon compte gratuit" data-en="Create my free account">Créer mon compte gratuit</a>
+      <a class="btn btn-ghost btn-lg" href="mon-compte.html"
+         data-fr="J'ai déjà un compte" data-en="I already have an account">J'ai déjà un compte</a>
+
+      <ul class="gate-list">
+        <li data-fr="Le quiz : 12 affirmations vrai/faux, avec l'explication à chaque réponse."
+            data-en="The quiz: 12 true/false statements, with the reasoning behind each answer.">Le quiz : 12 affirmations vrai/faux.</li>
+        <li data-fr="Les 6 défis à cocher, semaine après semaine."
+            data-en="The 6 challenges to tick off, week after week.">Les 6 défis à cocher.</li>
+        <li data-fr="Le même compte ouvre le forum et Le Studio si tu rejoins Le Cercle."
+            data-en="The same account opens the forum and the Studio if you join The Circle.">Le même compte ouvre le forum et Le Studio.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ LE QUIZ ═══════════ -->
-<section class="section" id="quiz" style="padding-top:38px">
+<section class="section" id="quiz" data-membres style="padding-top:38px">
   <div class="wrap">
     <div class="quiz">
       <div class="qbar"><i id="qProg" style="width:0%"></i></div>
@@ -222,14 +289,14 @@
 </section>
 
 <!-- ═══════════ LES DÉFIS ═══════════ -->
-<section class="section section-alt" id="defis">
+<section class="section section-alt" id="defis" data-membres>
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow" data-fr="Les défis" data-en="The challenges">Les défis</span>
       <h2 data-fr="Savoir, c'est bien. <em>Faire</em>, c'est mieux." data-en="Knowing is good. <em>Doing</em> is better.">Savoir, c'est bien. <em>Faire</em>, c'est mieux.</h2>
       <p class="lead" style="margin-inline:auto"
-         data-fr="Coche une case à chaque fois que tu le fais. Rien à installer, rien à créer : ça reste sur ton téléphone."
-         data-en="Tick a box each time you do it. Nothing to install, no account: it stays on your phone.">
+         data-fr="Coche une case à chaque fois que tu le fais. Rien à installer : ta progression reste sur ton téléphone."
+         data-en="Tick a box each time you do it. Nothing to install: your progress stays on your phone.">
         Coche une case à chaque fois que tu le fais.</p>
     </div>
 
@@ -243,7 +310,7 @@
 </section>
 
 <!-- ═══════════ MANCHE MEMBRES ═══════════ -->
-<section class="section" id="pro">
+<section class="section" id="pro" data-membres>
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow" data-fr="Manche membres" data-en="Members round">Manche membres</span>
@@ -431,7 +498,13 @@
       box.innerHTML = '<span class="hello">👋 ' +
         e(n ? T("Contente de te revoir, ", "Good to see you again, ") + n
             : T("Contente de te revoir", "Good to see you again")) + "</span>";
-    }).catch(function () { box.innerHTML = ""; });
+    }).catch(function () {
+      box.innerHTML = "";
+      /* Une session peut avoir ete effacee ici meme : account.js jette
+         le jeton quand le renouvellement echoue. On refait le point,
+         sinon la page reste ouverte alors qu'on n'est plus connectee. */
+      if (!SGAccount.isLoggedIn()) membreOuPas();
+    });
   }
 
   /* ═══════════ LE QUIZ ═══════════ */
@@ -761,9 +834,30 @@
     });
   });
 
-  function paintAll() { hello(); paintQuiz(); paintDefis(); paintPro(); paintDeadline(); }
+  /* ═══════════ RESERVE AUX INSCRITES ═══════════
+     Un compte suffit — c'est isLoggedIn(), pas hasAccess() : le Cercle
+     n'est demande que pour la manche membres, plus bas. Le contrôle se
+     fait en local (pas d'appel reseau), donc pas d'ecran d'attente. */
+  function membreOuPas() {
+    var ouverte = !!(window.SGAccount && SGAccount.isLoggedIn());
+    var g = document.getElementById("gate");
+    if (g) g.style.display = ouverte ? "none" : "block";
+    var secs = document.querySelectorAll("[data-membres]");
+    for (var i = 0; i < secs.length; i++)
+      secs[i].style.display = ouverte ? "block" : "none";
+    return ouverte;
+  }
+
+  function paintAll() {
+    var ouverte = membreOuPas();
+    hello();
+    paintDeadline();
+    /* Rien a dessiner dans des sections masquees. */
+    if (!ouverte) return;
+    paintQuiz(); paintDefis(); paintPro();
+  }
   paintAll();
-  checkPro();
+  if (window.SGAccount && SGAccount.isLoggedIn()) checkPro();
   SGSite.onLang(paintAll);
 })();
 </script>
