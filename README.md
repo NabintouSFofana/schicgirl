@@ -1,5 +1,8 @@
 # Schicgirl™
-<img width="702" height="732" alt="image" src="https://github.com/user-attachments/assets/de5e6c4e-a8a2-4a15-a32e-0a666561ab29" />
+<img width="1097" height="865" alt="image" src="https://github.com/user-attachments/assets/13aa9de7-8d47-4cb9-9b7b-8a7b9af663f1" />
+
+<img width="1656" height="873" alt="image" src="https://github.com/user-attachments/assets/fd3c7bff-03ef-4a56-806d-63fb1d9e28ed" />
+
 
 A complete, bilingual (🇫🇷 / 🇬🇧) digital storefront and toolset for a Type 4 natural-hair brand — built as hand-written HTML/CSS/JavaScript, with no framework and no build step.
 
