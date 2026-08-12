@@ -99,14 +99,34 @@ je la copie dans `assets/blog/` au bon nom et je mets `blog.js` à jour.
 
 ---
 
-## 6. LES SCRIPTS PYTHON
+## 6. LES SCRIPTS PYTHON — dans `tools/`
+
+Ils ne font pas partie du site : ce sont mes outils. Ils vivent dans
+`tools/` pour ne plus traîner à la racine, où GitHub Pages les servait
+au public comme n'importe quelle page.
 
 | Script | Rôle |
 |---|---|
-| `prerender.py` | Génère les versions `/fr/` et `/en/` pour le référencement |
-| `pages_config.py` | La configuration lue par `prerender.py` |
-| `seo_finalize.py` | Finalise les balises SEO |
-| `adsense_setup.py`, `patch_js.py` | Utilitaires ponctuels |
+| `tools/prerender.py` | Génère les versions `/fr/` et `/en/` pour le référencement |
+| `tools/pages_config.py` | La configuration lue par `prerender.py` |
+| `tools/seo_finalize.py` | Finalise les balises SEO |
+| `tools/adsense_setup.py`, `tools/patch_js.py` | Utilitaires ponctuels |
+
+**Lance-les depuis la racine du dépôt**, pas depuis `tools/` :
+
+```bash
+python tools/prerender.py
+```
+
+Ils cherchent les pages à partir du dossier courant. Depuis la racine
+tout fonctionne ; depuis `tools/` ils ne trouveraient rien.
+
+### Les notes de travail — dans `docs/`
+
+`docs/LIRE-MOI-STRUCTURE.md` (ce fichier), `docs/90-DAY-PLAN.md`,
+`docs/KEYWORDS-STARTER.md`, `docs/LAUNCH-CHECKLIST.md`. Elles étaient
+à la racine, donc lisibles par n'importe qui à l'adresse
+`schicgirl.me/LAUNCH-CHECKLIST.md`.
 
 ---
 
@@ -118,7 +138,7 @@ je la copie dans `assets/blog/` au bon nom et je mets `blog.js` à jour.
 
 ### Bon à savoir
 
-**Après avoir modifié une page, relance `prerender.py`.** Les 42 pages
+**Après avoir modifié une page, relance `python tools/prerender.py`.** Les 42 pages
 `/fr/` et `/en/` sont construites à partir des pages de la racine : tant
 que tu ne relances pas, elles servent l'ancienne version. C'est ce qui
 avait laissé `/en/the-circle/` afficher un prix en euros et renvoyer vers
