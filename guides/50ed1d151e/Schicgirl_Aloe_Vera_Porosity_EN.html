@@ -1,0 +1,248 @@
+<title>Aloe Vera for Your Porosity</title>
+<style>
+  /* Une page A4, aux couleurs de schicgirl.me. Pensée pour l'impression
+     d'abord : tout doit tenir sur une feuille, sans rien couper. */
+  @page{ size:A4; margin:0; }
+
+  :root{
+    --cream:#fdfaf5;
+    --card:#ffffff;
+    --gold:#c9934a;
+    --gold-deep:#a86d23;
+    --gold-pale:#f7ecdc;
+    --line:#e7d9c6;
+    --ink:#2b211a;
+    --ink-soft:#5c4c3f;
+    --ink-mute:#8a7566;
+    --leaf:#4a7c59;
+    --leaf-pale:#eaf2ec;
+    --alert:#a83228;
+    --alert-pale:#fbeae7;
+    --serif:'Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:9.6pt;
+    line-height:1.42;
+  }
+  .sheet{
+    width:210mm; min-height:297mm;
+    margin:0 auto; padding:12mm 13mm 9mm;
+    background:var(--cream);
+    display:flex; flex-direction:column;
+  }
+
+  /* ── En-tête ── */
+  .top{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    border-bottom:2px solid var(--gold); padding-bottom:3.5mm; margin-bottom:5mm;
+  }
+  .brand{font-family:var(--serif); font-size:19pt; font-weight:500; line-height:1; color:var(--ink)}
+  .brand span{color:var(--gold-deep); font-style:italic; font-weight:700}
+  .brand-sub{
+    font-family:var(--sans); font-size:6.6pt; letter-spacing:.19em;
+    text-transform:uppercase; color:var(--ink-mute); margin-top:1.6mm;
+  }
+  .top-right{text-align:right; font-size:7.4pt; color:var(--ink-mute); line-height:1.5}
+
+  h1{
+    font-family:var(--serif); font-size:25pt; font-weight:500;
+    line-height:1.06; margin:0 0 2mm; letter-spacing:-.01em;
+  }
+  h1 em{font-style:italic; color:var(--gold-deep)}
+  .intro{
+    font-size:9.4pt; color:var(--ink-soft); margin:0 0 5.5mm; max-width:150mm;
+  }
+
+  /* ── Titres de partie ── */
+  .part{
+    display:flex; align-items:center; gap:3mm; margin:0 0 3.5mm;
+  }
+  .part-no{
+    flex:none; width:7mm; height:7mm; border-radius:50%;
+    background:var(--gold-deep); color:#fff;
+    font-family:var(--serif); font-size:10.5pt; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .part h2{
+    font-family:var(--serif); font-size:14pt; font-weight:600;
+    margin:0; line-height:1.1;
+  }
+  .part .hint{
+    margin-left:auto; font-size:7.4pt; color:var(--ink-mute);
+    font-style:italic; text-align:right;
+  }
+
+  /* ── Étapes de récolte ── */
+  .steps{
+    list-style:none; margin:0 0 4mm; padding:0;
+    display:grid; grid-template-columns:1fr 1fr; gap:2.6mm 6mm;
+  }
+  .steps li{
+    display:grid; grid-template-columns:5.6mm 1fr; gap:2.4mm;
+    align-items:start; break-inside:avoid;
+  }
+  .steps .n{
+    font-family:var(--serif); font-size:11.5pt; font-weight:700;
+    color:var(--gold); line-height:1; padding-top:.3mm;
+  }
+  .steps b{display:block; font-size:9.2pt; font-weight:700; margin-bottom:.4mm}
+  .steps span{font-size:8.6pt; color:var(--ink-soft); line-height:1.4}
+
+  .warn{
+    background:var(--alert-pale); border:1px solid var(--alert);
+    border-radius:2mm; padding:3mm 4mm; margin:0 0 6mm;
+    font-size:8.6pt; color:var(--ink-soft); line-height:1.45;
+  }
+  .warn b{color:var(--alert); display:block; margin-bottom:.8mm; font-size:8.8pt}
+
+  /* ── Les trois porosités ── */
+  .poro{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:4mm; margin:0 0 5mm;
+  }
+  .p-card{
+    background:var(--card); border:1px solid var(--line);
+    border-top:3px solid var(--gold); border-radius:2mm;
+    padding:4mm 4.2mm; display:flex; flex-direction:column;
+  }
+  .p-card h3{
+    font-family:var(--serif); font-size:12pt; font-weight:600;
+    margin:0 0 1mm; line-height:1.1; color:var(--gold-deep);
+  }
+  .p-tell{
+    font-size:7.4pt; color:var(--ink-mute); font-style:italic;
+    margin:0 0 2.8mm; padding-bottom:2.4mm; border-bottom:1px solid var(--line);
+    line-height:1.38;
+  }
+  .p-card ul{list-style:none; margin:0; padding:0}
+  .p-card li{
+    display:grid; grid-template-columns:3.2mm 1fr; gap:1.8mm;
+    font-size:8.7pt; line-height:1.42; margin-bottom:2.2mm; align-items:start;
+  }
+  .p-card li:last-child{margin-bottom:0}
+  .p-card .ar{color:var(--gold); font-weight:700}
+
+  /* ── Bas de page ── */
+  .foot-note{
+    background:var(--gold-pale); border-left:2.6mm solid var(--gold);
+    padding:3mm 4mm; margin:0 0 4mm; font-size:8.5pt;
+    color:var(--ink-soft); line-height:1.45; border-radius:0 2mm 2mm 0;
+  }
+  .foot-note b{color:var(--ink)}
+
+  .keep{
+    display:flex; gap:4mm; margin:0 0 auto;
+  }
+  .keep div{
+    flex:1; background:var(--leaf-pale); border:1px solid var(--leaf);
+    border-radius:2mm; padding:2.8mm 3.4mm; font-size:8.4pt; line-height:1.4;
+    color:var(--ink-soft);
+  }
+  .keep b{color:var(--leaf); display:block; font-size:8.6pt; margin-bottom:.6mm}
+
+  footer{
+    margin-top:5mm; padding-top:3mm; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:7.6pt; color:var(--ink-mute);
+  }
+  footer .site{font-weight:700; color:var(--gold-deep)}
+
+  @media screen{
+    body{background:#dcd3c6; padding:8mm 0}
+    .sheet{box-shadow:0 2mm 8mm rgba(0,0,0,.18)}
+  }
+</style>
+
+<div class="sheet">
+
+  <div class="top">
+    <div>
+      <div class="brand">Schic<span>girl</span></div>
+      <div class="brand-sub">Type 4 Coily Hair</div>
+    </div>
+    <div class="top-right">Free guide<br>schicgirl.me</div>
+  </div>
+
+  <h1>Aloe vera, <em>for your porosity</em></h1>
+  <p class="intro">The same plant doesn't behave the same way on every head of hair. Here's how to get the gel out cleanly, then how to use it based on the way your hair drinks.</p>
+
+  <div class="part">
+    <span class="part-no">1</span>
+    <h2>Getting the gel out</h2>
+    <span class="hint">About 30 minutes — 25 of them waiting</span>
+  </div>
+
+  <ol class="steps">
+    <li><span class="n">1</span><div><b>Cut a leaf at the base</b><span>Take it from the bottom of the plant — those leaves are the most mature and hold the most gel.</span></div></li>
+    <li><span class="n">2</span><div><b>Stand it upright to drain, 15 min</b><span>Cut end down in a glass. A yellow liquid runs out — that's aloin. Throw it away.</span></div></li>
+    <li><span class="n">3</span><div><b>Rinse, then take off the green skin</b><span>Cold water. Trim the spiny edges, then slice the skin off both sides with a knife.</span></div></li>
+    <li><span class="n">4</span><div><b>Soak the gel for 10 min</b><span>In a bowl of cold water, then rinse. This soak is what carries off the remaining bitterness.</span></div></li>
+    <li><span class="n">5</span><div><b>Blend until smooth</b><span>No lumps — they dry into little white flakes in your hair.</span></div></li>
+    <li><span class="n">6</span><div><b>Use it right away</b><span>Otherwise: 5 to 7 days in a sealed jar in the fridge, or frozen in cubes.</span></div></li>
+  </ol>
+
+  <div class="warn">
+    <b>Skip neither the draining nor the soaking.</b>
+    The yellow liquid irritates skin and scalp, and it is deeply bitter. If any is left, your mask will sting — that is not “the aloe working”, it is aloin that didn't come out. Always patch test on your inner elbow 24 h before the first use.
+  </div>
+
+  <div class="part">
+    <span class="part-no">2</span>
+    <h2>How to use it</h2>
+    <span class="hint">Don't know your porosity?<br>schicgirl.me/blog/porosite-cheveux.html</span>
+  </div>
+
+  <div class="poro">
+    <div class="p-card">
+      <h3>Low porosity</h3>
+      <p class="p-tell">Water beads on your hair. It takes a long time to get wet — and a long time to dry.</p>
+      <ul>
+        <li><span class="ar">→</span><span>Shower cap + gentle heat, 15 to 20 min</span></li>
+        <li><span class="ar">→</span><span>Rinse warm, then cold</span></li>
+        <li><span class="ar">→</span><span>No need to seal heavily after</span></li>
+      </ul>
+    </div>
+
+    <div class="p-card">
+      <h3>Medium porosity</h3>
+      <p class="p-tell">Your hair wets normally and holds moisture for a few days.</p>
+      <ul>
+        <li><span class="ar">→</span><span>Apply to wet hair</span></li>
+        <li><span class="ar">→</span><span>20 min, no heat</span></li>
+        <li><span class="ar">→</span><span>Rinse cold, then a light leave-in</span></li>
+      </ul>
+    </div>
+
+    <div class="p-card">
+      <h3>High porosity</h3>
+      <p class="p-tell">Your hair drinks fast and dries fast. Moisture doesn't last the day.</p>
+      <ul>
+        <li><span class="ar">→</span><span>Add an oil to the mask</span></li>
+        <li><span class="ar">→</span><span>30 min under a shower cap</span></li>
+        <li><span class="ar">→</span><span>Seal with butter or oil after rinsing</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-note">
+    <b>Why heat changes everything.</b> On low porosity the cuticle lies tight: gentle heat lifts it just enough to let water through. On high porosity it is already open — heating does nothing, you need to close it instead, which is why the rinse is cold and the oil comes last.
+  </div>
+
+  <div class="keep">
+    <div><b>Once a week is enough</b>Aloe hydrates, it doesn't nourish. It does not replace your deep conditioner.</div>
+    <div><b>Fresh gel ≠ shop gel</b>Homemade gel has no preservative at all. One week in the fridge, maximum.</div>
+    <div><b>If it stings, rinse</b>Rinse with clear water and don't go back to it. No treatment should burn.</div>
+  </div>
+
+  <footer>
+    <span>© 2026 Schicgirl — Crafted for your crown.</span>
+    <span class="site">schicgirl.me</span>
+  </footer>
+
+</div>
