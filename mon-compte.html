@@ -101,7 +101,8 @@
   .status .sub{font-size:13px;opacity:.9;width:100%}
 
   /* Portes vers le forum et le studio */
-  .doors{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+  .doors{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+  @media(min-width:900px){.doors{grid-template-columns:repeat(4,1fr)}}
   @media(max-width:620px){.doors{grid-template-columns:1fr}}
   .door{
     display:flex;flex-direction:column;gap:7px;
@@ -143,6 +144,7 @@
       <a href="shop.html"    data-fr="Guides"    data-en="Guides">Guides</a>
       <a href="products.html" data-fr="Produits" data-en="Products">Produits</a>
       <a href="activites.html" data-fr="Activités" data-en="Activities">Activités</a>
+      <a href="bd/" data-fr="BD" data-en="Comic">BD</a>
       <a href="le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
       <a href="blog.html"    data-fr="Blog"      data-en="Blog">Blog</a>
       <a href="about.html"   data-fr="À propos"  data-en="About">À propos</a>
@@ -404,6 +406,16 @@
                 T("Tes guides, ton plan et tes outils, au même endroit.",
                   "Your guides, your plan and your tools in one place."),
                 active ? A.studioUrl() : null) +
+           /* Ces deux-la ne demandent qu'un compte, pas l'abonnement :
+              elles restent ouvertes meme sans Le Cercle. */
+           door("🎲", T("Les activités", "The activities"),
+                T("Le quiz, les défis, et la manche membres.",
+                  "The quiz, the challenges, and the members round."),
+                "/activites.html") +
+           door("📖", T("La BD", "The comic"),
+                T("« Ma Couronne, Mon Histoire » — à lire ou à télécharger.",
+                  "« My Crown, My Story » — read it or download it."),
+                "/bd/") +
          '</div>';
 
     h += msgHtml();

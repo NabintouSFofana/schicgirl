@@ -1,0 +1,464 @@
+<!doctype html>
+<!--
+===============================================================
+  SCHICGIRL — boutique.html
+  La boutique. Une entree par PROBLEME, pas par produit : c'est le
+  positionnement de la marque (comprendre avant d'acheter) transforme
+  en navigation.
+
+  Les produits viennent de assets/js/catalog.js — source unique.
+  N'ajoute jamais un produit ici : ajoute-le au catalogue.
+
+  Le paiement passe par Selar (multi-devises, mobile money) via les
+  pages de vente. Un site statique ne peut pas encaisser lui-meme.
+
+  Style : assets/css/site-complete.css
+  © 2024–2026 Schicgirl. All rights reserved.
+===============================================================
+-->
+<html lang="fr"
+      data-title-fr="La boutique — guides cheveux crépus Type 4 | Schicgirl"
+      data-title-en="The shop — Type 4 coily hair guides | Schicgirl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La boutique — guides cheveux crépus Type 4 | Schicgirl</title>
+<meta name="description" content="Dis-moi ce qui bloque, je te dis quoi lire. Les guides Schicgirl pour cheveux crépus Type 4 — paiement en euros, dollars ou FCFA, livraison immédiate.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="La boutique — Schicgirl">
+<meta property="og:description" content="Dis-moi ce qui bloque, je te dis quoi lire.">
+<meta property="og:image" content="https://schicgirl.me/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9934a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/fav-logo-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site-complete.css">
+<script>document.documentElement.className+=" js";</script>
+
+<style>
+  /* ── L'entrée par problème ─────────────────────────────────
+     Six questions plutôt qu'une grille : on choisit ce qui ne va
+     pas, la collection se filtre. */
+  .besoins{
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+    max-width:820px;margin:0 auto 8px;
+  }
+  .besoin{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r-pill);padding:11px 20px;
+    font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink);
+    cursor:pointer;transition:all .18s ease;
+  }
+  .besoin .em{font-size:17px;line-height:1}
+  .besoin:hover{border-color:var(--line-gold);background:var(--gold-pale);
+                transform:translateY(-2px);box-shadow:var(--shadow-s)}
+  .besoin[aria-pressed="true"]{
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    border-color:var(--gold-deep);color:#fff;
+    box-shadow:0 10px 24px -12px rgba(168,109,35,.9);
+  }
+  .besoin:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+
+  .compte{text-align:center;font-size:13.5px;color:var(--muted);
+          margin:20px 0 30px;min-height:20px}
+  .compte b{color:var(--gold-deep)}
+
+  /* ── La collection ──────────────────────────────────────── */
+  .collec{
+    display:grid;gap:26px;
+    grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
+  }
+
+  /* Chaque guide est présenté comme un objet, pas comme une vignette :
+     une tranche à gauche, une ombre portée, un léger soulèvement. */
+  .livre{
+    display:flex;flex-direction:column;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r);overflow:hidden;
+    box-shadow:var(--shadow-s);
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),
+               box-shadow .22s ease, border-color .22s ease;
+    animation:monte .4s cubic-bezier(.2,.7,.3,1) both;
+  }
+  @keyframes monte{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){
+    .livre{animation:none}
+    .livre:hover{transform:none}
+  }
+  .livre:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--line-gold)}
+
+  .couv{position:relative;aspect-ratio:1/1.3;overflow:hidden;background:var(--gold-pale)}
+  .couv img{width:100%;height:100%;object-fit:cover;display:block;
+            transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+  .livre:hover .couv img{transform:scale(1.045)}
+  /* La tranche : ce qui fait lire l'image comme un livre posé */
+  .couv::before{
+    content:'';position:absolute;inset:0 auto 0 0;width:9px;z-index:2;
+    background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.06) 55%,transparent);
+  }
+  .couv::after{
+    content:'';position:absolute;inset:auto 0 0 0;height:38%;z-index:1;
+    background:linear-gradient(to top,rgba(28,20,12,.42),transparent);
+  }
+  /* Repli quand un guide n'a pas encore de couverture : une jaquette
+     typographique plutot qu'un trou. Elle est toujours posee dessous ;
+     l'image la recouvre quand elle existe. */
+  .couv .jaquette{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:24px 20px;gap:10px;
+    background:linear-gradient(150deg,var(--gold-pale),#f2e0c6 58%,#e6c391);
+  }
+  .couv .jaquette b{
+    font-family:var(--serif);font-size:23px;font-weight:600;line-height:1.2;
+    color:var(--gold-deep);
+  }
+  .couv .jaquette em{
+    font-style:normal;font-size:10.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold-deep);opacity:.72;
+  }
+  .couv .jaquette i{display:block;width:34px;height:1px;
+                    background:var(--gold-deep);opacity:.45}
+
+  .badge{
+    position:absolute;top:12px;right:12px;z-index:3;
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;
+    font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+    padding:5px 11px;border-radius:var(--r-pill);
+    box-shadow:0 6px 16px -8px rgba(0,0,0,.6);
+  }
+
+  .livre-corps{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+  .livre h3{font-family:var(--serif);font-size:21px;font-weight:600;
+            line-height:1.24;margin:0 0 8px;color:var(--ink)}
+  .livre .quoi{font-size:13.5px;line-height:1.6;color:var(--muted);margin:0 0 12px}
+  .livre .cadeau{
+    font-size:12.5px;line-height:1.5;color:var(--gold-deep);
+    background:var(--gold-pale);border:1px solid var(--line-gold);
+    border-radius:var(--r-s);padding:8px 11px;margin:0 0 14px;
+  }
+
+  .prix-ligne{display:flex;align-items:baseline;gap:10px;margin-top:auto;
+              padding-top:14px;border-top:1px solid var(--line)}
+  .prix{font-family:var(--serif);font-size:27px;font-weight:600;
+        color:var(--gold-deep);line-height:1}
+  .cfa{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .livre .btn{margin-top:14px;width:100%}
+
+  /* ── Le Cercle : le seul qui revient chaque mois ─────────── */
+  .cercle-band{
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    color:#fff;border-radius:var(--r-l);padding:44px 40px;
+    box-shadow:0 28px 64px -32px rgba(168,109,35,.9);
+    display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center;
+  }
+  @media(max-width:820px){.cercle-band{grid-template-columns:1fr;padding:32px 24px;gap:26px}}
+  .cercle-band h2{color:#fff;margin:12px 0 14px}
+  .cercle-band .eyebrow{color:rgba(255,255,255,.92)}
+  .cercle-band .eyebrow::before{color:rgba(255,255,255,.75)}
+  .cercle-band p{color:rgba(255,255,255,.93);line-height:1.72;margin:0 0 18px}
+  .cercle-prix{
+    background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.32);
+    border-radius:var(--r);padding:26px;text-align:center;
+  }
+  .cercle-prix .gros{font-family:var(--serif);font-size:46px;font-weight:600;line-height:1}
+  .cercle-prix .par{font-size:13.5px;color:rgba(255,255,255,.9);margin-bottom:4px}
+  .cercle-prix .cfa2{font-size:12.5px;color:rgba(255,255,255,.82);
+                     font-variant-numeric:tabular-nums;margin-bottom:18px}
+  .cercle-prix .btn{width:100%;background:#fff;color:var(--gold-deep);border-color:#fff}
+  .cercle-prix .btn:hover{background:var(--gold-pale)}
+
+  /* ── Réassurance ────────────────────────────────────────── */
+  .rassure{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:720px){.rassure{grid-template-columns:1fr}}
+  .ras{display:flex;gap:14px;align-items:flex-start;
+       background:var(--card);border:1px solid var(--line);
+       border-radius:var(--r);padding:20px 22px}
+  .ras .ic{flex:none;width:40px;height:40px;border-radius:50%;
+           background:var(--gold-pale);border:1px solid var(--line-gold);
+           display:flex;align-items:center;justify-content:center;font-size:18px}
+  .ras b{display:block;font-size:14.5px;margin-bottom:3px}
+  .ras span{font-size:13px;color:var(--muted);line-height:1.55}
+
+  .vide{text-align:center;padding:46px 20px;color:var(--muted)}
+  .vide .em{font-size:38px;display:block;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="topstrip">
+  <span data-fr="Paiement en euros, dollars, FCFA ou Mobile Money — tout passe par Selar."
+        data-en="Pay in euros, dollars, CFA or Mobile Money — everything goes through Selar.">Paiement en euros, dollars, FCFA ou Mobile Money.</span>
+  <a href="#paiement" data-fr="Comment ça marche →" data-en="How it works →">Comment ça marche →</a>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Schicgirl">
+      <img src="assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="brand-name">Schic<span>girl</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="boutique.html" class="on" data-fr="Boutique" data-en="Shop">Boutique</a>
+      <a href="products.html" data-fr="Produits" data-en="Products">Produits</a>
+      <a href="activites.html" data-fr="Activités" data-en="Activities">Activités</a>
+      <a href="bd/" data-fr="BD" data-en="Comic">BD</a>
+      <a href="le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="langtog" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav-acct" id="navAcct" href="mon-compte.html"><img class="ic" src="assets/icon-compte.png" alt="" width="22" height="22"><span class="lbl" data-fr="Mon compte" data-en="My account">Mon compte</span></a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="wrap" style="padding-top:52px;padding-bottom:10px;text-align:center;max-width:800px">
+    <span class="eyebrow" data-fr="La boutique" data-en="The shop">La boutique</span>
+    <h1 style="margin:16px 0 18px"
+        data-fr="Dis-moi ce qui bloque. <em>Je te dis quoi lire.</em>"
+        data-en="Tell me what's stuck. <em>I'll tell you what to read.</em>">Dis-moi ce qui bloque. <em>Je te dis quoi lire.</em></h1>
+    <p class="lead" style="margin:0 auto"
+       data-fr="Pas une vitrine où tout se ressemble. Choisis ce qui ne va pas dans tes cheveux, et je te montre le guide écrit pour ça — et rien d'autre."
+       data-en="Not a wall of look-alike products. Pick what isn't working with your hair and I'll show you the guide written for it — and nothing else.">
+      Choisis ce qui ne va pas, je te montre le guide écrit pour ça.</p>
+  </div>
+</header>
+
+<!-- ═══════ ENTRÉE PAR PROBLÈME ═══════ -->
+<section class="section" style="padding-top:24px;padding-bottom:0">
+  <div class="wrap">
+    <div class="besoins" id="besoins" role="group" aria-label="Filtrer par besoin"></div>
+    <p class="compte" id="compte" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ═══════ LA COLLECTION ═══════ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="collec" id="collec"></div>
+  </div>
+</section>
+
+<!-- ═══════ LE CERCLE ═══════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="cercle-band">
+      <div>
+        <span class="eyebrow" data-fr="L'abonnement" data-en="The membership">L'abonnement</span>
+        <h2 data-fr="Et si tu n'avais pas à choisir&nbsp;?" data-en="What if you didn't have to choose?">Et si tu n'avais pas à choisir ?</h2>
+        <p data-fr="Le Cercle réunit le forum privé, où je réponds moi-même à tes questions, et Le Studio Premium avec ses 113 leçons. Un seul compte ouvre le site, le forum et le studio."
+           data-en="The Circle brings together the private forum, where I answer your questions myself, and the Premium Studio with its 113 lessons. One account opens the site, the forum and the studio.">
+          Le forum privé et Le Studio Premium, dans un seul abonnement.</p>
+        <p style="font-size:14px;margin:0"
+           data-fr="Sans engagement. Tu arrêtes quand tu veux."
+           data-en="No commitment. Cancel whenever you like.">Sans engagement.</p>
+      </div>
+      <div class="cercle-prix">
+        <div class="par" data-fr="À partir de" data-en="From">À partir de</div>
+        <div class="gros" id="cerclePrix">12€</div>
+        <div class="par" data-fr="par mois" data-en="per month">par mois</div>
+        <div class="cfa2" id="cercleCfa">≈ 8 000 FCFA</div>
+        <a class="btn btn-lg" id="cercleBtn" href="le-cercle.html"
+           data-fr="Découvrir Le Cercle" data-en="Discover The Circle">Découvrir Le Cercle</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PAIEMENT ═══════ -->
+<section class="section" id="paiement">
+  <div class="wrap">
+    <div class="section-head center" style="margin-bottom:26px">
+      <span class="eyebrow" data-fr="Avant d'acheter" data-en="Before you buy">Avant d'acheter</span>
+      <h2 data-fr="Comment ça se passe" data-en="How it works">Comment ça se passe</h2>
+    </div>
+    <div class="rassure">
+      <div class="ras">
+        <span class="ic" aria-hidden="true">💳</span>
+        <div><b data-fr="Ta devise, ton moyen" data-en="Your currency, your method">Ta devise, ton moyen</b>
+          <span data-fr="Carte, Mobile Money ou Orange Money. Selar propose ta devise automatiquement — si ce n'est pas la bonne, tu la changes en haut de la page."
+                data-en="Card, Mobile Money or Orange Money. Selar picks your currency automatically — if it's wrong, change it at the top of the page.">Carte, Mobile Money ou Orange Money.</span></div>
+      </div>
+      <div class="ras">
+        <span class="ic" aria-hidden="true">⚡</span>
+        <div><b data-fr="Reçu tout de suite" data-en="Delivered right away">Reçu tout de suite</b>
+          <span data-fr="Le guide arrive par e-mail juste après le paiement, en PDF. Il est à toi pour toujours, sur tous tes appareils."
+                data-en="The guide arrives by email right after payment, as a PDF. It's yours forever, on every device.">Par e-mail, en PDF, tout de suite.</span></div>
+      </div>
+      <div class="ras">
+        <span class="ic" aria-hidden="true">💬</span>
+        <div><b data-fr="Une question&nbsp;? Écris-moi" data-en="A question? Write to me">Une question ? Écris-moi</b>
+          <span data-fr="Je réponds moi-même, souvent dans la journée. Dis-moi où tu en es et je te dirai par quoi commencer."
+                data-en="I answer personally, often the same day. Tell me where you are and I'll tell you where to start.">Je réponds moi-même sur WhatsApp.</span></div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:26px">
+      <a class="btn btn-ghost" href="https://wa.me/message/ZDXXV2OOOKOME1" target="_blank" rel="noopener"
+         data-fr="Me demander conseil sur WhatsApp" data-en="Ask me on WhatsApp">Me demander conseil sur WhatsApp</a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap" style="text-align:center">
+    <p style="font-size:13px;color:var(--muted)">
+      © <span id="year">2026</span> Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire."
+            data-en="Love Your Crown. Own Your Story.">Aime ta couronne. Écris ton histoire.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/site-complete.js"></script>
+<script>
+(function () {
+  "use strict";
+  var e = SGSite.esc, safe = SGSite.safeUrl;
+  var FR = function () { return SGSite.lang === "fr"; };
+  var T  = function (fr, en) { return FR() ? fr : en; };
+
+  var PRODUITS = (window.SG_CATALOG && SG_CATALOG.products) || [];
+
+  /* Chaque besoin pointe vers les guides ecrits pour lui, dans l'ordre
+     ou je les conseillerais. « tout » n'a pas de liste : il montre tout. */
+  var BESOINS = [
+    { id:"tout",       em:"✨", fr:"Tout voir",              en:"See everything" },
+    { id:"casse",      em:"💔", fr:"Mes cheveux cassent",    en:"My hair breaks",
+      ids:["cheveux-secs","hydratee","coiffures","recettes"] },
+    { id:"secs",       em:"🌵", fr:"Toujours secs",          en:"Always dry",
+      ids:["hydratee","cheveux-secs","why-nothing-works","recettes"] },
+    { id:"routine",    em:"📋", fr:"Je veux une vraie routine", en:"I want a real routine",
+      ids:["creer-ma-routine","natural-hair-planner","why-nothing-works","studio-premium"] },
+    { id:"transition", em:"🌱", fr:"Je démarre ma transition", en:"I'm transitioning",
+      ids:["transition","creer-ma-routine","coiffures"] },
+    { id:"cuir",       em:"🍃", fr:"Cuir chevelu, pellicules", en:"Scalp and dandruff",
+      ids:["pellicules","recettes"] },
+    { id:"maison",     em:"🥥", fr:"Du fait-maison",         en:"Homemade",
+      ids:["recettes","pellicules"] }
+  ];
+
+  var choisi = "tout";
+
+  function imgDe(p) { return FR() ? p.img_fr : (p.img_en || p.img_fr); }
+  function urlDe(p) { return FR() ? p.url_fr : (p.url_en || p.url_fr); }
+
+  function listeAffichee() {
+    if (choisi === "tout") return PRODUITS;
+    var b = BESOINS.filter(function (x) { return x.id === choisi; })[0];
+    if (!b || !b.ids) return PRODUITS;
+    /* On garde l'ordre du besoin, pas celui du catalogue : le premier
+       guide propose est celui par lequel je conseillerais de commencer. */
+    return b.ids.map(function (id) {
+      return PRODUITS.filter(function (p) { return p.id === id; })[0];
+    }).filter(Boolean);
+  }
+
+  function carte(p, i) {
+    var badge = FR() ? p.badge_fr : p.badge_en;
+    var bonus = FR() ? p.bonus_fr : p.bonus_en;
+    return '<article class="livre" style="animation-delay:' + (i * 45) + 'ms">' +
+      '<div class="couv">' +
+        (badge ? '<span class="badge">' + e(badge) + '</span>' : '') +
+        '<span class="jaquette"><em>Schicgirl</em><i></i><b>' +
+          e(FR() ? p.title_fr : p.title_en) + '</b></span>' +
+        (imgDe(p)
+          ? '<img src="' + e(safe(imgDe(p))) + '" alt="" loading="lazy" ' +
+            'onerror="this.style.display=\'none\'">'
+          : '') +
+      '</div>' +
+      '<div class="livre-corps">' +
+        '<h3>' + e(FR() ? p.title_fr : p.title_en) + '</h3>' +
+        '<p class="quoi">' + e(FR() ? p.desc_fr : p.desc_en) + '</p>' +
+        (bonus ? '<p class="cadeau">' + e(bonus) + '</p>' : '') +
+        '<div class="prix-ligne">' +
+          '<span class="prix">' + e(FR() ? p.price_fr : p.price_en) + '</span>' +
+          (p.cfa ? '<span class="cfa">' + e(p.cfa) + '</span>' : '') +
+        '</div>' +
+        '<a class="btn btn-gold" href="' + e(safe(urlDe(p))) + '">' +
+          e(T("Voir le guide", "See the guide")) + '</a>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function peindreBesoins() {
+    document.getElementById("besoins").innerHTML = BESOINS.map(function (b) {
+      return '<button type="button" class="besoin" data-b="' + e(b.id) + '" ' +
+             'aria-pressed="' + (b.id === choisi ? "true" : "false") + '">' +
+             '<span class="em" aria-hidden="true">' + b.em + '</span>' +
+             e(FR() ? b.fr : b.en) + '</button>';
+    }).join("");
+  }
+
+  function peindre() {
+    peindreBesoins();
+    var liste = listeAffichee();
+    var box = document.getElementById("collec");
+    box.innerHTML = liste.length
+      ? liste.map(carte).join("")
+      : '<div class="vide"><span class="em">🌸</span>' +
+        e(T("Rien ici pour l'instant. Écris-moi, je te guiderai.",
+            "Nothing here yet. Write to me and I'll point you somewhere.")) + '</div>';
+
+    var c = document.getElementById("compte");
+    if (choisi === "tout") {
+      c.innerHTML = e(T("", "")) +
+        '<b>' + liste.length + '</b> ' +
+        e(T(liste.length > 1 ? "guides, du plus simple au plus complet"
+                             : "guide",
+            liste.length > 1 ? "guides, from the simplest to the most complete"
+                             : "guide"));
+    } else {
+      c.innerHTML = '<b>' + liste.length + '</b> ' +
+        e(T(liste.length > 1 ? "guides pour ça — le premier est celui par lequel je commencerais"
+                             : "guide pour ça",
+            liste.length > 1 ? "guides for that — start with the first one"
+                             : "guide for that"));
+    }
+  }
+
+  document.getElementById("besoins").addEventListener("click", function (ev) {
+    var b = ev.target.closest(".besoin");
+    if (!b) return;
+    choisi = b.getAttribute("data-b");
+    peindre();
+    document.getElementById("collec").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  /* Le Cercle : prix et lien selon la langue */
+  function peindreCercle() {
+    document.getElementById("cerclePrix").textContent = T("12€", "$13");
+    document.getElementById("cercleCfa").textContent  = T("≈ 8 000 FCFA", "≈ 8,000 CFA");
+    document.getElementById("cercleBtn").setAttribute("href",
+      T("le-cercle.html", "/en/the-circle/"));
+  }
+
+  function tout() { peindre(); peindreCercle(); }
+  tout();
+  SGSite.onLang(tout);
+
+  var y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
