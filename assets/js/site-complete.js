@@ -184,7 +184,9 @@
     var badge = tx(p, "badge");
     var bonus = tx(p, "bonus");
     var url   = safeUrl(tx(p, "url"));
-    var cta   = LANG === "fr" ? "Découvrir" : "See the guide";
+    /* Un produit peut imposer son propre libelle de bouton : « Découvrir »
+       ne veut rien dire devant une BD offerte. */
+    var cta   = tx(p, "cta") || (LANG === "fr" ? "Découvrir" : "See the guide");
 
     return '' +
       '<article class="card">' +

@@ -13,12 +13,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Schicgirl — Tous mes liens</title>
-<meta name="description" content="Blog, boutique, produits Amazon, Le Cercle et contact — tous les liens Schicgirl au meme endroit.">
+<meta name="description" content="La BD offerte des 6 ans, le blog, la boutique, les produits Amazon, Le Cercle et le contact — tous les liens Schicgirl au meme endroit.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://schicgirl.me/link-in-bio/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Schicgirl — Tous mes liens">
-<meta property="og:description" content="Blog, boutique, produits Amazon, Le Cercle et contact — tous les liens Schicgirl au meme endroit.">
+<meta property="og:description" content="La BD offerte des 6 ans, le blog, la boutique, les produits Amazon, Le Cercle et le contact — tous les liens Schicgirl au meme endroit.">
 <meta property="og:url" content="https://schicgirl.me/link-in-bio/">
 <meta property="og:image" content="https://schicgirl.me/link-in-bio/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -113,6 +113,16 @@ a{color:inherit;text-decoration:none}
 .link:active{transform:translateY(0)}
 .link .arrow{color:var(--gold);font-size:15px;font-weight:400;flex:none;transition:transform .16s}
 .link:hover .arrow{transform:translateX(3px)}
+
+/* Un lien peut porter une precision sous son titre — l'age conseille
+   pour la BD, par exemple. Le titre garde ses capitales, la precision
+   revient a une phrase normale, sinon les deux se disputent l'oeil. */
+.link .lbl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.link .lbl small{
+  font-size:11px;font-weight:400;letter-spacing:.2px;
+  text-transform:none;color:var(--muted);line-height:1.45;
+}
+.link.feature .lbl small{color:rgba(255,255,255,.88)}
 
 /* Le lien principal (Le Cercle) */
 .link.feature{
@@ -220,6 +230,7 @@ a{color:inherit;text-decoration:none}
      LES LIENS — le seul endroit a modifier.
 
        label_fr / label_en : le texte du bouton
+       note_fr / note_en   : une precision sous le titre (facultatif)
        url                 : la meme adresse dans les deux langues
        url_fr / url_en     : une adresse differente par langue
        feature: true       : bouton dore (garder un seul)
@@ -229,6 +240,14 @@ a{color:inherit;text-decoration:none}
     { label_fr:"S'abonner au Cercle", label_en:"Subscribe to The Circle",
       url_fr:"https://selar.com/le_cercle_schicgirl",
       url_en:"https://selar.com/the_circle_schicgirl", feature:true },
+
+    /* La BD est offerte : elle vient tout de suite apres Le Cercle,
+       c'est ce qu'on donne avant de demander quoi que ce soit. */
+    { label_fr:"La BD offerte — dès 6 ans",
+      label_en:"The free comic — ages 6+",
+      note_fr:"À lire avec ta fille, ou par elle dès 8 ans. Huit planches, FR et EN.",
+      note_en:"Read it with your daughter, or she reads it alone from age 8. Eight pages, FR and EN.",
+      url:"https://schicgirl.me/bd/" },
 
     { label_fr:"Blog",             label_en:"Blog",
       url:"https://schicgirl.me/blog.html" },
@@ -364,18 +383,22 @@ a{color:inherit;text-decoration:none}
     for (var i=0;i<LINKS.length;i++){
       var L = LINKS[i];
       var label = esc(lang === "fr" ? L.label_fr : L.label_en);
+      var note  = lang === "fr" ? L.note_fr : L.note_en;
       var cls = "link" + (L.feature ? " feature" : "");
+      var texte = '<span class="lbl"><span>'+label+'</span>'
+                + (note ? '<small>'+esc(note)+'</small>' : '')
+                + '</span>';
 
       if (L.panel === "pay"){
         html += '<button type="button" class="'+cls+' pay-btn" id="pay-btn"'
               + ' aria-expanded="'+(payOpen?"true":"false")+'" aria-controls="pay-panel">'
-              + '<span>'+label+'</span><span class="arrow" aria-hidden="true">›</span></button>'
+              + texte + '<span class="arrow" aria-hidden="true">›</span></button>'
               + payHTML();
       } else {
         var url = L.url || (lang === "fr" ? L.url_fr : L.url_en);
         var tgt = isExternal(url) ? ' target="_blank" rel="noopener"' : '';
         html += '<a class="'+cls+'" href="'+esc(url)+'"'+tgt+'>'
-              + '<span>'+label+'</span><span class="arrow" aria-hidden="true">›</span></a>';
+              + texte + '<span class="arrow" aria-hidden="true">›</span></a>';
       }
     }
     $("#links").innerHTML = html;

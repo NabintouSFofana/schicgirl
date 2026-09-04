@@ -25,7 +25,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ma Couronne, Mon Histoire — la BD | Schicgirl</title>
-<meta name="description" content="La bande dessinée Schicgirl pour les filles aux cheveux crépus Type 4. Réservée aux inscrites.">
+<meta name="description" content="La bande dessinée Schicgirl pour les filles aux cheveux crépus Type 4. À lire ensemble dès 6 ans, toute seule dès 8 ans. Épisode 1 offert, réservé aux inscrites.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#c9934a">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav-logo-32.png">
@@ -59,6 +59,14 @@
   }
   .gate-card .lead{margin:0 auto 26px;max-width:440px}
   .gate-card .btn{margin:0 5px 10px}
+
+  /* L'age conseille : la premiere question d'une maman devant une BD. */
+  .age-note{
+    display:inline-block;margin:16px auto 0;
+    background:var(--gold-pale);border:1px solid var(--line-gold);
+    border-radius:999px;padding:8px 18px;
+    font-size:13.5px;font-weight:600;color:var(--gold-deep);
+  }
 
   /* Les deux versions */
   .langs{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:820px;margin:0 auto 34px}
@@ -95,6 +103,15 @@
   }
   .dots button[aria-current="true"]{background:var(--gold-deep);transform:scale(1.35)}
   .dots button:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+
+  /* Ce qui vient apres */
+  .suite{
+    max-width:620px;margin:46px auto 0;text-align:center;
+    background:var(--gold-pale);border:1px dashed var(--line-gold);
+    border-radius:var(--r);padding:28px 26px;
+  }
+  .suite h3{font-family:var(--serif);font-size:23px;font-weight:600;margin:12px 0 8px}
+  .suite p{font-size:14px;color:var(--muted);line-height:1.65;margin:0}
 </style>
 </head>
 <body>
@@ -134,9 +151,13 @@
         data-fr="Ma Couronne, <em>Mon Histoire</em>"
         data-en="My Crown, <em>My Story</em>">Ma Couronne, <em>Mon Histoire</em></h1>
     <p class="lead" style="margin:0 auto"
-       data-fr="Naya a neuf ans. Un matin, à l'école, elle se demande pourquoi ses cheveux ne font pas comme ceux des autres. Épisode 1."
-       data-en="Naya is nine. One morning at school she starts wondering why her hair doesn't do what everyone else's does. Episode 1.">
-      Naya a neuf ans. Épisode 1.</p>
+       data-fr="Naya a neuf ans. Un matin, à l'école, elle se demande pourquoi ses cheveux ne font pas comme ceux des autres. Épisode 1, offert."
+       data-en="Naya is nine. One morning at school she starts wondering why her hair doesn't do what everyone else's does. Episode 1, free.">
+      Naya a neuf ans. Épisode 1, offert.</p>
+    <p class="age-note"
+       data-fr="👧 À lire ensemble dès 6 ans · toute seule dès 8 ans"
+       data-en="👧 Read together from age 6 · alone from age 8">
+      👧 À lire ensemble dès 6 ans · toute seule dès 8 ans</p>
   </div>
 </header>
 
@@ -150,8 +171,8 @@
           data-fr="Crée ton compte pour <em>lire la BD</em>."
           data-en="Create your account to <em>read the comic</em>.">Crée ton compte pour <em>lire la BD</em>.</h2>
       <p class="lead"
-         data-fr="Huit planches, en français et en anglais, à lire ici ou à télécharger. Le compte est gratuit et prend une minute."
-         data-en="Eight pages, in French and English, to read here or download. The account is free and takes a minute.">
+         data-fr="Huit planches, en français et en anglais, à lire ici ou à télécharger. À lire ensemble dès 6 ans, toute seule dès 8 ans. Le compte est gratuit et prend une minute."
+         data-en="Eight pages, in French and English, to read here or download. Read together from age 6, alone from age 8. The account is free and takes a minute.">
         Huit planches, à lire ici ou à télécharger.</p>
       <a class="btn btn-gold btn-lg" href="/mon-compte.html"
          data-fr="Créer mon compte gratuit" data-en="Create my free account">Créer mon compte gratuit</a>
@@ -200,6 +221,16 @@
                 data-fr="Suivante →" data-en="Next →">Suivante →</button>
       </div>
       <div class="dots" id="dots"></div>
+    </div>
+
+    <!-- Prepare la suite : l'episode 1 est offert, les autres se vendront. -->
+    <div class="suite">
+      <span class="eyebrow" data-fr="La suite" data-en="What's next">La suite</span>
+      <h3 data-fr="Épisode 2 — Le Secret de l'Eau"
+          data-en="Episode 2 — The Secret of Water">Épisode 2 — Le Secret de l'Eau</h3>
+      <p data-fr="Naya croit que l'huile suffit. Sa grand-mère lui montre autre chose. L'épisode 2 arrive bientôt — je préviens les inscrites en premier."
+         data-en="Naya thinks oil is enough. Her grandmother shows her something else. Episode 2 is coming — members hear about it first.">
+        L'épisode 2 arrive bientôt.</p>
     </div>
 
   </div>

@@ -58,4 +58,15 @@ window.SG_CATALOG.products = [
             desc_fr: "Les 6 guides transformés en 113 leçons interactives, plus un bonus. L'ensemble, au même endroit.",
             desc_en: "The 6 guides turned into 113 interactive lessons, plus a bonus. Everything in one place.",
             price_fr: "29€", price_en: "$31", cfa: "≈ 19 000 FCFA", url_fr: "/fr/le-studio-premium/", url_en: "/en/premium-studio/" },
+          /* La BD est offerte : elle ferme la liste pour laisser la page
+             d'accueil aux guides payants, et se trouve par le filtre
+             « Pour les enfants », par le menu et par le link in bio. */
+          { id: "bd-episode-1", img_fr: "assets/bd-episode-1-fr.jpg", img_en: "assets/bd-episode-1-en.jpg",
+            badge_fr: "Offert", badge_en: "Free",
+            title_fr: "Ma Couronne, Mon Histoire — Épisode 1", title_en: "My Crown, My Story — Episode 1",
+            desc_fr: "Naya a neuf ans et se demande pourquoi ses cheveux ne font pas comme ceux des autres. Huit planches, offertes.",
+            desc_en: "Naya is nine, and wonders why her hair doesn't do what everyone else's does. Eight pages, free.",
+            age_fr: "👧 Ensemble dès 6 ans · seule dès 8 ans", age_en: "👧 Together from age 6 · alone from age 8",
+            cta_fr: "Lire gratuitement", cta_en: "Read it free",
+            price_fr: "Offert", price_en: "Free", cfa: "", url_fr: "/bd/", url_en: "/bd/" },
         ];

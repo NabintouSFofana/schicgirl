@@ -94,7 +94,11 @@
   .livre:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--line-gold)}
 
   .couv{position:relative;aspect-ratio:1/1.3;overflow:hidden;background:var(--gold-pale)}
-  .couv img{width:100%;height:100%;object-fit:cover;display:block;
+  /* position:relative + z-index sont indispensables : la jaquette de repli
+     est en position:absolute, donc elle se peindrait PAR-DESSUS une image
+     restée statique, quelle que soit sa place dans le HTML. */
+  .couv img{position:relative;z-index:1;
+            width:100%;height:100%;object-fit:cover;display:block;
             transition:transform .5s cubic-bezier(.2,.7,.3,1)}
   .livre:hover .couv img{transform:scale(1.045)}
   /* La tranche : ce qui fait lire l'image comme un livre posé */
@@ -107,8 +111,8 @@
     background:linear-gradient(to top,rgba(28,20,12,.42),transparent);
   }
   /* Repli quand un guide n'a pas encore de couverture : une jaquette
-     typographique plutot qu'un trou. Elle est toujours posee dessous ;
-     l'image la recouvre quand elle existe. */
+     typographique plutôt qu'un trou. Elle reste dessous ; c'est le
+     z-index de .couv img, plus haut, qui fait passer l'image devant. */
   .couv .jaquette{
     position:absolute;inset:0;display:flex;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;
@@ -142,6 +146,12 @@
     font-size:12.5px;line-height:1.5;color:var(--gold-deep);
     background:var(--gold-pale);border:1px solid var(--line-gold);
     border-radius:var(--r-s);padding:8px 11px;margin:0 0 14px;
+  }
+
+  /* L'âge conseillé : la première question d'une maman devant une BD. */
+  .livre .age{
+    font-size:12.5px;font-weight:600;color:var(--gold-deep);
+    margin:0 0 14px;line-height:1.5;
   }
 
   .prix-ligne{display:flex;align-items:baseline;gap:10px;margin-top:auto;
@@ -354,7 +364,9 @@
     { id:"cuir",       em:"🍃", fr:"Cuir chevelu, pellicules", en:"Scalp and dandruff",
       ids:["pellicules","recettes"] },
     { id:"maison",     em:"🥥", fr:"Du fait-maison",         en:"Homemade",
-      ids:["recettes","pellicules"] }
+      ids:["recettes","pellicules"] },
+    { id:"enfants",    em:"👑", fr:"Pour les enfants",       en:"For children",
+      ids:["bd-episode-1"] }
   ];
 
   var choisi = "tout";
@@ -376,6 +388,10 @@
   function carte(p, i) {
     var badge = FR() ? p.badge_fr : p.badge_en;
     var bonus = FR() ? p.bonus_fr : p.bonus_en;
+    var age   = FR() ? p.age_fr : (p.age_en || p.age_fr);
+    /* « Voir le guide » ne veut rien dire devant une BD offerte. */
+    var cta   = (FR() ? p.cta_fr : (p.cta_en || p.cta_fr)) ||
+                T("Voir le guide", "See the guide");
     return '<article class="livre" style="animation-delay:' + (i * 45) + 'ms">' +
       '<div class="couv">' +
         (badge ? '<span class="badge">' + e(badge) + '</span>' : '') +
@@ -390,12 +406,12 @@
         '<h3>' + e(FR() ? p.title_fr : p.title_en) + '</h3>' +
         '<p class="quoi">' + e(FR() ? p.desc_fr : p.desc_en) + '</p>' +
         (bonus ? '<p class="cadeau">' + e(bonus) + '</p>' : '') +
+        (age ? '<p class="age">' + e(age) + '</p>' : '') +
         '<div class="prix-ligne">' +
           '<span class="prix">' + e(FR() ? p.price_fr : p.price_en) + '</span>' +
           (p.cfa ? '<span class="cfa">' + e(p.cfa) + '</span>' : '') +
         '</div>' +
-        '<a class="btn btn-gold" href="' + e(safe(urlDe(p))) + '">' +
-          e(T("Voir le guide", "See the guide")) + '</a>' +
+        '<a class="btn btn-gold" href="' + e(safe(urlDe(p))) + '">' + e(cta) + '</a>' +
       '</div>' +
     '</article>';
   }

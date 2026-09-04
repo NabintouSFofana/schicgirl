@@ -27,6 +27,7 @@ var LINKS = [
 | Champ | À quoi ça sert |
 |---|---|
 | `label_fr` / `label_en` | Le texte du bouton en français / en anglais |
+| `note_fr` / `note_en` | Une précision sous le titre (facultatif). Sert à l'âge de la BD. À garder court : deux lignes maximum sur téléphone. |
 | `url` | Même adresse dans les deux langues |
 | `url_fr` / `url_en` | Une adresse différente selon la langue (ex. Le Cercle) |
 | `feature: true` | Bouton doré, mis en avant. **N'en garder qu'un seul.** |
@@ -41,6 +42,7 @@ Pour **changer l'ordre** : déplace la ligne. L'ordre du tableau = l'ordre à l'
 | Bouton | Destination |
 |---|---|
 | S'abonner au Cercle *(doré)* | `selar.com/le_cercle_schicgirl` (FR) / `the_circle_schicgirl` (EN) |
+| La BD offerte — dès 6 ans | `schicgirl.me/bd/` — le seul lien qui porte une `note`, l'âge |
 | Blog | `schicgirl.me/blog.html` |
 | Boutique | `schicgirl.me/shop.html` |
 | Produits Amazon | `amazon.com/shop/schicgirl` |
