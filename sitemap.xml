@@ -31,6 +31,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://schicgirl.me/bd/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://schicgirl.me/activites.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://schicgirl.me/link-in-bio/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://schicgirl.me/blog/coiffures-protectrices.html</loc>
     <lastmod>2026-06-21</lastmod>
     <priority>0.8</priority>
@@ -418,23 +433,5 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/kit-gratuit/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://schicgirl.me/en/free-kit/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/kit-gratuit/"/>
-  </url>
-  <url>
-    <loc>https://schicgirl.me/link-in-bio/</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://schicgirl.me/products.html</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://schicgirl.me/activites.html</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>

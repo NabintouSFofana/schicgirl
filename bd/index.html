@@ -26,7 +26,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ma Couronne, Mon Histoire — la BD | Schicgirl</title>
 <meta name="description" content="La bande dessinée Schicgirl pour les filles aux cheveux crépus Type 4. À lire ensemble dès 6 ans, toute seule dès 8 ans. Épisode 1 offert, réservé aux inscrites.">
-<meta name="robots" content="noindex, nofollow">
+<!-- Indexable : ce que voit un moteur est exactement ce que voit une
+     visiteuse non connectée — le pitch, l'âge, et l'invitation à créer un
+     compte. Rien n'est caché aux robots qui ne le soit aux personnes. -->
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://schicgirl.me/bd/">
+<!-- Sans ces balises, partager le lien sur Facebook ne montre ni image ni
+     texte : juste une adresse nue, que personne ne clique. -->
+<meta property="og:type" content="book">
+<meta property="og:title" content="Ma Couronne, Mon Histoire — la BD offerte, dès 6 ans">
+<meta property="og:description" content="Naya a neuf ans et se demande pourquoi ses cheveux ne font pas comme ceux des autres. Huit planches à lire avec ta fille. Offert, en français et en anglais.">
+<meta property="og:url" content="https://schicgirl.me/bd/">
+<meta property="og:image" content="https://schicgirl.me/assets/bd-episode-1-fr.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#c9934a">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav-logo-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-logo.png">
@@ -112,6 +126,30 @@
   }
   .suite h3{font-family:var(--serif);font-size:23px;font-weight:600;margin:12px 0 8px}
   .suite p{font-size:14px;color:var(--muted);line-height:1.65;margin:0}
+
+  /* « Préviens-moi ». Une vraie case à cocher, pas un faux bouton : le
+     clavier, les lecteurs d'écran et l'autoremplissage la comprennent. */
+  .prevenir{
+    display:inline-flex;align-items:center;gap:11px;cursor:pointer;
+    margin:20px 0 0;padding:12px 20px 12px 16px;
+    background:var(--card);border:1px solid var(--line-gold);
+    border-radius:999px;box-shadow:var(--shadow-s);
+    font-size:14px;font-weight:600;color:var(--ink);text-align:left;
+    transition:border-color .16s ease, box-shadow .16s ease;
+  }
+  .prevenir:hover{border-color:var(--gold-deep);box-shadow:var(--shadow)}
+  .prevenir input{
+    width:19px;height:19px;flex:none;margin:0;cursor:pointer;
+    accent-color:var(--gold-deep);
+  }
+  .prevenir:has(input:disabled){opacity:.6;cursor:progress}
+  .prevenir input:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+  /* Selecteur double : « .suite p » vaut (0,1,1) et l'emporterait sur une
+     simple classe. */
+  .suite .prevenir-etat{font-size:13px;line-height:1.6;margin:12px 0 0;
+                        color:var(--gold-deep);font-weight:600}
+  .suite .prevenir-etat:empty{margin:0}
+  .suite .prevenir-etat[data-erreur]{color:var(--rouge,#a3352b)}
 </style>
 </head>
 <body>
@@ -228,9 +266,17 @@
       <span class="eyebrow" data-fr="La suite" data-en="What's next">La suite</span>
       <h3 data-fr="Épisode 2 — Le Secret de l'Eau"
           data-en="Episode 2 — The Secret of Water">Épisode 2 — Le Secret de l'Eau</h3>
-      <p data-fr="Naya croit que l'huile suffit. Sa grand-mère lui montre autre chose. L'épisode 2 arrive bientôt — je préviens les inscrites en premier."
-         data-en="Naya thinks oil is enough. Her grandmother shows her something else. Episode 2 is coming — members hear about it first.">
-        L'épisode 2 arrive bientôt.</p>
+      <p data-fr="Naya croit que l'huile suffit. Sa grand-mère lui montre autre chose."
+         data-en="Naya thinks oil is enough. Her grandmother shows her something else.">
+        Naya croit que l'huile suffit.</p>
+
+      <!-- La case reste cachee tant qu'on n'a pas pu lire le choix : sans
+           le script SQL, mieux vaut ne rien montrer qu'une case qui ment. -->
+      <label class="prevenir" id="prevenir" hidden>
+        <input type="checkbox" id="prevenirCase">
+        <span id="prevenirTexte"></span>
+      </label>
+      <p class="prevenir-etat" id="prevenirEtat" aria-live="polite"></p>
     </div>
 
   </div>
@@ -317,12 +363,87 @@
     if (e.key === "ArrowRight") { page++; peindre(); }
   });
 
+  /* ── « Préviens-moi quand l'épisode 2 sort » ─────────────────
+     C'est le seul moyen de revenir vers quelqu'un a qui on a donne
+     l'episode 1. Sans consentement enregistre, on ne peut pas ecrire.
+
+     Trois etats possibles : inconnu (on n'a pas encore pu lire, ou le
+     script SQL n'est pas lance → la case reste cachee), coche, decoche. */
+  var avis = null;          // null = inconnu
+  var avisEnCours = false;
+
+  function peindreAvis() {
+    var boite = document.getElementById("prevenir");
+    var texte = document.getElementById("prevenirTexte");
+    var etat  = document.getElementById("prevenirEtat");
+    if (!boite) return;
+
+    if (avis === null) { boite.hidden = true; etat.textContent = ""; return; }
+
+    boite.hidden = false;
+    /* Pendant l'enregistrement, la case garde ce que la personne vient de
+       cliquer : la remettre a l'ancienne valeur la ferait clignoter. Elle
+       ne revient en arriere que si l'enregistrement echoue. */
+    if (!avisEnCours) document.getElementById("prevenirCase").checked = avis;
+    texte.textContent = T("Préviens-moi quand il sort",
+                          "Tell me when it's out");
+    etat.removeAttribute("data-erreur");
+    if (avisEnCours) {
+      etat.textContent = T("Un instant…", "One moment…");
+    } else {
+      etat.textContent = avis
+        ? T("C'est noté. Je t'écris quand l'épisode 2 sort, et rien d'autre.",
+            "Noted. I'll email you when episode 2 is out, and nothing else.")
+        : T("Tu peux cocher quand tu veux, et décocher aussi.",
+            "Tick it whenever you like — and untick it too.");
+    }
+  }
+
+  /* Une seule lecture par visite : changer de langue ne doit pas
+     redemander a la base ce qu'on sait deja. */
+  var avisDemande = false;
+
+  function chargeAvis() {
+    if (!(window.SGAccount && SGAccount.isLoggedIn())) { avis = null; peindreAvis(); return; }
+    if (avisDemande) { peindreAvis(); return; }
+    avisDemande = true;
+    SGAccount.getBdNotify()
+      .then(function (on) { avis = on; })
+      /* Le script SQL n'est pas encore lance : on cache la case plutot
+         que d'afficher une promesse qu'on ne tiendra pas. */
+      .catch(function () { avis = null; })
+      .then(peindreAvis);
+  }
+
+  var caseAvis = document.getElementById("prevenirCase");
+  if (caseAvis) {
+    caseAvis.addEventListener("change", function () {
+      var voulu = caseAvis.checked;
+      var etat  = document.getElementById("prevenirEtat");
+      avisEnCours = true;
+      caseAvis.disabled = true;
+      peindreAvis();
+      SGAccount.setBdNotify(voulu)
+        .then(function () { avis = voulu; avisEnCours = false; peindreAvis(); })
+        .catch(function () {
+          /* La case doit dire la verite : si l'enregistrement echoue,
+             elle revient a son etat reel. */
+          avisEnCours = false;
+          caseAvis.checked = avis;
+          etat.setAttribute("data-erreur", "");
+          etat.textContent = T("Je n'ai pas pu enregistrer. Réessaie dans un instant.",
+                               "I couldn't save that. Try again in a moment.");
+        })
+        .then(function () { caseAvis.disabled = false; });
+    });
+  }
+
   function tout() {
     var ouverte = membreOuPas();
-    if (ouverte) peindre();
+    if (ouverte) { peindre(); chargeAvis(); }
   }
   tout();
-  SGSite.onLang(tout);
+  SGSite.onLang(function () { tout(); peindreAvis(); });
 
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();

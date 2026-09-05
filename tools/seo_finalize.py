@@ -14,8 +14,21 @@ def urls(c): return (f"{SITE}/fr/{c['slug_fr']}/", f"{SITE}/en/{c['slug_en']}/")
 # Indexable pages NOT yet restructured (single URL each).
 # Indexable pages NOT restructured (single URL each). products/toolkit-landing
 # are now in PAGES (restructured), so they're excluded here.
+# bd/ is gated, but what a logged-out visitor sees IS the page Google gets:
+# the pitch, the age range, and the invitation to create an account. Nothing
+# is hidden from crawlers that a person doesn't also see, and "bande dessinee
+# cheveux crepus enfant" has no competition worth speaking of.
+#
+# activites.html and link-in-bio/ were in the committed sitemap but not in
+# this list, so every run of this script silently dropped them. They are
+# indexable and canonical to themselves, so they belong here.
+#
+# products.html is deliberately ABSENT: it canonicalises to /fr/produits/,
+# which PAGES already emits. Listing both would put the same page in the
+# sitemap twice under two addresses.
 SINGLE = ["", "CoilCareAI.html", "hydracheck.html", "schicchat.html",
-          "studio.html", "consultation.html"]
+          "studio.html", "consultation.html",
+          "bd/", "activites.html", "link-in-bio/"]
 
 def gen_sitemap():
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -68,6 +81,7 @@ def repoint_links():
 
 # ---------------- homepage crawlable links ----------------
 HP_MARK = "<!-- seo:hublinks -->"
+ANCHOR = "</main>"
 
 def inject_homepage_links(path="index.html"):
     """Add a <noscript> block to the JS-rendered homepage so crawlers get real,
@@ -86,9 +100,18 @@ def inject_homepage_links(path="index.html"):
              f'<h2>Guides &amp; pages (Français)</h2><ul>{fr}</ul>'
              f'<h2>Guides &amp; pages (English)</h2><ul>{en}</ul>'
              '</section></noscript>' + HP_MARK)
-    html = html.replace('<div class="schicgirl-wrap" id="schicgirlWrap"></div>',
-                        '<div class="schicgirl-wrap" id="schicgirlWrap"></div>\n    ' + block, 1)
+    # The old anchor was <div id="schicgirlWrap">, which the current homepage
+    # no longer contains. .replace() matched nothing and returned the string
+    # untouched, so every run of this script quietly DELETED the block (the
+    # strip above always works) and never put it back. Anchoring on </main>
+    # — which cannot disappear from a page that has one — and refusing to
+    # write when it is missing, so the failure is loud instead of silent.
+    if ANCHOR not in html:
+        raise SystemExit(f"{path}: ancre {ANCHOR} introuvable — rien ecrit, "
+                         "le bloc de liens aurait ete perdu")
+    html = html.replace(ANCHOR, ANCHOR + "\n\n" + block + "\n", 1)
     open(path, "w", encoding="utf-8", newline="").write(html)
+    return html.count('<li><a href="/fr/') + html.count('<li><a href="/en/')
 
 if __name__ == "__main__":
     n = gen_sitemap()
@@ -96,5 +119,5 @@ if __name__ == "__main__":
     ch = repoint_links()
     print("repointed links in:")
     for f in sorted(ch): print(f"  - {f}")
-    inject_homepage_links()
-    print("homepage crawlable links injected into index.html")
+    liens = inject_homepage_links()
+    print(f"homepage crawlable links injected into index.html: {liens}")

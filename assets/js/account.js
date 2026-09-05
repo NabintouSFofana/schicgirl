@@ -219,6 +219,27 @@
                   { method: "PATCH", body: fields });
     },
 
+    /* « Préviens-moi quand le prochain épisode de la BD sort. »
+
+       Passe par deux fonctions SECURITY DEFINER plutot que par un PATCH
+       sur la table : un consentement ne doit pouvoir etre donne QUE par
+       la personne concernee, et ces fonctions travaillent sur auth.uid(),
+       qui vient du jeton — pas d'un identifiant que le navigateur choisit.
+
+       Voir supabase/BD - prevenir pour le prochain episode. Tant que ce
+       script n'a pas ete lance, getBdNotify() repond false plutot que de
+       casser la page : la BD reste lisible, seule la case disparait. */
+    getBdNotify: function () {
+      if (!API.isLoggedIn()) return Promise.resolve(false);
+      return rpc("bd_notify_get").then(function (v) { return v === true; });
+    },
+
+    setBdNotify: function (on) {
+      if (!API.isLoggedIn()) return Promise.reject(new Error("non connectee"));
+      return rpc("bd_notify_set", { p_on: !!on })
+        .then(function () { return !!on; });
+    },
+
     /* Passerelle vers le forum : le forum est sur un autre sous-domaine et
        ne partage donc pas le localStorage. On lui passe la session dans le
        fragment (#), qui n'est jamais envoye au serveur ni journalise. */
