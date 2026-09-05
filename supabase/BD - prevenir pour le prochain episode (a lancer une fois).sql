@@ -2,7 +2,11 @@
 -- SCHICGIRL — « Préviens-moi quand le prochain épisode sort »
 --
 -- À lancer dans le projet Supabase du forum (ouwzbqmmtbxqtffghncg).
--- Onglet SQL vide, colle tout, ne sélectionne rien, Run. Une seule fois.
+-- Onglet SQL vide, colle tout, ne sélectionne rien, Run.
+--
+-- Le relancer ne casse rien : les colonnes sont créées « if not exists »
+-- et les fonctions sont remplacées. Aucune donnée déjà enregistrée n'est
+-- perdue. Relance-le après chaque correction de ce fichier.
 --
 -- LE PROBLÈME QUE ÇA RÈGLE
 -- L'épisode 1 de la BD est offert. Son travail n'est pas d'être lu : c'est
@@ -43,6 +47,11 @@ grant execute on function public.bd_notify_get() to authenticated;
 
 -- 3. changer son choix, dans les deux sens
 --    Décocher efface la date : on ne garde pas la trace d'un accord retiré.
+--
+--    Le « if not found » compte : sans lui, quelqu'un dont la ligne de
+--    profil manquerait verrait « c'est noté » alors que rien ne serait
+--    enregistré, et ne recevrait jamais l'annonce. Mieux vaut une erreur
+--    visible qu'une promesse silencieusement perdue.
 create or replace function public.bd_notify_set(p_on boolean)
 returns boolean
 language plpgsql security definer set search_path = public
@@ -55,6 +64,9 @@ begin
      set notify_bd    = coalesce(p_on, false),
          notify_bd_at = case when coalesce(p_on, false) then now() else null end
    where id = auth.uid();
+  if not found then
+    raise exception 'profil introuvable';
+  end if;
   return coalesce(p_on, false);
 end;
 $fn$;
