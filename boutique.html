@@ -347,20 +347,26 @@
   var FR = function () { return SGSite.lang === "fr"; };
   var T  = function (fr, en) { return FR() ? fr : en; };
 
-  var PRODUITS = (window.SG_CATALOG && SG_CATALOG.products) || [];
+  /* Meme regle que le reste du site : « actif: false » retire un guide
+     de la vitrine sans l'effacer du catalogue. */
+  var PRODUITS = ((window.SG_CATALOG && SG_CATALOG.products) || [])
+                   .filter(function (p) { return p.actif !== false; });
 
   /* Chaque besoin pointe vers les guides ecrits pour lui, dans l'ordre
      ou je les conseillerais. « tout » n'a pas de liste : il montre tout. */
   var BESOINS = [
     { id:"tout",       em:"✨", fr:"Tout voir",              en:"See everything" },
+    /* « coiffures » et « cheveux-secs » retires du catalogue : leurs
+       identifiants sortent aussi d'ici, sinon ces listes se videraient
+       en silence sans qu'on comprenne pourquoi. */
     { id:"casse",      em:"💔", fr:"Mes cheveux cassent",    en:"My hair breaks",
-      ids:["cheveux-secs","hydratee","coiffures","recettes"] },
+      ids:["hydratee","why-nothing-works","recettes"] },
     { id:"secs",       em:"🌵", fr:"Toujours secs",          en:"Always dry",
-      ids:["hydratee","cheveux-secs","why-nothing-works","recettes"] },
+      ids:["hydratee","why-nothing-works","recettes"] },
     { id:"routine",    em:"📋", fr:"Je veux une vraie routine", en:"I want a real routine",
       ids:["creer-ma-routine","natural-hair-planner","why-nothing-works","studio-premium"] },
     { id:"transition", em:"🌱", fr:"Je démarre ma transition", en:"I'm transitioning",
-      ids:["transition","creer-ma-routine","coiffures"] },
+      ids:["transition","creer-ma-routine"] },
     { id:"cuir",       em:"🍃", fr:"Cuir chevelu, pellicules", en:"Scalp and dandruff",
       ids:["pellicules","recettes"] },
     { id:"maison",     em:"🥥", fr:"Du fait-maison",         en:"Homemade",

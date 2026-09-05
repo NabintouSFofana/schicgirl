@@ -42,12 +42,16 @@ window.SG_CATALOG.products = [
             desc_fr: "17 soins maison : masques, spritz, pré-poo — quantités exactes et adaptations porosité.",
             desc_en: "17 homemade treatments: masks, spritz, pre-poo — exact amounts, adapted to porosity.",
             price_fr: "9€", price_en: "$10", cfa: "≈ 6 000 FCFA", url_fr: "/fr/recettes-cheveux-crepus/", url_en: "/en/type-4-hair-recipes/" },
-          { id: "coiffures", img_fr: "", img_en: "",
+          /* Retires du catalogue le 4 septembre 2026. « actif: false » les
+             fait disparaitre partout (accueil, boutique, filtres) sans les
+             effacer : remets « true » et ils reviennent tels quels. Leurs
+             pages de vente, elles, sont toujours en ligne. */
+          { id: "coiffures", actif: false, img_fr: "", img_en: "",
             title_fr: "Coiffures Protectrices", title_en: "Protective Styles",
             desc_fr: "Protège ta longueur sans casser : quelles coiffures, combien de temps, et comment les retirer.",
             desc_en: "Protect your length without breakage: which styles, for how long, and how to take them down.",
             price_fr: "5€", price_en: "$6", cfa: "≈ 3 500 FCFA", url_fr: "/fr/coiffures-protectrices/", url_en: "/en/protective-styles/" },
-          { id: "cheveux-secs", img_fr: "assets/og-cheveux-secs-fr.png", img_en: "assets/og-dry-hair-en.png",
+          { id: "cheveux-secs", actif: false, img_fr: "assets/og-cheveux-secs-fr.png", img_en: "assets/og-dry-hair-en.png",
             title_fr: "Stop aux Cheveux Secs", title_en: "Stop Dry Hair",
             desc_fr: "Le diagnostic honnête de la sécheresse, et trois recettes maison qui font durer l'hydratation.",
             desc_en: "An honest diagnosis of dryness, and three homemade recipes that make moisture last.",

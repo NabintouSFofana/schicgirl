@@ -175,8 +175,13 @@
   /* ═══════════════════════════════════════════════════════
      RENDU — PRODUITS (depuis catalog.js)
      ═══════════════════════════════════════════════════════ */
+  /* « actif: false » retire un guide de l'affichage sans l'effacer du
+     catalogue : il ne se montre plus nulle part, mais tout est la pour le
+     jour ou on le remet. Absence de la cle = actif, pour ne pas avoir a
+     l'ecrire sur chaque produit. */
   function products() {
-    return (window.SG_CATALOG && window.SG_CATALOG.products) || [];
+    var tous = (window.SG_CATALOG && window.SG_CATALOG.products) || [];
+    return tous.filter(function (p) { return p.actif !== false; });
   }
 
   function productCard(p) {
