@@ -110,6 +110,107 @@
   .dcard .cnt{font-size:12px;font-weight:600;color:var(--muted)}
   .dcard.done .cnt{color:var(--gold-deep)}
 
+  /* ── LE BON ORDRE ──────────────────────────────────────────
+     Tout se joue au doigt : on touche une carte pour la placer, on la
+     retouche pour la reprendre. Pas de glisser-deposer, qui se rate une
+     fois sur deux sur un telephone. */
+  .otab{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+  .otab button{
+    font-family:var(--sans);font-size:13px;font-weight:600;
+    padding:9px 18px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink-soft);
+    border:1px solid var(--line);transition:all .16s;
+  }
+  .otab button:hover{border-color:var(--line-gold);color:var(--gold-deep)}
+  .otab button[aria-pressed="true"]{
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    color:#fff;border-color:var(--gold-deep);
+  }
+  .ojeu{max-width:600px;margin:0 auto}
+  .ojeu .consigne{text-align:center;font-size:14px;color:var(--muted);margin-bottom:18px}
+  .oliste{list-style:none;counter-reset:o;display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+  .oslot{
+    counter-increment:o;display:flex;align-items:center;gap:12px;min-height:56px;
+    background:var(--card);border:1.5px dashed var(--line-gold);border-radius:var(--r);
+    padding:10px 14px;font-size:14.5px;line-height:1.4;color:var(--ink);
+    transition:border-color .16s, background .16s;
+  }
+  .oslot::before{
+    content:counter(o);flex:none;width:26px;height:26px;border-radius:50%;
+    background:var(--gold-pale);color:var(--gold-deep);border:1px solid var(--line-gold);
+    font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .oslot.plein{border-style:solid;border-color:var(--line);cursor:pointer}
+  .oslot.plein:hover{border-color:var(--gold-deep)}
+  .oslot.juste{border-color:#2f7d4f;background:#f2faf5}
+  .oslot.juste::before{background:#2f7d4f;color:#fff;border-color:#2f7d4f}
+  .oslot.faux{border-color:#b4432f;background:#fdf4f2}
+  .oslot .vide{color:var(--muted);font-style:italic}
+  .opool{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:20px}
+  .ochip{
+    font-family:var(--sans);font-size:14px;line-height:1.35;text-align:left;
+    padding:11px 16px;border-radius:var(--r);cursor:pointer;
+    background:var(--card);color:var(--ink);
+    border:1px solid var(--line-gold);box-shadow:var(--shadow-s);
+    transition:transform .14s, box-shadow .14s, border-color .14s;
+  }
+  .ochip:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--gold-deep)}
+  .ochip:active{transform:translateY(0)}
+
+  /* ── LES PAIRES ────────────────────────────────────────────── */
+  .pgrille{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:640px;margin:0 auto}
+  .pcol{display:flex;flex-direction:column;gap:10px}
+  .pcarte{
+    font-family:var(--sans);font-size:13.5px;line-height:1.35;text-align:left;
+    display:flex;align-items:center;gap:9px;min-height:60px;
+    padding:11px 13px;border-radius:var(--r);cursor:pointer;
+    background:var(--card);color:var(--ink);
+    border:1px solid var(--line);box-shadow:var(--shadow-s);
+    transition:transform .14s, border-color .14s, background .14s, opacity .2s;
+  }
+  .pcarte:hover:not(:disabled){border-color:var(--line-gold);transform:translateY(-2px)}
+  .pcarte .em{font-size:19px;flex:none}
+  .pcarte[aria-pressed="true"]{
+    border-color:var(--gold-deep);background:var(--gold-pale);
+    box-shadow:0 0 0 3px rgba(201,147,74,.2);
+  }
+  .pcarte.trouvee{
+    border-color:#2f7d4f;background:#f2faf5;color:var(--muted);
+    cursor:default;box-shadow:none;
+  }
+  .pcarte.ratee{animation:secoue .34s}
+  @keyframes secoue{
+    0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)}
+    40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pcarte.ratee{animation:none;border-color:#b4432f;background:#fdf4f2}
+    .ochip,.pcarte{transition:none}
+  }
+  .ptrouve{
+    max-width:640px;margin:22px auto 0;display:flex;flex-direction:column;gap:10px;
+  }
+  .ptrouve li{
+    list-style:none;background:var(--gold-pale);border:1px solid var(--line-gold);
+    border-radius:var(--r-s);padding:12px 15px;font-size:13.5px;line-height:1.6;
+    color:var(--ink);animation:fadeUp .3s ease both;
+  }
+  .ptrouve li b{color:var(--gold-deep)}
+  @media(max-width:420px){
+    .pcarte{font-size:12.5px;padding:10px;min-height:66px}
+    .pcarte .em{font-size:16px}
+  }
+
+  /* Le bandeau de fin, commun aux deux jeux */
+  .jfin{
+    max-width:600px;margin:22px auto 0;text-align:center;
+    background:var(--card);border:1px solid var(--line-gold);
+    border-radius:var(--r);padding:24px 22px;box-shadow:var(--shadow-s);
+  }
+  .jfin .gros{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--gold-deep);line-height:1.2}
+  .jfin p{font-size:14px;color:var(--ink-soft);line-height:1.7;margin:10px 0 0}
+  .jfin .btn{margin-top:16px}
+
   /* Manche membres : verrouillee tant que l'abonnement n'est pas actif */
   .locked{
     background:var(--card);border:1px dashed var(--line-gold);border-radius:var(--r-l);
@@ -237,9 +338,9 @@
         data-fr="Apprends tes cheveux <em>en jouant</em>."
         data-en="Learn your hair <em>by playing</em>.">Apprends tes cheveux <em>en jouant</em>.</h1>
     <p class="lead" style="margin:0 auto"
-       data-fr="Douze affirmations sur les cheveux crépus. Vrai ou faux ? Puis six défis à cocher, pour transformer ce que tu sais en ce que tu fais."
-       data-en="Twelve statements about coily hair. True or false? Then six challenges to tick off, turning what you know into what you do.">
-      Douze affirmations sur les cheveux crépus. Vrai ou faux ? Puis six défis à cocher.</p>
+       data-fr="Douze affirmations à trancher, des gestes à remettre dans l'ordre, des paires à retrouver — puis six défis à cocher, pour transformer ce que tu sais en ce que tu fais."
+       data-en="Twelve statements to settle, steps to put back in order, pairs to match — then six challenges to tick off, turning what you know into what you do.">
+      Douze affirmations à trancher, des gestes à remettre dans l'ordre, des paires à retrouver.</p>
   </div>
 </header>
 
@@ -267,6 +368,8 @@
       <ul class="gate-list">
         <li data-fr="Le quiz : 12 affirmations vrai/faux, avec l'explication à chaque réponse."
             data-en="The quiz: 12 true/false statements, with the reasoning behind each answer.">Le quiz : 12 affirmations vrai/faux.</li>
+        <li data-fr="Deux jeux : remettre les gestes dans le bon ordre, et retrouver les 8 paires."
+            data-en="Two games: put the steps back in the right order, and find the 8 pairs.">Deux jeux : le bon ordre, et les 8 paires.</li>
         <li data-fr="Les 6 défis à cocher, semaine après semaine."
             data-en="The 6 challenges to tick off, week after week.">Les 6 défis à cocher.</li>
         <li data-fr="La BD « Ma Couronne, Mon Histoire », à lire avec ta fille dès 6 ans."
@@ -289,6 +392,40 @@
       </div>
       <div id="qBox"></div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════ LE BON ORDRE ═══════════
+     Les mêmes produits, dans le mauvais ordre, ne donnent rien. Un
+     quiz ne peut pas montrer ça — remettre les gestes en ordre, si. -->
+<section class="section section-alt" id="ordre" data-membres>
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Le bon ordre" data-en="The right order">Le bon ordre</span>
+      <h2 data-fr="Les mêmes gestes. <em>Pas le même résultat.</em>"
+          data-en="The same steps. <em>Not the same result.</em>">Les mêmes gestes. <em>Pas le même résultat.</em></h2>
+      <p class="lead" style="margin-inline:auto"
+         data-fr="Remets les étapes dans l'ordre. Touche une carte pour la placer, touche-la encore pour la retirer."
+         data-en="Put the steps back in order. Tap a card to place it, tap it again to take it back.">
+        Remets les étapes dans l'ordre.</p>
+    </div>
+    <div id="oBox"></div>
+  </div>
+</section>
+
+<!-- ═══════════ LES PAIRES ═══════════ -->
+<section class="section" id="paires" data-membres>
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-fr="Les paires" data-en="The pairs">Les paires</span>
+      <h2 data-fr="Chaque mot fait <em>une seule chose</em>."
+          data-en="Each word does <em>one thing</em>.">Chaque mot fait <em>une seule chose</em>.</h2>
+      <p class="lead" style="margin-inline:auto"
+         data-fr="Associe chaque mot à ce qu'il fait vraiment. Touche un mot à gauche, puis sa réponse à droite."
+         data-en="Match each word to what it actually does. Tap a word on the left, then its answer on the right.">
+        Associe chaque mot à ce qu'il fait vraiment.</p>
+    </div>
+    <div id="pBox"></div>
   </div>
 </section>
 
@@ -660,6 +797,242 @@
     });
   }
 
+  /* ═══════════ OUTIL COMMUN ═══════════
+     Melange une copie, jamais l'original : les donnees gardent l'ordre
+     correct, c'est lui qui sert de correction. */
+  function melange(liste) {
+    var a = liste.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  /* ═══════════ LE BON ORDRE ═══════════ */
+  var oIdx = 0;        // quel tableau
+  var oPose = [];      // indices des etapes deja placees, dans l'ordre choisi
+  var oPool = [];      // indices encore a placer, dans l'ordre melange
+  var oVerdict = null; // null tant qu'on n'a pas verifie
+  var oGarde = 0;      // combien d'etapes justes on conserve apres un echec
+
+  function oPrepare() {
+    var jeu = D.ordres[oIdx];
+    oPose = [];
+    oVerdict = null;
+    oPool = melange(jeu.etapes.map(function (_, i) { return i; }));
+    /* Un mélange qui retombe sur l'ordre correct donnerait une victoire
+       sans avoir rien fait. On recommence — deux étapes suffisent à ce
+       que ça arrive une fois sur deux. */
+    var identique = oPool.every(function (v, i) { return v === i; });
+    if (identique && oPool.length > 1) oPool.reverse();
+  }
+
+  function paintOrdre() {
+    var box = document.getElementById("oBox");
+    if (!box) return;
+    var jeu = D.ordres[oIdx];
+
+    var onglets = '<div class="otab" role="group">' + D.ordres.map(function (o, i) {
+      return '<button type="button" data-o="' + i + '" aria-pressed="' +
+             (i === oIdx ? "true" : "false") + '">' + o.ic + " " + e(tx(o, "t")) +
+             "</button>";
+    }).join("") + "</div>";
+
+    var slots = "";
+    for (var i = 0; i < jeu.etapes.length; i++) {
+      var idx = oPose[i];
+      var etat = "";
+      if (idx === undefined) {
+        etat = "";
+      } else if (oVerdict) {
+        etat = (idx === i) ? " juste" : " faux";
+      } else {
+        etat = " plein";
+      }
+      slots += '<li class="oslot' + etat + '"' +
+        (idx !== undefined && !oVerdict ? ' data-reprend="' + i + '" tabindex="0"' : "") +
+        ">" +
+        (idx === undefined
+          ? '<span class="vide">' + e(T("à remplir", "to fill")) + "</span>"
+          : e(FR() ? jeu.etapes[idx].fr : jeu.etapes[idx].en)) +
+        "</li>";
+    }
+
+    var pool = oPool.map(function (idx) {
+      return '<button type="button" class="ochip" data-place="' + idx + '">' +
+             e(FR() ? jeu.etapes[idx].fr : jeu.etapes[idx].en) + "</button>";
+    }).join("");
+
+    var bas = "";
+    if (oVerdict === "gagne") {
+      bas = '<div class="jfin">' +
+        '<div class="gros">' + jeu.ic + " " + e(T("Dans l'ordre.", "In order.")) + "</div>" +
+        "<p>" + (FR() ? jeu.why_fr : jeu.why_en) + "</p>" +
+        (jeu.lien ? '<p style="margin-top:8px"><a class="textlink" href="' +
+          e(articleLink(jeu.lien)) + '">' + e(T("Lire l'article →", "Read the article →")) +
+          "</a></p>" : "") +
+        '<button class="btn btn-ghost btn-sm" id="oRejoue">' +
+          e(T("Recommencer", "Play again")) + "</button>" +
+        (oIdx + 1 < D.ordres.length
+          ? '<button class="btn btn-gold btn-sm" id="oSuivant" style="margin-left:8px">' +
+            e(T("Le suivant →", "Next one →")) + "</button>" : "") +
+        "</div>";
+    } else if (oVerdict === "rate") {
+      bas = '<div class="jfin">' +
+        '<div class="gros">' +
+          e(oGarde ? T("Presque.", "Almost.") : T("Pas encore.", "Not yet.")) + "</div>" +
+        "<p>" + e(!oGarde
+          ? T("La toute première n'est pas la bonne — et tout le reste en dépend. Regarde ce qui doit venir avant tout.",
+              "The very first one isn't right — and everything else follows from it. Look at what has to come first.")
+          : oGarde === 1
+            ? T("La première est juste, tu la gardes. Le reste retourne dans le tas.",
+                "The first one is right, you keep it. The rest goes back to the pile.")
+            : T("Les " + oGarde + " premières sont justes, tu les gardes. Le reste retourne dans le tas.",
+                "The first " + oGarde + " are right, you keep them. The rest goes back to the pile.")) + "</p>" +
+        '<button class="btn btn-gold btn-sm" id="oRejoue">' +
+          e(T("Réessayer", "Try again")) + "</button>" +
+        "</div>";
+    } else if (oPose.length === jeu.etapes.length) {
+      bas = '<p style="text-align:center"><button class="btn btn-gold btn-lg" id="oCheck">' +
+            e(T("Vérifier", "Check")) + "</button></p>";
+    }
+
+    box.innerHTML = onglets +
+      '<div class="ojeu">' +
+        '<p class="consigne">' + e(tx(jeu, "s")) + "</p>" +
+        '<ol class="oliste">' + slots + "</ol>" +
+        (pool ? '<div class="opool">' + pool + "</div>" : "") +
+        bas +
+      "</div>";
+  }
+
+  document.getElementById("oBox").addEventListener("click", function (ev) {
+    var t = ev.target.closest("[data-o],[data-place],[data-reprend],#oCheck,#oRejoue,#oSuivant");
+    if (!t) return;
+
+    if (t.hasAttribute("data-o")) {
+      oIdx = +t.getAttribute("data-o"); oPrepare(); paintOrdre(); return;
+    }
+    if (t.hasAttribute("data-place")) {
+      var idx = +t.getAttribute("data-place");
+      oPose.push(idx);
+      oPool = oPool.filter(function (v) { return v !== idx; });
+      paintOrdre(); return;
+    }
+    if (t.hasAttribute("data-reprend")) {
+      /* On reprend la carte d'une case : elle retourne au tas, et les
+         suivantes remontent d'un cran. */
+      var pos = +t.getAttribute("data-reprend");
+      var repris = oPose.splice(pos, 1)[0];
+      oPool.push(repris);
+      paintOrdre(); return;
+    }
+    if (t.id === "oCheck") {
+      var bon = oPose.every(function (v, i) { return v === i; });
+      /* Le debut juste, calcule avant l'affichage : le message doit dire
+         exactement ce qui va etre garde, sinon il ment. Garder aussi les
+         bonnes cartes situees APRES une erreur laisserait des trous dans
+         la liste — plus simple a coder, illisible a l'ecran. */
+      oGarde = 0;
+      while (oGarde < oPose.length && oPose[oGarde] === oGarde) oGarde++;
+      oVerdict = bon ? "gagne" : "rate";
+      paintOrdre();
+      if (!bon) {
+        setTimeout(function () {
+          for (var j = oGarde; j < oPose.length; j++) oPool.push(oPose[j]);
+          oPose = oPose.slice(0, oGarde);
+          oVerdict = null;
+          paintOrdre();
+        }, 2400);
+      }
+      return;
+    }
+    if (t.id === "oRejoue") { oPrepare(); paintOrdre(); return; }
+    if (t.id === "oSuivant") { oIdx++; oPrepare(); paintOrdre(); return; }
+  });
+
+  /* ═══════════ LES PAIRES ═══════════ */
+  var pGauche = [], pDroite = [], pChoix = null, pTrouvees = [], pRate = null;
+
+  function pPrepare() {
+    pGauche = melange(D.paires.map(function (_, i) { return i; }));
+    pDroite = melange(D.paires.map(function (_, i) { return i; }));
+    pChoix = null; pTrouvees = []; pRate = null;
+  }
+
+  function pCarte(idx, cote) {
+    var p = D.paires[idx];
+    var trouvee = pTrouvees.indexOf(idx) > -1;
+    var choisie = pChoix && pChoix.cote === cote && pChoix.idx === idx;
+    var rate = pRate && pRate.indexOf(cote + idx) > -1;
+    return '<button type="button" class="pcarte' + (trouvee ? " trouvee" : "") +
+      (rate ? " ratee" : "") + '" data-p="' + idx + '" data-cote="' + cote + '"' +
+      ' aria-pressed="' + (choisie ? "true" : "false") + '"' +
+      (trouvee ? " disabled" : "") + ">" +
+      (cote === "g" ? '<span class="em" aria-hidden="true">' + p.ic + "</span>" : "") +
+      "<span>" + e(tx(p, cote === "g" ? "a" : "b")) + "</span></button>";
+  }
+
+  function paintPaires() {
+    var box = document.getElementById("pBox");
+    if (!box) return;
+    var fini = pTrouvees.length === D.paires.length;
+
+    var explications = pTrouvees.map(function (idx) {
+      var p = D.paires[idx];
+      return "<li><b>" + e(tx(p, "a")) + " — " + e(tx(p, "b")) + ".</b> " +
+             (FR() ? p.why_fr : p.why_en) +
+             (p.lien ? ' <a class="textlink" href="' + e(articleLink(p.lien)) + '">' +
+               e(T("Lire →", "Read →")) + "</a>" : "") + "</li>";
+    }).join("");
+
+    box.innerHTML =
+      '<p class="consigne" style="text-align:center;font-size:14px;color:var(--muted);margin-bottom:18px">' +
+        "<b>" + pTrouvees.length + "</b> / " + D.paires.length + " " +
+        e(T("paires trouvées", "pairs found")) + "</p>" +
+      '<div class="pgrille">' +
+        '<div class="pcol">' + pGauche.map(function (i) { return pCarte(i, "g"); }).join("") + "</div>" +
+        '<div class="pcol">' + pDroite.map(function (i) { return pCarte(i, "d"); }).join("") + "</div>" +
+      "</div>" +
+      (fini
+        ? '<div class="jfin"><div class="gros">👑 ' +
+          e(T("Les huit.", "All eight.")) + "</div><p>" +
+          e(T("Tu sais maintenant ce que chaque mot fait — et surtout ce qu'il ne fait pas. C'est là que la plupart des routines se perdent.",
+              "You now know what each word does — and, more importantly, what it doesn't. That's where most routines go wrong.")) +
+          '</p><button class="btn btn-ghost btn-sm" id="pRejoue">' +
+          e(T("Recommencer", "Play again")) + "</button></div>"
+        : "") +
+      (explications ? '<ul class="ptrouve">' + explications + "</ul>" : "");
+  }
+
+  document.getElementById("pBox").addEventListener("click", function (ev) {
+    if (ev.target.closest("#pRejoue")) { pPrepare(); paintPaires(); return; }
+    var b = ev.target.closest("[data-p]");
+    if (!b || b.disabled) return;
+
+    var idx = +b.getAttribute("data-p"), cote = b.getAttribute("data-cote");
+
+    /* Retoucher la carte deja choisie la deselectionne. */
+    if (pChoix && pChoix.cote === cote && pChoix.idx === idx) {
+      pChoix = null; paintPaires(); return;
+    }
+    /* Deux cartes du meme cote : la seconde remplace la premiere. */
+    if (!pChoix || pChoix.cote === cote) {
+      pChoix = { idx: idx, cote: cote }; pRate = null; paintPaires(); return;
+    }
+
+    if (pChoix.idx === idx) {
+      pTrouvees.push(idx); pChoix = null; pRate = null; paintPaires();
+    } else {
+      pRate = [pChoix.cote + pChoix.idx, cote + idx];
+      var manque = pChoix; pChoix = null;
+      paintPaires();
+      setTimeout(function () { pRate = null; paintPaires(); }, 420);
+      void manque;
+    }
+  });
+
   /* ═══════════ LES DÉFIS ═══════════ */
   var dState = load(KEY_D, {});
 
@@ -904,7 +1277,12 @@
     /* Rien a dessiner dans des sections masquees. */
     if (!ouverte) return;
     paintQuiz(); paintDefis(); paintPro();
+    /* Repeindre seulement : changer de langue ne doit pas remelanger
+       les cartes ni effacer les paires deja trouvees. */
+    paintOrdre(); paintPaires();
   }
+  oPrepare();
+  pPrepare();
   paintAll();
   if (window.SGAccount && SGAccount.isLoggedIn()) checkPro();
   SGSite.onLang(paintAll);

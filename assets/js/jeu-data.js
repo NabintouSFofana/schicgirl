@@ -192,6 +192,111 @@ window.SG_JEU = {
       lien: "transition-sans-big-chop" }
   ],
 
+  /* ── LES PAIRES ───────────────────────────────────────────────
+     Associer un mot du vocabulaire capillaire a ce qu'il fait vraiment.
+     Un quiz vrai/faux teste ce qu'on croit ; celui-ci teste ce qu'on a
+     compris. Chaque paire reprend une explication deja donnee dans le
+     quiz ou dans un article — rien de neuf n'est affirme ici.
+
+     a   : le terme, colonne de gauche
+     b   : ce qu'il fait, colonne de droite (court : ca doit tenir sur
+           un telephone)
+     why : la phrase qui s'affiche une fois la paire trouvee */
+  paires: [
+    { id: "eau", ic: "💧",
+      a_fr: "L'eau", a_en: "Water",
+      b_fr: "Hydrate", b_en: "Moisturises",
+      why_fr: "Rien d'autre n'hydrate. Une huile seule ne rend pas un cheveu humide — elle garde l'eau qui est déjà là.",
+      why_en: "Nothing else moisturises. Oil alone never makes hair damp — it holds the water already there.",
+      lien: "methode-loc-hydratation" },
+
+    { id: "huile", ic: "🫒",
+      a_fr: "L'huile, le beurre", a_en: "Oil, butter",
+      b_fr: "Scelle", b_en: "Seals",
+      why_fr: "Ils empêchent l'eau de repartir. Poser un corps gras sur un cheveu sec, c'est fermer un seau vide.",
+      why_en: "They stop water leaving. Putting oil on dry hair is sealing an empty bucket.",
+      lien: "methode-loc-hydratation" },
+
+    { id: "satin", ic: "🌙",
+      a_fr: "Le satin", a_en: "Satin",
+      b_fr: "Ne boit pas l'hydratation", b_en: "Doesn't drink your moisture",
+      why_fr: "Le coton absorbe et frotte. Le satin, non. C'est le geste le moins cher et le plus rentable de toute la routine.",
+      why_en: "Cotton absorbs and rubs. Satin doesn't. The cheapest, highest-return habit in the whole routine.",
+      lien: "routine-nuit-satin" },
+
+    { id: "proteines", ic: "🥚",
+      a_fr: "Les protéines", a_en: "Protein",
+      b_fr: "Réparent, n'hydratent pas", b_en: "Repair, never moisturise",
+      why_fr: "Elles s'alternent avec l'hydratation, elles ne la remplacent jamais. Trop de protéines rend le cheveu raide et cassant.",
+      why_en: "They alternate with hydration, they never replace it. Too much protein turns hair stiff and brittle.",
+      lien: "stopper-la-casse" },
+
+    { id: "shrinkage", ic: "🌀",
+      a_fr: "Le shrinkage", a_en: "Shrinkage",
+      b_fr: "Bonne nouvelle", b_en: "Good news",
+      why_fr: "Jusqu'à 80 % de ta longueur disparaît à l'œil — et ça veut dire que ta boucle est élastique et hydratée.",
+      why_en: "Up to 80% of your length vanishes from view — and it means your coil is springy and hydrated.",
+      lien: "shrinkage-cheveux-crepus" },
+
+    { id: "porosite", ic: "🔬",
+      a_fr: "La porosité", a_en: "Porosity",
+      b_fr: "La vitesse d'entrée et de sortie de l'eau", b_en: "How fast water gets in and out",
+      why_fr: "Faible : l'eau a du mal à entrer. Forte : elle entre vite et repart vite. C'est ce qui décide de tout le reste.",
+      why_en: "Low: water struggles to get in. High: it enters fast and leaves fast. It decides everything else.",
+      lien: "porosite-cheveux" },
+
+    { id: "cast", ic: "✨",
+      a_fr: "Le cast du gel", a_en: "The gel cast",
+      b_fr: "Une coque qui protège", b_en: "A shell that protects",
+      why_fr: "Ce croustillant protège la boucle pendant le séchage. On le casse aux doigts une fois sec — jamais avant.",
+      why_en: "That crunch protects the curl while it dries. You scrunch it out once dry — never before.",
+      lien: "routine-wash-day" },
+
+    { id: "journal", ic: "📔",
+      a_fr: "Le journal capillaire", a_en: "The hair journal",
+      b_fr: "La preuve de ce qui marche sur toi", b_en: "Proof of what works on you",
+      why_fr: "Sans traces écrites, on refait les mêmes essais tous les six mois en croyant avancer.",
+      why_en: "Without a written record you repeat the same experiments every six months and call it progress.",
+      lien: "journal-capillaire" }
+  ],
+
+  /* ── LE BON ORDRE ─────────────────────────────────────────────
+     Remettre les gestes dans le bon ordre. C'est la ou l'ordre change
+     tout : les memes produits, dans le mauvais ordre, ne donnent rien.
+
+     etapes : DANS L'ORDRE CORRECT. Le jeu melange l'affichage tout
+     seul — ne les melange pas ici, sinon la correction sera fausse. */
+  ordres: [
+    { id: "loc", ic: "🧴",
+      t_fr: "La méthode LOC", t_en: "The LOC method",
+      s_fr: "Trois produits. Le bon ordre, sur cheveux humides.",
+      s_en: "Three products. The right order, on damp hair.",
+      etapes: [
+        { fr: "De l'eau, ou un spray hydratant", en: "Water, or a hydrating spray" },
+        { fr: "L'huile", en: "The oil" },
+        { fr: "La crème", en: "The cream" }
+      ],
+      why_fr: "L'eau hydrate, l'huile la scelle, la crème referme. Sur cheveux secs, aucun des trois ne sert à grand-chose : le leave-in ne fabrique pas d'eau, il retient celle qui est déjà là.",
+      why_en: "Water hydrates, oil seals it in, cream closes it up. On dry hair none of the three does much: leave-in doesn't create water, it holds what's already there.",
+      lien: "methode-loc-hydratation" },
+
+    { id: "demelage", ic: "🪮",
+      t_fr: "Le démêlage sans casse", t_en: "Detangling without breakage",
+      s_fr: "Environ 90 % de la casse arrive ici. L'ordre n'est pas un détail.",
+      s_en: "Around 90% of breakage happens here. The order is not a detail.",
+      etapes: [
+        { fr: "Mouiller les cheveux", en: "Wet the hair" },
+        { fr: "Mettre du glissant (après-shampoing)", en: "Add slip (conditioner)" },
+        { fr: "Séparer en sections", en: "Split into sections" },
+        { fr: "Démêler aux doigts, des pointes vers les racines",
+          en: "Finger-detangle, ends first then up" },
+        { fr: "Finir au peigne à dents larges", en: "Finish with a wide-tooth comb" }
+      ],
+      why_fr: "Jamais à sec, jamais des racines vers les pointes, jamais sur toute la tête d'un coup. Les doigts sentent le nœud avant de le casser — un peigne, non.",
+      why_en: "Never dry, never roots-to-ends, never the whole head at once. Fingers feel a knot before breaking it — a comb doesn't.",
+      lien: "demelage-sans-casse" }
+  ],
+
   /* ── LE CONCOURS ──────────────────────────────────────────────
      Les entrees sont enregistrees dans la table contact_messages
      (topic = "concours") : pas de nouvelle table a creer. */
