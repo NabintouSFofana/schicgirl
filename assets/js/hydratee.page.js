@@ -19,9 +19,23 @@ var EBOOK = {"slug": "hydratee", "img_fr": "assets/hydratee.png", "img_en": "ass
     document.getElementById("barPrice").textContent = price;
     document.getElementById("priceCfa").textContent = cfa;
     document.getElementById("barCfa").textContent = cfa;
+    // La fiche produit en haut de page : memes donnees que le bas, mais
+    // visibles sans defiler. Chaque element est optionnel : une page qui
+    // n'a pas encore de fiche continue de fonctionner.
+    var fPrix = document.getElementById("fpPrix");
+    if (fPrix){ fPrix.textContent = price; }
+    var fCfa = document.getElementById("fpCfa");
+    if (fCfa){ fCfa.textContent = cfa; }
+    var fCta = document.getElementById("fpCta");
+    if (fCta){
+      fCta.setAttribute("href", url);
+      fCta.textContent = LANG==="fr" ? EBOOK.cta_fr : EBOOK.cta_en;
+    }
     // cover per language
     var cov = document.getElementById("cover");
     if (cov){ var src = T(EBOOK,"img"); if(src){ cov.setAttribute("src", ab(src)); } }
+    var fCouv = document.getElementById("fpCouv");
+    if (fCouv){ var s2 = T(EBOOK,"img"); if(s2){ fCouv.setAttribute("src", ab(s2)); } }
     // interior previews per language
     var suf = LANG==="en" ? "-en" : "";
     var pi = document.getElementById("prevInside");

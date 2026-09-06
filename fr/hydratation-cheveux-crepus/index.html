@@ -17,6 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/hydratee.css?v=20260729a">
 <link rel="stylesheet" href="/assets/css/conversion-blocks.css?v=20260729a">
+<link rel="stylesheet" href="/assets/css/guide-fiche.css?v=20260729a">
 <!-- seo:hreflang -->
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/hydratation-cheveux-crepus/"><link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/hydratation-cheveux-crepus/"><link rel="alternate" hreflang="en" href="https://schicgirl.me/en/hydrate-type-4-hair/"><link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/hydratation-cheveux-crepus/"><script type="application/ld+json">{
@@ -117,14 +118,66 @@
   }
 }</script></head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour">← Retour</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-fr="Accueil">Accueil</a>
+      <a href="/shop.html" data-fr="Guides">Guides</a>
+      <a href="/activites.html" data-fr="Activités">Activités</a>
+      <a href="/bd/" data-fr="BD">BD</a>
+      <a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a>
+      <a href="/fr/blog/" data-fr="Blog">Blog</a>
+      <a href="/fr/contact/" data-fr="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn" id="btnEn" onclick="location.href='https://schicgirl.me/en/hydrate-type-4-hair/'">🇬🇧 EN</button>
       <button class="lang-btn is-active" id="btnFr" onclick="location.href='https://schicgirl.me/fr/hydratation-cheveux-crepus/'">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <span class="fp-etiquette" data-fr="Best-seller">Best-seller</span>
+    <img id="fpCouv" src="/assets/hydratee.png" alt="Hydratée — guide de l'hydratation pour cheveux crépus Type 4">
+  </div>
+  <div>
+    <p class="fp-sous" data-fr="Le guide de l'hydratation qui tient">Le guide de l'hydratation qui tient</p>
+    <h2 class="fp-titre" data-fr="Hydratée">Hydratée</h2>
+    <p class="fp-resume" data-fr="Diagnostique ta porosité, superpose dans le bon ordre, et retiens enfin l'hydratation.">Diagnostique ta porosité, superpose dans le bon ordre, et retiens enfin l'hydratation.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement" data-fr="Paiement unique · accès à vie · pas d'abonnement">Paiement unique · accès à vie · pas d'abonnement</p>
+
+    <div class="fp-meta">
+      <span data-fr="PDF">PDF</span>
+      <span data-fr="85 pages">85 pages</span>
+      <span data-fr="Français et anglais">Français et anglais</span>
+      <span data-fr="Téléphone et ordinateur">Téléphone et ordinateur</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-fr="Le test de porosité à faire chez toi">Le test de porosité à faire chez toi</li>
+      <li data-fr="L'ordre exact des couches : eau, crème, huile">L'ordre exact des couches : eau, crème, huile</li>
+      <li data-fr="Les quantités selon ta longueur">Les quantités selon ta longueur</li>
+      <li data-fr="Que faire quand ça ne tient pas">Que faire quand ça ne tient pas</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure" data-fr="Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment.">Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-fr="Tout ce qu'il y a dedans">Tout ce qu'il y a dedans</p>
+
+<div class="wrap">
 
   <div class="hero">
     <img id="cover" class="cover" src="/assets/hydratee.webp?v=20260729a" alt="Schicgirl ebook" onerror="this.outerHTML='&lt;div class=&quot;cover-fb&quot;&gt;📖&lt;/div&gt;'">
@@ -266,6 +319,22 @@
   </div>
   <a id="barCta" href="https://selar.com/hydratee" target="_blank" rel="noopener noreferrer">Obtenir →</a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-fr="Accueil">Accueil</a>
+      <a href="/shop.html" data-fr="Tous les guides">Tous les guides</a>
+      <a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a>
+      <a href="/fr/blog/" data-fr="Blog">Blog</a>
+      <a href="/fr/contact/" data-fr="Contact">Contact</a>
+      <a href="/fr/confidentialite/" data-fr="Confidentialité">Confidentialité</a>
+      <a href="/fr/conditions/" data-fr="Conditions">Conditions</a>
+    </div>
+    <p>© 2026 Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire.">Aime ta couronne. Écris ton histoire.</span></p>
+  </div>
+</footer>
 
 <script src="/assets/js/hydratee.page.js?v=20260729a"></script>
 </body>
