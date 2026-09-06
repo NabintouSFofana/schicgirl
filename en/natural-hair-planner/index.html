@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/natural-hair-planner.css?v=20260729a">
 <link rel="stylesheet" href="/assets/css/conversion-blocks.css?v=20260729a">
+<link rel="stylesheet" href="/assets/css/guide-fiche.css?v=20260729a">
 <!-- seo:hreflang -->
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/en/natural-hair-planner/"><link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/planificateur-cheveux-naturels/"><link rel="alternate" hreflang="en" href="https://schicgirl.me/en/natural-hair-planner/"><link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/planificateur-cheveux-naturels/"><script type="application/ld+json">{
@@ -118,19 +119,68 @@
   }
 }</script></head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-en="← Back">← Back</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-en="Home">Home</a>
+      <a href="/shop.html" data-en="Guides">Guides</a>
+      <a href="/activites.html" data-en="Activities">Activities</a>
+      <a href="/bd/" data-en="Comic">Comic</a>
+      <a href="/en/the-circle/" data-en="The Circle">The Circle</a>
+      <a href="/en/blog/" data-en="Blog">Blog</a>
+      <a href="/en/contact/" data-en="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn is-active" id="btnEn" onclick="location.href='https://schicgirl.me/en/natural-hair-planner/'">🇬🇧 EN</button>
       <button class="lang-btn" id="btnFr" onclick="location.href='https://schicgirl.me/fr/planificateur-cheveux-naturels/'">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <span class="fp-etiquette" data-en="Printable">Printable</span>
+    <img id="fpCouv" src="/assets/natural-hair-planner-fr.webp" alt="Planificateur Cheveux Naturels">
+  </div>
+  <div>
+    <p class="fp-sous" data-en="7 sheets to track your progress">7 sheets to track your progress</p>
+    <h1 class="fp-titre" data-en="Natural Hair Planner">Natural Hair Planner</h1>
+    <p class="fp-resume" data-en="7 tracker sheets: goals, wash day, moisture, products, styles, length.">7 tracker sheets: goals, wash day, moisture, products, styles, length.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement" data-en="One-time payment · lifetime access · no subscription">One-time payment · lifetime access · no subscription</p>
+
+    <div class="fp-meta">
+      <span data-en="Printable PDF · A4">Printable PDF · A4</span>
+      <span data-en="French and English">French and English</span>
+      <span data-en="Phone and computer">Phone and computer</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-en="90-day goals">90-day goals</li>
+      <li data-en="Wash day journal">Wash day journal</li>
+      <li data-en="Moisture tracker">Moisture tracker</li>
+      <li data-en="Length tracker">Length tracker</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure" data-en="Instant download after payment. A question before buying? Write to me — I really do answer.">Instant download after payment. A question before buying? Write to me — I really do answer.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-en="Everything that's inside">Everything that's inside</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="/assets/natural-hair-planner-en.webp?v=20260729a" alt="Schicgirl ebook" onerror="this.outerHTML='&lt;div class=&quot;cover-fb&quot;&gt;📋&lt;/div&gt;'">
-    <span class="badge" data-en="7 tracking sheets included">7 tracking sheets included</span>
-    <h1 data-en="Stop guessing what &lt;span class='accent'&gt;your hair wants&lt;/span&gt;">Stop guessing what <span class="accent">your hair wants</span></h1>
+    <h2 class="accroche" data-en="Stop guessing what &lt;span class='accent'&gt;your hair wants&lt;/span&gt;">Stop guessing what <span class="accent">your hair wants</span></h2>
     <p class="lead" data-en="The planner that tracks everything your hair is trying to tell you — so you stop guessing and start progressing.">The planner that tracks everything your hair is trying to tell you — so you stop guessing and start progressing.</p>
   </div>
 
@@ -251,14 +301,6 @@
     <dl class="faq"><dt data-en="What do I get?">What do I get?</dt><dd data-en="An 11-page PDF, downloadable instantly — print it at home or fill it in on a tablet.">An 11-page PDF, downloadable instantly — print it at home or fill it in on a tablet.</dd><dt data-en="Can I fill it in without printing?">Can I fill it in without printing?</dt><dd data-en="Yes. Open the PDF in GoodNotes, Notability, or any annotation app, and write directly into the cells with a stylus.">Yes. Open the PDF in GoodNotes, Notability, or any annotation app, and write directly into the cells with a stylus.</dd><dt data-en="Can I print the same sheet more than once?">Can I print the same sheet more than once?</dt><dd data-en="Of course — that's exactly what it's for. Print each sheet as many times as you need, month after month.">Of course — that's exactly what it's for. Print each sheet as many times as you need, month after month.</dd><dt data-en="How do I pay?">How do I pay?</dt><dd data-en="Secure checkout on Selar (card, mobile money by country).">Secure checkout on Selar (card, mobile money by country).</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="/en/about/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="About">About</a>
-    <a href="/en/blog/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="Blog">Blog</a>
-    <a href="/en/contact/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="Contact">Contact</a>
-    <a href="/en/privacy-policy/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="Privacy">Privacy</a>
-    <a href="/en/terms/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-en="Terms">Terms</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -273,6 +315,23 @@
   </div>
   <a id="barCta" href="https://selar.com/natural-hair-planner" target="_blank" rel="noopener noreferrer">Get it →</a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-en="Home">Home</a>
+      <a href="/shop.html" data-en="All the guides">All the guides</a>
+      <a href="/en/the-circle/" data-en="The Circle">The Circle</a>
+      <a href="/en/blog/" data-en="Blog">Blog</a>
+      <a href="/en/about/" data-en="About">About</a>
+      <a href="/en/contact/" data-en="Contact">Contact</a>
+      <a href="/en/privacy-policy/" data-en="Privacy">Privacy</a>
+      <a href="/en/terms/" data-en="Terms">Terms</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-en="Love Your Crown. Own Your Story.">Love Your Crown. Own Your Story.</span></p>
+  </div>
+</footer>
 
 <script src="/assets/js/natural-hair-planner.page.js?v=20260729a"></script>
 </body>

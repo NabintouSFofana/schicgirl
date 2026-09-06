@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/recettes.css?v=20260729a">
 <link rel="stylesheet" href="/assets/css/conversion-blocks.css?v=20260729a">
+<link rel="stylesheet" href="/assets/css/guide-fiche.css?v=20260729a">
 <!-- seo:hreflang -->
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/recettes-cheveux-crepus/"><link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/recettes-cheveux-crepus/"><link rel="alternate" hreflang="en" href="https://schicgirl.me/en/type-4-hair-recipes/"><link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/recettes-cheveux-crepus/"><script type="application/ld+json">{
@@ -118,19 +119,68 @@
   }
 }</script></head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour">← Retour</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-fr="Accueil">Accueil</a>
+      <a href="/shop.html" data-fr="Guides">Guides</a>
+      <a href="/activites.html" data-fr="Activités">Activités</a>
+      <a href="/bd/" data-fr="BD">BD</a>
+      <a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a>
+      <a href="/fr/blog/" data-fr="Blog">Blog</a>
+      <a href="/fr/contact/" data-fr="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn" id="btnEn" onclick="location.href='https://schicgirl.me/en/type-4-hair-recipes/'">🇬🇧 EN</button>
       <button class="lang-btn is-active" id="btnFr" onclick="location.href='https://schicgirl.me/fr/recettes-cheveux-crepus/'">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <span class="fp-etiquette" data-fr="De retour">De retour</span>
+    <img id="fpCouv" src="/assets/recettes-fr.webp" alt="Mes Recettes Type 4">
+  </div>
+  <div>
+    <p class="fp-sous" data-fr="17 soins maison, quantités exactes">17 soins maison, quantités exactes</p>
+    <h1 class="fp-titre" data-fr="Mes Recettes Type 4">Mes Recettes Type 4</h1>
+    <p class="fp-resume" data-fr="17 soins maison : masques, spritz, pré-poo — quantités exactes et adaptations porosité.">17 soins maison : masques, spritz, pré-poo — quantités exactes et adaptations porosité.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement" data-fr="Paiement unique · accès à vie · pas d'abonnement">Paiement unique · accès à vie · pas d'abonnement</p>
+
+    <div class="fp-meta">
+      <span data-fr="PDF">PDF</span>
+      <span data-fr="Français et anglais">Français et anglais</span>
+      <span data-fr="Téléphone et ordinateur">Téléphone et ordinateur</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-fr="17 recettes testées">17 recettes testées</li>
+      <li data-fr="Les grammes exacts">Les grammes exacts</li>
+      <li data-fr="Conservation et sécurité">Conservation et sécurité</li>
+      <li data-fr="Adaptations par porosité">Adaptations par porosité</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure" data-fr="Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment.">Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-fr="Tout ce qu'il y a dedans">Tout ce qu'il y a dedans</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="/assets/recettes-fr.webp?v=20260729a" alt="Schicgirl ebook" onerror="this.outerHTML='&lt;div class=&quot;cover-fb&quot;&gt;📖&lt;/div&gt;'">
-    <span class="badge" data-fr="Nouveau · 17 recettes">Nouveau · 17 recettes</span>
-    <h1 data-fr="Des soins qui marchent, &lt;span class='accent'&gt;déjà dans ta cuisine&lt;/span&gt;">Des soins qui marchent, <span class="accent">déjà dans ta cuisine</span></h1>
+    <h2 class="accroche" data-fr="Des soins qui marchent, &lt;span class='accent'&gt;déjà dans ta cuisine&lt;/span&gt;">Des soins qui marchent, <span class="accent">déjà dans ta cuisine</span></h2>
     <p class="lead" data-fr="17 recettes maison pour cheveux Type 4 — karité, miel, aloe, avocat. Avec les quantités exactes, les adaptations porosité, et zéro promesse miracle.">17 recettes maison pour cheveux Type 4 — karité, miel, aloe, avocat. Avec les quantités exactes, les adaptations porosité, et zéro promesse miracle.</p>
   </div>
 
@@ -242,14 +292,6 @@
     <dl class="faq"><dt data-fr="Je reçois quoi ?">Je reçois quoi ?</dt><dd data-fr="Un PDF de 26 pages, téléchargeable immédiatement, à garder à vie — une recette complète par page.">Un PDF de 26 pages, téléchargeable immédiatement, à garder à vie — une recette complète par page.</dd><dt data-fr="Les ingrédients sont faciles à trouver ?">Les ingrédients sont faciles à trouver ?</dt><dd data-fr="Oui : karité, huiles, miel, avocat, aloe, rhassoul… tout se trouve au marché, en grande surface ou en boutique bio, à petit prix.">Oui : karité, huiles, miel, avocat, aloe, rhassoul… tout se trouve au marché, en grande surface ou en boutique bio, à petit prix.</dd><dt data-fr="C'est pour quel type de cheveux ?">C'est pour quel type de cheveux ?</dt><dd data-fr="Cheveux crépus Type 4 — 4A, 4B, 4C. Chaque recette a une adaptation porosité faible ET porosité élevée.">Cheveux crépus Type 4 — 4A, 4B, 4C. Chaque recette a une adaptation porosité faible ET porosité élevée.</dd><dt data-fr="Comment je paie ?">Comment je paie ?</dt><dd data-fr="Paiement sécurisé sur Selar (carte, mobile money selon ton pays).">Paiement sécurisé sur Selar (carte, mobile money selon ton pays).</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="/fr/a-propos/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="À propos">À propos</a>
-    <a href="/fr/blog/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Blog">Blog</a>
-    <a href="/fr/contact/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Contact">Contact</a>
-    <a href="/fr/confidentialite/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Confidentialité">Confidentialité</a>
-    <a href="/fr/conditions/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-fr="Conditions">Conditions</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -264,6 +306,23 @@
   </div>
   <a id="barCta" href="https://selar.com/recettes-type-4" target="_blank" rel="noopener noreferrer">Obtenir →</a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-fr="Accueil">Accueil</a>
+      <a href="/shop.html" data-fr="Tous les guides">Tous les guides</a>
+      <a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a>
+      <a href="/fr/blog/" data-fr="Blog">Blog</a>
+      <a href="/fr/a-propos/" data-fr="À propos">À propos</a>
+      <a href="/fr/contact/" data-fr="Contact">Contact</a>
+      <a href="/fr/confidentialite/" data-fr="Confidentialité">Confidentialité</a>
+      <a href="/fr/conditions/" data-fr="Conditions">Conditions</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire.">Aime ta couronne. Écris ton histoire.</span></p>
+  </div>
+</footer>
 
 <script src="/assets/js/recettes.page.js?v=20260729a"></script>
 </body>

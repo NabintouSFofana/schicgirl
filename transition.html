@@ -19,6 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/transition.css" />
 <link rel="stylesheet" href="assets/css/conversion-blocks.css"/>
+<link rel="stylesheet" href="assets/css/guide-fiche.css"/>
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/transition-capillaire/">
 <link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/transition-capillaire/">
@@ -27,19 +28,73 @@
 <!-- seo:hreflang -->
 </head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour" data-en="← Back">← Retour</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Guides" data-en="Guides">Guides</a>
+      <a href="/activites.html" data-fr="Activités" data-en="Activities">Activités</a>
+      <a href="/bd/" data-fr="BD" data-en="Comic">BD</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
       <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <img id="fpCouv" src="assets/transition-fr.webp" alt="Cheveux en Transition">
+  </div>
+  <div>
+    <p class="fp-sous" data-fr="Du défrisé au naturel, sans tout couper" data-en="From relaxed to natural, without cutting it all">Du défrisé au naturel, sans tout couper</p>
+    <h1 class="fp-titre" data-fr="Cheveux en Transition" data-en="Transitioning Hair">Cheveux en Transition</h1>
+    <p class="fp-resume" data-fr="Passe du défrisé au naturel en douceur, étape par étape." data-en="Go from relaxed to natural smoothly, step by step.">Passe du défrisé au naturel en douceur, étape par étape.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement"
+       data-fr="Paiement unique · accès à vie · pas d'abonnement"
+       data-en="One-time payment · lifetime access · no subscription">
+      Paiement unique · accès à vie · pas d'abonnement</p>
+
+    <div class="fp-meta">
+      <span data-fr="PDF + 2 bonus" data-en="PDF + 2 bonuses">PDF + 2 bonus</span>
+      <span data-fr="Français et anglais" data-en="French and English">Français et anglais</span>
+      <span data-fr="Téléphone et ordinateur" data-en="Phone and computer">Téléphone et ordinateur</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-fr="Le plan mois par mois" data-en="The month-by-month plan">Le plan mois par mois</li>
+      <li data-fr="Gérer la démarcation" data-en="Managing demarcation">Gérer la démarcation</li>
+      <li data-fr="Les coiffures qui tiennent" data-en="Styles that hold">Les coiffures qui tiennent</li>
+      <li data-fr="🎁 Calendrier + Do's &amp; Don'ts" data-en="🎁 Calendar + Do's &amp; Don'ts">🎁 Calendrier + Do's &amp; Don'ts</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure"
+       data-fr="Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment."
+       data-en="Instant download after payment. A question before buying? Write to me — I really do answer.">
+      Téléchargement immédiat après paiement.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-fr="Tout ce qu'il y a dedans" data-en="Everything that's inside">Tout ce qu'il y a dedans</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="assets/transition-fr.webp" alt="Schicgirl ebook" onerror="this.outerHTML='<div class=&quot;cover-fb&quot;>📖</div>'"/>
-    <span class="badge" data-fr="Plan 90 jours inclus" data-en="90-day plan included">Plan 90 jours inclus</span>
-    <h1 data-fr="Tu as déjà fait le <span class='accent'>choix courageux</span>" data-en="You already made the <span class='accent'>brave choice</span>">Tu as déjà fait le <span class='accent'>choix courageux</span></h1>
+    <h2 class="accroche" data-fr="Tu as déjà fait le <span class='accent'>choix courageux</span>" data-en="You already made the <span class='accent'>brave choice</span>">Tu as déjà fait le <span class='accent'>choix courageux</span></h2>
     <p class="lead" data-fr="Passer au naturel, c'est décidé. La suite : gérer deux textures sans perdre ta longueur ni ta patience." data-en="Going natural is decided. What's next: manage two textures without losing your length or patience.">Passer au naturel, c'est décidé. La suite : gérer deux textures sans perdre ta longueur ni ta patience.</p>
   </div>
 
@@ -157,14 +212,6 @@
     <dl class="faq"><dt data-fr="Je reçois quoi ?" data-en="What do I get?">Je reçois quoi ?</dt><dd data-fr="Un PDF avec plan 90 jours et check-list, téléchargeable immédiatement." data-en="A PDF with a 90-day plan and check-list, downloadable instantly.">Un PDF avec plan 90 jours et check-list, téléchargeable immédiatement.</dd><dt data-fr="Faut-il faire le big chop ?" data-en="Do I have to big chop?">Faut-il faire le big chop ?</dt><dd data-fr="Non. Le guide t'aide à transitionner en douceur et à décider quand tu veux." data-en="No. The guide helps you transition gently and decide when you want.">Non. Le guide t'aide à transitionner en douceur et à décider quand tu veux.</dd><dt data-fr="Combien de temps dure une transition ?" data-en="How long does a transition take?">Combien de temps dure une transition ?</dt><dd data-fr="Cela varie ; le plan 90 jours te donne un cadre clair pour démarrer." data-en="It varies; the 90-day plan gives a clear frame to start.">Cela varie ; le plan 90 jours te donne un cadre clair pour démarrer.</dd><dt data-fr="Comment je paie ?" data-en="How do I pay?">Comment je paie ?</dt><dd data-fr="Paiement sécurisé sur Selar (carte, mobile money selon ton pays)." data-en="Secure checkout on Selar (card, mobile money by country).">Paiement sécurisé sur Selar (carte, mobile money selon ton pays).</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="about.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="À propos" data-en="About">À propos</a>
-    <a href="blog.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Blog" data-en="Blog">Blog</a>
-    <a href="contact.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Contact" data-en="Contact">Contact</a>
-    <a href="privacy-policy.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
-    <a href="terms.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-fr="Conditions" data-en="Terms">Conditions</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -179,6 +226,24 @@
   </div>
   <a id="barCta" href="#" target="_blank" rel="noopener noreferrer"></a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Tous les guides" data-en="All the guides">Tous les guides</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="/privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
+      <a href="/terms.html" data-fr="Conditions" data-en="Terms">Conditions</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire."
+            data-en="Love Your Crown. Own Your Story.">Aime ta couronne. Écris ton histoire.</span></p>
+  </div>
+</footer>
 
 <script src="assets/js/transition.page.js"></script>
 </body>

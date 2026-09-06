@@ -19,6 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/le-studio-premium.css" />
 <link rel="stylesheet" href="assets/css/conversion-blocks.css"/>
+<link rel="stylesheet" href="assets/css/guide-fiche.css"/>
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/le-studio-premium/">
 <link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/le-studio-premium/">
@@ -27,19 +28,75 @@
 <!-- seo:hreflang -->
 </head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour" data-en="← Back">← Retour</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Guides" data-en="Guides">Guides</a>
+      <a href="/activites.html" data-fr="Activités" data-en="Activities">Activités</a>
+      <a href="/bd/" data-fr="BD" data-en="Comic">BD</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
       <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <span class="fp-etiquette" data-fr="Le plus complet" data-en="Most complete">Le plus complet</span>
+    <img id="fpCouv" src="assets/studio-premium-fr.webp" alt="Le Studio Premium">
+  </div>
+  <div>
+    <p class="fp-sous" data-fr="Les 6 guides en 113 leçons" data-en="The 6 guides as 113 lessons">Les 6 guides en 113 leçons</p>
+    <h1 class="fp-titre" data-fr="Le Studio Premium" data-en="The Premium Studio">Le Studio Premium</h1>
+    <p class="fp-resume" data-fr="Les 6 guides transformés en 113 leçons interactives, plus un bonus. L'ensemble, au même endroit." data-en="The 6 guides turned into 113 interactive lessons, plus a bonus. Everything in one place.">Les 6 guides transformés en 113 leçons interactives, plus un bonus. L'ensemble, au même endroit.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement"
+       data-fr="Abonnement mensuel · résiliable quand tu veux"
+       data-en="Monthly subscription · cancel whenever you like">
+      Abonnement mensuel · résiliable quand tu veux</p>
+
+    <div class="fp-meta">
+      <span data-fr="Accès en ligne · à vie" data-en="Online access · lifetime">Accès en ligne · à vie</span>
+      <span data-fr="113 leçons" data-en="113 lessons">113 leçons</span>
+      <span data-fr="Français et anglais" data-en="French and English">Français et anglais</span>
+      <span data-fr="Tant que tu es abonnée" data-en="For as long as you subscribe">Tant que tu es abonnée</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-fr="113 leçons interactives" data-en="113 interactive lessons">113 leçons interactives</li>
+      <li data-fr="Les 6 guides complets" data-en="The 6 complete guides">Les 6 guides complets</li>
+      <li data-fr="Un bonus exclusif" data-en="An exclusive bonus">Un bonus exclusif</li>
+      <li data-fr="Accès à vie" data-en="Lifetime access">Accès à vie</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure"
+       data-fr="Accès en ligne, ouvert dès l'inscription. Une question avant de t'abonner ? Écris-moi, je réponds vraiment."
+       data-en="Online access, open as soon as you join. A question before subscribing? Write to me — I really do answer.">
+      Accès en ligne, ouvert dès l'inscription.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-fr="Tout ce qu'il y a dedans" data-en="Everything that's inside">Tout ce qu'il y a dedans</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="assets/studio-premium-fr.webp" alt="Schicgirl Le Studio Premium" onerror="this.outerHTML='<div class=&quot;cover-fb&quot;>✨</div>'"/>
-    <span class="badge" data-fr="Nouveau · Le programme complet" data-en="New · The complete program">Nouveau · Le programme complet</span>
-    <h1 data-fr="Ton école cheveux Type 4, <span class='accent'>tout-en-un</span>" data-en="Your Type 4 hair school, <span class='accent'>all-in-one</span>">Ton école cheveux Type 4, <span class='accent'>tout-en-un</span></h1>
+    <h2 class="accroche" data-fr="Ton école cheveux Type 4, <span class='accent'>tout-en-un</span>" data-en="Your Type 4 hair school, <span class='accent'>all-in-one</span>">Ton école cheveux Type 4, <span class='accent'>tout-en-un</span></h2>
     <p class="lead" data-fr="L'app interactive Le Studio + mes 6 guides transformés en cours, leçon par leçon : 113 leçons en français et en anglais, ta progression sauvegardée, ton coach dans ta poche." data-en="The interactive Studio app + my 6 guides turned into courses, lesson by lesson: 113 lessons in French and English, progress saved, your coach in your pocket.">L'app interactive Le Studio + mes 6 guides transformés en cours, leçon par leçon : 113 leçons en français et en anglais, ta progression sauvegardée, ton coach dans ta poche.</p>
   </div>
 
@@ -138,14 +195,6 @@
     <dl class="faq"><dt data-fr="C'est une app à installer ?" data-en="Is it an app to install?">C'est une app à installer ?</dt><dd data-fr="Non, rien à installer : ça s'ouvre dans ton navigateur, sur téléphone comme sur ordinateur. Ajoute-la à ton écran d'accueil et c'est comme une app." data-en="No, nothing to install: it opens in your browser, on phone or computer. Add it to your home screen and it works like an app.">Non, rien à installer : ça s'ouvre dans ton navigateur, sur téléphone comme sur ordinateur. Ajoute-la à ton écran d'accueil et c'est comme une app.</dd><dt data-fr="J'ai déjà un des guides, je paie deux fois ?" data-en="I already own one of the guides — am I paying twice?">J'ai déjà un des guides, je paie deux fois ?</dt><dd data-fr="Les 6 guides (72€ de valeur) sont inclus dans Le Cercle : même en possédant déjà un guide, tu restes largement gagnante — et tu gagnes l'app, la progression validée, la sauvegarde et le forum privé." data-en="All 6 guides ($77 value) are included in The Circle: even if you already own one, you still come out way ahead — plus you get the app, validated progress, cloud backup and the private forum.">Les 6 guides (72€ de valeur) sont inclus dans Le Cercle : même en possédant déjà un guide, tu restes largement gagnante — et tu gagnes l'app, la progression validée, la sauvegarde et le forum privé.</dd><dt data-fr="Il y a un abonnement ?" data-en="Is there a subscription?">Il y a un abonnement ?</dt><dd data-fr="Oui — Le Studio fait partie de Le Cercle, l'abonnement mensuel Schicgirl (12€/mois). Tu résilies quand tu veux, sans engagement." data-en="Yes — The Studio is part of The Circle, Schicgirl's monthly membership ($13/mo). Cancel anytime, no commitment.">Oui — Le Studio fait partie de Le Cercle, l'abonnement mensuel Schicgirl (12€/mois). Tu résilies quand tu veux, sans engagement.</dd><dt data-fr="Et si je change de téléphone ?" data-en="What if I switch phones?">Et si je change de téléphone ?</dt><dd data-fr="Ta progression est sauvegardée en ligne : reconnecte-toi avec ton email + ton mot de passe et tu reprends exactement où tu en étais." data-en="Your progress is saved online: sign back in with your email + password and pick up exactly where you left off.">Ta progression est sauvegardée en ligne : reconnecte-toi avec ton email + ton mot de passe et tu reprends exactement où tu en étais.</dd><dt data-fr="Comment je paie ?" data-en="How do I pay?">Comment je paie ?</dt><dd data-fr="Paiement sécurisé sur Selar (carte, mobile money selon ton pays), renouvelé chaque mois." data-en="Secure checkout on Selar (card, mobile money by country), renewed monthly.">Paiement sécurisé sur Selar (carte, mobile money selon ton pays), renouvelé chaque mois.</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="about.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="À propos" data-en="About">À propos</a>
-    <a href="blog.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Blog" data-en="Blog">Blog</a>
-    <a href="contact.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Contact" data-en="Contact">Contact</a>
-    <a href="privacy-policy.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
-    <a href="terms.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-fr="Conditions" data-en="Terms">Conditions</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -160,6 +209,24 @@
   </div>
   <a id="barCta" href="#" target="_blank" rel="noopener noreferrer"></a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Tous les guides" data-en="All the guides">Tous les guides</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="/privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
+      <a href="/terms.html" data-fr="Conditions" data-en="Terms">Conditions</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire."
+            data-en="Love Your Crown. Own Your Story.">Aime ta couronne. Écris ton histoire.</span></p>
+  </div>
+</footer>
 
 <script src="assets/js/le-studio-premium.page.js"></script>
 </body>

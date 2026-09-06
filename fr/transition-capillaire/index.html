@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/transition.css?v=20260729a">
 <link rel="stylesheet" href="/assets/css/conversion-blocks.css?v=20260729a">
+<link rel="stylesheet" href="/assets/css/guide-fiche.css?v=20260729a">
 <!-- seo:hreflang -->
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/transition-capillaire/"><link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/transition-capillaire/"><link rel="alternate" hreflang="en" href="https://schicgirl.me/en/hair-transition/"><link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/transition-capillaire/"><script type="application/ld+json">{
@@ -118,19 +119,67 @@
   }
 }</script></head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour">← Retour</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-fr="Accueil">Accueil</a>
+      <a href="/shop.html" data-fr="Guides">Guides</a>
+      <a href="/activites.html" data-fr="Activités">Activités</a>
+      <a href="/bd/" data-fr="BD">BD</a>
+      <a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a>
+      <a href="/fr/blog/" data-fr="Blog">Blog</a>
+      <a href="/fr/contact/" data-fr="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn" id="btnEn" onclick="location.href='https://schicgirl.me/en/hair-transition/'">🇬🇧 EN</button>
       <button class="lang-btn is-active" id="btnFr" onclick="location.href='https://schicgirl.me/fr/transition-capillaire/'">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <img id="fpCouv" src="/assets/transition-fr.webp" alt="Cheveux en Transition">
+  </div>
+  <div>
+    <p class="fp-sous" data-fr="Du défrisé au naturel, sans tout couper">Du défrisé au naturel, sans tout couper</p>
+    <h1 class="fp-titre" data-fr="Cheveux en Transition">Cheveux en Transition</h1>
+    <p class="fp-resume" data-fr="Passe du défrisé au naturel en douceur, étape par étape.">Passe du défrisé au naturel en douceur, étape par étape.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement" data-fr="Paiement unique · accès à vie · pas d'abonnement">Paiement unique · accès à vie · pas d'abonnement</p>
+
+    <div class="fp-meta">
+      <span data-fr="PDF + 2 bonus">PDF + 2 bonus</span>
+      <span data-fr="Français et anglais">Français et anglais</span>
+      <span data-fr="Téléphone et ordinateur">Téléphone et ordinateur</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-fr="Le plan mois par mois">Le plan mois par mois</li>
+      <li data-fr="Gérer la démarcation">Gérer la démarcation</li>
+      <li data-fr="Les coiffures qui tiennent">Les coiffures qui tiennent</li>
+      <li data-fr="🎁 Calendrier + Do's &amp; Don'ts">🎁 Calendrier + Do's &amp; Don'ts</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure" data-fr="Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment.">Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-fr="Tout ce qu'il y a dedans">Tout ce qu'il y a dedans</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="/assets/transition-fr.webp?v=20260729a" alt="Schicgirl ebook" onerror="this.outerHTML='&lt;div class=&quot;cover-fb&quot;&gt;📖&lt;/div&gt;'">
-    <span class="badge" data-fr="Plan 90 jours inclus">Plan 90 jours inclus</span>
-    <h1 data-fr="Tu as déjà fait le &lt;span class='accent'&gt;choix courageux&lt;/span&gt;">Tu as déjà fait le <span class="accent">choix courageux</span></h1>
+    <h2 class="accroche" data-fr="Tu as déjà fait le &lt;span class='accent'&gt;choix courageux&lt;/span&gt;">Tu as déjà fait le <span class="accent">choix courageux</span></h2>
     <p class="lead" data-fr="Passer au naturel, c'est décidé. La suite : gérer deux textures sans perdre ta longueur ni ta patience.">Passer au naturel, c'est décidé. La suite : gérer deux textures sans perdre ta longueur ni ta patience.</p>
   </div>
 
@@ -244,14 +293,6 @@
     <dl class="faq"><dt data-fr="Je reçois quoi ?">Je reçois quoi ?</dt><dd data-fr="Un PDF avec plan 90 jours et check-list, téléchargeable immédiatement.">Un PDF avec plan 90 jours et check-list, téléchargeable immédiatement.</dd><dt data-fr="Faut-il faire le big chop ?">Faut-il faire le big chop ?</dt><dd data-fr="Non. Le guide t'aide à transitionner en douceur et à décider quand tu veux.">Non. Le guide t'aide à transitionner en douceur et à décider quand tu veux.</dd><dt data-fr="Combien de temps dure une transition ?">Combien de temps dure une transition ?</dt><dd data-fr="Cela varie ; le plan 90 jours te donne un cadre clair pour démarrer.">Cela varie ; le plan 90 jours te donne un cadre clair pour démarrer.</dd><dt data-fr="Comment je paie ?">Comment je paie ?</dt><dd data-fr="Paiement sécurisé sur Selar (carte, mobile money selon ton pays).">Paiement sécurisé sur Selar (carte, mobile money selon ton pays).</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="/fr/a-propos/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="À propos">À propos</a>
-    <a href="/fr/blog/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Blog">Blog</a>
-    <a href="/fr/contact/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Contact">Contact</a>
-    <a href="/fr/confidentialite/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Confidentialité">Confidentialité</a>
-    <a href="/fr/conditions/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-fr="Conditions">Conditions</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -266,6 +307,23 @@
   </div>
   <a id="barCta" href="https://selar.com/transition-fr" target="_blank" rel="noopener noreferrer">Obtenir →</a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-fr="Accueil">Accueil</a>
+      <a href="/shop.html" data-fr="Tous les guides">Tous les guides</a>
+      <a href="/fr/le-cercle/" data-fr="Le Cercle">Le Cercle</a>
+      <a href="/fr/blog/" data-fr="Blog">Blog</a>
+      <a href="/fr/a-propos/" data-fr="À propos">À propos</a>
+      <a href="/fr/contact/" data-fr="Contact">Contact</a>
+      <a href="/fr/confidentialite/" data-fr="Confidentialité">Confidentialité</a>
+      <a href="/fr/conditions/" data-fr="Conditions">Conditions</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire.">Aime ta couronne. Écris ton histoire.</span></p>
+  </div>
+</footer>
 
 <script src="/assets/js/transition.page.js?v=20260729a"></script>
 </body>

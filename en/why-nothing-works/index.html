@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/why-nothing-works.css?v=20260729a">
 <link rel="stylesheet" href="/assets/css/conversion-blocks.css?v=20260729a">
+<link rel="stylesheet" href="/assets/css/guide-fiche.css?v=20260729a">
 <!-- seo:hreflang -->
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/en/why-nothing-works/"><link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/pourquoi-rien-ne-fonctionne/"><link rel="alternate" hreflang="en" href="https://schicgirl.me/en/why-nothing-works/"><link rel="alternate" hreflang="x-default" href="https://schicgirl.me/fr/pourquoi-rien-ne-fonctionne/"><script type="application/ld+json">{
@@ -118,19 +119,68 @@
   }
 }</script></head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-en="← Back">← Back</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-en="Home">Home</a>
+      <a href="/shop.html" data-en="Guides">Guides</a>
+      <a href="/activites.html" data-en="Activities">Activities</a>
+      <a href="/bd/" data-en="Comic">Comic</a>
+      <a href="/en/the-circle/" data-en="The Circle">The Circle</a>
+      <a href="/en/blog/" data-en="Blog">Blog</a>
+      <a href="/en/contact/" data-en="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn is-active" id="btnEn" onclick="location.href='https://schicgirl.me/en/why-nothing-works/'">🇬🇧 EN</button>
       <button class="lang-btn" id="btnFr" onclick="location.href='https://schicgirl.me/fr/pourquoi-rien-ne-fonctionne/'">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <span class="fp-etiquette" data-en="The diagnosis">The diagnosis</span>
+    <img id="fpCouv" src="/assets/why-nothing-works-fr.webp" alt="Pourquoi Rien Ne Fonctionne">
+  </div>
+  <div>
+    <p class="fp-sous" data-en="Before you buy one more product">Before you buy one more product</p>
+    <h1 class="fp-titre" data-en="Why Nothing Works">Why Nothing Works</h1>
+    <p class="fp-resume" data-en="Diagnosis first: finally understand why your products keep failing.">Diagnosis first: finally understand why your products keep failing.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement" data-en="One-time payment · lifetime access · no subscription">One-time payment · lifetime access · no subscription</p>
+
+    <div class="fp-meta">
+      <span data-en="PDF + 2 bonuses">PDF + 2 bonuses</span>
+      <span data-en="French and English">French and English</span>
+      <span data-en="Phone and computer">Phone and computer</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-en="The 8 causes of failure">The 8 causes of failure</li>
+      <li data-en="The test to run tonight">The test to run tonight</li>
+      <li data-en="🎁 Do's &amp; Don'ts">🎁 Do's &amp; Don'ts</li>
+      <li data-en="🎁 Wash Day Sheet">🎁 Wash Day Sheet</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure" data-en="Instant download after payment. A question before buying? Write to me — I really do answer.">Instant download after payment. A question before buying? Write to me — I really do answer.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-en="Everything that's inside">Everything that's inside</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="/assets/why-nothing-works-en.webp?v=20260729a" alt="Schicgirl ebook" onerror="this.outerHTML='&lt;div class=&quot;cover-fb&quot;&gt;📖&lt;/div&gt;'">
-    <span class="badge" data-en="New · The System">New · The System</span>
-    <h1 data-en="Why nothing works on your hair — &lt;span class='accent'&gt;and how to finally fix it&lt;/span&gt;">Why nothing works on your hair — <span class="accent">and how to finally fix it</span></h1>
+    <h2 class="accroche" data-en="Why nothing works on your hair — &lt;span class='accent'&gt;and how to finally fix it&lt;/span&gt;">Why nothing works on your hair — <span class="accent">and how to finally fix it</span></h2>
     <p class="lead" data-en="The diagnosis-first system for Type 4 coily hair. Stop buying at random: diagnose YOUR hair, then build the routine that works.">The diagnosis-first system for Type 4 coily hair. Stop buying at random: diagnose YOUR hair, then build the routine that works.</p>
   </div>
 
@@ -246,14 +296,6 @@
     <dl class="faq"><dt data-en="What do I get?">What do I get?</dt><dd data-en="A PDF, downloadable instantly, yours for life — with the quiz, the 7-day plan and the Routine Builder.">A PDF, downloadable instantly, yours for life — with the quiz, the 7-day plan and the Routine Builder.</dd><dt data-en="How is it different from other guides?">How is it different from other guides?</dt><dd data-en="It starts with diagnosis: you understand YOUR hair first, then you build. No one-size-fits-all routine that works for no one.">It starts with diagnosis: you understand YOUR hair first, then you build. No one-size-fits-all routine that works for no one.</dd><dt data-en="Which hair type is it for?">Which hair type is it for?</dt><dd data-en="Type 4 coily hair — 4A, 4B, 4C, all porosities.">Type 4 coily hair — 4A, 4B, 4C, all porosities.</dd><dt data-en="How do I pay?">How do I pay?</dt><dd data-en="Secure checkout on Selar (card, mobile money by country).">Secure checkout on Selar (card, mobile money by country).</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="/en/about/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="About">About</a>
-    <a href="/en/blog/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="Blog">Blog</a>
-    <a href="/en/contact/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="Contact">Contact</a>
-    <a href="/en/privacy-policy/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-en="Privacy">Privacy</a>
-    <a href="/en/terms/" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-en="Terms">Terms</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -268,6 +310,23 @@
   </div>
   <a id="barCta" href="https://selar.com/Why_Nothing_Works" target="_blank" rel="noopener noreferrer">Get it →</a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-en="Home">Home</a>
+      <a href="/shop.html" data-en="All the guides">All the guides</a>
+      <a href="/en/the-circle/" data-en="The Circle">The Circle</a>
+      <a href="/en/blog/" data-en="Blog">Blog</a>
+      <a href="/en/about/" data-en="About">About</a>
+      <a href="/en/contact/" data-en="Contact">Contact</a>
+      <a href="/en/privacy-policy/" data-en="Privacy">Privacy</a>
+      <a href="/en/terms/" data-en="Terms">Terms</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-en="Love Your Crown. Own Your Story.">Love Your Crown. Own Your Story.</span></p>
+  </div>
+</footer>
 
 <script src="/assets/js/why-nothing-works.page.js?v=20260729a"></script>
 </body>

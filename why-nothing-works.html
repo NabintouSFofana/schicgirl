@@ -19,6 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/why-nothing-works.css" />
 <link rel="stylesheet" href="assets/css/conversion-blocks.css"/>
+<link rel="stylesheet" href="assets/css/guide-fiche.css"/>
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/pourquoi-rien-ne-fonctionne/">
 <link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/pourquoi-rien-ne-fonctionne/">
@@ -27,19 +28,74 @@
 <!-- seo:hreflang -->
 </head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour" data-en="← Back">← Retour</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Guides" data-en="Guides">Guides</a>
+      <a href="/activites.html" data-fr="Activités" data-en="Activities">Activités</a>
+      <a href="/bd/" data-fr="BD" data-en="Comic">BD</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
       <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <span class="fp-etiquette" data-fr="Le diagnostic" data-en="The diagnosis">Le diagnostic</span>
+    <img id="fpCouv" src="assets/why-nothing-works-fr.webp" alt="Pourquoi Rien Ne Fonctionne">
+  </div>
+  <div>
+    <p class="fp-sous" data-fr="Avant d'acheter un produit de plus" data-en="Before you buy one more product">Avant d'acheter un produit de plus</p>
+    <h1 class="fp-titre" data-fr="Pourquoi Rien Ne Fonctionne" data-en="Why Nothing Works">Pourquoi Rien Ne Fonctionne</h1>
+    <p class="fp-resume" data-fr="Le diagnostic d'abord : comprends enfin pourquoi tes produits échouent." data-en="Diagnosis first: finally understand why your products keep failing.">Le diagnostic d'abord : comprends enfin pourquoi tes produits échouent.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement"
+       data-fr="Paiement unique · accès à vie · pas d'abonnement"
+       data-en="One-time payment · lifetime access · no subscription">
+      Paiement unique · accès à vie · pas d'abonnement</p>
+
+    <div class="fp-meta">
+      <span data-fr="PDF + 2 bonus" data-en="PDF + 2 bonuses">PDF + 2 bonus</span>
+      <span data-fr="Français et anglais" data-en="French and English">Français et anglais</span>
+      <span data-fr="Téléphone et ordinateur" data-en="Phone and computer">Téléphone et ordinateur</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-fr="Les 8 causes d'échec" data-en="The 8 causes of failure">Les 8 causes d'échec</li>
+      <li data-fr="Le test à faire ce soir" data-en="The test to run tonight">Le test à faire ce soir</li>
+      <li data-fr="🎁 À Faire &amp; À Éviter" data-en="🎁 Do's &amp; Don'ts">🎁 À Faire &amp; À Éviter</li>
+      <li data-fr="🎁 Fiche Jour de Lavage" data-en="🎁 Wash Day Sheet">🎁 Fiche Jour de Lavage</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure"
+       data-fr="Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment."
+       data-en="Instant download after payment. A question before buying? Write to me — I really do answer.">
+      Téléchargement immédiat après paiement.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-fr="Tout ce qu'il y a dedans" data-en="Everything that's inside">Tout ce qu'il y a dedans</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="assets/why-nothing-works-fr.webp" alt="Schicgirl ebook" onerror="this.outerHTML='<div class=&quot;cover-fb&quot;>📖</div>'"/>
-    <span class="badge" data-fr="Nouveau · Le Système" data-en="New · The System">Nouveau · Le Système</span>
-    <h1 data-fr="Pourquoi rien ne fonctionne sur tes cheveux — <span class='accent'>et comment enfin y remédier</span>" data-en="Why nothing works on your hair — <span class='accent'>and how to finally fix it</span>">Pourquoi rien ne fonctionne sur tes cheveux — <span class='accent'>et comment enfin y remédier</span></h1>
+    <h2 class="accroche" data-fr="Pourquoi rien ne fonctionne sur tes cheveux — <span class='accent'>et comment enfin y remédier</span>" data-en="Why nothing works on your hair — <span class='accent'>and how to finally fix it</span>">Pourquoi rien ne fonctionne sur tes cheveux — <span class='accent'>et comment enfin y remédier</span></h2>
     <p class="lead" data-fr="Le système « diagnostic d'abord » pour cheveux crépus Type 4. Arrête d'acheter au hasard : diagnostique TES cheveux, puis construis la routine qui marche." data-en="The diagnosis-first system for Type 4 coily hair. Stop buying at random: diagnose YOUR hair, then build the routine that works.">Le système « diagnostic d'abord » pour cheveux crépus Type 4. Arrête d'acheter au hasard : diagnostique TES cheveux, puis construis la routine qui marche.</p>
   </div>
 
@@ -157,14 +213,6 @@
     <dl class="faq"><dt data-fr="Je reçois quoi ?" data-en="What do I get?">Je reçois quoi ?</dt><dd data-fr="Un PDF téléchargeable immédiatement, à garder à vie — avec le quiz, le plan 7 jours et le Routine Builder." data-en="A PDF, downloadable instantly, yours for life — with the quiz, the 7-day plan and the Routine Builder.">Un PDF téléchargeable immédiatement, à garder à vie — avec le quiz, le plan 7 jours et le Routine Builder.</dd><dt data-fr="En quoi c'est différent des autres guides ?" data-en="How is it different from other guides?">En quoi c'est différent des autres guides ?</dt><dd data-fr="Il part du diagnostic : tu comprends d'abord TES cheveux, ensuite tu construis. Pas de routine « universelle » qui ne marche pour personne." data-en="It starts with diagnosis: you understand YOUR hair first, then you build. No one-size-fits-all routine that works for no one.">Il part du diagnostic : tu comprends d'abord TES cheveux, ensuite tu construis. Pas de routine « universelle » qui ne marche pour personne.</dd><dt data-fr="C'est pour quel type de cheveux ?" data-en="Which hair type is it for?">C'est pour quel type de cheveux ?</dt><dd data-fr="Cheveux crépus Type 4 — 4A, 4B, 4C, toutes porosités." data-en="Type 4 coily hair — 4A, 4B, 4C, all porosities.">Cheveux crépus Type 4 — 4A, 4B, 4C, toutes porosités.</dd><dt data-fr="Comment je paie ?" data-en="How do I pay?">Comment je paie ?</dt><dd data-fr="Paiement sécurisé sur Selar (carte, mobile money selon ton pays)." data-en="Secure checkout on Selar (card, mobile money by country).">Paiement sécurisé sur Selar (carte, mobile money selon ton pays).</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="about.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="À propos" data-en="About">À propos</a>
-    <a href="blog.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Blog" data-en="Blog">Blog</a>
-    <a href="contact.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Contact" data-en="Contact">Contact</a>
-    <a href="privacy-policy.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
-    <a href="terms.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-fr="Conditions" data-en="Terms">Conditions</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -179,6 +227,24 @@
   </div>
   <a id="barCta" href="#" target="_blank" rel="noopener noreferrer"></a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Tous les guides" data-en="All the guides">Tous les guides</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="/privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
+      <a href="/terms.html" data-fr="Conditions" data-en="Terms">Conditions</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire."
+            data-en="Love Your Crown. Own Your Story.">Aime ta couronne. Écris ton histoire.</span></p>
+  </div>
+</footer>
 
 <script src="assets/js/why-nothing-works.page.js"></script>
 </body>

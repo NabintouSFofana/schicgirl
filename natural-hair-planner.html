@@ -19,6 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/natural-hair-planner.css" />
 <link rel="stylesheet" href="assets/css/conversion-blocks.css"/>
+<link rel="stylesheet" href="assets/css/guide-fiche.css"/>
 <!-- seo:hreflang -->
 <link rel="canonical" href="https://schicgirl.me/fr/planificateur-cheveux-naturels/">
 <link rel="alternate" hreflang="fr" href="https://schicgirl.me/fr/planificateur-cheveux-naturels/">
@@ -27,19 +28,74 @@
 <!-- seo:hreflang -->
 </head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" href="https://schicgirl.me" data-fr="← Retour" data-en="← Back">← Retour</a>
+<nav class="gnav">
+  <div class="gnav-in">
+    <a class="gnav-marque" href="/index.html" aria-label="Schicgirl">
+      <img src="/assets/logo2.webp" alt="" onerror="this.style.display='none'">
+      <span class="gnav-nom">Schic<span>girl</span></span>
+    </a>
+    <div class="gnav-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Guides" data-en="Guides">Guides</a>
+      <a href="/activites.html" data-fr="Activités" data-en="Activities">Activités</a>
+      <a href="/bd/" data-fr="BD" data-en="Comic">BD</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇬🇧 EN</button>
       <button class="lang-btn is-active" id="btnFr" onclick="setLang('fr')">🇫🇷 FR</button>
     </div>
   </div>
+</nav>
+
+<section class="fp">
+  <div class="fp-couv">
+    <span class="fp-etiquette" data-fr="À imprimer" data-en="Printable">À imprimer</span>
+    <img id="fpCouv" src="assets/natural-hair-planner-fr.webp" alt="Planificateur Cheveux Naturels">
+  </div>
+  <div>
+    <p class="fp-sous" data-fr="7 fiches pour suivre tes progrès" data-en="7 sheets to track your progress">7 fiches pour suivre tes progrès</p>
+    <h1 class="fp-titre" data-fr="Planificateur Cheveux Naturels" data-en="Natural Hair Planner">Planificateur Cheveux Naturels</h1>
+    <p class="fp-resume" data-fr="7 fiches de suivi : objectifs, wash day, hydratation, produits, coiffures, longueur." data-en="7 tracker sheets: goals, wash day, moisture, products, styles, length.">7 fiches de suivi : objectifs, wash day, hydratation, produits, coiffures, longueur.</p>
+
+    <div class="fp-prix-ligne">
+      <span class="fp-prix" id="fpPrix"></span>
+      <span class="fp-cfa" id="fpCfa"></span>
+    </div>
+    <p class="fp-paiement"
+       data-fr="Paiement unique · accès à vie · pas d'abonnement"
+       data-en="One-time payment · lifetime access · no subscription">
+      Paiement unique · accès à vie · pas d'abonnement</p>
+
+    <div class="fp-meta">
+      <span data-fr="PDF à imprimer · A4" data-en="Printable PDF · A4">PDF à imprimer · A4</span>
+      <span data-fr="Français et anglais" data-en="French and English">Français et anglais</span>
+      <span data-fr="Téléphone et ordinateur" data-en="Phone and computer">Téléphone et ordinateur</span>
+    </div>
+
+    <ul class="fp-inclus">
+      <li data-fr="Objectifs 90 jours" data-en="90-day goals">Objectifs 90 jours</li>
+      <li data-fr="Journal de wash day" data-en="Wash day journal">Journal de wash day</li>
+      <li data-fr="Suivi hydratation" data-en="Moisture tracker">Suivi hydratation</li>
+      <li data-fr="Suivi de longueur" data-en="Length tracker">Suivi de longueur</li>
+    </ul>
+
+    <a class="fp-acheter" id="fpCta" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <p class="fp-rassure"
+       data-fr="Téléchargement immédiat après paiement. Une question avant d'acheter ? Écris-moi, je réponds vraiment."
+       data-en="Instant download after payment. A question before buying? Write to me — I really do answer.">
+      Téléchargement immédiat après paiement.</p>
+  </div>
+</section>
+
+<p class="fp-suite" data-fr="Tout ce qu'il y a dedans" data-en="Everything that's inside">Tout ce qu'il y a dedans</p>
+
+<div class="wrap">
 
   <div class="hero">
-    <img id="cover" class="cover" src="assets/natural-hair-planner-fr.webp" alt="Schicgirl ebook" onerror="this.outerHTML='<div class=&quot;cover-fb&quot;>📋</div>'"/>
-    <span class="badge" data-fr="7 fiches de suivi incluses" data-en="7 tracking sheets included">7 fiches de suivi incluses</span>
-    <h1 data-fr="Arrête de deviner ce que <span class='accent'>tes cheveux veulent</span>" data-en="Stop guessing what <span class='accent'>your hair wants</span>">Arrête de deviner ce que <span class='accent'>tes cheveux veulent</span></h1>
+    <h2 class="accroche" data-fr="Arrête de deviner ce que <span class='accent'>tes cheveux veulent</span>" data-en="Stop guessing what <span class='accent'>your hair wants</span>">Arrête de deviner ce que <span class='accent'>tes cheveux veulent</span></h2>
     <p class="lead" data-fr="Le carnet qui note tout ce que tes cheveux essaient de te dire — pour que tu arrêtes de deviner et que tu commences à progresser." data-en="The planner that tracks everything your hair is trying to tell you — so you stop guessing and start progressing.">Le carnet qui note tout ce que tes cheveux essaient de te dire — pour que tu arrêtes de deviner et que tu commences à progresser.</p>
   </div>
 
@@ -162,14 +218,6 @@
     <dl class="faq"><dt data-fr="Je reçois quoi ?" data-en="What do I get?">Je reçois quoi ?</dt><dd data-fr="Un PDF de 11 pages, téléchargeable immédiatement — à imprimer chez toi ou à remplir sur tablette." data-en="An 11-page PDF, downloadable instantly — print it at home or fill it in on a tablet.">Un PDF de 11 pages, téléchargeable immédiatement — à imprimer chez toi ou à remplir sur tablette.</dd><dt data-fr="Je peux le remplir sans imprimer ?" data-en="Can I fill it in without printing?">Je peux le remplir sans imprimer ?</dt><dd data-fr="Oui. Ouvre le PDF dans GoodNotes, Notability ou toute appli d'annotation, et écris directement dans les cases avec un stylet." data-en="Yes. Open the PDF in GoodNotes, Notability, or any annotation app, and write directly into the cells with a stylus.">Oui. Ouvre le PDF dans GoodNotes, Notability ou toute appli d'annotation, et écris directement dans les cases avec un stylet.</dd><dt data-fr="Je peux imprimer plusieurs fois une même fiche ?" data-en="Can I print the same sheet more than once?">Je peux imprimer plusieurs fois une même fiche ?</dt><dd data-fr="Bien sûr — c'est fait pour ça. Imprime chaque fiche autant de fois que tu en as besoin, mois après mois." data-en="Of course — that's exactly what it's for. Print each sheet as many times as you need, month after month.">Bien sûr — c'est fait pour ça. Imprime chaque fiche autant de fois que tu en as besoin, mois après mois.</dd><dt data-fr="Comment je paie ?" data-en="How do I pay?">Comment je paie ?</dt><dd data-fr="Paiement sécurisé sur Selar (carte, mobile money selon ton pays)." data-en="Secure checkout on Selar (card, mobile money by country).">Paiement sécurisé sur Selar (carte, mobile money selon ton pays).</dd></dl>
   </div>
 
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin-top:26px;font-size:12.5px;">
-    <a href="about.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="À propos" data-en="About">À propos</a>
-    <a href="blog.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Blog" data-en="Blog">Blog</a>
-    <a href="contact.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Contact" data-en="Contact">Contact</a>
-    <a href="privacy-policy.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;border-right:1px solid var(--stroke);" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
-    <a href="terms.html" style="color:var(--ink-soft);text-decoration:none;font-weight:600;padding:0 10px;" data-fr="Conditions" data-en="Terms">Conditions</a>
-  </nav>
-  <div class="footer">© 2024–2026 Schicgirl · Type 4 · 4A 4B 4C</div>
 </div>
 
 <div class="prev-lightbox" id="prevLightbox" onclick="closePrev()">
@@ -184,6 +232,24 @@
   </div>
   <a id="barCta" href="#" target="_blank" rel="noopener noreferrer"></a>
 </div>
+
+<footer class="gfoot">
+  <div class="gfoot-in">
+    <div class="gfoot-liens">
+      <a href="/index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="/shop.html" data-fr="Tous les guides" data-en="All the guides">Tous les guides</a>
+      <a href="/le-cercle.html" data-fr="Le Cercle" data-en="The Circle">Le Cercle</a>
+      <a href="/blog.html" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="/about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="/contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="/privacy-policy.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
+      <a href="/terms.html" data-fr="Conditions" data-en="Terms">Conditions</a>
+    </div>
+    <p>© 2024–2026 Schicgirl ·
+      <span data-fr="Aime ta couronne. Écris ton histoire."
+            data-en="Love Your Crown. Own Your Story.">Aime ta couronne. Écris ton histoire.</span></p>
+  </div>
+</footer>
 
 <script src="assets/js/natural-hair-planner.page.js"></script>
 </body>
