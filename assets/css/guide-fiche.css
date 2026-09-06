@@ -127,6 +127,48 @@
   opacity:.5;margin:12px auto 0;
 }
 
+/* ── La page de vente, en dessous ────────────────────────────
+   Les feuilles de guide n'ont AUCUNE regle responsive : .wrap est
+   fige a 560 px, donc sur un ordinateur la page de vente reste une
+   bande etroite sous une fiche large. On ne touche pas au texte —
+   seulement a la largeur et au nombre de colonnes, a partir de la
+   taille ou il y a la place. */
+@media(min-width:900px){
+  .wrap{max-width:1120px}
+
+  /* Les cartes s'alignent au lieu de s'empiler sur un kilometre. */
+  .why{grid-template-columns:1fr 1fr;gap:14px}
+  .testi{grid-template-columns:1fr 1fr;gap:14px}
+
+  .section{padding:30px 34px;margin-top:22px}
+  h2{font-size:28px}
+
+  /* Le texte suivi, lui, garde une largeur lisible : une ligne de
+     1100 px se lit mal, l'oeil perd le debut de la ligne suivante.
+     Et il se centre — un paragraphe etroit colle a gauche d'un bloc
+     large donne une page bancale. Les cartes, elles, prennent toute
+     la largeur : c'est la leur interet. */
+  .pain,
+  .section > p,
+  .section > .lede,
+  .section > .forwho,
+  .section > .check,
+  .section > .inside,
+  .section > .faq,
+  .section > .eyebrow,
+  .section > h2{max-width:70ch;margin-inline:auto}
+
+  /* Les blocs centres restent centres. */
+  .section[style*="text-align:center"] > *{margin-inline:auto}
+
+  /* Les apercus de pages cote a cote plutot que l'un sous l'autre. */
+  .preview-img{max-width:520px;margin-inline:auto}
+}
+
+@media(min-width:1180px){
+  .why{grid-template-columns:repeat(3,1fr)}
+}
+
 /* ── Le pied de page du site ────────────────────────────────── */
 .gfoot{
   margin:56px -18px 0;padding:34px 18px calc(34px + env(safe-area-inset-bottom));
