@@ -25,7 +25,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ma Couronne, Mon Histoire — la BD | Schicgirl</title>
-<meta name="description" content="La bande dessinée Schicgirl pour les filles aux cheveux crépus Type 4. À lire ensemble dès 6 ans, toute seule dès 8 ans. Épisode 1 offert, réservé aux inscrites.">
+<meta name="description" content="La bande dessinée Schicgirl pour les filles aux cheveux crépus Type 4. À lire ensemble dès 6 ans, toute seule dès 8 ans. Deux épisodes offerts, réservés aux inscrites.">
 <!-- Indexable : ce que voit un moteur est exactement ce que voit une
      visiteuse non connectée — le pitch, l'âge, et l'invitation à créer un
      compte. Rien n'est caché aux robots qui ne le soit aux personnes. -->
@@ -35,7 +35,7 @@
      texte : juste une adresse nue, que personne ne clique. -->
 <meta property="og:type" content="book">
 <meta property="og:title" content="Ma Couronne, Mon Histoire — la BD offerte, dès 6 ans">
-<meta property="og:description" content="Naya a neuf ans et se demande pourquoi ses cheveux ne font pas comme ceux des autres. Huit planches à lire avec ta fille. Offert, en français et en anglais.">
+<meta property="og:description" content="Naya a neuf ans. Deux épisodes à lire avec ta fille — pourquoi ses cheveux sont différents, et pourquoi l'huile ne les hydrate pas. Offert, en français et en anglais.">
 <meta property="og:url" content="https://schicgirl.me/bd/">
 <meta property="og:image" content="https://schicgirl.me/assets/bd-episode-1-fr.jpg">
 <meta property="og:locale" content="fr_FR">
@@ -80,6 +80,22 @@
     background:var(--gold-pale);border:1px solid var(--line-gold);
     border-radius:999px;padding:8px 18px;
     font-size:13.5px;font-weight:600;color:var(--gold-deep);
+  }
+
+  /* Le choix de l'épisode : il commande le feuilleteur ET les
+     téléchargements, pour qu'ils ne puissent jamais se contredire. */
+  .eptab{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+  .eptab button{
+    font-family:var(--sans);font-size:14px;font-weight:600;
+    padding:11px 22px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink-soft);
+    border:1px solid var(--line);transition:all .16s;
+  }
+  .eptab button:hover{border-color:var(--line-gold);color:var(--gold-deep)}
+  .eptab button[aria-pressed="true"]{
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    color:#fff;border-color:var(--gold-deep);
+    box-shadow:0 8px 20px -10px rgba(160,109,40,.8);
   }
 
   /* Les deux versions */
@@ -189,9 +205,9 @@
         data-fr="Ma Couronne, <em>Mon Histoire</em>"
         data-en="My Crown, <em>My Story</em>">Ma Couronne, <em>Mon Histoire</em></h1>
     <p class="lead" style="margin:0 auto"
-       data-fr="Naya a neuf ans. Un matin, à l'école, elle se demande pourquoi ses cheveux ne font pas comme ceux des autres. Épisode 1, offert."
-       data-en="Naya is nine. One morning at school she starts wondering why her hair doesn't do what everyone else's does. Episode 1, free.">
-      Naya a neuf ans. Épisode 1, offert.</p>
+       data-fr="Naya a neuf ans. Deux épisodes déjà parus, offerts, en français et en anglais — à feuilleter ici ou à télécharger."
+       data-en="Naya is nine. Two episodes out already, free, in French and English — flip through them here or download them.">
+      Naya a neuf ans. Deux épisodes parus, offerts.</p>
     <p class="age-note"
        data-fr="👧 À lire ensemble dès 6 ans · toute seule dès 8 ans"
        data-en="👧 Read together from age 6 · alone from age 8">
@@ -209,9 +225,9 @@
           data-fr="Crée ton compte pour <em>lire la BD</em>."
           data-en="Create your account to <em>read the comic</em>.">Crée ton compte pour <em>lire la BD</em>.</h2>
       <p class="lead"
-         data-fr="Huit planches, en français et en anglais, à lire ici ou à télécharger. À lire ensemble dès 6 ans, toute seule dès 8 ans. Le compte est gratuit et prend une minute."
-         data-en="Eight pages, in French and English, to read here or download. Read together from age 6, alone from age 8. The account is free and takes a minute.">
-        Huit planches, à lire ici ou à télécharger.</p>
+         data-fr="Deux épisodes, huit planches chacun, en français et en anglais, à lire ici ou à télécharger. À lire ensemble dès 6 ans, toute seule dès 8 ans. Le compte est gratuit et prend une minute."
+         data-en="Two episodes, eight pages each, in French and English, to read here or download. Read together from age 6, alone from age 8. The account is free and takes a minute.">
+        Deux épisodes, à lire ici ou à télécharger.</p>
       <a class="btn btn-gold btn-lg" href="/mon-compte.html"
          data-fr="Créer mon compte gratuit" data-en="Create my free account">Créer mon compte gratuit</a>
       <a class="btn btn-ghost btn-lg" href="/mon-compte.html"
@@ -224,24 +240,9 @@
 <section class="section" data-membres style="padding-top:38px">
   <div class="wrap">
 
-    <div class="langs">
-      <div class="lang-card">
-        <div class="flag" aria-hidden="true">🇫🇷</div>
-        <h3>Ma Couronne, Mon Histoire</h3>
-        <p data-fr="8 planches · PDF · 5,4 Mo" data-en="8 pages · PDF · 5.4 MB">8 planches · PDF · 5,4 Mo</p>
-        <a class="btn btn-gold" id="dlFr"
-           href="/guides/50ed1d151e/Schicgirl_BD_Ma_Couronne_Mon_Histoire_FR.pdf" download
-           data-fr="Télécharger en français" data-en="Download in French">Télécharger en français</a>
-      </div>
-      <div class="lang-card">
-        <div class="flag" aria-hidden="true">🇬🇧</div>
-        <h3>My Crown, My Story</h3>
-        <p data-fr="8 planches · PDF · 5,4 Mo" data-en="8 pages · PDF · 5.4 MB">8 planches · PDF · 5,4 Mo</p>
-        <a class="btn btn-ghost" id="dlEn"
-           href="/guides/50ed1d151e/Schicgirl_BD_My_Crown_My_Story_EN.pdf" download
-           data-fr="Télécharger en anglais" data-en="Download in English">Télécharger en anglais</a>
-      </div>
-    </div>
+    <div class="eptab" id="epTab" role="group" aria-label="Épisode"></div>
+
+    <div class="langs" id="epTelech"></div>
 
     <div class="section-head center" style="margin-bottom:22px">
       <h2 data-fr="Lire en ligne" data-en="Read it here">Lire en ligne</h2>
@@ -264,11 +265,10 @@
     <!-- Prepare la suite : l'episode 1 est offert, les autres se vendront. -->
     <div class="suite">
       <span class="eyebrow" data-fr="La suite" data-en="What's next">La suite</span>
-      <h3 data-fr="Épisode 2 — Le Secret de l'Eau"
-          data-en="Episode 2 — The Secret of Water">Épisode 2 — Le Secret de l'Eau</h3>
-      <p data-fr="Naya croit que l'huile suffit. Sa grand-mère lui montre autre chose."
-         data-en="Naya thinks oil is enough. Her grandmother shows her something else.">
-        Naya croit que l'huile suffit.</p>
+      <h3 data-fr="Épisode 3" data-en="Episode 3">Épisode 3</h3>
+      <p data-fr="L'histoire de Naya continue. Coche ci-dessous et je t'écris le jour où le prochain épisode sort — et rien d'autre."
+         data-en="Naya's story continues. Tick the box below and I'll write to you the day the next episode comes out — and nothing else.">
+        L'histoire de Naya continue.</p>
 
       <!-- La case reste cachee tant qu'on n'a pas pu lire le choix : sans
            le script SQL, mieux vaut ne rien montrer qu'une case qui ment. -->
@@ -302,28 +302,91 @@
   var FR = function () { return SGSite.lang === "fr"; };
   var T  = function (fr, en) { return FR() ? fr : en; };
 
-  /* Les planches, par langue. Ce sont les memes fichiers que ceux du PDF,
-     exportes page par page pour le feuilleteur. */
-  var PLANCHES = {
-    fr: ["00-couverture","01-planche-1-le-debut","02-planche-2-la-decouverte",
-         "03-planche-3-l-aventure","04-planche-4-la-patience","05-planche-5-la-couronne",
-         "06-planche-6-mon-histoire","07-dos"],
-    en: ["00-cover","01-page-1-the-beginning","02-page-2-the-discovery",
-         "03-page-3-the-adventure","04-page-4-patience","05-page-5-the-crown",
-         "06-page-6-my-story","07-back"]
-  };
-  var DOSSIER = { fr: "/guides/50ed1d151e/bd-fr/", en: "/guides/50ed1d151e/bd-en/" };
+  /* Les episodes. En ajouter un : une entree de plus ici, rien d'autre. */
+  var EPISODES = [
+    { id: "ep1",
+      titre_fr: "Épisode 1 — Ma Couronne, Mon Histoire",
+      titre_en: "Episode 1 — My Crown, My Story",
+      pdf: { fr: "/guides/50ed1d151e/Schicgirl_BD_Ma_Couronne_Mon_Histoire_FR.pdf",
+             en: "/guides/50ed1d151e/Schicgirl_BD_My_Crown_My_Story_EN.pdf" },
+      livre: { fr: "Ma Couronne, Mon Histoire", en: "My Crown, My Story" },
+      dossier: { fr: "/guides/50ed1d151e/bd-fr/", en: "/guides/50ed1d151e/bd-en/" },
+      planches: {
+        fr: ["00-couverture","01-planche-1-le-debut","02-planche-2-la-decouverte",
+             "03-planche-3-l-aventure","04-planche-4-la-patience","05-planche-5-la-couronne",
+             "06-planche-6-mon-histoire","07-dos"],
+        en: ["00-cover","01-page-1-the-beginning","02-page-2-the-discovery",
+             "03-page-3-the-adventure","04-page-4-patience","05-page-5-the-crown",
+             "06-page-6-my-story","07-back"] } },
+
+    { id: "ep2",
+      titre_fr: "Épisode 2 — Le Secret de l'Eau",
+      titre_en: "Episode 2 — The Secret of Water",
+      pdf: { fr: "/guides/50ed1d151e/Schicgirl_BD_Ep2_Le_Secret_de_l_Eau_FR.pdf",
+             en: "/guides/50ed1d151e/Schicgirl_BD_Ep2_The_Secret_of_Water_EN.pdf" },
+      livre: { fr: "Le Secret de l'Eau", en: "The Secret of Water" },
+      dossier: { fr: "/guides/50ed1d151e/bd2-fr/", en: "/guides/50ed1d151e/bd2-en/" },
+      planches: {
+        fr: ["00-couverture","01-planche-1-la-bonne-idee","02-planche-2-encore-et-encore",
+             "03-planche-3-les-deux-eponges","04-planche-4-le-declic",
+             "05-planche-5-le-bon-ordre","06-planche-6-le-lendemain","07-dos"],
+        en: ["00-cover","01-page-1-the-bright-idea","02-page-2-again-and-again",
+             "03-page-3-the-two-sponges","04-page-4-the-penny-drops",
+             "05-page-5-the-right-order","06-page-6-the-next-day","07-back"] } }
+  ];
+
+  /* On ouvre sur le dernier paru : c'est celui qu'on vient annoncer. */
+  var ep = EPISODES.length - 1;
+  function episode() { return EPISODES[ep]; }
 
   var page = 0;
 
-  function liste() { return PLANCHES[FR() ? "fr" : "en"]; }
+  function liste() { return episode().planches[FR() ? "fr" : "en"]; }
+
+  /* Le selecteur et les deux boutons de telechargement, redessines a
+     chaque changement d'episode ou de langue. */
+  function peindreEpisodes() {
+    var tab = document.getElementById("epTab");
+    if (tab) {
+      tab.innerHTML = EPISODES.map(function (e, i) {
+        return '<button type="button" data-ep="' + i + '" aria-pressed="' +
+               (i === ep ? "true" : "false") + '">' +
+               SGSite.esc(FR() ? e.titre_fr : e.titre_en) + "</button>";
+      }).join("");
+    }
+    var box = document.getElementById("epTelech");
+    if (!box) return;
+    var e = episode();
+    var poids = T("8 planches · PDF · 5,4 Mo", "8 pages · PDF · 5.4 MB");
+    box.innerHTML =
+      '<div class="lang-card"><div class="flag" aria-hidden="true">🇫🇷</div>' +
+        "<h3>" + SGSite.esc(e.livre.fr) + "</h3><p>" + SGSite.esc(poids) + "</p>" +
+        '<a class="btn btn-gold" href="' + SGSite.safeUrl(e.pdf.fr) + '" download>' +
+          SGSite.esc(T("Télécharger en français", "Download in French")) + "</a></div>" +
+      '<div class="lang-card"><div class="flag" aria-hidden="true">🇬🇧</div>' +
+        "<h3>" + SGSite.esc(e.livre.en) + "</h3><p>" + SGSite.esc(poids) + "</p>" +
+        '<a class="btn btn-ghost" href="' + SGSite.safeUrl(e.pdf.en) + '" download>' +
+          SGSite.esc(T("Télécharger en anglais", "Download in English")) + "</a></div>";
+  }
+
+  var zoneTab = document.getElementById("epTab");
+  if (zoneTab) {
+    zoneTab.addEventListener("click", function (ev) {
+      var b = ev.target.closest("button[data-ep]");
+      if (!b) return;
+      ep = +b.getAttribute("data-ep");
+      page = 0;                       /* on repart de la couverture */
+      peindreEpisodes();
+      peindre();
+    });
+  }
 
   function peindre() {
     var l = liste(), img = document.getElementById("sheet");
     if (!img) return;
     if (page >= l.length) page = l.length - 1;
     if (page < 0) page = 0;
-    img.src = DOSSIER[FR() ? "fr" : "en"] + l[page] + ".jpg";
+    img.src = episode().dossier[FR() ? "fr" : "en"] + l[page] + ".jpg";
     img.alt = T("Planche ", "Page ") + (page + 1) + T(" sur ", " of ") + l.length;
     document.getElementById("count").textContent =
       (page + 1) + " / " + l.length;
@@ -440,7 +503,7 @@
 
   function tout() {
     var ouverte = membreOuPas();
-    if (ouverte) { peindre(); chargeAvis(); }
+    if (ouverte) { peindreEpisodes(); peindre(); chargeAvis(); }
   }
   tout();
   SGSite.onLang(function () { tout(); peindreAvis(); });
