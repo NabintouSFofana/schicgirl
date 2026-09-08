@@ -265,7 +265,10 @@
     <!-- Prepare la suite : l'episode 1 est offert, les autres se vendront. -->
     <div class="suite">
       <span class="eyebrow" data-fr="La suite" data-en="What's next">La suite</span>
-      <h3 data-fr="Épisode 3" data-en="Episode 3">Épisode 3</h3>
+      <!-- Rempli par peindreEpisodes() : ce numero doit suivre le
+           nombre d'episodes parus, sinon il devient faux le jour de
+           la sortie suivante — ce qui est deja arrive une fois. -->
+      <h3 id="epSuivant"></h3>
       <p data-fr="L'histoire de Naya continue. Coche ci-dessous et je t'écris le jour où le prochain épisode sort — et rien d'autre."
          data-en="Naya's story continues. Tick the box below and I'll write to you the day the next episode comes out — and nothing else.">
         L'histoire de Naya continue.</p>
@@ -354,6 +357,9 @@
                SGSite.esc(FR() ? e.titre_fr : e.titre_en) + "</button>";
       }).join("");
     }
+    var suiv = document.getElementById("epSuivant");
+    if (suiv) suiv.textContent = T("Épisode ", "Episode ") + prochain();
+
     var box = document.getElementById("epTelech");
     if (!box) return;
     var e = episode();
@@ -458,7 +464,10 @@
     if (e.key === "ArrowRight") { avance(1); }
   });
 
-  /* ── « Préviens-moi quand l'épisode 2 sort » ─────────────────
+  /* Le numero du prochain episode, deduit de ceux qui existent. */
+  function prochain() { return EPISODES.length + 1; }
+
+  /* ── « Préviens-moi quand le prochain épisode sort » ──────────
      C'est le seul moyen de revenir vers quelqu'un a qui on a donne
      l'episode 1. Sans consentement enregistre, on ne peut pas ecrire.
 
@@ -487,8 +496,10 @@
       etat.textContent = T("Un instant…", "One moment…");
     } else {
       etat.textContent = avis
-        ? T("C'est noté. Je t'écris quand l'épisode 2 sort, et rien d'autre.",
-            "Noted. I'll email you when episode 2 is out, and nothing else.")
+        ? T("C'est noté. Je t'écris quand l'épisode " + prochain() +
+            " sort, et rien d'autre.",
+            "Noted. I'll email you when episode " + prochain() +
+            " is out, and nothing else.")
         : T("Tu peux cocher quand tu veux, et décocher aussi.",
             "Tick it whenever you like — and untick it too.");
     }
