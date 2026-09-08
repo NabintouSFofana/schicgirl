@@ -390,8 +390,23 @@
     img.alt = T("Planche ", "Page ") + (page + 1) + T(" sur ", " of ") + l.length;
     document.getElementById("count").textContent =
       (page + 1) + " / " + l.length;
-    document.getElementById("prev").disabled = (page === 0);
-    document.getElementById("next").disabled = (page === l.length - 1);
+    /* On ne bloque qu'aux deux bouts de la BD entiere, pas de chaque
+       episode : arriver au dos de l'episode 1 et trouver « Suivante »
+       mort, alors que l'episode 2 est juste la, ressemble a une panne. */
+    var dernierePlanche = (page === l.length - 1);
+    var premierePlanche = (page === 0);
+    document.getElementById("prev").disabled = (premierePlanche && ep === 0);
+    document.getElementById("next").disabled =
+      (dernierePlanche && ep === EPISODES.length - 1);
+
+    /* Et le bouton annonce ou il mene. */
+    var bN = document.getElementById("next"), bP = document.getElementById("prev");
+    bN.textContent = (dernierePlanche && ep < EPISODES.length - 1)
+      ? T("Épisode ", "Episode ") + (ep + 2) + " →"
+      : T("Suivante →", "Next →");
+    bP.textContent = (premierePlanche && ep > 0)
+      ? "← " + T("Épisode ", "Episode ") + ep
+      : T("← Précédente", "← Previous");
 
     var d = document.getElementById("dots");
     d.innerHTML = "";
@@ -418,12 +433,29 @@
     return ouverte;
   }
 
-  document.getElementById("prev").addEventListener("click", function () { page--; peindre(); });
-  document.getElementById("next").addEventListener("click", function () { page++; peindre(); });
+  /* Au dernier ecran d'un episode, « Suivante » ouvre le suivant a sa
+     couverture ; au premier, « Precedente » revient a la fin du
+     precedent. La lecture est continue d'un bout a l'autre. */
+  function avance(pas) {
+    var l = liste();
+    if (pas > 0 && page === l.length - 1) {
+      if (ep >= EPISODES.length - 1) return;
+      ep++; page = 0; peindreEpisodes(); peindre(); return;
+    }
+    if (pas < 0 && page === 0) {
+      if (ep <= 0) return;
+      ep--; page = liste().length - 1; peindreEpisodes(); peindre(); return;
+    }
+    page += pas;
+    peindre();
+  }
+
+  document.getElementById("prev").addEventListener("click", function () { avance(-1); });
+  document.getElementById("next").addEventListener("click", function () { avance(1); });
   document.addEventListener("keydown", function (e) {
     if (!membreOuPas()) return;
-    if (e.key === "ArrowLeft")  { page--; peindre(); }
-    if (e.key === "ArrowRight") { page++; peindre(); }
+    if (e.key === "ArrowLeft")  { avance(-1); }
+    if (e.key === "ArrowRight") { avance(1); }
   });
 
   /* ── « Préviens-moi quand l'épisode 2 sort » ─────────────────
