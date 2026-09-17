@@ -220,7 +220,8 @@ footer a{color:var(--vert)}
         <div class="pile"><a class="btn btn-or" id="lien-groupe" target="_blank" rel="noopener">Rejoindre le groupe Facebook</a></div>
       </div>
       <div id="bloc-whatsapp" class="cache">
-        <div class="pile"><a class="btn btn-contour" id="lien-whatsapp" target="_blank" rel="noopener">Suivre la chaîne WhatsApp du défi</a></div>
+        <div class="pile"><a class="btn btn-contour" id="lien-whatsapp" target="_blank" rel="noopener">📣 Suivre la chaîne WhatsApp du défi</a></div>
+        <p class="note" style="margin-top:0">Les rappels et la mission de chaque semaine, directement sur WhatsApp. Ton numéro reste invisible.</p>
       </div>
 
       <div class="pile">
@@ -244,7 +245,7 @@ footer a{color:var(--vert)}
 </div>
 
 <!-- Les réglages du défi (date, groupe, liens) : defi/defi-config.js -->
-<script src="/defi/defi-config.js?v=3"></script>
+<script src="/defi/defi-config.js?v=4"></script>
 <script>
 (function () {
   function $(id) { return document.getElementById(id); }
@@ -346,7 +347,8 @@ footer a{color:var(--vert)}
       "Mon Défi 30 Jours Schicgirl 🤍",
       "✅ Mon calendrier : " + site + DEFI.calendrierEnLigne,
       "📄 Mon kit : " + site + DEFI.kit
-    ].concat(DEFI.groupeUrl ? ["👥 Le groupe : " + DEFI.groupeUrl] : []).join("\n"));
+    ].concat(DEFI.groupeUrl ? ["👥 Le groupe : " + DEFI.groupeUrl] : [])
+     .concat(DEFI.whatsappUrl ? ["📣 La chaîne WhatsApp : " + DEFI.whatsappUrl] : []).join("\n"));
     if (DEFI.groupeUrl) { $("lien-groupe").href = DEFI.groupeUrl; $("bloc-groupe").classList.remove("cache"); }
     if (DEFI.whatsappUrl) { $("lien-whatsapp").href = DEFI.whatsappUrl; $("bloc-whatsapp").classList.remove("cache"); }
     if (jour1 && joursAvant(jour1) >= 0) $("agenda").classList.remove("cache");

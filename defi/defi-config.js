@@ -17,7 +17,7 @@ var DEFI = {
   edition:     "2026-01",       // change-la à chaque nouvelle session (ex. "2027-01")
   dateDebut:   "2026-09-21",    // jour 1, au format AAAA-MM-JJ
   groupeUrl:   "https://www.facebook.com/groups/2356359611348645",   // le groupe Facebook du défi
-  whatsappUrl: "",              // lien de la chaîne WhatsApp du défi (facultatif)
+  whatsappUrl: "https://whatsapp.com/channel/0029VbE52AUFHWq8AVh9mw2I",   // la chaîne WhatsApp du défi
   emailActif:  false,           // passe à true seulement quand l'e-mail automatique (Resend) fonctionne
 
   kit:                   "/defi/Schicgirl-Defi-30-jours-Kit-de-depart.pdf",

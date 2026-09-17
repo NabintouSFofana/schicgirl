@@ -138,6 +138,7 @@ footer a{color:var(--vert)}
     <div class="pile">
       <button class="btn btn-or" id="copier" type="button">📋 Copier mon bilan pour le groupe</button>
       <a class="btn btn-contour cache" id="lien-groupe" target="_blank" rel="noopener">Aller dans le groupe du défi</a>
+      <a class="btn btn-contour cache" id="lien-chaine" target="_blank" rel="noopener">📣 La chaîne WhatsApp du défi</a>
       <a class="btn btn-contour" id="lien-kit" target="_blank" rel="noopener">📄 Mon kit de départ</a>
     </div>
 
@@ -158,7 +159,7 @@ footer a{color:var(--vert)}
   </footer>
 </div>
 
-<script src="/defi/defi-config.js?v=3"></script>
+<script src="/defi/defi-config.js?v=4"></script>
 <script>
 (function () {
   function $(id) { return document.getElementById(id); }
@@ -366,6 +367,7 @@ footer a{color:var(--vert)}
   // liens
   $("lien-kit").href = DEFI.kit;
   if (DEFI.groupeUrl) { $("lien-groupe").href = DEFI.groupeUrl; $("lien-groupe").classList.remove("cache"); }
+  if (DEFI.whatsappUrl) { $("lien-chaine").href = DEFI.whatsappUrl; $("lien-chaine").classList.remove("cache"); }
 
   // premier affichage
   try { localStorage.setItem(CLE + "-test", "1"); localStorage.removeItem(CLE + "-test"); }
