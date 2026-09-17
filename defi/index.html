@@ -100,10 +100,11 @@ footer a{color:var(--vert)}
     <section class="carte" aria-labelledby="t-form">
       <h2 id="t-form">Reçois ton kit de départ</h2>
       <ul class="puces">
-        <li>Le <b>kit de départ</b> : matériel, photos, ta fiche d'observation</li>
+        <li>Le <b>kit de départ</b> : la liste de ce qu'il te faut, tes photos et ta fiche d'observation</li>
         <li>Le <b>calendrier des 30 jours</b>, à cocher chaque jour</li>
         <li>L'accès au <b>groupe du défi</b>, pour avancer ensemble</li>
       </ul>
+      <p class="aide">Ce sont des fichiers à télécharger. Je n'envoie ni matériel ni produits : je te dis quoi prendre, et tu utilises ce que tu as déjà.</p>
 
       <form id="formulaire" novalidate>
         <div class="champ">
@@ -174,10 +175,45 @@ footer a{color:var(--vert)}
       </div>
     </section>
 
+    <section class="carte" aria-labelledby="t-materiel">
+      <h2 id="t-materiel">Ce qu'il te faut pour le défi</h2>
+      <p style="margin:0 0 10px">Rien à acheter chez moi. Voici seulement ce qu'il faut avoir sous la main.</p>
+
+      <h3 style="margin-top:14px">Le matériel <span style="font:400 15px Poppins,sans-serif;color:var(--doux)">(tu as sûrement déjà tout)</span></h3>
+      <ul class="puces" style="margin-bottom:8px">
+        <li>Un vaporisateur</li>
+        <li>Un peigne à dents larges</li>
+        <li>Une charlotte de douche</li>
+        <li>Un bonnet ou une taie en satin</li>
+        <li>Des pinces à sectionner</li>
+      </ul>
+
+      <h3>Les produits — deux options</h3>
+      <div class="semaines" style="grid-template-columns:1fr;gap:10px">
+        <div class="semaine">
+          <b>Option A · tu fabriques</b>
+          <p style="margin:6px 0 0;font-size:15px">Eau, aloe vera pur, glycérine végétale, une huile, un beurre.<br>
+          Je te donne toutes les recettes pendant le défi 🎁</p>
+        </div>
+        <div class="semaine">
+          <b>Option B · tu achètes</b>
+          <p style="margin:6px 0 0;font-size:15px">Un shampooing doux, un après-shampooing démêlant, un soin sans rinçage (leave-in), une huile ou un beurre.</p>
+        </div>
+      </div>
+      <p style="margin:10px 0 0"><b>Cinq produits maximum. Pas quinze.</b></p>
+
+      <h3>Pour mesurer tes progrès</h3>
+      <ul class="puces" style="margin-bottom:6px">
+        <li>Une photo de tes cheveux mouillés, une mèche étirée (jour 1)</li>
+        <li>Une photo de tes cheveux secs (jour 1)</li>
+      </ul>
+      <p style="margin:0">Même pièce, même lumière, même angle : tu referas les mêmes à la fin. <b>Ces photos, tu les gardes pour toi.</b></p>
+    </section>
+
     <section class="carte" aria-labelledby="t-faq">
       <h2 id="t-faq">Tes questions</h2>
       <details><summary>C'est vraiment gratuit ?</summary>
-        <p>Oui. Le kit, le calendrier, les missions et les recettes sont gratuits. Tu peux fabriquer tes produits avec les recettes, ou utiliser ceux que tu as déjà.</p></details>
+        <p>Oui. Le kit, le calendrier, les missions et les recettes sont gratuits. Je ne vends et n'envoie aucun produit : je te donne les fichiers et la méthode. Tu fabriques avec les recettes, ou tu utilises ce que tu as déjà.</p></details>
       <details><summary>Et si j'arrive après le départ ?</summary>
         <p>Inscris-toi quand même et commence par la semaine 1. L'ordre compte plus que le calendrier : personne ne reste sur le côté.</p></details>
       <details><summary>Je n'ai pas d'e-mail, seulement WhatsApp.</summary>
@@ -245,7 +281,7 @@ footer a{color:var(--vert)}
 </div>
 
 <!-- Les réglages du défi (date, groupe, liens) : defi/defi-config.js -->
-<script src="/defi/defi-config.js?v=4"></script>
+<script src="/defi/defi-config.js?v=5"></script>
 <script>
 (function () {
   function $(id) { return document.getElementById(id); }
