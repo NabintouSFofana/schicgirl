@@ -17,8 +17,8 @@
 <style>
 /* ─────────────────────────────────────────────────────────────
    LE DÉFI 30 JOURS — page d'inscription
-   Tout ce qui change d'une session à l'autre est dans l'objet
-   DEFI, en bas de la page. Rien d'autre à toucher.
+   Tout ce qui change d'une session à l'autre (date, groupe,
+   liens) est dans /defi/defi-config.js. Rien d'autre à toucher.
    ───────────────────────────────────────────────────────────── */
 :root{
   --creme:#F6E7DB; --creme-2:#FBF3EC; --vert:#013538; --vert-2:#0B4A4E;
@@ -110,7 +110,7 @@ footer a{color:var(--vert)}
           <label for="prenom">Ton prénom</label>
           <input id="prenom" name="prenom" type="text" autocomplete="given-name" maxlength="60" required>
         </div>
-        <p class="aide">Ton e-mail <b>ou</b> ton numéro WhatsApp : l'un des deux suffit. Avec l'e-mail, tu reçois aussi le kit dans ta boîte.</p>
+        <p class="aide">Ton e-mail <b>ou</b> ton numéro WhatsApp : l'un des deux suffit.</p>
         <div class="champ">
           <label for="email">E-mail</label>
           <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="toi@exemple.com">
@@ -201,7 +201,9 @@ footer a{color:var(--vert)}
       <p style="margin:0">Sur ton téléphone : tu coches chaque jour et tes 4 gestes. Enregistre la page dans tes favoris.</p>
       <div class="pile">
         <a class="btn btn-principal" id="lien-calendrier-en-ligne">✅ Ouvrir mon calendrier</a>
+        <a class="btn btn-contour" id="garder-wa" target="_blank" rel="noopener">📲 Garder mes liens sur WhatsApp</a>
       </div>
+      <p class="note" style="margin-top:0">Ouvre ta propre conversation (ou « Messages à moi-même ») et envoie : tes liens seront toujours là.</p>
 
       <h3 style="margin-top:20px">Tes documents</h3>
       <div class="pile">
@@ -242,7 +244,7 @@ footer a{color:var(--vert)}
 </div>
 
 <!-- Les réglages du défi (date, groupe, liens) : defi/defi-config.js -->
-<script src="/defi/defi-config.js?v=2"></script>
+<script src="/defi/defi-config.js?v=3"></script>
 <script>
 (function () {
   function $(id) { return document.getElementById(id); }
@@ -332,12 +334,19 @@ footer a{color:var(--vert)}
   function succes(p, avecEmail) {
     $("t-succes").textContent = "C'est fait, " + p + " 🤍";
     $("texte-depart").textContent = texteDepart();
-    $("email-envoye").classList.toggle("cache", !avecEmail);
+    // seulement si l'e-mail automatique est activé : sinon ce serait une fausse promesse
+    $("email-envoye").classList.toggle("cache", !(avecEmail && DEFI.emailActif));
     $("lien-kit").href = DEFI.kit;
     $("lien-calendrier").href = DEFI.calendrier;
     $("lien-kit-impression").href = DEFI.kitImpression;
     $("lien-calendrier-impression").href = DEFI.calendrierImpression;
     $("lien-calendrier-en-ligne").href = DEFI.calendrierEnLigne;
+    var site = "https://schicgirl.me";
+    $("garder-wa").href = "https://wa.me/?text=" + encodeURIComponent([
+      "Mon Défi 30 Jours Schicgirl 🤍",
+      "✅ Mon calendrier : " + site + DEFI.calendrierEnLigne,
+      "📄 Mon kit : " + site + DEFI.kit
+    ].concat(DEFI.groupeUrl ? ["👥 Le groupe : " + DEFI.groupeUrl] : []).join("\n"));
     if (DEFI.groupeUrl) { $("lien-groupe").href = DEFI.groupeUrl; $("bloc-groupe").classList.remove("cache"); }
     if (DEFI.whatsappUrl) { $("lien-whatsapp").href = DEFI.whatsappUrl; $("bloc-whatsapp").classList.remove("cache"); }
     if (jour1 && joursAvant(jour1) >= 0) $("agenda").classList.remove("cache");
