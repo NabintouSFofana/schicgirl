@@ -23,7 +23,7 @@ const REPLY_TO = "contacte.schicgirl@gmail.com";
 // ── DÉFI 30 JOURS — à mettre à jour avant chaque session, puis redéployer ──
 const DEFI = {
   dateDebut: "lundi 21 septembre",   // vide = « la date arrive très vite »
-  groupeUrl: "",   // lien du groupe Facebook du défi — vide = le bouton n'apparaît pas
+  groupeUrl: "https://www.facebook.com/groups/2356359611348645",
   kitUrl: `${SITE}/defi/Schicgirl-Defi-30-jours-Kit-de-depart.pdf`,
   calendrierUrl: `${SITE}/defi/Schicgirl-Defi-30-jours-Calendrier.pdf`,
   calendrierEnLigneUrl: `${SITE}/defi/calendrier/`,
