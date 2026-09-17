@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Défi 30 Jours Schicgirl</title>
+<meta name="description" content="Le Défi 30 Jours Hydratation et Rétention pour cheveux crépus type 4. Gratuit. Inscris-toi pour recevoir le kit de départ et le calendrier des 30 jours.">
+<link rel="canonical" href="https://schicgirl.me/defi/">
+<meta property="og:title" content="Le Défi 30 Jours Schicgirl — Hydratation et Rétention">
+<meta property="og:description" content="30 jours pour comprendre tes cheveux, les hydrater dans le bon ordre et arrêter la casse. Gratuit, ensemble.">
+<meta property="og:url" content="https://schicgirl.me/defi/">
+<meta property="og:type" content="website">
+<link rel="icon" href="/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   LE DÉFI 30 JOURS — page d'inscription
+   Tout ce qui change d'une session à l'autre est dans l'objet
+   DEFI, en bas de la page. Rien d'autre à toucher.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --creme:#F6E7DB; --creme-2:#FBF3EC; --vert:#013538; --vert-2:#0B4A4E;
+  --or:#D9A84D; --or-fonce:#A87A2A; --or-clair:#F1DDB3; --texte:#1F2A2B; --doux:#5E6B6C;
+  --blanc:#FFFFFF; --ligne:#E6D3C3; --erreur:#8A2E1E;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--creme);color:var(--texte);font:400 16px/1.6 Poppins,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:16px 16px 40px}
+header{display:flex;justify-content:space-between;align-items:center;padding:4px 0 14px}
+.marque{font:700 26px/1 "Cormorant Garamond",serif;color:var(--vert);text-decoration:none}
+.marque em{color:var(--or-fonce)}
+.tag{font:600 11px Poppins,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--vert);border:1px solid var(--vert);border-radius:999px;padding:5px 11px}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;color:var(--vert);line-height:1.12;margin:0 0 10px}
+h1{font-size:44px}
+h1 em{color:var(--or-fonce)}
+h2{font-size:30px}
+h3{font-size:22px}
+.sur{font:600 12px Poppins,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--or-fonce);margin:0 0 8px}
+.lede{font-size:17px;margin:0 0 16px}
+.depart{display:inline-flex;align-items:center;gap:8px;background:var(--vert);color:var(--creme);border-radius:999px;padding:8px 16px;font-weight:600;font-size:14px;margin:0 0 18px}
+.carte{background:var(--blanc);border-radius:18px;padding:22px 18px;box-shadow:0 6px 24px rgba(1,53,56,.08);margin:0 0 18px}
+.puces{list-style:none;padding:0;margin:0 0 18px}
+.puces li{position:relative;padding:5px 0 5px 28px}
+.puces li::before{content:"✦";position:absolute;left:4px;color:var(--or)}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 5px;color:var(--vert)}
+.champ{margin:0 0 14px}
+input[type=text],input[type=email],input[type=tel],select{width:100%;font:400 16px Poppins,sans-serif;color:var(--texte);background:var(--creme-2);border:1.5px solid var(--ligne);border-radius:12px;padding:12px 13px}
+input:focus,select:focus{outline:2px solid var(--or);outline-offset:1px;border-color:var(--or)}
+input[aria-invalid=true]{border-color:var(--erreur)}
+.aide{font-size:13px;color:var(--doux);margin:-2px 0 12px}
+.accord{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;margin:0 0 12px;cursor:pointer}
+.accord input{margin-top:3px;width:18px;height:18px;accent-color:var(--vert);flex:0 0 18px}
+.piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:999px;padding:15px 22px;font:600 16px Poppins,sans-serif;cursor:pointer;text-decoration:none;text-align:center}
+.btn-principal{background:var(--vert);color:var(--creme)}
+.btn-principal:hover{background:var(--vert-2)}
+.btn-principal:disabled{opacity:.5;cursor:wait}
+.btn-or{background:var(--or);color:var(--vert)}
+.btn-contour{background:transparent;color:var(--vert);border:1.5px solid var(--vert)}
+.pile{display:grid;gap:10px;margin:14px 0}
+.erreur{display:none;color:var(--erreur);font-size:14px;font-weight:500;margin:10px 0 0}
+.erreur.voir{display:block}
+.note{font-size:13px;color:var(--doux);margin:12px 0 0;text-align:center}
+.note a{color:var(--vert)}
+.semaines{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin:8px 0 0}
+.semaine{background:var(--creme-2);border-radius:14px;padding:14px}
+.semaine b{display:block;font:700 12px Poppins,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--or-fonce);margin-bottom:4px}
+.semaine span{font:600 19px/1.2 "Cormorant Garamond",serif;color:var(--vert)}
+details{border-top:1px solid var(--ligne);padding:12px 0}
+details:last-of-type{border-bottom:1px solid var(--ligne)}
+summary{cursor:pointer;font-weight:600;color:var(--vert);list-style:none}
+summary::after{content:"+";float:right;color:var(--or-fonce);font-size:20px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:8px 0 0;font-size:15px}
+.cache{display:none!important}
+.succes h2{font-size:34px}
+.email-envoye{background:var(--creme-2);border-radius:12px;padding:12px 14px;font-size:14px;margin:8px 0 0}
+footer{text-align:center;font-size:12px;color:var(--doux);margin-top:18px}
+footer a{color:var(--vert)}
+@media (max-width:440px){h1{font-size:36px}.semaines{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="marque" href="/">Schic<em>girl</em></a>
+    <span class="tag">#DefiSchicgirl30</span>
+  </header>
+
+  <!-- ═══════════ INSCRIPTION ═══════════ -->
+  <main id="vue-inscription">
+    <p class="sur">Gratuit · 30 jours · ensemble</p>
+    <h1>Le Défi 30 Jours <em>Hydratation</em> et Rétention</h1>
+    <p class="lede">Pas de produit miracle. Une méthode, jour après jour, pour comprendre tes cheveux, les hydrater dans le bon ordre et arrêter la casse.</p>
+    <div class="depart" id="depart">🗓️ La date de départ arrive très vite</div>
+
+    <section class="carte" aria-labelledby="t-form">
+      <h2 id="t-form">Reçois ton kit de départ</h2>
+      <ul class="puces">
+        <li>Le <b>kit de départ</b> : matériel, photos, ta fiche d'observation</li>
+        <li>Le <b>calendrier des 30 jours</b>, à cocher chaque jour</li>
+        <li>L'accès au <b>groupe du défi</b>, pour avancer ensemble</li>
+      </ul>
+
+      <form id="formulaire" novalidate>
+        <div class="champ">
+          <label for="prenom">Ton prénom</label>
+          <input id="prenom" name="prenom" type="text" autocomplete="given-name" maxlength="60" required>
+        </div>
+        <p class="aide">Ton e-mail <b>ou</b> ton numéro WhatsApp : l'un des deux suffit. Avec l'e-mail, tu reçois aussi le kit dans ta boîte.</p>
+        <div class="champ">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="toi@exemple.com">
+        </div>
+        <div class="champ">
+          <label for="whatsapp">Numéro WhatsApp</label>
+          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="25" placeholder="+225 07 00 00 00 00">
+        </div>
+        <div class="champ">
+          <label for="pays">Où habites-tu ?</label>
+          <select id="pays" name="pays">
+            <option value="">Choisir…</option>
+            <option>France</option>
+            <option>Belgique</option>
+            <option>Suisse</option>
+            <option>Canada</option>
+            <option>États-Unis</option>
+            <option>Côte d'Ivoire</option>
+            <option>Sénégal</option>
+            <option>Cameroun</option>
+            <option>Mali</option>
+            <option>Burkina Faso</option>
+            <option>Guinée</option>
+            <option>Bénin</option>
+            <option>Togo</option>
+            <option>Gabon</option>
+            <option>Congo</option>
+            <option>RD Congo</option>
+            <option>Autre pays d'Afrique</option>
+            <option>Antilles / Guyane / Réunion</option>
+            <option>Autre pays</option>
+          </select>
+        </div>
+
+        <!-- piège à robots : invisible pour les humains -->
+        <div class="piege" aria-hidden="true">
+          <label for="site">Ne pas remplir</label>
+          <input id="site" name="site" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <label class="accord"><input id="accord-defi" type="checkbox" required>
+          <span>Je m'inscris au défi et j'accepte de recevoir le kit et les messages du défi (une fois par semaine au maximum, pendant 30 jours).</span></label>
+        <label class="accord"><input id="accord-suite" type="checkbox">
+          <span><i>Facultatif</i> — Après le défi, je veux continuer à recevoir les conseils et les offres Schicgirl. Je peux me désinscrire à tout moment.</span></label>
+        <label class="accord" id="ligne-accord-wa"><input id="accord-wa" type="checkbox">
+          <span><i>Facultatif</i> — J'accepte que Schicgirl m'écrive sur WhatsApp.</span></label>
+
+        <button class="btn btn-principal" id="envoyer" type="submit">Je rejoins le défi 🤍</button>
+        <p class="erreur" id="erreur" role="alert"></p>
+        <p class="note">Tes informations ne sont ni vendues ni partagées. <a href="/fr/confidentialite/">Confidentialité</a></p>
+      </form>
+    </section>
+
+    <section class="carte" aria-labelledby="t-programme">
+      <h2 id="t-programme">Le programme</h2>
+      <div class="semaines">
+        <div class="semaine"><b>Semaine 1</b><span>Comprendre tes cheveux</span></div>
+        <div class="semaine"><b>Semaine 2</b><span>L'hydratation qui tient</span></div>
+        <div class="semaine"><b>Semaine 3</b><span>Protéger et arrêter la casse</span></div>
+        <div class="semaine"><b>Semaine 4</b><span>Consolider et mesurer</span></div>
+      </div>
+    </section>
+
+    <section class="carte" aria-labelledby="t-faq">
+      <h2 id="t-faq">Tes questions</h2>
+      <details><summary>C'est vraiment gratuit ?</summary>
+        <p>Oui. Le kit, le calendrier, les missions et les recettes sont gratuits. Tu peux fabriquer tes produits avec les recettes, ou utiliser ceux que tu as déjà.</p></details>
+      <details><summary>Et si j'arrive après le départ ?</summary>
+        <p>Inscris-toi quand même et commence par la semaine 1. L'ordre compte plus que le calendrier : personne ne reste sur le côté.</p></details>
+      <details><summary>Je n'ai pas d'e-mail, seulement WhatsApp.</summary>
+        <p>Aucun problème. Laisse ton numéro : le kit et le calendrier s'affichent tout de suite après l'inscription, à télécharger sur ton téléphone.</p></details>
+      <details><summary>Vais-je gagner des centimètres en 30 jours ?</summary>
+        <p>Personne ne peut honnêtement te le promettre. En 30 jours, on installe les habitudes qui font garder la longueur : c'est avec le temps qu'elles se voient.</p></details>
+      <details><summary>Que faites-vous de mes informations ?</summary>
+        <p>Elles servent à t'envoyer le kit et les messages du défi. Après le défi, on ne t'écrit que si tu as coché la case prévue. Pour être effacée, écris à contacte.schicgirl@gmail.com.</p></details>
+    </section>
+  </main>
+
+  <!-- ═══════════ APRÈS L'INSCRIPTION ═══════════ -->
+  <main id="vue-succes" class="cache" aria-live="polite">
+    <section class="carte succes">
+      <p class="sur">Inscription confirmée</p>
+      <h2 id="t-succes" tabindex="-1">C'est fait 🤍</h2>
+      <p id="texte-depart"></p>
+      <p class="email-envoye cache" id="email-envoye">📩 Le kit arrive aussi dans ta boîte e-mail dans quelques minutes. Pense à regarder dans les spams et les « Promotions ».</p>
+
+      <h3 style="margin-top:20px">Ton calendrier à cocher</h3>
+      <p style="margin:0">Sur ton téléphone : tu coches chaque jour et tes 4 gestes. Enregistre la page dans tes favoris.</p>
+      <div class="pile">
+        <a class="btn btn-principal" id="lien-calendrier-en-ligne">✅ Ouvrir mon calendrier</a>
+      </div>
+
+      <h3 style="margin-top:20px">Tes documents</h3>
+      <div class="pile">
+        <a class="btn btn-contour" id="lien-kit" target="_blank" rel="noopener">📄 Le kit de départ (PDF)</a>
+        <a class="btn btn-contour" id="lien-calendrier" target="_blank" rel="noopener">🗓️ Le calendrier des 30 jours (PDF)</a>
+      </div>
+      <p class="note" style="margin-top:0">Tu veux imprimer ? Prends les versions sur fond blanc, qui utilisent peu d'encre :
+        <a id="lien-kit-impression" target="_blank" rel="noopener">kit</a> ·
+        <a id="lien-calendrier-impression" target="_blank" rel="noopener">calendrier</a></p>
+
+      <div id="bloc-groupe" class="cache">
+        <h3 style="margin-top:20px">Le groupe du défi</h3>
+        <p style="margin:0">Les missions, les questions et l'entraide se passent là-bas.</p>
+        <div class="pile"><a class="btn btn-or" id="lien-groupe" target="_blank" rel="noopener">Rejoindre le groupe Facebook</a></div>
+      </div>
+      <div id="bloc-whatsapp" class="cache">
+        <div class="pile"><a class="btn btn-contour" id="lien-whatsapp" target="_blank" rel="noopener">Suivre la chaîne WhatsApp du défi</a></div>
+      </div>
+
+      <div class="pile">
+        <button class="btn btn-contour cache" id="agenda" type="button">➕ Ajouter le jour 1 à mon agenda</button>
+        <button class="btn btn-contour" id="partager" type="button">💌 Inviter une amie</button>
+      </div>
+
+      <h3 style="margin-top:20px">Avant le jour 1</h3>
+      <ul class="puces">
+        <li>Lis le kit : 10 minutes.</li>
+        <li>Rassemble ton matériel : tu as sûrement déjà presque tout.</li>
+        <li>Prends tes deux photos de départ. Elles restent à toi.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Aime ta couronne. Écris ton histoire. · <a href="/">schicgirl.me</a> · <a href="/fr/confidentialite/">Confidentialité</a></p>
+    <p>© 2024–2026 Schicgirl</p>
+  </footer>
+</div>
+
+<!-- Les réglages du défi (date, groupe, liens) : defi/defi-config.js -->
+<script src="/defi/defi-config.js?v=1"></script>
+<script>
+(function () {
+  function $(id) { return document.getElementById(id); }
+
+  // ── la date de départ ─────────────────────────────────────────
+  function dateLocale(iso) {
+    var p = (iso || "").split("-");
+    if (p.length !== 3) return null;
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return isNaN(d) ? null : d;
+  }
+  function joursAvant(d) {
+    var auj = new Date(); auj.setHours(0, 0, 0, 0);
+    return Math.round((d - auj) / 86400000);
+  }
+  function formate(d) {
+    return d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+  }
+  var jour1 = dateLocale(DEFI.dateDebut);
+
+  function texteDepart() {
+    if (!jour1) return "La date de départ arrive très vite : tu seras prévenue.";
+    var n = joursAvant(jour1);
+    if (n > 1)  return "Le jour 1, c'est le " + formate(jour1) + ", dans " + n + " jours.";
+    if (n === 1) return "On commence demain, " + formate(jour1) + ".";
+    if (n === 0) return "On commence aujourd'hui !";
+    if (n > -30) return "Le défi a commencé il y a " + (-n) + " jour" + (n < -1 ? "s" : "") + ". Tu peux le rejoindre : commence par la semaine 1, à ton rythme.";
+    return "Le défi se fait à ton rythme : commence par la semaine 1.";
+  }
+  if (jour1) $("depart").textContent = "🗓️ " + texteDepart();
+
+  // ── le formulaire ─────────────────────────────────────────────
+  var form = $("formulaire"), prenom = $("prenom"), email = $("email"), wa = $("whatsapp"),
+      pays = $("pays"), erreur = $("erreur"), bouton = $("envoyer");
+
+  function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
+  function waOk(v) { return /^[0-9 +().-]+$/.test(v.trim()) && v.replace(/\D/g, "").length >= 8; }
+
+  function montreErreur(msg, champs) {
+    erreur.textContent = msg;
+    erreur.classList.toggle("voir", !!msg);
+    [prenom, email, wa].forEach(function (c) { c.setAttribute("aria-invalid", champs && champs.indexOf(c) >= 0 ? "true" : "false"); });
+  }
+
+  function source() {
+    var s = new URLSearchParams(location.search).get("src") || (document.referrer.indexOf("facebook") >= 0 ? "facebook" : "");
+    return s ? s.slice(0, 40) : null;
+  }
+
+  function enregistre(ligne) {
+    var sb = DEFI.supabase;
+    try {
+      // keepalive : l'envoi part même si elle quitte la page tout de suite
+      fetch(sb.url + "/rest/v1/" + sb.table, {
+        method: "POST", keepalive: true,
+        headers: { apikey: sb.key, Authorization: "Bearer " + sb.key,
+                   "Content-Type": "application/json", Prefer: "return=minimal" },
+        body: JSON.stringify(ligne)
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var p = prenom.value.trim(), e = email.value.trim(), w = wa.value.trim();
+    if (!p) return montreErreur("Écris ton prénom.", [prenom]);
+    if (!e && !w) return montreErreur("Donne ton e-mail ou ton numéro WhatsApp.", [email, wa]);
+    if (e && !emailOk(e)) return montreErreur("Cet e-mail ne semble pas complet.", [email]);
+    if (w && !waOk(w)) return montreErreur("Ce numéro ne semble pas complet. Mets l'indicatif du pays, ex. +225…", [wa]);
+    if (!$("accord-defi").checked) return montreErreur("Coche la première case pour t'inscrire au défi.", []);
+    montreErreur("", []);
+    bouton.disabled = true; bouton.textContent = "Inscription…";
+
+    if (!$("site").value) {            // un robot remplit le piège : on ne l'enregistre pas
+      enregistre({
+        edition: DEFI.edition, prenom: p.slice(0, 60),
+        email: e || null, whatsapp: w || null, pays: pays.value || null,
+        accord_suite: $("accord-suite").checked,
+        accord_whatsapp: !!w && $("accord-wa").checked,
+        source: source()
+      });
+    }
+    succes(p, !!e);
+  });
+
+  // ── après l'inscription ───────────────────────────────────────
+  function succes(p, avecEmail) {
+    $("t-succes").textContent = "C'est fait, " + p + " 🤍";
+    $("texte-depart").textContent = texteDepart();
+    $("email-envoye").classList.toggle("cache", !avecEmail);
+    $("lien-kit").href = DEFI.kit;
+    $("lien-calendrier").href = DEFI.calendrier;
+    $("lien-kit-impression").href = DEFI.kitImpression;
+    $("lien-calendrier-impression").href = DEFI.calendrierImpression;
+    $("lien-calendrier-en-ligne").href = DEFI.calendrierEnLigne;
+    if (DEFI.groupeUrl) { $("lien-groupe").href = DEFI.groupeUrl; $("bloc-groupe").classList.remove("cache"); }
+    if (DEFI.whatsappUrl) { $("lien-whatsapp").href = DEFI.whatsappUrl; $("bloc-whatsapp").classList.remove("cache"); }
+    if (jour1 && joursAvant(jour1) >= 0) $("agenda").classList.remove("cache");
+    try { localStorage.setItem("defi-schicgirl-" + DEFI.edition, "1"); } catch (e) {}
+    $("vue-inscription").classList.add("cache");
+    $("vue-succes").classList.remove("cache");
+    window.scrollTo(0, 0);
+    $("t-succes").focus();
+  }
+
+  // Le jour 1 dans l'agenda du téléphone (fichier .ics)
+  $("agenda").addEventListener("click", function () {
+    if (!jour1) return;
+    var f = function (d) { return d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0"); };
+    var fin = new Date(jour1); fin.setDate(fin.getDate() + 1);
+    var ics = [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Schicgirl//Defi 30 jours//FR",
+      "BEGIN:VEVENT", "UID:defi-" + DEFI.edition + "@schicgirl.me",
+      "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z",
+      "DTSTART;VALUE=DATE:" + f(jour1), "DTEND;VALUE=DATE:" + f(fin),
+      "SUMMARY:Défi Schicgirl 30 jours — Jour 1",
+      "DESCRIPTION:Mission de la semaine 1 : comprendre tes cheveux. schicgirl.me/defi",
+      "BEGIN:VALARM", "TRIGGER:-PT12H", "ACTION:DISPLAY", "DESCRIPTION:Demain\\, le défi commence", "END:VALARM",
+      "END:VEVENT", "END:VCALENDAR"
+    ].join("\r\n");
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+    a.download = "defi-schicgirl-jour-1.ics";
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  $("partager").addEventListener("click", function () {
+    var texte = "Je fais le Défi 30 Jours Schicgirl pour mes cheveux. C'est gratuit, tu viens avec moi ? 🤍";
+    var url = "https://schicgirl.me/defi/?src=amie";
+    if (navigator.share) { navigator.share({ title: "Défi 30 Jours Schicgirl", text: texte, url: url }).catch(function () {}); return; }
+    window.open("https://wa.me/?text=" + encodeURIComponent(texte + " " + url), "_blank", "noopener");
+  });
+
+  // la case WhatsApp n'a de sens qu'avec un numéro
+  function majCaseWa() { $("ligne-accord-wa").style.display = wa.value.trim() ? "" : "none"; }
+  wa.addEventListener("input", majCaseWa); majCaseWa();
+})();
+</script>
+</body>
+</html>

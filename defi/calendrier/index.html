@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon Calendrier du Défi</title>
+<meta name="description" content="Le calendrier à cocher du Défi 30 Jours Schicgirl : coche chaque jour et tes 4 gestes, directement sur ton téléphone.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#013538">
+<link rel="icon" href="/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   LE CALENDRIER À COCHER — Défi 30 Jours
+   Les coches restent dans le navigateur de la participante
+   (localStorage). Rien n'est envoyé. Les jours et la date de
+   départ viennent de /defi/defi-config.js.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --creme:#F6E7DB; --creme-2:#FBF3EC; --vert:#013538; --vert-2:#0B4A4E; --vert-clair:#E3EEEC;
+  --or:#D9A84D; --or-fonce:#A87A2A; --texte:#1F2A2B; --doux:#5E6B6C; --blanc:#FFFFFF; --ligne:#E6D3C3;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--creme);color:var(--texte);font:400 16px/1.55 Poppins,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding:14px 16px 40px}
+header{display:flex;justify-content:space-between;align-items:center;padding:2px 0 12px}
+.marque{font:700 24px/1 "Cormorant Garamond",serif;color:var(--vert);text-decoration:none}
+.marque em{color:var(--or-fonce)}
+.tag{font:600 11px Poppins,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--vert);border:1px solid var(--vert);border-radius:999px;padding:4px 10px}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;color:var(--vert);line-height:1.12;margin:0 0 6px}
+h1{font-size:36px}
+h1 em{color:var(--or-fonce)}
+h2{font-size:26px}
+.sur{font:600 12px Poppins,sans-serif;letter-spacing:1.8px;text-transform:uppercase;color:var(--or-fonce);margin:0 0 4px}
+.statut{font-weight:600;color:var(--vert);margin:0 0 12px}
+.progres{height:10px;background:var(--ligne);border-radius:99px;overflow:hidden}
+.progres span{display:block;height:100%;width:0;background:var(--or);transition:width .3s ease}
+.progres-txt{font-size:14px;color:var(--doux);margin:6px 0 16px}
+.carte{background:var(--blanc);border-radius:18px;padding:18px 16px;box-shadow:0 6px 24px rgba(1,53,56,.08);margin:0 0 16px}
+.jour-tete{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.jour-num{font:700 42px/1 "Cormorant Garamond",serif;color:var(--vert)}
+.jour-titre{font:600 12px Poppins,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--or-fonce)}
+.jour-semaine{font-size:13px;color:var(--doux);width:100%}
+.jour-tache{font-size:17px;margin:8px 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:999px;padding:14px 20px;font:600 16px Poppins,sans-serif;cursor:pointer;text-decoration:none;text-align:center}
+.btn-fait{background:var(--creme-2);color:var(--vert);border:2px solid var(--vert)}
+.btn-fait[aria-pressed="true"]{background:var(--vert);color:var(--creme)}
+.btn-contour{background:transparent;color:var(--vert);border:1.5px solid var(--vert)}
+.btn-or{background:var(--or);color:var(--vert)}
+.petit{font-size:14px;padding:11px 16px}
+.gestes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 0}
+.geste{display:flex;align-items:center;gap:8px;min-height:52px;border:1.5px solid var(--ligne);background:var(--creme-2);border-radius:14px;padding:8px 10px;font:500 14px/1.25 Poppins,sans-serif;color:var(--texte);cursor:pointer;text-align:left}
+.geste .ic{font-size:20px;flex:0 0 auto}
+.geste[aria-pressed="true"]{border-color:var(--vert);background:var(--vert-clair);color:var(--vert);font-weight:600}
+.geste[aria-pressed="true"]::after{content:"✓";margin-left:auto;font-weight:700}
+label.note-l{display:block;font-weight:600;font-size:14px;color:var(--vert);margin:16px 0 6px}
+textarea{width:100%;min-height:80px;font:400 15px/1.45 Poppins,sans-serif;color:var(--texte);background:var(--creme-2);border:1.5px solid var(--ligne);border-radius:12px;padding:10px 12px;resize:vertical}
+textarea:focus,input:focus{outline:2px solid var(--or);outline-offset:1px}
+.enregistre{font-size:12px;color:var(--doux);min-height:18px;margin:4px 0 0}
+.nav-jours{display:flex;gap:8px;margin:14px 0 0}
+.nav-jours .btn{width:auto;flex:1}
+.semaine-bloc{margin:0 0 14px}
+.semaine-bloc h3{font-size:19px;margin:0 0 8px}
+.semaine-bloc h3 small{font:600 11px Poppins,sans-serif;letter-spacing:1.4px;text-transform:uppercase;color:var(--or-fonce);display:block}
+.tuiles{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.tuile{position:relative;aspect-ratio:1;border-radius:12px;border:1.5px solid var(--ligne);background:var(--creme-2);font:700 17px/1 "Cormorant Garamond",serif;color:var(--vert);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.tuile.fait{background:var(--vert);border-color:var(--vert);color:var(--creme)}
+.tuile.fait::after{content:"✓";position:absolute;right:4px;top:2px;font:600 10px Poppins,sans-serif;color:var(--or)}
+.tuile.aujourdhui{box-shadow:0 0 0 2.5px var(--or)}
+.tuile[aria-current="true"]{outline:2.5px solid var(--vert);outline-offset:2px}
+.tuile.futur{opacity:.55}
+.legende{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--doux);margin:4px 0 0}
+.legende i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:4px}
+.pile{display:grid;gap:10px}
+.reglage summary{cursor:pointer;font-weight:600;color:var(--vert)}
+.reglage input[type=date]{font:400 16px Poppins,sans-serif;padding:10px;border:1.5px solid var(--ligne);border-radius:12px;background:var(--creme-2);color:var(--texte);width:100%;margin:8px 0}
+.avertissement{background:#FBE9E4;color:#6b2416;border-radius:12px;padding:10px 12px;font-size:14px;margin:0 0 14px}
+.discret{font-size:13px;color:var(--doux);text-align:center;margin:10px 0 0}
+.discret a{color:var(--vert)}
+.cache{display:none!important}
+footer{text-align:center;font-size:12px;color:var(--doux);margin-top:18px}
+footer a{color:var(--vert)}
+@media (max-width:360px){.tuiles{gap:4px}.tuile{font-size:15px;border-radius:9px}.gestes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="marque" href="/defi/">Schic<em>girl</em></a>
+    <span class="tag">#DefiSchicgirl30</span>
+  </header>
+
+  <p class="sur">Défi 30 Jours</p>
+  <h1>Mon <em>calendrier</em></h1>
+  <p class="statut" id="statut"></p>
+  <div class="progres" aria-hidden="true"><span id="barre"></span></div>
+  <p class="progres-txt" id="progres-txt"></p>
+
+  <p class="avertissement cache" id="avert-stockage">Ton navigateur n'enregistre pas les coches (navigation privée ?). Ouvre cette page dans ton navigateur habituel pour garder ta progression.</p>
+
+  <!-- ═══ LE JOUR ═══ -->
+  <section class="carte" id="carte-jour" aria-live="polite">
+    <div class="jour-tete">
+      <span class="jour-num" id="j-num"></span>
+      <span class="jour-titre" id="j-titre"></span>
+      <span class="jour-semaine" id="j-semaine"></span>
+    </div>
+    <p class="jour-tache" id="j-tache"></p>
+    <button class="btn btn-fait" id="j-fait" type="button" aria-pressed="false"></button>
+
+    <div class="gestes" id="j-gestes" role="group" aria-label="Mes 4 gestes du jour"></div>
+
+    <label class="note-l" for="j-note">Ma note du jour <span style="font-weight:400;color:var(--doux)">(facultatif)</span></label>
+    <textarea id="j-note" maxlength="600" placeholder="Ce que j'ai observé, ce qui a marché…"></textarea>
+    <p class="enregistre" id="j-enregistre"></p>
+
+    <div class="nav-jours">
+      <button class="btn btn-contour petit" id="precedent" type="button">← Jour précédent</button>
+      <button class="btn btn-contour petit" id="suivant" type="button">Jour suivant →</button>
+    </div>
+  </section>
+
+  <!-- ═══ LES 30 JOURS ═══ -->
+  <section class="carte">
+    <h2>Mes 30 jours</h2>
+    <div id="semaines"></div>
+    <div class="legende">
+      <span><i style="background:var(--vert)"></i>fait</span>
+      <span><i style="box-shadow:0 0 0 2px var(--or);background:var(--creme-2)"></i>aujourd'hui</span>
+    </div>
+  </section>
+
+  <!-- ═══ ACTIONS ═══ -->
+  <section class="carte">
+    <div class="pile">
+      <button class="btn btn-or" id="copier" type="button">📋 Copier mon bilan pour le groupe</button>
+      <a class="btn btn-contour cache" id="lien-groupe" target="_blank" rel="noopener">Aller dans le groupe du défi</a>
+      <a class="btn btn-contour" id="lien-kit" target="_blank" rel="noopener">📄 Mon kit de départ</a>
+    </div>
+
+    <details class="reglage" style="margin-top:16px">
+      <summary>J'ai commencé plus tard</summary>
+      <p style="margin:8px 0 0;font-size:14px">Choisis ton propre jour 1 : le calendrier suit ton rythme.</p>
+      <input type="date" id="mon-debut" aria-label="Mon jour 1">
+      <button class="btn btn-contour petit" id="reset-debut" type="button">Revenir à la date du défi</button>
+    </details>
+
+    <p class="discret">🔒 Tes coches et tes notes restent sur ce téléphone. Rien n'est envoyé.<br>
+      Astuce : ajoute cette page à ton écran d'accueil (menu du navigateur → « Ajouter à l'écran d'accueil »).</p>
+  </section>
+
+  <footer>
+    <p>Aime ta couronne. Écris ton histoire. · <a href="/defi/">Le défi</a> · <a href="/fr/confidentialite/">Confidentialité</a></p>
+    <p>© 2024–2026 Schicgirl</p>
+  </footer>
+</div>
+
+<script src="/defi/defi-config.js?v=1"></script>
+<script>
+(function () {
+  function $(id) { return document.getElementById(id); }
+  var CLE = "defi-schicgirl-calendrier-" + DEFI.edition;
+
+  // ── mémoire (le navigateur de la participante) ───────────────
+  var stockageOk = true;
+  function charger() {
+    try {
+      var brut = localStorage.getItem(CLE);
+      var d = brut ? JSON.parse(brut) : null;
+      if (d && typeof d === "object" && d.jours) return d;
+    } catch (e) { stockageOk = false; }
+    return { debut: null, jours: {} };
+  }
+  function sauver() {
+    try { localStorage.setItem(CLE, JSON.stringify(etat)); stockageOk = true; }
+    catch (e) { stockageOk = false; }
+    $("avert-stockage").classList.toggle("cache", stockageOk);
+    return stockageOk;
+  }
+  var etat = charger();
+
+  // ── les dates ────────────────────────────────────────────────
+  function versDate(iso) {
+    var p = (iso || "").split("-");
+    if (p.length !== 3) return null;
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return isNaN(d) ? null : d;
+  }
+  function aujourdHui() { var d = new Date(); d.setHours(0, 0, 0, 0); return d; }
+  function jourDebut() { return versDate(etat.debut) || versDate(DEFI.dateDebut); }
+  function numeroDuJour() {           // 1 à 30 pendant le défi, <1 avant, >30 après
+    var d = jourDebut();
+    if (!d) return 1;
+    return Math.round((aujourdHui() - d) / 86400000) + 1;
+  }
+  function borne(n) { return Math.max(1, Math.min(30, n)); }
+
+  var selection = borne(numeroDuJour());
+
+  function jour(n) {
+    if (!etat.jours[n]) etat.jours[n] = { fait: false, g: {}, note: "" };
+    return etat.jours[n];
+  }
+  function nbFaits() {
+    var c = 0;
+    for (var n = 1; n <= 30; n++) if (etat.jours[n] && etat.jours[n].fait) c++;
+    return c;
+  }
+
+  // ── en-tête : où j'en suis ──────────────────────────────────
+  function peindreStatut() {
+    var n = numeroDuJour(), d = jourDebut(), txt;
+    if (n < 1) {
+      var reste = 1 - n;
+      txt = "Le défi commence " + (reste === 1 ? "demain" : "dans " + reste + " jours") +
+            (d ? ", le " + d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }) : "") + ".";
+    } else if (n > 30) {
+      txt = "Défi terminé. Bravo d'être allée jusqu'ici 🤍";
+    } else {
+      var s = JOURS[n - 1][1];
+      txt = "Aujourd'hui : jour " + n + " sur 30 · semaine " + s;
+    }
+    $("statut").textContent = txt;
+    var f = nbFaits();
+    $("barre").style.width = Math.round(f / 30 * 100) + "%";
+    $("progres-txt").textContent = f + (f > 1 ? " jours cochés" : " jour coché") + " sur 30";
+  }
+
+  // ── la carte du jour sélectionné ─────────────────────────────
+  var chrono;
+  function peindreJour() {
+    var j = JOURS[selection - 1], data = jour(selection);
+    $("j-num").textContent = selection;
+    $("j-titre").textContent = j[2];
+    $("j-semaine").textContent = "Semaine " + j[1] + " — " + SEMAINES[j[1]] +
+      (selection === numeroDuJour() ? " · aujourd'hui" : "");
+    $("j-tache").textContent = j[3];
+    $("j-fait").setAttribute("aria-pressed", data.fait ? "true" : "false");
+    $("j-fait").textContent = data.fait ? "✅ Jour " + selection + " fait" : "Je coche le jour " + selection;
+
+    var zone = $("j-gestes");
+    zone.innerHTML = "";
+    GESTES.forEach(function (g) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "geste";
+      b.setAttribute("aria-pressed", data.g[g[0]] ? "true" : "false");
+      b.innerHTML = '<span class="ic" aria-hidden="true"></span><span class="t"></span>';
+      b.querySelector(".ic").textContent = g[1];
+      b.querySelector(".t").textContent = g[2];
+      b.addEventListener("click", function () {
+        data.g[g[0]] = !data.g[g[0]];
+        sauver(); peindreJour();
+      });
+      zone.appendChild(b);
+    });
+
+    $("j-note").value = data.note || "";
+    $("j-enregistre").textContent = "";
+    $("precedent").disabled = selection === 1;
+    $("suivant").disabled = selection === 30;
+    $("precedent").style.visibility = selection === 1 ? "hidden" : "visible";
+    $("suivant").style.visibility = selection === 30 ? "hidden" : "visible";
+  }
+
+  // ── la grille des 30 jours ───────────────────────────────────
+  function peindreGrille() {
+    var zone = $("semaines"), n0 = numeroDuJour();
+    zone.innerHTML = "";
+    [1, 2, 3, 4].forEach(function (s) {
+      var bloc = document.createElement("div");
+      bloc.className = "semaine-bloc";
+      var h = document.createElement("h3");
+      h.innerHTML = "<small></small>";
+      h.querySelector("small").textContent = "Semaine " + s;
+      h.appendChild(document.createTextNode(SEMAINES[s]));
+      bloc.appendChild(h);
+      var tuiles = document.createElement("div");
+      tuiles.className = "tuiles";
+      JOURS.filter(function (j) { return j[1] === s; }).forEach(function (j) {
+        var n = j[0], b = document.createElement("button");
+        b.type = "button";
+        b.className = "tuile" + (etat.jours[n] && etat.jours[n].fait ? " fait" : "") +
+                      (n === n0 ? " aujourdhui" : "") + (n > n0 ? " futur" : "");
+        b.textContent = n;
+        b.setAttribute("aria-label", "Jour " + n + " : " + j[2] + (etat.jours[n] && etat.jours[n].fait ? ", fait" : ""));
+        if (n === selection) b.setAttribute("aria-current", "true");
+        b.addEventListener("click", function () {
+          selection = n; peindreJour(); peindreGrille();
+          $("carte-jour").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        tuiles.appendChild(b);
+      });
+      bloc.appendChild(tuiles);
+      zone.appendChild(bloc);
+    });
+  }
+
+  function toutPeindre() { peindreStatut(); peindreJour(); peindreGrille(); }
+
+  // ── les actions ──────────────────────────────────────────────
+  $("j-fait").addEventListener("click", function () {
+    var data = jour(selection);
+    data.fait = !data.fait;
+    sauver();
+    toutPeindre();
+  });
+
+  $("j-note").addEventListener("input", function () {
+    jour(selection).note = this.value;
+    clearTimeout(chrono);
+    chrono = setTimeout(function () {
+      $("j-enregistre").textContent = sauver() ? "Note enregistrée ✓" : "";
+    }, 500);
+  });
+
+  $("precedent").addEventListener("click", function () { if (selection > 1) { selection--; peindreJour(); peindreGrille(); } });
+  $("suivant").addEventListener("click", function () { if (selection < 30) { selection++; peindreJour(); peindreGrille(); } });
+
+  $("copier").addEventListener("click", function () {
+    var n = borne(numeroDuJour()), faits = nbFaits();
+    var compte = {};
+    GESTES.forEach(function (g) { compte[g[0]] = 0; });
+    var jusque = Math.max(1, Math.min(30, numeroDuJour()));
+    for (var k = 1; k <= jusque; k++) {
+      var d = etat.jours[k];
+      if (d) GESTES.forEach(function (g) { if (d.g[g[0]]) compte[g[0]]++; });
+    }
+    var lignes = [
+      "Mon bilan #DefiSchicgirl30 — jour " + n + " 🤍",
+      "✅ " + faits + " jour" + (faits > 1 ? "s" : "") + " coché" + (faits > 1 ? "s" : "") + " sur 30"
+    ];
+    GESTES.forEach(function (g) { lignes.push(g[1] + " " + g[2] + " : " + compte[g[0]] + "/" + jusque); });
+    var texte = lignes.join("\n");
+    var bouton = this, fini = function () {
+      bouton.textContent = "Copié ✓ Colle-le dans le groupe";
+      setTimeout(function () { bouton.textContent = "📋 Copier mon bilan pour le groupe"; }, 2500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texte).then(fini, function () { window.prompt("Copie ce texte :", texte); });
+    } else { window.prompt("Copie ce texte :", texte); }
+  });
+
+  // mon propre jour 1
+  var champDebut = $("mon-debut");
+  function peindreDebut() {
+    var d = jourDebut();
+    if (d) champDebut.value = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  champDebut.addEventListener("change", function () {
+    if (!versDate(this.value)) return;
+    etat.debut = this.value;
+    sauver();
+    selection = borne(numeroDuJour());
+    toutPeindre();
+  });
+  $("reset-debut").addEventListener("click", function () {
+    etat.debut = null;
+    sauver();
+    selection = borne(numeroDuJour());
+    peindreDebut(); toutPeindre();
+  });
+
+  // liens
+  $("lien-kit").href = DEFI.kit;
+  if (DEFI.groupeUrl) { $("lien-groupe").href = DEFI.groupeUrl; $("lien-groupe").classList.remove("cache"); }
+
+  // premier affichage
+  try { localStorage.setItem(CLE + "-test", "1"); localStorage.removeItem(CLE + "-test"); }
+  catch (e) { stockageOk = false; }
+  $("avert-stockage").classList.toggle("cache", stockageOk);
+  peindreDebut();
+  toutPeindre();
+})();
+</script>
+</body>
+</html>

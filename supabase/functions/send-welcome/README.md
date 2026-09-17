@@ -61,12 +61,28 @@ Supabase → **Database → Webhooks** → *Create a new hook* :
 
 ---
 
+## 6) Le Défi 30 Jours (même fonction, deuxième webhook)
+
+La même fonction envoie aussi l'email du défi (kit de départ + calendrier + lien du groupe).
+
+1. Lance une fois `supabase/DEFI - inscriptions au defi 30 jours (a lancer une fois).sql`.
+2. Dans `index.ts`, remplis l'objet `DEFI` en haut : `dateDebut` et `groupeUrl`.
+   Redéploie la fonction (colle le nouveau `index.ts` → *Deploy*).
+3. Supabase → **Database → Webhooks** → *Create a new hook* :
+   - **Name** : `defi-email` · **Table** : `defi_inscriptions` · **Events** : ☑ *Insert*
+   - **Type** : *Supabase Edge Functions* → `send-welcome`
+   - **HTTP Headers** : `x-webhook-secret` = la même valeur que `WEBHOOK_SECRET`
+4. Teste sur `schicgirl.me/defi` avec **ton** email.
+
+La fonction reconnaît la table d'où vient l'inscription : `signups` reçoit toujours
+les 4 guides, `defi_inscriptions` reçoit le kit du défi.
+
 ### Ce que fait la fonction
 - Reçoit UNIQUEMENT le nouvel inscrit (jamais toute la liste).
 - Vérifie le secret `x-webhook-secret` → personne ne peut l'utiliser pour spammer.
 - Choisit FR ou EN selon `lang`, ignore proprement les inscrits « téléphone seul » (pas d'email).
 - Envoie les 4 guides + un lien doux vers *Hydratée/Hydrated*.
-- `reply_to` pointe vers ton Gmail → les réponses te reviennent.
+- `reply_to` pointe vers `contacte.schicgirl@gmail.com` → les réponses te reviennent, sans montrer ton nom réel.
 
 ### Alternative plus simple (si un jour tu préfères)
 Un outil d'emailing (MailerLite, Brevo…) a des séquences de bienvenue intégrées, sans code.

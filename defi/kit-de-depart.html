@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit de départ — Défi 30 Jours Schicgirl</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Source du PDF « Schicgirl-Defi-30-jours-Kit-de-depart.pdf ».
+   Pour refaire le PDF : python tools/fabriquer-pdf-defi.py */
+@page{size:A4;margin:0}
+:root{--creme:#F6E7DB;--creme-2:#FBF3EC;--vert:#013538;--or:#D9A84D;--or-fonce:#A87A2A;--texte:#1F2A2B;--doux:#5E6B6C;--ligne:#D9C4B0}
+*{box-sizing:border-box}
+html,body{margin:0;background:#ddd}
+body{font:400 10.5pt/1.5 Poppins,sans-serif;color:var(--texte);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;margin:0 auto 8mm;background:var(--creme);padding:16mm 16mm 14mm;position:relative;overflow:hidden;page-break-after:always}
+.page:last-child{page-break-after:auto}
+@media print{html,body{background:none}.page{margin:0}}
+.page::before{content:"";position:absolute;left:12mm;right:12mm;top:8mm;height:.6mm;background:var(--or)}
+.pied{position:absolute;left:16mm;right:16mm;bottom:8mm;display:flex;justify-content:space-between;font-size:8pt;color:var(--doux)}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;color:var(--vert);margin:0 0 3mm;line-height:1.1}
+h1{font-size:40pt}
+h1 em{color:var(--or-fonce)}
+h2{font-size:24pt;margin-top:1mm}
+h3{font-size:15pt;margin-top:5mm}
+.sur{font:600 8.5pt Poppins,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--or-fonce);margin:0 0 2mm}
+p{margin:0 0 2.5mm}
+.boite{background:#fff;border-radius:4mm;padding:5mm 6mm;margin:0 0 4mm}
+.vert{background:var(--vert);color:var(--creme)}
+.vert h3{color:#F1DDB3;margin-top:0}
+ul{margin:0 0 2mm;padding-left:5mm}
+li{margin:0 0 1.2mm}
+.grille{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.semaines{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin:3mm 0 5mm}
+.semaines div{background:#fff;border-radius:3mm;padding:3.5mm}
+.semaines b{display:block;font:600 7.5pt Poppins,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--or-fonce)}
+.semaines span{font:600 13pt/1.15 "Cormorant Garamond",serif;color:var(--vert)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:3mm;overflow:hidden;margin:0 0 4mm}
+th,td{border:.3mm solid var(--ligne);padding:2.4mm 3mm;text-align:left;vertical-align:top;font-size:9.5pt}
+th{background:var(--vert);color:var(--creme);font-weight:600}
+.ecrire{height:9mm}
+.lignes div{border-bottom:.3mm solid var(--ligne);height:7mm}
+.case{display:inline-block;width:3.6mm;height:3.6mm;border:.35mm solid var(--vert);border-radius:.8mm;vertical-align:-.5mm;margin-right:2mm;background:#fff}
+.alerte{border-left:1.2mm solid #8A2E1E;background:#FBE9E4;border-radius:2mm;padding:3.5mm 5mm;color:#6b2416;font-size:9.5pt}
+.signature{display:flex;gap:6mm;margin-top:4mm}
+.signature div{flex:1;border-bottom:.3mm solid var(--vert);height:10mm;font-size:8pt;color:var(--doux);padding-top:11mm}
+.num{display:inline-flex;align-items:center;justify-content:center;width:7mm;height:7mm;border-radius:50%;background:var(--or);color:var(--vert);font-weight:600;margin-right:2.5mm}
+.erreur-bloc{background:#fff;border-radius:3mm;padding:3.5mm 5mm;margin:0 0 2.5mm}
+.erreur-bloc p{margin:0}
+.erreur-bloc b{color:var(--vert)}
+
+/* ── Version à imprimer (?impression=1) : fond blanc, peu d'encre ── */
+.impression body{background:#fff}
+.impression .page{background:#fff}
+.impression .boite,.impression .erreur-bloc,.impression .semaines div{background:#fff;border:.35mm solid var(--ligne)}
+.impression .vert{background:#fff;color:var(--texte);border:.6mm solid var(--vert)}
+.impression .vert h3{color:var(--vert)}
+.impression th{background:#fff;color:var(--vert);border-bottom:.6mm solid var(--vert)}
+.impression .num{background:#fff;border:.4mm solid var(--or-fonce);color:var(--vert)}
+.impression .alerte{background:#fff;border:.3mm solid #8A2E1E;border-left-width:1.2mm}
+</style>
+<script>if(/impression/.test(location.search))document.documentElement.classList.add("impression")</script>
+
+</head>
+<body>
+
+<!-- ═══ PAGE 1 — BIENVENUE ═══ -->
+<section class="page">
+  <p class="sur" style="margin-top:6mm">Schicgirl · #DefiSchicgirl30</p>
+  <h1>Le Défi 30 Jours<br><em>Hydratation</em> et Rétention</h1>
+  <p style="font-size:12pt;max-width:160mm">Ton kit de départ. Garde-le sur ton téléphone ou imprime-le : tu en auras besoin le jour 1, le jour 7 et le jour 30. Et coche tes jours sur ton téléphone : <b>schicgirl.me/defi/calendrier</b></p>
+
+  <div class="semaines">
+    <div><b>Semaine 1</b><span>Comprendre tes cheveux</span></div>
+    <div><b>Semaine 2</b><span>L'hydratation qui tient</span></div>
+    <div><b>Semaine 3</b><span>Protéger et arrêter la casse</span></div>
+    <div><b>Semaine 4</b><span>Consolider et mesurer</span></div>
+  </div>
+
+  <div class="grille">
+    <div class="boite">
+      <h3 style="margin-top:0">Comment ça marche</h3>
+      <ul>
+        <li><b>Lundi</b> : la mission de la semaine</li>
+        <li><b>Mercredi</b> : une recette ou une technique</li>
+        <li><b>Vendredi</b> : une erreur à corriger</li>
+        <li><b>Dimanche</b> : le bilan de la semaine</li>
+        <li>Les autres jours : un petit rappel</li>
+      </ul>
+      <p style="margin:0">Tout se passe dans le <b>groupe Facebook du défi</b>.</p>
+    </div>
+    <div class="boite">
+      <h3 style="margin-top:0">Les 3 règles du défi</h3>
+      <p><span class="num">1</span>On ne cherche pas la perfection. On cherche une semaine meilleure que la précédente.</p>
+      <p><span class="num">2</span>On observe avant de changer de produit.</p>
+      <p style="margin:0"><span class="num">3</span>On n'attend pas de miracle : on installe des habitudes.</p>
+    </div>
+  </div>
+
+  <div class="boite vert">
+    <h3>Où poser tes questions</h3>
+    <p>Pose-les <b>dans le groupe</b>, pas en message privé : ta réponse aidera aussi celles qui se posent la même question. Chaque dimanche, le bilan reprend les questions les plus fréquentes de la semaine.</p>
+    <p style="margin:0">Et entraidez-vous : celle qui a trouvé sa porosité hier peut guider celle qui commence aujourd'hui.</p>
+  </div>
+
+  <h3>Mon engagement</h3>
+  <p>Pendant 30 jours, je m'occupe de mes cheveux avec méthode. Si je rate un jour, je reprends le lendemain, sans culpabiliser.</p>
+  <div class="signature"><div>Mon prénom</div><div>Mon jour 1</div><div>Ce que j'espère changer</div></div>
+
+  <div class="pied"><span>Défi 30 Jours · Kit de départ</span><span>Schicgirl · 1</span></div>
+</section>
+
+<!-- ═══ PAGE 2 — LE MATÉRIEL ═══ -->
+<section class="page">
+  <p class="sur" style="margin-top:4mm">Avant le jour 1</p>
+  <h2>Ce qu'il te faut</h2>
+  <p>Tu as sûrement déjà presque tout. <b>Cinq produits au maximum. Pas quinze.</b></p>
+
+  <div class="grille">
+    <div class="boite">
+      <h3 style="margin-top:0">Le matériel</h3>
+      <p><span class="case"></span>Un vaporisateur</p>
+      <p><span class="case"></span>Un peigne à dents larges</p>
+      <p><span class="case"></span>Une charlotte de douche</p>
+      <p><span class="case"></span>Un bonnet, un foulard ou une taie en satin</p>
+      <p style="margin:0"><span class="case"></span>Des pinces pour faire des sections</p>
+    </div>
+    <div class="boite">
+      <h3 style="margin-top:0">Les produits : deux options</h3>
+      <p><b>Option A — je fabrique</b> (les recettes arrivent en semaine 2)</p>
+      <p><span class="case"></span>Eau · <span class="case"></span>Gel d'aloe vera pur<br><span class="case"></span>Glycérine végétale · <span class="case"></span>Une huile · <span class="case"></span>Un beurre</p>
+      <p><b>Option B — j'utilise des produits tout faits</b></p>
+      <p style="margin:0"><span class="case"></span>Un shampooing doux · <span class="case"></span>Un après-shampooing démêlant<br><span class="case"></span>Un soin sans rinçage (leave-in) · <span class="case"></span>Une huile ou un beurre</p>
+    </div>
+  </div>
+
+  <h3>Les recettes maison, en sécurité</h3>
+  <div class="boite">
+    <ul>
+      <li><b>Petites quantités.</b> Tes recettes contiennent de l'eau et aucun conservateur : elles s'abîment vite.</li>
+      <li><b>Toujours au réfrigérateur</b>, dans un flacon propre, et jetées après le délai indiqué dans la recette.</li>
+      <li><b>Jette tout de suite</b> si l'odeur, la couleur ou la texture change.</li>
+      <li><b>Test de tolérance</b> avant la première utilisation : un peu de produit au pli du coude, attends 24 heures. Rougeur ou démangeaison ? Tu ne l'utilises pas.</li>
+    </ul>
+  </div>
+
+  <div class="alerte">
+    <b>Le défi ne remplace pas un médecin.</b> Chute soudaine, par touffes ou par plaques ; cuir chevelu douloureux, croûtes, saignements ; démangeaisons qui ne passent pas : consulte un médecin ou un dermatologue avant de commencer.
+  </div>
+
+  <div class="pied"><span>Défi 30 Jours · Kit de départ</span><span>Schicgirl · 2</span></div>
+</section>
+
+<!-- ═══ PAGE 3 — PHOTOS + OBSERVATION ═══ -->
+<section class="page">
+  <p class="sur" style="margin-top:4mm">Jour 1</p>
+  <h2>Ton point de départ</h2>
+
+  <h3 style="margin-top:2mm">Tes deux photos</h3>
+  <div class="boite">
+    <p><span class="case"></span><b>Photo 1</b> : cheveux mouillés, une mèche étirée doucement</p>
+    <p><span class="case"></span><b>Photo 2</b> : cheveux secs, coiffés comme d'habitude</p>
+    <p style="margin:0">Pour pouvoir comparer au jour 30 : <b>même pièce, même heure, même lumière (près d'une fenêtre), même angle.</b> Ces photos sont à toi. Tu décideras au jour 28 si tu veux les partager.</p>
+  </div>
+
+  <h3>Ma fiche d'observation — semaine 1</h3>
+  <p>Cette semaine, tu ne changes rien. Tu observes, comme une détective.</p>
+  <table>
+    <tr><th style="width:44%">Pendant le lavage du jour 1</th><th>Ce que j'observe</th></tr>
+    <tr><td>Mes cheveux mettent à se mouiller…<br><small>très longtemps · normalement · tout de suite</small></td><td class="ecrire"></td></tr>
+    <tr><td>Quand j'applique ma crème, elle…<br><small>reste en surface · pénètre · disparaît très vite</small></td><td class="ecrire"></td></tr>
+    <tr><td>Mes cheveux mettent à sécher…<br><small>des heures · normalement · très vite</small></td><td class="ecrire"></td></tr>
+    <tr><td>Le lendemain matin, ils sont…<br><small>souples · un peu secs · très secs</small></td><td class="ecrire"></td></tr>
+    <tr><td>Cheveux cassés dans le peigne<br><small>peu · moyen · beaucoup</small></td><td class="ecrire"></td></tr>
+  </table>
+
+  <h3>Ma porosité (jour 3)</h3>
+  <table>
+    <tr><th>Ce que tu as observé</th><th>Ta porosité</th><th>Ton défi</th></tr>
+    <tr><td>Mouille lentement, sèche lentement, le produit reste en surface</td><td><b>Faible</b></td><td>Faire <b>entrer</b> l'hydratation</td></tr>
+    <tr><td>Entre les deux</td><td><b>Moyenne</b></td><td><b>Garder</b> l'équilibre</td></tr>
+    <tr><td>Mouille vite, sèche vite, sec dès le lendemain</td><td><b>Élevée</b></td><td><b>Retenir</b> l'hydratation</td></tr>
+  </table>
+  <p style="font-size:9pt;color:var(--doux)">Le test du verre d'eau, fait seul, trompe souvent : un reste de produit sur le cheveu fausse le résultat. Ce que tu observes sur plusieurs lavages est plus parlant.</p>
+  <p><b>Ma porosité :</b> <span class="case"></span>faible <span class="case"></span>moyenne <span class="case"></span>élevée <span class="case"></span>pas encore sûre</p>
+
+  <div class="pied"><span>Défi 30 Jours · Kit de départ</span><span>Schicgirl · 3</span></div>
+</section>
+
+<!-- ═══ PAGE 4 — LES 3 ERREURS + L'ORDRE ═══ -->
+<section class="page">
+  <p class="sur" style="margin-top:4mm">À arrêter dès aujourd'hui</p>
+  <h2>Les 3 erreurs qui cassent tes cheveux</h2>
+
+  <div class="erreur-bloc"><p><span class="num">1</span><b>Démêler à sec.</b> Un cheveu sec n'a presque aucune élasticité : il casse au lieu de s'étirer.<br>→ Désormais : sur cheveux mouillés, avec un produit qui fait glisser, des pointes vers les racines.</p></div>
+  <div class="erreur-bloc"><p><span class="num">2</span><b>Dormir sans protection.</b> Toute la nuit, tes pointes frottent contre le coton, qui boit ton hydratation.<br>→ Désormais : bonnet, foulard ou taie en satin. Chaque nuit.</p></div>
+  <div class="erreur-bloc"><p><span class="num">3</span><b>Mettre l'huile sur cheveux secs.</b> L'huile n'hydrate pas : elle scelle ce qui est déjà là. Sur cheveux secs, elle garde la sécheresse.<br>→ Désormais : l'eau d'abord. Toujours.</p></div>
+
+  <h3>L'ordre qui change tout (semaine 2)</h3>
+  <table>
+    <tr><th>Ta porosité</th><th>Ta méthode</th><th>L'ordre</th></tr>
+    <tr><td>Élevée</td><td><b>LOC</b></td><td>Liquide → Huile → Crème</td></tr>
+    <tr><td>Faible</td><td><b>LCO</b></td><td>Liquide → Crème → Huile légère, avec un peu de chaleur pendant le soin profond</td></tr>
+    <tr><td>Moyenne</td><td><b>LOC d'abord</b></td><td>Si tes cheveux deviennent gras et plats, passe en LCO</td></tr>
+  </table>
+  <p><b>Sur cheveux mouillés</b>, pas secs. Porosité faible : mouille, puis presse doucement dans une serviette : mouillés, pas ruisselants.</p>
+
+  <h3>Mon bilan du jour 30</h3>
+  <div class="boite">
+    <p style="margin:0 0 1mm"><b>Ce qui a le plus changé :</b></p>
+    <div class="lignes"><div></div></div>
+    <p style="margin:3mm 0 1mm"><b>Les 3 habitudes que je garde :</b></p>
+    <div class="lignes"><div></div><div></div></div>
+    <p style="margin:3mm 0 0;font-size:9pt;color:var(--doux)">Envie de partager ton avant/après ? C'est toujours ton choix. Rien n'est publié sans ton accord écrit, et tu peux rester anonyme.</p>
+  </div>
+
+  <div class="pied"><span>Défi 30 Jours · Kit de départ · Éducatif, ne remplace pas un avis médical</span><span>Schicgirl · 4</span></div>
+</section>
+
+</body>
+</html>
