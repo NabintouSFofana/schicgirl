@@ -309,6 +309,46 @@
     }
   };
 
+  /* ── Defi 30 Jours : bandeau temporaire ──────────────────────
+     Visible en francais jusqu'au jour 30 inclus, puis il disparait
+     tout seul. Pour une nouvelle session : change les dates et
+     l'edition (la meme que dans /defi/defi-config.js).
+       [data-defi]       : montre seulement pendant le defi, en francais
+       [data-defi-lien]  : montre pendant le defi, dans les deux langues */
+  var DEFI_SITE = { debut: "2026-09-21", fin: "2026-10-20", url: "/defi/", edition: "2026-01" };
+  function isoDuJour() {
+    var d = new Date();
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  }
+  function bandeauDefi() {
+    var enCours = isoDuJour() <= DEFI_SITE.fin;
+    var actif = enCours && LANG === "fr";
+    $$("[data-defi]").forEach(function (el) { el.hidden = !actif; });
+    $$("[data-defi-lien]").forEach(function (el) { el.hidden = !enCours; });
+
+    var cle = "sg_defi_ferme_" + DEFI_SITE.edition, ferme = false;
+    try { ferme = localStorage.getItem(cle) === "1"; } catch (e) {}
+    var b = $("#bandeau-defi");
+    if (!actif || ferme) { if (b) b.parentNode.removeChild(b); return; }
+    if (b) return;
+
+    var commence = isoDuJour() >= DEFI_SITE.debut;
+    b = document.createElement("div");
+    b.id = "bandeau-defi";
+    b.className = "topstrip topstrip-defi";
+    b.innerHTML = '<span></span> <a href="' + DEFI_SITE.url + '">Je m\'inscris →</a>'
+                + '<button type="button" class="topstrip-x" aria-label="Fermer le bandeau">×</button>';
+    b.querySelector("span").textContent = commence
+      ? "🌿 Le Défi 30 Jours a commencé : tu peux encore le rejoindre, c'est gratuit."
+      : "🌿 Le Défi 30 Jours gratuit commence le lundi 21 septembre.";
+    b.querySelector(".topstrip-x").addEventListener("click", function () {
+      try { localStorage.setItem(cle, "1"); } catch (e) {}
+      b.parentNode.removeChild(b);
+    });
+    document.body.insertBefore(b, document.body.firstChild);
+  }
+  document.addEventListener("sg:lang", bandeauDefi);
+
   /* ── Demarrage ──────────────────────────────────────────── */
   function boot() {
     $$(".langtog button").forEach(function (b) {

@@ -233,10 +233,20 @@ a{color:inherit;text-decoration:none}
        note_fr / note_en   : une precision sous le titre (facultatif)
        url                 : la meme adresse dans les deux langues
        url_fr / url_en     : une adresse differente par langue
-       feature: true       : bouton dore (garder un seul)
+       feature: true       : bouton dore (seul le PREMIER bouton dore
+                             visible l'est vraiment)
+       jusqua: "AAAA-MM-JJ": le bouton disparait tout seul apres ce jour
        panel: "pay"        : ouvre le panneau "Comment payer"
      ═══════════════════════════════════════════════════════════ */
   var LINKS = [
+    /* Le Defi 30 Jours : en tete pendant le defi, puis il disparait
+       tout seul le 21 octobre, et Le Cercle redevient le bouton dore. */
+    { label_fr:"🌿 Défi 30 Jours gratuit — je m'inscris",
+      label_en:"🌿 Free 30-Day Hair Challenge (in French)",
+      note_fr:"On commence le lundi 21 septembre. Kit et calendrier offerts, tu peux nous rejoindre à tout moment.",
+      note_en:"Starts Monday, September 21. Free kit and calendar, join anytime.",
+      url:"https://schicgirl.me/defi/", feature:true, jusqua:"2026-10-20" },
+
     { label_fr:"S'abonner au Cercle", label_en:"Subscribe to The Circle",
       url_fr:"https://selar.com/le_cercle_schicgirl",
       url_en:"https://selar.com/the_circle_schicgirl", feature:true },
@@ -379,12 +389,16 @@ a{color:inherit;text-decoration:none}
     $("#footNote").textContent = u.foot;
     $("#links").setAttribute("aria-label", u.nav);
 
-    var html = "";
+    var html = "", dore = false;
+    var auj = new Date(), iso = auj.getFullYear() + "-" + ("0"+(auj.getMonth()+1)).slice(-2) + "-" + ("0"+auj.getDate()).slice(-2);
     for (var i=0;i<LINKS.length;i++){
       var L = LINKS[i];
+      if (L.jusqua && iso > L.jusqua) continue;          // bouton date : expire
       var label = esc(lang === "fr" ? L.label_fr : L.label_en);
       var note  = lang === "fr" ? L.note_fr : L.note_en;
-      var cls = "link" + (L.feature ? " feature" : "");
+      var estDore = L.feature && !dore;                  // un seul bouton dore
+      if (estDore) dore = true;
+      var cls = "link" + (estDore ? " feature" : "");
       var texte = '<span class="lbl"><span>'+label+'</span>'
                 + (note ? '<small>'+esc(note)+'</small>' : '')
                 + '</span>';
