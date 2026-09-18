@@ -27,24 +27,8 @@ PAGES = [
    "desc_fr": "Le système complet pour hydrater durablement les cheveux crépus Type 4 (4A 4B 4C) : méthode LOC/LCO, porosité, recettes et routine.",
    "desc_en": "The complete system to deeply hydrate Type 4 coily hair (4A 4B 4C): the LOC/LCO method, porosity, recipes and a lasting routine."},
 
-  {"src": "coiffures.html", "slug_fr": "coiffures-protectrices", "slug_en": "protective-styles",
-   "ebook": _ebook("assets/blog/coiffures-protectrices.jpg", "assets/blog/coiffures-protectrices.jpg", "https://selar.com/coiffures-protectrices", "https://selar.com/hair-styles",
-                   "5€", "$6", "≈ 3 500 FCFA", "Protéger mes cheveux →", "Protect my hair →", "5.00", "6.00", "coiffures"),
-   "name_fr": "Coiffures Protectrices", "name_en": "Protective Styles", "cat_fr": "Ebooks", "cat_en": "Ebooks",
-   "title_fr": "Coiffures Protectrices Cheveux Crépus Type 4 — Sans Casse | Schicgirl",
-   "title_en": "Protective Styles for Type 4 Coily Hair — No Breakage | Schicgirl",
-   "desc_fr": "Réussir ses coiffures protectrices sans sécheresse ni casse sur cheveux crépus Type 4 : le cycle avant/pendant/après, choix des styles et entretien.",
-   "desc_en": "Master protective styles on Type 4 coily hair without dryness or breakage: the before/during/after cycle, choosing styles and upkeep."},
-
-  {"src": "stop-cheveux-secs.html", "slug_fr": "cheveux-secs", "slug_en": "dry-hair",
-   "ebook": _ebook("assets/og-cheveux-secs-fr.png", "assets/og-dry-hair-en.png", "https://selar.com/stop-cheveux-secs", "https://selar.com/stop-dry-hair",
-                   "5€", "$6", "≈ 3 500 FCFA", "Commencer pour 5€ →", "Start for $6 →", "5.00", "6.00", "stop-cheveux-secs"),
-   "name_fr": "Stop aux Cheveux Secs", "name_en": "Stop Dry Hair", "cat_fr": "Ebooks", "cat_en": "Ebooks",
-   "title_fr": "Stop aux Cheveux Secs — En Finir avec la Sécheresse Type 4 | Schicgirl",
-   "title_en": "Stop Dry Hair — End Type 4 Coily Dryness for Good | Schicgirl",
-   "desc_fr": "Le guide express pour comprendre pourquoi tes cheveux crépus sèchent et l'arrêter dès aujourd'hui. Système simple et fiches prêtes à l'emploi.",
-   "desc_en": "The express guide to understand why your coily hair dries out and stop it today. A simple system and ready-to-use sheets for Type 4."},
-
+  # (coiffures.html : produit retire, la page est une redirection — sept. 2026)
+  # (stop-cheveux-secs.html : produit retire, la page est une redirection — sept. 2026)
   {"src": "transition.html", "slug_fr": "transition-capillaire", "slug_en": "hair-transition",
    "ebook": _ebook("assets/transition-fr.webp", "assets/transition-en.webp", "https://selar.com/transition-fr", "https://selar.com/transition-en",
                    "7€", "$7", "≈ 4 500 FCFA", "Réussir ma transition →", "Nail my transition →", "7.00", "7.00", "transition"),
@@ -54,15 +38,7 @@ PAGES = [
    "desc_fr": "Réussir sa transition du défrisé au naturel sans big chop forcé : gérer deux textures, éviter la casse, plan 90 jours et coupes.",
    "desc_en": "Go from relaxed to natural without a forced big chop: manage two textures, avoid breakage, a 90-day plan and trims."},
 
-  {"src": "planner.html", "slug_fr": "planner", "slug_en": "planner",
-   "ebook": _ebook("assets/planner-cover-fr.png", "assets/planner-cover-en.png", "https://selar.com/studio-planner", "https://selar.com/studio-planner",
-                   "9€", "$10", "≈ 6 000 FCFA", "Obtenir le Studio →", "Get the Studio →", "9.00", "10.00", "planner"),
-   "name_fr": "Le Studio · Planner Type 4", "name_en": "The Studio · Type 4 Planner", "cat_fr": "Le Studio", "cat_en": "The Studio",
-   "title_fr": "Le Studio — Planificateur & Cahier Routine Cheveux Crépus Type 4 | Schicgirl",
-   "title_en": "The Studio — Type 4 Coily Hair Routine Planner & Workbook | Schicgirl",
-   "desc_fr": "Le planificateur-coaching Type 4 : diagnostic, routine sur mesure, calendrier et suivi. Une app interactive + un cahier PDF de 36 pages.",
-   "desc_en": "The Type 4 coaching planner: diagnosis, custom routine, calendar and tracking. An interactive app plus a 36-page PDF workbook."},
-
+  # (planner.html : produit retire, la page est une redirection — sept. 2026)
   {"src": "why-nothing-works.html", "slug_fr": "pourquoi-rien-ne-fonctionne", "slug_en": "why-nothing-works",
    "ebook": _ebook("assets/why-nothing-works-fr.webp", "assets/why-nothing-works-en.webp", "https://selar.com/Pourquoi_Rien_Ne_Fonctionne", "https://selar.com/Why_Nothing_Works",
                    "12€", "$13", "≈ 8 000 FCFA", "Obtenir le guide →", "Get the guide →", "12.00", "13.00", "why-nothing-works"),
@@ -100,8 +76,8 @@ PAGES = [
    "desc_en": "The planner that tracks everything your hair is trying to tell you: goals, wash day, daily moisture, products, protective styles, length. 7 sheets — print or fill in on a tablet."},
 
   {"src": "le-studio-premium.html", "slug_fr": "le-studio-premium", "slug_en": "premium-studio",
-   "ebook": _ebook("assets/studio-premium-fr.webp", "assets/studio-premium-en.webp", "https://selar.com/le_studio_premium", "https://selar.com/the_studio_premium",
-                   "29€", "$32", "≈ 19 000 FCFA", "Débloquer mon Studio Premium →", "Unlock my Premium Studio →", "29.00", "32.00", "studio-premium"),
+   "ebook": _ebook("assets/studio-premium-fr.webp", "assets/studio-premium-en.webp", "/fr/le-cercle/", "/en/the-circle/",
+                   "12€/mois", "$13/mo", "≈ 8 000 FCFA/mois", "Rejoindre Le Cercle →", "Join The Circle →", "12.00", "13.00", "studio-premium"),
    "name_fr": "Le Studio Premium", "name_en": "The Premium Studio", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Le Studio Premium — L'App Type 4 + 3 Guides Complets en Cours | Schicgirl",
    "title_en": "The Premium Studio — The Type 4 App + 3 Full Guides as Courses | Schicgirl",

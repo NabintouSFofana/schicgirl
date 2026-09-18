@@ -2,7 +2,7 @@
    CONFIG
 ═══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  shopLink:"https://schicgirl-hair.github.io/Consultation/",
+  shopLink:"https://schicgirl.me/consultation.html",
   webAppUrl:"https://script.google.com/macros/s/AKfycbxB7fJUpcs1GlE2lt8b4c0gVvymWwFpppzYHWVatgLeIm137azQISfYGyhurv2DLBbwEg/exec",
   clientToken:"schicchat_client_2026-12544455",
   leadStorageKey:"schicchat_leads",

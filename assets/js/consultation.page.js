@@ -1,6 +1,4 @@
 const SELAR_LINKS = {
-  "Consultation Express": "https://selar.com/consultation_express",
-  "Routine Personnalisée": "https://selar.com/routinepersonnalisee",
   "Suivi Premium": "https://selar.com/suivipremium",
   "Analyse écrite uniquement": "https://selar.com/analysecriteuniquement"
 };
