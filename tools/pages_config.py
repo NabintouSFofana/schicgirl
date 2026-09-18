@@ -28,7 +28,7 @@ PAGES = [
    "desc_en": "The complete system to deeply hydrate Type 4 coily hair (4A 4B 4C): the LOC/LCO method, porosity, recipes and a lasting routine."},
 
   {"src": "coiffures.html", "slug_fr": "coiffures-protectrices", "slug_en": "protective-styles",
-   "ebook": _ebook("assets/coiffures-fr.webp", "assets/hair-styles.webp", "https://selar.com/coiffures-protectrices", "https://selar.com/hair-styles",
+   "ebook": _ebook("assets/blog/coiffures-protectrices.jpg", "assets/blog/coiffures-protectrices.jpg", "https://selar.com/coiffures-protectrices", "https://selar.com/hair-styles",
                    "5€", "$6", "≈ 3 500 FCFA", "Protéger mes cheveux →", "Protect my hair →", "5.00", "6.00", "coiffures"),
    "name_fr": "Coiffures Protectrices", "name_en": "Protective Styles", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Coiffures Protectrices Cheveux Crépus Type 4 — Sans Casse | Schicgirl",
@@ -37,7 +37,7 @@ PAGES = [
    "desc_en": "Master protective styles on Type 4 coily hair without dryness or breakage: the before/during/after cycle, choosing styles and upkeep."},
 
   {"src": "stop-cheveux-secs.html", "slug_fr": "cheveux-secs", "slug_en": "dry-hair",
-   "ebook": _ebook("assets/stop-cheveux-secs.webp", "assets/stop-dry-hair.webp", "https://selar.com/stop-cheveux-secs", "https://selar.com/stop-dry-hair",
+   "ebook": _ebook("assets/og-cheveux-secs-fr.png", "assets/og-dry-hair-en.png", "https://selar.com/stop-cheveux-secs", "https://selar.com/stop-dry-hair",
                    "5€", "$6", "≈ 3 500 FCFA", "Commencer pour 5€ →", "Start for $6 →", "5.00", "6.00", "stop-cheveux-secs"),
    "name_fr": "Stop aux Cheveux Secs", "name_en": "Stop Dry Hair", "cat_fr": "Ebooks", "cat_en": "Ebooks",
    "title_fr": "Stop aux Cheveux Secs — En Finir avec la Sécheresse Type 4 | Schicgirl",

@@ -80,3 +80,7 @@ _dev-archive/
 # Originaux deposes a la main, jamais servis par le site.
 # Les vraies images utilisees sont copiees dans assets/.
 _sources-images/
+
+# Ancien panneau admin (mot de passe en clair dans le code) : garde en local, jamais en ligne
+assets/sg-panel-7f3k.html
+assets/css/sg-panel-7f3k.css

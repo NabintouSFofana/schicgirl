@@ -3,7 +3,7 @@
 ──────────────────────────────────────────────── */
       const CONFIG = {
         guideLink: "https://selar.com/hydratee",
-        routineLink: "https://selar.com/70t3ur414k",
+        routineLink: "https://selar.com/comment_creer_ma_routine_capillaire",
         adminStorageKey: "schicgirl_hydration_leads",
       };
 
