@@ -259,14 +259,25 @@ a{color:inherit;text-decoration:none}
       note_en:"Read it with your daughter, or she reads it alone from age 8. Eight pages, FR and EN.",
       url:"https://schicgirl.me/bd/" },
 
-    { label_fr:"Blog",             label_en:"Blog",
-      url:"https://schicgirl.me/blog.html" },
+    /* Les boutiques, par region : Gumroad pour les Etats-Unis, le Canada
+       et la France ; Selar pour l'Afrique (mobile money). */
+    { label_fr:"🛍️ Boutique — États-Unis, Canada, France",
+      label_en:"🛍️ Shop — USA, Canada, France",
+      note_fr:"Mes guides en téléchargement, paiement par carte (Gumroad).",
+      note_en:"My guides as instant downloads, pay by card (Gumroad).",
+      url:"https://schicgirl.gumroad.com" },
 
-    { label_fr:"Boutique",         label_en:"Shop",
-      url:"https://schicgirl.me/shop.html" },
+    { label_fr:"🌍 Boutique — Afrique",
+      label_en:"🌍 Shop — Africa",
+      note_fr:"Mobile money, Wave ou carte, en FCFA ou dans ta devise (Selar).",
+      note_en:"Mobile money, Wave or card, in CFA or your own currency (Selar).",
+      url:"https://selar.com/m/schicgirl" },
 
     { label_fr:"Produits Amazon",  label_en:"Amazon Products",
       url:"https://www.amazon.com/shop/schicgirl" },
+
+    { label_fr:"Blog",             label_en:"Blog",
+      url:"https://schicgirl.me/blog.html" },
 
     { label_fr:"Le Forum",         label_en:"The Forum",
       url:"https://schicgirl.me/forum/" },
@@ -283,7 +294,7 @@ a{color:inherit;text-decoration:none}
     { label_fr:"M'écrire",         label_en:"Email me",
       url:"mailto:contacte.schicgirl@gmail.com" },
 
-    { label_fr:"Comment payer",    label_en:"How to pay", panel:"pay" }
+    { label_fr:"Comment payer en Afrique (Selar)", label_en:"How to pay in Africa (Selar)", panel:"pay" }
   ];
 
   /* ═══════════════════════════════════════════════════════════
@@ -293,8 +304,8 @@ a{color:inherit;text-decoration:none}
      ═══════════════════════════════════════════════════════════ */
   var PAY = {
     fr:{
-      title:"Payer sur Selar, depuis n'importe quel pays",
-      sub:"Toutes mes ventes passent par Selar. Tu peux payer dans ta propre devise — carte bancaire, mobile money ou Wave selon ton pays.",
+      title:"Payer sur Selar, en Afrique",
+      sub:"En Afrique, mes ventes passent par Selar. Tu peux payer dans ta propre devise — carte bancaire, mobile money ou Wave selon ton pays. Aux États-Unis, au Canada et en France, passe par la boutique Gumroad : le paiement se fait par carte.",
       steps:[
         "Clique sur le lien du produit ou de l'abonnement. Tu arrives sur la page Selar.",
         "En haut de la page, ouvre le <b>sélecteur de devise</b> et choisis la tienne (EUR, USD, XOF/FCFA, NGN, GHS…). Le prix se convertit tout seul.",
@@ -312,8 +323,8 @@ a{color:inherit;text-decoration:none}
       help:"Un souci ? Écris-moi →"
     },
     en:{
-      title:"Paying on Selar, from any country",
-      sub:"Everything I sell goes through Selar. You can pay in your own currency — bank card, mobile money or Wave depending on your country.",
+      title:"Paying on Selar, in Africa",
+      sub:"In Africa, I sell through Selar. You can pay in your own currency — bank card, mobile money or Wave depending on your country. In the USA, Canada and France, use the Gumroad shop: you pay by card.",
       steps:[
         "Click the product or subscription link. It takes you to the Selar page.",
         "At the top of the page, open the <b>currency selector</b> and pick yours (EUR, USD, XOF/CFA, NGN, GHS…). The price converts automatically.",
